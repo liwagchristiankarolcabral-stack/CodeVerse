@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="/css/WebServerHttp.css" rel="stylesheet"/>
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+</style>
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a class="active" href="/index.html">Home</a>
+<a href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- Account buttons will be displayed by JavaScript -->
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/index.html">← Back to Books</a>
+</header>
+<main class="book-container">
+<!-- BOOK COVER IMAGE -->
+<div class="book-cover-container">
+<img alt="Authentication" class="book-cover-image" src="/images/Authentication.png"/>
+</div>
+<!-- BOOK DETAILS -->
+<section class="book-details">
+<span class="featured-label">
+                ★ FEATURED E-BOOK
+            </span>
+<h1 class="book-title">
+            Virtualization and Virtual Machines
+            </h1>
+<!-- STATISTICS -->
+<div class="book-stats">
+<div class="stat">
+<strong>4</strong>
+<span>Parts</span>
+</div>
+</div>
+<!-- DESCRIPTION -->
+<p class="book-description">
+Explores emerging technologies and artificial intelligence and their impact on modern computing and everyday life.            </p>
+<!-- NAVIGATION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/30">
+                    Start reading
+                </a>
+<a class="book-btn" href="#" id="contentsBtn">
+                    ☰  Contents
+                </a>
+</div>
+</section>
+</main>
+<!-- TABLE OF CONTENTS POPUP -->
+<div class="contents-overlay" id="contentsPopup">
+<div class="contents-modal">
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">WEB, SERVER, AND HTTP/HTTPS</span>
+<h2>Table of Contents</h2>
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
+                ×
+            </button>
+</div>
+<div class="contents-list">
+<a href="">
+<span>01</span>
+                How browsers load websites
+                <span class="contents-arrow">›</span>
+</a>
+<a href="">
+<span>02</span>
+                Parsing CSS and Rendering
+                <span class="contents-arrow">›</span>
+</a>
+<a href="">
+<span>03</span>
+                Handling JavaScript
+                <span class="contents-arrow">›</span>
+</a>
+<a href="">
+<span>04</span>
+                The Browsers
+                <span class="contents-arrow">›</span>
+</a>
+</div>
+</div>
+</div>
+<script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("show");
+    });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeIcon.textContent = "☀";
+    } else {
+        document.body.classList.remove("dark-mode");
+        themeIcon.textContent = "☾";
+    }
+
+    // Toggle dark mode
+    themeToggle.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-mode");
+
+        const isDark = document.body.classList.contains("dark-mode");
+
+        if (isDark) {
+            themeIcon.textContent = "☀";
+            localStorage.setItem("theme", "dark");
+        } else {
+            themeIcon.textContent = "☾";
+            localStorage.setItem("theme", "light");
+        }
+
+    });
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const contentsBtn = document.getElementById("contentsBtn");
+    const contentsPopup = document.getElementById("contentsPopup");
+    const closeContents = document.getElementById("closeContents");
+
+    // Open popup
+    contentsBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    contentsPopup.classList.add("show");
+    });
+
+    // Close popup
+    closeContents.addEventListener("click", function () {
+        contentsPopup.classList.remove("show");
+    });
+
+    // Close when clicking outside the popup
+    contentsPopup.addEventListener("click", function (event) {
+        if (event.target === contentsPopup) {
+            contentsPopup.classList.remove("show");
+        }
+    });
+
+    // Close using Escape key
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            contentsPopup.classList.remove("show");
+        }
+    });
+
+});
+</script>
+</body>
+</html>

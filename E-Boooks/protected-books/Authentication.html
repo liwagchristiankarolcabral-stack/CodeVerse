@@ -1,0 +1,4014 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Authentication, Authorization, and Web Security | CodeVerse</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="/images/CodeVerseLogo.png">
+
+    <style>
+        :root {
+            --primary: #3157a4;
+            --primary-dark: #24427f;
+            --background: #f5f7fc;
+            --surface: #ffffff;
+            --text: #202b40;
+            --muted: #758096;
+            --border: #e4e9f2;
+            --shadow: 0 8px 30px rgba(30, 50, 90, .07);
+            --code-background: #edf2fb;
+        }
+
+        body.dark-mode {
+            --primary: #91b4ff;
+            --primary-dark: #b3ccff;
+            --background: #101827;
+            --surface: #1b273a;
+            --text: #eaf0fa;
+            --muted: #aab8cc;
+            --border: #344258;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .18);
+            --code-background: #111e30;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 110px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', Arial, sans-serif;
+            color: var(--text);
+            background: var(--background);
+            transition: background .25s, color .25s;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        button, select {
+            font: inherit;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 14px 5%;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-size: 23px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .site-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .nav-links,
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .icon-btn,
+        .menu-toggle {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--surface);
+            color: var(--text);
+            padding: 9px 13px;
+            cursor: pointer;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 9px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .signup-btn {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .topbar {
+            max-width: 1440px;
+            margin: auto;
+            padding: 22px 30px 0;
+        }
+
+        .back-link {
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .reading-controls {
+            max-width: 1440px;
+            margin: 20px auto;
+            padding: 18px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .control-group label {
+            font-weight: 700;
+        }
+
+        .control-group select {
+            padding: 9px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .layout {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 24px 50px;
+            display: grid;
+            grid-template-columns: 290px minmax(0, 1fr);
+            align-items: start;
+            gap: 28px;
+        }
+
+        .toc {
+            position: sticky;
+            top: 105px;
+            max-height: calc(100vh - 125px);
+            overflow-y: auto;
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            font-size: 19px;
+        }
+
+        .toc h3 {
+            margin: 24px 0 10px;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .toc a {
+            display: block;
+            padding: 9px 10px;
+            border-radius: 8px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+            text-decoration: none;
+        }
+
+        .toc a:hover,
+        .toc a.current {
+            background: var(--code-background);
+            color: var(--primary);
+        }
+
+        main {
+            min-width: 0;
+        }
+
+        .book-header,
+        .chapter {
+            margin-bottom: 24px;
+            padding: 32px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .book-header h1 {
+            margin: 14px 0;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.2;
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .chapter h2 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 26px;
+        }
+
+        .chapter h3 {
+            margin-top: 24px;
+            font-size: 19px;
+        }
+
+        .chapter p,
+        .chapter li {
+            line-height: 1.85;
+        }
+
+        .chapter ul,
+        .chapter ol {
+            padding-left: 24px;
+        }
+
+        .code-example {
+            overflow-x: auto;
+            margin: 18px 0;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--code-background);
+        }
+
+        .code-example pre {
+            margin: 0;
+        }
+
+        .code-example code {
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .lesson-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .lesson-table th,
+        .lesson-table td {
+            padding: 14px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .lesson-table th {
+            background: var(--code-background);
+        }
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: static;
+                max-height: 300px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                right: 0;
+                padding: 20px;
+                background: var(--surface);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 12px 16px;
+            }
+
+            .layout {
+                padding: 0 14px 30px;
+            }
+
+            .book-header,
+            .chapter {
+                padding: 22px;
+            }
+
+            .reading-controls {
+                margin: 14px;
+            }
+
+            .nav-actions {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+    <header class="navbar">
+
+        <a class="logo" href="/index.html">
+            <img
+                src="/images/CodeVerseLogo.png"
+                alt="CodeVerse Logo"
+                class="site-logo"
+                onerror="this.style.display='none'"
+            >
+            <span>
+                Code<span class="logo-highlight">Verse</span>
+            </span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="F:\for chat\CodeVerse_Repaired_Website\E-Boooks\public\index.html">Home</a>
+            <a href="/library.html" class="active">Explore Books</a>
+            <a href="/index.html#about">About</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button
+                type="button"
+                class="icon-btn"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+            >
+                <span id="themeIcon">☾</span>
+            </button>
+
+            <div id="accountActions">
+                <a href="/LogIn.html" class="login-btn">Log In</a>
+                <a href="/register.html" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+        >
+            ☰
+        </button>
+
+    </header>
+
+    <!-- =========================
+         BACK NAVIGATION
+    ========================== -->
+    <div class="topbar">
+        <a href="/library.html" class="back-link">
+            ← Back to Books
+        </a>
+    </div>
+
+    <!-- =========================
+         READING CONTROLS
+    ========================== -->
+    <div class="reading-controls">
+
+        <div class="control-group">
+            <label for="fontSize">Font Size</label>
+
+            <select id="fontSize">
+                <option value="14px">Small</option>
+                <option value="16px" selected>Medium</option>
+                <option value="18px">Large</option>
+                <option value="20px">Extra Large</option>
+                <option value="22px">Largest</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="fontFamily">Font Style</label>
+
+            <select id="fontFamily">
+                <option value="'DM Sans', sans-serif">DM Sans</option>
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Times New Roman', serif">Times New Roman</option>
+                <option value="Verdana, sans-serif">Verdana</option>
+            </select>
+        </div>
+
+    </div>
+
+    <!-- =========================
+         MAIN READING LAYOUT
+    ========================== -->
+    <div class="layout">
+
+        <!-- TABLE OF CONTENTS -->
+        <aside class="toc">
+
+            <h2>Table of Contents</h2>
+
+            <nav>
+
+                <h3>Authentication</h3>
+
+                <a href="#authentication-cheat-sheet">
+                    Authentication Cheat Sheet
+                </a>
+
+                <a href="#authentication-general-guidelines">
+                    Authentication General Guidelines
+                </a>
+
+                <a href="#authentication-user-ids">
+                    User IDs
+                </a>
+
+                <a href="#authentication-usernames">
+                    Usernames
+                </a>
+
+                <a href="#sensitive-authentication-accounts">
+                    Authentication Solution and Sensitive Accounts
+                </a>
+
+                <a href="#password-strength-controls">
+                    Implement Proper Password Strength Controls
+                </a>
+
+                <a href="#secure-password-recovery">
+                    Implement Secure Password Recovery Mechanism
+                </a>
+
+                <a href="#secure-password-storage">
+                    Store Passwords in a Secure Fashion
+                </a>
+
+                <a href="#safe-password-comparison">
+                    Compare Password Hashes Using Safe Functions
+                </a>
+
+                <a href="#change-password-feature">
+                    Change Password Feature
+                </a>
+
+                <a href="#password-transport-tls">
+                    Transmit Passwords Only Over TLS
+                </a>
+
+                <a href="#reauthentication-sensitive-features">
+                    Require Re-authentication for Sensitive Features
+                </a>
+
+                <a href="#reauthentication-risk-events">
+                    Re-authentication After Risk Events
+                </a>
+
+                <a href="#strong-transaction-authentication">
+                    Strong Transaction Authentication
+                </a>
+
+                <a href="#authentication-error-messages">
+                    Authentication and Error Messages
+                </a>
+
+                <a href="#automated-authentication-attacks">
+                    Protect Against Automated Attacks
+                </a>
+
+                <a href="#authentication-logging-monitoring">
+                    Logging and Monitoring
+                </a>
+
+                <a href="#passwordless-authentication-protocols">
+                    Passwordless Authentication Protocols
+                </a>
+
+                <a href="#authentication-password-managers">
+                    Password Managers
+                </a>
+
+                <a href="#changing-registered-email">
+                    Changing a User's Registered Email Address
+                </a>
+
+                <a href="#adaptive-risk-based-authentication">
+                    Adaptive or Risk Based Authentication
+                </a>
+
+                <!-- AUTHORIZATION -->
+                <h3>Authorization</h3>
+
+                <a href="#authorization-cheat-sheet">
+                    Authorization Cheat Sheet
+                </a>
+
+                <a href="#authorization-recommendations">
+                    Authorization Recommendations
+                </a>
+
+                <a href="#enforce-least-privileges">
+                    Enforce Least Privileges
+                </a>
+
+                <a href="#authorization-deny-by-default">
+                    Deny by Default
+                </a>
+
+                <a href="#validate-permissions-every-request">
+                    Validate Permissions on Every Request
+                </a>
+
+                <a href="#review-authorization-technologies">
+                    Review Authorization Logic
+                </a>
+
+                <a href="#attribute-relationship-access-control">
+                    Attribute and Relationship Based Access Control
+                </a>
+
+                <a href="#protect-lookup-identifiers">
+                    Protect Lookup Identifiers
+                </a>
+
+                <a href="#static-resource-authorization">
+                    Enforce Authorization Checks on Static Resources
+                </a>
+
+                <a href="#authorization-check-location">
+                    Authorization Checks in the Right Location
+                </a>
+
+                <a href="#authorization-failure-safe">
+                    Exit Safely When Authorization Checks Fail
+                </a>
+
+                <!-- WEB SERVICE SECURITY -->
+                <h3>Web Service Security</h3>
+
+                <a href="#web-service-security-cheat-sheet">
+                    Web Service Security Cheat Sheet
+                </a>
+
+                <a href="#transport-confidentiality">
+                    Transport Confidentiality
+                </a>
+
+                <a href="#web-service-server-authentication">
+                    Server Authentication
+                </a>
+
+                <a href="#web-service-user-authentication">
+                    User Authentication
+                </a>
+
+                <a href="#transport-encoding">
+                    Transport Encoding
+                </a>
+
+                <a href="#message-integrity">
+                    Message Integrity
+                </a>
+
+                <a href="#message-confidentiality">
+                    Message Confidentiality
+                </a>
+
+                <a href="#web-service-authorization">
+                    Authorization
+                </a>
+
+                <a href="#schema-validation">
+                    Schema Validation
+                </a>
+
+                <a href="#content-validation">
+                    Content Validation
+                </a>
+
+                <a href="#web-service-output-encoding">
+                    Output Encoding
+                </a>
+
+                <a href="#web-service-virus-protection">
+                    Virus Protection
+                </a>
+
+                <a href="#web-service-message-size">
+                    Message Size
+                </a>
+
+                <a href="#web-service-availability">
+                    Availability
+                </a>
+
+                <a href="#endpoint-security-profile">
+                    Endpoint Security Profile
+                </a>
+
+                <!-- ASSESSMENT -->
+                <h3>Assessment</h3>
+
+                <a href="#quiz">
+                    Knowledge Assessment Quiz
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+
+            <header class="book-header">
+
+                <span class="eyebrow">
+                    Digital Book · Technology
+                </span>
+
+                <h1>
+                    Authentication, Authorization, and Web Security
+                </h1>
+
+                <p>
+                    Learn the fundamentals of authentication,
+                    authorization, and web security to protect
+                    user accounts, manage access, and secure
+                    web applications.
+                </p>
+
+            </header>
+
+            <!-- ==========================================
+                 PART 1 - AUTHENTICATION
+            ========================================== -->
+
+            <section class="chapter" id="authentication-cheat-sheet">
+
+                <h2>Authentication Cheat Sheet</h2>
+
+                <p>
+                    Authentication is the process of verifying
+                    the identity of a user, device, application,
+                    or other entity attempting to access a system.
+                </p>
+
+                <p>
+                    Authentication helps protect user accounts,
+                    personal information, and restricted resources
+                    from unauthorized access.
+                </p>
+
+                <h3>Important Concepts</h3>
+
+                <ul>
+                    <li>
+                        <strong>Authentication:</strong>
+                        Verifying an entity's claimed identity.
+                    </li>
+
+                    <li>
+                        <strong>Digital Identity:</strong>
+                        The representation of an entity within
+                        an online service.
+                    </li>
+
+                    <li>
+                        <strong>Identity Proofing:</strong>
+                        Establishing that a claimed identity
+                        corresponds to the intended subject.
+                    </li>
+
+                    <li>
+                        <strong>Session Management:</strong>
+                        Maintaining the authenticated state
+                        of a user across multiple requests.
+                    </li>
+                </ul>
+
+                <h3>Common Authentication Methods</h3>
+
+                <ul>
+                    <li>Passwords and passphrases</li>
+                    <li>One-time authentication codes</li>
+                    <li>Hardware security keys</li>
+                    <li>Passkeys</li>
+                    <li>Client certificates</li>
+                    <li>Multi-factor authentication</li>
+                </ul>
+
+            </section>
+
+            <section class="chapter" id="authentication-general-guidelines">
+
+                <h2>Authentication General Guidelines</h2>
+
+                <p>
+                    Secure authentication requires more than
+                    checking whether a password is correct.
+                    Developers must protect credentials,
+                    manage sessions, prevent automated attacks,
+                    and handle sensitive account operations.
+                </p>
+
+                <p>
+                    Authentication controls should be designed
+                    to reduce the possibility of account takeover,
+                    credential theft, and identity impersonation.
+                </p>
+
+            </section>
+
+            <section class="chapter" id="authentication-user-ids">
+
+                <h2>User IDs</h2>
+
+                <p>
+                    A User ID uniquely identifies an account
+                    within an application.
+                </p>
+
+                <p>
+                    OWASP recommends considering randomly
+                    generated identifiers to reduce risks
+                    associated with predictable sequential IDs.
+                </p>
+
+                <h3>Example</h3>
+
+                <div class="code-example">
+                    <pre><code>const crypto = require("node:crypto");
+
+const userId = crypto.randomUUID();
+
+console.log(userId);</code></pre>
+                </div>
+
+                <p>
+                    Random identifiers make account identifiers
+                    harder to predict, but they do not replace
+                    authorization checks.
+                </p>
+
+            </section>
+
+            <section class="chapter" id="authentication-usernames">
+
+                <h2>Usernames</h2>
+
+                <p>
+                    A username is an identifier used to
+                    recognize a user during authentication.
+                </p>
+
+                <p>
+                    A username may be different from the
+                    application's internal User ID.
+                </p>
+
+                <h3>Recommended Practices</h3>
+
+                <ul>
+                    <li>Allow meaningful usernames where appropriate.</li>
+                    <li>Support verified email addresses as login identifiers.</li>
+                    <li>Enforce username uniqueness when required.</li>
+                    <li>Apply consistent validation rules.</li>
+                    <li>Avoid exposing sensitive account information.</li>
+                </ul>
+
+            </section>
+
+            <section class="chapter" id="sensitive-authentication-accounts">
+
+                <h2>Authentication Solution and Sensitive Accounts</h2>
+
+                <p>
+                    Highly privileged accounts used for
+                    infrastructure, databases, middleware,
+                    and administrative services require
+                    stronger separation from ordinary
+                    user authentication.
+                </p>
+
+                <h3>Security Recommendations</h3>
+
+                <ul>
+                    <li>
+                        Do not allow internal service accounts
+                        to sign in through public user interfaces.
+                    </li>
+
+                    <li>
+                        Separate internal administrative
+                        authentication from public access.
+                    </li>
+
+                    <li>
+                        Protect privileged credentials
+                        using appropriate secret management.
+                    </li>
+
+                    <li>
+                        Apply least-privilege permissions
+                        to service accounts.
+                    </li>
+                </ul>
+
+            </section>
+
+            <section class="chapter" id="password-strength-controls">
+
+                <h2>Implement Proper Password Strength Controls</h2>
+
+                <p>
+                    Password strength controls help prevent
+                    attackers from guessing passwords through
+                    manual or automated attempts.
+                </p>
+
+                <h3>Password Length</h3>
+
+                <p>
+                    OWASP's guidance references a minimum
+                    of 15 characters for password-only
+                    authentication and 8 characters when
+                    multi-factor authentication is enabled.
+                </p>
+
+                <p>
+                    Applications should support passwords
+                    of at least 64 characters to accommodate
+                    longer passphrases.
+                </p>
+
+                <h3>Recommended Practices</h3>
+
+                <ul>
+                    <li>Encourage long passwords and passphrases.</li>
+                    <li>Reject commonly used and compromised passwords.</li>
+                    <li>Allow whitespace and Unicode characters.</li>
+                    <li>Do not silently truncate passwords.</li>
+                    <li>Avoid mandatory character-composition rules.</li>
+                    <li>Provide password-strength feedback.</li>
+                    <li>Do not require arbitrary periodic password changes.</li>
+                    <li>Require password changes when compromise is identified.</li>
+                </ul>
+
+                <h3>Example: Password Length Validation</h3>
+
+                <div class="code-example">
+                    <pre><code>function isPasswordLengthValid(password) {
+    return [...password].length >= 15;
+}</code></pre>
+                </div>
+
+                <p>
+                    This example demonstrates only a minimum
+                    length check. A production password policy
+                    also needs breached-password screening,
+                    secure storage, and abuse protection.
+                </p>
+
+            </section>
+
+            <section class="chapter" id="secure-password-recovery">
+
+                <h2>Implement Secure Password Recovery Mechanism</h2>
+
+                <p>
+                    Password recovery allows users to
+                    regain access to their accounts
+                    when they forget their credentials.
+                </p>
+
+                <h3>Recommended Practices</h3>
+
+                <ul>
+                    <li>Use unpredictable recovery tokens.</li>
+                    <li>Make recovery tokens expire.</li>
+                    <li>Invalidate tokens after successful use.</li>
+                    <li>Limit repeated recovery attempts.</li>
+                    <li>Avoid revealing whether an account exists.</li>
+                    <li>Notify users about important account changes.</li>
+                </ul>
+
+                <h3>Example: Recovery Token Generation</h3>
+
+                <div class="code-example">
+                    <pre><code>const crypto = require("node:crypto");
+
+const resetToken =
+    crypto.randomBytes(32).toString("hex");</code></pre>
+                </div>
+
+                <p>
+                    A complete recovery system must also
+                    store a secure token verifier, enforce
+                    expiration and single use, and validate
+                    requests on the server.
+                </p>
+
+            </section>
+
+            <section class="chapter" id="secure-password-storage">
+
+                <h2>Store Passwords in a Secure Fashion</h2>
+
+                <p>
+                    Applications must not store user
+                    passwords as readable plaintext.
+                </p>
+
+                <p>
+                    Passwords should be processed with
+                    password-specific hashing algorithms
+                    that incorporate salts and appropriate
+                    computational costs.
+                </p>
+
+                <h3>Common Password Hashing Algorithms</h3>
+
+                <ul>
+                    <li>Argon2id</li>
+                    <li>scrypt</li>
+                    <li>bcrypt</li>
+                    <li>PBKDF2</li>
+                </ul>
+
+                <h3>Example: bcrypt in Node.js</h3>
+
+                <div class="code-example">
+                    <pre><code>const bcrypt = require("bcryptjs");
+
+async function hashPassword(password) {
+    return await bcrypt.hash(password, 12);
+}</code></pre>
+                </div>
+
+                <p>
+                    This is an educational example.
+                    The hashing algorithm and cost
+                    parameters should be selected
+                    according to current security guidance.
+                </p>
+
+            </section>
+
+            <section class="chapter" id="safe-password-comparison">
+
+                <h2>Compare Password Hashes Using Safe Functions</h2>
+
+                <p>
+                    Password verification should use
+                    the comparison function provided
+                    by the password hashing library.
+                </p>
+
+                <p>
+                    Developers should avoid manually
+                    comparing password hashes using
+                    ordinary string comparison.
+                </p>
+
+                <h3>Example</h3>
+
+                <div class="code-example">
+                    <pre><code>const bcrypt = require("bcryptjs");
+
+async function verifyPassword(
+    enteredPassword,
+    storedHash
+) {
+    return await bcrypt.compare(
+        enteredPassword,
+        storedHash
+    );
+}</code></pre>
+                </div>
+
+                <h3>Security Considerations</h3>
+
+                <ul>
+                    <li>Use trusted password verification functions.</li>
+                    <li>Protect against timing-related information leaks.</li>
+                    <li>Apply reasonable input limits.</li>
+                    <li>Avoid unsafe type conversions.</li>
+                </ul>
+
+            </section>
+
+            <section class="chapter" id="change-password-feature">
+
+                <h2>Change Password Feature</h2>
+
+                <p>
+                    A password change is a sensitive
+                    account operation that should
+                    require appropriate identity verification.
+                </p>
+
+                <h3>Recommended Process</h3>
+
+                <ol>
+                    <li>Confirm the user has an authenticated session.</li>
+                    <li>Request the current password or suitable re-authentication.</li>
+                    <li>Validate the new password against the password policy.</li>
+                    <li>Securely hash the new password.</li>
+                    <li>Update the stored credential.</li>
+                    <li>Consider revoking existing sessions.</li>
+                    <li>Notify the user about the change.</li>
+                </ol>
+
+                <p>
+                    Password change requests should
+                    also be protected against cross-site
+                    request forgery when cookie-based
+                    sessions are used.
+                </p>
+
+            </section>
+
+            <section class="chapter" id="password-transport-tls">
+
+                <h2>Transmit Passwords Only Over TLS or Other Strong Transport</h2>
+
+                <p>
+                    Passwords and other authentication
+                    credentials must be protected
+                    while traveling between the
+                    browser and server.
+                </p>
+
+                <p>
+                    Transport Layer Security (TLS)
+                    protects network communications
+                    against interception and modification.
+                </p>
+
+                <h3>Example</h3>
+
+                <div class="code-example">
+                    <pre><code>https://example.com/login</code></pre>
+                </div>
+
+                <h3>Recommended Practices</h3>
+
+                <ul>
+                    <li>Use HTTPS for login and authenticated pages.</li>
+                    <li>Configure TLS securely.</li>
+                    <li>Protect authentication cookies.</li>
+                    <li>Avoid placing passwords in URLs.</li>
+                    <li>Use secure transport for password recovery.</li>
+                </ul>
+
+            </section>
+
+<!-- ==========================================
+     AUTHENTICATION - CONTINUATION
+========================================== -->
+
+<section class="chapter" id="reauthentication-sensitive-features">
+
+    <h2>Require Re-authentication for Sensitive Features</h2>
+
+    <p>
+        Some account operations require additional verification
+        even when a user is already logged in.
+    </p>
+
+    <h3>Examples</h3>
+
+    <ul>
+        <li>Changing an account password</li>
+        <li>Changing a registered email address</li>
+        <li>Updating multi-factor authentication settings</li>
+        <li>Accessing highly sensitive information</li>
+        <li>Performing high-value transactions</li>
+    </ul>
+
+    <p>
+        Re-authentication reduces the risk of misuse when
+        an authenticated session has been compromised
+        or left unattended.
+    </p>
+
+</section>
+
+<section class="chapter" id="reauthentication-risk-events">
+
+    <h2>Re-authentication After Risk Events</h2>
+
+    <p>
+        Re-authentication may be necessary when an application
+        detects activity that suggests increased account risk.
+    </p>
+
+    <h3>When to Trigger Re-authentication</h3>
+
+    <ul>
+        <li>Suspicious account activity</li>
+        <li>Unexpected changes in login context</li>
+        <li>Account recovery events</li>
+        <li>Changes to authentication settings</li>
+        <li>Attempts to perform sensitive operations</li>
+    </ul>
+
+    <h3>Re-authentication Mechanisms</h3>
+
+    <ul>
+        <li>Requesting the current password</li>
+        <li>Requesting an additional authentication factor</li>
+        <li>Using a passkey or hardware security key</li>
+        <li>Applying a stronger authentication challenge</li>
+    </ul>
+
+    <h3>Implementation Recommendations</h3>
+
+    <p>
+        Applications should consider the user's context,
+        avoid unnecessary interruptions, and manage sessions
+        securely after re-authentication.
+    </p>
+
+</section>
+
+<section class="chapter" id="strong-transaction-authentication">
+
+    <h2>Consider Strong Transaction Authentication</h2>
+
+    <p>
+        Sensitive transactions may require additional
+        verification to confirm that the legitimate user
+        intends to perform the operation.
+    </p>
+
+    <h3>Examples</h3>
+
+    <ul>
+        <li>Transferring funds</li>
+        <li>Changing payment information</li>
+        <li>Approving high-risk administrative actions</li>
+        <li>Updating important account ownership details</li>
+    </ul>
+
+    <h3>TLS Client Authentication</h3>
+
+    <p>
+        Mutual TLS can authenticate both the server and client
+        using digital certificates.
+    </p>
+
+    <p>
+        It can be useful in managed enterprise environments
+        where client certificates can be distributed
+        and maintained securely.
+    </p>
+
+</section>
+
+<section class="chapter" id="authentication-error-messages">
+
+    <h2>Authentication and Error Messages</h2>
+
+    <p>
+        Authentication error messages should not reveal
+        unnecessary information about user accounts.
+    </p>
+
+    <p>
+        Detailed error messages may help attackers determine
+        whether particular accounts exist.
+    </p>
+
+    <h3>Example: Information-Revealing Message</h3>
+
+    <div class="code-example">
+        <pre><code>Account not found.</code></pre>
+    </div>
+
+    <h3>Better Generic Message</h3>
+
+    <div class="code-example">
+        <pre><code>Invalid username or password.</code></pre>
+    </div>
+
+    <h3>Authentication Responses</h3>
+
+    <p>
+        Login, account recovery, and registration workflows
+        should avoid disclosing sensitive account-existence
+        information.
+    </p>
+
+    <h3>Error Codes and URLs</h3>
+
+    <p>
+        Developers should also ensure that HTTP responses,
+        redirect URLs, and response timing do not reveal
+        information that generic messages are intended
+        to conceal.
+    </p>
+
+</section>
+
+<section class="chapter" id="automated-authentication-attacks">
+
+    <h2>Protect Against Automated Attacks</h2>
+
+    <p>
+        Attackers may use automated tools to attempt
+        large numbers of logins or test stolen credentials.
+    </p>
+
+    <h3>Common Attacks</h3>
+
+    <ul>
+        <li>
+            <strong>Brute Force:</strong>
+            Repeatedly guessing passwords.
+        </li>
+
+        <li>
+            <strong>Credential Stuffing:</strong>
+            Testing credentials exposed in other data breaches.
+        </li>
+
+        <li>
+            <strong>Password Spraying:</strong>
+            Trying a small number of common passwords
+            across many accounts.
+        </li>
+    </ul>
+
+    <h3>Multi-Factor Authentication</h3>
+
+    <p>
+        MFA requires additional proof beyond a single password.
+        Phishing-resistant authentication methods should
+        be preferred where appropriate.
+    </p>
+
+    <h3>Login Throttling</h3>
+
+    <p>
+        Throttling limits repeated authentication attempts.
+    </p>
+
+    <h3>Account Lockout</h3>
+
+    <p>
+        Temporary restrictions may be used after repeated
+        failed attempts, but account lockout policies
+        should avoid creating opportunities for
+        denial-of-service attacks.
+    </p>
+
+    <h3>CAPTCHA</h3>
+
+    <p>
+        CAPTCHA can increase the cost of automated attacks,
+        but it should not be considered a complete
+        security solution.
+    </p>
+
+    <h3>Security Questions and Memorable Words</h3>
+
+    <p>
+        Traditional knowledge-based security questions
+        are not recommended as authentication or
+        re-authentication factors.
+    </p>
+
+</section>
+
+<section class="chapter" id="authentication-logging-monitoring">
+
+    <h2>Logging and Monitoring</h2>
+
+    <p>
+        Authentication events should be monitored
+        to detect attacks, unusual behavior, and repeated
+        authentication failures.
+    </p>
+
+    <h3>Events to Monitor</h3>
+
+    <ul>
+        <li>Failed login attempts</li>
+        <li>Repeated password failures</li>
+        <li>Account lockouts</li>
+        <li>Suspicious authentication activity</li>
+        <li>High-risk account changes</li>
+    </ul>
+
+    <p>
+        Security logs should not contain plaintext passwords,
+        authentication tokens, or other unnecessary secrets.
+    </p>
+
+</section>
+
+<section class="chapter" id="passwordless-authentication-protocols">
+
+    <h2>Use of Authentication Protocols That Require No Password</h2>
+
+    <p>
+        Modern applications may use federated identity systems,
+        cryptographic authenticators, or delegated access
+        protocols instead of requiring applications
+        to collect user passwords directly.
+    </p>
+
+    <h3>OAuth 2.0 and 2.1</h3>
+
+    <p>
+        OAuth is an authorization framework that allows
+        applications to obtain delegated access
+        to protected resources.
+    </p>
+
+    <p>
+        OAuth alone is not an authentication protocol.
+    </p>
+
+    <h3>OpenID Connect (OIDC)</h3>
+
+    <p>
+        OpenID Connect adds an identity layer to OAuth
+        and supports authentication and single sign-on.
+    </p>
+
+    <h3>OIDC Implementation Guidance</h3>
+
+    <ul>
+        <li>Validate ID token signatures.</li>
+        <li>Validate token issuer and audience.</li>
+        <li>Check token expiration.</li>
+        <li>Use maintained authentication libraries.</li>
+        <li>Follow the identity provider's security guidance.</li>
+    </ul>
+
+    <h3>Secure Federated Account Linking</h3>
+
+    <p>
+        Federated accounts should be linked using verified
+        identity information and appropriate
+        account-owner confirmation.
+    </p>
+
+    <p>
+        Applications should not automatically link accounts
+        based only on matching email addresses.
+    </p>
+
+    <h3>SAML</h3>
+
+    <p>
+        Security Assertion Markup Language supports
+        identity federation and single sign-on,
+        particularly in enterprise environments.
+    </p>
+
+    <h3>FIDO</h3>
+
+    <p>
+        FIDO authentication uses public-key cryptography
+        to support secure authentication.
+    </p>
+
+    <p>
+        Modern FIDO2 technologies include WebAuthn and passkeys.
+    </p>
+
+    <h3>Hardware-backed Key Storage</h3>
+
+    <p>
+        Some authenticators protect private keys
+        using secure hardware.
+    </p>
+
+    <p>
+        However, developers should not assume every
+        passkey or authenticator is hardware-backed.
+    </p>
+
+</section>
+
+<section class="chapter" id="authentication-password-managers">
+
+    <h2>Password Managers</h2>
+
+    <p>
+        Password managers help users generate, store,
+        and fill different passwords for different websites.
+    </p>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Use standard HTML login fields.</li>
+        <li>Allow password autofill.</li>
+        <li>Allow users to paste passwords.</li>
+        <li>Support long passwords.</li>
+        <li>Provide logical keyboard navigation.</li>
+    </ul>
+
+    <h3>HTML Example</h3>
+
+    <div class="code-example">
+        <pre><code>&lt;label for="login-email"&gt;Email&lt;/label&gt;
+
+&lt;input
+    type="email"
+    id="login-email"
+    name="email"
+    autocomplete="username"
+&gt;
+
+&lt;label for="login-password"&gt;Password&lt;/label&gt;
+
+&lt;input
+    type="password"
+    id="login-password"
+    name="password"
+    autocomplete="current-password"
+&gt;</code></pre>
+    </div>
+
+</section>
+
+<section class="chapter" id="changing-registered-email">
+
+    <h2>Changing a User's Registered Email Address</h2>
+
+    <p>
+        Changing an account's registered email address
+        is a sensitive operation because email is often
+        used for account recovery.
+    </p>
+
+    <h3>If MFA Is Enabled</h3>
+
+    <ol>
+        <li>Validate the authenticated session.</li>
+        <li>Explain the email change process.</li>
+        <li>Collect and validate the proposed new address.</li>
+        <li>Require MFA verification.</li>
+        <li>Store the change as pending.</li>
+        <li>Notify the current email address.</li>
+        <li>Require confirmation from the new address.</li>
+        <li>Complete the change only after required checks.</li>
+    </ol>
+
+    <h3>If MFA Is Not Enabled</h3>
+
+    <ol>
+        <li>Validate the authenticated session.</li>
+        <li>Request the new email address.</li>
+        <li>Verify the user's current password.</li>
+        <li>Keep the change pending.</li>
+        <li>Require confirmation from the current address.</li>
+        <li>Require confirmation from the proposed address.</li>
+        <li>Complete the change after successful verification.</li>
+    </ol>
+
+    <h3>Additional Considerations</h3>
+
+    <p>
+        Confirmation tokens should be unpredictable,
+        time-limited, and single-use.
+    </p>
+
+    <p>
+        Administrators and support personnel should also
+        be trained to recognize social engineering attempts.
+    </p>
+
+</section>
+
+<section class="chapter" id="adaptive-risk-based-authentication">
+
+    <h2>Adaptive or Risk Based Authentication</h2>
+
+    <p>
+        Adaptive authentication adjusts authentication
+        requirements according to the risk associated
+        with a particular request.
+    </p>
+
+    <h3>Possible Risk Signals</h3>
+
+    <ul>
+        <li>Unrecognized devices</li>
+        <li>Unexpected geographic locations</li>
+        <li>Unusual login times</li>
+        <li>Suspicious IP addresses</li>
+        <li>Unusual behavioral patterns</li>
+        <li>Sensitivity of the requested operation</li>
+    </ul>
+
+    <h3>Example</h3>
+
+    <p>
+        A user signing in from a familiar device
+        may complete the normal authentication process.
+    </p>
+
+    <p>
+        If the same account is accessed from an unfamiliar
+        device under suspicious circumstances, the application
+        may require additional verification.
+    </p>
+
+    <h3>Possible Security Responses</h3>
+
+    <ul>
+        <li>Allow the request.</li>
+        <li>Require additional MFA verification.</li>
+        <li>Apply an anti-automation challenge.</li>
+        <li>Temporarily restrict the operation.</li>
+        <li>Revoke a compromised session.</li>
+    </ul>
+
+    <p>
+        Risk signals should supplement authentication
+        rather than replace proof of identity
+        or a valid session.
+    </p>
+
+</section>
+
+<!-- ==========================================
+     END OF AUTHENTICATION
+========================================== -->
+
+<!-- ==========================================
+     PART 2 - AUTHORIZATION
+========================================== -->
+
+<section class="chapter" id="authorization-cheat-sheet">
+
+    <h2>Authorization Cheat Sheet</h2>
+
+    <p>
+        Authorization determines whether an entity
+        is permitted to perform a particular action
+        or access a particular resource.
+    </p>
+
+    <p>
+        Authentication verifies identity,
+        while authorization determines permitted access.
+    </p>
+
+    <h3>Example</h3>
+
+    <p>
+        A student may successfully log into an educational
+        website, but that does not mean the student
+        should have permission to manage other users' accounts.
+    </p>
+
+    <h3>Authentication vs. Authorization</h3>
+
+    <table class="lesson-table">
+
+        <thead>
+            <tr>
+                <th>Authentication</th>
+                <th>Authorization</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Verifies identity.</td>
+                <td>Verifies permissions.</td>
+            </tr>
+
+            <tr>
+                <td>Establishes who the user is.</td>
+                <td>Determines what the user may do.</td>
+            </tr>
+
+            <tr>
+                <td>Uses credentials or authenticators.</td>
+                <td>Uses access-control policies.</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <h3>Authorization Risks</h3>
+
+    <ul>
+        <li>Unauthorized access to private records</li>
+        <li>Unauthorized modification of data</li>
+        <li>Privilege escalation</li>
+        <li>Unauthorized administrative operations</li>
+        <li>Exposure of restricted files</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="authorization-recommendations">
+
+    <h2>Authorization Recommendations</h2>
+
+    <p>
+        Secure authorization requires clear access-control
+        policies and consistent enforcement.
+    </p>
+
+    <p>
+        Permissions should be designed, tested,
+        and reviewed throughout the software
+        development lifecycle.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="enforce-least-privileges">
+
+    <h2>Enforce Least Privileges</h2>
+
+    <p>
+        The principle of least privilege means granting
+        users only the permissions necessary
+        to perform their intended tasks.
+    </p>
+
+    <h3>Example</h3>
+
+    <table class="lesson-table">
+
+        <thead>
+            <tr>
+                <th>User Role</th>
+                <th>Allowed Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Student</td>
+                <td>
+                    Read permitted books and manage
+                    their own bookmarks.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Content Editor</td>
+                <td>
+                    Manage assigned educational content.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Administrator</td>
+                <td>
+                    Perform approved administrative operations.
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Define permissions during system design.</li>
+        <li>Restrict access by role and resource ownership.</li>
+        <li>Review privileges regularly.</li>
+        <li>Remove permissions that are no longer needed.</li>
+        <li>Test horizontal and vertical access restrictions.</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="authorization-deny-by-default">
+
+    <h2>Deny by Default</h2>
+
+    <p>
+        Applications should deny access unless
+        an explicit authorization rule permits
+        the requested action.
+    </p>
+
+    <h3>Example</h3>
+
+    <div class="code-example">
+        <pre><code>function canAccessAdmin(user) {
+    return user?.role === "admin";
+}</code></pre>
+    </div>
+
+    <p>
+        This simplified example denies access when
+        the user is missing or does not have
+        the required role.
+    </p>
+
+    <p>
+        Real applications must enforce access control
+        on the server and may require additional
+        resource-specific conditions.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="validate-permissions-every-request">
+
+    <h2>Validate the Permissions on Every Request</h2>
+
+    <p>
+        Authorization must be checked whenever
+        a protected resource or operation is requested.
+    </p>
+
+    <p>
+        Checking permissions only when the user
+        first logs in is insufficient.
+    </p>
+
+    <h3>Example: Express Middleware</h3>
+
+    <div class="code-example">
+        <pre><code>function requireAdmin(req, res, next) {
+
+    if (!req.session?.userId) {
+        return res.sendStatus(401);
+    }
+
+    if (req.session.role !== "admin") {
+        return res.sendStatus(403);
+    }
+
+    next();
+}
+
+app.get(
+    "/api/admin",
+    requireAdmin,
+    (req, res) => {
+        res.json({
+            message: "Authorized"
+        });
+    }
+);</code></pre>
+    </div>
+
+    <p>
+        This example assumes the server has securely
+        established the session role.
+    </p>
+
+    <p>
+        Production systems should use trusted,
+        current authorization data.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="review-authorization-technologies">
+
+    <h2>
+        Thoroughly Review the Authorization Logic
+        of Chosen Tools and Technologies
+    </h2>
+
+    <p>
+        Frameworks and libraries can provide
+        authorization features, but their default
+        configuration may not match an application's
+        security requirements.
+    </p>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Understand framework authorization behavior.</li>
+        <li>Review security configurations.</li>
+        <li>Keep dependencies updated.</li>
+        <li>Monitor dependency vulnerabilities.</li>
+        <li>Apply defense in depth.</li>
+        <li>Implement additional rules when necessary.</li>
+    </ul>
+
+    <p>
+        Developers remain responsible for ensuring
+        that authorization policies are correctly enforced.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="attribute-relationship-access-control">
+
+    <h2>
+        Prefer Attribute and Relationship Based
+        Access Control over RBAC
+    </h2>
+
+    <p>
+        Access control can use roles, attributes,
+        relationships, or combinations of these factors.
+    </p>
+
+    <h3>Role-Based Access Control (RBAC)</h3>
+
+    <p>
+        RBAC assigns permissions according to
+        predefined roles, such as student,
+        editor, or administrator.
+    </p>
+
+    <h3>Attribute-Based Access Control (ABAC)</h3>
+
+    <p>
+        ABAC considers attributes such as account status,
+        resource classification, location, and other context.
+    </p>
+
+    <h3>Relationship-Based Access Control (ReBAC)</h3>
+
+    <p>
+        ReBAC considers relationships between users
+        and resources, such as ownership or membership.
+    </p>
+
+    <h3>Example</h3>
+
+    <div class="code-example">
+        <pre><code>function canEditBookmark(user, bookmark) {
+
+    return Boolean(
+        user &&
+        bookmark &&
+        user.id === bookmark.ownerId
+    );
+}</code></pre>
+    </div>
+
+    <p>
+        This illustrates an ownership relationship check.
+        It must operate on trusted server-side information.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="protect-lookup-identifiers">
+
+    <h2>
+        Ensure Lookup IDs Are Not Accessible
+        Even When Guessed or Tampered With
+    </h2>
+
+    <p>
+        Attackers may attempt to access another user's
+        records by changing identifiers in URLs
+        or API requests.
+    </p>
+
+    <h3>Example</h3>
+
+    <div class="code-example">
+        <pre><code>/api/bookmarks/101
+
+/api/bookmarks/102</code></pre>
+    </div>
+
+    <p>
+        Changing an identifier must not allow access
+        to another user's private information.
+    </p>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Verify ownership of requested resources.</li>
+        <li>Check permissions before returning data.</li>
+        <li>Do not rely on unpredictable IDs alone.</li>
+        <li>Validate user-supplied identifiers.</li>
+        <li>Prevent unauthorized record modifications.</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="static-resource-authorization">
+
+    <h2>Enforce Authorization Checks on Static Resources</h2>
+
+    <p>
+        Protected files must have appropriate
+        access controls, even when they are images,
+        documents, or other static resources.
+    </p>
+
+    <h3>Examples of Protected Resources</h3>
+
+    <ul>
+        <li>Private user documents</li>
+        <li>Restricted educational materials</li>
+        <li>Personal account files</li>
+        <li>Administrative exports</li>
+        <li>Confidential reports</li>
+    </ul>
+
+    <p>
+        Files requiring authorization should not
+        be directly exposed through unrestricted
+        public static-file directories.
+    </p>
+
+    <p>
+        Instead, the server should validate
+        permissions before serving protected content.
+    </p>
+
+    <h3>Example: Protected Book Route</h3>
+
+    <div class="code-example">
+        <pre><code>app.get("/read/:bookId", (req, res) => {
+
+    if (!req.session?.userId) {
+        return res.sendStatus(401);
+    }
+
+    const bookId = req.params.bookId;
+
+    const unlockedBooks =
+        req.session.unlockedBooks || {};
+
+    if (!unlockedBooks[bookId]) {
+        return res.sendStatus(403);
+    }
+
+    // Resolve the book from a trusted manifest.
+    // Validate the resulting path and serve it
+    // only from the protected-books directory.
+});</code></pre>
+    </div>
+
+    <p>
+        This simplified example illustrates session
+        and book-unlock checks. A complete implementation
+        must also validate the requested book ID,
+        resolve its file safely, and prevent path traversal.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="authorization-check-location">
+
+    <h2>
+        Verify That Authorization Checks
+        Are Performed in the Right Location
+    </h2>
+
+    <p>
+        Authorization decisions should be enforced
+        in trusted parts of the application.
+    </p>
+
+    <p>
+        Client-side controls may improve the interface,
+        but they cannot provide reliable
+        security enforcement.
+    </p>
+
+    <h3>Insecure Approach</h3>
+
+    <div class="code-example">
+        <pre><code>if (userRole === "admin") {
+    adminButton.hidden = false;
+}</code></pre>
+    </div>
+
+    <p>
+        Showing or hiding a button does not protect
+        the server endpoint behind that button.
+    </p>
+
+    <h3>Secure Design Principle</h3>
+
+    <p>
+        Authorization must be checked by the server
+        before executing protected operations
+        or returning restricted information.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="authorization-failure-safe">
+
+    <h2>Exit Safely When Authorization Checks Fail</h2>
+
+    <p>
+        When authorization fails, the application
+        must stop the protected operation safely.
+    </p>
+
+    <p>
+        A failed authorization check must not allow
+        the request to continue into sensitive
+        application logic.
+    </p>
+
+    <h3>Example: Express Authorization Failure</h3>
+
+    <div class="code-example">
+        <pre><code>function requireAuthenticatedUser(
+    req,
+    res,
+    next
+) {
+
+    if (!req.session?.userId) {
+        return res.status(401).json({
+            success: false,
+            message: "Authentication required."
+        });
+    }
+
+    next();
+}</code></pre>
+    </div>
+
+    <h3>HTTP Status Codes</h3>
+
+    <table class="lesson-table">
+
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Meaning</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>401</td>
+                <td>
+                    Authentication is required or invalid.
+                </td>
+            </tr>
+
+            <tr>
+                <td>403</td>
+                <td>
+                    The request is understood,
+                    but access is forbidden.
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Stop processing unauthorized requests.</li>
+        <li>Return an appropriate HTTP response.</li>
+        <li>Do not expose protected information.</li>
+        <li>Record security-relevant failures appropriately.</li>
+        <li>Avoid leaking sensitive internal details.</li>
+    </ul>
+
+</section>
+
+<!-- ==========================================
+     END OF AUTHORIZATION
+========================================== -->
+
+<!-- ==========================================
+     PART 3 - WEB SERVICE SECURITY
+========================================== -->
+
+<section class="chapter" id="web-service-security-cheat-sheet">
+
+    <h2>Web Service Security Cheat Sheet</h2>
+
+    <p>
+        Web services allow applications and systems
+        to communicate over networks.
+    </p>
+
+    <p>
+        Securing these services involves protecting
+        data, authenticating communicating parties,
+        enforcing authorization, and preventing
+        resource-exhaustion attacks.
+    </p>
+
+    <h3>Common Security Objectives</h3>
+
+    <ul>
+        <li>Confidentiality</li>
+        <li>Integrity</li>
+        <li>Authentication</li>
+        <li>Authorization</li>
+        <li>Availability</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="transport-confidentiality">
+
+    <h2>Transport Confidentiality</h2>
+
+    <p>
+        Transport confidentiality protects information
+        while it moves between web service clients
+        and servers.
+    </p>
+
+    <p>
+        TLS helps protect communications from interception
+        and man-in-the-middle attacks.
+    </p>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Use HTTPS for sensitive communications.</li>
+        <li>Use securely configured TLS.</li>
+        <li>Protect authenticated sessions in transit.</li>
+        <li>Encrypt communications between services.</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="web-service-server-authentication">
+
+    <h2>Server Authentication</h2>
+
+    <p>
+        Server authentication helps clients verify
+        that they are communicating with the intended service.
+    </p>
+
+    <h3>Certificate Validation</h3>
+
+    <ul>
+        <li>Verify that the certificate is trusted.</li>
+        <li>Check certificate expiration.</li>
+        <li>Check applicable revocation status.</li>
+        <li>Verify the certificate matches the service hostname.</li>
+        <li>Validate the TLS handshake properly.</li>
+    </ul>
+
+    <p>
+        Applications should not disable certificate
+        verification to bypass connection errors.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="web-service-user-authentication">
+
+    <h2>User Authentication</h2>
+
+    <p>
+        Web services may authenticate users,
+        applications, or other systems requesting access.
+    </p>
+
+    <h3>Authentication Methods</h3>
+
+    <ul>
+        <li>Session-based authentication</li>
+        <li>Token-based authentication</li>
+        <li>Client certificates</li>
+        <li>Mutual TLS</li>
+    </ul>
+
+    <p>
+        HTTP Basic Authentication transmits credentials
+        using Base64 encoding, which is not encryption.
+    </p>
+
+    <p>
+        OWASP does not recommend Basic Authentication.
+        If it is used, it must be protected by TLS.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="transport-encoding">
+
+    <h2>Transport Encoding</h2>
+
+    <p>
+        Web services must use compatible encoding
+        conventions so that messages are interpreted correctly.
+    </p>
+
+    <p>
+        In SOAP-based services, consistent encoding
+        between client and server helps avoid unexpected
+        parsing or processing behavior.
+    </p>
+
+    <h3>Recommended Practice</h3>
+
+    <p>
+        Define and enforce the expected message encoding
+        for communicating systems.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="message-integrity">
+
+    <h2>Message Integrity</h2>
+
+    <p>
+        Message integrity helps determine whether information
+        has been modified without authorization.
+    </p>
+
+    <p>
+        TLS protects message integrity during transport.
+    </p>
+
+    <p>
+        XML digital signatures can provide message-level
+        integrity when signed XML documents need protection
+        beyond the transport connection.
+    </p>
+
+    <h3>Important Concepts</h3>
+
+    <ul>
+        <li>Digital signatures</li>
+        <li>Public-key cryptography</li>
+        <li>Signature verification</li>
+        <li>Message tampering detection</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="message-confidentiality">
+
+    <h2>Message Confidentiality</h2>
+
+    <p>
+        Message confidentiality prevents unauthorized parties
+        from reading sensitive information.
+    </p>
+
+    <p>
+        Sensitive messages should be encrypted using strong,
+        appropriately configured cryptographic methods.
+    </p>
+
+    <h3>Transport vs. Message Encryption</h3>
+
+    <table class="lesson-table">
+
+        <thead>
+            <tr>
+                <th>Transport Encryption</th>
+                <th>Message Encryption</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    Protects data while transmitted.
+                </td>
+                <td>
+                    Protects selected message content.
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Commonly implemented with TLS.
+                </td>
+                <td>
+                    Can protect data after transport ends.
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <p>
+        When sensitive information must remain encrypted
+        after receipt, transport encryption alone
+        is insufficient.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="web-service-authorization">
+
+    <h2>Authorization</h2>
+
+    <p>
+        Web services must verify that clients are permitted
+        to perform requested operations and access
+        requested resources.
+    </p>
+
+    <h3>Coarse-Grained Authorization</h3>
+
+    <p>
+        Determines whether a client may use
+        a particular service or operation.
+    </p>
+
+    <h3>Fine-Grained Authorization</h3>
+
+    <p>
+        Determines whether a client may access
+        specific records or perform specific actions
+        on those records.
+    </p>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Check authorization on every request.</li>
+        <li>Verify access to requested resources.</li>
+        <li>Protect sensitive account operations.</li>
+        <li>Restrict administrative functions.</li>
+        <li>Separate management interfaces where appropriate.</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="schema-validation">
+
+    <h2>Schema Validation</h2>
+
+    <p>
+        Schema validation checks whether incoming messages
+        follow an expected structure.
+    </p>
+
+    <p>
+        SOAP services commonly use XML Schema Definitions
+        (XSD) to specify allowed message structures
+        and data constraints.
+    </p>
+
+    <h3>Common Constraints</h3>
+
+    <ul>
+        <li>Allowed data types</li>
+        <li>Maximum field lengths</li>
+        <li>Required fields</li>
+        <li>Allowed character sets</li>
+        <li>Accepted value patterns</li>
+    </ul>
+
+    <h3>Example: XML Schema</h3>
+
+    <div class="code-example">
+        <pre><code>&lt;xs:element name="username"&gt;
+    &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:maxLength value="50"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;</code></pre>
+    </div>
+
+    <p>
+        This fragment illustrates a maximum-length
+        constraint in an XML schema.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="content-validation">
+
+    <h2>Content Validation</h2>
+
+    <p>
+        Web services should validate received information
+        before processing it.
+    </p>
+
+    <h3>Potential XML Threats</h3>
+
+    <ul>
+        <li>Malformed XML content</li>
+        <li>XML entity expansion attacks</li>
+        <li>XML external entity attacks</li>
+        <li>Unexpected input values</li>
+    </ul>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Use allowlist-based validation where practical.</li>
+        <li>Reject malformed input.</li>
+        <li>Use securely configured XML parsers.</li>
+        <li>Disable unnecessary external entity processing.</li>
+        <li>Enforce resource and input limits.</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="web-service-output-encoding">
+
+    <h2>Output Encoding</h2>
+
+    <p>
+        Output encoding ensures that untrusted information
+        is interpreted as data rather than executable content.
+    </p>
+
+    <p>
+        Correct encoding helps prevent cross-site scripting
+        when web service responses are displayed in webpages.
+    </p>
+
+    <h3>Example: Safe Text Display</h3>
+
+    <div class="code-example">
+        <pre><code>const messageElement =
+    document.getElementById("message");
+
+messageElement.textContent =
+    serverResponse.message;</code></pre>
+    </div>
+
+    <p>
+        Using textContent displays text without interpreting
+        it as HTML markup.
+    </p>
+
+    <p>
+        Encoding must match the output context,
+        such as HTML text, attributes, JavaScript, or URLs.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="web-service-virus-protection">
+
+    <h2>Virus Protection</h2>
+
+    <p>
+        Web services that accept file attachments
+        may receive malicious files.
+    </p>
+
+    <p>
+        File scanning helps detect known malware
+        before attachments are stored or processed.
+    </p>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Scan uploaded attachments.</li>
+        <li>Keep malware detection rules updated.</li>
+        <li>Validate file types.</li>
+        <li>Apply file-size restrictions.</li>
+        <li>Protect file storage locations.</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="web-service-message-size">
+
+    <h2>Message Size</h2>
+
+    <p>
+        Large requests can consume excessive server resources.
+    </p>
+
+    <p>
+        Attackers may exploit unrestricted message sizes
+        to degrade service performance or cause denial of service.
+    </p>
+
+    <h3>Example: Express Request Limit</h3>
+
+    <div class="code-example">
+        <pre><code>app.use(
+    express.json({
+        limit: "100kb"
+    })
+);</code></pre>
+    </div>
+
+    <p>
+        This example limits JSON request bodies.
+        The appropriate limit depends on the application.
+    </p>
+
+    <p>
+        SOAP/XML services need their own parser
+        and message limits.
+    </p>
+
+</section>
+
+
+<section class="chapter" id="web-service-availability">
+
+    <h2>Availability</h2>
+
+    <p>
+        Availability means ensuring that legitimate users
+        can access a service when needed.
+    </p>
+
+    <p>
+        Web services should protect against requests
+        that consume excessive processing power,
+        memory, or network capacity.
+    </p>
+
+    <h3>Resources Limiting</h3>
+
+    <ul>
+        <li>Limit CPU consumption.</li>
+        <li>Limit memory consumption.</li>
+        <li>Limit simultaneous connections.</li>
+        <li>Limit open files and processes.</li>
+    </ul>
+
+    <h3>Message Throughput</h3>
+
+    <p>
+        Throughput describes how many requests a service
+        processes during a particular time interval.
+    </p>
+
+    <p>
+        Request-rate and execution-time limits should
+        be based on tested capacity and operation cost.
+    </p>
+
+    <h3>XML Denial of Service Protection</h3>
+
+    <p>
+        XML processing may be abused through deeply nested
+        structures, oversized messages, or excessive
+        entity expansion.
+    </p>
+
+    <h3>Recommended Practices</h3>
+
+    <ul>
+        <li>Limit XML document size.</li>
+        <li>Restrict excessive nesting.</li>
+        <li>Prevent unsafe entity expansion.</li>
+        <li>Limit XML element-name lengths.</li>
+        <li>Test parser behavior against malicious input.</li>
+    </ul>
+
+</section>
+
+
+<section class="chapter" id="endpoint-security-profile">
+
+    <h2>Endpoint Security Profile</h2>
+
+    <p>
+        A web service endpoint is a network-accessible
+        location through which clients communicate
+        with a service.
+    </p>
+
+    <p>
+        Endpoint security requires independently enforced
+        protections for authentication, authorization,
+        transport security, and resource usage.
+    </p>
+
+    <h3>WS-I Basic Profile</h3>
+
+    <p>
+        The Web Services Interoperability Basic Profile
+        focuses on compatibility between web service
+        implementations.
+    </p>
+
+    <p>
+        Conformance with an interoperability profile
+        does not automatically mean a service is secure.
+    </p>
+
+    <h3>Important Security Controls</h3>
+
+    <ul>
+        <li>Secure TLS configuration</li>
+        <li>Server identity verification</li>
+        <li>Appropriate client authentication</li>
+        <li>Authorization on every protected request</li>
+        <li>Input and schema validation</li>
+        <li>Resource and request limits</li>
+        <li>Security monitoring</li>
+    </ul>
+
+    <h3>Final Reminder</h3>
+
+    <p>
+        Web service security depends on multiple
+        independent protections working together.
+    </p>
+
+    <p>
+        Authentication establishes identity,
+        authorization controls permitted actions,
+        and service security protects communications,
+        processing, and availability.
+    </p>
+
+</section>
+
+<!-- ==========================================
+     END OF WEB SERVICE SECURITY
+========================================== -->
+
+<!-- ==========================================
+     PART 4 - KNOWLEDGE ASSESSMENT QUIZ
+========================================== -->
+
+<section class="chapter" id="quiz">
+
+    <h2>Knowledge Assessment Quiz</h2>
+
+    <p>
+        Test your understanding of Authentication,
+        Authorization, Password Security, Access Control,
+        and Web Service Security.
+    </p>
+
+    <div id="quizProgress" aria-live="polite">
+        0 of 10 answered
+    </div>
+
+    <form id="quizForm">
+
+        <!-- QUESTION 1 -->
+        <div class="quiz-question" data-question="1">
+
+            <h3>Question 1</h3>
+
+            <p>
+                What is the primary purpose of authentication?
+            </p>
+
+            <label>
+                <input type="radio" name="q1" value="a">
+                To determine which files a user may edit
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="b">
+                To verify the identity of a user or entity
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="c">
+                To encrypt all website content
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="d">
+                To improve website loading speed
+            </label>
+
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div class="quiz-question" data-question="2">
+
+            <h3>Question 2</h3>
+
+            <p>
+                What is the main purpose of authorization?
+            </p>
+
+            <label>
+                <input type="radio" name="q2" value="a">
+                To verify a user's password
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="b">
+                To generate a unique user ID
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="c">
+                To determine permitted actions and resources
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="d">
+                To create a secure network connection
+            </label>
+
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div class="quiz-question" data-question="3">
+
+            <h3>Question 3</h3>
+
+            <p>
+                Which algorithm is designed for secure
+                password hashing?
+            </p>
+
+            <label>
+                <input type="radio" name="q3" value="a">
+                Argon2id
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="b">
+                Base64
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="c">
+                HTML
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="d">
+                CSS
+            </label>
+
+        </div>
+
+        <!-- QUESTION 4 -->
+        <div class="quiz-question" data-question="4">
+
+            <h3>Question 4</h3>
+
+            <p>
+                What does the principle of least privilege mean?
+            </p>
+
+            <label>
+                <input type="radio" name="q4" value="a">
+                Every user receives administrator privileges
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="b">
+                Users receive only the permissions they need
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="c">
+                Users can access all resources after login
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="d">
+                Permissions are checked only during registration
+            </label>
+
+        </div>
+
+        <!-- QUESTION 5 -->
+        <div class="quiz-question" data-question="5">
+
+            <h3>Question 5</h3>
+
+            <p>
+                Which technology helps protect passwords
+                while they are transmitted over the internet?
+            </p>
+
+            <label>
+                <input type="radio" name="q5" value="a">
+                CSS Grid
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="b">
+                Local Storage
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="c">
+                HTTP without encryption
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="d">
+                HTTPS using TLS
+            </label>
+
+        </div>
+
+        <!-- QUESTION 6 -->
+        <div class="quiz-question" data-question="6">
+
+            <h3>Question 6</h3>
+
+            <p>
+                Which attack involves testing stolen
+                username and password combinations?
+            </p>
+
+            <label>
+                <input type="radio" name="q6" value="a">
+                Credential stuffing
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="b">
+                Responsive design
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="c">
+                Data compression
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="d">
+                Output formatting
+            </label>
+
+        </div>
+
+        <!-- QUESTION 7 -->
+        <div class="quiz-question" data-question="7">
+
+            <h3>Question 7</h3>
+
+            <p>
+                What should an application do when
+                an authorization check fails?
+            </p>
+
+            <label>
+                <input type="radio" name="q7" value="a">
+                Continue processing the request
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="b">
+                Automatically grant administrator access
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="c">
+                Stop the protected operation and deny access
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="d">
+                Disable all security checks
+            </label>
+
+        </div>
+
+        <!-- QUESTION 8 -->
+        <div class="quiz-question" data-question="8">
+
+            <h3>Question 8</h3>
+
+            <p>
+                What is the purpose of schema validation?
+            </p>
+
+            <label>
+                <input type="radio" name="q8" value="a">
+                To change the website's appearance
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="b">
+                To verify that incoming data follows
+                an expected structure
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="c">
+                To automatically authenticate every user
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="d">
+                To remove all server-side security controls
+            </label>
+
+        </div>
+
+        <!-- QUESTION 9 -->
+        <div class="quiz-question" data-question="9">
+
+            <h3>Question 9</h3>
+
+            <p>
+                Which JavaScript property safely displays
+                untrusted text without interpreting it as HTML?
+            </p>
+
+            <label>
+                <input type="radio" name="q9" value="a">
+                innerHTML
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="b">
+                outerHTML
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="c">
+                document.write
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="d">
+                textContent
+            </label>
+
+        </div>
+
+        <!-- QUESTION 10 -->
+        <div class="quiz-question" data-question="10">
+
+            <h3>Question 10</h3>
+
+            <p>
+                Which statement about OAuth is correct?
+            </p>
+
+            <label>
+                <input type="radio" name="q10" value="a">
+                OAuth is primarily an authorization framework
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="b">
+                OAuth is a CSS framework
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="c">
+                OAuth automatically encrypts database passwords
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="d">
+                OAuth eliminates all authorization checks
+            </label>
+
+        </div>
+
+        <!-- QUIZ ACTIONS -->
+        <div class="quiz-actions">
+
+            <button
+                type="submit"
+                id="submitQuiz"
+                class="quiz-submit-btn"
+            >
+                Submit Answers
+            </button>
+
+            <button
+                type="button"
+                id="retryQuiz"
+                class="quiz-retry-btn"
+                hidden
+            >
+                Retry Quiz
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- QUIZ RESULT -->
+    <div
+        id="quizResult"
+        class="quiz-result"
+        aria-live="polite"
+        hidden
+    ></div>
+
+</section>
+
+
+<!-- ==========================================
+     ADDITIONAL STANDALONE QUIZ STYLING
+========================================== -->
+
+<style>
+
+    .quiz-question {
+        margin: 25px 0;
+        padding: 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+    }
+
+    .quiz-question h3 {
+        margin-top: 0;
+        color: var(--primary);
+    }
+
+    .quiz-question > p {
+        font-weight: 700;
+    }
+
+    .quiz-question label {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin: 10px 0;
+        padding: 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--background);
+        cursor: pointer;
+        transition: border-color .2s, background .2s;
+    }
+
+    .quiz-question label:hover {
+        border-color: var(--primary);
+    }
+
+    .quiz-question input[type="radio"] {
+        margin-top: 5px;
+        accent-color: var(--primary);
+    }
+
+    .quiz-question label.correct-answer {
+        border-color: #27a16b;
+        background: rgba(39, 161, 107, .12);
+    }
+
+    .quiz-question label.wrong-answer {
+        border-color: #e35d65;
+        background: rgba(227, 93, 101, .12);
+    }
+
+    .quiz-explanation {
+        margin-top: 14px;
+        padding: 14px;
+        border-left: 4px solid var(--primary);
+        background: var(--code-background);
+        border-radius: 8px;
+        line-height: 1.7;
+    }
+
+    #quizProgress {
+        margin: 18px 0;
+        padding: 14px;
+        border-radius: 10px;
+        background: var(--code-background);
+        color: var(--text);
+        font-weight: 700;
+    }
+
+    .quiz-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .quiz-submit-btn,
+    .quiz-retry-btn {
+        padding: 13px 24px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    .quiz-submit-btn {
+        background: #3157a4;
+        color: white;
+    }
+
+    .quiz-retry-btn {
+        background: var(--code-background);
+        color: var(--text);
+        border: 1px solid var(--border);
+    }
+
+    .quiz-submit-btn:hover {
+        background: #24427f;
+    }
+
+    .quiz-result {
+        margin-top: 24px;
+        padding: 25px;
+        background: var(--code-background);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        text-align: center;
+    }
+
+    .quiz-result h3 {
+        margin-top: 0;
+        color: var(--primary);
+        font-size: 25px;
+    }
+
+    .quiz-result strong {
+        font-size: 22px;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+
+    @media (max-width: 600px) {
+
+        .quiz-question {
+            padding: 16px;
+        }
+
+        .quiz-question label {
+            padding: 12px;
+        }
+
+        .quiz-actions {
+            flex-direction: column;
+        }
+
+        .quiz-submit-btn,
+        .quiz-retry-btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+<!-- ==========================================
+     CLOSE MAIN CONTENT
+========================================== -->
+
+        </main>
+
+    </div>
+
+
+<!-- ==========================================
+     CODEVERSE READING PAGE JAVASCRIPT
+========================================== -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    "use strict";
+
+    // ==========================================
+    // DARK MODE
+    // ==========================================
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+    const themeIcon =
+        document.getElementById("themeIcon");
+
+    const savedTheme =
+        localStorage.getItem("readerTheme");
+
+    function applyTheme(theme) {
+
+        const isDark = theme === "dark";
+
+        document.body.classList.toggle(
+            "dark-mode",
+            isDark
+        );
+
+        if (themeIcon) {
+            themeIcon.textContent =
+                isDark ? "☀" : "☾";
+        }
+
+    }
+
+    applyTheme(savedTheme || "light");
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener(
+            "click",
+            function () {
+
+                const isDark =
+                    document.body.classList.contains(
+                        "dark-mode"
+                    );
+
+                const nextTheme =
+                    isDark ? "light" : "dark";
+
+                localStorage.setItem(
+                    "readerTheme",
+                    nextTheme
+                );
+
+                applyTheme(nextTheme);
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // FONT SIZE CONTROL
+    // ==========================================
+
+    const fontSizeSelect =
+        document.getElementById("fontSize");
+
+    const savedFontSize =
+        localStorage.getItem("readerFontSize") || "16px";
+
+    function applyFontSize(size) {
+
+        document.querySelectorAll(
+            ".chapter p, .chapter li, .chapter td"
+        ).forEach(function (element) {
+
+            element.style.fontSize = size;
+
+        });
+
+    }
+
+    if (fontSizeSelect) {
+
+        fontSizeSelect.value = savedFontSize;
+
+        applyFontSize(savedFontSize);
+
+        fontSizeSelect.addEventListener(
+            "change",
+            function () {
+
+                localStorage.setItem(
+                    "readerFontSize",
+                    this.value
+                );
+
+                applyFontSize(this.value);
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // FONT FAMILY CONTROL
+    // ==========================================
+
+    const fontFamilySelect =
+        document.getElementById("fontFamily");
+
+    const savedFontFamily =
+        localStorage.getItem("readerFontFamily") ||
+        "'DM Sans', sans-serif";
+
+    function applyFontFamily(font) {
+
+        document.querySelectorAll(
+            ".chapter p, .chapter li, .chapter td"
+        ).forEach(function (element) {
+
+            element.style.fontFamily = font;
+
+        });
+
+    }
+
+    if (fontFamilySelect) {
+
+        fontFamilySelect.value = savedFontFamily;
+
+        applyFontFamily(savedFontFamily);
+
+        fontFamilySelect.addEventListener(
+            "change",
+            function () {
+
+                localStorage.setItem(
+                    "readerFontFamily",
+                    this.value
+                );
+
+                applyFontFamily(this.value);
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // MOBILE NAVIGATION
+    // ==========================================
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+    if (menuToggle && navLinks) {
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    navLinks.classList.toggle("show");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+
+            }
+        );
+
+        navLinks.querySelectorAll("a").forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        navLinks.classList.remove("show");
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // TABLE OF CONTENTS ACTIVE SECTION
+    // ==========================================
+
+    const tocLinks =
+        document.querySelectorAll(
+            '.toc a[href^="#"]'
+        );
+
+    const chapters =
+        document.querySelectorAll(
+            ".chapter[id]"
+        );
+
+    if ("IntersectionObserver" in window) {
+
+        const chapterObserver =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        const currentId =
+                            entry.target.id;
+
+                        tocLinks.forEach(
+                            function (link) {
+
+                                const isCurrent =
+                                    link.getAttribute("href") ===
+                                    "#" + currentId;
+
+                                link.classList.toggle(
+                                    "current",
+                                    isCurrent
+                                );
+
+                            }
+                        );
+
+                    });
+
+                },
+                {
+                    rootMargin: "-110px 0px -65% 0px",
+                    threshold: 0
+                }
+            );
+
+        chapters.forEach(function (chapter) {
+
+            chapterObserver.observe(chapter);
+
+        });
+
+    }
+
+
+    // ==========================================
+    // QUIZ CONFIGURATION
+    // ==========================================
+
+    const BOOK_ID = 9;
+
+    const quizAnswers = {
+        q1: "b",
+        q2: "c",
+        q3: "a",
+        q4: "b",
+        q5: "d",
+        q6: "a",
+        q7: "c",
+        q8: "b",
+        q9: "d",
+        q10: "a"
+    };
+
+    const quizExplanations = {
+
+        q1:
+            "Authentication verifies the claimed identity " +
+            "of a user or another entity.",
+
+        q2:
+            "Authorization determines which actions " +
+            "and resources an entity may access.",
+
+        q3:
+            "Argon2id is a password-hashing algorithm " +
+            "designed for secure password storage.",
+
+        q4:
+            "Least privilege grants users only " +
+            "the permissions necessary for their tasks.",
+
+        q5:
+            "HTTPS uses TLS to protect information " +
+            "transmitted between clients and servers.",
+
+        q6:
+            "Credential stuffing tests username and " +
+            "password combinations obtained from breaches.",
+
+        q7:
+            "A failed authorization check must stop " +
+            "the protected operation and deny access.",
+
+        q8:
+            "Schema validation verifies that incoming " +
+            "messages follow the expected structure.",
+
+        q9:
+            "textContent treats the assigned value " +
+            "as text instead of parsing it as HTML.",
+
+        q10:
+            "OAuth is an authorization framework. " +
+            "OpenID Connect adds an authentication layer."
+
+    };
+
+    const quizForm =
+        document.getElementById("quizForm");
+
+    const quizProgress =
+        document.getElementById("quizProgress");
+
+    const quizResult =
+        document.getElementById("quizResult");
+
+    const submitQuiz =
+        document.getElementById("submitQuiz");
+
+    const retryQuiz =
+        document.getElementById("retryQuiz");
+
+    const totalQuestions =
+        Object.keys(quizAnswers).length;
+
+    let quizSubmitted = false;
+
+
+    // ==========================================
+    // UPDATE QUIZ PROGRESS
+    // ==========================================
+
+    function updateQuizProgress() {
+
+        if (!quizForm || !quizProgress) {
+            return;
+        }
+
+        let answered = 0;
+
+        Object.keys(quizAnswers).forEach(
+            function (questionName) {
+
+                const selected =
+                    quizForm.querySelector(
+                        'input[name="' +
+                        questionName +
+                        '"]:checked'
+                    );
+
+                if (selected) {
+                    answered++;
+                }
+
+            }
+        );
+
+        quizProgress.textContent =
+            answered +
+            " of " +
+            totalQuestions +
+            " answered";
+
+    }
+
+    if (quizForm) {
+
+        quizForm.addEventListener(
+            "change",
+            updateQuizProgress
+        );
+
+    }
+
+
+    // ==========================================
+    // SUBMIT QUIZ
+    // ==========================================
+
+    if (quizForm) {
+
+        quizForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                if (quizSubmitted) {
+                    return;
+                }
+
+                let score = 0;
+                let answered = 0;
+
+                Object.keys(quizAnswers).forEach(
+                    function (questionName) {
+
+                        const selected =
+                            quizForm.querySelector(
+                                'input[name="' +
+                                questionName +
+                                '"]:checked'
+                            );
+
+                        if (selected) {
+                            answered++;
+                        }
+
+                    }
+                );
+
+                if (answered < totalQuestions) {
+
+                    alert(
+                        "Please answer all " +
+                        totalQuestions +
+                        " questions before submitting."
+                    );
+
+                    return;
+
+                }
+
+                quizSubmitted = true;
+
+                Object.keys(quizAnswers).forEach(
+                    function (questionName) {
+
+                        const correctAnswer =
+                            quizAnswers[questionName];
+
+                        const selected =
+                            quizForm.querySelector(
+                                'input[name="' +
+                                questionName +
+                                '"]:checked'
+                            );
+
+                        const questionNumber =
+                            questionName.substring(1);
+
+                        const questionContainer =
+                            quizForm.querySelector(
+                                '[data-question="' +
+                                questionNumber +
+                                '"]'
+                            );
+
+                        if (!questionContainer) {
+                            return;
+                        }
+
+                        const correctInput =
+                            quizForm.querySelector(
+                                'input[name="' +
+                                questionName +
+                                '"][value="' +
+                                correctAnswer +
+                                '"]'
+                            );
+
+                        if (selected &&
+                            selected.value === correctAnswer) {
+
+                            score++;
+
+                        }
+
+                        if (correctInput) {
+
+                            correctInput.closest(
+                                "label"
+                            ).classList.add(
+                                "correct-answer"
+                            );
+
+                        }
+
+                        if (selected &&
+                            selected.value !== correctAnswer) {
+
+                            selected.closest(
+                                "label"
+                            ).classList.add(
+                                "wrong-answer"
+                            );
+
+                        }
+
+                        const explanation =
+                            document.createElement("div");
+
+                        explanation.className =
+                            "quiz-explanation";
+
+                        explanation.textContent =
+                            quizExplanations[questionName];
+
+                        questionContainer.appendChild(
+                            explanation
+                        );
+
+                    }
+                );
+
+
+                // Disable quiz inputs after submission
+
+                quizForm.querySelectorAll(
+                    'input[type="radio"]'
+                ).forEach(function (input) {
+
+                    input.disabled = true;
+
+                });
+
+
+                // Calculate percentage
+
+                const percentage =
+                    Math.round(
+                        (score / totalQuestions) * 100
+                    );
+
+                const passed =
+                    percentage >= 70;
+
+
+                // Display quiz result
+
+                if (quizResult) {
+
+                    quizResult.hidden = false;
+
+                    quizResult.innerHTML = "";
+
+                    const heading =
+                        document.createElement("h3");
+
+                    heading.textContent =
+                        passed
+                            ? "Congratulations! You Passed!"
+                            : "Keep Learning!";
+
+                    const scoreText =
+                        document.createElement("strong");
+
+                    scoreText.textContent =
+                        score +
+                        " / " +
+                        totalQuestions +
+                        " (" +
+                        percentage +
+                        "%)";
+
+                    const message =
+                        document.createElement("p");
+
+                    message.textContent =
+                        passed
+                            ? "You have successfully completed " +
+                              "the Web Security assessment."
+                            : "Review the lessons and try again " +
+                              "to improve your score.";
+
+                    quizResult.appendChild(heading);
+                    quizResult.appendChild(scoreText);
+                    quizResult.appendChild(message);
+
+                }
+
+
+                // Update buttons
+
+                if (submitQuiz) {
+                    submitQuiz.disabled = true;
+                }
+
+                if (retryQuiz) {
+                    retryQuiz.hidden = false;
+                }
+
+
+                // ==========================================
+                // SAVE QUIZ RESULT TO CODEVERSE SERVER
+                // ==========================================
+
+                try {
+
+                    const response = await fetch(
+                        "/api/quiz-results",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            credentials: "same-origin",
+
+                            body: JSON.stringify({
+                                bookId: BOOK_ID,
+                                score: score,
+                                totalQuestions: totalQuestions,
+                                percentage: percentage
+                            })
+                        }
+                    );
+
+                    if (!response.ok) {
+
+                        console.warn(
+                            "Quiz result was not saved. " +
+                            "HTTP status: " +
+                            response.status
+                        );
+
+                    }
+
+                } catch (error) {
+
+                    console.warn(
+                        "Quiz saving is unavailable:",
+                        error.message
+                    );
+
+                }
+
+
+                // Scroll to result
+
+                if (quizResult) {
+
+                    quizResult.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // RETRY QUIZ
+    // ==========================================
+
+    if (retryQuiz) {
+
+        retryQuiz.addEventListener(
+            "click",
+            function () {
+
+                if (!quizForm) {
+                    return;
+                }
+
+                quizSubmitted = false;
+
+                quizForm.reset();
+
+                quizForm.querySelectorAll(
+                    'input[type="radio"]'
+                ).forEach(function (input) {
+
+                    input.disabled = false;
+
+                });
+
+                quizForm.querySelectorAll(
+                    ".correct-answer, .wrong-answer"
+                ).forEach(function (element) {
+
+                    element.classList.remove(
+                        "correct-answer",
+                        "wrong-answer"
+                    );
+
+                });
+
+                quizForm.querySelectorAll(
+                    ".quiz-explanation"
+                ).forEach(function (element) {
+
+                    element.remove();
+
+                });
+
+                if (quizResult) {
+
+                    quizResult.hidden = true;
+                    quizResult.innerHTML = "";
+
+                }
+
+                if (submitQuiz) {
+
+                    submitQuiz.disabled = false;
+
+                }
+
+                retryQuiz.hidden = true;
+
+                updateQuizProgress();
+
+                document.getElementById(
+                    "quiz"
+                ).scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // INITIALIZE QUIZ
+    // ==========================================
+
+    updateQuizProgress();
+
+});
+</script>
+
+</body>
+</html>

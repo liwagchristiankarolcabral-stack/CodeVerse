@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeVerse | Digital E-Book Library</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="/books/css/Authentication.css" rel="stylesheet"/>
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+</style>
+<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a class="active" href="/index.html">Home</a>
+<a href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- Account buttons will be displayed by JavaScript -->
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav></nav>
+<!-- CODEVERSE - CYBERSECURITY TABLE OF CONTENTS -->
+<a href="#cyber-introduction">Introduction</a>
+<a href="#cyber-foundations">1. Foundations of Cybersecurity</a>
+<a href="#cia-triad">2. CIA Triad and Extension Models</a>
+<a href="#threat-actors">3. Cyber Threat Actors</a>
+<a href="#malware-taxonomy">4. Malware Architectures and Taxonomy</a>
+<a href="#social-engineering">5. Social Engineering and Identity Attacks</a>
+<a href="#defense-in-depth">6. Network Security and Defense in Depth</a>
+<a href="#endpoint-security">7. Endpoint Security and Detection</a>
+<a href="#identity-access">8. Identity and Access Management</a>
+<a href="#cryptography">9. Cryptography and Data Protection</a>
+<a href="#incident-response">10. Security Operations and Incident Response</a>
+<a href="#vulnerability-testing">11. Vulnerability Management and Pen Testing</a>
+<a href="#cloud-security">12. Cloud Security and Shared Responsibility</a>
+<a href="#zero-trust">13. Zero Trust Architecture</a>
+<a href="#security-frameworks">14. Cybersecurity Frameworks and Standards</a>
+<a href="#information-privacy">15. Foundations of Information Privacy</a>
+<a href="#privacy-regulations">16. Global Privacy Regulations</a>
+<a href="#privacy-by-design">17. Privacy by Design</a>
+<a href="#privacy-technologies">18. Privacy-Enhancing Technologies</a>
+<a href="#digital-surveillance">19. Data Surveillance and Digital Footprints</a>
+<a href="#surveillance-capitalism">20. Surveillance Capitalism and User Rights</a>
+<a href="#computer-ethics">21. Foundations of Computer Ethics</a>
+<a href="#professional-ethics">22. Professional Codes of Ethics</a>
+<a href="#intellectual-property">23. Intellectual Property</a>
+<a href="#ai-ethics">24. AI Ethics and Algorithmic Bias</a>
+<a href="#autonomous-ethics">25. Autonomous Systems and Ethical Choice</a>
+<a href="#digital-divide">26. Digital Divide and Social Equity</a>
+<a href="#cyber-law">27. Digital Governance and Cyber Law</a>
+<a href="#responsible-disclosure">28. Responsible Disclosure</a>
+<a href="#future-cybersecurity">29. Future Cybersecurity and Privacy</a>
+<a href="#cyber-references">30. Academic Literature and References</a>
+<a href="#quiz">Knowledge Assessment Quiz</a>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Computer Hardware and Software Fundamentals</h1>
+<p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - COMPUTER HISTORY
+     TABLE OF CONTENTS
+========================================== -->
+<main class="book-content">
+<!-- ==========================================
+     CODEVERSE - CYBERSECURITY, PRIVACY,
+     AND COMPUTER ETHICS
+========================================== -->
+<section class="chapter" id="cyber-introduction">
+<h1>Cybersecurity, Privacy, and Computer Ethics</h1>
+<p>
+        Cybersecurity protects digital systems from malicious
+        attacks and unauthorized access. Information privacy
+        governs how personal data is collected, processed,
+        stored, and shared. Computer ethics examines the
+        moral responsibilities associated with technology.
+    </p>
+<p>
+        This lesson explores cybersecurity defenses,
+        malware, identity protection, cryptography,
+        incident response, privacy regulations,
+        surveillance, professional ethics, artificial
+        intelligence, cyber law, and emerging technologies.
+    </p>
+</section>
+<section class="chapter" id="cyber-foundations">
+<h2>Section 1: Foundations of Cybersecurity</h2>
+<h3>What Is Cybersecurity?</h3>
+<p>
+        Cybersecurity refers to technologies, processes,
+        security controls, and organizational policies
+        designed to protect computers, networks, applications,
+        and data from unauthorized access, exploitation,
+        damage, and disruption.
+    </p>
+<h3>Threat, Vulnerability, and Risk</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Threat</td>
+<td>A potential event or actor capable of causing harm.</td>
+<td>A cybercriminal attempting an attack.</td>
+</tr>
+<tr>
+<td>Vulnerability</td>
+<td>A weakness in system design, software, or security controls.</td>
+<td>An unpatched application bug.</td>
+</tr>
+<tr>
+<td>Risk</td>
+<td>The potential harm resulting from a threat exploiting a weakness.</td>
+<td>Financial losses from a data breach.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="cia-triad">
+<h2>Section 2: The CIA Triad and Extension Models</h2>
+<h3>The CIA Triad</h3>
+<ul>
+<li>
+<strong>Confidentiality:</strong>
+            Ensures information is accessible only
+            to authorized individuals.
+        </li>
+<li>
+<strong>Integrity:</strong>
+            Protects information against unauthorized
+            modification or corruption.
+        </li>
+<li>
+<strong>Availability:</strong>
+            Ensures systems and data remain accessible
+            when authorized users need them.
+        </li>
+</ul>
+<h3>The DAD Triad</h3>
+<p>
+        The DAD model describes three opposite security
+        outcomes: Disclosure, Alteration, and
+        Destruction or Denial.
+    </p>
+<h3>Parkerian Hexad</h3>
+<p>
+        The Parkerian Hexad extends the CIA Triad
+        by including Possession or Control,
+        Authenticity, and Utility.
+    </p>
+</section>
+<section class="chapter" id="threat-actors">
+<h2>Section 3: Cyber Threat Actors and Motivation</h2>
+<p>
+        Threat actors are individuals or organizations
+        that conduct malicious cyber activities.
+        They differ in technical capability,
+        resources, and motivation.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Threat Actor</th>
+<th>Typical Motivation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Advanced Persistent Threats</td>
+<td>Espionage and strategic disruption.</td>
+</tr>
+<tr>
+<td>Cybercriminals</td>
+<td>Financial gain, extortion, and stolen data.</td>
+</tr>
+<tr>
+<td>Insider Threats</td>
+<td>Revenge, financial gain, or unauthorized disclosure.</td>
+</tr>
+<tr>
+<td>Hacktivists</td>
+<td>Political or ideological advocacy.</td>
+</tr>
+<tr>
+<td>Script Kiddies</td>
+<td>Experimentation or disruption using existing tools.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="malware-taxonomy">
+<h2>Section 4: Malware Architectures and Taxonomy</h2>
+<p>
+        Malware is software designed to perform
+        unauthorized or harmful actions on computers.
+    </p>
+<h3>Common Malware Types</h3>
+<ul>
+<li><strong>Virus:</strong> Attaches to legitimate files and spreads when they execute.</li>
+<li><strong>Worm:</strong> Replicates independently across networks.</li>
+<li><strong>Trojan:</strong> Disguises itself as legitimate software.</li>
+<li><strong>Ransomware:</strong> Encrypts data and demands payment.</li>
+<li><strong>Rootkit:</strong> Conceals malicious activity and maintains privileged access.</li>
+<li><strong>Spyware:</strong> Secretly collects user information.</li>
+<li><strong>Keylogger:</strong> Records keyboard input.</li>
+<li><strong>Fileless Malware:</strong> Uses existing system tools and memory-based execution.</li>
+</ul>
+</section>
+<section class="chapter" id="social-engineering">
+<h2>Section 5: Social Engineering and Identity Attacks</h2>
+<p>
+        Social engineering manipulates human behavior
+        to obtain sensitive information or unauthorized access.
+    </p>
+<h3>Common Techniques</h3>
+<ul>
+<li><strong>Phishing:</strong> Fraudulent messages impersonating trusted organizations.</li>
+<li><strong>Spear Phishing:</strong> Personalized phishing against specific targets.</li>
+<li><strong>Whaling:</strong> Phishing targeting senior executives.</li>
+<li><strong>Vishing:</strong> Voice-based phishing.</li>
+<li><strong>Smishing:</strong> SMS-based phishing.</li>
+<li><strong>Baiting:</strong> Using attractive offers to manipulate victims.</li>
+<li><strong>Pretexting:</strong> Inventing a false scenario or identity.</li>
+<li><strong>Credential Stuffing:</strong> Attempting logins using previously exposed credentials.</li>
+</ul>
+</section>
+<section class="chapter" id="defense-in-depth">
+<h2>Section 6: Network Security and Defense in Depth</h2>
+<p>
+        Defense in Depth uses multiple independent
+        security layers so that one failed defense
+        does not expose an entire organization.
+    </p>
+<h3>Security Layers</h3>
+<ol>
+<li><strong>Physical:</strong> Locks, access cards, guards, and CCTV.</li>
+<li><strong>Network:</strong> Firewalls, segmentation, VPNs, and IDS/IPS.</li>
+<li><strong>Endpoint:</strong> Antivirus, EDR, and system patching.</li>
+<li><strong>Application:</strong> Secure coding, input validation, and WAFs.</li>
+<li><strong>Data:</strong> Encryption and Data Loss Prevention.</li>
+</ol>
+<h3>Network Segmentation</h3>
+<p>
+        Network segmentation separates devices and services
+        into smaller zones to restrict unnecessary access
+        and reduce the spread of attacks.
+    </p>
+</section>
+<section class="chapter" id="endpoint-security">
+<h2>Section 7: Endpoint Security and Detection</h2>
+<h3>Antivirus Protection</h3>
+<p>
+        Antivirus software detects and removes
+        known malicious files using signatures
+        and additional detection techniques.
+    </p>
+<h3>Endpoint Detection and Response</h3>
+<p>
+        EDR continuously monitors endpoint activity,
+        including processes, system calls, and
+        network connections, to identify suspicious behavior.
+    </p>
+<h3>Additional Endpoint Controls</h3>
+<ul>
+<li>Extended Detection and Response (XDR)</li>
+<li>Host-based firewalls</li>
+<li>Application allowlisting</li>
+<li>Operating system hardening</li>
+<li>Security updates and patch management</li>
+</ul>
+</section>
+<section class="chapter" id="identity-access">
+<h2>Section 8: Identity and Access Management</h2>
+<h3>The AAA Framework</h3>
+<table>
+<thead>
+<tr><th>Component</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td>Authentication</td><td>Verifies a user's identity.</td></tr>
+<tr><td>Authorization</td><td>Determines permitted actions.</td></tr>
+<tr><td>Accounting</td><td>Records activities for auditing.</td></tr>
+</tbody>
+</table>
+<h3>Multi-Factor Authentication</h3>
+<p>
+        MFA combines at least two distinct authentication
+        factors, such as a password and a security key.
+    </p>
+<h3>Access Control Models</h3>
+<ul>
+<li><strong>RBAC:</strong> Permissions are assigned according to roles.</li>
+<li><strong>ABAC:</strong> Access depends on evaluated attributes.</li>
+<li><strong>PAM:</strong> Controls privileged accounts and activities.</li>
+<li><strong>SSO:</strong> Allows users to access multiple services through one sign-in process.</li>
+</ul>
+</section>
+<section class="chapter" id="cryptography">
+<h2>Section 9: Applied Cryptography and Data Protection</h2>
+<h3>Symmetric Encryption</h3>
+<p>
+        Symmetric encryption uses the same secret key
+        for encryption and decryption. Examples include
+        AES-128, AES-256, and ChaCha20.
+    </p>
+<h3>Asymmetric Cryptography</h3>
+<p>
+        Asymmetric cryptography uses related public
+        and private keys for functions such as
+        encryption, key establishment, and digital signatures.
+    </p>
+<h3>Cryptographic Hashing</h3>
+<p>
+        Hash functions convert input data into
+        fixed-length digest values.
+        Examples include SHA-256 and SHA-3.
+    </p>
+<h3>Public Key Infrastructure</h3>
+<p>
+        PKI manages digital certificates and public keys
+        to support authenticated and secure communication.
+    </p>
+</section>
+<section class="chapter" id="incident-response">
+<h2>Section 10: Security Operations and Incident Response</h2>
+<p>
+        Incident response provides a structured approach
+        for detecting, containing, investigating,
+        and recovering from security incidents.
+    </p>
+<h3>Incident Response Lifecycle</h3>
+<ol>
+<li>Preparation</li>
+<li>Detection and Analysis</li>
+<li>Containment, Eradication, and Recovery</li>
+<li>Post-Incident Activity and Lessons Learned</li>
+</ol>
+<h3>Security Operations Tools</h3>
+<ul>
+<li><strong>SIEM:</strong> Collects and correlates security events.</li>
+<li><strong>SOAR:</strong> Supports automated security workflows.</li>
+<li><strong>SOC:</strong> Team responsible for security monitoring and response.</li>
+</ul>
+</section>
+<section class="chapter" id="vulnerability-testing">
+<h2>Section 11: Vulnerability Management and Penetration Testing</h2>
+<h3>Vulnerability Management</h3>
+<p>
+        Vulnerability management identifies, evaluates,
+        prioritizes, and remediates security weaknesses.
+    </p>
+<h3>CVSS</h3>
+<p>
+        The Common Vulnerability Scoring System
+        provides numerical severity scores.
+        The document discusses CVSS v3.1,
+        which uses a scale from 0.0 to 10.0.
+    </p>
+<h3>Penetration Testing Approaches</h3>
+<ul>
+<li><strong>Black Box:</strong> No prior system knowledge.</li>
+<li><strong>White Box:</strong> Full knowledge of the target environment.</li>
+<li><strong>Grey Box:</strong> Partial knowledge or access.</li>
+</ul>
+<h3>Security Teams</h3>
+<ul>
+<li>Red Team — Simulates adversarial attacks.</li>
+<li>Blue Team — Defends systems and responds to threats.</li>
+<li>Purple Team — Coordinates offensive and defensive learning.</li>
+</ul>
+</section>
+<section class="chapter" id="cloud-security">
+<h2>Section 12: Cloud Security and Shared Responsibility</h2>
+<p>
+        Cloud security responsibilities are divided
+        between the cloud provider and the customer,
+        depending on the service model.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Provider Responsibility</th>
+<th>Customer Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IaaS</td>
+<td>Physical infrastructure and virtualization.</td>
+<td>Operating systems, applications, configurations, and data.</td>
+</tr>
+<tr>
+<td>PaaS</td>
+<td>Infrastructure, operating systems, and runtime.</td>
+<td>Applications, data, and access control.</td>
+</tr>
+<tr>
+<td>SaaS</td>
+<td>Hosted application and supporting infrastructure.</td>
+<td>User access, data classification, and configurations.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="zero-trust">
+<h2>Section 13: Zero Trust Architecture</h2>
+<p>
+        Zero Trust is a security architecture based
+        on the principle of never automatically
+        trusting users or devices solely because
+        they are inside a network.
+    </p>
+<h3>Core Principles</h3>
+<ul>
+<li><strong>Explicit Verification:</strong> Evaluate identity and access context.</li>
+<li><strong>Least Privilege:</strong> Grant only necessary permissions.</li>
+<li><strong>Assume Breach:</strong> Design controls to limit the impact of compromise.</li>
+</ul>
+<h3>Microsegmentation</h3>
+<p>
+        Microsegmentation divides network environments
+        into smaller security zones with restricted access.
+    </p>
+</section>
+<section class="chapter" id="security-frameworks">
+<h2>Section 14: Cybersecurity Frameworks and Standards</h2>
+<h3>NIST Cybersecurity Framework 2.0</h3>
+<table>
+<thead>
+<tr><th>Function</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td>Govern</td><td>Establish risk strategy, policies, and responsibilities.</td></tr>
+<tr><td>Identify</td><td>Understand assets, threats, and risks.</td></tr>
+<tr><td>Protect</td><td>Implement preventive safeguards.</td></tr>
+<tr><td>Detect</td><td>Discover suspicious activity.</td></tr>
+<tr><td>Respond</td><td>Contain and manage incidents.</td></tr>
+<tr><td>Recover</td><td>Restore affected operations.</td></tr>
+</tbody>
+</table>
+<h3>Other Standards</h3>
+<ul>
+<li>ISO/IEC 27001 — Information Security Management Systems</li>
+<li>CIS Controls — Prioritized security safeguards</li>
+</ul>
+</section>
+<section class="chapter" id="information-privacy">
+<h2>Section 15: Foundations of Information Privacy</h2>
+<p>
+        Information privacy concerns how personal
+        information is collected, processed,
+        stored, shared, and deleted.
+    </p>
+<h3>Personally Identifiable Information</h3>
+<ul>
+<li><strong>Direct Identifiers:</strong> Full name, national ID, or biometric identifiers.</li>
+<li><strong>Quasi-Identifiers:</strong> Combinations such as birth date and postal code.</li>
+<li><strong>Sensitive Information:</strong> Medical records, financial details, and other protected personal data.</li>
+</ul>
+</section>
+<section class="chapter" id="privacy-regulations">
+<h2>Section 16: Global Privacy Regulations</h2>
+<h3>General Data Protection Regulation</h3>
+<p>
+        The GDPR establishes requirements for
+        processing personal data and protecting
+        individuals' privacy rights.
+    </p>
+<h3>GDPR Principles</h3>
+<ul>
+<li>Lawfulness, fairness, and transparency</li>
+<li>Purpose limitation</li>
+<li>Data minimization</li>
+<li>Storage limitation</li>
+</ul>
+<h3>Data Subject Rights</h3>
+<ul>
+<li>Right of access</li>
+<li>Right to rectification</li>
+<li>Right to erasure</li>
+<li>Right to data portability</li>
+<li>Right to object</li>
+</ul>
+<h3>CCPA and CPRA</h3>
+<p>
+        California privacy legislation provides
+        consumer rights and regulates certain
+        business practices involving personal data.
+    </p>
+</section>
+<section class="chapter" id="privacy-by-design">
+<h2>Section 17: Privacy by Design Framework</h2>
+<p>
+        Privacy by Design, associated with
+        Dr. Ann Cavoukian, integrates privacy
+        protections into systems from the beginning.
+    </p>
+<h3>Seven Foundational Principles</h3>
+<ol>
+<li>Proactive, not reactive; preventive, not remedial.</li>
+<li>Privacy as the default setting.</li>
+<li>Privacy embedded into design.</li>
+<li>Full functionality: positive-sum, not zero-sum.</li>
+<li>End-to-end security and lifecycle protection.</li>
+<li>Visibility and transparency.</li>
+<li>Respect for user privacy.</li>
+</ol>
+</section>
+<section class="chapter" id="privacy-technologies">
+<h2>Section 18: Privacy-Enhancing Technologies</h2>
+<p>
+        Privacy-enhancing technologies support
+        data analysis and computation while
+        reducing the exposure of personal information.
+    </p>
+<h3>Common Techniques</h3>
+<ul>
+<li><strong>Differential Privacy:</strong> Uses carefully controlled statistical noise.</li>
+<li><strong>Homomorphic Encryption:</strong> Allows certain computations on encrypted data.</li>
+<li><strong>K-Anonymity:</strong> Makes records indistinguishable within groups of a specified minimum size.</li>
+<li><strong>L-Diversity:</strong> Requires diversity of sensitive values within anonymized groups.</li>
+<li><strong>Secure Multi-Party Computation:</strong> Allows parties to compute results without exposing their private inputs to one another.</li>
+</ul>
+</section>
+<section class="chapter" id="digital-surveillance">
+<h2>Section 19: Data Surveillance and Digital Footprints</h2>
+<p>
+        Digital surveillance involves monitoring
+        and collecting information about online
+        behavior and electronic communications.
+    </p>
+<h3>Tracking Technologies</h3>
+<ul>
+<li>Cookies and tracking pixels</li>
+<li>Device fingerprinting</li>
+<li>IP-based geolocation</li>
+<li>Cross-device tracking</li>
+<li>Telemetry collection</li>
+</ul>
+<h3>Digital Footprints</h3>
+<p>
+        A digital footprint consists of information
+        generated through online activities,
+        including searches, website visits,
+        account activity, and shared content.
+    </p>
+</section>
+<section class="chapter" id="surveillance-capitalism">
+<h2>Section 20: Surveillance Capitalism and User Rights</h2>
+<p>
+        Surveillance capitalism, described by
+        Shoshana Zuboff, refers to an economic
+        model that transforms personal behavioral
+        data into commercially valuable predictions.
+    </p>
+<h3>Behavioral Data</h3>
+<p>
+        Online platforms may collect information
+        about user interactions and analyze it
+        to predict preferences and behavior.
+    </p>
+<h3>Consent Fatigue</h3>
+<p>
+        Consent fatigue occurs when users face
+        repeated privacy notices and permission
+        requests, making informed decisions difficult.
+    </p>
+</section>
+<section class="chapter" id="computer-ethics">
+<h2>Section 21: Foundations of Computer Ethics</h2>
+<p>
+        Computer ethics studies the moral problems
+        associated with developing, deploying,
+        and using computing technologies.
+    </p>
+<h3>James Moor's Computer Ethics Framework</h3>
+<p>
+        James Moor described computers as logically
+        malleable because they can perform many
+        activities expressible through logical operations.
+    </p>
+<h3>Policy Vacuums</h3>
+<p>
+        New technologies can create situations
+        where existing laws and ethical policies
+        do not provide clear guidance.
+    </p>
+</section>
+<section class="chapter" id="professional-ethics">
+<h2>Section 22: Professional Codes of Ethics</h2>
+<h3>ACM Code of Ethics</h3>
+<p>
+        The ACM Code of Ethics provides guidance
+        for responsible computing practice.
+    </p>
+<h3>Core Professional Obligations</h3>
+<ul>
+<li>Contribute to society and human well-being.</li>
+<li>Avoid harm.</li>
+<li>Be honest and trustworthy.</li>
+<li>Be fair and avoid discrimination.</li>
+<li>Respect privacy and confidentiality.</li>
+</ul>
+<h3>IEEE Code of Ethics</h3>
+<p>
+        IEEE emphasizes professional integrity,
+        public welfare, responsible engineering,
+        and ethical technical decisions.
+    </p>
+</section>
+<section class="chapter" id="intellectual-property">
+<h2>Section 23: Intellectual Property in the Digital Age</h2>
+<h3>Intellectual Property Protections</h3>
+<ul>
+<li><strong>Copyright:</strong> Protects original software expression.</li>
+<li><strong>Patents:</strong> Protect eligible inventions and technical innovations.</li>
+<li><strong>Trade Secrets:</strong> Protect confidential business information.</li>
+<li><strong>Trademarks:</strong> Protect distinguishing brands and identifiers.</li>
+</ul>
+<h3>Open Source Licenses</h3>
+<ul>
+<li><strong>GNU GPL:</strong> A copyleft software license.</li>
+<li><strong>MIT:</strong> A permissive software license.</li>
+<li><strong>Apache 2.0:</strong> A permissive license with additional patent-related provisions.</li>
+</ul>
+<p>
+        Software piracy involves unauthorized
+        copying or distribution of software
+        in violation of applicable rights.
+    </p>
+</section>
+<section class="chapter" id="ai-ethics">
+<h2>Section 24: AI Ethics and Algorithmic Bias</h2>
+<p>
+        AI ethics examines fairness, accountability,
+        transparency, and potential harm caused
+        by artificial intelligence systems.
+    </p>
+<h3>Sources of Algorithmic Bias</h3>
+<ul>
+<li>Biased historical training data</li>
+<li>Underrepresentation of certain populations</li>
+<li>Proxy variables correlated with sensitive characteristics</li>
+</ul>
+<h3>Explainable AI</h3>
+<p>
+        Explainable AI (XAI) develops methods
+        for understanding and interpreting
+        model predictions and decisions.
+    </p>
+</section>
+<section class="chapter" id="autonomous-ethics">
+<h2>Section 25: Autonomous Systems and Ethical Choice</h2>
+<p>
+        Autonomous systems can make decisions
+        with limited direct human intervention,
+        creating ethical questions about safety,
+        responsibility, and acceptable outcomes.
+    </p>
+<h3>The Trolley Problem</h3>
+<p>
+        The Trolley Problem illustrates dilemmas
+        involving choices between harmful outcomes,
+        often discussed in autonomous vehicle ethics.
+    </p>
+<h3>Ethical Frameworks</h3>
+<ul>
+<li><strong>Deontological Ethics:</strong> Emphasizes moral rules and duties.</li>
+<li><strong>Utilitarianism:</strong> Evaluates actions according to their consequences.</li>
+</ul>
+<p>
+        Similar concerns arise in autonomous
+        robotics and lethal autonomous weapons systems.
+    </p>
+</section>
+<section class="chapter" id="digital-divide">
+<h2>Section 26: Digital Divide and Social Equity</h2>
+<p>
+        The digital divide describes unequal
+        access to internet connectivity,
+        computing devices, and digital skills.
+    </p>
+<h3>Major Causes</h3>
+<ul>
+<li>Limited broadband infrastructure</li>
+<li>High technology and connectivity costs</li>
+<li>Insufficient digital literacy</li>
+<li>Geographic and socioeconomic inequality</li>
+</ul>
+<p>
+        These inequalities can affect education,
+        employment, financial services,
+        and access to public information.
+    </p>
+</section>
+<section class="chapter" id="cyber-law">
+<h2>Section 27: Digital Governance and Cyber Law</h2>
+<p>
+        Cyber law addresses legal responsibilities,
+        unauthorized computer access,
+        digital evidence, and cross-border cybercrime.
+    </p>
+<h3>Computer Fraud and Abuse Act</h3>
+<p>
+        The CFAA is a United States law
+        addressing specified forms of
+        unauthorized computer access and misuse.
+    </p>
+<h3>Budapest Convention on Cybercrime</h3>
+<p>
+        The Budapest Convention supports
+        international cooperation in combating
+        cybercrime and handling electronic evidence.
+    </p>
+</section>
+<section class="chapter" id="responsible-disclosure">
+<h2>Section 28: Whistleblowing and Responsible Disclosure</h2>
+<h3>Full Disclosure</h3>
+<p>
+        Full disclosure publicly releases vulnerability
+        information, potentially creating pressure
+        for faster security fixes.
+    </p>
+<h3>Coordinated Vulnerability Disclosure</h3>
+<p>
+        Coordinated disclosure involves privately
+        reporting security weaknesses to the
+        responsible organization before public release.
+    </p>
+<h3>Bug Bounty Programs</h3>
+<p>
+        Bug bounty programs offer rewards to
+        researchers who identify and report
+        qualifying vulnerabilities under
+        authorized program rules.
+    </p>
+</section>
+<section class="chapter" id="future-cybersecurity">
+<h2>Section 29: Future Frontiers in Cybersecurity and Privacy</h2>
+<h3>Post-Quantum Cryptography</h3>
+<p>
+        Post-quantum cryptography develops algorithms
+        intended to resist attacks from sufficiently
+        capable quantum computers.
+    </p>
+<h3>AI-Driven Cyber Operations</h3>
+<p>
+        Artificial intelligence can support
+        security monitoring and threat detection,
+        but can also be misused for deception
+        and automated malicious activity.
+    </p>
+<h3>Brain-Computer Interface Privacy</h3>
+<p>
+        Brain-computer interfaces introduce
+        concerns about protecting neural data
+        and preserving individual privacy.
+    </p>
+</section>
+<section class="chapter" id="cyber-references">
+<h2>Section 30: Academic Literature and RRL Bibliography</h2>
+<p>
+        Cybersecurity and computer ethics research
+        draws upon academic publications,
+        technical standards, and regulatory literature.
+    </p>
+<h3>Reference Literature</h3>
+<ul>
+<li>Stallings, W. (2022). <em>Computer Security: Principles and Practice</em> (5th ed.). Pearson.</li>
+<li>Anderson, R. (2020). <em>Security Engineering: A Guide to Building Dependable Distributed Systems</em> (3rd ed.). Wiley.</li>
+<li>Cavoukian, A. (2009). <em>Privacy by Design: The 7 Foundational Principles</em>.</li>
+<li>Zuboff, S. (2019). <em>The Age of Surveillance Capitalism</em>. PublicAffairs.</li>
+<li>Moor, J. H. (1985). What Is Computer Ethics? <em>Metaphilosophy</em>, 16(4), 266–275.</li>
+<li>Association for Computing Machinery. (2018). <em>ACM Code of Ethics and Professional Conduct</em>.</li>
+<li>NIST. (2024). <em>NIST Cybersecurity Framework 2.0</em>.</li>
+<li>European Parliament and Council. (2016). <em>General Data Protection Regulation</em>.</li>
+</ul>
+<h3>Conclusion</h3>
+<p>
+        Cybersecurity, information privacy, and
+        computer ethics work together to protect
+        digital systems, safeguard individual rights,
+        and encourage responsible technology development.
+    </p>
+</section>
+</main>
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+        Test your understanding of Data, Information,
+        Number Systems, and Computer Architecture.
+        Answer all 34 questions before submitting.
+    </p>
+<p aria-live="polite" id="quizProgress">
+        0 of 34 answered
+    </p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Web Browsers, Servers, and Http/https · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+
+
+
+
+/* ==========================================
+   CODEVERSE - CYBERSECURITY, PRIVACY
+   AND COMPUTER ETHICS
+   30-QUESTION QUIZ
+========================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const quizProgress = document.getElementById("quizProgress");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+
+    if (!quizQuestions || !quizProgress ||
+        !submitQuiz || !retryQuiz || !quizResult) {
+        console.error("Cybersecurity quiz elements not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What is a vulnerability in cybersecurity?",
+            options: [
+                "A security weakness that could be exploited",
+                "A completed security audit",
+                "A type of encrypted connection",
+                "A guaranteed successful attack"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which security objective ensures that information is not changed without authorization?",
+            options: [
+                "Availability",
+                "Possession",
+                "Integrity",
+                "Utility"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which threat actor is commonly associated with long-term espionage and substantial resources?",
+            options: [
+                "Script Kiddie",
+                "Advanced Persistent Threat",
+                "Ordinary Website Visitor",
+                "Authorized System Administrator"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which type of malware spreads independently across network vulnerabilities?",
+            options: [
+                "Trojan",
+                "Keylogger",
+                "Rootkit",
+                "Worm"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is spear phishing?",
+            options: [
+                "A targeted phishing attack customized for a victim",
+                "A method of encrypting stored files",
+                "A technique for scanning disk errors",
+                "A secure authentication standard"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is the main principle of Defense in Depth?",
+            options: [
+                "Relying on one strong password",
+                "Removing all network boundaries",
+                "Using multiple layers of security controls",
+                "Allowing unrestricted internal access"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is the main purpose of Endpoint Detection and Response?",
+            options: [
+                "To replace network cabling",
+                "To monitor, detect, and respond to suspicious endpoint activity",
+                "To register website domains",
+                "To increase internet bandwidth"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does authorization determine?",
+            options: [
+                "Whether a user's password is correct",
+                "The physical location of a server",
+                "The strength of an encryption algorithm",
+                "Which resources and actions a user is permitted to access"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which cryptographic technique uses a single shared secret key?",
+            options: [
+                "Symmetric Encryption",
+                "Asymmetric Encryption",
+                "Digital Signature Verification",
+                "Public Key Infrastructure"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which phase follows containment, eradication, and recovery in the incident response lifecycle described in the lesson?",
+            options: [
+                "Initial Preparation",
+                "Software Development",
+                "Post-Incident Activity",
+                "Asset Procurement"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which penetration testing approach provides testers with full system knowledge?",
+            options: [
+                "Black Box",
+                "White Box",
+                "Grey Box",
+                "Blind Testing"
+            ],
+            answer: 1
+        },
+        {
+            question: "In the IaaS shared responsibility model, which task is generally managed by the customer?",
+            options: [
+                "Physical data center construction",
+                "Cloud provider hardware maintenance",
+                "Physical server replacement",
+                "Guest operating system patching"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which principle is central to Zero Trust Architecture?",
+            options: [
+                "Never Trust, Always Verify",
+                "Trust all internal devices",
+                "Disable identity verification",
+                "Grant permanent administrative access"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which function was added as a central function in NIST Cybersecurity Framework 2.0?",
+            options: [
+                "Encrypt",
+                "Audit",
+                "Govern",
+                "Install"
+            ],
+            answer: 2
+        },
+        {
+            question: "What does Personally Identifiable Information refer to?",
+            options: [
+                "Only public website content",
+                "Information that can identify an individual",
+                "Computer hardware specifications",
+                "Anonymous network packets only"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which GDPR principle requires collecting only personal data necessary for a purpose?",
+            options: [
+                "Unlimited Retention",
+                "Automatic Publication",
+                "Mandatory Advertising",
+                "Data Minimization"
+            ],
+            answer: 3
+        },
+        {
+            question: "Who is associated with the seven foundational principles of Privacy by Design?",
+            options: [
+                "Ann Cavoukian",
+                "Alan Turing",
+                "Tim Berners-Lee",
+                "Dennis Ritchie"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which privacy-enhancing technique adds controlled statistical noise to protect individuals in aggregate results?",
+            options: [
+                "Packet Filtering",
+                "Password Hashing",
+                "Differential Privacy",
+                "Network Address Translation"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which technique can recognize a device through characteristics of its browser or configuration?",
+            options: [
+                "Disk Defragmentation",
+                "Device Fingerprinting",
+                "CPU Scheduling",
+                "Database Normalization"
+            ],
+            answer: 1
+        },
+        {
+            question: "Who developed the surveillance capitalism framework discussed in the document?",
+            options: [
+                "James Moor",
+                "Ann Cavoukian",
+                "Donald Parker",
+                "Shoshana Zuboff"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is a policy vacuum in computer ethics?",
+            options: [
+                "A situation where new technology lacks clear established ethical or legal guidance",
+                "An empty database table",
+                "A network without a firewall",
+                "A computer without an operating system"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which professional organization publishes the ACM Code of Ethics and Professional Conduct?",
+            options: [
+                "World Health Organization",
+                "International Monetary Fund",
+                "Association for Computing Machinery",
+                "World Trade Organization"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which open-source license is associated with copyleft requirements?",
+            options: [
+                "MIT License",
+                "GNU General Public License",
+                "Apache License 2.0",
+                "A proprietary end-user license"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which issue can arise when machine learning training data reflects historical discrimination?",
+            options: [
+                "Improved network bandwidth",
+                "Automatic encryption",
+                "Guaranteed fairness",
+                "Algorithmic Bias"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which ethical framework evaluates decisions primarily by their consequences?",
+            options: [
+                "Utilitarianism",
+                "Deontological Ethics",
+                "Access Control",
+                "Data Minimization"
+            ],
+            answer: 0
+        },
+        {
+            question: "What does the digital divide describe?",
+            options: [
+                "The difference between two programming languages",
+                "The separation of CPU and RAM",
+                "Inequality in access to digital technologies and skills",
+                "A type of network encryption"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which international treaty addresses cybercrime cooperation and electronic evidence?",
+            options: [
+                "The Paris Agreement",
+                "Budapest Convention on Cybercrime",
+                "The Geneva Convention on Road Traffic",
+                "The Montreal Protocol"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is coordinated vulnerability disclosure?",
+            options: [
+                "Publishing every vulnerability immediately",
+                "Ignoring security flaws",
+                "Selling unauthorized access",
+                "Privately notifying the responsible organization before public disclosure"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is the goal of post-quantum cryptography?",
+            options: [
+                "To develop cryptographic algorithms resistant to quantum-computer attacks",
+                "To eliminate all internet protocols",
+                "To replace every computer with a quantum processor",
+                "To remove the need for encryption keys"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which publication by James Moor is included in the academic references?",
+            options: [
+                "The Art of Computer Programming",
+                "Computer Networking: A Top-Down Approach",
+                "What Is Computer Ethics?",
+                "The Design of Everyday Things"
+            ],
+            answer: 2
+        }
+    ];
+
+    let submitted = false;
+
+    // ==========================================
+    // LOAD QUIZ
+    // ==========================================
+
+    function loadQuiz() {
+
+        submitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const questionBox = document.createElement("div");
+            questionBox.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent =
+                `${index + 1}. ${item.question}`;
+
+            questionBox.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `cyberQuestion${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener(
+                    "change",
+                    updateProgress
+                );
+
+                const optionText = document.createElement("span");
+                optionText.textContent = option;
+
+                label.appendChild(radio);
+                label.appendChild(optionText);
+
+                questionBox.appendChild(label);
+            });
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+            feedback.hidden = true;
+
+            questionBox.appendChild(feedback);
+            quizQuestions.appendChild(questionBox);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+        retryQuiz.hidden = true;
+
+        updateProgress();
+    }
+
+    // ==========================================
+    // UPDATE PROGRESS
+    // ==========================================
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="cyberQuestion${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    // ==========================================
+    // SUBMIT QUIZ
+    // ==========================================
+
+    submitQuiz.addEventListener("click", function () {
+
+        if (submitted) return;
+
+        const selectedAnswers = questions.map(
+            (item, index) => {
+
+                const selected = quizQuestions.querySelector(
+                    `input[name="cyberQuestion${index}"]:checked`
+                );
+
+                return selected
+                    ? Number(selected.value)
+                    : null;
+            }
+        );
+
+        const answered = selectedAnswers.filter(
+            answer => answer !== null
+        ).length;
+
+        if (answered !== questions.length) {
+
+            alert(
+                `Please answer all questions first. ` +
+                `You answered ${answered} of ${questions.length}.`
+            );
+
+            return;
+        }
+
+        submitted = true;
+        let score = 0;
+
+        questions.forEach((item, index) => {
+
+            const questionBox = quizQuestions.children[index];
+            const selectedAnswer = selectedAnswers[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            const labels =
+                questionBox.querySelectorAll(".quiz-option");
+
+            labels.forEach((label, optionIndex) => {
+
+                const radio = label.querySelector("input");
+                radio.disabled = true;
+
+                label.classList.remove(
+                    "correct",
+                    "incorrect"
+                );
+
+                if (optionIndex === item.answer) {
+
+                    label.classList.add("correct");
+
+                } else if (optionIndex === selectedAnswer) {
+
+                    label.classList.add("incorrect");
+                }
+            });
+
+            const feedback =
+                questionBox.querySelector(".quiz-feedback");
+
+            feedback.hidden = false;
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+        });
+
+        // ==========================================
+        // CALCULATE SCORE
+        // ==========================================
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message = "";
+
+        if (percentage >= 90) {
+
+            message =
+                "Excellent! You have mastered the cybersecurity, privacy, and ethics concepts.";
+
+        } else if (percentage >= 75) {
+
+            message =
+                "Great job! You have a strong understanding of the lesson.";
+
+        } else if (percentage >= 60) {
+
+            message =
+                "Good effort! Review the topics you missed.";
+
+        } else {
+
+            message =
+                "Keep studying and try the quiz again!";
+        }
+
+        const resultHeading = document.createElement("h3");
+        resultHeading.textContent = "Quiz Completed!";
+
+        const scoreHeading = document.createElement("h2");
+        scoreHeading.textContent =
+            `${score} / ${questions.length}`;
+
+        const percentageText = document.createElement("p");
+        percentageText.textContent = `${percentage}%`;
+
+        const feedbackText = document.createElement("p");
+        feedbackText.textContent = message;
+
+        quizResult.replaceChildren(
+            resultHeading,
+            scoreHeading,
+            percentageText,
+            feedbackText
+        );
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    });
+
+    // ==========================================
+    // RETRY QUIZ
+    // ==========================================
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    loadQuiz();
+
+});
+
+</script>
+</body></html>

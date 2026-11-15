@@ -1,0 +1,769 @@
+
+/* ==========================================
+   CODEVERSE - HTML STRUCTURE & SEMANTIC ELEMENTS
+   MAIN STYLESHEET
+========================================== */
+
+/* ROOT VARIABLES */
+
+:root {
+    --primary: #3157a4;
+    --primary-dark: #24427f;
+    --background: #f7f9fd;
+    --surface: #ffffff;
+    --text: #202b40;
+    --muted: #758096;
+    --border: #e6eaf1;
+    --shadow: 0 8px 30px rgba(30, 50, 90, 0.07);
+}
+
+/* DARK MODE */
+
+body.dark-mode {
+    --primary: #8baeff;
+    --primary-dark: #648de0;
+    --background: #111827;
+    --surface: #1f2937;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --border: #374151;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* GENERAL */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 105px;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body,
+body * {
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* ==========================================
+   NAVIGATION BAR
+========================================== */
+
+.navbar {
+    min-height: 82px;
+    padding: 15px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+}
+
+.logo-highlight {
+    color: var(--primary);
+}
+
+.site-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    background: var(--background);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#accountActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-btn,
+.signup-btn {
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.login-btn {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.signup-btn {
+    color: #ffffff;
+    background: #3157a4;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* ==========================================
+   TOP BAR
+========================================== */
+
+.topbar {
+    padding: 20px 6%;
+    background: var(--background);
+}
+
+.back-link {
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* ==========================================
+   READING CONTROLS
+========================================== */
+
+.reading-controls {
+    max-width: 1300px;
+    margin: 0 auto 25px;
+    padding: 20px 25px;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-group label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.control-group select {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--background);
+    color: var(--text);
+    font-family: inherit;
+}
+
+/* ==========================================
+   MAIN LAYOUT
+========================================== */
+
+.layout {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+.layout main {
+    min-width: 0;
+}
+
+/* ==========================================
+   TABLE OF CONTENTS
+========================================== */
+
+.toc {
+    position: sticky;
+    top: 105px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    max-height: calc(100vh - 125px);
+    overflow-y: auto;
+}
+
+.toc h2 {
+    font-size: 18px;
+    color: var(--text);
+    margin: 0 0 20px;
+}
+
+.toc nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.toc nav a {
+    padding: 10px 12px;
+    color: var(--muted);
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.toc nav a:hover {
+    color: var(--primary);
+    background: var(--background);
+}
+
+/* ==========================================
+   BOOK HEADER
+========================================== */
+
+.book-header {
+    padding: 45px 40px;
+    margin-bottom: 25px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.book-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    line-height: 1.3;
+    color: var(--text);
+    margin: 0 0 18px;
+}
+
+.book-header p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ==========================================
+   CHAPTERS
+========================================== */
+
+.chapter,
+.lesson-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 35px 40px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+}
+
+.chapter h2,
+.lesson-section h1 {
+    color: var(--primary);
+    font-size: 27px;
+    line-height: 1.4;
+    margin: 0 0 22px;
+}
+
+.chapter h3 {
+    color: var(--text);
+    font-size: 19px;
+    margin: 28px 0 15px;
+}
+
+.chapter p,
+.lesson-section p {
+    color: var(--text);
+    line-height: 1.85;
+    margin: 0 0 18px;
+}
+
+.chapter ul {
+    padding-left: 25px;
+    margin: 15px 0 25px;
+}
+
+.chapter li {
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.chapter strong {
+    color: var(--text);
+}
+
+/* ==========================================
+   HTML CODE EXAMPLES
+========================================== */
+
+.code-example {
+    margin: 25px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #172338;
+}
+
+.code-example pre {
+    margin: 0;
+    padding: 25px;
+    overflow-x: auto;
+    line-height: 1.7;
+}
+
+.code-example code {
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    color: #dbeafe;
+    white-space: pre;
+}
+
+/* INLINE CODE */
+
+.chapter p code,
+.chapter li code {
+    background: var(--background);
+    color: var(--primary);
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-family: Consolas, monospace;
+    font-size: 0.9em;
+}
+
+/* ==========================================
+   HTML LESSON TABLES
+========================================== */
+
+.lesson-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 14px;
+}
+
+.lesson-table thead {
+    background: #3157a4;
+    color: #ffffff;
+}
+
+.lesson-table th,
+.lesson-table td {
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.lesson-table thead th {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.lesson-table tbody tr:nth-child(even) {
+    background: var(--background);
+}
+
+.lesson-table tbody td {
+    color: var(--text);
+}
+
+/* ==========================================
+   BROWSER OUTPUT PREVIEW
+========================================== */
+
+.browser-preview {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 25px 0;
+}
+
+.browser-preview h3 {
+    margin: 0 0 12px;
+    color: var(--text);
+}
+
+.browser-preview p {
+    color: var(--text);
+    margin: 0;
+}
+
+/* ==========================================
+   SEMANTIC ELEMENTS
+========================================== */
+
+#html-semantic-elements,
+#what-are-semantic-elements,
+#semantic-elements-in-html {
+    border-left: 4px solid var(--primary);
+}
+
+#html-semantic-elements h2,
+#what-are-semantic-elements h2,
+#semantic-elements-in-html h2 {
+    color: var(--primary);
+}
+
+/* ==========================================
+   KNOWLEDGE ASSESSMENT QUIZ
+========================================== */
+
+#quiz {
+    padding: 35px 40px;
+}
+
+#quiz > h2 {
+    color: var(--primary);
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+#quiz > p {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+/* QUIZ PROGRESS */
+
+#quizProgress {
+    display: inline-block;
+    background: rgba(49, 87, 164, 0.10);
+    color: var(--primary);
+    border-radius: 30px;
+    padding: 10px 18px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* QUESTION CARD */
+
+#quiz .quiz-question {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 22px;
+}
+
+#quiz .quiz-question h3 {
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0 0 20px;
+}
+
+/* ANSWER OPTIONS */
+
+#quiz .quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.2s ease;
+}
+
+#quiz .quiz-option:hover {
+    border-color: var(--primary);
+    background: rgba(49, 87, 164, 0.06);
+}
+
+#quiz .quiz-option:has(input:checked) {
+    border-color: var(--primary);
+    background: rgba(49, 87, 164, 0.10);
+}
+
+#quiz .quiz-option input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    flex-shrink: 0;
+}
+
+/* CORRECT ANSWER */
+
+#quiz .quiz-option.correct,
+body.dark-mode #quiz .quiz-option.correct {
+    background: #dcfce7;
+    border-color: #16a34a;
+    color: #166534;
+}
+
+/* INCORRECT ANSWER */
+
+#quiz .quiz-option.incorrect,
+body.dark-mode #quiz .quiz-option.incorrect {
+    background: #fee2e2;
+    border-color: #dc2626;
+    color: #991b1b;
+}
+
+/* QUIZ FEEDBACK */
+
+#quiz .quiz-feedback {
+    font-weight: 700;
+    margin-top: 15px;
+    color: var(--text);
+}
+
+/* QUIZ BUTTONS */
+
+#quiz .quiz-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+#quiz #submitQuiz,
+#quiz #retryQuiz {
+    padding: 14px 28px;
+    background: #3157a4;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#quiz #submitQuiz:hover,
+#quiz #retryQuiz:hover {
+    background: #24427f;
+}
+
+/* QUIZ RESULT */
+
+#quizResult {
+    margin-top: 25px;
+    padding: 35px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-align: center;
+    color: var(--text);
+}
+
+#quizResult h2 {
+    color: var(--primary);
+    font-size: 42px;
+    font-weight: 800;
+    margin: 15px 0;
+}
+
+#quizResult h3 {
+    margin: 0 0 15px;
+}
+
+#quizResult p {
+    color: var(--text);
+}
+
+/* HIDDEN ELEMENTS */
+
+#quiz [hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   DARK MODE QUIZ
+========================================== */
+
+body.dark-mode #quiz .quiz-question,
+body.dark-mode #quizResult {
+    background: var(--background);
+}
+
+body.dark-mode #quiz .quiz-option {
+    background: var(--surface);
+}
+
+body.dark-mode #quiz .quiz-option.correct {
+    background: #14532d;
+    color: #dcfce7;
+}
+
+body.dark-mode #quiz .quiz-option.incorrect {
+    background: #7f1d1d;
+    color: #fee2e2;
+}
+
+/* ==========================================
+   PAGE FOOTER
+========================================== */
+
+.page-footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 1000px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .toc {
+        position: static;
+        max-height: none;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 12px 20px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .site-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    #accountActions {
+        display: none;
+    }
+
+    .reading-controls {
+        margin: 0 15px 20px;
+        padding: 18px;
+    }
+
+    .control-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .layout {
+        padding: 0 15px 40px;
+        gap: 20px;
+    }
+
+    .book-header,
+    .chapter,
+    .lesson-section {
+        padding: 25px 20px;
+    }
+
+    .book-header h1 {
+        font-size: 29px;
+    }
+
+    .chapter h2 {
+        font-size: 23px;
+    }
+
+    .code-example pre {
+        padding: 18px;
+    }
+
+    .lesson-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    #quiz {
+        padding: 25px 18px;
+    }
+
+    #quiz .quiz-question {
+        padding: 20px 15px;
+    }
+
+    #quiz #submitQuiz,
+    #quiz #retryQuiz {
+        width: 100%;
+    }
+}

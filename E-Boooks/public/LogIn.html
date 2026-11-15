@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ReadSpace | Digital E-Book Library</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="LogIncss.css" rel="stylesheet"/>
+<!--FavIcon-->
+<link href="images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+</head>
+<body class="login-page" id="top">
+<header class="login-header">
+<a class="logo" href="/LogIn.html">
+<img alt="ReadSpace Logo" class="site-logo" src="images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+</header>
+<main class="login-container">
+<section class="login-card">
+<div class="login-icon">📚</div>
+<h1>Welcome Back!</h1>
+<p class="login-subtitle">
+                Sign in to continue your reading journey.
+            </p>
+<form action="javascript:void(0);" id="loginForm">
+<div class="form-group">
+<label for="email">Email Address</label>
+<input id="email" placeholder="Enter your email address" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="password">Password</label>
+<div class="password-wrapper">
+<input id="password" placeholder="Enter your password" required="" type="password"/>
+<button class="toggle-password" id="togglePassword" type="button">
+                            Show
+                        </button>
+</div>
+</div>
+<div class="login-options">
+<label class="remember-me">
+<input id="rememberMe" type="checkbox"/>
+                        Remember me
+                    </label>
+<a class="forgot-password" href="#">
+                        Forgot Password?
+                    </a>
+</div>
+<button class="login-button" type="submit">
+                    Sign In
+                </button>
+<p class="login-message" id="loginMessage"></p>
+</form>
+<div class="login-divider">
+<span>OR</span>
+</div>
+<p class="register-text">
+                Don't have an account?
+                <a href="/register.html">Create an Account</a>
+</p>
+</section>
+<div class="login-footer">
+            © 2026 CodeVerse. All Rights Reserved.
+        </div>
+</main>
+<script src="js/loginjs.js"></script>
+</body>
+</html>
+<!--JavaScript-->&gt;
+    <script src="js/loginjs.js"></script>

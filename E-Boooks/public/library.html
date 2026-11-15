@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ReadSpace | Digital E-Book Library</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="cssstyle.css" rel="stylesheet"/>
+<!--FavIcon-->
+<link href="images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+</head>
+<span id="welcomeUser"></span>
+<script src="js/auth.js"></script>
+<script>
+    checkUser().then(user => {
+
+        if (user) {
+            console.log("Welcome, " + user.fullName);
+        }
+
+    });
+</script></html>

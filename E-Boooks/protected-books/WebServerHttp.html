@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Web Browsers, Servers, and HTTP/HTTPS | CodeVerse</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+:root{--bg:#f4f7fc;--surface:#fff;--text:#1d2b43;--muted:#65748a;--border:#dfe6f1;--primary:#3157a4;--primary2:#24427f;--code:#eff4fb;--shadow:0 10px 28px rgba(22,46,91,.07)}
+body.dark-mode{--bg:#0c1525;--surface:#17253a;--text:#e8effb;--muted:#b1bfd3;--border:#34465e;--primary:#94b6ff;--primary2:#b5ceff;--code:#101d30;--shadow:0 10px 28px rgba(0,0,0,.22)}
+html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;transition:background .2s,color .2s}body,button,input,select{box-sizing:border-box}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #76a3ff;outline-offset:3px}
+.navbar{height:72px;position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;padding:0 max(20px,calc((100vw - 1380px)/2));box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text);font-size:21px;font-weight:800;white-space:nowrap}.site-logo{height:39px;width:39px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:22px;margin-left:auto}.nav-links a{font-size:14px;text-decoration:none;font-weight:700;color:var(--muted)}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:10px}.icon-btn,.menu-toggle{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;padding:9px 13px}.menu-toggle{display:none}.login-btn,.signup-btn{font-size:13px;font-weight:700;text-decoration:none;padding:10px 13px;border-radius:9px;display:inline-block}.login-btn{border:1px solid var(--border)}.signup-btn{background:#3157a4;color:white!important}#accountActions{display:flex;gap:7px}.topbar{max-width:1380px;margin:auto;padding:20px 24px 0}.back-link{text-decoration:none;font-weight:700;font-size:14px}.reading-controls{max-width:1380px;margin:14px auto 0;padding:0 24px;display:flex;gap:14px;flex-wrap:wrap}.control-group{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700}.control-group select{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px;border-radius:9px;max-width:200px}.layout{max-width:1380px;margin:20px auto 50px;padding:0 24px;display:grid;grid-template-columns:265px minmax(0,1fr);gap:25px;align-items:start}.toc{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;position:sticky;top:94px;max-height:calc(100vh - 116px);overflow:auto}.toc h2{font-size:15px;margin:0 0 14px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{text-decoration:none;padding:9px 10px;border-radius:8px;color:var(--muted);font-size:13px;line-height:1.45}.toc nav a:hover,.toc nav a.active{background:var(--code);color:var(--primary)}main{min-width:0}.book-header{padding:32px 36px;border-radius:18px;background:linear-gradient(125deg,#25477f,#3971bc);color:white;margin-bottom:22px}.book-header .eyebrow{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#d5e6ff}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(29px,3.5vw,42px);margin:12px 0}.book-header p{max-width:680px;line-height:1.7;color:#e5efff;margin:0}.chapter{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px 35px;margin:0 0 22px;box-shadow:var(--shadow);line-height:1.8;overflow-wrap:anywhere;scroll-margin-top:92px}.chapter h1,.chapter h2,.chapter h3{line-height:1.35;color:var(--text)}.chapter h2{font-size:1.55em;margin:0 0 17px}.chapter h3{font-size:1.15em;margin:25px 0 10px}.chapter p{margin:13px 0;color:var(--text)}.chapter li{margin:6px 0}.chapter pre{max-width:100%;overflow:auto;background:var(--code);color:var(--text);padding:18px;border-radius:11px;border:1px solid var(--border);font-size:.88em;line-height:1.6;white-space:pre}.chapter code{font-family:Consolas,'Courier New',monospace}.chapter :not(pre)>code{background:var(--code);padding:2px 5px;border-radius:4px}.code-example{max-width:100%}.page-footer{text-align:center;color:var(--muted);padding:22px 0 40px;font-size:13px}
+#quizProgress{font-weight:700;color:var(--primary);margin:12px 0 20px}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px;background:var(--surface)}.quiz-question h3{margin:0 0 14px;font-size:1em}.quiz-option{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--border);border-radius:9px;padding:11px 13px;margin:8px 0;cursor:pointer;line-height:1.5}.quiz-option input{margin-top:5px;accent-color:#3157a4}.quiz-option:hover{background:var(--code)}.quiz-option.correct{border-color:#28a36a;background:rgba(40,163,106,.13)}.quiz-option.incorrect{border-color:#dc5656;background:rgba(220,86,86,.12)}.quiz-feedback{font-weight:700;font-size:.88em}.quiz-actions{display:flex;gap:10px;flex-wrap:wrap}.quiz-actions button{border:0;border-radius:9px;background:#3157a4;color:white;padding:12px 19px;font-weight:700}.quiz-actions button:hover{background:#24427f}#quizResult{margin-top:22px;padding:20px;border-radius:12px;background:var(--code);text-align:center}#quizResult h2{font-size:2.4em;margin:6px 0;color:var(--primary)}[hidden]{display:none!important}
+@media(max-width:1000px){.layout{grid-template-columns:215px minmax(0,1fr);gap:16px}.chapter{padding:25px}.navbar{gap:12px}.nav-links{gap:12px}}
+@media(max-width:760px){.navbar{height:66px;padding:0 15px;gap:10px}.logo{font-size:18px}.site-logo{height:34px;width:34px}.nav-links{display:none;position:absolute;top:65px;left:0;right:0;background:var(--surface);padding:16px;border-bottom:1px solid var(--border);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;margin:0}.nav-links.show{display:flex}.menu-toggle{display:block}.nav-actions{margin-left:auto}#accountActions{display:none}.layout{display:block;padding:0 13px}.toc{position:static;max-height:235px;margin-bottom:18px}.reading-controls,.topbar{padding-left:14px;padding-right:14px}.chapter{padding:22px 18px}.book-header{padding:25px 20px}.chapter pre{font-size:.79em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.chapter figure{margin:18px 0;text-align:center}.chapter figure img{display:block;max-width:100%;height:auto;margin:auto;border-radius:10px;border:1px solid var(--border)}
+</style>
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a href="/index.html">Home</a>
+<a class="active" href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- Account buttons will be displayed by JavaScript -->
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav>
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="#how-browsers-load-websites">How browsers load websites</a><a href="#parsing-css-rendering">Parsing CSS and rendering the page</a><a href="#handling-javascript">Handling JavaScript</a><a href="#the-browsers">The Browsers</a><a href="#quiz">Knowledge Assessment Quiz</a></nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Web Browsers, Servers, and HTTP/HTTPS</h1>
+<p>Web browsers are software used to access and view websites, 
+                servers are systems that store and deliver website data, 
+                and HTTP/HTTPS are protocols that allow browsers and servers to 
+                communicate, with HTTPS providing a secure connection.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - DESIGNING FOR WEB ACCESSIBILITY
+========================================== -->
+
+<!-- ==========================================
+     SUFFICIENT COLOR CONTRAST
+========================================== -->
+
+<!-- ==========================================
+     DO NOT USE COLOR ALONE
+========================================== -->
+
+<!-- ==========================================
+     IDENTIFIABLE INTERACTIVE ELEMENTS
+========================================== -->
+
+<!-- ==========================================
+     CONSISTENT NAVIGATION
+========================================== -->
+
+<!-- ==========================================
+     ACCESSIBLE FORM LABELS
+========================================== -->
+
+<!-- ==========================================
+     IDENTIFIABLE FEEDBACK
+========================================== -->
+
+<!-- ==========================================
+     HEADINGS AND SPACING
+========================================== -->
+
+<!-- ==========================================
+     DIFFERENT VIEWPORT SIZES
+========================================== -->
+
+<!-- ==========================================
+     IMAGE AND MEDIA ALTERNATIVES
+========================================== -->
+
+<!-- ==========================================
+     AUTOMATICALLY STARTING CONTENT
+========================================== -->
+
+<!-- ==========================================
+     CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
+========================================== -->
+
+
+<section class="chapter" id="how-browsers-load-websites">
+<h2>How browsers load websites</h2>
+<h3>What files are returned in HTTP responses?</h3>
+<p>To summarize the overview of web technologies we looked at in the last article, 
+                    HTTP responses (to requests for a web page) will generally contain some of the following file types:</p>
+<p>HTML files, which specify the web page content and its structure.
+                CSS files, which specify styling and layout information.
+                JavaScript files, which specify the behavior of interactive parts of the web page.
+                Media assets such as images, videos, audio files, PDFs, and SVGs, which are embedded 
+                in web pages or otherwise displayed by the browser.
+                Other kinds of file that the browser can't handle natively and therefore hands off to 
+                a relevant app on the device to render, for example Word or Pages documents, PowerPoint 
+                slide decks, and Open Office files.
+                Web page rendering
+                When the user navigates to a new web page (by clicking a link, or entering a web address 
+                in the browser address bar), several HTTP requests are sent, and several files are sent back 
+                in HTTP responses. The files received in these responses are processed by the browser and put 
+                together into a web page that the user can interact with. This process of assembling the pieces 
+                into a web page is called rendering.</p>
+<p>The following sections provide a high-level explanation of how a browser renders a web page. 
+                Keep in mind that this is a simplified description, and that different browsers will handle the 
+                process in different ways. However, this will still give you an idea of how things work
+                </p>
+<h3>Handling HTML</h3>
+<p>To start with, the HTML file that contains the web page content and defines its structure 
+                    is received by the browser, and parsed. The browser converts it into a tree-like structure 
+                    called a DOM tree (Document Object Model). The DOM represents the HTML document structure in 
+                    the computer's memory. Take this basic HTML snippet as an example:</p>
+<p>html</p>
+<p>Copy</p>
+<p>Play</p>
+<p>&lt;p&gt;</p>
+<p>Let's use:</p>
+<p>&lt;span&gt;HTML&lt;/span&gt;</p>
+<p>&lt;span&gt;CSS&lt;/span&gt;</p>
+<p>&lt;span&gt;JavaScript&lt;/span&gt;</p>
+<p>&lt;/p&gt;</p>
+<p>Each element, attribute, and piece of text in the HTML becomes a DOM node in the tree structure. 
+                    The nodes are defined by their relationship to other DOM nodes. Some elements are parents of child nodes, 
+                    and child nodes have siblings. The browser will parse this HTML and create the following DOM tree from it:</p>
+<p>P</p>
+<p>├─ "Let's use:"</p>
+<p>├─ SPAN</p>
+<p>|  └─ "HTML"</p>
+<p>├─ SPAN</p>
+<p>|  └─ "CSS"</p>
+<p>└─ SPAN</p>
+<p>└─ "JavaScript"</p>
+<p>In this DOM tree, the node corresponding to our &lt;p&gt; element is a parent. Its children include a text node and the 
+                    three nodes corresponding to our &lt;span&gt; elements. The SPAN nodes are also parents, with text nodes as their children. 
+                    When the browser renders this DOM tree, it will look like so:</p>
+<p>Let's use: HTML CSS JavaScript</p>
+<p>Certain HTML elements, when parsed, will trigger more HTTP requests:</p>
+<ul>
+<li>&lt;link&gt; elements referencing external CSS stylesheets.</li>
+<li>&lt;script&gt; elements referencing external JavaScript files.</li>
+<li>Elements such as &lt;img&gt;, &lt;video&gt;, and &lt;audio&gt;, which reference media files you want to embed in the web page.</li>
+</ul>
+</section><section class="chapter" id="parsing-css-rendering">
+<h2>Parsing CSS and rendering the page</h2>
+<h3>Next, the CSS is handled.</h3>
+<ul>
+<li>1.The browser parses the CSS found on the page (either included in the HTML file, or fetched from external stylesheets), 
+                        and sorts the different CSS styling rules into different "buckets" based on which HTML elements (represented in the DOM 
+                        as items called nodes) they will be applied to. The browser then attaches styles to different elements as required (this 
+                        intermediate step is called a render tree).</li>
+<li>2.The render tree is laid out in the structure it should appear in after the rules have been applied. This includes any 
+                        images and other media files that are to be embedded in the page.</li>
+<li>3.The visual display of the page is shown on the screen (this stage is called painting).</li>
+</ul>
+<p>The following diagram offers a visualization of the process we've talked about so far:</p>
+<figure class="Rendering">
+<img alt="Rendering Illustration" src="/images/rendering.png"/>
+</figure>
+<p>Going back to our example, let's say the following CSS is found in the HTML file:</p>
+<figure class="Css Span">
+<img alt="Css Code" src="/images/cssspan.png"/>
+</figure>
+<p>The only rule available in the CSS has a span selector, so the browser is able to sort the CSS very quickly! It applies that rule 
+                    to each one of the three SPAN nodes in the DOM tree, giving them a black border and a lime green background, then paints the final 
+                    visual representation to the screen.</p>
+<p>The updated output is as follows:</p>
+<figure class="html lets use">
+<img alt="html let's use" src="/images/html let's use.png"/>
+</figure>
+</section><section class="chapter" id="handling-javascript">
+<h2>Handling JavaScript</h2>
+<p>After the CSS has been handled, any JavaScript found on the page (either included in the HTML file, or fetched from external 
+                    script files) is parsed, interpreted, compiled, and executed. This happens at some point before the final page rendering is 
+                    completed — after all, some JavaScript may affect the rendering, for example by adding nodes to the DOM or modifying existing ones.</p>
+<p>Returning to our example, let's say the following JavaScript is found in the HTML file:</p>
+<figure class="JS Const Span">
+<img alt="JS Const Span" src="/images/js const span.png"/>
+</figure>
+<p>You don't need to understand exactly how this JavaScript works, but at a high level, it finds every SPAN node in the DOM 
+                   and reverses the order of the characters in their child text nodes.</p>
+<p>The final output is as follows:</p>
+<figure class="LMTH SSC">
+<img alt="LMTH SSC" src="/images/LMTH SSC.png"/>
+</figure>
+</section><section class="chapter" id="the-browsers">
+<h2>The browser: a hostile and an awesome programming environment</h2>
+<p>Front-end web development can sometimes be frustrating, and some people consider the browser to be a hostile programming 
+                    environment. This is because, unlike other programming environments, it is much harder to make guarantees about the 
+                    environment your code will run on. You cannot know ahead of time all the different combinations of operating system, 
+                    browser, language, location, network connection, CPU, GPU, memory, battery life, etc., that your users will have, therefore 
+                    you cannot guarantee a perfect user experience for all of them.</p>
+<p>Modern browsers tend to implement web standards pretty consistently, but there is still a lot of uncertainty to navigate. 
+                    As a web developer, you will need to embrace that uncertainty, programming defensively and being conservative with the 
+                    features you use. This relies on adhering to the best practices outlined in the previous article.</p>
+<p>On the upside, the web is also an awesome programming environment, for many reasons.</p>
+<ul>
+<li>For a start, it is designed with universal access in mind. The web's basic state is accessible and linkable. 
+                        Some of these basics are harder to achieve in other environments.</li>
+<li>App delivery across the web is simple and powerful. You don't need to take your users through a complicated installation process: 
+                        you just point them to a web address and off they go.</li>
+<li>App updates are usually straightforward. In many cases, visitors can see new versions of an application when they reload their browser tab. 
+                        You don't need to worry about getting visitors to regularly download and install software updates.</li>
+<li>The web community is vibrant and helpful. As we discuss later on in our Research and learning article, there are lots of places you can go to ask for help, 
+                        and great resources available to learn from.</li>
+</ul>
+ KNOWLEDGE ASSESSMENT QUIZ 
+</section><section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+                    Test your understanding of Web Browsers,
+                    Servers, and HTTP/HTTPS.
+                </p>
+<div id="quizProgress">0 of 10 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+                        Submit Quiz
+                    </button>
+<button hidden="" id="retryQuiz" type="button">
+                        Try Again
+                    </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section><footer class="page-footer">End of Web Browsers, Servers, and HTTP/HTTPS · CodeVerse Digital Library</footer></main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const fontSize = document.getElementById("fontSize");
+    const fontFamily = document.getElementById("fontFamily");
+
+    // Restore saved settings
+    const savedTheme = localStorage.getItem("readerTheme");
+    const savedSize = localStorage.getItem("readerFontSize");
+    const savedFont = localStorage.getItem("readerFontFamily");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (savedSize) {
+        fontSize.value = savedSize;
+    }
+
+    if (savedFont) {
+        fontFamily.value = savedFont;
+    }
+
+    function updateThemeIcon() {
+        themeIcon.textContent =
+            document.body.classList.contains("dark-mode") ? "☀" : "☾";
+    }
+
+    function applyFontSize() {
+        document.querySelectorAll("main .chapter").forEach(chapter => {
+            chapter.style.fontSize = fontSize.value;
+        });
+
+        localStorage.setItem("readerFontSize", fontSize.value);
+    }
+
+    function applyFontFamily() {
+        document.querySelector("main").style.fontFamily = fontFamily.value;
+        localStorage.setItem("readerFontFamily", fontFamily.value);
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "readerTheme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+    });
+
+    fontSize.addEventListener("change", applyFontSize);
+    fontFamily.addEventListener("change", applyFontFamily);
+
+    applyFontSize();
+    applyFontFamily();
+    updateThemeIcon();
+});
+   
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz || !retryQuiz ||
+        !quizResult || !quizProgress) {
+        console.error("Quiz elements are missing.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "Which file type defines the structure and content of a webpage?",
+            options: [
+                "CSS",
+                "HTML",
+                "JavaScript",
+                "SVG"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the purpose of CSS?",
+            options: [
+                "To define webpage styling and layout",
+                "To store user passwords",
+                "To connect computer hardware",
+                "To create HTTP requests"
+            ],
+            answer: 0
+        },
+        {
+            question: "What does JavaScript primarily control on a webpage?",
+            options: [
+                "Internet connection speed",
+                "Physical server storage",
+                "Interactive webpage behavior",
+                "Computer operating systems"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is webpage rendering?",
+            options: [
+                "Deleting browser files",
+                "Assembling webpage resources into a displayed page",
+                "Installing a web browser",
+                "Disconnecting from a server"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does DOM stand for?",
+            options: [
+                "Digital Object Management",
+                "Document Online Model",
+                "Document Object Model",
+                "Data Organization Method"
+            ],
+            answer: 2
+        },
+        {
+            question: "What structure does the browser create when parsing HTML?",
+            options: [
+                "A DOM tree",
+                "A database table",
+                "A network cable",
+                "A ZIP archive"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which HTML element commonly requests an external CSS stylesheet?",
+            options: [
+                "<div>",
+                "<link>",
+                "<span>",
+                "<footer>"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the final visual display stage of webpage rendering called?",
+            options: [
+                "Downloading",
+                "Parsing",
+                "Compiling",
+                "Painting"
+            ],
+            answer: 3
+        },
+        {
+            question: "What can JavaScript do to the DOM?",
+            options: [
+                "Only change Internet speed",
+                "Add nodes and modify existing elements",
+                "Replace computer hardware",
+                "Disable all HTTP responses"
+            ],
+            answer: 1
+        },
+        {
+            question: "Why must web developers account for different browser environments?",
+            options: [
+                "All users have identical devices",
+                "Websites only work on one operating system",
+                "Users have different devices, browsers, and network conditions",
+                "Browsers cannot display HTML"
+            ],
+            answer: 2
+        }
+    ];
+
+    function loadQuiz() {
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener("change", updateProgress);
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+            });
+
+            quizQuestions.appendChild(box);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    function updateProgress() {
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) answered++;
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    submitQuiz.addEventListener("click", async function () {
+        let score = 0;
+
+        const answered = quizQuestions.querySelectorAll(
+            'input[type="radio"]:checked'
+        ).length;
+
+        if (answered !== questions.length) {
+            alert("Please answer all 10 questions.");
+            return;
+        }
+
+        questions.forEach((item, index) => {
+            const box = quizQuestions.children[index];
+
+            const selected = box.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            const selectedAnswer = Number(selected.value);
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+        });
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${
+                percentage >= 90 ? "Excellent work!" :
+                percentage >= 75 ? "Great job!" :
+                percentage >= 60 ? "Good effort! Keep reviewing." :
+                "Review the chapters and try again."
+            }</strong>
+            <p id="quizSaveStatus" aria-live="polite">
+                Saving quiz result...
+            </p>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        // Save score to CodeVerse SQLite backend
+        const saveStatus = document.getElementById("quizSaveStatus");
+
+        try {
+            const response = await fetch("/api/quiz-results", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    bookId: 2,
+                    score: score,
+                    totalQuestions: questions.length
+                })
+            });
+
+            const data = await response.json().catch(() => ({}));
+
+            saveStatus.textContent =
+                response.ok && data.success
+                    ? "Your quiz score has been saved!"
+                    : (data.message || "Quiz score could not be saved.");
+
+        } catch (error) {
+            console.error("Quiz save error:", error);
+            saveStatus.textContent =
+                "Quiz completed, but the score could not be saved.";
+        }
+    });
+
+    retryQuiz.addEventListener("click", function () {
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+
+    loadQuiz();
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const menu = document.getElementById('menuToggle');
+ const links = document.getElementById('navLinks');
+ menu?.setAttribute('aria-expanded','false');
+ menu?.addEventListener('click', () => {const open=links.classList.toggle('show');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');});
+ links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('show');menu?.setAttribute('aria-expanded','false');}));
+ const entries=[...document.querySelectorAll('.toc a[href^="#"]')];
+ const sections=entries.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
+ if('IntersectionObserver' in window){const obs=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){entries.forEach(a=>a.classList.toggle('active',a.hash==='#'+item.target.id));}})},{rootMargin:'-95px 0px -65% 0px'});sections.forEach(section=>obs.observe(section));}
+});
+</script></body></html>

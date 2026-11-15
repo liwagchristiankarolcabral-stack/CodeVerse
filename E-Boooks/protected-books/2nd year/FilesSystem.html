@@ -1,0 +1,4039 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Learn File Systems and Storage Management with CodeVerse." name="description"/>
+<title>
+        File Systems and Storage Management | CodeVerse
+    </title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- CODEVERSE FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+
+        /* ==========================================
+           CODEVERSE DIGITAL E-BOOK LIBRARY
+           FILE SYSTEMS AND STORAGE MANAGEMENT
+        ========================================== */
+
+        /* ROOT VARIABLES */
+
+        :root {
+            --primary: #3157a4;
+            --primary-dark: #24427f;
+
+            --background: #f7f9fd;
+            --surface: #ffffff;
+            --surface-alt: #eef3fc;
+
+            --text: #202b40;
+            --muted: #758096;
+
+            --border: #e6eaf1;
+
+            --shadow:
+                0 8px 30px rgba(30, 50, 90, .07);
+
+            --reader-size: 16px;
+            --reader-family: 'DM Sans', sans-serif;
+
+            --navbar-height: 78px;
+        }
+
+        /* DARK MODE VARIABLES */
+
+        body.dark-mode {
+            --primary: #89adff;
+            --primary-dark: #aac5ff;
+
+            --background: #101827;
+            --surface: #1b273a;
+            --surface-alt: #26364e;
+
+            --text: #eaf0fb;
+            --muted: #a4b2c9;
+
+            --border: #34435a;
+
+            --shadow:
+                0 8px 30px rgba(0, 0, 0, .2);
+        }
+
+        /* GENERAL */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 105px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            transition:
+                background .3s ease,
+                color .3s ease;
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        select:focus-visible,
+        input:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* ==========================================
+           NAVIGATION BAR
+        ========================================== */
+
+        .navbar {
+            min-height: var(--navbar-height);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+            padding: 12px 5%;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            box-shadow:
+                0 2px 15px rgba(0, 0, 0, .025);
+        }
+
+        /* BRAND */
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .site-logo {
+            width: 43px;
+            height: 43px;
+            object-fit: contain;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -.6px;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        /* NAVIGATION LINKS */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--muted);
+            white-space: nowrap;
+
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* NAVIGATION ACTIONS */
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 9px;
+        }
+
+        .btn-login,
+        .btn-signup {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 15px;
+            border-radius: 9px;
+
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+
+            white-space: nowrap;
+            transition: all .2s ease;
+        }
+
+        /* LOG IN */
+
+        .btn-login {
+            color: var(--primary);
+            background: transparent;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-login:hover {
+            background: var(--surface-alt);
+        }
+
+        /* SIGN UP */
+
+        .btn-signup {
+            background: #3157a4;
+            color: #ffffff;
+            border: 1px solid #3157a4;
+        }
+
+        .btn-signup:hover {
+            background: #24427f;
+            border-color: #24427f;
+        }
+
+        /* ICON BUTTONS */
+
+        .icon-btn,
+        .menu-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 40px;
+            min-height: 40px;
+
+            padding: 9px;
+
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            color: var(--text);
+            font-size: 18px;
+
+            transition: background .2s ease;
+        }
+
+        .icon-btn:hover,
+        .menu-toggle:hover {
+            background: var(--surface-alt);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* ==========================================
+           READING CONTROLS
+        ========================================== */
+
+        .reading-controls {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            gap: 20px;
+            padding: 13px 20px;
+        }
+
+        .reading-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reading-control label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+        }
+
+        .reading-control select {
+            background: var(--background);
+            color: var(--text);
+
+            border: 1px solid var(--border);
+            border-radius: 8px;
+
+            padding: 9px 12px;
+
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           MAIN LAYOUT
+        ========================================== */
+
+        .reader-layout {
+            display: grid;
+
+            grid-template-columns:
+                285px minmax(0, 1fr);
+
+            max-width: 1600px;
+            margin: auto;
+
+            min-height:
+                calc(100vh - var(--navbar-height));
+        }
+
+        /* ==========================================
+           TABLE OF CONTENTS
+        ========================================== */
+
+        .sidebar {
+            position: sticky;
+            top: var(--navbar-height);
+
+            height:
+                calc(100vh - var(--navbar-height));
+
+            overflow-y: auto;
+            overscroll-behavior: contain;
+
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+
+            padding: 25px 14px;
+
+            scrollbar-width: thin;
+            scrollbar-color:
+                var(--border) transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 10px;
+        }
+
+        .sidebar h3 {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 1.2px;
+
+            padding: 0 12px;
+            margin: 0 0 18px;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .sidebar a {
+            display: block;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+            border-left: 3px solid transparent;
+
+            color: var(--text);
+            text-decoration: none;
+
+            font-size: 13px;
+            line-height: 1.6;
+
+            transition:
+                background .2s ease,
+                color .2s ease;
+        }
+
+        .sidebar a:hover {
+            background: var(--surface-alt);
+            color: var(--primary);
+        }
+
+        .sidebar a.active {
+            background: var(--surface-alt);
+            color: var(--primary);
+
+            border-left-color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* ==========================================
+           READER CONTENT
+        ========================================== */
+
+        .reader {
+            width: 100%;
+            max-width: 1150px;
+
+            min-width: 0;
+            margin: 0 auto;
+
+            padding: 35px;
+        }
+
+        /* HERO */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #254783,
+                    #547ed0
+                );
+
+            color: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 55px 42px;
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 12px 35px rgba(30, 65, 130, .15);
+        }
+
+        .hero .eyebrow {
+            display: inline-block;
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+
+            color: #dce8ff;
+        }
+
+        .hero h1 {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size:
+                clamp(30px, 4vw, 46px);
+
+            line-height: 1.25;
+            margin: 17px 0;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.9;
+
+            max-width: 700px;
+
+            color: #edf3ff;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .hero-meta span {
+            padding: 8px 13px;
+
+            background:
+                rgba(255, 255, 255, .12);
+
+            border:
+                1px solid rgba(255, 255, 255, .2);
+
+            border-radius: 30px;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* ==========================================
+           CHAPTER CARDS
+        ========================================== */
+
+        .chapter {
+            background: var(--surface);
+
+            padding: 35px;
+
+            border-radius: 16px;
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            margin-bottom: 25px;
+
+            scroll-margin-top: 110px;
+        }
+
+        .chapter-number {
+            display: inline-block;
+
+            color: var(--primary);
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .chapter h2 {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size:
+                clamp(23px, 3vw, 30px);
+
+            line-height: 1.35;
+
+            margin: 12px 0 22px;
+
+            color: var(--text);
+        }
+
+        .chapter h3 {
+            font-size: 19px;
+            font-weight: 800;
+
+            color: var(--primary);
+
+            margin: 28px 0 12px;
+        }
+
+        .chapter h4 {
+            font-size: 16px;
+            font-weight: 800;
+
+            margin: 22px 0 10px;
+        }
+
+        /* READING FONT SETTINGS */
+
+        .book-content {
+            font-family: var(--reader-family);
+            font-size: var(--reader-size);
+        }
+
+        .chapter p,
+        .chapter li {
+            font-size: inherit;
+            line-height: 1.9;
+        }
+
+        .chapter p {
+            margin: 12px 0;
+        }
+
+        .chapter li {
+            margin-bottom: 8px;
+        }
+
+        .chapter ul,
+        .chapter ol {
+            padding-left: 25px;
+        }
+
+        .chapter strong {
+            font-weight: 800;
+        }
+
+        .chapter code {
+            font-family: Consolas, monospace;
+            background: var(--surface-alt);
+
+            padding: 3px 6px;
+            border-radius: 5px;
+
+            font-size: .9em;
+        }
+
+        .chapter pre {
+            background: var(--background);
+            color: var(--text);
+
+            padding: 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            overflow-x: auto;
+
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* EXAMPLE BOX */
+
+        .example-box {
+            background: var(--surface-alt);
+
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .example-box p {
+            margin: 8px 0;
+        }
+
+        /* ==========================================
+           TABLES
+        ========================================== */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+
+            font-size: .9em;
+        }
+
+        .chapter th,
+        .chapter td {
+            padding: 13px;
+
+            border: 1px solid var(--border);
+            text-align: left;
+
+            line-height: 1.6;
+        }
+
+        .chapter th {
+            background: var(--surface-alt);
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .chapter td {
+            color: var(--text);
+        }
+
+        .chapter tbody tr:hover {
+            background: var(--background);
+        }
+
+        /* ==========================================
+           QUIZ STYLING
+           USED IN PART 4
+        ========================================== */
+
+        .quiz-question {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            padding: 22px;
+            margin: 20px 0;
+
+            transition: border-color .2s ease;
+        }
+
+        .quiz-question h3 {
+            font-size: 16px;
+            color: var(--text);
+
+            margin: 0 0 15px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            padding: 12px 14px;
+            margin: 7px 0;
+
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            cursor: pointer;
+            font-size: 14px;
+
+            transition: background .2s ease;
+        }
+
+        .quiz-option:hover {
+            background: var(--background);
+        }
+
+        .quiz-option input {
+            margin-top: 4px;
+            accent-color: #3157a4;
+        }
+
+        .quiz-option.correct {
+            border-color: #26a269;
+            background: rgba(38, 162, 105, .1);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #d35b5b;
+            background: rgba(211, 91, 91, .1);
+        }
+
+        .quiz-feedback {
+            padding: 12px 15px;
+
+            border-radius: 8px;
+            margin-top: 14px;
+
+            background: var(--background);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .quiz-feedback.correct {
+            border-left: 4px solid #26a269;
+        }
+
+        .quiz-feedback.incorrect {
+            border-left: 4px solid #d35b5b;
+        }
+
+        .quiz-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+        .quiz-button {
+            padding: 13px 23px;
+
+            background: #3157a4;
+            color: #ffffff;
+
+            border: none;
+            border-radius: 9px;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            transition: background .2s ease;
+        }
+
+        .quiz-button:hover {
+            background: #24427f;
+        }
+
+        .quiz-button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .quiz-result {
+            padding: 25px;
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            background: var(--background);
+            margin-top: 22px;
+        }
+
+        .quiz-result.passed {
+            border-color: #26a269;
+        }
+
+        .quiz-result.failed {
+            border-color: #d35b5b;
+        }
+
+        .quiz-progress {
+            font-size: 14px;
+            color: var(--muted);
+
+            margin-bottom: 12px;
+        }
+
+        .progress-track {
+            height: 9px;
+
+            background: var(--border);
+            border-radius: 20px;
+
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+
+            background: #3157a4;
+            border-radius: 20px;
+
+            transition: width .3s ease;
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        .footer {
+            text-align: center;
+
+            padding: 35px 20px;
+
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           RESPONSIVE NAVIGATION
+        ========================================== */
+
+        @media (max-width: 1150px) {
+
+            .navbar {
+                padding: 12px 3%;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .reader-layout {
+                grid-template-columns:
+                    255px minmax(0, 1fr);
+            }
+
+        }
+
+        @media (max-width: 900px) {
+
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                display: none;
+
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+
+                background: var(--surface);
+
+                border-bottom:
+                    1px solid var(--border);
+
+                padding: 20px;
+
+                flex-direction: column;
+                align-items: stretch;
+
+                gap: 0;
+
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 13px;
+                border-radius: 8px;
+            }
+
+            .nav-links a:hover {
+                background: var(--surface-alt);
+            }
+
+            .reader-layout {
+                display: block;
+            }
+
+            .sidebar {
+                display: none;
+
+                position: fixed;
+
+                top: var(--navbar-height);
+                left: 0;
+
+                width: min(330px, 90vw);
+                height:
+                    calc(100vh - var(--navbar-height));
+
+                z-index: 999;
+
+                box-shadow: var(--shadow);
+            }
+
+            .sidebar.show {
+                display: block;
+            }
+
+            .reader {
+                padding: 22px;
+            }
+
+            .hero {
+                padding: 40px 30px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                gap: 8px;
+                padding: 10px 14px;
+            }
+
+            .site-logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .nav-actions {
+                gap: 5px;
+            }
+
+            .btn-login,
+            .btn-signup {
+                padding: 9px 8px;
+                font-size: 11px;
+            }
+
+            .icon-btn,
+            .menu-toggle {
+                min-width: 34px;
+                min-height: 36px;
+                padding: 7px;
+            }
+
+            .reading-controls {
+                justify-content: flex-start;
+                gap: 12px;
+                padding: 12px 15px;
+            }
+
+            .reading-control {
+                flex: 1 1 135px;
+            }
+
+            .reading-control select {
+                min-width: 0;
+                width: 100%;
+            }
+
+            .reader {
+                padding: 14px;
+            }
+
+            .hero {
+                padding: 30px 24px;
+                border-radius: 14px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .chapter {
+                padding: 23px 20px;
+                border-radius: 12px;
+            }
+
+            .chapter h2 {
+                font-size: 24px;
+            }
+
+            .chapter h3 {
+                font-size: 17px;
+            }
+
+            .chapter ul,
+            .chapter ol {
+                padding-left: 20px;
+            }
+
+        }
+
+        @media (max-width: 390px) {
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .site-logo {
+                width: 30px;
+                height: 30px;
+            }
+
+            .btn-login,
+            .btn-signup {
+                font-size: 10px;
+                padding: 8px 6px;
+            }
+
+        }
+
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<body id="top">
+<!-- ==========================================
+         CODEVERSE NAVIGATION BAR
+    ========================================== -->
+<header class="navbar">
+<!-- LOGO -->
+<a class="brand" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span class="logo">
+                Code<span class="logo-highlight">Verse</span>
+</span>
+</a>
+<!-- NAVIGATION LINKS -->
+<nav aria-label="Main navigation" class="nav-links" id="navLinks">
+<a href="/index.html">
+                Home
+            </a>
+<a href="/library.html">
+                Explore Books
+            </a>
+<a href="/index.html#about">
+                About
+            </a>
+</nav>
+<!-- NAVIGATION ACTIONS -->
+<div class="nav-actions">
+<!-- LOG IN -->
+<a class="btn-login" href="/LogIn.html">
+                Log In
+            </a>
+<!-- SIGN UP -->
+<a class="btn-signup" href="/register.html">
+                Sign Up
+            </a>
+<!-- DARK MODE -->
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" title="Toggle dark mode" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- MOBILE MENU -->
+<button aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle" type="button">
+
+                ☰
+
+            </button>
+</div>
+</header>
+<!-- ==========================================
+         READING CONTROLS
+    ========================================== -->
+<div class="reading-controls">
+<!-- FONT SIZE -->
+<div class="reading-control">
+<label for="fontSize">
+                Font Size
+            </label>
+<select id="fontSize">
+<option value="14px">
+                    Small
+                </option>
+<option selected="" value="16px">
+                    Normal
+                </option>
+<option value="18px">
+                    Large
+                </option>
+<option value="20px">
+                    Extra Large
+                </option>
+<option value="22px">
+                    Maximum
+                </option>
+</select>
+</div>
+<!-- FONT FAMILY -->
+<div class="reading-control">
+<label for="fontFamily">
+                Font Style
+            </label>
+<select id="fontFamily">
+<option selected="" value="'DM Sans', sans-serif">
+                    DM Sans
+                </option>
+<option value="Arial, sans-serif">
+                    Arial
+                </option>
+<option value="Georgia, serif">
+                    Georgia
+                </option>
+<option value="'Times New Roman', serif">
+                    Times New Roman
+                </option>
+<option value="Verdana, sans-serif">
+                    Verdana
+                </option>
+</select>
+</div>
+<!-- TABLE OF CONTENTS BUTTON -->
+<button aria-controls="sidebar" aria-expanded="false" aria-label="Toggle table of contents" class="icon-btn" id="tocToggle" title="Table of contents" type="button">
+
+            ☰
+
+        </button>
+</div>
+<!-- ==========================================
+         MAIN READER LAYOUT
+    ========================================== -->
+<div class="reader-layout">
+<!-- ==========================================
+             SIDEBAR TABLE OF CONTENTS
+        ========================================== -->
+<aside class="sidebar" id="sidebar">
+<h3>
+                TABLE OF CONTENTS
+            </h3>
+<nav aria-label="Book chapters" id="chapterNavigation">
+<a href="#chapter1">
+                    01. Introduction to File Systems
+                </a>
+<a href="#chapter2">
+                    02. Basic Components
+                </a>
+<a href="#chapter3">
+                    03. File Operations
+                </a>
+<a href="#chapter4">
+                    04. File Naming and Extensions
+                </a>
+<a href="#chapter5">
+                    05. Directory Structures
+                </a>
+<a href="#chapter6">
+                    06. Types of File Systems
+                </a>
+<a href="#chapter7">
+                    07. File Allocation Methods
+                </a>
+<a href="#chapter8">
+                    08. Disk Storage Organization
+                </a>
+<a href="#chapter9">
+                    09. Storage Management
+                </a>
+<a href="#chapter10">
+                    10. Storage Devices
+                </a>
+<a href="#chapter11">
+                    11. Primary and Secondary Storage
+                </a>
+<a href="#chapter12">
+                    12. Storage Space Allocation
+                </a>
+<a href="#chapter13">
+                    13. Partitioning and Formatting
+                </a>
+<a href="#chapter14">
+                    14. Disk Scheduling
+                </a>
+<a href="#chapter15">
+                    15. File Permissions and Security
+                </a>
+<a href="#chapter16">
+                    16. Backup and Recovery
+                </a>
+<a href="#chapter17">
+                    17. Fragmentation
+                </a>
+<a href="#chapter18">
+                    18. Cloud and Network Storage
+                </a>
+<a href="#chapter19">
+                    19. Storage Performance
+                </a>
+<a href="#chapter20">
+                    20. RAID Technology
+                </a>
+<a href="#chapter21">
+                    21. Storage Virtualization
+                </a>
+<a href="#chapter22">
+                    22. Storage Management in OS
+                </a>
+<a href="#chapter23">
+                    23. File System Maintenance
+                </a>
+<a href="#chapter24">
+                    24. Data Integrity
+                </a>
+<a href="#chapter25">
+                    25. Storage Capacity
+                </a>
+<a href="#chapter26">
+                    26. Practical Applications
+                </a>
+<a href="#chapter27">
+                    27. Real-World Examples
+                </a>
+<a href="#chapter28">
+                    28. Best Practices
+                </a>
+<a href="#chapter29">
+                    29. Future Technologies
+                </a>
+<a href="#chapter30">
+                    30. Summary and Conclusion
+                </a>
+<a href="#quiz">
+                    ✓ Knowledge Assessment
+                </a>
+</nav>
+</aside>
+<!-- ==========================================
+             MAIN E-BOOK READER
+        ========================================== -->
+<main class="reader">
+<!-- HERO SECTION -->
+<section class="hero">
+<span class="eyebrow">
+                    CODEVERSE DIGITAL E-BOOK LIBRARY
+                </span>
+<h1>
+                    File Systems and Storage Management
+                </h1>
+<p>
+                    Learn how computers organize, store, retrieve,
+                    manage, and protect digital information using
+                    file systems and storage technologies.
+                </p>
+<div class="hero-meta">
+<span>
+                        30 Chapters
+                    </span>
+<span>
+                        Interactive Assessment
+                    </span>
+<span>
+                        30 Quiz Questions
+                    </span>
+</div>
+</section>
+<!-- ==========================================
+                 BOOK CONTENT
+            ========================================== -->
+<div class="book-content">
+<!-- =====================================
+                     CHAPTER 1
+                     INTRODUCTION TO FILE SYSTEMS
+                ====================================== -->
+<section class="chapter" id="chapter1">
+<span class="chapter-number">
+                        CHAPTER 01
+                    </span>
+<h2>
+                        Introduction to File Systems
+                    </h2>
+<h3>
+                        What Is a File System?
+                    </h3>
+<p>
+                        A file system is a method used by an operating
+                        system to organize, store, name, manage, and
+                        retrieve digital files on a storage device.
+                    </p>
+<p>
+                        Whenever a user saves a file, the operating
+                        system communicates with the file system to
+                        determine where the information should be stored.
+                    </p>
+<h3>
+                        How File Systems Work
+                    </h3>
+<ol>
+<li>
+                            A user creates or saves a file.
+                        </li>
+<li>
+                            The operating system receives the request.
+                        </li>
+<li>
+                            The file system identifies available storage.
+                        </li>
+<li>
+                            The location of the data is recorded.
+                        </li>
+<li>
+                            The file can be retrieved later.
+                        </li>
+</ol>
+<h3>
+                        Importance
+                    </h3>
+<ul>
+<li>
+                            Organizes files and directories.
+                        </li>
+<li>
+                            Allows convenient access to information.
+                        </li>
+<li>
+                            Tracks occupied and available storage.
+                        </li>
+<li>
+                            Supports file security and permissions.
+                        </li>
+<li>
+                            Improves storage efficiency.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     CHAPTER 2
+                     BASIC COMPONENTS
+                ====================================== -->
+<section class="chapter" id="chapter2">
+<span class="chapter-number">
+                        CHAPTER 02
+                    </span>
+<h2>
+                        Basic Components of a File System
+                    </h2>
+<h3>
+                        Files
+                    </h3>
+<p>
+                        A file is a collection of related information
+                        stored under a specific name.
+                    </p>
+<h3>
+                        Directories
+                    </h3>
+<p>
+                        A directory, commonly called a folder, is used
+                        to organize and group files.
+                    </p>
+<h3>
+                        Metadata
+                    </h3>
+<p>
+                        Metadata describes a file and helps the
+                        operating system manage it.
+                    </p>
+<ul>
+<li>File name</li>
+<li>File size</li>
+<li>File type</li>
+<li>Creation date</li>
+<li>Modification date</li>
+<li>File permissions</li>
+</ul>
+<h3>
+                        Volumes
+                    </h3>
+<p>
+                        A volume is a logical storage area containing
+                        a file system. A physical drive may contain
+                        one or more volumes.
+                    </p>
+<h3>
+                        File System Structure
+                    </h3>
+<p>
+                        File systems use directory information,
+                        metadata, allocation records, and data blocks
+                        to manage stored information.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 3
+                     FILE OPERATIONS
+                ====================================== -->
+<section class="chapter" id="chapter3">
+<span class="chapter-number">
+                        CHAPTER 03
+                    </span>
+<h2>
+                        File Operations
+                    </h2>
+<p>
+                        File operations are actions performed on
+                        digital files by users and applications.
+                    </p>
+<ul>
+<li>
+<strong>Create:</strong>
+                            Make a new file.
+                        </li>
+<li>
+<strong>Open:</strong>
+                            Access a file.
+                        </li>
+<li>
+<strong>Read:</strong>
+                            Retrieve stored information.
+                        </li>
+<li>
+<strong>Write:</strong>
+                            Add or modify information.
+                        </li>
+<li>
+<strong>Rename:</strong>
+                            Change the file name.
+                        </li>
+<li>
+<strong>Copy:</strong>
+                            Create another version.
+                        </li>
+<li>
+<strong>Move:</strong>
+                            Transfer a file to another location.
+                        </li>
+<li>
+<strong>Delete:</strong>
+                            Remove a file.
+                        </li>
+<li>
+<strong>Save:</strong>
+                            Store updated information.
+                        </li>
+</ul>
+<p>
+                        Deleting a file does not always immediately
+                        erase its data from the physical storage device.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 4
+                     FILE NAMING AND EXTENSIONS
+                ====================================== -->
+<section class="chapter" id="chapter4">
+<span class="chapter-number">
+                        CHAPTER 04
+                    </span>
+<h2>
+                        File Naming and Extensions
+                    </h2>
+<p>
+                        File naming is the process of assigning a
+                        meaningful name to a digital file.
+                    </p>
+<p>
+                        A file extension is the group of characters
+                        after the final period in a file name.
+                    </p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>File Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.docx</td>
+<td>Word document</td>
+</tr>
+<tr>
+<td>.pdf</td>
+<td>PDF document</td>
+</tr>
+<tr>
+<td>.jpg</td>
+<td>Image</td>
+</tr>
+<tr>
+<td>.png</td>
+<td>Image</td>
+</tr>
+<tr>
+<td>.mp3</td>
+<td>Audio</td>
+</tr>
+<tr>
+<td>.mp4</td>
+<td>Video</td>
+</tr>
+<tr>
+<td>.pptx</td>
+<td>Presentation</td>
+</tr>
+<tr>
+<td>.xlsx</td>
+<td>Spreadsheet</td>
+</tr>
+<tr>
+<td>.txt</td>
+<td>Plain text</td>
+</tr>
+<tr>
+<td>.html</td>
+<td>Webpage</td>
+</tr>
+<tr>
+<td>.java</td>
+<td>Java source code</td>
+</tr>
+<tr>
+<td>.zip</td>
+<td>Compressed archive</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                        Changing a file extension does not
+                        automatically convert the file's actual format.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 5
+                     DIRECTORY AND FOLDER STRUCTURES
+                ====================================== -->
+<section class="chapter" id="chapter5">
+<span class="chapter-number">
+                        CHAPTER 05
+                    </span>
+<h2>
+                        Directory and Folder Structures
+                    </h2>
+<p>
+                        A directory structure describes how files and
+                        folders are arranged in a storage system.
+                    </p>
+<h3>
+                        Types of Directory Structures
+                    </h3>
+<ul>
+<li>
+                            Single-level directory
+                        </li>
+<li>
+                            Two-level directory
+                        </li>
+<li>
+                            Tree-structured directory
+                        </li>
+<li>
+                            Acyclic-graph directory
+                        </li>
+<li>
+                            General graph directory
+                        </li>
+</ul>
+<h3>
+                        Example
+                    </h3>
+<pre>Computer
+|
++-- Documents
+|   +-- Research.pdf
+|   +-- Essay.docx
+|
++-- Pictures
+|   +-- Image.jpg
+|
++-- Programming
+    +-- Main.java</pre>
+<h3>
+                        Absolute and Relative Paths
+                    </h3>
+<p>
+                        An absolute path specifies a complete location,
+                        while a relative path identifies a location
+                        based on the current working directory.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 6
+                     TYPES OF FILE SYSTEMS
+                ====================================== -->
+<section class="chapter" id="chapter6">
+<span class="chapter-number">
+                        CHAPTER 06
+                    </span>
+<h2>
+                        Types of File Systems
+                    </h2>
+<h3>
+                        FAT32
+                    </h3>
+<p>
+                        An older file system with broad compatibility.
+                        It cannot store individual files of 4 GiB or larger.
+                    </p>
+<h3>
+                        NTFS
+                    </h3>
+<p>
+                        A Microsoft file system commonly used in
+                        Windows, supporting permissions, journaling,
+                        compression, and encryption features.
+                    </p>
+<h3>
+                        exFAT
+                    </h3>
+<p>
+                        Designed for portable storage and large files.
+                        Commonly used with USB drives and memory cards.
+                    </p>
+<h3>
+                        ext4
+                    </h3>
+<p>
+                        A widely used Linux file system supporting
+                        journaling and efficient block allocation.
+                    </p>
+<h3>
+                        APFS
+                    </h3>
+<p>
+                        Apple's modern file system, supporting
+                        encryption, snapshots, and space sharing.
+                    </p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>File System</th>
+<th>Common Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FAT32</td>
+<td>
+                                        Compatible removable drives
+                                    </td>
+</tr>
+<tr>
+<td>NTFS</td>
+<td>
+                                        Windows computers
+                                    </td>
+</tr>
+<tr>
+<td>exFAT</td>
+<td>
+                                        Portable flash storage
+                                    </td>
+</tr>
+<tr>
+<td>ext4</td>
+<td>
+                                        Linux systems
+                                    </td>
+</tr>
+<tr>
+<td>APFS</td>
+<td>
+                                        Apple devices
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     CHAPTER 7
+                     FILE ALLOCATION METHODS
+                ====================================== -->
+<section class="chapter" id="chapter7">
+<span class="chapter-number">
+                        CHAPTER 07
+                    </span>
+<h2>
+                        File Allocation Methods
+                    </h2>
+<p>
+                        File allocation determines how storage blocks
+                        are assigned to files.
+                    </p>
+<h3>
+                        Contiguous Allocation
+                    </h3>
+<p>
+                        Stores file data in consecutive blocks.
+                        It provides fast sequential access but can
+                        cause external fragmentation.
+                    </p>
+<h3>
+                        Linked Allocation
+                    </h3>
+<p>
+                        Stores file data in separate blocks connected
+                        through pointers. It allows flexible storage
+                        but can make random access slower.
+                    </p>
+<h3>
+                        Indexed Allocation
+                    </h3>
+<p>
+                        Uses an index block containing the addresses
+                        of a file's data blocks. It supports direct
+                        access but requires additional index storage.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 8
+                     DISK STORAGE ORGANIZATION
+                ====================================== -->
+<section class="chapter" id="chapter8">
+<span class="chapter-number">
+                        CHAPTER 08
+                    </span>
+<h2>
+                        Disk Storage Organization
+                    </h2>
+<h3>
+                        Sectors
+                    </h3>
+<p>
+                        Sectors are basic physical storage units on
+                        many disk devices.
+                    </p>
+<h3>
+                        Blocks
+                    </h3>
+<p>
+                        Blocks are units used by file systems to
+                        allocate and manage data.
+                    </p>
+<h3>
+                        Clusters
+                    </h3>
+<p>
+                        A cluster is a group of sectors treated as
+                        one allocation unit by certain file systems.
+                    </p>
+<h3>
+                        File Allocation Table
+                    </h3>
+<p>
+                        FAT file systems use a table to track the
+                        clusters belonging to files.
+                    </p>
+<h3>
+                        Master File Table
+                    </h3>
+<p>
+                        NTFS uses the Master File Table to store
+                        records describing files and directories.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 9
+                     INTRODUCTION TO STORAGE MANAGEMENT
+                ====================================== -->
+<section class="chapter" id="chapter9">
+<span class="chapter-number">
+                        CHAPTER 09
+                    </span>
+<h2>
+                        Introduction to Storage Management
+                    </h2>
+<p>
+                        Storage management involves organizing,
+                        controlling, maintaining, and protecting
+                        digital information on storage devices.
+                    </p>
+<h3>
+                        Main Functions
+                    </h3>
+<ul>
+<li>
+                            Storage allocation
+                        </li>
+<li>
+                            Storage monitoring
+                        </li>
+<li>
+                            Data organization
+                        </li>
+<li>
+                            Data protection
+                        </li>
+<li>
+                            Storage optimization
+                        </li>
+<li>
+                            Data recovery
+                        </li>
+</ul>
+<p>
+                        For example, a school administrator may monitor
+                        available storage, remove unnecessary files,
+                        and back up important student records.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 10
+                     TYPES OF STORAGE DEVICES
+                ====================================== -->
+<section class="chapter" id="chapter10">
+<span class="chapter-number">
+                        CHAPTER 10
+                    </span>
+<h2>
+                        Types of Storage Devices
+                    </h2>
+<h3>
+                        Hard Disk Drive
+                    </h3>
+<p>
+                        An HDD stores information using rotating
+                        magnetic disks and mechanical read/write heads.
+                    </p>
+<h3>
+                        Solid-State Drive
+                    </h3>
+<p>
+                        An SSD uses flash memory and has no spinning
+                        disk or moving read/write head.
+                    </p>
+<h3>
+                        USB Flash Drive
+                    </h3>
+<p>
+                        A small portable device commonly used to
+                        transfer files between computers.
+                    </p>
+<h3>
+                        Memory Card
+                    </h3>
+<p>
+                        A small flash storage device used in cameras,
+                        smartphones, and other electronics.
+                    </p>
+<h3>
+                        Optical Storage
+                    </h3>
+<p>
+                        Uses laser technology to read and write
+                        information on CDs, DVDs, and Blu-ray discs.
+                    </p>
+<h3>
+                        Cloud Storage
+                    </h3>
+<p>
+                        Stores information on remote servers accessible
+                        through the internet.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 11
+                     PRIMARY AND SECONDARY STORAGE
+                ====================================== -->
+<section class="chapter" id="chapter11">
+<span class="chapter-number">
+                        CHAPTER 11
+                    </span>
+<h2>
+                        Primary and Secondary Storage
+                    </h2>
+<h3>
+                        Primary Storage
+                    </h3>
+<p>
+                        Memory directly used during computer operations.
+                        Examples include RAM, ROM, and cache memory.
+                    </p>
+<h3>
+                        Secondary Storage
+                    </h3>
+<p>
+                        Storage used to retain information for longer
+                        periods, such as HDDs, SSDs, and flash drives.
+                    </p>
+<p>
+                        For example, a programming application may be
+                        stored on an SSD, loaded into RAM, and executed
+                        by the processor.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 12
+                     STORAGE SPACE ALLOCATION
+                ====================================== -->
+<section class="chapter" id="chapter12">
+<span class="chapter-number">
+                        CHAPTER 12
+                    </span>
+<h2>
+                        Storage Space Allocation
+                    </h2>
+<p>
+                        Storage space allocation assigns available
+                        storage capacity to files and applications.
+                    </p>
+<h3>
+                        Fixed Allocation
+                    </h3>
+<p>
+                        Reserves a specific amount of storage space
+                        in advance.
+                    </p>
+<h3>
+                        Dynamic Allocation
+                    </h3>
+<p>
+                        Assigns storage space when it is needed.
+                    </p>
+<h3>
+                        Free Space Management
+                    </h3>
+<ul>
+<li>
+                            Bitmaps
+                        </li>
+<li>
+                            Free lists
+                        </li>
+<li>
+                            Grouping
+                        </li>
+<li>
+                            Counting
+                        </li>
+</ul>
+<p>
+                        Example: 500 GB minus 100 GB of applications
+                        and 150 GB of files leaves 250 GB available.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 13
+                     DISK PARTITIONING AND FORMATTING
+                ====================================== -->
+<section class="chapter" id="chapter13">
+<span class="chapter-number">
+                        CHAPTER 13
+                    </span>
+<h2>
+                        Disk Partitioning and Formatting
+                    </h2>
+<h3>
+                        Disk Partitioning
+                    </h3>
+<p>
+                        Divides a physical storage device into
+                        separate logical sections called partitions.
+                    </p>
+<h3>
+                        Disk Formatting
+                    </h3>
+<p>
+                        Prepares a storage volume to use a particular
+                        file system.
+                    </p>
+<p>
+                        For example, a computer may use one partition
+                        for the operating system and another for
+                        personal documents.
+                    </p>
+<p>
+<strong>Important:</strong> Formatting can
+                        erase existing data. Back up important files
+                        before formatting.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 14
+                     DISK SCHEDULING
+                ====================================== -->
+<section class="chapter" id="chapter14">
+<span class="chapter-number">
+                        CHAPTER 14
+                    </span>
+<h2>
+                        Disk Scheduling
+                    </h2>
+<p>
+                        Disk scheduling determines the order in which
+                        pending disk input/output requests are processed.
+                    </p>
+<h3>
+                        FCFS
+                    </h3>
+<p>
+                        First-Come, First-Served processes requests
+                        in their arrival order.
+                    </p>
+<h3>
+                        SSTF
+                    </h3>
+<p>
+                        Shortest Seek Time First selects the request
+                        nearest to the current disk head position.
+                    </p>
+<h3>
+                        SCAN
+                    </h3>
+<p>
+                        The disk head moves in one direction,
+                        processing requests before reversing.
+                    </p>
+<h3>
+                        C-SCAN
+                    </h3>
+<p>
+                        Processes requests in one direction before
+                        returning to the beginning.
+                    </p>
+<p>
+                        These traditional scheduling algorithms
+                        are primarily associated with mechanical HDDs.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 15
+                     FILE PERMISSIONS AND SECURITY
+                ====================================== -->
+<section class="chapter" id="chapter15">
+<span class="chapter-number">
+                        CHAPTER 15
+                    </span>
+<h2>
+                        File Permissions and Security
+                    </h2>
+<p>
+                        File permissions determine which operations
+                        users and applications may perform.
+                    </p>
+<ul>
+<li>
+<strong>Read:</strong>
+                            View file contents.
+                        </li>
+<li>
+<strong>Write:</strong>
+                            Modify file contents.
+                        </li>
+<li>
+<strong>Execute:</strong>
+                            Run executable files.
+                        </li>
+</ul>
+<h3>
+                        Access Control
+                    </h3>
+<p>
+                        Access control uses user accounts, groups,
+                        permissions, and Access Control Lists to
+                        restrict unauthorized access.
+                    </p>
+<h3>
+                        Encryption
+                    </h3>
+<p>
+                        Encryption transforms readable information
+                        into a protected form that requires an
+                        authorized key or method to access.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 16
+                     DATA BACKUP AND RECOVERY
+                ====================================== -->
+<section class="chapter" id="chapter16">
+<span class="chapter-number">
+                        CHAPTER 16
+                    </span>
+<h2>
+                        Data Backup and Recovery
+                    </h2>
+<p>
+                        Data backup creates additional copies of
+                        important information to reduce the risk
+                        of permanent data loss.
+                    </p>
+<h3>
+                        Common Backup Types
+                    </h3>
+<ul>
+<li>
+                            Full backup
+                        </li>
+<li>
+                            Incremental backup
+                        </li>
+<li>
+                            Differential backup
+                        </li>
+</ul>
+<h3>
+                        Data Recovery
+                    </h3>
+<p>
+                        Data recovery restores lost or damaged
+                        information using available backups or
+                        specialized recovery methods.
+                    </p>
+<p>
+                        Maintaining backups in separate locations
+                        improves protection against hardware failure,
+                        accidental deletion, and other incidents.
+                    </p>
+</section>
+<!-- CHAPTER 17 -->
+<section class="chapter" id="chapter17">
+<span class="chapter-number">CHAPTER 17</span>
+<h2>Disk Fragmentation and Defragmentation</h2>
+<h3>Fragmentation</h3>
+<p>
+                    Fragmentation occurs when file data is stored
+                    in nonconsecutive locations on a storage device.
+                </p>
+<h3>Defragmentation</h3>
+<p>
+                    Defragmentation reorganizes fragmented data
+                    to improve access efficiency on mechanical
+                    hard drives.
+                </p>
+<p>
+                    SSDs do not require traditional HDD-style
+                    defragmentation because they do not use
+                    mechanical read/write heads.
+                </p>
+</section>
+<!-- CHAPTER 18 -->
+<section class="chapter" id="chapter18">
+<span class="chapter-number">CHAPTER 18</span>
+<h2>Cloud Storage and Network Storage</h2>
+<h3>Cloud Storage</h3>
+<p>
+                    Allows files to be stored on remote servers
+                    and accessed over the internet.
+                </p>
+<h3>Network Storage</h3>
+<p>
+                    Allows computers connected to a network
+                    to access shared storage resources.
+                </p>
+<h3>Benefits</h3>
+<ul>
+<li>File sharing</li>
+<li>Collaboration</li>
+<li>Centralized storage</li>
+<li>Remote access</li>
+<li>Additional backup options</li>
+</ul>
+</section>
+<!-- CHAPTER 19 -->
+<section class="chapter" id="chapter19">
+<span class="chapter-number">CHAPTER 19</span>
+<h2>Storage Performance and Reliability</h2>
+<p>
+                    Storage performance describes how efficiently
+                    a device reads, writes, and retrieves data.
+                </p>
+<h3>Performance Factors</h3>
+<ul>
+<li>Read and write speed</li>
+<li>Access latency</li>
+<li>Storage interface</li>
+<li>Device technology</li>
+<li>Workload characteristics</li>
+</ul>
+<h3>Reliability</h3>
+<p>
+                    Reliability refers to a storage system's
+                    ability to maintain dependable operation
+                    and preserve information.
+                </p>
+</section>
+<!-- CHAPTER 20 -->
+<section class="chapter" id="chapter20">
+<span class="chapter-number">CHAPTER 20</span>
+<h2>RAID Technology</h2>
+<p>
+                    RAID combines multiple storage drives to
+                    provide different performance or redundancy
+                    characteristics.
+                </p>
+<h3>RAID 0</h3>
+<p>
+                    Uses striping to distribute data across
+                    drives but provides no redundancy.
+                </p>
+<h3>RAID 1</h3>
+<p>
+                    Uses mirroring to store duplicate data
+                    on multiple drives.
+                </p>
+<h3>RAID 5</h3>
+<p>
+                    Uses striping with distributed parity
+                    to tolerate one drive failure.
+                </p>
+<p>
+                    RAID is not a substitute for maintaining
+                    separate backups.
+                </p>
+</section>
+<!-- CHAPTER 21 -->
+<section class="chapter" id="chapter21">
+<span class="chapter-number">CHAPTER 21</span>
+<h2>Storage Virtualization</h2>
+<p>
+                    Storage virtualization combines or abstracts
+                    physical storage resources so they can be
+                    managed as logical storage.
+                </p>
+<h3>Advantages</h3>
+<ul>
+<li>Centralized administration</li>
+<li>Flexible allocation</li>
+<li>Improved resource utilization</li>
+<li>Simplified storage management</li>
+</ul>
+</section>
+<!-- CHAPTER 22 -->
+<section class="chapter" id="chapter22">
+<span class="chapter-number">CHAPTER 22</span>
+<h2>Storage Management in Operating Systems</h2>
+<p>
+                    Operating systems coordinate storage
+                    resources and provide interfaces for
+                    managing files, directories, and drives.
+                </p>
+<h3>Common Tasks</h3>
+<ul>
+<li>Creating and deleting files</li>
+<li>Managing partitions</li>
+<li>Monitoring storage usage</li>
+<li>Configuring file permissions</li>
+<li>Checking storage health</li>
+</ul>
+</section>
+<!-- CHAPTER 23 -->
+<section class="chapter" id="chapter23">
+<span class="chapter-number">CHAPTER 23</span>
+<h2>File System Errors and Maintenance</h2>
+<p>
+                    File system problems may occur because
+                    of power interruptions, hardware faults,
+                    improper shutdowns, or corrupted metadata.
+                </p>
+<h3>Maintenance Activities</h3>
+<ul>
+<li>Checking file system errors</li>
+<li>Monitoring storage health</li>
+<li>Maintaining backups</li>
+<li>Removing unnecessary files</li>
+<li>Updating system software</li>
+</ul>
+</section>
+<!-- CHAPTER 24 -->
+<section class="chapter" id="chapter24">
+<span class="chapter-number">CHAPTER 24</span>
+<h2>Data Integrity and Protection</h2>
+<p>
+                    Data integrity means maintaining the
+                    accuracy and consistency of stored information.
+                </p>
+<h3>Protection Methods</h3>
+<ul>
+<li>File permissions</li>
+<li>Encryption</li>
+<li>Checksums</li>
+<li>Backups</li>
+<li>Access controls</li>
+<li>System monitoring</li>
+</ul>
+</section>
+<!-- CHAPTER 25 -->
+<section class="chapter" id="chapter25">
+<span class="chapter-number">CHAPTER 25</span>
+<h2>Storage Capacity and Measurement</h2>
+<p>
+                    Storage capacity refers to the amount of
+                    information a storage device can hold.
+                </p>
+<h3>Common Units</h3>
+<ul>
+<li>Bit</li>
+<li>Byte</li>
+<li>Kilobyte</li>
+<li>Megabyte</li>
+<li>Gigabyte</li>
+<li>Terabyte</li>
+</ul>
+<p>
+                    Decimal storage units use multiples of 1,000,
+                    while binary units such as KiB, MiB, and GiB
+                    use multiples of 1,024.
+                </p>
+</section>
+<!-- CHAPTER 26 -->
+<section class="chapter" id="chapter26">
+<span class="chapter-number">CHAPTER 26</span>
+<h2>Practical Applications of File Systems</h2>
+<p>
+                    File systems are used in personal computers,
+                    school laboratories, smartphones, servers,
+                    and business systems.
+                </p>
+<h3>Examples</h3>
+<ul>
+<li>Saving school assignments</li>
+<li>Organizing programming projects</li>
+<li>Storing photographs</li>
+<li>Managing application files</li>
+<li>Maintaining business documents</li>
+</ul>
+</section>
+<!-- CHAPTER 27 -->
+<section class="chapter" id="chapter27">
+<span class="chapter-number">CHAPTER 27</span>
+<h2>Real-World Examples</h2>
+<h3>Organizing School Documents</h3>
+<p>
+                    A student creates separate folders for
+                    different subjects and projects.
+                </p>
+<h3>Transferring Files</h3>
+<p>
+                    A USB flash drive allows a student to copy
+                    a presentation between compatible computers.
+                </p>
+<h3>Managing Storage Space</h3>
+<p>
+                    A laptop user removes unnecessary files
+                    after receiving a low-storage warning.
+                </p>
+<h3>Protecting Important Information</h3>
+<p>
+                    An organization creates backups and applies
+                    access restrictions to sensitive records.
+                </p>
+</section>
+<!-- CHAPTER 28 -->
+<section class="chapter" id="chapter28">
+<span class="chapter-number">CHAPTER 28</span>
+<h2>Best Practices in File and Storage Management</h2>
+<ul>
+<li>Use descriptive file names.</li>
+<li>Organize related files into folders.</li>
+<li>Perform regular backups.</li>
+<li>Monitor available storage capacity.</li>
+<li>Remove unnecessary files carefully.</li>
+<li>Apply appropriate file permissions.</li>
+<li>Protect important information.</li>
+<li>Maintain storage devices regularly.</li>
+</ul>
+</section>
+<!-- CHAPTER 29 -->
+<section class="chapter" id="chapter29">
+<span class="chapter-number">CHAPTER 29</span>
+<h2>Future of File Systems and Storage Management</h2>
+<h3>SSD Technology</h3>
+<p>
+                    SSDs continue to be widely adopted because
+                    of their speed and lack of moving parts.
+                </p>
+<h3>Cloud Storage</h3>
+<p>
+                    Cloud systems support remote access,
+                    collaboration, and flexible storage capacity.
+                </p>
+<h3>Artificial Intelligence</h3>
+<p>
+                    AI can assist with monitoring storage usage,
+                    identifying patterns, and predicting
+                    storage requirements.
+                </p>
+<h3>Advanced File Systems</h3>
+<p>
+                    Modern file systems increasingly support
+                    snapshots, checksums, encryption, and
+                    copy-on-write techniques.
+                </p>
+</section>
+<!-- CHAPTER 30 -->
+<section class="chapter" id="chapter30">
+<span class="chapter-number">CHAPTER 30</span>
+<h2>Summary and Conclusion</h2>
+<p>
+                    File systems and storage management are
+                    essential components of modern computer systems.
+                </p>
+<p>
+                    File systems organize information into files
+                    and directories, maintain metadata, allocate
+                    storage space, and support access controls.
+                </p>
+<p>
+                    Storage management includes allocation,
+                    monitoring, protection, backup, recovery,
+                    partitioning, and performance optimization.
+                </p>
+<p>
+                    Understanding these technologies provides
+                    Information Technology students with a
+                    foundation for operating systems, computer
+                    maintenance, data security, and reliable
+                    information management.
+                </p>
+</section>
+<!-- ==========================================
+                 CHAPTER 31 - KNOWLEDGE ASSESSMENT
+                 30-QUESTION QUIZ
+            ========================================== -->
+<section class="chapter" id="quiz">
+<span class="chapter-number">
+                    KNOWLEDGE ASSESSMENT
+                </span>
+<h2>
+                    File Systems and Storage Management Quiz
+                </h2>
+<p>
+                    Test your knowledge of file systems,
+                    storage devices, allocation methods,
+                    security, backups, and storage management.
+                </p>
+<div class="example-box">
+<p><strong>Total Questions:</strong> 30</p>
+<p><strong>Question Type:</strong> Multiple Choice</p>
+<p><strong>Passing Percentage:</strong> 75%</p>
+<p><strong>Minimum Passing Score:</strong> 23/30</p>
+<p>
+<strong>Instructions:</strong>
+                        Answer all questions before submitting.
+                        Each question has only one correct answer.
+                    </p>
+</div>
+<!-- QUIZ PROGRESS -->
+<p aria-live="polite" class="quiz-progress" id="quizProgress">
+                    0 of 30 answered
+                </p>
+<div aria-label="Quiz completion" aria-valuemax="30" aria-valuemin="0" aria-valuenow="0" class="progress-track" id="quizProgressTrack" role="progressbar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+<!-- QUIZ FORM -->
+<form id="quizForm" novalidate="">
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button class="quiz-button" id="submitQuiz" type="submit">
+
+                            Submit Answers
+
+                        </button>
+<button class="quiz-button" hidden="" id="retryQuiz" type="button">
+
+                            Try Again
+
+                        </button>
+</div>
+</form>
+<!-- QUIZ RESULTS -->
+<div aria-live="polite" class="quiz-result" hidden="" id="quizResult" role="status" tabindex="-1">
+</div>
+</section>
+<!-- ==========================================
+                 END OF BOOK CONTENT
+            ========================================== -->
+</div>
+<!-- ==========================================
+                 FOOTER
+            ========================================== -->
+<footer class="footer">
+<p>
+                    © 2026 CodeVerse |
+                    Digital E-Book Library
+                </p>
+<p>
+                    File Systems and Storage Management
+                </p>
+</footer>
+</main>
+</div>
+<!-- ==========================================
+         CODEVERSE JAVASCRIPT
+    ========================================== -->
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        "use strict";
+
+        /* ==========================================
+           ELEMENT REFERENCES
+        ========================================== */
+
+        const body = document.body;
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+        const themeIcon =
+            document.getElementById("themeIcon");
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        const tocToggle =
+            document.getElementById("tocToggle");
+
+        const sidebar =
+            document.getElementById("sidebar");
+
+        const chapterNavigation =
+            document.getElementById("chapterNavigation");
+
+        const fontSize =
+            document.getElementById("fontSize");
+
+        const fontFamily =
+            document.getElementById("fontFamily");
+
+        const bookContent =
+            document.querySelector(".book-content");
+
+
+        /* ==========================================
+           SAFE LOCAL STORAGE HELPERS
+        ========================================== */
+
+        function getPreference(key, fallback) {
+
+            try {
+
+                return localStorage.getItem(key) ?? fallback;
+
+            } catch (error) {
+
+                return fallback;
+
+            }
+
+        }
+
+        function savePreference(key, value) {
+
+            try {
+
+                localStorage.setItem(key, value);
+
+            } catch (error) {
+
+                console.warn(
+                    "Unable to save reader preference:",
+                    key
+                );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           DARK MODE
+        ========================================== */
+
+        const savedTheme =
+            getPreference("readerTheme", "light");
+
+        function applyTheme(theme) {
+
+            const isDark = theme === "dark";
+
+            body.classList.toggle(
+                "dark-mode",
+                isDark
+            );
+
+            themeIcon.textContent =
+                isDark ? "☀" : "☾";
+
+            themeToggle.setAttribute(
+                "aria-label",
+                isDark
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+            );
+
+            themeToggle.setAttribute(
+                "aria-pressed",
+                String(isDark)
+            );
+
+            themeToggle.title =
+                isDark
+                    ? "Switch to light mode"
+                    : "Switch to dark mode";
+
+        }
+
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener(
+            "click",
+            function () {
+
+                const nextTheme =
+                    body.classList.contains("dark-mode")
+                        ? "light"
+                        : "dark";
+
+                applyTheme(nextTheme);
+
+                savePreference(
+                    "readerTheme",
+                    nextTheme
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           FONT SIZE CONTROL
+        ========================================== */
+
+        const savedFontSize =
+            getPreference(
+                "readerFontSize",
+                "16px"
+            );
+
+        function applyFontSize(value) {
+
+            const numericSize =
+                parseInt(value, 10);
+
+            const safeSize =
+                Number.isFinite(numericSize) &&
+                numericSize >= 14 &&
+                numericSize <= 22
+                    ? numericSize + "px"
+                    : "16px";
+
+            bookContent.style.setProperty(
+                "--reader-size",
+                safeSize
+            );
+
+            fontSize.value = safeSize;
+
+        }
+
+        applyFontSize(savedFontSize);
+
+        fontSize.addEventListener(
+            "change",
+            function () {
+
+                applyFontSize(fontSize.value);
+
+                savePreference(
+                    "readerFontSize",
+                    fontSize.value
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           FONT FAMILY CONTROL
+        ========================================== */
+
+        const savedFontFamily =
+            getPreference(
+                "readerFontFamily",
+                "'DM Sans', sans-serif"
+            );
+
+        function applyFontFamily(value) {
+
+            const validValues =
+                Array.from(fontFamily.options)
+                    .map(option => option.value);
+
+            const safeFamily =
+                validValues.includes(value)
+                    ? value
+                    : "'DM Sans', sans-serif";
+
+            bookContent.style.setProperty(
+                "--reader-family",
+                safeFamily
+            );
+
+            fontFamily.value = safeFamily;
+
+        }
+
+        applyFontFamily(savedFontFamily);
+
+        fontFamily.addEventListener(
+            "change",
+            function () {
+
+                applyFontFamily(fontFamily.value);
+
+                savePreference(
+                    "readerFontFamily",
+                    fontFamily.value
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           RESPONSIVE NAVIGATION
+        ========================================== */
+
+        function closeMobileNavigation() {
+
+            navLinks.classList.remove("show");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    navLinks.classList.toggle("show");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+
+            }
+        );
+
+        navLinks.querySelectorAll("a").forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    closeMobileNavigation
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           TABLE OF CONTENTS SIDEBAR
+        ========================================== */
+
+        function isMobileLayout() {
+
+            return window.innerWidth <= 900;
+
+        }
+
+        function updateTocAccessibility() {
+
+            const isOpen =
+                sidebar.classList.contains("show");
+
+            tocToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            tocToggle.setAttribute(
+                "aria-label",
+                isOpen
+                    ? "Close table of contents"
+                    : "Open table of contents"
+            );
+
+        }
+
+        tocToggle.addEventListener(
+            "click",
+            function () {
+
+                if (isMobileLayout()) {
+
+                    sidebar.classList.toggle("show");
+
+                } else {
+
+                    sidebar.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest"
+                    });
+
+                }
+
+                updateTocAccessibility();
+
+            }
+        );
+
+        chapterNavigation
+            .querySelectorAll('a[href^="#"]')
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        if (isMobileLayout()) {
+
+                            sidebar.classList.remove(
+                                "show"
+                            );
+
+                            updateTocAccessibility();
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* ==========================================
+           ACTIVE CHAPTER HIGHLIGHTING
+        ========================================== */
+
+        const chapterLinks =
+            Array.from(
+                chapterNavigation.querySelectorAll(
+                    'a[href^="#"]'
+                )
+            );
+
+        const chapterSections =
+            chapterLinks
+                .map(function (link) {
+
+                    const targetId =
+                        link.getAttribute("href")
+                            .substring(1);
+
+                    return document.getElementById(
+                        targetId
+                    );
+
+                })
+                .filter(Boolean);
+
+        let currentActiveChapter = "";
+        let scrollUpdatePending = false;
+
+        function updateActiveChapter() {
+
+            const scrollPosition =
+                window.scrollY + 155;
+
+            let activeId =
+                chapterSections.length
+                    ? chapterSections[0].id
+                    : "";
+
+            chapterSections.forEach(
+                function (section) {
+
+                    const sectionTop =
+                        section.getBoundingClientRect().top
+                        + window.scrollY;
+
+                    if (sectionTop <= scrollPosition) {
+
+                        activeId = section.id;
+
+                    }
+
+                }
+            );
+
+            if (activeId === currentActiveChapter) {
+                return;
+            }
+
+            currentActiveChapter = activeId;
+
+            chapterLinks.forEach(
+                function (link) {
+
+                    const isActive =
+                        link.getAttribute("href") ===
+                        "#" + activeId;
+
+                    link.classList.toggle(
+                        "active",
+                        isActive
+                    );
+
+                    if (isActive) {
+
+                        link.setAttribute(
+                            "aria-current",
+                            "location"
+                        );
+
+                        if (!isMobileLayout()) {
+
+                            link.scrollIntoView({
+                                block: "nearest",
+                                inline: "nearest",
+                                behavior: "auto"
+                            });
+
+                        }
+
+                    } else {
+
+                        link.removeAttribute(
+                            "aria-current"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+        function scheduleActiveChapterUpdate() {
+
+            if (scrollUpdatePending) {
+                return;
+            }
+
+            scrollUpdatePending = true;
+
+            requestAnimationFrame(
+                function () {
+
+                    updateActiveChapter();
+
+                    scrollUpdatePending = false;
+
+                }
+            );
+
+        }
+
+        window.addEventListener(
+            "scroll",
+            scheduleActiveChapterUpdate,
+            { passive: true }
+        );
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                if (!isMobileLayout()) {
+
+                    sidebar.classList.remove("show");
+
+                    closeMobileNavigation();
+
+                }
+
+                updateTocAccessibility();
+
+                scheduleActiveChapterUpdate();
+
+            }
+        );
+
+        scheduleActiveChapterUpdate();
+
+
+        /* ==========================================
+           QUIZ DATA
+           ORIGINAL 30 QUESTIONS
+        ========================================== */
+
+        const questions = [
+
+            {
+                q: "What is the main purpose of a file system?",
+                options: [
+                    "To organize and manage files",
+                    "To display graphics",
+                    "To connect to Wi-Fi",
+                    "To cool the processor"
+                ],
+                answer: 0
+            },
+
+            {
+                q: "Which component describes a file's size, type, and creation date?",
+                options: [
+                    "Volume",
+                    "Metadata",
+                    "Processor",
+                    "Partition"
+                ],
+                answer: 1
+            },
+
+            {
+                q: "Which operation creates another version of an existing file?",
+                options: [
+                    "Move",
+                    "Rename",
+                    "Copy",
+                    "Delete"
+                ],
+                answer: 2
+            },
+
+            {
+                q: "Which extension is commonly used for HTML webpages?",
+                options: [
+                    ".mp3",
+                    ".exe",
+                    ".jpg",
+                    ".html"
+                ],
+                answer: 3
+            },
+
+            {
+                q: "Which directory structure uses folders within folders?",
+                options: [
+                    "Tree-structured directory",
+                    "Single-level directory",
+                    "Flat directory only",
+                    "Unorganized directory"
+                ],
+                answer: 0
+            },
+
+            {
+                q: "Which file system is commonly used by Windows?",
+                options: [
+                    "APFS",
+                    "NTFS",
+                    "ext4",
+                    "ISO 9660"
+                ],
+                answer: 1
+            },
+
+            {
+                q: "Which allocation method stores data in consecutive blocks?",
+                options: [
+                    "Linked allocation",
+                    "Indexed allocation",
+                    "Contiguous allocation",
+                    "Random allocation"
+                ],
+                answer: 2
+            },
+
+            {
+                q: "What is the Master File Table associated with?",
+                options: [
+                    "FAT32",
+                    "APFS",
+                    "exFAT",
+                    "NTFS"
+                ],
+                answer: 3
+            },
+
+            {
+                q: "Which activity is an example of storage management?",
+                options: [
+                    "Monitoring available disk space",
+                    "Changing screen brightness",
+                    "Adjusting speaker volume",
+                    "Changing the desktop wallpaper"
+                ],
+                answer: 0
+            },
+
+            {
+                q: "Which storage device uses flash memory without moving read/write heads?",
+                options: [
+                    "HDD",
+                    "SSD",
+                    "DVD",
+                    "Magnetic tape"
+                ],
+                answer: 1
+            },
+
+            {
+                q: "Which memory normally loses its contents when power is removed?",
+                options: [
+                    "SSD",
+                    "ROM",
+                    "RAM",
+                    "USB flash drive"
+                ],
+                answer: 2
+            },
+
+            {
+                q: "What does dynamic storage allocation do?",
+                options: [
+                    "Reserves all space permanently",
+                    "Deletes unused files",
+                    "Disables file storage",
+                    "Allocates space when needed"
+                ],
+                answer: 3
+            },
+
+            {
+                q: "What is disk partitioning?",
+                options: [
+                    "Dividing a disk into logical sections",
+                    "Compressing every file",
+                    "Deleting all folders",
+                    "Encrypting the operating system"
+                ],
+                answer: 0
+            },
+
+            {
+                q: "Which disk scheduling algorithm processes requests in arrival order?",
+                options: [
+                    "SCAN",
+                    "FCFS",
+                    "SSTF",
+                    "C-SCAN"
+                ],
+                answer: 1
+            },
+
+            {
+                q: "Which permission allows modification of file contents?",
+                options: [
+                    "Read",
+                    "Execute",
+                    "Write",
+                    "View only"
+                ],
+                answer: 2
+            },
+
+            {
+                q: "What is the main purpose of data backup?",
+                options: [
+                    "Increase screen resolution",
+                    "Replace RAM",
+                    "Improve keyboard performance",
+                    "Create recoverable copies of data"
+                ],
+                answer: 3
+            },
+
+            {
+                q: "What is disk fragmentation?",
+                options: [
+                    "File data being stored in nonconsecutive locations",
+                    "Installing new memory",
+                    "Connecting a USB device",
+                    "Formatting a monitor"
+                ],
+                answer: 0
+            },
+
+            {
+                q: "Where is cloud storage information typically stored?",
+                options: [
+                    "Only inside the keyboard",
+                    "On remote servers",
+                    "Inside the monitor",
+                    "Only in CPU registers"
+                ],
+                answer: 1
+            },
+
+            {
+                q: "Which factor affects storage performance?",
+                options: [
+                    "Desktop background",
+                    "Mouse color",
+                    "Read and write speed",
+                    "Screen orientation"
+                ],
+                answer: 2
+            },
+
+            {
+                q: "Which RAID level uses mirroring?",
+                options: [
+                    "RAID 0",
+                    "RAID 5",
+                    "RAID 6",
+                    "RAID 1"
+                ],
+                answer: 3
+            },
+
+            {
+                q: "What does storage virtualization provide?",
+                options: [
+                    "Logical management of physical storage resources",
+                    "Automatic screen replacement",
+                    "A new keyboard layout",
+                    "Faster internet by itself"
+                ],
+                answer: 0
+            },
+
+            {
+                q: "Which software component manages files and storage devices?",
+                options: [
+                    "Web browser only",
+                    "Operating system",
+                    "Image editor only",
+                    "Media player only"
+                ],
+                answer: 1
+            },
+
+            {
+                q: "Which event may cause file system corruption?",
+                options: [
+                    "Opening a folder",
+                    "Changing a filename",
+                    "Sudden power interruption",
+                    "Adjusting the volume"
+                ],
+                answer: 2
+            },
+
+            {
+                q: "What does data integrity mean?",
+                options: [
+                    "Making every file larger",
+                    "Removing file extensions",
+                    "Increasing monitor brightness",
+                    "Maintaining accurate and consistent data"
+                ],
+                answer: 3
+            },
+
+            {
+                q: "Which unit is commonly used to describe storage capacity?",
+                options: [
+                    "Gigabyte",
+                    "Hertz only",
+                    "Celsius",
+                    "Volt only"
+                ],
+                answer: 0
+            },
+
+            {
+                q: "Which is a practical application of a file system?",
+                options: [
+                    "Cooling computer components",
+                    "Organizing school documents",
+                    "Producing electricity",
+                    "Changing screen colors"
+                ],
+                answer: 1
+            },
+
+            {
+                q: "Which device is commonly used to transfer presentations between computers?",
+                options: [
+                    "Monitor",
+                    "Keyboard",
+                    "USB flash drive",
+                    "CPU fan"
+                ],
+                answer: 2
+            },
+
+            {
+                q: "Which is a recommended file management practice?",
+                options: [
+                    "Use meaningless filenames",
+                    "Never create backups",
+                    "Share all files publicly",
+                    "Organize files into meaningful folders"
+                ],
+                answer: 3
+            },
+
+            {
+                q: "Which technology can help predict storage requirements?",
+                options: [
+                    "Artificial intelligence",
+                    "A mouse pad",
+                    "A printer cable",
+                    "A desktop wallpaper"
+                ],
+                answer: 0
+            },
+
+            {
+                q: "Why are file systems and storage management important?",
+                options: [
+                    "They eliminate the need for software",
+                    "They help organize, protect, and retrieve information",
+                    "They replace the processor",
+                    "They prevent all hardware failures"
+                ],
+                answer: 1
+            }
+
+        ];
+
+
+        /* ==========================================
+           QUIZ ELEMENTS
+        ========================================== */
+
+        const quizForm =
+            document.getElementById("quizForm");
+
+        const quizQuestions =
+            document.getElementById("quizQuestions");
+
+        const quizResult =
+            document.getElementById("quizResult");
+
+        const quizProgress =
+            document.getElementById("quizProgress");
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+        const progressTrack =
+            document.getElementById("quizProgressTrack");
+
+        const submitQuiz =
+            document.getElementById("submitQuiz");
+
+        const retryQuiz =
+            document.getElementById("retryQuiz");
+
+        const passingPercentage = 75;
+
+        const passingScore =
+            Math.ceil(
+                questions.length *
+                passingPercentage / 100
+            );
+
+        let quizSubmitted = false;
+
+
+        /* ==========================================
+           RENDER QUIZ QUESTIONS
+        ========================================== */
+
+        function renderQuiz() {
+
+            quizQuestions.innerHTML = "";
+
+            quizResult.innerHTML = "";
+            quizResult.hidden = true;
+
+            quizResult.classList.remove(
+                "passed",
+                "failed"
+            );
+
+            submitQuiz.hidden = false;
+            submitQuiz.disabled = false;
+
+            retryQuiz.hidden = true;
+
+            quizSubmitted = false;
+
+            questions.forEach(
+                function (question, index) {
+
+                    const container =
+                        document.createElement("div");
+
+                    container.className =
+                        "quiz-question";
+
+                    container.dataset.questionIndex =
+                        String(index);
+
+                    /* QUESTION HEADING */
+
+                    const heading =
+                        document.createElement("h3");
+
+                    heading.textContent =
+                        (index + 1) + ". " + question.q;
+
+                    container.appendChild(heading);
+
+                    /* ANSWER OPTIONS */
+
+                    question.options.forEach(
+                        function (option, optionIndex) {
+
+                            const label =
+                                document.createElement("label");
+
+                            label.className =
+                                "quiz-option";
+
+                            const input =
+                                document.createElement("input");
+
+                            input.type = "radio";
+
+                            input.name =
+                                "question" + index;
+
+                            input.value =
+                                String(optionIndex);
+
+                            input.id =
+                                "question" + index +
+                                "_option" + optionIndex;
+
+                            const optionText =
+                                document.createElement("span");
+
+                            optionText.textContent =
+                                String.fromCharCode(
+                                    65 + optionIndex
+                                ) + ". " + option;
+
+                            label.appendChild(input);
+                            label.appendChild(optionText);
+
+                            container.appendChild(label);
+
+                        }
+                    );
+
+                    /* FEEDBACK PLACEHOLDER */
+
+                    const feedback =
+                        document.createElement("div");
+
+                    feedback.className =
+                        "quiz-feedback";
+
+                    feedback.hidden = true;
+
+                    feedback.setAttribute(
+                        "aria-live",
+                        "polite"
+                    );
+
+                    container.appendChild(feedback);
+
+                    quizQuestions.appendChild(
+                        container
+                    );
+
+                }
+            );
+
+            updateQuizProgress();
+
+        }
+
+
+        /* ==========================================
+           QUIZ PROGRESS
+        ========================================== */
+
+        function getSelectedAnswer(index) {
+
+            return quizForm.querySelector(
+                'input[name="question' +
+                index + '"]:checked'
+            );
+
+        }
+
+        function updateQuizProgress() {
+
+            let answered = 0;
+
+            questions.forEach(
+                function (question, index) {
+
+                    if (getSelectedAnswer(index)) {
+                        answered++;
+                    }
+
+                }
+            );
+
+            const percentage =
+                answered / questions.length * 100;
+
+            quizProgress.textContent =
+                answered + " of " +
+                questions.length +
+                " answered";
+
+            progressFill.style.width =
+                percentage + "%";
+
+            progressTrack.setAttribute(
+                "aria-valuenow",
+                String(answered)
+            );
+
+            return answered;
+
+        }
+
+        quizForm.addEventListener(
+            "change",
+            function () {
+
+                if (!quizSubmitted) {
+
+                    updateQuizProgress();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           SUBMIT QUIZ
+        ========================================== */
+
+        quizForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                if (quizSubmitted) {
+                    return;
+                }
+
+                const answered =
+                    updateQuizProgress();
+
+                /* REQUIRE ALL ANSWERS */
+
+                if (answered !== questions.length) {
+
+                    const remaining =
+                        questions.length - answered;
+
+                    quizResult.hidden = false;
+
+                    quizResult.classList.remove(
+                        "passed",
+                        "failed"
+                    );
+
+                    quizResult.textContent =
+                        "Please answer all " +
+                        questions.length +
+                        " questions before submitting. " +
+                        remaining +
+                        " question(s) remaining.";
+
+                    /* FIND FIRST UNANSWERED QUESTION */
+
+                    const firstUnanswered =
+                        questions.findIndex(
+                            function (question, index) {
+
+                                return !getSelectedAnswer(
+                                    index
+                                );
+
+                            }
+                        );
+
+                    if (firstUnanswered !== -1) {
+
+                        const firstInput =
+                            quizForm.querySelector(
+                                'input[name="question' +
+                                firstUnanswered + '"]'
+                            );
+
+                        if (firstInput) {
+
+                            firstInput.scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+
+                            firstInput.focus({
+                                preventScroll: true
+                            });
+
+                        }
+
+                    }
+
+                    return;
+
+                }
+
+                /* ALL ANSWERS ARE PRESENT */
+
+                quizSubmitted = true;
+
+                let score = 0;
+
+                const containers =
+                    quizQuestions.querySelectorAll(
+                        ".quiz-question"
+                    );
+
+                questions.forEach(
+                    function (question, index) {
+
+                        const selected =
+                            getSelectedAnswer(index);
+
+                        const selectedIndex =
+                            Number(selected.value);
+
+                        const isCorrect =
+                            selectedIndex === question.answer;
+
+                        const container =
+                            containers[index];
+
+                        const labels =
+                            container.querySelectorAll(
+                                ".quiz-option"
+                            );
+
+                        const feedback =
+                            container.querySelector(
+                                ".quiz-feedback"
+                            );
+
+                        if (isCorrect) {
+                            score++;
+                        }
+
+                        /* HIGHLIGHT ANSWERS */
+
+                        labels.forEach(
+                            function (label, optionIndex) {
+
+                                const input =
+                                    label.querySelector(
+                                        "input"
+                                    );
+
+                                input.disabled = true;
+
+                                label.classList.remove(
+                                    "correct",
+                                    "incorrect"
+                                );
+
+                                if (
+                                    optionIndex ===
+                                    question.answer
+                                ) {
+
+                                    label.classList.add(
+                                        "correct"
+                                    );
+
+                                } else if (
+                                    optionIndex ===
+                                    selectedIndex &&
+                                    !isCorrect
+                                ) {
+
+                                    label.classList.add(
+                                        "incorrect"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                        /* EXPLANATION FEEDBACK */
+
+                        feedback.hidden = false;
+
+                        feedback.classList.remove(
+                            "correct",
+                            "incorrect"
+                        );
+
+                        const correctLetter =
+                            String.fromCharCode(
+                                65 + question.answer
+                            );
+
+                        if (isCorrect) {
+
+                            feedback.classList.add(
+                                "correct"
+                            );
+
+                            feedback.textContent =
+                                "Correct! " +
+                                question.options[
+                                    question.answer
+                                ] +
+                                " is the correct answer.";
+
+                        } else {
+
+                            feedback.classList.add(
+                                "incorrect"
+                            );
+
+                            feedback.textContent =
+                                "Incorrect. The correct " +
+                                "answer is " +
+                                correctLetter +
+                                ". " +
+                                question.options[
+                                    question.answer
+                                ] +
+                                ".";
+
+                        }
+
+                    }
+                );
+
+                /* ==================================
+                   CALCULATE FINAL SCORE
+                ================================== */
+
+                const exactPercentage =
+                    score / questions.length * 100;
+
+                const displayedPercentage =
+                    Math.round(exactPercentage);
+
+                const passed =
+                    score >= passingScore;
+
+                quizResult.hidden = false;
+
+                quizResult.classList.remove(
+                    "passed",
+                    "failed"
+                );
+
+                quizResult.classList.add(
+                    passed ? "passed" : "failed"
+                );
+
+                quizResult.innerHTML = "";
+
+                /* RESULT TITLE */
+
+                const resultHeading =
+                    document.createElement("h2");
+
+                resultHeading.textContent =
+                    passed
+                        ? "Congratulations! You Passed!"
+                        : "Assessment Not Passed";
+
+                quizResult.appendChild(
+                    resultHeading
+                );
+
+                /* SCORE */
+
+                const scoreText =
+                    document.createElement("p");
+
+                scoreText.textContent =
+                    "Your Score: " +
+                    score + "/" +
+                    questions.length;
+
+                quizResult.appendChild(
+                    scoreText
+                );
+
+                /* PERCENTAGE */
+
+                const percentageText =
+                    document.createElement("p");
+
+                percentageText.textContent =
+                    "Percentage: " +
+                    displayedPercentage + "%";
+
+                quizResult.appendChild(
+                    percentageText
+                );
+
+                /* PASSING REQUIREMENT */
+
+                const passingText =
+                    document.createElement("p");
+
+                passingText.textContent =
+                    "Passing Requirement: " +
+                    passingScore + "/" +
+                    questions.length +
+                    " (75%)";
+
+                quizResult.appendChild(
+                    passingText
+                );
+
+                /* CORRECT / INCORRECT COUNT */
+
+                const correctText =
+                    document.createElement("p");
+
+                correctText.textContent =
+                    "Correct Answers: " + score;
+
+                quizResult.appendChild(
+                    correctText
+                );
+
+                const incorrectText =
+                    document.createElement("p");
+
+                incorrectText.textContent =
+                    "Incorrect Answers: " +
+                    (questions.length - score);
+
+                quizResult.appendChild(
+                    incorrectText
+                );
+
+                /* RESULT MESSAGE */
+
+                const resultMessage =
+                    document.createElement("p");
+
+                resultMessage.textContent =
+                    passed
+                        ? "You successfully completed " +
+                          "the File Systems and Storage " +
+                          "Management assessment."
+                        : "Review the highlighted answers " +
+                          "and study the chapters before " +
+                          "trying again.";
+
+                quizResult.appendChild(
+                    resultMessage
+                );
+
+                /* HIDE SUBMIT / SHOW RETRY */
+
+                submitQuiz.hidden = true;
+                retryQuiz.hidden = false;
+
+                /* SCROLL TO RESULTS */
+
+                quizResult.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+                /* ==================================
+                   NOTE ABOUT RESULT STORAGE
+
+                   This assessment runs locally
+                   in the browser.
+
+                   To permanently save quiz results
+                   in the CodeVerse SQLite database,
+                   connect it to a secured backend
+                   endpoint with authentication and
+                   server-side answer validation.
+                ================================== */
+
+            }
+        );
+
+
+        /* ==========================================
+           RETRY QUIZ
+        ========================================== */
+
+        retryQuiz.addEventListener(
+            "click",
+            function () {
+
+                /* CLEAR ALL ANSWERS */
+
+                quizForm.reset();
+
+                /* REBUILD THE QUESTIONS */
+
+                renderQuiz();
+
+                /* RETURN TO QUIZ */
+
+                document.getElementById("quiz")
+                    .scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+            }
+        );
+
+
+        /* ==========================================
+           CLOSE MENUS WHEN CLICKING OUTSIDE
+        ========================================== */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                const clickedInsideNavbar =
+                    event.target.closest(".navbar");
+
+                if (!clickedInsideNavbar) {
+
+                    closeMobileNavigation();
+
+                }
+
+                if (isMobileLayout()) {
+
+                    const clickedSidebar =
+                        sidebar.contains(event.target);
+
+                    const clickedTocButton =
+                        tocToggle.contains(event.target);
+
+                    if (
+                        !clickedSidebar &&
+                        !clickedTocButton
+                    ) {
+
+                        sidebar.classList.remove(
+                            "show"
+                        );
+
+                        updateTocAccessibility();
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           ESCAPE KEY SUPPORT
+        ========================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Escape") {
+
+                    closeMobileNavigation();
+
+                    sidebar.classList.remove(
+                        "show"
+                    );
+
+                    updateTocAccessibility();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           INITIALIZE READER
+        ========================================== */
+
+        renderQuiz();
+
+        updateTocAccessibility();
+
+        scheduleActiveChapterUpdate();
+
+    });
+
+    </script>
+</body>
+</html>

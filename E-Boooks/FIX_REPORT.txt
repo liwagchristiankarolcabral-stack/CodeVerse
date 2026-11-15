@@ -1,0 +1,12 @@
+CodeVerse targeted repairs
+==========================
+HTML files changed: 53
+URL references corrected: 522
+Start Reading links set to /read/<bookId>: 30
+Reading manifest: 30 entries; cover manifest: 30 entries
+
+Changes: normalized Windows local-file URLs, navigation links, logo/favicon paths, and book cover reading buttons.
+
+Testing: static checks only; no live browser or running server verification performed.
+
+Known limitations: CSS/image filenames might not match book titles; missing or mismatched TOC links and content descriptions were not rewritten. Files under public are not passkey protected. Database in original ZIP is retained; do not share this ZIP publicly if it contains real user data.

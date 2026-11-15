@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the team behind CodeVerse, an interactive digital learning library for information technology students.">
+  <title>About Us | CodeVerse</title>
+  <link rel="icon" type="image/png" href="/images/CodeVerseLogo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {color-scheme:light;--bg:#f5f8ff;--surface:#fff;--surface-alt:#eaf1ff;--text:#1b2b46;--muted:#62718a;--primary:#3159ad;--primary-strong:#22458f;--border:#dce5f4;--shadow:0 18px 45px rgba(25,51,103,.09);--ring:rgba(49,89,173,.22)}
+    body.dark-mode {color-scheme:dark;--bg:#0e1728;--surface:#17243a;--surface-alt:#202f4a;--text:#eaf1ff;--muted:#b0bed3;--primary:#8eb1ff;--primary-strong:#b5ccff;--border:#30415f;--shadow:0 18px 45px rgba(0,0,0,.2);--ring:rgba(142,177,255,.25)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;line-height:1.65;transition:background .25s,color .25s} a{color:inherit;text-decoration:none} button{font:inherit;cursor:pointer} :focus-visible{outline:3px solid var(--primary);outline-offset:4px} .container{width:min(1160px,calc(100% - 40px));margin-inline:auto}
+    .navbar{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:0 2px 15px rgba(0,0,0,.025)}.nav-inner{min-height:78px;display:flex;align-items:center;gap:28px}.brand{display:flex;align-items:center;gap:11px;font-size:1.4rem;font-weight:800;white-space:nowrap}.brand img{width:42px;height:42px;object-fit:contain}.brand strong{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:27px;margin-left:auto}.nav-links a{font-size:.94rem;font-weight:700;color:var(--muted);transition:color .2s}.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--primary)}.nav-actions{display:flex;gap:10px;align-items:center}.icon-button,.menu-button{border:1px solid var(--border);background:var(--surface-alt);color:var(--text);width:42px;height:42px;border-radius:12px;display:grid;place-items:center}.menu-button{display:none}
+    .hero{position:relative;overflow:hidden;padding:88px 0 96px;background:linear-gradient(135deg,#234b9b,#3768c6 70%,#507ed8);color:white;text-align:center}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.15);pointer-events:none}.hero:before{width:420px;height:420px;left:-160px;top:-200px}.hero:after{width:560px;height:560px;right:-220px;bottom:-350px}.hero-content{position:relative;z-index:1}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 17px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(255,255,255,.12);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800}.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.15;margin:20px 0 18px}.hero p{max-width:690px;margin:0 auto;color:#e6eeff;font-size:1.08rem}.hero-cta{display:inline-block;margin-top:29px;padding:12px 25px;background:#fff;color:#224b9a;border-radius:12px;font-weight:800;transition:transform .2s}.hero-cta:hover{transform:translateY(-2px)}
+    .section{padding:80px 0}.section-intro{text-align:center;max-width:760px;margin:0 auto 44px}.section-label{display:block;color:var(--primary);font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;margin-bottom:8px}.section-intro h2,.about-copy h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,4vw,2.8rem);line-height:1.2;margin:0 0 16px}.section-intro p,.about-copy p{color:var(--muted);margin:0}.about-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:42px;align-items:center}.about-panel{background:var(--surface);border:1px solid var(--border);padding:38px;border-radius:25px;box-shadow:var(--shadow)}.about-panel .symbol{width:66px;height:66px;display:grid;place-items:center;background:var(--surface-alt);color:var(--primary);border-radius:18px;font-size:2rem;margin-bottom:20px}.about-panel h3{margin:0 0 12px;font-size:1.45rem}.about-panel p{margin:0;color:var(--muted)}.feature-list{margin:20px 0 0;padding:0;list-style:none}.feature-list li{margin:11px 0;color:var(--text)}.feature-list li:before{content:'✓';color:var(--primary);font-weight:800;margin-right:10px}
+    .team-section{background:var(--surface-alt)}.team-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}.person-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:32px 20px 28px;text-align:center;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}.person-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(25,51,103,.15)}.avatar{width:116px;height:116px;border-radius:50%;background:linear-gradient(145deg,#dce8ff,#a9c3f4);color:#3159ad;border:5px solid var(--surface-alt);margin:0 auto 20px;display:grid;place-items:center;font-size:2.8rem;font-weight:800;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.person-card h3{font-size:1.13rem;line-height:1.35;margin:0 0 9px;min-height:3em}.role{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--surface-alt);color:var(--primary);font-size:.78rem;font-weight:800}.person-card .detail{color:var(--muted);font-size:.91rem;margin:12px 0 0}.person-card .bio{color:var(--muted);font-size:.85rem;margin:12px 0 0}.footnote{color:var(--muted);font-size:.88rem;text-align:center;margin-top:25px}
+    .mission{padding:70px 0}.mission-card{padding:50px 42px;border-radius:26px;background:var(--surface);border:1px solid var(--border);text-align:center;box-shadow:var(--shadow)}.mission-card h2{font-family:'Playfair Display',Georgia,serif;font-size:2.1rem;margin:0 0 12px}.mission-card p{max-width:720px;margin:0 auto;color:var(--muted)}.footer{background:var(--surface);border-top:1px solid var(--border);padding:27px 0}.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center;color:var(--muted);font-size:.89rem}.footer a{color:var(--primary);font-weight:700}
+    @media(max-width:980px){.team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.about-grid{grid-template-columns:1fr}.about-panel{max-width:650px;width:100%;margin:auto}}@media(max-width:680px){.container{width:min(100% - 30px,1160px)}.nav-inner{min-height:70px;flex-wrap:wrap;gap:12px}.brand{font-size:1.2rem}.brand img{width:36px;height:36px}.nav-actions{margin-left:auto}.menu-button{display:grid}.nav-links{display:none;order:3;width:100%;margin:0;padding:8px 0 16px;flex-direction:column;align-items:stretch;gap:4px}.nav-links.open{display:flex}.nav-links a{padding:10px 8px}.hero{padding:70px 0 76px}.section{padding:62px 0}.team-grid{grid-template-columns:1fr}.person-card h3{min-height:0}.about-panel,.mission-card{padding:29px 24px}.footer-inner{flex-direction:column;text-align:center}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="/index.html" aria-label="CodeVerse home"><img src="/images/CodeVerseLogo.png" alt="" onerror="this.style.display='none'"><span>Code<strong>Verse</strong></span></a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation"><a href="/index.html">Home</a><a href="/library.html">Explore Books</a><a href="/About.html" aria-current="page">About Us</a></nav>
+      <div class="nav-actions"><button class="icon-button" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Toggle dark mode"><span id="themeIcon" aria-hidden="true">☾</span></button><button class="menu-button" id="menuToggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open navigation menu">☰</button></div>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="heroTitle"><div class="container hero-content"><span class="eyebrow">Get to know us</span><h1 id="heroTitle">About CodeVerse</h1><p>Discover the people and purpose behind a digital library built to make learning information technology more accessible, interactive, and enjoyable.</p><a class="hero-cta" href="#team">Meet Our Team ↓</a></div></section>
+    <section class="section" id="about"><div class="container about-grid"><div class="about-copy"><span class="section-label">Our platform</span><h2>Learning made accessible, one book at a time.</h2><p>CodeVerse is a web-based digital e-book library designed for learners exploring information technology and web development. It brings educational content together in an organized, easy-to-use reading experience.</p><p style="margin-top:17px">With interactive lessons, reading preferences, and knowledge assessment quizzes, CodeVerse encourages independent study and helps readers build practical digital skills.</p></div><div class="about-panel"><div class="symbol" aria-hidden="true">📚</div><h3>What CodeVerse Offers</h3><p>Tools and resources to support learning at your own pace.</p><ul class="feature-list"><li>Organized technology learning materials</li><li>Readable, web-based digital books</li><li>Dark mode and customizable reading settings</li><li>Interactive quizzes to assess understanding</li><li>Responsive access across devices</li></ul></div></div></section>
+    <section class="section team-section" id="team" aria-labelledby="teamTitle"><div class="container"><div class="section-intro"><span class="section-label">The people behind the project</span><h2 id="teamTitle">Meet Our Team</h2><p>Get to know the people contributing to the development and guidance of CodeVerse.</p></div><div class="team-grid">
+      <article class="person-card"><div class="avatar" aria-label="Profile photo placeholder for Christian Karol C. Liwag">CL</div><h3>Christian Karol C. Liwag</h3><span class="role">Developer</span><p class="detail">BSIT – 3rd Year</p><p class="bio">CodeVerse project developer.</p></article>
+      <article class="person-card"><div class="avatar" aria-label="Profile photo placeholder">02</div><h3>Name</h3><span class="role">Team Member</span><p class="detail">BSIT – 2nd Year</p><p class="bio">Team member profile to be completed.</p></article>
+      <article class="person-card"><div class="avatar" aria-label="Profile photo placeholder">01</div><h3>Name</h3><span class="role">Team Member</span><p class="detail">BSIT – 1st Year</p><p class="bio">Team member profile to be completed.</p></article>
+      <article class="person-card"><div class="avatar" aria-label="Profile photo placeholder for Joshua Ramos">JR</div><h3>Joshua Ramos</h3><span class="role">Instructor</span><p class="detail">Project Instructor</p><p class="bio">Academic guidance and instruction.</p></article>
+    </div><p class="footnote">Replace the “Name” placeholders with the remaining students’ names and add profile photos when available.</p></div></section>
+    <section class="mission"><div class="container"><div class="mission-card"><span class="section-label">Our mission</span><h2>Explore. Learn. Grow.</h2><p>To provide a welcoming digital space where students can explore IT concepts, strengthen their understanding, and grow their knowledge through accessible web-based learning resources.</p></div></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><span>© <span id="year"></span> CodeVerse Digital Library. All rights reserved.</span><span>Built for learning · <a href="/library.html">Explore Books</a></span></div></footer>
+  <script>
+    (() => {
+      const body = document.body;
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const storedTheme = localStorage.getItem('readerTheme');
+      if (storedTheme === 'dark') body.classList.add('dark-mode');
+      function updateThemeButton() {
+        const dark = body.classList.contains('dark-mode');
+        themeIcon.textContent = dark ? '☀' : '☾';
+        themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('readerTheme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        updateThemeButton();
+      });
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        menuToggle.setAttribute('aria-label', expanded ? 'Open navigation menu' : 'Close navigation menu');
+        navLinks.classList.toggle('open', !expanded);
+      });
+      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }));
+      document.getElementById('year').textContent = new Date().getFullYear();
+      updateThemeButton();
+    })();
+  </script>
+</body>
+</html>

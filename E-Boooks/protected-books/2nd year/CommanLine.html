@@ -1,0 +1,2051 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Command-Line Interfaces and System Utilities | CodeVerse</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="/books/css/Authentication.css" rel="stylesheet"/>
+<!-- Favicon -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+        :root {
+            --primary: #3157a4;
+            --primary-dark: #24427f;
+            --background: #f7f9fd;
+            --surface: #ffffff;
+            --text: #202b40;
+            --muted: #758096;
+            --border: #e6eaf1;
+            --shadow: 0 8px 30px rgba(30, 50, 90, .07);
+        }
+
+        body.dark-mode {
+            --primary: #8cafff;
+            --primary-dark: #aac4ff;
+            --background: #101827;
+            --surface: #1c293b;
+            --text: #edf2fa;
+            --muted: #a9b7ca;
+            --border: #34465e;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .18);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 110px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            transition: background .25s, color .25s;
+        }
+
+        body,
+        button,
+        select {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+        /* NAVIGATION */
+
+        .navbar {
+            min-height: 76px;
+            padding: 12px max(24px, calc((100vw - 1400px) / 2));
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 23px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .site-logo {
+            width: 43px;
+            height: 43px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .nav-links,
+        .nav-actions,
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .icon-btn,
+        .menu-toggle {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            border-radius: 9px;
+            padding: 9px 13px;
+            cursor: pointer;
+            font-size: 19px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .signup-btn {
+            background: #3157a4;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 9px;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* BACK LINK */
+
+        .topbar {
+            padding: 18px 5%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .back-link {
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* READING CONTROLS */
+
+        .reading-controls {
+            max-width: 1400px;
+            margin: 0 auto 20px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .control-group select {
+            padding: 10px 13px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        /* MAIN LAYOUT */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 290px minmax(0, 1fr);
+            gap: 28px;
+            max-width: 1400px;
+            margin: auto;
+            padding: 0 5% 60px;
+            align-items: start;
+        }
+
+        .toc {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            position: sticky;
+            top: 95px;
+            scrollbar-width: thin;
+            box-shadow: var(--shadow);
+        }
+
+        .toc h2 {
+            font-size: 18px;
+            margin: 0 0 18px;
+        }
+
+        .toc nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .toc nav a {
+            padding: 10px 12px;
+            border-radius: 7px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .toc nav a:hover,
+        .toc nav a.active {
+            background: var(--background);
+            color: var(--primary);
+        }
+
+        main {
+            min-width: 0;
+        }
+
+        .book-header {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 38px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .book-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.25;
+            margin: 15px 0;
+        }
+
+        .book-header p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* CHAPTERS */
+
+        .chapter {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 34px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 110px;
+        }
+
+        .chapter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65em;
+            line-height: 1.35;
+            margin: 0 0 22px;
+            color: var(--text);
+        }
+
+        .chapter h3 {
+            margin-top: 25px;
+            color: var(--text);
+        }
+
+        .chapter p,
+        .chapter li {
+            line-height: 1.85;
+        }
+
+        .chapter p {
+            margin: 12px 0;
+        }
+
+        .chapter ul,
+        .chapter ol {
+            padding-left: 25px;
+        }
+
+        .chapter li {
+            margin-bottom: 7px;
+        }
+
+        .chapter pre {
+            background: #14233b;
+            color: #e8f1ff;
+            padding: 18px;
+            border-radius: 10px;
+            overflow-x: auto;
+            line-height: 1.7;
+        }
+
+        .chapter code {
+            font-family: Consolas, monospace;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .chapter th,
+        .chapter td {
+            padding: 12px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .chapter th {
+            background: var(--background);
+            color: var(--text);
+        }
+
+        .example-box {
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+            background: var(--background);
+            border-radius: 8px;
+        }
+
+        /* QUIZ */
+
+        .quiz-question {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 18px 0;
+        }
+
+        .quiz-question h3 {
+            font-size: 1.05em;
+            margin-top: 0;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+        }
+
+        .quiz-option input {
+            margin-top: 5px;
+            accent-color: #3157a4;
+        }
+
+        .quiz-option.correct {
+            border-color: #29996a;
+            background: rgba(41, 153, 106, .13);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #dc5965;
+            background: rgba(220, 89, 101, .13);
+        }
+
+        .quiz-feedback {
+            margin-top: 14px;
+            font-weight: 700;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-actions button {
+            background: #3157a4;
+            color: white;
+            padding: 13px 24px;
+            border: none;
+            border-radius: 9px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-actions button:hover {
+            background: #24427f;
+        }
+
+        #quizProgress {
+            font-weight: 700;
+        }
+
+        #quizResult {
+            margin-top: 25px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        #quizResult.passed {
+            border-color: #29996a;
+        }
+
+        #quizResult.failed {
+            border-color: #dc5965;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        .page-footer {
+            padding: 30px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1050px) {
+            .layout {
+                grid-template-columns: 230px minmax(0, 1fr);
+                gap: 18px;
+            }
+
+            .navbar {
+                gap: 12px;
+            }
+
+            .nav-links,
+            .nav-actions {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 12px 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+                margin-left: auto;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                order: 4;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 12px 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .layout {
+                display: block;
+                padding: 0 18px 40px;
+            }
+
+            .toc {
+                position: static;
+                max-height: 300px;
+                margin-bottom: 20px;
+            }
+
+            .book-header,
+            .chapter {
+                padding: 24px;
+            }
+
+            .chapter table {
+                display: block;
+                overflow-x: auto;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .site-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            #accountActions {
+                gap: 10px;
+            }
+
+            .signup-btn {
+                padding: 9px 12px;
+            }
+
+            .reading-controls {
+                padding: 0 18px;
+            }
+
+            .control-group {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .control-group select {
+                min-width: 150px;
+            }
+        }
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a href="/index.html">Home</a>
+<a class="active" href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/library.html">
+            ← Back to Books
+        </a>
+</header>
+<!-- =========================
+         READING CONTROLS
+    ========================== -->
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<!-- =========================
+         MAIN READING LAYOUT
+    ========================== -->
+<div class="layout">
+<aside class="toc" id="sidebar">
+<h2>Table of Contents</h2>
+<nav id="tocNav">
+<a href="#introduction">Introduction</a>
+<a href="#learning-objectives">Learning Objectives</a>
+<a href="#meaning-of-cli">1. Meaning of CLI</a>
+<a href="#history-of-cli">2. History of CLI</a>
+<a href="#how-cli-works">3. How a CLI Works</a>
+<a href="#parts-of-command">4. Parts of a Command</a>
+<a href="#cli-vs-gui">5. CLI vs. GUI</a>
+<a href="#command-line-environments">6. CLI Environments</a>
+<a href="#windows-command-prompt">7. Windows Command Prompt</a>
+<a href="#windows-powershell">8. Windows PowerShell</a>
+<a href="#linux-terminal">9. Linux Terminal</a>
+<a href="#navigation-commands">10. Navigation Commands</a>
+<a href="#file-directory-management">11. File Management</a>
+<a href="#file-viewing-searching">12. File Viewing and Searching</a>
+<a href="#process-management">13. Process Management</a>
+<a href="#system-information">14. System Information</a>
+<a href="#network-commands">15. Network Commands</a>
+<a href="#disk-storage-commands">16. Disk and Storage Commands</a>
+<a href="#file-permissions">17. File Permissions</a>
+<a href="#shell-scripting">18. Shell Scripting</a>
+<a href="#meaning-of-utilities">19. System Utilities</a>
+<a href="#types-of-utilities">20. Types of Utilities</a>
+<a href="#disk-management-utilities">21. Disk Management</a>
+<a href="#system-monitoring-utilities">22. System Monitoring</a>
+<a href="#security-backup-utilities">23. Security and Backup</a>
+<a href="#troubleshooting-utilities">24. Troubleshooting</a>
+<a href="#practical-applications">25. Practical Applications</a>
+<a href="#summary-review-references">26. Summary and Review</a>
+<a href="#quiz">Knowledge Assessment Quiz</a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">
+                    Digital Book · Information Technology
+                </span>
+<h1>
+                    Command-Line Interfaces and System Utilities
+                </h1>
+<p>
+                    Learn how to interact with operating systems
+                    through text commands and use essential utilities
+                    to manage, monitor, secure, and maintain computers.
+                </p>
+</header>
+<div class="book-content">
+<!-- INTRODUCTION -->
+<section class="chapter" id="introduction">
+<h2>Introduction</h2>
+<p>
+                        A Command-Line Interface (CLI) allows users to
+                        communicate with an operating system by typing
+                        text commands rather than selecting graphical
+                        buttons and menus.
+                    </p>
+<p>
+                        Command-line tools are useful for managing files,
+                        checking system information, running programs,
+                        configuring networks, and performing administrative
+                        tasks.
+                    </p>
+<p>
+                        System utilities are tools that help maintain,
+                        monitor, protect, and improve computer performance.
+                        Together, CLI tools and system utilities are
+                        essential skills in Information Technology.
+                    </p>
+</section>
+<!-- LEARNING OBJECTIVES -->
+<section class="chapter" id="learning-objectives">
+<h2>Learning Objectives</h2>
+<p>After studying this topic, learners should be able to:</p>
+<ol>
+<li>Define a command-line interface.</li>
+<li>Explain the purpose of command-line tools.</li>
+<li>Identify the parts of a command.</li>
+<li>Differentiate CLI from GUI.</li>
+<li>Recognize Windows and Linux commands.</li>
+<li>Understand file and directory management.</li>
+<li>Explain the purpose of system utilities.</li>
+<li>Identify system monitoring tools.</li>
+<li>Understand basic networking commands.</li>
+<li>Recognize command-line security practices.</li>
+<li>Apply commands to practical situations.</li>
+</ol>
+</section>
+<!-- LESSON 1 -->
+<section class="chapter" id="meaning-of-cli">
+<h2>1. Meaning of Command-Line Interface</h2>
+<p>
+                        A Command-Line Interface is a text-based method
+                        of interacting with a computer. Users enter
+                        commands in a terminal or command window.
+                    </p>
+<p>
+                        The operating system processes the command
+                        and displays a result. A command may show
+                        information, open a program, create a folder,
+                        or perform another task.
+                    </p>
+<h3>Example</h3>
+<pre><code>dir</code></pre>
+<p>
+                        In Windows Command Prompt, this command displays
+                        the files and folders in the current directory.
+                    </p>
+</section>
+<!-- LESSON 2 -->
+<section class="chapter" id="history-of-cli">
+<h2>2. History and Development of CLI</h2>
+<p>
+                        Early computers relied heavily on text-based
+                        instructions because graphical interfaces
+                        were not yet common.
+                    </p>
+<ul>
+<li><strong>Early computing:</strong> Text commands were widely used.</li>
+<li><strong>1960s–1970s:</strong> Mainframe and Unix systems advanced command-based computing.</li>
+<li><strong>1980s:</strong> DOS became a popular command environment on personal computers.</li>
+<li><strong>1990s onward:</strong> Graphical interfaces spread, but CLI tools remained important.</li>
+<li><strong>Present:</strong> Modern shells support automation, development, and administration.</li>
+</ul>
+</section>
+<!-- LESSON 3 -->
+<section class="chapter" id="how-cli-works">
+<h2>3. How a CLI Works</h2>
+<p>
+                        A CLI accepts text instructions and passes
+                        them to a command interpreter, commonly called a shell.
+                    </p>
+<ol>
+<li>The user opens a terminal.</li>
+<li>The user types a command.</li>
+<li>The shell interprets the command.</li>
+<li>The operating system performs the operation.</li>
+<li>The terminal displays output or an error.</li>
+</ol>
+<h3>Example</h3>
+<pre><code>ipconfig</code></pre>
+<p>
+                        This Windows command displays network configuration
+                        information, including IP addresses and adapter details.
+                    </p>
+</section>
+<!-- LESSON 4 -->
+<section class="chapter" id="parts-of-command">
+<h2>4. Parts of a Command</h2>
+<p>
+                        Commands can contain a command name,
+                        options, arguments, and file paths.
+                    </p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command name</td>
+<td>Instruction to execute</td>
+<td>dir</td>
+</tr>
+<tr>
+<td>Option</td>
+<td>Changes command behavior</td>
+<td>/s</td>
+</tr>
+<tr>
+<td>Argument</td>
+<td>Information passed to a command</td>
+<td>Documents</td>
+</tr>
+<tr>
+<td>Path</td>
+<td>File or folder location</td>
+<td>C:\Users\Student</td>
+</tr>
+</tbody>
+</table>
+<h3>Example</h3>
+<pre><code>dir /s C:\Users\Student\Documents</code></pre>
+<p>
+                        The command is <code>dir</code>,
+                        the option is <code>/s</code>,
+                        and the remaining text identifies the directory.
+                    </p>
+</section>
+<!-- LESSON 5 -->
+<section class="chapter" id="cli-vs-gui">
+<h2>5. CLI vs. GUI</h2>
+<p>
+                        A CLI uses typed commands, while a
+                        Graphical User Interface (GUI) uses visual
+                        controls such as icons, windows, and menus.
+                    </p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>CLI</th>
+<th>GUI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interaction</td>
+<td>Typed commands</td>
+<td>Mouse, touch, visual controls</td>
+</tr>
+<tr>
+<td>Appearance</td>
+<td>Text-based</td>
+<td>Graphical</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>Requires command knowledge</td>
+<td>Often easier for beginners</td>
+</tr>
+<tr>
+<td>Automation</td>
+<td>Command scripts</td>
+<td>Graphical automation tools</td>
+</tr>
+<tr>
+<td>Common use</td>
+<td>Administration</td>
+<td>Everyday computer tasks</td>
+</tr>
+</tbody>
+</table>
+<h3>Example</h3>
+<pre><code>mkdir School</code></pre>
+<p>
+                        This creates a folder named School,
+                        similar to selecting New Folder through
+                        a graphical file manager.
+                    </p>
+</section>
+<!-- LESSON 6 -->
+<section class="chapter" id="command-line-environments">
+<h2>6. Command-Line Environments</h2>
+<p>
+                        A command-line environment provides a place
+                        where users enter commands and receive results.
+                    </p>
+<ul>
+<li><strong>Command Prompt:</strong> Traditional Windows command interpreter.</li>
+<li><strong>PowerShell:</strong> Shell and scripting environment for administration.</li>
+<li><strong>Bash:</strong> Widely used shell on Linux and Unix-like systems.</li>
+<li><strong>Zsh:</strong> Shell used on Unix-like systems, including macOS.</li>
+<li><strong>Terminal applications:</strong> Programs that provide access to command-line shells.</li>
+</ul>
+</section>
+<!-- LESSON 7 -->
+<section class="chapter" id="windows-command-prompt">
+<h2>7. Windows Command Prompt</h2>
+<p>
+                        Windows Command Prompt, or CMD, is a
+                        command-line interpreter included in Windows.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>dir</td><td>Lists files and folders</td></tr>
+<tr><td>cd</td><td>Changes directory</td></tr>
+<tr><td>cls</td><td>Clears the screen</td></tr>
+<tr><td>mkdir</td><td>Creates a directory</td></tr>
+<tr><td>rmdir</td><td>Removes a directory</td></tr>
+<tr><td>copy</td><td>Copies files</td></tr>
+<tr><td>move</td><td>Moves files</td></tr>
+<tr><td>ipconfig</td><td>Displays network configuration</td></tr>
+<tr><td>hostname</td><td>Displays the computer name</td></tr>
+<tr><td>help</td><td>Displays help information</td></tr>
+</tbody>
+</table>
+<pre><code>mkdir IT_Project
+cd IT_Project</code></pre>
+</section>
+<!-- LESSON 8 -->
+<section class="chapter" id="windows-powershell">
+<h2>8. Windows PowerShell</h2>
+<p>
+                        PowerShell is a Microsoft command shell and scripting
+                        language designed for system administration and automation.
+                    </p>
+<p>
+                        Unlike traditional Command Prompt,
+                        PowerShell works with structured objects.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>Get-Help</td><td>Displays help</td></tr>
+<tr><td>Get-Process</td><td>Lists running processes</td></tr>
+<tr><td>Get-Service</td><td>Displays system services</td></tr>
+<tr><td>Get-Location</td><td>Shows current location</td></tr>
+<tr><td>Set-Location</td><td>Changes location</td></tr>
+<tr><td>New-Item</td><td>Creates files or directories</td></tr>
+<tr><td>Clear-Host</td><td>Clears the terminal</td></tr>
+</tbody>
+</table>
+<pre><code>Get-Process
+Get-Location</code></pre>
+</section>
+<!-- LESSON 9 -->
+<section class="chapter" id="linux-terminal">
+<h2>9. Linux Terminal</h2>
+<p>
+                        The Linux Terminal allows users to communicate
+                        with Linux through commands. Many Linux systems use Bash.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>pwd</td><td>Shows current directory</td></tr>
+<tr><td>ls</td><td>Lists files</td></tr>
+<tr><td>cd</td><td>Changes directory</td></tr>
+<tr><td>mkdir</td><td>Creates a directory</td></tr>
+<tr><td>touch</td><td>Creates an empty file</td></tr>
+<tr><td>cp</td><td>Copies files</td></tr>
+<tr><td>mv</td><td>Moves or renames files</td></tr>
+<tr><td>rm</td><td>Removes files</td></tr>
+<tr><td>cat</td><td>Displays file contents</td></tr>
+<tr><td>clear</td><td>Clears the screen</td></tr>
+</tbody>
+</table>
+<pre><code>mkdir School
+cd School
+touch activity.txt</code></pre>
+</section>
+<!-- LESSON 10 -->
+<section class="chapter" id="navigation-commands">
+<h2>10. Basic Navigation Commands</h2>
+<p>
+                        Navigation commands help users move between
+                        folders and identify their current location.
+                    </p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Windows CMD</th>
+<th>Linux Bash</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Current directory</td><td>cd</td><td>pwd</td></tr>
+<tr><td>List contents</td><td>dir</td><td>ls</td></tr>
+<tr><td>Enter folder</td><td>cd FolderName</td><td>cd FolderName</td></tr>
+<tr><td>Parent folder</td><td>cd ..</td><td>cd ..</td></tr>
+<tr><td>Root directory</td><td>cd \</td><td>cd /</td></tr>
+</tbody>
+</table>
+<pre><code>cd Documents
+cd ..</code></pre>
+</section>
+<!-- LESSON 11 -->
+<section class="chapter" id="file-directory-management">
+<h2>11. File and Directory Management</h2>
+<p>
+                        File management commands create, copy,
+                        move, rename, and delete files and directories.
+                    </p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Windows CMD</th>
+<th>Linux Bash</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Create folder</td><td>mkdir</td><td>mkdir</td></tr>
+<tr><td>Copy file</td><td>copy</td><td>cp</td></tr>
+<tr><td>Move file</td><td>move</td><td>mv</td></tr>
+<tr><td>Rename file</td><td>ren</td><td>mv</td></tr>
+<tr><td>Delete file</td><td>del</td><td>rm</td></tr>
+<tr><td>Remove empty folder</td><td>rmdir</td><td>rmdir</td></tr>
+</tbody>
+</table>
+<h3>Examples</h3>
+<pre><code>mkdir Research</code></pre>
+<pre><code>cp notes.txt backup.txt</code></pre>
+<pre><code>ren draft.txt final.txt</code></pre>
+<p>
+                        Some deletion commands permanently remove
+                        files without sending them to the Recycle Bin
+                        or Trash. Always verify the target path.
+                    </p>
+</section>
+<!-- LESSON 12 -->
+<section class="chapter" id="file-viewing-searching">
+<h2>12. File Viewing and Searching</h2>
+<p>
+                        These commands help users read files and
+                        search for information without opening a
+                        graphical file manager.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>type</td><td>Displays text in Windows</td></tr>
+<tr><td>more</td><td>Displays output one screen at a time</td></tr>
+<tr><td>cat</td><td>Displays file contents in Linux</td></tr>
+<tr><td>less</td><td>Views long text files</td></tr>
+<tr><td>findstr</td><td>Searches text in Windows</td></tr>
+<tr><td>grep</td><td>Searches matching text in Linux</td></tr>
+<tr><td>find</td><td>Searches files or information</td></tr>
+</tbody>
+</table>
+<pre><code>type notes.txt
+
+grep "computer" notes.txt</code></pre>
+</section>
+<!-- LESSON 13 -->
+<section class="chapter" id="process-management">
+<h2>13. Process Management Commands</h2>
+<p>
+                        A process is a program currently running on
+                        a computer. Processes consume CPU, memory,
+                        and sometimes network resources.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td>tasklist</td><td>Lists Windows processes</td></tr>
+<tr><td>taskkill</td><td>Ends a Windows process</td></tr>
+<tr><td>Get-Process</td><td>Shows PowerShell process information</td></tr>
+<tr><td>ps</td><td>Displays Linux processes</td></tr>
+<tr><td>top</td><td>Shows active processes and resource use</td></tr>
+<tr><td>htop</td><td>Interactive process monitoring</td></tr>
+<tr><td>kill</td><td>Sends a signal to a Linux process</td></tr>
+</tbody>
+</table>
+<pre><code>tasklist
+
+ps</code></pre>
+</section>
+<!-- LESSON 14 -->
+<section class="chapter" id="system-information">
+<h2>14. System Information Commands</h2>
+<p>
+                        System information commands display
+                        operating system, hardware, and
+                        configuration details.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>systeminfo</td><td>Detailed Windows system information</td></tr>
+<tr><td>hostname</td><td>Computer name</td></tr>
+<tr><td>ver</td><td>Windows version</td></tr>
+<tr><td>uname -a</td><td>Linux kernel and system information</td></tr>
+<tr><td>whoami</td><td>Current user</td></tr>
+<tr><td>Get-ComputerInfo</td><td>PowerShell computer information</td></tr>
+</tbody>
+</table>
+<pre><code>hostname
+systeminfo</code></pre>
+</section>
+<!-- LESSON 15 -->
+<section class="chapter" id="network-commands">
+<h2>15. Network Commands</h2>
+<p>
+                        Network commands help users inspect network
+                        configuration, test connectivity, and
+                        investigate connection problems.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>ipconfig</td><td>Windows IP configuration</td></tr>
+<tr><td>ip addr</td><td>Linux network addresses</td></tr>
+<tr><td>ping</td><td>Tests destination response</td></tr>
+<tr><td>tracert</td><td>Windows network route</td></tr>
+<tr><td>traceroute</td><td>Linux network route</td></tr>
+<tr><td>nslookup</td><td>DNS information</td></tr>
+<tr><td>netstat</td><td>Network connections and statistics</td></tr>
+</tbody>
+</table>
+<pre><code>ipconfig
+
+ping example.com</code></pre>
+<p>
+                        A successful ping response does not guarantee
+                        that every part of an internet connection is functioning.
+                    </p>
+</section>
+<!-- LESSON 16 -->
+<section class="chapter" id="disk-storage-commands">
+<h2>16. Disk and Storage Commands</h2>
+<p>
+                        Disk commands display storage information
+                        and help manage disks, partitions,
+                        and available space.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>chkdsk</td><td>Checks file system and disk errors</td></tr>
+<tr><td>diskpart</td><td>Manages disks and partitions</td></tr>
+<tr><td>Get-Volume</td><td>Displays volume information</td></tr>
+<tr><td>df -h</td><td>Shows available file system space</td></tr>
+<tr><td>du -sh</td><td>Shows directory size</td></tr>
+<tr><td>lsblk</td><td>Lists block devices</td></tr>
+</tbody>
+</table>
+<pre><code>df -h
+
+lsblk</code></pre>
+<p>
+                        Partitioning and formatting commands can
+                        permanently affect stored data. Use them only
+                        with proper authorization and an understanding
+                        of their effects.
+                    </p>
+</section>
+<!-- LESSON 17 -->
+<section class="chapter" id="file-permissions">
+<h2>17. File Permissions and User Management</h2>
+<p>
+                        File permissions control who can read,
+                        modify, or execute files and directories.
+                    </p>
+<table>
+<thead>
+<tr><th>Command</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>whoami</td><td>Displays current user</td></tr>
+<tr><td>chmod</td><td>Changes Linux file permissions</td></tr>
+<tr><td>chown</td><td>Changes Linux file ownership</td></tr>
+<tr><td>ls -l</td><td>Shows permissions and ownership</td></tr>
+<tr><td>icacls</td><td>Displays or changes Windows access permissions</td></tr>
+<tr><td>net user</td><td>Manages Windows local user accounts</td></tr>
+</tbody>
+</table>
+<pre><code>ls -l
+
+whoami</code></pre>
+</section>
+<!-- LESSON 18 -->
+<section class="chapter" id="shell-scripting">
+<h2>18. Shell Scripting and Automation</h2>
+<p>
+                        Shell scripting combines commands into
+                        a file so they can be executed together
+                        automatically.
+                    </p>
+<h3>Bash Script Example</h3>
+<pre><code>#!/bin/bash
+
+echo "Welcome to the IT Laboratory"
+echo "Today we are learning Linux commands"</code></pre>
+<h3>Windows Batch Script Example</h3>
+<pre><code>@echo off
+
+echo Welcome to the IT Laboratory
+echo Learning Windows commands
+
+pause</code></pre>
+<h3>Benefits</h3>
+<ul>
+<li>Saves time on repeated tasks.</li>
+<li>Reduces manual command entry.</li>
+<li>Standardizes operations.</li>
+<li>Supports administration.</li>
+<li>Makes maintenance easier to repeat.</li>
+</ul>
+</section>
+<!-- LESSON 19 -->
+<section class="chapter" id="meaning-of-utilities">
+<h2>19. Meaning of System Utilities</h2>
+<p>
+                        System utilities are software tools designed
+                        to maintain, manage, protect, and monitor
+                        a computer system.
+                    </p>
+<p>
+                        They help identify problems, manage storage,
+                        protect files, and monitor computer performance.
+                    </p>
+<h3>Examples</h3>
+<ul>
+<li>Disk Cleanup</li>
+<li>Task Manager</li>
+<li>Windows Security</li>
+<li>Backup and Restore tools</li>
+<li>File management tools</li>
+<li>System monitoring applications</li>
+<li>Disk checking utilities</li>
+</ul>
+</section>
+<!-- LESSON 20 -->
+<section class="chapter" id="types-of-utilities">
+<h2>20. Types of System Utilities</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Disk</td><td>Manage storage</td><td>Disk Management</td></tr>
+<tr><td>Security</td><td>Protect computers</td><td>Windows Security</td></tr>
+<tr><td>Backup</td><td>Copy important files</td><td>File History</td></tr>
+<tr><td>Monitoring</td><td>Check performance</td><td>Task Manager</td></tr>
+<tr><td>File</td><td>Organize files</td><td>File Explorer</td></tr>
+<tr><td>Troubleshooting</td><td>Investigate problems</td><td>Windows Troubleshooters</td></tr>
+<tr><td>Compression</td><td>Reduce or group files</td><td>7-Zip</td></tr>
+</tbody>
+</table>
+</section>
+<!-- LESSON 21 -->
+<section class="chapter" id="disk-management-utilities">
+<h2>21. Disk Management Utilities</h2>
+<p>
+                        Disk utilities help inspect and maintain
+                        hard drives, SSDs, partitions, and storage space.
+                    </p>
+<ol>
+<li><strong>Disk Management:</strong> Views and manages disks and partitions.</li>
+<li><strong>Disk Cleanup:</strong> Removes selected unnecessary files.</li>
+<li><strong>CHKDSK:</strong> Checks certain file system and disk errors.</li>
+<li><strong>Storage Settings:</strong> Shows storage usage and cleanup options.</li>
+<li><strong>Disk Usage Tools:</strong> Identify files consuming storage space.</li>
+</ol>
+</section>
+<!-- LESSON 22 -->
+<section class="chapter" id="system-monitoring-utilities">
+<h2>22. System Monitoring Utilities</h2>
+<p>
+                        Monitoring utilities provide information
+                        about CPU activity, memory usage, storage
+                        performance, and running processes.
+                    </p>
+<table>
+<thead>
+<tr><th>Utility</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>Task Manager</td><td>Shows running applications and resources</td></tr>
+<tr><td>Resource Monitor</td><td>Detailed resource information</td></tr>
+<tr><td>Performance Monitor</td><td>Tracks performance counters</td></tr>
+<tr><td>Activity Monitor</td><td>Monitors macOS resources</td></tr>
+<tr><td>top</td><td>Displays active Linux processes</td></tr>
+<tr><td>htop</td><td>Interactive Linux monitoring</td></tr>
+</tbody>
+</table>
+<p>
+                        Monitoring tools provide information for
+                        troubleshooting but do not automatically
+                        fix every problem.
+                    </p>
+</section>
+<!-- LESSON 23 -->
+<section class="chapter" id="security-backup-utilities">
+<h2>23. Security and Backup Utilities</h2>
+<p>
+                        Security utilities protect systems against
+                        threats. Backup utilities create additional
+                        copies of important files for recovery.
+                    </p>
+<h3>Security Utilities</h3>
+<ul>
+<li>Windows Security</li>
+<li>Microsoft Defender Antivirus</li>
+<li>Firewall tools</li>
+<li>Security scanning applications</li>
+</ul>
+<h3>Backup Utilities</h3>
+<ul>
+<li>Windows Backup</li>
+<li>File History</li>
+<li>macOS Time Machine</li>
+<li>Linux backup software</li>
+</ul>
+<h3>Good Practices</h3>
+<ol>
+<li>Keep software updated.</li>
+<li>Use strong passwords.</li>
+<li>Avoid suspicious files.</li>
+<li>Back up important documents regularly.</li>
+<li>Store backup copies separately.</li>
+<li>Test whether backups can be restored.</li>
+</ol>
+</section>
+<!-- LESSON 24 -->
+<section class="chapter" id="troubleshooting-utilities">
+<h2>24. Troubleshooting Utilities</h2>
+<p>
+                        Troubleshooting utilities help identify
+                        problems involving software, networks,
+                        storage, and hardware.
+                    </p>
+<table>
+<thead>
+<tr><th>Utility</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td>Windows Troubleshooters</td><td>Diagnose selected Windows problems</td></tr>
+<tr><td>Event Viewer</td><td>Displays system and application events</td></tr>
+<tr><td>Device Manager</td><td>Manages hardware and drivers</td></tr>
+<tr><td>System Information</td><td>Shows hardware and software details</td></tr>
+<tr><td>Network Troubleshooter</td><td>Investigates network problems</td></tr>
+<tr><td>Memory Diagnostic</td><td>Checks certain memory problems</td></tr>
+</tbody>
+</table>
+<h3>Basic Troubleshooting Process</h3>
+<ol>
+<li>Identify the problem.</li>
+<li>Gather information.</li>
+<li>Check settings and utilities.</li>
+<li>Identify a possible cause.</li>
+<li>Apply an appropriate solution.</li>
+<li>Test the result.</li>
+<li>Record the solution if necessary.</li>
+</ol>
+</section>
+<!-- LESSON 25 -->
+<section class="chapter" id="practical-applications">
+<h2>25. Practical Applications and Examples</h2>
+<h3>File Organization</h3>
+<p>
+                        Commands help create folders
+                        and organize documents.
+                    </p>
+<pre><code>mkdir Assignments</code></pre>
+<h3>Network Troubleshooting</h3>
+<pre><code>ipconfig
+ping example.com</code></pre>
+<h3>Monitoring Computer Performance</h3>
+<p>
+                        Task Manager helps identify programs
+                        consuming CPU and memory.
+                    </p>
+<h3>System Maintenance</h3>
+<p>
+                        Disk utilities help inspect storage
+                        and identify unnecessary files.
+                    </p>
+<h3>Software Development</h3>
+<pre><code>python --version</code></pre>
+<p>
+                        This displays the Python version when Python
+                        is available through the command line.
+                    </p>
+<h3>System Administration</h3>
+<p>
+                        Administrators use PowerShell and Linux
+                        shells to manage services, accounts,
+                        files, and configurations.
+                    </p>
+</section>
+<!-- LESSON 26 -->
+<section class="chapter" id="summary-review-references">
+<h2>26. Summary and Review</h2>
+<p>
+                        Command-line interfaces provide direct access
+                        to operating system functions. They support
+                        file management, networking, scripting,
+                        troubleshooting, and administration.
+                    </p>
+<p>
+                        System utilities help maintain computer
+                        reliability, security, and performance.
+                        Understanding both tools is valuable for
+                        IT students and professionals.
+                    </p>
+<h3>Review Questions</h3>
+<ol>
+<li>What is a command-line interface?</li>
+<li>How does CLI differ from GUI?</li>
+<li>What is the purpose of PowerShell?</li>
+<li>How are files managed using Linux commands?</li>
+<li>Why are system utilities important?</li>
+<li>Which tools help monitor performance?</li>
+<li>How can network commands assist troubleshooting?</li>
+<li>Why should deletion commands be used carefully?</li>
+</ol>
+<p>
+                        Continue to the Knowledge Assessment Quiz
+                        to test your understanding.
+                    </p>
+</section>
+</div>
+<!-- =========================
+                 KNOWLEDGE ASSESSMENT QUIZ
+            ========================== -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+                    Test your understanding of Command-Line
+                    Interfaces and System Utilities.
+                    Answer all 30 questions before submitting.
+                </p>
+<div class="example-box">
+<strong>Assessment Information</strong>
+<p>Total Questions: 30</p>
+<p>Passing Percentage: 75%</p>
+<p>Minimum Passing Score: 23 out of 30</p>
+</div>
+<p aria-live="polite" id="quizProgress">
+                    0 of 30 answered
+                </p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+                        Submit Quiz
+                    </button>
+<button hidden="" id="retryQuiz" type="button">
+                        Try Again
+                    </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult">
+</div>
+</section>
+<footer class="page-footer">
+                End of Command-Line Interfaces and System Utilities
+                · CodeVerse Digital Library
+            </footer>
+</main>
+</div>
+<!-- =========================
+         JAVASCRIPT
+    ========================== -->
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* MOBILE NAVIGATION */
+
+            const menuToggle = document.getElementById("menuToggle");
+            const navLinks = document.getElementById("navLinks");
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener("click", function () {
+                    const opened = navLinks.classList.toggle("show");
+                    menuToggle.setAttribute("aria-expanded", String(opened));
+                });
+
+                navLinks.querySelectorAll("a").forEach(function (link) {
+                    link.addEventListener("click", function () {
+                        navLinks.classList.remove("show");
+                        menuToggle.setAttribute("aria-expanded", "false");
+                    });
+                });
+            }
+
+            /* SAFE LOCAL STORAGE */
+
+            function getSetting(key, fallback) {
+                try {
+                    return localStorage.getItem(key) || fallback;
+                } catch (error) {
+                    return fallback;
+                }
+            }
+
+            function saveSetting(key, value) {
+                try {
+                    localStorage.setItem(key, value);
+                } catch (error) {
+                    // Continue without persistent storage.
+                }
+            }
+
+            /* DARK MODE */
+
+            const themeToggle = document.getElementById("themeToggle");
+            const themeIcon = document.getElementById("themeIcon");
+
+            function applyTheme(theme) {
+                const dark = theme === "dark";
+
+                document.body.classList.toggle("dark-mode", dark);
+                themeIcon.textContent = dark ? "☀" : "☾";
+                themeToggle.setAttribute("aria-pressed", String(dark));
+            }
+
+            applyTheme(getSetting("readerTheme", "light"));
+
+            themeToggle.addEventListener("click", function () {
+                const dark = !document.body.classList.contains("dark-mode");
+                const theme = dark ? "dark" : "light";
+
+                applyTheme(theme);
+                saveSetting("readerTheme", theme);
+            });
+
+            /* FONT CONTROLS */
+
+            const fontSize = document.getElementById("fontSize");
+            const fontFamily = document.getElementById("fontFamily");
+            const readingContent = document.querySelector(".book-content");
+
+            const savedSize = getSetting("readerFontSize", "16px");
+            const savedFamily = getSetting(
+                "readerFontFamily",
+                "'DM Sans', sans-serif"
+            );
+
+            if ([...fontSize.options].some(o => o.value === savedSize)) {
+                fontSize.value = savedSize;
+            }
+
+            if ([...fontFamily.options].some(o => o.value === savedFamily)) {
+                fontFamily.value = savedFamily;
+            }
+
+            function updateReadingStyle() {
+                readingContent.style.fontSize = fontSize.value;
+                readingContent.style.fontFamily = fontFamily.value;
+            }
+
+            fontSize.addEventListener("change", function () {
+                saveSetting("readerFontSize", fontSize.value);
+                updateReadingStyle();
+            });
+
+            fontFamily.addEventListener("change", function () {
+                saveSetting("readerFontFamily", fontFamily.value);
+                updateReadingStyle();
+            });
+
+            updateReadingStyle();
+
+            /* TABLE OF CONTENTS */
+
+            const tocLinks = document.querySelectorAll('#tocNav a[href^="#"]');
+
+            tocLinks.forEach(function (link) {
+                link.addEventListener("click", function () {
+                    tocLinks.forEach(a => a.classList.remove("active"));
+                    link.classList.add("active");
+                });
+            });
+
+            /* QUIZ ELEMENTS */
+
+            const quizContainer = document.getElementById("quizQuestions");
+            const quizProgress = document.getElementById("quizProgress");
+            const submitQuiz = document.getElementById("submitQuiz");
+            const retryQuiz = document.getElementById("retryQuiz");
+            const quizResult = document.getElementById("quizResult");
+
+            /* 30 QUIZ QUESTIONS */
+
+            const questions = [
+                {
+                    question: "What is a Command-Line Interface?",
+                    options: [
+                        "A text-based method of interacting with a computer",
+                        "A graphical desktop environment",
+                        "A computer storage device",
+                        "A network communication cable"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which command displays files and folders in Windows CMD?",
+                    options: ["pwd", "dir", "grep", "touch"],
+                    answer: 1
+                },
+                {
+                    question: "Which command-line environment became popular with personal computers in the 1980s?",
+                    options: ["Zsh", "PowerShell", "DOS", "Bash"],
+                    answer: 2
+                },
+                {
+                    question: "What component interprets commands entered in a terminal?",
+                    options: [
+                        "Graphics driver",
+                        "Disk controller",
+                        "Display adapter",
+                        "Shell"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "In the command 'dir /s C:\\Users\\Student\\Documents', what does '/s' represent?",
+                    options: [
+                        "An option",
+                        "A file extension",
+                        "A directory name",
+                        "A command interpreter"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which statement correctly describes a GUI?",
+                    options: [
+                        "It requires only typed commands",
+                        "It uses visual controls such as icons and menus",
+                        "It cannot manage files",
+                        "It operates only on Linux"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which shell is widely used on Linux systems?",
+                    options: ["CMD", "DiskPart", "Bash", "Task Manager"],
+                    answer: 2
+                },
+                {
+                    question: "Which Windows CMD command clears the command window?",
+                    options: ["cd", "copy", "help", "cls"],
+                    answer: 3
+                },
+                {
+                    question: "Which PowerShell command lists running processes?",
+                    options: [
+                        "Get-Process",
+                        "Get-Location",
+                        "New-Item",
+                        "Clear-Host"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which Linux command displays the current working directory?",
+                    options: ["ls", "pwd", "mv", "cat"],
+                    answer: 1
+                },
+                {
+                    question: "Which command moves to the parent directory in Windows CMD and Linux Bash?",
+                    options: ["cd /", "cd Documents", "cd ..", "mkdir .."],
+                    answer: 2
+                },
+                {
+                    question: "Which Linux command copies a file?",
+                    options: ["rm", "mv", "touch", "cp"],
+                    answer: 3
+                },
+                {
+                    question: "Which Windows command searches for text inside files?",
+                    options: ["findstr", "tasklist", "hostname", "diskpart"],
+                    answer: 0
+                },
+                {
+                    question: "What does the Windows 'tasklist' command display?",
+                    options: [
+                        "Available disk partitions",
+                        "Running processes",
+                        "Network routes",
+                        "File permissions"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which command displays detailed Windows system information?",
+                    options: ["whoami", "netstat", "systeminfo", "mkdir"],
+                    answer: 2
+                },
+                {
+                    question: "Which command is commonly used to test whether a network destination responds?",
+                    options: ["chkdsk", "chmod", "hostname", "ping"],
+                    answer: 3
+                },
+                {
+                    question: "Which command queries DNS information?",
+                    options: ["nslookup", "taskkill", "Get-Volume", "rmdir"],
+                    answer: 0
+                },
+                {
+                    question: "Which Linux command displays available file system space in human-readable form?",
+                    options: ["du -sh", "df -h", "ls -l", "uname -a"],
+                    answer: 1
+                },
+                {
+                    question: "Which Windows utility manages disks and partitions?",
+                    options: ["Get-Help", "Task Manager", "diskpart", "findstr"],
+                    answer: 2
+                },
+                {
+                    question: "Which Linux command changes file permissions?",
+                    options: ["chown", "whoami", "grep", "chmod"],
+                    answer: 3
+                },
+                {
+                    question: "What is the main purpose of shell scripting?",
+                    options: [
+                        "Automating repeated command-line tasks",
+                        "Replacing computer memory",
+                        "Displaying graphical desktop icons",
+                        "Installing physical storage devices"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What are system utilities primarily designed to do?",
+                    options: [
+                        "Create computer hardware",
+                        "Maintain, manage, protect, and monitor systems",
+                        "Replace operating systems",
+                        "Convert all programs into scripts"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which type of utility creates copies of important files for recovery?",
+                    options: [
+                        "Compression utility",
+                        "Monitoring utility",
+                        "Backup utility",
+                        "Disk partitioning utility"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which Windows utility can remove selected unnecessary files?",
+                    options: [
+                        "Device Manager",
+                        "Event Viewer",
+                        "Resource Monitor",
+                        "Disk Cleanup"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which Windows utility shows running applications and resource usage?",
+                    options: [
+                        "Task Manager",
+                        "File History",
+                        "Disk Management",
+                        "Memory Diagnostic"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which utility is used to track system performance through counters?",
+                    options: [
+                        "File Explorer",
+                        "Performance Monitor",
+                        "Disk Cleanup",
+                        "Windows Backup"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which security utility helps control network traffic?",
+                    options: [
+                        "File History",
+                        "Disk Cleanup",
+                        "Firewall",
+                        "Task Manager"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which Windows utility displays system and application events for troubleshooting?",
+                    options: [
+                        "Storage Settings",
+                        "File Explorer",
+                        "Windows Backup",
+                        "Event Viewer"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "What should be done after applying a troubleshooting solution?",
+                    options: [
+                        "Test whether the problem has been resolved",
+                        "Immediately format the storage drive",
+                        "Disable all system utilities",
+                        "Delete the troubleshooting records"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which command displays the installed Python version when Python is available?",
+                    options: [
+                        "python --install",
+                        "python --version",
+                        "python --remove",
+                        "python --network"
+                    ],
+                    answer: 1
+                }
+            ];
+
+            /* QUIZ STATE */
+
+            let submitted = false;
+
+            /* LOAD QUIZ */
+
+            function loadQuiz() {
+                submitted = false;
+                quizContainer.innerHTML = "";
+
+                questions.forEach(function (item, index) {
+                    const questionBox = document.createElement("div");
+                    questionBox.className = "quiz-question";
+                    questionBox.id = "question-" + index;
+
+                    const heading = document.createElement("h3");
+                    heading.textContent = `${index + 1}. ${item.question}`;
+                    questionBox.appendChild(heading);
+
+                    item.options.forEach(function (option, optionIndex) {
+                        const label = document.createElement("label");
+                        label.className = "quiz-option";
+
+                        const radio = document.createElement("input");
+                        radio.type = "radio";
+                        radio.name = "question-" + index;
+                        radio.value = String(optionIndex);
+
+                        const text = document.createElement("span");
+                        text.textContent =
+                            String.fromCharCode(65 + optionIndex) +
+                            ". " + option;
+
+                        label.appendChild(radio);
+                        label.appendChild(text);
+                        questionBox.appendChild(label);
+                    });
+
+                    const feedback = document.createElement("p");
+                    feedback.className = "quiz-feedback";
+                    feedback.hidden = true;
+                    questionBox.appendChild(feedback);
+
+                    quizContainer.appendChild(questionBox);
+                });
+
+                quizResult.hidden = true;
+                quizResult.replaceChildren();
+                quizResult.classList.remove("passed", "failed");
+
+                submitQuiz.hidden = false;
+                retryQuiz.hidden = true;
+
+                updateProgress();
+            }
+
+            /* UPDATE PROGRESS */
+
+            function updateProgress() {
+                let answered = 0;
+
+                questions.forEach(function (item, index) {
+                    const selected = document.querySelector(
+                        `input[name="question-${index}"]:checked`
+                    );
+
+                    if (selected) answered++;
+                });
+
+                quizProgress.textContent =
+                    `${answered} of ${questions.length} answered`;
+            }
+
+            quizContainer.addEventListener("change", updateProgress);
+
+            /* SUBMIT QUIZ */
+
+            submitQuiz.addEventListener("click", function () {
+                if (submitted) return;
+
+                let score = 0;
+                let firstUnanswered = -1;
+
+                questions.forEach(function (item, index) {
+                    const selected = document.querySelector(
+                        `input[name="question-${index}"]:checked`
+                    );
+
+                    if (!selected && firstUnanswered === -1) {
+                        firstUnanswered = index;
+                    }
+                });
+
+                if (firstUnanswered !== -1) {
+                    alert("Please answer all 30 questions before submitting.");
+
+                    document.getElementById(
+                        "question-" + firstUnanswered
+                    ).scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                    return;
+                }
+
+                submitted = true;
+
+                questions.forEach(function (item, index) {
+                    const selected = document.querySelector(
+                        `input[name="question-${index}"]:checked`
+                    );
+
+                    const selectedAnswer = Number(selected.value);
+                    const questionBox = document.getElementById(
+                        "question-" + index
+                    );
+
+                    if (selectedAnswer === item.answer) {
+                        score++;
+                    }
+
+                    const labels = questionBox.querySelectorAll(".quiz-option");
+
+                    labels.forEach(function (label, optionIndex) {
+                        const radio = label.querySelector("input");
+                        radio.disabled = true;
+
+                        if (optionIndex === item.answer) {
+                            label.classList.add("correct");
+                        } else if (optionIndex === selectedAnswer) {
+                            label.classList.add("incorrect");
+                        }
+                    });
+
+                    const feedback = questionBox.querySelector(".quiz-feedback");
+                    feedback.hidden = false;
+
+                    feedback.textContent =
+                        selectedAnswer === item.answer
+                            ? "Correct answer!"
+                            : "Correct answer: " + item.options[item.answer];
+                });
+
+                /* CALCULATE RESULTS */
+
+                const percentage = (score / questions.length) * 100;
+                const minimumScore = Math.ceil(questions.length * 0.75);
+                const passed = score >= minimumScore;
+
+                const heading = document.createElement("h3");
+                heading.textContent = passed
+                    ? "Congratulations! You Passed!"
+                    : "Quiz Not Passed";
+
+                const scoreText = document.createElement("h2");
+                scoreText.textContent = `${score} / ${questions.length}`;
+
+                const percentageText = document.createElement("p");
+                percentageText.textContent = `${percentage.toFixed(2)}%`;
+
+                const passingText = document.createElement("p");
+                passingText.textContent =
+                    `Passing Score: ${minimumScore} / ${questions.length}`;
+
+                const messageText = document.createElement("p");
+                messageText.textContent = passed
+                    ? "Excellent work! You successfully completed the assessment."
+                    : "Review your incorrect answers and try again.";
+
+                quizResult.replaceChildren(
+                    heading,
+                    scoreText,
+                    percentageText,
+                    passingText,
+                    messageText
+                );
+
+                quizResult.classList.add(passed ? "passed" : "failed");
+                quizResult.hidden = false;
+
+                submitQuiz.hidden = true;
+                retryQuiz.hidden = false;
+
+                quizResult.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            });
+
+            /* RETRY QUIZ */
+
+            retryQuiz.addEventListener("click", function () {
+                loadQuiz();
+
+                document.getElementById("quiz").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            });
+
+            /* INITIALIZE */
+
+            loadQuiz();
+
+        });
+    </script>
+</body>
+</html>

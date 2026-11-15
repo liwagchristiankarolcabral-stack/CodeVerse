@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head><title>Forms and Input Validation | CodeVerse</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--primary:#3157a4;--primary-dark:#24427f;--background:#f5f7fc;--surface:#fff;--text:#202b40;--muted:#68768b;--border:#e1e7f0;--shadow:0 10px 32px rgba(24,44,86,.08);--code-background:#eef3fa}
+body.dark-mode{--primary:#9dbbff;--primary-dark:#bed0ff;--background:#111827;--surface:#1d293b;--text:#eaf0fa;--muted:#b2c0d3;--border:#37465a;--shadow:0 10px 32px rgba(0,0,0,.25);--code-background:#152033}
+html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--background);color:var(--text);font-family:'DM Sans',Arial,sans-serif;line-height:1.75;transition:background .25s,color .25s}body,body *{box-sizing:border-box}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--primary);outline-offset:3px}
+.navbar{min-height:76px;padding:12px max(20px,calc((100vw - 1380px)/2));display:flex;align-items:center;gap:24px;justify-content:space-between;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:30;box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:800;text-decoration:none;color:var(--text);white-space:nowrap}.site-logo{width:42px;height:42px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:25px}.nav-links a{text-decoration:none;font-weight:700;color:var(--muted)}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions,#accountActions{display:flex;align-items:center;gap:10px}.icon-btn,.menu-toggle{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:7px 12px;border-radius:10px;font-size:20px}.menu-toggle{display:none}.login-btn,.signup-btn{font-size:14px;padding:9px 14px;border-radius:9px;text-decoration:none;font-weight:700;white-space:nowrap}.login-btn{color:var(--primary);border:1px solid var(--border)}.signup-btn{background:#3157a4;color:white}
+.topbar{max-width:1380px;margin:auto;padding:16px 22px}.back-link{text-decoration:none;font-weight:700}.reading-controls{display:flex;justify-content:flex-end;gap:16px;flex-wrap:wrap;max-width:1380px;margin:0 auto 16px;padding:0 22px}.control-group{display:flex;align-items:center;gap:9px}.control-group label{font-weight:700;font-size:13px;color:var(--muted)}.control-group select{border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);padding:9px}
+.layout{max-width:1380px;margin:0 auto;padding:0 22px 48px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:24px;align-items:start}.toc{position:sticky;top:94px;max-height:calc(100vh - 112px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{font-size:17px;margin:0 0 12px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc a{padding:9px 11px;border-radius:8px;text-decoration:none;font-size:13px;color:var(--muted);line-height:1.45}.toc a:hover,.toc a.current{background:var(--code-background);color:var(--primary);font-weight:700}main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--border);border-radius:17px;box-shadow:var(--shadow);padding:clamp(20px,4vw,36px);margin-bottom:22px}.book-header .eyebrow{color:var(--primary);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.book-header h1{font-size:clamp(26px,4vw,39px);line-height:1.2;margin:13px 0}.book-header p{color:var(--muted);margin-bottom:0}.chapter{scroll-margin-top:98px}.chapter h2{font-size:clamp(21px,3vw,28px);line-height:1.3;margin:0 0 18px;color:var(--primary)}.chapter h3{font-size:1.15em;margin:24px 0 9px}.chapter p{margin:10px 0 15px}.chapter li{margin:6px 0}.chapter ul,.chapter ol{padding-left:25px}.chapter code{font-family:Consolas,'Courier New',monospace}.chapter p code,.chapter li code,.chapter td code{background:var(--code-background);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.code-example{margin:16px 0;background:var(--code-background);border:1px solid var(--border);border-radius:12px;overflow-x:auto}.code-example pre{padding:18px;margin:0;overflow-x:auto;line-height:1.6;white-space:pre}.code-example code{color:var(--text);font-size:13px}.lesson-table{width:100%;border-collapse:collapse;display:block;overflow-x:auto;margin:16px 0}.lesson-table th,.lesson-table td{border:1px solid var(--border);padding:12px 15px;text-align:left;min-width:130px}.lesson-table th{background:var(--code-background);color:var(--text)}.page-footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
+#quizProgress{padding:12px 16px;border-radius:9px;background:var(--code-background);font-weight:700;margin:14px 0}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:18px;margin:16px 0}.quiz-question h3{margin:0 0 15px}.quiz-option{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--border);border-radius:9px;margin:8px 0;cursor:pointer;background:var(--background)}.quiz-option input{margin-top:6px;accent-color:#3157a4}.quiz-option.correct{background:rgba(38,166,104,.13);border-color:#26a668}.quiz-option.incorrect{background:rgba(215,70,70,.13);border-color:#d74646}.quiz-feedback{font-weight:700;color:var(--primary)}.quiz-actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.quiz-actions button{padding:12px 20px;border-radius:9px;border:1px solid var(--border);font-weight:700;background:#3157a4;color:white}#retryQuiz{background:var(--code-background);color:var(--text)}#quizResult{background:var(--code-background);padding:24px;border-radius:12px;text-align:center;border:1px solid var(--border)}#quizResult h2{font-size:35px} [hidden]{display:none!important}
+@media(max-width:1050px){.layout{grid-template-columns:230px minmax(0,1fr)}.navbar{gap:12px}.nav-links{gap:12px}}
+@media(max-width:800px){.navbar{flex-wrap:wrap}.menu-toggle{display:block;order:3}.nav-actions{margin-left:auto}.nav-links{display:none;order:4;width:100%;flex-direction:column;align-items:stretch;padding:12px;border-top:1px solid var(--border)}.nav-links.show{display:flex}.layout{grid-template-columns:minmax(0,1fr)}.toc{position:relative;top:auto;max-height:240px}.reading-controls{justify-content:flex-start}}
+@media(max-width:480px){.navbar{padding:12px}.logo{font-size:19px}.site-logo{width:34px;height:34px}.login-btn,.signup-btn{padding:6px 8px;font-size:12px}.layout{padding:0 12px 32px}.book-header,.chapter{padding:18px}.control-group{width:100%;justify-content:space-between}.control-group select{width:58%}.quiz-actions button{width:100%}}
+</style>
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a class="active" href="/index.html">Home</a>
+<a href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- Account buttons will be displayed by JavaScript -->
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav>
+<!-- HTML INTRODUCTION -->
+<a href="#your-first-form">Your first form</a>
+<a href="#what-are-web-forms">
+        What are web forms?
+    </a>
+<a href="#designing-your-form">
+        Designing your form
+    </a>
+<a href="#implementing-form-html">
+        Implementing our form HTML
+    </a>
+<a href="#form-element">
+        The &lt;form&gt; element
+    </a>
+<a href="#label-input-textarea">
+        The &lt;label&gt;, &lt;input&gt;, and &lt;textarea&gt; elements
+    </a>
+<a href="#button-element">
+        The &lt;button&gt; element
+    </a>
+<a href="#basic-form-styling">
+        Basic form styling
+    </a>
+<a href="#sending-form-data">
+        Sending form data to your web server
+    </a>
+<a href="#first-form-summary">
+        Summary
+    </a>
+<a href="#quiz">
+        Knowledge Assessment Quiz
+    </a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Forms and Input Validation</h1>
+<p>Learn how to create interactive web forms and validate user inputs to ensure accurate and secure data submission.</p>
+</header>
+
+
+<section class="chapter" id="your-first-form">
+<h2>Your first form</h2>
+<p>
+        HTML forms are an important part of web development.
+        They allow users to enter information and interact
+        with websites and web applications.
+    </p>
+<p>
+        Forms are commonly used for registration, login,
+        contact messages, surveys, searches, and collecting
+        other types of user information.
+    </p>
+<p>
+        In this lesson, you will learn how to design a
+        simple contact form, create its HTML structure,
+        apply basic CSS styling, and understand how
+        form data is sent to a web server.
+    </p>
+<h3>Learning Objectives</h3>
+<ul>
+<li>Understand what web forms are and how they work.</li>
+<li>Learn how to plan and design a simple form.</li>
+<li>Understand the form, label, input, textarea, and button elements.</li>
+<li>Apply basic CSS styling to form controls.</li>
+<li>Understand how form data is submitted to a server.</li>
+</ul>
+<h3>Prerequisites</h3>
+<p>
+        A basic understanding of HTML elements,
+        attributes, and document structure is recommended.
+    </p>
+</section>
+<!-- ==========================================
+     WHAT ARE WEB FORMS?
+========================================== -->
+<section class="chapter" id="what-are-web-forms">
+<h2>What are web forms?</h2>
+<p>
+        Web forms provide a way for users to enter
+        information into a website or application.
+        The information may be sent to a server for
+        processing and storage or used directly
+        within the webpage.
+    </p>
+<p>
+        Forms contain interactive elements called
+        form controls. These controls allow users
+        to provide different types of information.
+    </p>
+<h3>Common Form Controls</h3>
+<ul>
+<li>
+<strong>Text Fields:</strong>
+            Allow users to enter a single line of text.
+        </li>
+<li>
+<strong>Text Areas:</strong>
+            Allow users to enter multiple lines of text.
+        </li>
+<li>
+<strong>Dropdown Lists:</strong>
+            Allow users to choose from predefined options.
+        </li>
+<li>
+<strong>Checkboxes:</strong>
+            Allow users to select or deselect options.
+        </li>
+<li>
+<strong>Radio Buttons:</strong>
+            Allow users to select one option from a group.
+        </li>
+<li>
+<strong>Buttons:</strong>
+            Allow users to submit, reset, or interact
+            with a form.
+        </li>
+</ul>
+<h3>Form Validation</h3>
+<p>
+        Form controls can include validation rules
+        to help ensure that users provide information
+        in the expected format.
+    </p>
+<p>
+        For example, an email field can check whether
+        the entered text resembles a valid email address.
+    </p>
+<div class="code-example">
+<pre><code>&lt;input type="email" required&gt;</code></pre>
+</div>
+<p>
+        The <code>required</code> attribute indicates
+        that the field must be completed before the
+        form can be submitted normally.
+    </p>
+<p>
+        Form labels are also important because they
+        help users understand the purpose of each
+        control and improve accessibility.
+    </p>
+</section>
+<!-- ==========================================
+     DESIGNING YOUR FORM
+========================================== -->
+<section class="chapter" id="designing-your-form">
+<h2>Designing your form</h2>
+<p>
+        Before writing the HTML code, it is important
+        to plan what information the form should collect.
+    </p>
+<p>
+        Creating a simple sketch or mockup can help
+        developers decide which controls are needed
+        and how the form should be organized.
+    </p>
+<h3>Keep Forms Simple</h3>
+<p>
+        A form that requests too much information
+        can discourage users from completing it.
+        Good form design focuses on collecting
+        only the necessary information.
+    </p>
+<h3>Example: Contact Form</h3>
+<p>
+        In this lesson, we will create a simple
+        contact form containing three fields
+        and one submission button.
+    </p>
+<ul>
+<li>Name — identifies the person sending the message.</li>
+<li>Email — provides an address for communication.</li>
+<li>Message — contains the information the user wants to send.</li>
+<li>Submit Button — sends the completed form data.</li>
+</ul>
+<h3>Contact Form Preview</h3>
+<div style="
+        max-width: 480px;
+        margin: 20px auto;
+        padding: 24px;
+        background: var(--surface, #ffffff);
+        border: 1px solid var(--border, #e6eaf1);
+        border-radius: 12px;
+        color: var(--text, #202b40);
+    ">
+<h3 style="margin-top: 0;">Contact Us</h3>
+<p>
+<strong>Name:</strong>
+<span style="color: var(--muted, #758096);">
+                Your name
+            </span>
+</p>
+<p>
+<strong>Email:</strong>
+<span style="color: var(--muted, #758096);">
+                Your email address
+            </span>
+</p>
+<p>
+<strong>Message:</strong>
+<span style="color: var(--muted, #758096);">
+                Your message
+            </span>
+</p>
+<button disabled="" type="button">
+            Send your message
+        </button>
+<p>
+<small>
+                This is a visual illustration,
+                not a working contact form.
+            </small>
+</p>
+</div>
+<h3>Important Design Considerations</h3>
+<ul>
+<li>Use clear and descriptive labels.</li>
+<li>Arrange related fields logically.</li>
+<li>Make form controls easy to identify.</li>
+<li>Avoid requesting unnecessary information.</li>
+<li>Ensure that forms are accessible and usable.</li>
+</ul>
+</section>
+<!-- ==========================================
+     IMPLEMENTING OUR FORM HTML
+========================================== -->
+<section class="chapter" id="implementing-form-html">
+<h2>Implementing our form HTML</h2>
+<p>
+        After planning the form, the next step is
+        to create its structure using HTML.
+    </p>
+<p>
+        The contact form will use five important
+        HTML elements.
+    </p>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>HTML Element</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;form&gt;</code></td>
+<td>Defines the form container.</td>
+</tr>
+<tr>
+<td><code>&lt;label&gt;</code></td>
+<td>Describes a form control.</td>
+</tr>
+<tr>
+<td><code>&lt;input&gt;</code></td>
+<td>Creates input fields and other controls.</td>
+</tr>
+<tr>
+<td><code>&lt;textarea&gt;</code></td>
+<td>Creates a multiline text field.</td>
+</tr>
+<tr>
+<td><code>&lt;button&gt;</code></td>
+<td>Creates an interactive button.</td>
+</tr>
+</tbody>
+</table>
+<p>
+        These elements work together to create
+        a functional HTML form.
+    </p>
+</section>
+<!-- ==========================================
+     THE FORM ELEMENT
+========================================== -->
+<section class="chapter" id="form-element">
+<h2>The &lt;form&gt; element</h2>
+<p>
+        The <code>&lt;form&gt;</code> element defines
+        a section of a webpage that contains
+        interactive form controls.
+    </p>
+<p>
+        It acts as the main container for
+        collecting and submitting user information.
+    </p>
+<h3>Basic Form Syntax</h3>
+<div class="code-example">
+<pre><code>&lt;form action="/my-handling-form-page" method="post"&gt;
+
+    &lt;!-- Form controls go here --&gt;
+
+&lt;/form&gt;</code></pre>
+</div>
+<h3>Important Form Attributes</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td>
+                    Specifies the URL where the form data
+                    will be sent.
+                </td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>
+                    Specifies the HTTP method used
+                    to submit the form data.
+                </td>
+</tr>
+</tbody>
+</table>
+<h3>The action Attribute</h3>
+<p>
+        The <code>action</code> attribute identifies
+        the destination that will receive the
+        submitted form information.
+    </p>
+<div class="code-example">
+<pre><code>&lt;form action="/contact" method="post"&gt;
+    ...
+&lt;/form&gt;</code></pre>
+</div>
+<p>
+        In this example, the form sends its data
+        to the <code>/contact</code> endpoint.
+    </p>
+<h3>The method Attribute</h3>
+<p>
+        The <code>method</code> attribute determines
+        which HTTP method is used when submitting
+        the form.
+    </p>
+<ul>
+<li>
+<strong>GET:</strong>
+            Sends form values through the URL query string.
+        </li>
+<li>
+<strong>POST:</strong>
+            Sends form values in the HTTP request body.
+        </li>
+</ul>
+<p>
+        Contact forms commonly use POST because
+        the submitted information is intended
+        to be processed by the server.
+    </p>
+</section>
+<!-- ==========================================
+     LABEL INPUT AND TEXTAREA
+========================================== -->
+<section class="chapter" id="label-input-textarea">
+<h2>The &lt;label&gt;, &lt;input&gt;, and &lt;textarea&gt; elements</h2>
+<p>
+        A contact form needs controls for entering
+        a name, email address, and message.
+    </p>
+<p>
+        Each control should have an associated
+        label that clearly describes the information
+        the user is expected to enter.
+    </p>
+<h3>Complete Input Fields Example</h3>
+<div class="code-example">
+<pre><code>&lt;form action="/my-handling-form-page" method="post"&gt;
+
+    &lt;p&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+
+        &lt;input
+            type="text"
+            id="name"
+            name="user_name"
+        &gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;label for="mail"&gt;Email:&lt;/label&gt;
+
+        &lt;input
+            type="email"
+            id="mail"
+            name="user_email"
+        &gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;label for="msg"&gt;Message:&lt;/label&gt;
+
+        &lt;textarea
+            id="msg"
+            name="user_message"
+        &gt;&lt;/textarea&gt;
+    &lt;/p&gt;
+
+&lt;/form&gt;</code></pre>
+</div>
+<h3>The &lt;label&gt; Element</h3>
+<p>
+        The label element provides a text description
+        for a form control.
+    </p>
+<div class="code-example">
+<pre><code>&lt;label for="username"&gt;Username:&lt;/label&gt;
+
+&lt;input
+    type="text"
+    id="username"
+    name="username"
+&gt;</code></pre>
+</div>
+<p>
+        The label's <code>for</code> attribute
+        should match the <code>id</code>
+        of the corresponding form control.
+    </p>
+<h3>Why Labels Are Important</h3>
+<ul>
+<li>They explain the purpose of form controls.</li>
+<li>They improve accessibility for screen reader users.</li>
+<li>Clicking a label can focus its associated input.</li>
+<li>They make forms easier to understand and use.</li>
+</ul>
+<h3>The &lt;input&gt; Element</h3>
+<p>
+        The <code>&lt;input&gt;</code> element
+        creates different types of input controls.
+    </p>
+<p>
+        Its <code>type</code> attribute determines
+        how the control behaves.
+    </p>
+<h3>Text Input</h3>
+<div class="code-example">
+<pre><code>&lt;input type="text" name="user_name"&gt;</code></pre>
+</div>
+<p>
+        The text input type creates a single-line
+        field for entering text.
+    </p>
+<h3>Email Input</h3>
+<div class="code-example">
+<pre><code>&lt;input type="email" name="user_email"&gt;</code></pre>
+</div>
+<p>
+        An email input provides built-in checks
+        for email address formatting.
+        On mobile devices, it can also display
+        a keyboard suited to email entry.
+    </p>
+<h3>The &lt;textarea&gt; Element</h3>
+<p>
+        The <code>&lt;textarea&gt;</code> element
+        creates a field for entering multiple
+        lines of text.
+    </p>
+<div class="code-example">
+<pre><code>&lt;textarea
+    id="message"
+    name="message"
+&gt;&lt;/textarea&gt;</code></pre>
+</div>
+<p>
+        Textareas are commonly used for comments,
+        descriptions, feedback, and messages.
+    </p>
+<h3>Input vs. Textarea</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Input</th>
+<th>Textarea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usually used for single-line text.</td>
+<td>Used for multiline text.</td>
+</tr>
+<tr>
+<td>It is a void element.</td>
+<td>It requires a closing tag.</td>
+</tr>
+<tr>
+<td>Its default value can use the value attribute.</td>
+<td>Its default value is placed between its tags.</td>
+</tr>
+</tbody>
+</table>
+<h3>Default Value for Input</h3>
+<div class="code-example">
+<pre><code>&lt;input
+    type="text"
+    value="John Doe"
+&gt;</code></pre>
+</div>
+<h3>Default Value for Textarea</h3>
+<div class="code-example">
+<pre><code>&lt;textarea&gt;Enter your message here.&lt;/textarea&gt;</code></pre>
+</div>
+<p>
+        The input element uses the value attribute,
+        while the textarea element stores its initial
+        text between the opening and closing tags.
+    </p>
+</section>
+<!-- ==========================================
+     THE BUTTON ELEMENT
+========================================== -->
+<section class="chapter" id="button-element">
+<h2>The &lt;button&gt; element</h2>
+<p>
+        The <code>&lt;button&gt;</code> element
+        creates an interactive button.
+    </p>
+<p>
+        In a contact form, a submit button
+        allows users to send the information
+        they have entered.
+    </p>
+<h3>Submit Button Example</h3>
+<div class="code-example">
+<pre><code>&lt;p class="button"&gt;
+
+    &lt;button type="submit"&gt;
+        Send your message
+    &lt;/button&gt;
+
+&lt;/p&gt;</code></pre>
+</div>
+<h3>Button Types</h3>
+<p>
+        The button element supports three
+        common values for its type attribute.
+    </p>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Button Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>submit</code></td>
+<td>Submits the form data.</td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>Restores form controls to their initial values.</td>
+</tr>
+<tr>
+<td><code>button</code></td>
+<td>Creates a button for custom functionality.</td>
+</tr>
+</tbody>
+</table>
+<h3>Submit Button</h3>
+<div class="code-example">
+<pre><code>&lt;button type="submit"&gt;
+    Submit
+&lt;/button&gt;</code></pre>
+</div>
+<p>
+        A submit button triggers the form
+        submission process.
+    </p>
+<h3>Reset Button</h3>
+<div class="code-example">
+<pre><code>&lt;button type="reset"&gt;
+    Reset
+&lt;/button&gt;</code></pre>
+</div>
+<p>
+        A reset button restores form fields
+        to their default values.
+        Reset buttons should be used carefully
+        because users may accidentally erase
+        information they have entered.
+    </p>
+<h3>Regular Button</h3>
+<div class="code-example">
+<pre><code>&lt;button type="button"&gt;
+    Click Me
+&lt;/button&gt;</code></pre>
+</div>
+<p>
+        A regular button does not submit
+        or reset a form automatically.
+        JavaScript can be used to define
+        its behavior.
+    </p>
+<h3>Button vs. Input Button</h3>
+<div class="code-example">
+<pre><code>&lt;input type="submit" value="Send"&gt;
+
+&lt;button type="submit"&gt;
+    Send
+&lt;/button&gt;</code></pre>
+</div>
+<p>
+        Both examples create submit controls.
+        However, the button element can contain
+        HTML content, while the input element
+        uses its value attribute for its label.
+    </p>
+</section>
+<!-- ==========================================
+     BASIC FORM STYLING
+========================================== -->
+<section class="chapter" id="basic-form-styling">
+<h2>Basic form styling</h2>
+<p>
+        HTML forms work without CSS, but their
+        default appearance may not match
+        the design of a website.
+    </p>
+<p>
+        CSS allows developers to improve the
+        spacing, alignment, borders, typography,
+        and overall presentation of form controls.
+    </p>
+<h3>Adding CSS to a Form</h3>
+<p>
+        CSS can be written inside a style element
+        in the document head or placed in
+        an external stylesheet.
+    </p>
+<div class="code-example">
+<pre><code>&lt;style&gt;
+
+    /* Form CSS goes here */
+
+&lt;/style&gt;</code></pre>
+</div>
+<h3>Styling the Form Container</h3>
+<div class="code-example">
+<pre><code>.demo-contact-form {
+    display: block;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 12px;
+}</code></pre>
+</div>
+<p>
+        The form has a maximum width,
+        centered margins, internal spacing,
+        a border, and rounded corners.
+    </p>
+<h3>Styling Form Labels</h3>
+<div class="code-example">
+<pre><code>.demo-contact-form label {
+    display: inline-block;
+    min-width: 90px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}</code></pre>
+</div>
+<p>
+        This provides consistent spacing
+        and makes the labels easier to read.
+    </p>
+<h3>Styling Input and Textarea</h3>
+<div class="code-example">
+<pre><code>.demo-contact-form input,
+.demo-contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #999999;
+    border-radius: 6px;
+    font: inherit;
+}</code></pre>
+</div>
+<h3>Example Explained</h3>
+<ul>
+<li>
+<code>width: 100%</code> allows controls
+            to fill the available container width.
+        </li>
+<li>
+<code>padding</code> creates space
+            inside the controls.
+        </li>
+<li>
+<code>box-sizing: border-box</code>
+            includes padding and borders
+            within the declared width.
+        </li>
+<li>
+<code>font: inherit</code>
+            makes the controls use the
+            surrounding font settings.
+        </li>
+</ul>
+<h3>Styling Focused Fields</h3>
+<div class="code-example">
+<pre><code>.demo-contact-form input:focus,
+.demo-contact-form textarea:focus {
+    outline: 2px solid #3157a4;
+    outline-offset: 2px;
+}</code></pre>
+</div>
+<p>
+        The <code>:focus</code> pseudo-class
+        applies styling when a control
+        receives keyboard or pointer focus.
+    </p>
+<h3>Styling the Textarea</h3>
+<div class="code-example">
+<pre><code>.demo-contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}</code></pre>
+</div>
+<p>
+        The textarea is given additional height
+        for longer messages.
+        Vertical resizing allows users to
+        expand the text area when needed.
+    </p>
+<h3>Styling the Submit Button</h3>
+<div class="code-example">
+<pre><code>.demo-contact-form button {
+    background-color: #3157a4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.demo-contact-form button:hover {
+    background-color: #24427f;
+}</code></pre>
+</div>
+<h3>Why Form Styling Matters</h3>
+<ul>
+<li>Improves readability and visual consistency.</li>
+<li>Makes form fields easier to recognize.</li>
+<li>Provides clear visual feedback during interaction.</li>
+<li>Helps organize information logically.</li>
+<li>Supports a better overall user experience.</li>
+</ul>
+</section>
+<!-- ==========================================
+     SENDING FORM DATA TO YOUR WEB SERVER
+========================================== -->
+<section class="chapter" id="sending-form-data">
+<h2>Sending form data to your web server</h2>
+<p>
+        After a user completes a form,
+        the collected information can be
+        sent to a web server for processing.
+    </p>
+<p>
+        The form element controls where
+        the information is sent and
+        which HTTP method is used.
+    </p>
+<h3>Form Submission Example</h3>
+<div class="code-example">
+<pre><code>&lt;form action="/my-handling-form-page" method="post"&gt;
+
+    &lt;p&gt;
+        &lt;label for="contact-name"&gt;Name:&lt;/label&gt;
+
+        &lt;input
+            type="text"
+            id="contact-name"
+            name="user_name"
+        &gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;label for="contact-email"&gt;Email:&lt;/label&gt;
+
+        &lt;input
+            type="email"
+            id="contact-email"
+            name="user_email"
+        &gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;label for="contact-message"&gt;Message:&lt;/label&gt;
+
+        &lt;textarea
+            id="contact-message"
+            name="user_message"
+        &gt;&lt;/textarea&gt;
+    &lt;/p&gt;
+
+    &lt;button type="submit"&gt;
+        Send your message
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+</div>
+<h3>The Importance of the name Attribute</h3>
+<p>
+        Each form control that submits data
+        should have a name attribute.
+    </p>
+<p>
+        The browser uses this attribute
+        to identify the information
+        being sent to the server.
+    </p>
+<div class="code-example">
+<pre><code>&lt;input
+    type="text"
+    name="user_name"
+&gt;</code></pre>
+</div>
+<p>
+        In this example, the entered information
+        is associated with the name
+        <code>user_name</code>.
+    </p>
+<h3>Form Data as Name-Value Pairs</h3>
+<p>
+        When a form is submitted, the browser
+        sends the collected values using
+        their corresponding control names.
+    </p>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Example Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_name</td>
+<td>Juan Dela Cruz</td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>juan@example.com</td>
+</tr>
+<tr>
+<td>user_message</td>
+<td>Hello! I would like to ask a question.</td>
+</tr>
+</tbody>
+</table>
+<h3>Example Form Data</h3>
+<div class="code-example">
+<pre><code>user_name=Juan Dela Cruz
+
+user_email=juan@example.com
+
+user_message=Hello! I would like to ask a question.</code></pre>
+</div>
+<p>
+        These values illustrate the information
+        that a server could receive from
+        the contact form.
+    </p>
+<h3>How Form Submission Works</h3>
+<ol>
+<li>The user enters information into the form.</li>
+<li>The user selects the submit button.</li>
+<li>The browser performs applicable form validation.</li>
+<li>The browser sends an HTTP request to the form action URL.</li>
+<li>The server receives the submitted name-value pairs.</li>
+<li>The server processes the data and returns a response.</li>
+</ol>
+<h3>Server-Side Processing</h3>
+<p>
+        A server-side program is responsible
+        for deciding what happens to
+        the submitted information.
+    </p>
+<p>
+        Depending on the application,
+        the server might save the data
+        to a database, send a notification,
+        or perform another operation.
+    </p>
+<p>
+        Server-side processing can be implemented
+        using technologies such as Node.js,
+        PHP, Python, Java, or C#.
+    </p>
+<h3>Important Reminder</h3>
+<p>
+        HTML alone does not store form
+        submissions in a database.
+        A working server endpoint is needed
+        to receive and process the information.
+    </p>
+<p>
+        Client-side validation can improve usability,
+        but the server must also validate submitted data
+        before trusting or storing it.
+    </p>
+</section>
+<!-- ==========================================
+     SUMMARY
+========================================== -->
+<section class="chapter" id="first-form-summary">
+<h2>Summary</h2>
+<p>
+        In this lesson, you learned how
+        to plan, build, and style
+        a simple HTML contact form.
+    </p>
+<p>
+        Web forms are essential tools
+        for collecting information
+        and allowing users to interact
+        with websites and applications.
+    </p>
+<h3>Key Concepts Learned</h3>
+<ul>
+<li>
+<strong>Web Forms:</strong>
+            Allow users to enter and submit information.
+        </li>
+<li>
+<strong>Form Design:</strong>
+            Helps organize controls and improve usability.
+        </li>
+<li>
+<strong>Form Element:</strong>
+            Defines the main container for form controls.
+        </li>
+<li>
+<strong>Label Element:</strong>
+            Provides an accessible description for a control.
+        </li>
+<li>
+<strong>Input Element:</strong>
+            Creates single-line text fields and other controls.
+        </li>
+<li>
+<strong>Textarea Element:</strong>
+            Allows users to enter multiline text.
+        </li>
+<li>
+<strong>Button Element:</strong>
+            Provides submit, reset, and custom button functionality.
+        </li>
+<li>
+<strong>CSS Form Styling:</strong>
+            Improves the presentation of form controls.
+        </li>
+<li>
+<strong>Action Attribute:</strong>
+            Identifies the form submission destination.
+        </li>
+<li>
+<strong>Method Attribute:</strong>
+            Specifies the HTTP method used to submit data.
+        </li>
+<li>
+<strong>Name Attribute:</strong>
+            Identifies the submitted values.
+        </li>
+<li>
+<strong>Server-Side Processing:</strong>
+            Handles the information received from the form.
+        </li>
+</ul>
+<h3>Complete Contact Form Example</h3>
+<div class="code-example">
+<pre><code>&lt;form action="/my-handling-form-page" method="post"&gt;
+
+    &lt;p&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+
+        &lt;input
+            type="text"
+            id="name"
+            name="user_name"
+            required
+        &gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;label for="mail"&gt;Email:&lt;/label&gt;
+
+        &lt;input
+            type="email"
+            id="mail"
+            name="user_email"
+            required
+        &gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;label for="msg"&gt;Message:&lt;/label&gt;
+
+        &lt;textarea
+            id="msg"
+            name="user_message"
+            required
+        &gt;&lt;/textarea&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;button type="submit"&gt;
+            Send your message
+        &lt;/button&gt;
+    &lt;/p&gt;
+
+&lt;/form&gt;</code></pre>
+</div>
+<h3>Final Reminder</h3>
+<p>
+        Building a web form involves more
+        than placing input fields on a page.
+        A good form should be understandable,
+        accessible, appropriately styled,
+        and connected to a reliable
+        submission process.
+    </p>
+<p>
+        Understanding these fundamentals
+        prepares you to build more advanced
+        forms with validation, additional
+        controls, and server-side functionality.
+    </p>
+</section>
+
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>Test your understanding of HTML forms, labels, inputs, textareas, buttons, form styling, and submitting data to a web server.</p>
+<div id="quizProgress">0 of 10 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Forms and Input Validation · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const fontSize = document.getElementById("fontSize");
+    const fontFamily = document.getElementById("fontFamily");
+
+    // Restore saved settings
+    const savedTheme = localStorage.getItem("readerTheme");
+    const savedSize = localStorage.getItem("readerFontSize");
+    const savedFont = localStorage.getItem("readerFontFamily");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (savedSize) {
+        fontSize.value = savedSize;
+    }
+
+    if (savedFont) {
+        fontFamily.value = savedFont;
+    }
+
+    function updateThemeIcon() {
+        themeIcon.textContent =
+            document.body.classList.contains("dark-mode") ? "☀" : "☾";
+    }
+
+    function applyFontSize() {
+        document.querySelectorAll("main .chapter").forEach(chapter => {
+            chapter.style.fontSize = fontSize.value;
+        });
+
+        localStorage.setItem("readerFontSize", fontSize.value);
+    }
+
+    function applyFontFamily() {
+        document.querySelector("main").style.fontFamily = fontFamily.value;
+        localStorage.setItem("readerFontFamily", fontFamily.value);
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "readerTheme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+    });
+
+    fontSize.addEventListener("change", applyFontSize);
+    fontFamily.addEventListener("change", applyFontFamily);
+
+    applyFontSize();
+    applyFontFamily();
+    updateThemeIcon();
+});
+   
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ==========================================
+       CODEVERSE - YOUR FIRST FORM QUIZ
+    ========================================== */
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz || !retryQuiz ||
+        !quizResult || !quizProgress) {
+        console.error("Quiz elements not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What is the main purpose of an HTML form?",
+            options: [
+                "To organize website navigation",
+                "To collect information from users",
+                "To create responsive page layouts",
+                "To apply styles to webpage elements"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which HTML element defines a form container?",
+            options: [
+                "<fieldset>",
+                "<input>",
+                "<form>",
+                "<section>"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which attribute specifies where form data is sent?",
+            options: [
+                "action",
+                "method",
+                "name",
+                "target"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which HTML element provides a description for a form control?",
+            options: [
+                "<span>",
+                "<legend>",
+                "<output>",
+                "<label>"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which input type is intended for entering an email address?",
+            options: [
+                "type=\"text\"",
+                "type=\"email\"",
+                "type=\"password\"",
+                "type=\"search\""
+            ],
+            answer: 1
+        },
+        {
+            question: "Which HTML element allows users to enter multiple lines of text?",
+            options: [
+                "<input>",
+                "<select>",
+                "<textarea>",
+                "<option>"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which button type submits a form?",
+            options: [
+                "submit",
+                "reset",
+                "button",
+                "menu"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which CSS property creates space inside a form control?",
+            options: [
+                "margin",
+                "outline",
+                "gap",
+                "padding"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which form attribute identifies the HTTP method used to submit data?",
+            options: [
+                "action",
+                "method",
+                "enctype",
+                "autocomplete"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which attribute identifies a form control's value in submitted form data?",
+            options: [
+                "id",
+                "class",
+                "name",
+                "placeholder"
+            ],
+            answer: 2
+        }
+    ];
+
+    let quizSubmitted = false;
+
+    /* ==========================================
+       LOAD QUIZ
+    ========================================== */
+
+    function loadQuiz() {
+
+        quizSubmitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = String(optionIndex);
+
+                radio.addEventListener("change", updateProgress);
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+            });
+
+            quizQuestions.appendChild(box);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    /* ==========================================
+       UPDATE QUIZ PROGRESS
+    ========================================== */
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) answered++;
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    /* ==========================================
+       SUBMIT QUIZ
+    ========================================== */
+
+    submitQuiz.addEventListener("click", async function () {
+
+        if (quizSubmitted) return;
+
+        const selections = questions.map((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+        });
+
+        if (selections.includes(null)) {
+            alert("Please answer all questions before submitting.");
+            return;
+        }
+
+        quizSubmitted = true;
+        submitQuiz.disabled = true;
+
+        let score = 0;
+
+        /* ==========================================
+           CHECK ANSWERS
+        ========================================== */
+
+        questions.forEach((item, index) => {
+
+            const box = quizQuestions.children[index];
+            const selectedAnswer = selections[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+        });
+
+        /* ==========================================
+           CALCULATE RESULT
+        ========================================== */
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent work!";
+        } else if (percentage >= 75) {
+            message = "Great job!";
+        } else if (percentage >= 60) {
+            message = "Good effort! Keep reviewing.";
+        } else {
+            message = "Review the chapters and try again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+            <p id="quizSaveStatus" aria-live="polite">
+                Saving quiz result...
+            </p>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        /* ==========================================
+           SAVE RESULT TO CODEVERSE DATABASE
+        ========================================== */
+
+        const saveStatus = document.getElementById("quizSaveStatus");
+
+        try {
+
+            const response = await fetch("/api/quiz-results", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    bookId: 6,
+                    score: score,
+                    totalQuestions: questions.length
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            saveStatus.textContent = data.success
+                ? "Your quiz score has been saved!"
+                : (data.message || "Quiz score could not be saved.");
+
+        } catch (error) {
+
+            console.error("Quiz save error:", error);
+
+            saveStatus.textContent =
+                "Quiz completed, but the score could not be saved.";
+        }
+    });
+
+    /* ==========================================
+       RETRY QUIZ
+    ========================================== */
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    loadQuiz();
+
+});
+</script>
+<script>document.addEventListener("DOMContentLoaded",()=>{const toggle=document.getElementById("menuToggle"),nav=document.getElementById("navLinks");if(toggle&&nav){toggle.setAttribute("aria-expanded","false");toggle.addEventListener("click",()=>{const opened=nav.classList.toggle("show");toggle.setAttribute("aria-expanded",String(opened));});nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("show");toggle.setAttribute("aria-expanded","false");}));}const links=[...document.querySelectorAll('.toc a[href^="#"]')];if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;links.forEach(a=>a.classList.toggle('current',a.getAttribute('href')==='#'+entry.target.id));}},{rootMargin:'-110px 0px -65% 0px'});document.querySelectorAll('section.chapter[id]').forEach(el=>observer.observe(el));}});</script></body></html>

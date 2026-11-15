@@ -1,0 +1,979 @@
+
+/* ==========================================
+   CODEVERSE - INTERNET FUNDAMENTALS
+   MAIN STYLESHEET
+========================================== */
+
+/* ROOT VARIABLES */
+:root {
+    --primary: #3157a4;
+    --primary-dark: #24427f;
+    --background: #f7f9fd;
+    --surface: #ffffff;
+    --text: #202b40;
+    --muted: #758096;
+    --border: #e6eaf1;
+    --shadow: 0 8px 30px rgba(30, 50, 90, .07);
+}
+
+/* GENERAL */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 95px;
+}
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--background);
+    transition: background .3s ease, color .3s ease;
+}
+
+a {
+    color: var(--primary);
+}
+
+/* ==========================================
+   TOP NAVIGATION
+========================================== */
+
+.navbar {
+    height: 82px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background .3s ease, border-color .3s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 25px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.site-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.logo-highlight {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.login-btn,
+.signup-btn {
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-btn {
+    color: var(--text);
+}
+
+.signup-btn {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.menu-toggle {
+    display: none;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* ==========================================
+   TOP BAR
+========================================== */
+
+.topbar {
+    position: sticky;
+    top: 82px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px 7%;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ==========================================
+   READING CONTROLS
+========================================== */
+
+.reading-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 5%;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.control-group select {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* ==========================================
+   MAIN LAYOUT
+========================================== */
+
+.layout {
+    width: min(1200px, 92%);
+    margin: 34px auto 70px;
+    display: grid;
+    grid-template-columns: 245px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+
+/* ==========================================
+   CODEVERSE - SCROLLABLE TABLE OF CONTENTS
+========================================== */
+
+.toc {
+    position: sticky;
+    top: 160px;
+
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--surface);
+}
+
+/* CUSTOM SCROLLBAR - CHROME / EDGE / SAFARI */
+
+.toc::-webkit-scrollbar {
+    width: 7px;
+}
+
+.toc::-webkit-scrollbar-track {
+    background: var(--surface);
+    border-radius: 10px;
+}
+
+.toc::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.toc::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* TABLE OF CONTENTS HEADING */
+
+.toc h2 {
+    margin: 0 0 14px;
+    font-size: 15px;
+    color: var(--text);
+}
+
+/* TABLE OF CONTENTS LINKS */
+
+.toc a {
+    display: block;
+    padding: 7px 0;
+    color: var(--muted);
+    font-size: 12px;
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.toc a:hover,
+.toc a:focus-visible {
+    color: var(--primary);
+}
+
+/* DARK MODE SCROLLBAR */
+
+body.dark-mode .toc {
+    background: var(--surface);
+    border-color: var(--border);
+    scrollbar-color: #8ab4f8 #292929;
+}
+
+body.dark-mode .toc::-webkit-scrollbar-track {
+    background: #292929;
+}
+
+body.dark-mode .toc::-webkit-scrollbar-thumb {
+    background: #8ab4f8;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 850px) {
+    .toc {
+        position: static;
+        max-height: 350px;
+        overflow-y: auto;
+    }
+}
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+main {
+    min-width: 0;
+    color: var(--text);
+}
+
+.book-header {
+    margin-bottom: 22px;
+    padding: 34px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #eaf0fb, #ffffff);
+    border: 1px solid var(--border);
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+h1,
+h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: clamp(30px, 4vw, 43px);
+    color: var(--text);
+}
+
+.book-header p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* ==========================================
+   CHAPTERS
+========================================== */
+
+.chapter {
+    margin: 0 0 18px;
+    padding: 28px clamp(20px, 4vw, 38px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    scroll-margin-top: 180px;
+    color: var(--text);
+}
+
+.chapter h2 {
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 26px;
+    color: var(--text);
+}
+
+.chapter h3 {
+    margin: 24px 0 10px;
+    font-size: 17px;
+    color: var(--text);
+}
+
+.chapter h4 {
+    margin: 18px 0 8px;
+    font-size: 15px;
+    color: var(--text);
+}
+
+.chapter p {
+    color: var(--text);
+    line-height: 1.8;
+}
+
+.chapter ul {
+    padding-left: 22px;
+}
+
+.chapter li {
+    margin: 9px 0;
+    padding-left: 3px;
+    line-height: 1.75;
+    color: var(--text);
+}
+
+/* ==========================================
+   FIGURES AND IMAGES
+========================================== */
+
+.figure {
+    margin: 20px 0;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.figure img {
+    display: block;
+    max-width: 100%;
+    max-height: 430px;
+    margin: auto;
+    object-fit: contain;
+}
+
+.figure figcaption {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.note {
+    padding: 14px 17px;
+    border-left: 4px solid var(--primary);
+    border-radius: 6px;
+    background: #f0f4fc;
+    line-height: 1.7;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.page-footer {
+    padding: 25px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 12px;
+}
+
+/* ==========================================
+   DARK MODE VARIABLES
+========================================== */
+
+body.dark-mode {
+    --primary: #8ab4f8;
+    --primary-dark: #6695e8;
+    --background: #121212;
+    --surface: #1e1e1e;
+    --text: #ffffff;
+    --muted: #bdbdbd;
+    --border: #383838;
+    --shadow: 0 8px 30px rgba(0, 0, 0, .25);
+
+    background: var(--background);
+    color: var(--text);
+}
+
+/* ==========================================
+   DARK MODE - NAVIGATION
+========================================== */
+
+body.dark-mode .navbar,
+body.dark-mode .topbar {
+    background: #1e1e1e;
+    border-color: #383838;
+}
+
+body.dark-mode .logo,
+body.dark-mode .login-btn,
+body.dark-mode .nav-links a,
+body.dark-mode .icon-btn,
+body.dark-mode .menu-toggle {
+    color: #ffffff;
+}
+
+body.dark-mode .logo-highlight,
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-links a.active {
+    color: #8ab4f8;
+}
+
+body.dark-mode .icon-btn {
+    background: #292929;
+    border-color: #444444;
+}
+
+body.dark-mode .signup-btn {
+    color: #ffffff;
+}
+
+body.dark-mode .back-link {
+    background: #3157a4;
+    color: #ffffff;
+}
+
+/* ==========================================
+   DARK MODE - READING CONTROLS
+========================================== */
+
+body.dark-mode .reading-controls,
+body.dark-mode .control-group label {
+    color: #ffffff;
+}
+
+body.dark-mode .control-group select {
+    background: #292929;
+    color: #ffffff;
+    border-color: #555555;
+}
+
+/* ==========================================
+   DARK MODE - TABLE OF CONTENTS
+========================================== */
+
+body.dark-mode .toc {
+    background: #1e1e1e;
+    border-color: #383838;
+}
+
+body.dark-mode .toc h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .toc a {
+    color: #bdbdbd;
+}
+
+body.dark-mode .toc a:hover {
+    color: #8ab4f8;
+}
+
+/* ==========================================
+   DARK MODE - BOOK HEADER
+========================================== */
+
+body.dark-mode .book-header {
+    background: #1e1e1e;
+    border-color: #383838;
+}
+
+body.dark-mode .book-header h1 {
+    color: #ffffff;
+}
+
+body.dark-mode .book-header p {
+    color: #bdbdbd;
+}
+
+body.dark-mode .eyebrow {
+    color: #8ab4f8;
+}
+
+/* ==========================================
+   DARK MODE - CHAPTER TEXT
+========================================== */
+
+body.dark-mode .chapter {
+    background: #1e1e1e;
+    border-color: #383838;
+    color: #ffffff;
+}
+
+body.dark-mode .chapter h2,
+body.dark-mode .chapter h3,
+body.dark-mode .chapter h4,
+body.dark-mode .chapter p,
+body.dark-mode .chapter li,
+body.dark-mode .chapter span {
+    color: #ffffff;
+}
+
+body.dark-mode .chapter h2 {
+    border-color: #383838;
+}
+
+/* ==========================================
+   DARK MODE - FIGURES
+========================================== */
+
+body.dark-mode .figure {
+    background: #292929;
+    border-color: #444444;
+}
+
+body.dark-mode .figure figcaption {
+    color: #bdbdbd;
+}
+
+/* Keep images unchanged in dark mode */
+body.dark-mode .figure img {
+    background: #ffffff;
+}
+
+/* ==========================================
+   DARK MODE - NOTES
+========================================== */
+
+body.dark-mode .note {
+    background: #292929;
+    border-left-color: #8ab4f8;
+    color: #ffffff;
+}
+
+/* ==========================================
+   DARK MODE - FOOTER
+========================================== */
+
+body.dark-mode .page-footer {
+    color: #bdbdbd;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 850px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .toc {
+        position: static;
+    }
+
+    .toc nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 15px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .reading-controls {
+        justify-content: flex-start;
+    }
+
+    .control-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .topbar {
+        padding: 13px 5%;
+    }
+
+    .layout {
+        width: 94%;
+        margin-top: 18px;
+    }
+
+    .book-header {
+        padding: 24px 20px;
+    }
+
+    .chapter {
+        padding: 22px 18px;
+    }
+
+    .toc nav {
+        grid-template-columns: 1fr;
+    }
+
+    .back-link {
+        padding: 9px 11px;
+    }
+
+    .site-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+}
+/* =====================================
+   DARK MODE - TEXT COLOR ONLY
+===================================== */
+
+body.dark-mode {
+    color: #ffffff;
+}
+
+/* General text */
+body.dark-mode,
+body.dark-mode main,
+body.dark-mode main h1,
+body.dark-mode main h2,
+body.dark-mode main h3,
+body.dark-mode main h4,
+body.dark-mode main p,
+body.dark-mode main li,
+body.dark-mode main span {
+    color: #ffffff;
+}
+
+/* Navigation text */
+body.dark-mode .logo,
+body.dark-mode .nav-links a,
+body.dark-mode .login-btn,
+body.dark-mode .menu-toggle {
+    color: #ffffff;
+}
+
+/* Keep highlighted logo text blue */
+body.dark-mode .logo-highlight {
+    color: #8ab4f8;
+}
+
+/* Table of contents */
+body.dark-mode .toc h2,
+body.dark-mode .toc a {
+    color: #ffffff;
+}
+
+/* Reading controls */
+body.dark-mode .control-group label,
+body.dark-mode .control-group select {
+    color: #ffffff;
+}
+
+/* Footer and captions */
+body.dark-mode .page-footer,
+body.dark-mode .figure figcaption {
+    color: #ffffff;
+}
+
+/* Notes */
+body.dark-mode .note {
+    color: #ffffff;
+}
+
+body.dark-mode .chapter p,
+body.dark-mode .chapter p span,
+body.dark-mode .chapter li,
+body.dark-mode .chapter li p {
+    color: #ffffff;
+}
+
+body.dark-mode .chapter p strong,
+body.dark-mode .chapter p b,
+body.dark-mode .chapter p em,
+body.dark-mode .chapter p span {
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   CODEVERSE - KNOWLEDGE ASSESSMENT QUIZ
+========================================== */
+
+#quiz {
+    margin-top: 45px;
+    padding: 35px;
+    background: var(--surface, #ffffff);
+    border: 1px solid var(--border, #e5eaf3);
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(30, 50, 90, 0.08);
+}
+
+#quiz > h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary, #3157a4);
+    margin: 0 0 12px;
+}
+
+#quiz > p {
+    color: var(--muted, #758096);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* PROGRESS */
+
+#quizProgress {
+    display: inline-block;
+    padding: 10px 16px;
+    background: rgba(49, 87, 164, 0.10);
+    color: var(--primary, #3157a4);
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+}
+
+/* QUESTION CARDS */
+
+#quiz .quiz-question {
+    background: var(--background, #f7f9fd);
+    border: 1px solid var(--border, #e5eaf3);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+#quiz .quiz-question h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text, #202b40);
+    margin: 0 0 18px;
+    line-height: 1.6;
+}
+
+/* ANSWER OPTIONS */
+
+#quiz .quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border, #e5eaf3);
+    background: var(--surface, #ffffff);
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--text, #202b40);
+    font-size: 15px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#quiz .quiz-option:hover {
+    border-color: var(--primary, #3157a4);
+    background: rgba(49, 87, 164, 0.06);
+}
+
+#quiz .quiz-option:has(input:checked) {
+    border-color: var(--primary, #3157a4);
+    background: rgba(49, 87, 164, 0.10);
+}
+
+#quiz .quiz-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary, #3157a4);
+    flex-shrink: 0;
+}
+
+/* CORRECT / INCORRECT ANSWERS */
+
+#quiz .quiz-option.correct,
+body.dark-mode #quiz .quiz-option.correct {
+    background: #dcfce7;
+    border-color: #16a34a;
+    color: #166534;
+}
+
+#quiz .quiz-option.incorrect,
+body.dark-mode #quiz .quiz-option.incorrect {
+    background: #fee2e2;
+    border-color: #dc2626;
+    color: #991b1b;
+}
+
+#quiz .quiz-feedback {
+    margin-top: 14px;
+    font-weight: 700;
+    color: var(--text, #202b40);
+}
+
+/* BUTTONS */
+
+#quiz .quiz-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+#quiz #submitQuiz,
+#quiz #retryQuiz {
+    background: var(--primary, #3157a4);
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+#quiz #submitQuiz:hover,
+#quiz #retryQuiz:hover {
+    opacity: 0.85;
+}
+
+/* QUIZ RESULT */
+
+#quiz #quizResult {
+    margin-top: 28px;
+    padding: 30px;
+    text-align: center;
+    background: var(--background, #f7f9fd);
+    border: 1px solid var(--border, #e5eaf3);
+    border-radius: 14px;
+    color: var(--text, #202b40);
+}
+
+#quiz #quizResult h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--primary, #3157a4);
+    margin: 12px 0;
+}
+
+/* HIDDEN ELEMENTS */
+
+#quiz [hidden] {
+    display: none !important;
+}
+
+/* DARK MODE */
+
+body.dark-mode #quiz {
+    background: var(--surface, #1f2937);
+}
+
+body.dark-mode #quiz .quiz-question,
+body.dark-mode #quiz #quizResult {
+    background: var(--background, #111827);
+}
+
+body.dark-mode #quiz .quiz-option {
+    background: var(--surface, #1f2937);
+}
+
+body.dark-mode #quiz .quiz-option:has(input:checked) {
+    border-color: var(--primary, #8baeff);
+}
+
+body.dark-mode #quiz .quiz-option.correct {
+    background: #14532d;
+    color: #dcfce7;
+}
+
+body.dark-mode #quiz .quiz-option.incorrect {
+    background: #7f1d1d;
+    color: #fee2e2;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 600px) {
+    #quiz {
+        padding: 20px 15px;
+    }
+
+    #quiz .quiz-question {
+        padding: 18px 14px;
+    }
+
+    #quiz #submitQuiz,
+    #quiz #retryQuiz {
+        width: 100%;
+    }
+}

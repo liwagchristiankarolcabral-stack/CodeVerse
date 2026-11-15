@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Account | CodeVerse</title>
+<!-- Favicon -->
+<link href="images/logo.png" rel="icon" type="image/png"/>
+<!-- External CSS -->
+<link href="register.css" rel="stylesheet"/>
+</head>
+<body class="register-page" id="top">
+<!-- HEADER -->
+<header class="register-header">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="images/CodeVerseLogo.png"/>
+<span>
+                Code<span class="logo-highlight">Verse</span>
+</span>
+</a>
+<a class="back-home" href="/index.html">
+            ← Back to Home
+        </a>
+</header>
+<!-- REGISTRATION SECTION -->
+<main class="register-container">
+<section class="register-card">
+<!-- ICON -->
+<div class="register-icon">
+<span>📚</span>
+</div>
+<!-- TITLE -->
+<h1>Create Your Account</h1>
+<p class="register-subtitle">
+                Join CodeVerse and explore a world of knowledge.
+            </p>
+<!-- REGISTER FORM -->
+<form id="registerForm">
+<!-- FULL NAME -->
+<div class="form-group">
+<label for="fullName">
+                        Full Name
+                    </label>
+<input autocomplete="name" id="fullName" maxlength="80" minlength="2" name="fullName" placeholder="Enter your full name" required="" type="text"/>
+</div>
+<!-- EMAIL -->
+<div class="form-group">
+<label for="email">
+                        Email Address
+                    </label>
+<input autocomplete="email" id="email" name="email" placeholder="Enter your email address" required="" type="email"/>
+</div>
+<!-- YEAR LEVEL -->
+<div class="form-group">
+<label for="yearLevel">Year Level</label>
+<select id="yearLevel" name="yearLevel" required="">
+<option disabled="" selected="" value="">Select Year Level</option>
+<option value="1st Year">1st Year</option>
+<option value="2nd Year">2nd Year</option>
+<option value="3rd Year">3rd Year</option>
+<option value="4th Year">4th Year</option>
+</select>
+</div>
+<!-- SECTION -->
+<div class="form-group">
+<label for="section">Section</label>
+<input id="section" maxlength="30" name="section" placeholder="Enter your section (e.g., BSIT 1A)" required="" type="text"/>
+</div>
+<!-- GENDER -->
+<div class="form-group">
+<label for="gender">Gender</label>
+<select id="gender" name="gender" required="">
+<option disabled="" selected="" value="">Select Gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Non-binary">Non-binary</option>
+<option value="Prefer not to say">Prefer not to say</option>
+</select>
+</div>
+<!-- PASSWORD -->
+<div class="form-group">
+<label for="password">
+                        Password
+                    </label>
+<div class="password-wrapper">
+<input autocomplete="new-password" id="password" maxlength="72" minlength="10" name="password" placeholder="Create a password" required="" type="password"/>
+<button class="toggle-password" data-target="password" type="button">
+                            Show
+                        </button>
+</div>
+<small class="password-hint">
+                        Use at least 10 characters.
+                    </small>
+</div>
+<!-- CONFIRM PASSWORD -->
+<div class="form-group">
+<label for="confirmPassword">
+                        Confirm Password
+                    </label>
+<div class="password-wrapper">
+<input autocomplete="new-password" id="confirmPassword" maxlength="72" minlength="10" name="confirmPassword" placeholder="Confirm your password" required="" type="password"/>
+<button class="toggle-password" data-target="confirmPassword" type="button">
+                            Show
+                        </button>
+</div>
+</div>
+<!-- TERMS -->
+<div class="terms-container">
+<label for="agreeTerms">
+<input id="agreeTerms" required="" type="checkbox"/>
+<span>
+                            I agree to the
+                            <a href="#" target="_blank">
+                                Terms and Conditions
+                            </a>
+                            and
+                            <a href="#" target="_blank">
+                                Privacy Policy
+                            </a>.
+                        </span>
+</label>
+</div>
+<!-- REGISTER BUTTON -->
+<button class="register-button" id="registerButton" type="submit">
+                    Create Account
+                </button>
+<!-- RESPONSE MESSAGE -->
+<p aria-live="polite" class="register-message" id="registerMessage"></p>
+</form>
+<!-- DIVIDER -->
+<div class="register-divider">
+<span>OR</span>
+</div>
+<!-- LOGIN LINK -->
+<p class="login-link-text">
+
+                Already have an account?
+
+                <a href="/LogIn.html">
+                    Sign In
+                </a>
+</p>
+</section>
+<!-- FOOTER -->
+<footer class="register-footer">
+
+            © 2026 CodeVerse. All Rights Reserved.
+
+        </footer>
+</main>
+<script src="js/register.js"></script>
+</body>
+</html>

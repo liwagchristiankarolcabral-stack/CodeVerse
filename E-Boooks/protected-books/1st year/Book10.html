@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeVerse | Digital E-Book Library</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="/books/css/Authentication.css" rel="stylesheet"/>
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+</style>
+<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a class="active" href="/index.html">Home</a>
+<a href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- Account buttons will be displayed by JavaScript -->
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav></nav>
+<!-- EMERGING TECHNOLOGIES TABLE OF CONTENTS -->
+<a href="#emerging-introduction">Introduction</a>
+<a href="#ai-overview">1. Overview of AI and Emerging Technologies</a>
+<a href="#ai-applications">2. Key Application Domains</a>
+<a href="#ai-references">3. Academic References</a>
+<a href="#programs-processes-introduction">
+    Programs and Processes in Computer Systems
+</a>
+<a href="#program-process-foundations">1. Foundational Definitions</a>
+<a href="#compilation-linking">2. Program Compilation and Linking</a>
+<a href="#process-memory">3. Process Memory Architecture</a>
+<a href="#process-control-block">4. Process Control Block</a>
+<a href="#process-lifecycle">5. Process Lifecycle</a>
+<a href="#cpu-scheduling">6. CPU Scheduling Concepts</a>
+<a href="#scheduling-algorithms">7. CPU Scheduling Algorithms</a>
+<a href="#process-creation">8. Process Creation and Control</a>
+<a href="#threads-multithreading">9. Threads and Multithreading</a>
+<a href="#interprocess-communication">10. Inter-Process Communication</a>
+<a href="#process-synchronization">11. Process Synchronization</a>
+<a href="#deadlocks">12. Deadlocks and Starvation</a>
+<a href="#virtual-memory">13. Virtual Memory and Paging</a>
+<a href="#context-switching">14. Context Switching</a>
+<a href="#process-security">15. System Security and Process Isolation</a>
+<a href="#asynchronous-execution">16. Asynchronous Execution and Signals</a>
+<a href="#containers">17. Containers and Process Isolation</a>
+<a href="#process-monitoring">18. Performance Monitoring and Metrics</a>
+<a href="#quiz">Knowledge Assessment Quiz</a>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Computer Hardware and Software Fundamentals</h1>
+<p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - COMPUTER HISTORY
+     TABLE OF CONTENTS
+========================================== -->
+<main class="book-content">
+<!-- INTRODUCTION -->
+<!-- ==========================================
+ CODEVERSE - EMERGING TECHNOLOGIES,
+ ARTIFICIAL INTELLIGENCE, PROGRAMS & PROCESSES
+========================================== -->
+<section class="chapter" id="emerging-introduction">
+<h1>Emerging Technologies and Artificial Intelligence</h1>
+<p>
+        Emerging technologies are innovative developments
+        transforming how individuals, businesses, and
+        computer systems operate. Artificial intelligence,
+        advanced computing, big data, and connectivity
+        are important components of modern technology.
+    </p>
+</section>
+<section class="chapter" id="ai-overview">
+<h2>1. Overview of AI and Emerging Technologies</h2>
+<p>
+        Artificial Intelligence serves as the brain
+        driving modern technological evolution.
+        It enables computer systems to perform
+        tasks associated with human intelligence.
+    </p>
+<h3>Four Foundational Pillars</h3>
+<ul>
+<li>
+<strong>Artificial Intelligence:</strong>
+            Enables reasoning, perception, and learning
+            through machine learning and neural networks.
+        </li>
+<li>
+<strong>Data and Analytics:</strong>
+            Supplies information used for predictions,
+            automated decisions, and model training.
+        </li>
+<li>
+<strong>Connectivity:</strong>
+            Technologies such as 5G, IoT, cloud computing,
+            and edge computing connect devices and services.
+        </li>
+<li>
+<strong>Advanced Computing:</strong>
+            Quantum computing and blockchain introduce
+            new computational and data-management capabilities.
+        </li>
+</ul>
+</section>
+<section class="chapter" id="ai-applications">
+<h2>2. Key Application Domains</h2>
+<h3>Healthcare and Biometrics</h3>
+<p>
+        AI supports genomic analysis, biometric
+        identification, predictive diagnostics,
+        and personalized healthcare.
+    </p>
+<h3>Autonomous Systems</h3>
+<p>
+        Self-driving vehicles, drones, and automated
+        factories combine computer vision, LIDAR,
+        and real-time sensor processing.
+    </p>
+<h3>Smart Cities and Sustainability</h3>
+<p>
+        Connected sensors and AI systems help optimize
+        energy grids, public transportation,
+        and environmental management.
+    </p>
+<h3>Finance and E-Commerce</h3>
+<p>
+        AI enables fraud detection, algorithmic
+        trading, and personalized recommendations.
+    </p>
+</section>
+<section class="chapter" id="ai-references">
+<h2>3. Academic References and Research Resources</h2>
+<p>
+        The document identifies several sources
+        discussing artificial intelligence,
+        emerging technologies, and their societal impact.
+    </p>
+<ul>
+<li>UNESCO Institute for Information Technologies in Education — AI and Emerging Technologies</li>
+<li>Intelligent Technologies for a Smarter World — Introduction to Artificial Intelligence and Emerging Technologies</li>
+<li>International Journal for Research in Technology and Innovation — Artificial Intelligence and Its Applications</li>
+<li>West, D. M. (2015) — What Happens if Robots Take the Jobs?</li>
+</ul>
+</section>
+<section class="chapter" id="programs-processes-introduction">
+<h1>Programs and Processes in Computer Systems</h1>
+<p>
+        A program is a passive collection of
+        instructions stored on secondary storage,
+        while a process is an active instance
+        of a program executing under operating
+        system management.
+    </p>
+<p>
+        Understanding programs and processes
+        is essential for studying operating systems,
+        CPU scheduling, memory management,
+        concurrency, and computer security.
+    </p>
+</section>
+<section class="chapter" id="program-process-foundations">
+<h2>Section 1: Foundational Definitions</h2>
+<h3>What Is a Program?</h3>
+<p>
+        A computer program consists of instructions
+        written in a programming language and
+        stored as an executable file or other
+        form of executable code.
+    </p>
+<h3>What Is a Process?</h3>
+<p>
+        A process is an executing instance of a program.
+        The operating system assigns resources such as
+        memory, a process identifier, and execution context.
+    </p>
+<h3>Program vs. Process</h3>
+<table>
+<thead>
+<tr>
+<th>Program</th>
+<th>Process</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Passive instructions</td>
+<td>Active execution</td>
+</tr>
+<tr>
+<td>Stored on disk</td>
+<td>Uses RAM and CPU resources</td>
+</tr>
+<tr>
+<td>Exists until deleted</td>
+<td>Exists during execution</td>
+</tr>
+<tr>
+<td>Can launch multiple instances</td>
+<td>Has its own execution state</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="compilation-linking">
+<h2>Section 2: Program Compilation and Linking</h2>
+<p>
+        Compiled programs pass through a toolchain
+        that transforms source code into executable
+        machine instructions.
+    </p>
+<h3>Compilation Pipeline</h3>
+<ol>
+<li><strong>Preprocessing:</strong> Expands macros and includes header files.</li>
+<li><strong>Compilation:</strong> Translates source code into lower-level instructions.</li>
+<li><strong>Assembly:</strong> Converts assembly instructions into machine code.</li>
+<li><strong>Linking:</strong> Combines object files and resolves external references.</li>
+</ol>
+<h3>Static and Dynamic Linking</h3>
+<p>
+        Static linking incorporates library code
+        into an executable, while dynamic linking
+        allows executables to use shared libraries
+        loaded during program execution.
+    </p>
+<h3>Executable Formats</h3>
+<ul>
+<li>ELF — Common in Linux and Unix systems</li>
+<li>PE — Used by Microsoft Windows</li>
+<li>Mach-O — Used by macOS</li>
+</ul>
+</section>
+<section class="chapter" id="process-memory">
+<h2>Section 3: Process Memory Architecture</h2>
+<p>
+        A process uses a virtual address space
+        divided into functional memory regions.
+    </p>
+<h3>Memory Segments</h3>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text</td>
+<td>Executable machine instructions</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Initialized global and static variables</td>
+</tr>
+<tr>
+<td>BSS</td>
+<td>Uninitialized global and static variables</td>
+</tr>
+<tr>
+<td>Heap</td>
+<td>Dynamic memory allocation</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Function calls, local variables, and return addresses</td>
+</tr>
+</tbody>
+</table>
+<h3>Stack Overflow</h3>
+<p>
+        A stack overflow occurs when stack
+        memory usage exceeds its available limits,
+        often because of excessive recursion.
+    </p>
+</section>
+<section class="chapter" id="process-control-block">
+<h2>Section 4: Process Control Block</h2>
+<p>
+        The Process Control Block (PCB) is a kernel
+        data structure containing information
+        needed to manage and resume a process.
+    </p>
+<h3>PCB Components</h3>
+<ul>
+<li>Process Identifier (PID)</li>
+<li>Current process state</li>
+<li>Program counter</li>
+<li>Saved CPU registers</li>
+<li>CPU scheduling information</li>
+<li>Memory management information</li>
+<li>Accounting and timing information</li>
+<li>Open files and I/O information</li>
+</ul>
+</section>
+<section class="chapter" id="process-lifecycle">
+<h2>Section 5: Process Lifecycle</h2>
+<p>
+        Processes transition between operating
+        system states throughout their execution.
+    </p>
+<h3>Five Main Process States</h3>
+<ol>
+<li><strong>New:</strong> Process creation is underway.</li>
+<li><strong>Ready:</strong> Waiting for CPU assignment.</li>
+<li><strong>Running:</strong> Instructions are executing on the CPU.</li>
+<li><strong>Waiting:</strong> Waiting for I/O or another event.</li>
+<li><strong>Terminated:</strong> Execution has completed or stopped.</li>
+</ol>
+<div class="code-example">
+<pre><code>NEW → READY → RUNNING → TERMINATED
+         ↑       |
+         |       ↓
+         └── WAITING
+         (event completed)</code></pre>
+</div>
+</section>
+<section class="chapter" id="cpu-scheduling">
+<h2>Section 6: CPU Scheduling Concepts</h2>
+<p>
+        CPU scheduling determines which ready
+        process receives processor time next.
+    </p>
+<h3>Preemptive Scheduling</h3>
+<p>
+        The operating system can interrupt a
+        running process and assign the CPU
+        to another process.
+    </p>
+<h3>Non-Preemptive Scheduling</h3>
+<p>
+        A process continues running until
+        it finishes, blocks, or voluntarily yields.
+    </p>
+<h3>Scheduling Metrics</h3>
+<ul>
+<li>CPU Utilization</li>
+<li>Throughput</li>
+<li>Turnaround Time</li>
+<li>Waiting Time</li>
+<li>Response Time</li>
+</ul>
+</section>
+<section class="chapter" id="scheduling-algorithms">
+<h2>Section 7: CPU Scheduling Algorithms</h2>
+<h3>First-Come, First-Served</h3>
+<p>
+        FCFS executes processes according to arrival order.
+        Long tasks may delay shorter tasks,
+        creating the convoy effect.
+    </p>
+<h3>Shortest Job First</h3>
+<p>
+        SJF prioritizes processes with the shortest
+        estimated CPU burst.
+    </p>
+<h3>Shortest Remaining Time First</h3>
+<p>
+        SRTF is the preemptive form of SJF.
+    </p>
+<h3>Priority Scheduling</h3>
+<p>
+        Processes execute according to assigned priority.
+        Aging can reduce starvation of low-priority tasks.
+    </p>
+<h3>Round-Robin</h3>
+<p>
+        Each process receives a fixed time quantum
+        before the scheduler switches to another
+        ready process.
+    </p>
+</section>
+<section class="chapter" id="process-creation">
+<h2>Section 8: Process Creation and Control</h2>
+<p>
+        Unix-like operating systems provide
+        system calls for creating, replacing,
+        waiting for, and terminating processes.
+    </p>
+<h3>Core System Calls</h3>
+<ul>
+<li><code>fork()</code> — Creates a child process.</li>
+<li><code>exec()</code> — Replaces the current process image.</li>
+<li><code>wait()</code> — Waits for a child and collects its termination status.</li>
+<li><code>exit()</code> — Terminates a process.</li>
+</ul>
+<h3>Orphan and Zombie Processes</h3>
+<p>
+        An orphan is a child process whose parent
+        has terminated. A zombie is a terminated
+        process whose exit status has not yet
+        been collected by its parent.
+    </p>
+</section>
+<section class="chapter" id="threads-multithreading">
+<h2>Section 9: Threads and Multithreading</h2>
+<p>
+        A thread is a sequence of execution
+        within a process. Multiple threads
+        can share process resources while
+        maintaining independent execution contexts.
+    </p>
+<h3>Shared Resources</h3>
+<ul>
+<li>Code and data segments</li>
+<li>Heap memory</li>
+<li>Open files and sockets</li>
+</ul>
+<h3>Thread-Specific Resources</h3>
+<ul>
+<li>Stack</li>
+<li>CPU registers</li>
+<li>Execution state</li>
+</ul>
+<h3>Multithreading Models</h3>
+<ul>
+<li>Many-to-One</li>
+<li>One-to-One</li>
+<li>Many-to-Many</li>
+</ul>
+</section>
+<section class="chapter" id="interprocess-communication">
+<h2>Section 10: Inter-Process Communication</h2>
+<p>
+        Inter-Process Communication (IPC)
+        allows separate processes to exchange
+        information and coordinate activities.
+    </p>
+<h3>IPC Mechanisms</h3>
+<ul>
+<li><strong>Shared Memory:</strong> Processes access a designated common memory region.</li>
+<li><strong>Message Passing:</strong> Processes exchange messages through managed channels.</li>
+<li><strong>Pipes:</strong> Transfer data through byte streams.</li>
+<li><strong>Named Pipes:</strong> Enable communication through filesystem-visible channels.</li>
+<li><strong>Sockets:</strong> Support local or network communication.</li>
+</ul>
+</section>
+<section class="chapter" id="process-synchronization">
+<h2>Section 11: Process Synchronization</h2>
+<p>
+        Synchronization coordinates access
+        to shared resources and helps prevent
+        race conditions.
+    </p>
+<h3>Critical Section Requirements</h3>
+<ol>
+<li>Mutual Exclusion</li>
+<li>Progress</li>
+<li>Bounded Waiting</li>
+</ol>
+<h3>Synchronization Tools</h3>
+<ul>
+<li><strong>Mutex:</strong> Allows one thread to hold a lock at a time.</li>
+<li><strong>Semaphore:</strong> Coordinates access using a counter.</li>
+<li><strong>Spinlock:</strong> Repeatedly checks until a lock becomes available.</li>
+</ul>
+</section>
+<section class="chapter" id="deadlocks">
+<h2>Section 12: Deadlocks and Starvation</h2>
+<p>
+        A deadlock occurs when processes
+        become permanently blocked because
+        each waits for resources held by others.
+    </p>
+<h3>Four Coffman Conditions</h3>
+<ol>
+<li>Mutual Exclusion</li>
+<li>Hold and Wait</li>
+<li>No Preemption</li>
+<li>Circular Wait</li>
+</ol>
+<h3>Deadlock Handling</h3>
+<ul>
+<li>Prevention</li>
+<li>Avoidance using Banker's Algorithm</li>
+<li>Detection and Recovery</li>
+<li>Ignoring rare deadlocks</li>
+</ul>
+<p>
+        Starvation occurs when a process
+        waits indefinitely because other
+        processes repeatedly receive resources first.
+    </p>
+</section>
+<section class="chapter" id="virtual-memory">
+<h2>Section 13: Virtual Memory and Paging</h2>
+<p>
+        Virtual memory gives each process
+        an isolated address space while
+        the Memory Management Unit translates
+        virtual addresses into physical addresses.
+    </p>
+<h3>Paging</h3>
+<p>
+        Virtual memory is divided into pages,
+        while physical RAM is divided into
+        page frames.
+    </p>
+<h3>Translation Lookaside Buffer</h3>
+<p>
+        The TLB caches recent address translations
+        to improve memory access performance.
+    </p>
+<h3>Page Fault</h3>
+<p>
+        A page fault occurs when a process
+        accesses a page requiring operating
+        system intervention, such as loading
+        a page into RAM.
+    </p>
+</section>
+<section class="chapter" id="context-switching">
+<h2>Section 14: Context Switching</h2>
+<p>
+        Context switching saves the execution
+        state of one process and restores
+        the state of another process.
+    </p>
+<h3>Context Switch Sequence</h3>
+<ol>
+<li>An interrupt or scheduling event occurs.</li>
+<li>The operating system saves the current process state.</li>
+<li>The scheduler selects another process.</li>
+<li>The new process state is restored.</li>
+<li>Execution resumes.</li>
+</ol>
+<h3>Performance Overhead</h3>
+<ul>
+<li>Register saving and restoration</li>
+<li>TLB effects</li>
+<li>CPU cache misses</li>
+</ul>
+</section>
+<section class="chapter" id="process-security">
+<h2>Section 15: System Security and Process Isolation</h2>
+<h3>Hardware Protection Rings</h3>
+<p>
+        Protection rings establish boundaries
+        between privileged kernel operations
+        and less-privileged user applications.
+    </p>
+<ul>
+<li>Ring 0 — Kernel privileges</li>
+<li>Ring 3 — User application privileges</li>
+</ul>
+<h3>Address Space Layout Randomization</h3>
+<p>
+        ASLR randomizes memory locations
+        to make certain memory exploitation
+        techniques more difficult.
+    </p>
+<h3>Access Controls</h3>
+<p>
+        User IDs and access control lists
+        restrict operations according
+        to assigned permissions.
+    </p>
+</section>
+<section class="chapter" id="asynchronous-execution">
+<h2>Section 16: Asynchronous Execution and Signals</h2>
+<p>
+        Signals notify processes about
+        operating system events, exceptions,
+        and termination requests.
+    </p>
+<h3>Common POSIX Signals</h3>
+<ul>
+<li><code>SIGINT</code> — Interrupt request.</li>
+<li><code>SIGKILL</code> — Forced termination.</li>
+<li><code>SIGSEGV</code> — Invalid memory access.</li>
+<li><code>SIGCHLD</code> — Child process status notification.</li>
+</ul>
+<h3>Event Loops</h3>
+<p>
+        Event loops coordinate asynchronous
+        tasks and non-blocking I/O.
+        Technologies such as Node.js use
+        event-driven execution to manage
+        concurrent operations efficiently.
+    </p>
+</section>
+<section class="chapter" id="containers">
+<h2>Section 17: Containers and Process Isolation</h2>
+<p>
+        Containers package applications
+        with their dependencies while
+        running as isolated processes
+        that share the host operating
+        system kernel.
+    </p>
+<h3>Linux Namespaces</h3>
+<p>
+        Namespaces isolate process views
+        of resources such as process IDs,
+        networks, and filesystem mounts.
+    </p>
+<h3>Control Groups</h3>
+<p>
+        Control groups, or cgroups,
+        measure and restrict resource
+        consumption such as CPU,
+        memory, and I/O.
+    </p>
+<h3>Container Platforms</h3>
+<ul>
+<li>Docker</li>
+<li>LXC</li>
+</ul>
+</section>
+<section class="chapter" id="process-monitoring">
+<h2>Section 18: Performance Monitoring and Metrics</h2>
+<p>
+        Process monitoring helps identify
+        resource bottlenecks, excessive
+        CPU usage, memory problems,
+        and slow system operations.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU Saturation</td>
+<td>top, htop, mpstat</td>
+</tr>
+<tr>
+<td>Resident Set Size</td>
+<td>ps, valgrind</td>
+</tr>
+<tr>
+<td>I/O Wait Time</td>
+<td>iostat, iotop</td>
+</tr>
+<tr>
+<td>System Call Latency</td>
+<td>strace, eBPF, perf</td>
+</tr>
+</tbody>
+</table>
+<h3>Conclusion</h3>
+<p>
+        Programs and processes form the foundation
+        of operating system execution.
+        CPU scheduling, virtual memory,
+        synchronization, security isolation,
+        and performance monitoring enable
+        efficient multitasking.
+    </p>
+</section>
+</main>
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+        Test your understanding of Data, Information,
+        Number Systems, and Computer Architecture.
+        Answer all 34 questions before submitting.
+    </p>
+<p aria-live="polite" id="quizProgress">
+        0 of 34 answered
+    </p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Web Browsers, Servers, and Http/https · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+
+
+
+/* ==========================================
+   CODEVERSE - EMERGING TECHNOLOGIES
+   AND PROGRAMS & PROCESSES QUIZ
+========================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const quizProgress = document.getElementById("quizProgress");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+
+    if (!quizQuestions || !quizProgress ||
+        !submitQuiz || !retryQuiz || !quizResult) {
+        console.error("Quiz elements not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "Which technology enables machines to perform tasks associated with human intelligence?",
+            options: [
+                "Artificial Intelligence",
+                "Disk Defragmentation",
+                "File Compression",
+                "Manual Data Entry"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which application uses AI, computer vision, and LIDAR?",
+            options: [
+                "Plain text editing",
+                "Autonomous vehicles",
+                "Manual filing systems",
+                "Traditional paper notebooks"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which organization is identified as a source of research on AI and emerging technologies?",
+            options: [
+                "FIFA",
+                "International Olympic Committee",
+                "UNESCO IITE",
+                "World Athletics"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is a process?",
+            options: [
+                "A passive file stored on disk",
+                "An active executing instance of a program",
+                "A computer monitor",
+                "A storage device"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which stage combines object files and resolves external symbols?",
+            options: [
+                "Preprocessing",
+                "Compilation",
+                "Assembly",
+                "Linking"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which memory segment stores dynamically allocated memory?",
+            options: [
+                "Heap",
+                "Text",
+                "BSS",
+                "Stack only"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is the purpose of a Process Control Block?",
+            options: [
+                "To display graphics",
+                "To manage internet domains",
+                "To store process execution and management information",
+                "To replace RAM"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which process state indicates that a process is waiting for CPU assignment?",
+            options: [
+                "Running",
+                "Ready",
+                "Terminated",
+                "New"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is preemptive CPU scheduling?",
+            options: [
+                "A process permanently owns the CPU",
+                "A process cannot be interrupted",
+                "Only one program can execute",
+                "The OS may interrupt a running process"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which scheduling algorithm assigns a fixed time quantum?",
+            options: [
+                "Round-Robin",
+                "First-Come, First-Served",
+                "Shortest Job First",
+                "Non-Preemptive Priority"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which Unix system call creates a child process?",
+            options: [
+                "wait()",
+                "exit()",
+                "fork()",
+                "exec()"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which resource is normally private to each thread?",
+            options: [
+                "Shared code segment",
+                "Thread stack",
+                "Process heap",
+                "Global variables"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which IPC mechanism maps a common memory region into multiple processes?",
+            options: [
+                "DNS",
+                "HTTP",
+                "CPU Cache",
+                "Shared Memory"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is a race condition?",
+            options: [
+                "An incorrect result caused by uncontrolled concurrent access",
+                "A CPU temperature warning",
+                "A process that has terminated",
+                "A network cable failure"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which is one of the four necessary Coffman conditions for deadlock?",
+            options: [
+                "Unlimited Resources",
+                "Automatic Recovery",
+                "Circular Wait",
+                "Continuous Internet Access"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is the purpose of the Translation Lookaside Buffer?",
+            options: [
+                "Store user passwords",
+                "Cache recent virtual-to-physical address translations",
+                "Control monitor brightness",
+                "Manage network packets"
+            ],
+            answer: 1
+        },
+        {
+            question: "What happens during a context switch?",
+            options: [
+                "The hard drive is formatted",
+                "The operating system is reinstalled",
+                "A program is permanently deleted",
+                "The state of one process is saved and another is restored"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which protection ring is commonly associated with kernel-level privileges?",
+            options: [
+                "Ring 0",
+                "Ring 3",
+                "Ring 5",
+                "Ring 8"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which signal is used for forced process termination and cannot be caught?",
+            options: [
+                "SIGINT",
+                "SIGCHLD",
+                "SIGKILL",
+                "SIGSEGV"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which Linux feature limits CPU and memory resource consumption for containers?",
+            options: [
+                "HTML",
+                "Control Groups (cgroups)",
+                "CSS",
+                "DNS"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which tool is commonly used to monitor CPU and process activity on Linux?",
+            options: [
+                "Paint",
+                "Calculator",
+                "Notepad",
+                "top"
+            ],
+            answer: 3
+        }
+    ];
+
+    let submitted = false;
+
+    // ==========================================
+    // RENDER QUIZ
+    // ==========================================
+
+    function loadQuiz() {
+
+        submitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const questionBox = document.createElement("div");
+            questionBox.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent =
+                `${index + 1}. ${item.question}`;
+
+            questionBox.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `emergingQuestion${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener("change", updateProgress);
+
+                const text = document.createElement("span");
+                text.textContent = option;
+
+                label.appendChild(radio);
+                label.appendChild(text);
+                questionBox.appendChild(label);
+            });
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+            feedback.hidden = true;
+
+            questionBox.appendChild(feedback);
+            quizQuestions.appendChild(questionBox);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+        retryQuiz.hidden = true;
+
+        updateProgress();
+    }
+
+    // ==========================================
+    // UPDATE PROGRESS
+    // ==========================================
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="emergingQuestion${index}"]:checked`
+            );
+
+            if (selected) answered++;
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    // ==========================================
+    // SUBMIT QUIZ
+    // ==========================================
+
+    submitQuiz.addEventListener("click", function () {
+
+        if (submitted) return;
+
+        const answers = questions.map((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="emergingQuestion${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+        });
+
+        const answered = answers.filter(
+            answer => answer !== null
+        ).length;
+
+        if (answered !== questions.length) {
+
+            alert(
+                `Please answer all questions. ` +
+                `You answered ${answered} of ${questions.length}.`
+            );
+
+            return;
+        }
+
+        submitted = true;
+        let score = 0;
+
+        questions.forEach((item, index) => {
+
+            const questionBox = quizQuestions.children[index];
+            const selectedAnswer = answers[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            const labels =
+                questionBox.querySelectorAll(".quiz-option");
+
+            labels.forEach((label, optionIndex) => {
+
+                const radio = label.querySelector("input");
+                radio.disabled = true;
+
+                label.classList.remove("correct", "incorrect");
+
+                if (optionIndex === item.answer) {
+                    label.classList.add("correct");
+                } else if (optionIndex === selectedAnswer) {
+                    label.classList.add("incorrect");
+                }
+            });
+
+            const feedback =
+                questionBox.querySelector(".quiz-feedback");
+
+            feedback.hidden = false;
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+        });
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent! You have mastered the lesson.";
+        } else if (percentage >= 75) {
+            message = "Great job! You have a strong understanding.";
+        } else if (percentage >= 60) {
+            message = "Good effort! Review the topics you missed.";
+        } else {
+            message = "Keep studying and try again!";
+        }
+
+        const heading = document.createElement("h3");
+        heading.textContent = "Quiz Completed!";
+
+        const scoreText = document.createElement("h2");
+        scoreText.textContent = `${score} / ${questions.length}`;
+
+        const percentageText = document.createElement("p");
+        percentageText.textContent = `${percentage}%`;
+
+        const messageText = document.createElement("p");
+        messageText.textContent = message;
+
+        quizResult.replaceChildren(
+            heading,
+            scoreText,
+            percentageText,
+            messageText
+        );
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    });
+
+    // ==========================================
+    // RETRY QUIZ
+    // ==========================================
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    loadQuiz();
+});
+
+
+</script>
+</body></html>

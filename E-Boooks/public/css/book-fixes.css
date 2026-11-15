@@ -1,0 +1,8 @@
+
+/* CodeVerse shared reading accessibility/layout safeguards */
+html {scroll-behavior:smooth;}
+img {max-width:100%;height:auto;}
+pre {max-width:100%;overflow-x:auto;}
+table {display:block;max-width:100%;overflow-x:auto;}
+body {overflow-wrap:break-word;}
+:target {scroll-margin-top:110px;}

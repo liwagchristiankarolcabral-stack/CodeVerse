@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeVerse | Digital E-Book Library</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/cssstyle.css">
+
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="/images/CodeVerseLogo.png"
+    >
+</head>
+
+<body id="top">
+
+    <!-- ==========================================
+         NAVIGATION BAR
+    ========================================== -->
+
+    <header class="navbar">
+
+        <a class="logo" href="/index.html">
+
+            <img
+                src="/images/CodeVerseLogo.png"
+                alt="CodeVerse Logo"
+                class="site-logo"
+            >
+
+            <span>
+                Code<span class="logo-highlight">Verse</span>
+            </span>
+
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="/index.html" class="active">
+                Home
+            </a>
+
+            <a href="/library.html">
+                Explore Books
+            </a>
+
+            <a href="/About.html">
+                About
+            </a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <!-- DARK MODE -->
+            <button
+                type="button"
+                class="icon-btn"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+            >
+                <span id="themeIcon">☾</span>
+            </button>
+
+            <!-- ACCOUNT ACTIONS -->
+            <div id="accountActions">
+
+                <a href="/LogIn.html" class="login-btn">
+                    Log In
+                </a>
+
+                <a href="/register.html" class="signup-btn">
+                    Sign Up
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- MOBILE MENU -->
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main>
+
+        <!-- ======================================
+             HERO SECTION
+        ====================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-label">
+                    YOUR DIGITAL READING SPACE
+                </span>
+
+                <h1>
+                    Discover New Codes.
+                    <span>Expand Your Mind.</span>
+                </h1>
+
+                <p>
+                    Explore educational e-books designed
+                    for Information Technology students.
+
+                    Learn computer fundamentals,
+                    platform technologies, web development,
+                    and more through organized digital
+                    learning materials.
+                </p>
+
+                <!-- SEARCH BAR -->
+                <form class="search-bar" id="searchForm">
+
+                    <span class="search-icon">⌕</span>
+
+                    <input
+                        type="search"
+                        id="bookSearch"
+                        placeholder="Search books, subjects, or topics..."
+                        autocomplete="off"
+                        aria-label="Search books"
+                    >
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+                <!-- LIBRARY STATISTICS -->
+                <div class="hero-stats">
+
+                    <div>
+                        <h3 id="totalBooks">30</h3>
+                        <span>Digital Books</span>
+                    </div>
+
+                    <div>
+                        <h3 id="totalCategories">3</h3>
+                        <span>Year Levels</span>
+                    </div>
+
+                    <div>
+                        <h3>24/7</h3>
+                        <span>Access Anytime</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- HERO IMAGE -->
+            <div class="hero-image">
+
+                <div class="hero-image-bg"></div>
+
+                <img
+                    src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900"
+                    alt="Digital library and bookshelves"
+                >
+
+                <div class="floating-card">
+
+                    <span class="floating-icon">✦</span>
+
+                    <div>
+                        <strong>Keep Learning</strong>
+                        <small>One page at a time.</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             HOW IT WORKS
+        ====================================== -->
+
+        <section class="cv-home-section" id="howItWorks">
+
+            <div class="cv-section-heading">
+
+                <span class="section-label">
+                    GETTING STARTED
+                </span>
+
+                <h2>How It Works</h2>
+
+                <p>
+                    Start learning with CodeVerse
+                    in three simple steps.
+                </p>
+
+            </div>
+
+            <div class="cv-how-grid">
+
+                <!-- STEP 1 -->
+                <article class="cv-info-card">
+
+                    <div class="cv-step-number">1</div>
+
+                    <h3>Create Your Account</h3>
+
+                    <p>
+                        Register or log in to CodeVerse
+                        to access educational resources
+                        and manage your learning.
+                    </p>
+
+                </article>
+
+                <!-- STEP 2 -->
+                <article class="cv-info-card">
+
+                    <div class="cv-step-number">2</div>
+
+                    <h3>Choose Your Year Level</h3>
+
+                    <p>
+                        Select your Information Technology
+                        year level and unlock its collection
+                        using the assigned passkey.
+                    </p>
+
+                </article>
+
+                <!-- STEP 3 -->
+                <article class="cv-info-card">
+
+                    <div class="cv-step-number">3</div>
+
+                    <h3>Read and Learn</h3>
+
+                    <p>
+                        Browse your unlocked books,
+                        study each topic, and complete
+                        assessments to test your knowledge.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             YEAR LEVEL COLLECTIONS
+        ====================================== -->
+
+        <section class="cv-home-section cv-year-section" id="books">
+
+            <div class="cv-section-heading">
+
+                <span class="section-label">
+                    EXPLORE OUR LIBRARY
+                </span>
+
+                <h2>Choose Your Year Level</h2>
+
+                <p>
+                    Explore 30 educational e-books organized
+                    into three Information Technology
+                    year-level collections.
+                </p>
+
+            </div>
+
+            <div class="cv-year-grid">
+
+                <!-- ==================================
+                     FIRST YEAR IT
+                ================================== -->
+
+                <article class="cv-year-card">
+
+                    <div class="cv-year-icon">
+                        📘
+                    </div>
+
+                    <span class="cv-year-label">
+                        FIRST YEAR
+                    </span>
+
+                    <h3>1st Year IT</h3>
+
+                    <p class="cv-year-subject">
+                        Introduction to Computing
+                    </p>
+
+                    <p class="cv-year-description">
+                        Explore the fundamentals of
+                        computer systems, technology,
+                        operating systems, and digital
+                        information.
+                    </p>
+
+                    <div class="cv-year-details">
+
+                        <span>10 E-Books</span>
+
+                        <span>
+                            <span
+                                class="cv-access-status"
+                                data-access-year="1"
+                            >
+                                🔒 Protected
+                            </span>
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="cv-browse-btn"
+                        data-year="1"
+                    >
+                        Browse 1st Year IT
+                    </button>
+
+                </article>
+
+
+                <!-- ==================================
+                     SECOND YEAR IT
+                ================================== -->
+
+                <article class="cv-year-card">
+
+                    <div class="cv-year-icon">
+                        💻
+                    </div>
+
+                    <span class="cv-year-label">
+                        SECOND YEAR
+                    </span>
+
+                    <h3>2nd Year IT</h3>
+
+                    <p class="cv-year-subject">
+                        Platform Technologies
+                    </p>
+
+                    <p class="cv-year-description">
+                        Learn about computer architecture,
+                        operating systems, processes,
+                        memory management, virtualization,
+                        and system utilities.
+                    </p>
+
+                    <div class="cv-year-details">
+
+                        <span>10 E-Books</span>
+
+                        <span>
+                            <span
+                                class="cv-access-status"
+                                data-access-year="2"
+                            >
+                                🔒 Protected
+                            </span>
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="cv-browse-btn"
+                        data-year="2"
+                    >
+                        Browse 2nd Year IT
+                    </button>
+
+                </article>
+
+
+                <!-- ==================================
+                     THIRD YEAR IT
+                ================================== -->
+
+                <article class="cv-year-card">
+
+                    <div class="cv-year-icon">
+                        🌐
+                    </div>
+
+                    <span class="cv-year-label">
+                        THIRD YEAR
+                    </span>
+
+                    <h3>3rd Year IT</h3>
+
+                    <p class="cv-year-subject">
+                        Web Technologies
+                    </p>
+
+                    <p class="cv-year-description">
+                        Learn HTML, CSS, JavaScript,
+                        responsive web design,
+                        authentication, accessibility,
+                        and website deployment.
+                    </p>
+
+                    <div class="cv-year-details">
+
+                        <span>10 E-Books</span>
+
+                        <span>
+                            <span
+                                class="cv-access-status"
+                                data-access-year="3"
+                            >
+                                🔒 Protected
+                            </span>
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="cv-browse-btn"
+                        data-year="3"
+                    >
+                        Browse 3rd Year IT
+                    </button>
+
+                </article>
+
+            </div>
+
+
+            <!-- ======================================
+                 SELECTED YEAR BOOK COLLECTION
+            ====================================== -->
+
+            <div
+                class="cv-selected-collection"
+                id="selectedCollection"
+                hidden
+            >
+
+                <div class="cv-collection-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            YOUR BOOK COLLECTION
+                        </span>
+
+                        <h2 id="selectedYearTitle">
+                            Year Level Collection
+                        </h2>
+
+                        <p id="selectedYearDescription">
+                            Select a book to begin reading.
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="cv-close-collection"
+                        id="closeCollection"
+                    >
+                        Close Collection
+                    </button>
+
+                </div>
+
+                <!-- BOOK GRID -->
+                <div
+                    id="bookGrid"
+                    class="book-grid"
+                ></div>
+
+                <!-- NO BOOKS MESSAGE -->
+                <p id="noBooksMessage" hidden>
+                    No books found.
+                </p>
+
+                </div>
+                <!-- END OF selectedCollection -->
+
+                <!-- BOOKS GENERATED BY JAVASCRIPT -->
+                <div class="book-grid" id="bookGrid"></div>
+
+                <p
+                    id="noBooksMessage"
+                    style="display:none; text-align:center;"
+                >
+                    No books found.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             MADE FOR STUDYING
+        ====================================== -->
+
+        <section class="cv-home-section" id="features">
+
+            <div class="cv-section-heading">
+
+                <span class="section-label">
+                    CODEVERSE FEATURES
+                </span>
+
+                <h2>Made for Studying</h2>
+
+                <p>
+                    Learning tools designed to make
+                    digital reading easier.
+                </p>
+
+            </div>
+
+            <div class="cv-feature-grid">
+
+                <!-- FEATURE 1 -->
+                <article class="cv-feature-card">
+
+                    <div class="cv-feature-icon">📖</div>
+
+                    <h3>Comfortable Reader</h3>
+
+                    <p>
+                        Customize your reading experience
+                        with adjustable text sizes,
+                        font styles, and dark mode.
+                    </p>
+
+                </article>
+
+                <!-- FEATURE 2 -->
+                <article class="cv-feature-card">
+
+                    <div class="cv-feature-icon">📚</div>
+
+                    <h3>Organized Collections</h3>
+
+                    <p>
+                        Browse educational books grouped
+                        according to your year level
+                        and subject.
+                    </p>
+
+                </article>
+
+                <!-- FEATURE 3 -->
+                <article class="cv-feature-card">
+
+                    <div class="cv-feature-icon">📝</div>
+
+                    <h3>Knowledge Assessments</h3>
+
+                    <p>
+                        Complete quizzes and assessments
+                        to evaluate your understanding
+                        of each lesson.
+                    </p>
+
+                </article>
+
+                <!-- FEATURE 4 -->
+                <article class="cv-feature-card">
+
+                    <div class="cv-feature-icon">🔐</div>
+
+                    <h3>Secure Book Access</h3>
+
+                    <p>
+                        Unlock your year-level collection
+                        once and browse its books during
+                        your active login session.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             ABOUT SECTION
+        ====================================== -->
+
+        <section class="about-section" id="about">
+
+            <div class="about-content">
+
+                <span class="section-label">
+                    ABOUT CODEVERSE
+                </span>
+
+                <h2>
+                    Your Gateway to
+                    <span>Digital Knowledge</span>
+                </h2>
+
+                <p>
+                    CodeVerse is a digital e-book library
+                    designed to provide Information
+                    Technology students with accessible
+                    educational resources.
+                </p>
+
+                <p>
+                    Our library contains 30 educational
+                    e-books organized into three
+                    year-level collections:
+                    Introduction to Computing,
+                    Platform Technologies,
+                    and Web Technologies.
+                </p>
+
+                <p>
+                    CodeVerse aims to support continuous
+                    learning through interactive,
+                    accessible, and organized
+                    digital reading materials.
+                </p>
+
+                <a class="about-btn" href="/About.html">
+                    Learn More About CodeVerse
+                </a>
+
+            </div>
+
+            <div class="about-decoration">
+
+                <div class="about-circle"></div>
+
+                <span class="about-book">📚</span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         YEAR-LEVEL PASSKEY POPUP
+    ========================================== -->
+
+    <div
+        class="book-lock-overlay"
+        id="bookLockModal"
+        hidden
+    >
+
+        <div
+            class="book-lock-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="bookLockTitle"
+            aria-describedby="bookLockDescription"
+        >
+
+            <!-- CLOSE BUTTON -->
+            <button
+                type="button"
+                class="book-lock-close"
+                id="closeBookLock"
+                aria-label="Close popup"
+            >
+                ×
+            </button>
+
+            <div class="book-lock-icon">
+                🔐
+            </div>
+
+            <h2 id="bookLockTitle">
+                Year-Level Access Required
+            </h2>
+
+            <p id="bookLockDescription">
+                Enter your assigned 4-digit passkey
+                to unlock this year-level collection.
+            </p>
+
+            <form id="bookLockForm">
+
+                <label for="bookPasskey">
+                    Year-Level Passkey
+                </label>
+
+                <input
+                    type="password"
+                    id="bookPasskey"
+                    inputmode="numeric"
+                    maxlength="4"
+                    minlength="4"
+                    pattern="[0-9]{4}"
+                    placeholder="Enter 4-digit passkey"
+                    autocomplete="off"
+                    required
+                >
+
+                <label class="show-passkey-label">
+
+                    <input
+                        type="checkbox"
+                        id="showBookPasskey"
+                    >
+
+                    Show passkey
+
+                </label>
+
+                <p
+                    id="bookLockMessage"
+                    aria-live="polite"
+                ></p>
+
+                <button
+                    type="submit"
+                    id="unlockBookButton"
+                >
+                    Unlock Collection
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         JAVASCRIPT FILES
+    ========================================== -->
+
+    <!-- HOMEPAGE FUNCTIONALITY -->
+    <script src="/js/codeverse-home.js"></script>
+
+    <!-- YEAR-LEVEL PASSKEY SYSTEM -->
+    <script src="/js/book-passkey.js"></script>
+
+</body>
+</html>
