@@ -459,48 +459,41 @@
             }
         }
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<!-- LOGO -->
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>
-                Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<!-- NAVIGATION LINKS -->
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a class="active" href="/library.html">
-                Explore Books
-            </a>
-<a href="/index.html#about">About</a>
-</nav>
-<!-- NAVIGATION ACTIONS -->
-<div class="nav-actions">
-<!-- DARK MODE -->
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- ACCOUNT BUTTONS -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-<a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<!-- MOBILE MENU -->
-<button aria-label="Open navigation menu" class="menu-toggle" id="menuToggle" type="button">
-            ☰
-        </button>
-</header>
+
 <!-- BACK TO BOOKS -->
 <header class="topbar">
 <a class="back-link" href="/library.html">
@@ -1491,6 +1484,126 @@
 <div hidden="" id="quizResult"></div>
 </section>
 </div>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Cloud Computing</h3>
+                <p>On-demand access to shared computing resources.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Container</h3>
+                <p>An isolated environment sharing an operating system kernel.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Guest</h3>
+                <p>An operating system running inside a virtual machine.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Host</h3>
+                <p>The physical or underlying system running virtual environments.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Hypervisor</h3>
+                <p>Software or firmware that manages virtual machines.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Isolation</h3>
+                <p>Separation between workloads or execution environments.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Resource Allocation</h3>
+                <p>Assignment of computing resources to workloads.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Snapshot</h3>
+                <p>A saved representation of a system&#39;s state.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Virtual Machine</h3>
+                <p>An isolated software-defined computer.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Virtualization</h3>
+                <p>Creating virtual representations of computing resources.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <footer class="page-footer">
@@ -2099,5 +2212,7 @@
 
     });
 </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

@@ -853,81 +853,41 @@
         }
 
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- ==========================================
          NAVIGATION BAR
     ========================================== -->
-<header class="navbar">
-<a class="brand" href="/index.html">
-<img alt="CodeVerse Logo" src="/images/CodeVerseLogo.png"/>
-<span class="logo">
-                Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<!-- MAIN LINKS -->
-<nav aria-label="Main navigation" class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<!-- NAVIGATION ACTIONS -->
-<div class="nav-actions">
-<a class="btn-login" href="/LogIn.html">
-                Log In
-            </a>
-<a class="btn-signup" href="/register.html">
-                Sign Up
-            </a>
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation" class="icon-btn menu-toggle" id="menuToggle" type="button">
+<div id="navbarContainer"></div>
 
-                ☰
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
 
-            </button>
-<button aria-controls="sidebar" aria-expanded="false" aria-label="Toggle table of contents" class="icon-btn" id="tocToggle" type="button">
+    <span id="themeIcon"></span>
 
-                ☷ Contents
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
 
-            </button>
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- READING CONTROLS -->
-<div class="reading-controls">
-<label class="sr-only" for="fontSize" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;">
-                    Font Size
-                </label>
-<select aria-label="Font size" id="fontSize">
-<option value="14px">14px</option>
-<option value="15px">15px</option>
-<option selected="" value="16px">16px</option>
-<option value="17px">17px</option>
-<option value="18px">18px</option>
-<option value="19px">19px</option>
-<option value="20px">20px</option>
-<option value="21px">21px</option>
-<option value="22px">22px</option>
-</select>
-<select aria-label="Font family" id="fontFamily">
-<option value="'DM Sans', sans-serif">
-                        DM Sans
-                    </option>
-<option value="Arial, sans-serif">
-                        Arial
-                    </option>
-<option value="Georgia, serif">
-                        Georgia
-                    </option>
-<option value="'Times New Roman', serif">
-                        Times New Roman
-                    </option>
-<option value="Verdana, sans-serif">
-                        Verdana
-                    </option>
-</select>
+    <nav id="navLinks"></nav>
 </div>
-</div>
-</header>
+
 <!-- ==========================================
          READER LAYOUT
     ========================================== -->
@@ -2200,6 +2160,126 @@
         Memory Management and Virtual Memory
     </p>
 </footer>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Heap</h3>
+                <p>A memory region used for dynamic allocation.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Memory Leak</h3>
+                <p>Memory that remains allocated when no longer needed.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Memory Management</h3>
+                <p>Allocation and control of computer memory.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Page Fault</h3>
+                <p>An event requiring resolution of a virtual memory access.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Paging</h3>
+                <p>Dividing memory into fixed-size units.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>RAM</h3>
+                <p>Random access memory.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Segmentation</h3>
+                <p>Dividing memory into logical regions.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Stack</h3>
+                <p>Memory commonly used for function calls and local data.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Swap</h3>
+                <p>Storage used to support virtual memory management.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Virtual Memory</h3>
+                <p>A virtual address space managed by the operating system.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <!-- ==========================================
@@ -3530,5 +3610,7 @@ retryQuiz.addEventListener(
 renderQuiz();
 
 </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

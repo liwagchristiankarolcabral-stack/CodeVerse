@@ -4,19 +4,10 @@
 <head><title>HTML Structure and Semantic Elements | CodeVerse</title>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-
 <!-- Google Fonts -->
-
-
-
 <!-- External CSS -->
-
 <!--FavIcon-->
 <link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-
-
-
-
 <style>
 :root{--primary:#3157a4;--primary-dark:#24427f;--background:#f5f7fc;--surface:#fff;--text:#202b40;--muted:#65748c;--border:#e1e7f1;--code-background:#edf2fb;--shadow:0 8px 28px rgba(27,48,91,.08)}
 body.dark-mode{--primary:#91b4ff;--primary-dark:#b8ceff;--background:#101827;--surface:#1b2638;--text:#ecf2ff;--muted:#afbdd2;--border:#34465d;--code-background:#111e30;--shadow:0 8px 28px rgba(0,0,0,.22)}
@@ -27,35 +18,24 @@ html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:va
 #quizProgress{padding:12px 15px;border-radius:9px;background:var(--code-background);font-weight:700;margin:16px 0}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:20px;margin:16px 0}.quiz-question h3{margin:0 0 15px;font-size:17px}.quiz-option{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--border);background:var(--background);border-radius:9px;margin:8px 0;cursor:pointer}.quiz-option input{margin-top:6px;accent-color:#3157a4}.quiz-option.correct{border-color:#23a66c;background:rgba(35,166,108,.13)}.quiz-option.incorrect{border-color:#e85c66;background:rgba(232,92,102,.12)}.quiz-feedback{font-size:14px;font-weight:700;color:var(--primary)}.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.quiz-actions button{padding:12px 22px;border:0;border-radius:9px;font-weight:700;background:#3157a4;color:white}.quiz-actions #retryQuiz{background:var(--code-background);color:var(--text);border:1px solid var(--border)}#quizResult{padding:20px;text-align:center;border:1px solid var(--border);background:var(--code-background);border-radius:12px;margin-top:20px}[hidden]{display:none!important}
 @media(max-width:950px){.layout{grid-template-columns:220px minmax(0,1fr)}.navbar{gap:12px}.nav-links{gap:12px}.chapter{padding:25px}}@media(max-width:720px){.navbar{flex-wrap:wrap}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;flex-basis:100%;flex-direction:column;align-items:stretch;margin:0;padding:12px 0}.nav-links.show{display:flex}.nav-actions{margin-left:auto}.layout{display:block;padding:0 14px;margin-top:16px}.toc{position:static;max-height:260px;margin-bottom:18px}.book-header{padding:27px 22px}.chapter{padding:21px 18px}.reading-controls{gap:12px}.control-group{flex-wrap:wrap}.quiz-actions button{flex:1}}@media(max-width:430px){.nav-actions #accountActions{display:none}.book-header h1{font-size:25px}}
 </style>
+<link href="/css/navbar.css" rel="stylesheet"/>
+<link href="/css/glossary.css" rel="stylesheet"/>
 </head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button">
-            ☰
-        </button>
-</header>
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -86,39 +66,19 @@ html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:va
 <h2>Table of Contents</h2>
 <nav>
 <!-- HTML INTRODUCTION -->
-<a href="#html-introduction">
-            HTML Introduction
-        </a>
-<a href="#what-is-html">
-            What is HTML?
-        </a>
-<a href="#simple-html-document">
-            A Simple HTML Document
-        </a>
-<a href="#what-is-html-element">
-            What is an HTML Element?
-        </a>
-<a href="#web-browsers">
-            Web Browsers
-        </a>
-<a href="#html-page-structure">
-            HTML Page Structure
-        </a>
-<a href="#html-history">
-            HTML History
-        </a>
+<a href="#html-introduction">01. HTML Introduction</a>
+<a href="#what-is-html">02. What is HTML?</a>
+<a href="#simple-html-document">03. A Simple HTML Document</a>
+<a href="#what-is-html-element">04. What is an HTML Element?</a>
+<a href="#web-browsers">05. Web Browsers</a>
+<a href="#html-page-structure">06. HTML Page Structure</a>
+<a href="#html-history">07. HTML History</a>
 <!-- HTML SEMANTIC ELEMENTS -->
-<a href="#html-semantic-elements">
-            HTML Semantic Elements
-        </a>
-<a href="#what-are-semantic-elements">
-            What are Semantic Elements?
-        </a>
-<a href="#semantic-elements-in-html">
-            Semantic Elements in HTML
-        </a>
+<a href="#html-semantic-elements">08. HTML Semantic Elements</a>
+<a href="#what-are-semantic-elements">09. What are Semantic Elements?</a>
+<a href="#semantic-elements-in-html">10. Semantic Elements in HTML</a>
 <!-- KNOWLEDGE ASSESSMENT -->
-<a href="#quiz">
+<a href="#html-attributes">11. HTML Attributes</a><a href="#global-attributes">12. Global HTML Attributes</a><a href="#headings-paragraphs">13. Headings and Paragraphs</a><a href="#text-formatting">14. Text-Level Semantic Elements</a><a href="#html-links">15. Hyperlinks and Navigation</a><a href="#images-alt-text">16. Images and Alternative Text</a><a href="#html-lists">17. Ordered, Unordered, and Description Lists</a><a href="#html-tables">18. Semantic Data Tables</a><a href="#forms-overview">19. HTML Forms and Labels</a><a href="#semantic-header">20. The Header Element</a><a href="#semantic-nav">21. The Navigation Element</a><a href="#semantic-main">22. The Main Element</a><a href="#section-vs-article">23. Section vs. Article</a><a href="#aside-footer">24. Aside and Footer Elements</a><a href="#figure-figcaption">25. Figure and Figcaption</a><a href="#details-summary">26. Details and Summary</a><a href="#time-address">27. Time and Address Elements</a><a href="#html-accessibility">28. Accessible HTML Structure</a><a href="#metadata-seo">29. Document Metadata and SEO Basics</a><a href="#html-validation">30. HTML Validation and Best Practices</a><a href="#quiz">
             Knowledge Assessment Quiz
         </a>
 </nav>
@@ -128,7 +88,7 @@ html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:va
 <span class="eyebrow">Digital Book · Technology</span>
 <h1>HTML Structure and Semantic Elements</h1>
 <p>Learn the basic structure of HTML and how semantic elements organize web content.</p>
-</header>
+</header><section class="chapter" id="references"><h2>References</h2><p>The following authoritative learning resources support the lessons in this book:</p><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" rel="noopener noreferrer" target="_blank">MDN Web Docs — HTML</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements" rel="noopener noreferrer" target="_blank">MDN — HTML Elements Reference</a></li><li><a href="https://html.spec.whatwg.org/multipage/" rel="noopener noreferrer" target="_blank">WHATWG — HTML Living Standard</a></li><li><a href="https://www.w3.org/MarkUp/Guide/" rel="noopener noreferrer" target="_blank">W3C — HTML Tutorial</a></li><li><a href="https://www.w3.org/WAI/tutorials/page-structure/" rel="noopener noreferrer" target="_blank">W3C WAI — Page Structure</a></li><li><a href="https://www.w3.org/WAI/tutorials/images/" rel="noopener noreferrer" target="_blank">W3C WAI — Images</a></li><li><a href="https://validator.w3.org/nu/" rel="noopener noreferrer" target="_blank">W3C — Nu HTML Checker</a></li><li><a href="https://www.w3schools.com/html/html5_semantic_elements.asp" rel="noopener noreferrer" target="_blank">W3Schools — HTML Semantic Elements</a></li></ul></section>
 <!-- HTML INTRODUCTION -->
 <section class="chapter" id="html-introduction">
 <h2>HTML Introduction</h2>
@@ -325,69 +285,56 @@ html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:va
 <thead>
 <tr>
 <th>Year</th>
-
 <th>Development</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1989</td>
-
 <td>Tim Berners-Lee proposed the World Wide Web.</td>
 </tr>
 <tr>
 <td>1991</td>
-
 <td>HTML was introduced for creating web documents.</td>
 </tr>
 <tr>
 <td>1993</td>
-
 <td>Dave Raggett proposed HTML+.</td>
 </tr>
 <tr>
 <td>1995</td>
-
 <td>HTML 2.0 became a formal specification.</td>
 </tr>
 <tr>
 <td>1997</td>
-
 <td>HTML 3.2 became a W3C Recommendation.</td>
 </tr>
 <tr>
 <td>1999</td>
-
 <td>HTML 4.01 was published.</td>
 </tr>
 <tr>
 <td>2000</td>
-
 <td>XHTML 1.0 was released.</td>
 </tr>
 <tr>
 <td>2008</td>
-
 <td>The first public HTML5 draft was published by WHATWG.</td>
 </tr>
 <tr>
 <td>2012</td>
-
 <td>WHATWG adopted the HTML Living Standard.</td>
 </tr>
 <tr>
 <td>2014</td>
-
 <td>HTML5 became a W3C Recommendation.</td>
 </tr>
 <tr>
 <td>2016</td>
-
 <td>HTML 5.1 reached Candidate Recommendation status.</td>
 </tr>
 <tr>
 <td>2017</td>
-
 <td>HTML 5.1 Second Edition and HTML 5.2 were published.</td>
 </tr>
 </tbody>
@@ -585,7 +532,14 @@ html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:va
         </p>
 </section>
 <!-- KNOWLEDGE ASSESSMENT QUIZ -->
-<section class="chapter" id="quiz">
+<section class="chapter" id="html-attributes"><h2>HTML Attributes</h2><p>Attributes provide additional information about an element and appear in its opening tag. They control behavior, identify elements, and connect resources.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;a href="/library.html" title="Browse books"&gt;Browse books&lt;/a&gt;</code></pre></div><h3>Key Takeaway</h3><p>Use descriptive attributes and quote attribute values for readability.</p></section><section class="chapter" id="global-attributes"><h2>Global HTML Attributes</h2><p>Global attributes such as id, class, lang, title, hidden, and data-* can be used on most HTML elements. An id should be unique within a document; classes may be shared.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;section id="featured" class="book-section" data-year="first"&gt;Featured books&lt;/section&gt;</code></pre></div><h3>Key Takeaway</h3><p>Use class for reusable styling and id for unique targets.</p></section><section class="chapter" id="headings-paragraphs"><h2>Headings and Paragraphs</h2><p>Headings h1 through h6 establish the hierarchy of topics, while paragraphs organize readable blocks of text. Choose heading levels by structure rather than visual size.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;h1&gt;Web Development&lt;/h1&gt;
+&lt;h2&gt;HTML Basics&lt;/h2&gt;
+&lt;p&gt;HTML structures webpage content.&lt;/p&gt;</code></pre></div><h3>Key Takeaway</h3><p>Use one clear primary heading and logical subheadings.</p></section><section class="chapter" id="text-formatting"><h2>Text-Level Semantic Elements</h2><p>Elements such as strong, em, abbr, code, and mark communicate meaning within text. Strong indicates importance and em indicates stress emphasis, unlike purely decorative styling.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; Save your work. &lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt; uses tags.&lt;/p&gt;</code></pre></div><h3>Key Takeaway</h3><p>Prefer semantic emphasis over appearance-only tags.</p></section><section class="chapter" id="html-links"><h2>Hyperlinks and Navigation</h2><p>The anchor element creates links to pages, downloads, email addresses, and locations within a document. The href attribute defines the destination; link text should describe its purpose.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;nav aria-label="Primary"&gt;&lt;a href="/index.html"&gt;Home&lt;/a&gt; &lt;a href="#contact"&gt;Contact section&lt;/a&gt;&lt;/nav&gt;</code></pre></div><h3>Key Takeaway</h3><p>Avoid vague link text such as “click here.”</p></section><section class="chapter" id="images-alt-text"><h2>Images and Alternative Text</h2><p>The img element embeds an image. Its alt attribute provides a text alternative for meaningful images; decorative images may use an empty alt value. Width and height can help reserve layout space.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;img src="/images/CodeVerseLogo.png" alt="CodeVerse logo" width="80" height="80"&gt;</code></pre></div><h3>Key Takeaway</h3><p>Describe the image’s meaning rather than repeating “image of.”</p></section><section class="chapter" id="html-lists"><h2>Ordered, Unordered, and Description Lists</h2><p>Use ul for unordered items, ol for sequential steps, and dl with dt and dd for terms and definitions. Each list communicates a different relationship among its contents.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;ol&gt;&lt;li&gt;Open the editor&lt;/li&gt;&lt;li&gt;Create index.html&lt;/li&gt;&lt;li&gt;Save the file&lt;/li&gt;&lt;/ol&gt;</code></pre></div><h3>Key Takeaway</h3><p>Choose list markup based on meaning, not the desired bullet appearance.</p></section><section class="chapter" id="html-tables"><h2>Semantic Data Tables</h2><p>Tables represent data arranged in rows and columns. Use caption, th, and scope to identify the table and its headers. Avoid tables for page layout.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;table&gt;&lt;caption&gt;Study Schedule&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col"&gt;Day&lt;/th&gt;&lt;th scope="col"&gt;Topic&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Monday&lt;/td&gt;&lt;td&gt;HTML&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></pre></div><h3>Key Takeaway</h3><p>Keep headers associated with their data cells.</p></section><section class="chapter" id="forms-overview"><h2>HTML Forms and Labels</h2><p>A form collects user input. Label elements associate descriptive text with controls, and the name attribute identifies values submitted to a server.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;form action="/contact" method="post"&gt;&lt;label for="email"&gt;Email&lt;/label&gt;&lt;input id="email" name="email" type="email" required&gt;&lt;button type="submit"&gt;Send&lt;/button&gt;&lt;/form&gt;</code></pre></div><h3>Key Takeaway</h3><p>Pair each input with a visible label.</p></section><section class="chapter" id="semantic-header"><h2>The Header Element</h2><p>The header element represents introductory content for a page or section. It may contain a title, logo, or related introductory information, and can appear in multiple sections.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;article&gt;&lt;header&gt;&lt;h2&gt;Internet Basics&lt;/h2&gt;&lt;p&gt;Lesson overview&lt;/p&gt;&lt;/header&gt;&lt;p&gt;Lesson content...&lt;/p&gt;&lt;/article&gt;</code></pre></div><h3>Key Takeaway</h3><p>Do not assume every header is the global site header.</p></section><section class="chapter" id="semantic-nav"><h2>The Navigation Element</h2><p>The nav element identifies a major block of navigation links, such as primary menus or a table of contents. Not every group of links requires a nav element.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;nav aria-label="Book chapters"&gt;&lt;a href="#chapter-one"&gt;Chapter One&lt;/a&gt;&lt;/nav&gt;</code></pre></div><h3>Key Takeaway</h3><p>Give multiple navigation regions distinct accessible labels.</p></section><section class="chapter" id="semantic-main"><h2>The Main Element</h2><p>The main element contains the dominant content of the document. A page should generally have one visible main landmark, separate from repeated navigation and site-wide content.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;header&gt;CodeVerse&lt;/header&gt;&lt;main&gt;&lt;h1&gt;HTML Guide&lt;/h1&gt;&lt;p&gt;Start here.&lt;/p&gt;&lt;/main&gt;</code></pre></div><h3>Key Takeaway</h3><p>Keep repeated site headers and footers outside main.</p></section><section class="chapter" id="section-vs-article"><h2>Section vs. Article</h2><p>A section groups related content by theme, usually with a heading. An article is a self-contained composition that can stand independently, such as a news item or book review.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;section&gt;&lt;h2&gt;Recent Posts&lt;/h2&gt;&lt;article&gt;&lt;h3&gt;Learning HTML&lt;/h3&gt;&lt;p&gt;A short post.&lt;/p&gt;&lt;/article&gt;&lt;/section&gt;</code></pre></div><h3>Key Takeaway</h3><p>Ask whether the content could make sense on its own before choosing article.</p></section><section class="chapter" id="aside-footer"><h2>Aside and Footer Elements</h2><p>An aside holds tangentially related information, such as a sidebar or related resources. A footer contains closing information about its nearest sectioning ancestor or the page.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;article&gt;&lt;h2&gt;HTML&lt;/h2&gt;&lt;p&gt;Main explanation.&lt;/p&gt;&lt;aside&gt;&lt;h3&gt;Related&lt;/h3&gt;&lt;p&gt;Read about CSS.&lt;/p&gt;&lt;/aside&gt;&lt;footer&gt;Updated 2026&lt;/footer&gt;&lt;/article&gt;</code></pre></div><h3>Key Takeaway</h3><p>Use aside only for supporting rather than primary content.</p></section><section class="chapter" id="figure-figcaption"><h2>Figure and Figcaption</h2><p>The figure element groups self-contained illustrative content, including diagrams, images, or code listings. Figcaption supplies a caption associated with the figure.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;figure&gt;&lt;img src="/images/CodeVerseLogo.png" alt="CodeVerse emblem"&gt;&lt;figcaption&gt;Figure 1. CodeVerse branding.&lt;/figcaption&gt;&lt;/figure&gt;</code></pre></div><h3>Key Takeaway</h3><p>Use figure when the content benefits from a meaningful caption.</p></section><section class="chapter" id="details-summary"><h2>Details and Summary</h2><p>The details element creates a disclosure widget that users can expand or collapse. The summary element provides its visible label, supporting accessible interactive explanations without custom JavaScript.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;details&gt;&lt;summary&gt;What is semantic HTML?&lt;/summary&gt;&lt;p&gt;Markup that communicates content meaning.&lt;/p&gt;&lt;/details&gt;</code></pre></div><h3>Key Takeaway</h3><p>Write a summary that clearly explains what will be revealed.</p></section><section class="chapter" id="time-address"><h2>Time and Address Elements</h2><p>The time element represents dates or times in a machine-readable way using datetime. The address element provides contact information for the nearest article or document.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;p&gt;Published &lt;time datetime="2026-11-16"&gt;November 16, 2026&lt;/time&gt;.&lt;/p&gt;</code></pre></div><h3>Key Takeaway</h3><p>Use machine-readable dates when publishing schedules or updates.</p></section><section class="chapter" id="html-accessibility"><h2>Accessible HTML Structure</h2><p>Semantic landmarks, logical headings, descriptive links, labels, and alternative text help users navigate content with assistive technology. Native HTML controls often provide built-in keyboard interaction.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;main id="content"&gt;&lt;h1&gt;Library&lt;/h1&gt;&lt;a href="/books.html"&gt;Browse available books&lt;/a&gt;&lt;/main&gt;</code></pre></div><h3>Key Takeaway</h3><p>Test the page using keyboard-only navigation and a screen reader when possible.</p></section><section class="chapter" id="metadata-seo"><h2>Document Metadata and SEO Basics</h2><p>Metadata in head describes the document to browsers and search engines. The title element identifies the page, while a meta description can summarize its purpose. Metadata does not replace useful content.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;title&gt;HTML Guide | CodeVerse&lt;/title&gt;
+&lt;meta name="description" content="Learn HTML structure and semantic elements."&gt;</code></pre></div><h3>Key Takeaway</h3><p>Write a unique, informative title for each page.</p></section><section class="chapter" id="html-validation"><h2>HTML Validation and Best Practices</h2><p>HTML validation helps detect incorrect nesting, missing attributes, and structural errors. Review markup with the Nu HTML Checker and test rendering, responsiveness, and keyboard accessibility.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Valid Page&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;&lt;main&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/main&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><h3>Key Takeaway</h3><p>Validate regularly and fix errors rather than relying on browser recovery.</p></section><section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
 <p>Test your understanding of HTML structure, elements, browsers, and semantic HTML.</p>
 <div aria-live="polite" id="quizProgress">0 of 10 answered</div>
@@ -601,6 +555,71 @@ html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:va
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of HTML Structure and Semantic Elements · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+<section aria-labelledby="cvGlossaryHeading" class="cv-glossary chapter" id="glossary">
+<div class="cv-glossary-header">
+<h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+<p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+</div>
+<label class="cv-glossary-search-label" for="cvGlossarySearch">
+        Search glossary terms
+    </label>
+<input autocomplete="off" class="cv-glossary-search" id="cvGlossarySearch" placeholder="Search a term or definition..." type="search"/>
+<div aria-live="polite" class="cv-glossary-count">
+        10 terms
+    </div>
+<div class="cv-glossary-list">
+<article class="cv-glossary-item">
+<h3>Article</h3>
+<p>A self-contained composition.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Attribute</h3>
+<p>Additional information provided on an element.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>DOM</h3>
+<p>A programming representation of a document.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Element</h3>
+<p>A component represented by HTML markup.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Header</h3>
+<p>An element representing introductory content.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>HTML</h3>
+<p>The markup language used to structure web content.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Navigation</h3>
+<p>A section containing navigation links.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Section</h3>
+<p>A thematic grouping of content.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Semantic HTML</h3>
+<p>Markup that communicates the meaning of content.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Tag</h3>
+<p>Markup syntax defining an HTML element.</p>
+</article>
+</div>
+<p class="cv-glossary-empty" hidden="">
+        No matching glossary terms found.
+    </p>
+</section>
+<!-- CODEVERSE GLOSSARY END -->
 </main>
 </div>
 <script>
@@ -1028,4 +1047,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+<script defer="" src="/js/navbar-loader.js"></script>
+<script defer="" src="/js/glossary.js"></script>
 </body></html>

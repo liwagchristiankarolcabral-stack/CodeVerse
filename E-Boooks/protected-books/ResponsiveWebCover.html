@@ -1,37 +1,19 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="Learn Responsive Web Design with CodeVerse."
-    >
-
-    <title>Responsive Web Design | CodeVerse</title>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- FAVICON -->
-    <link
-        rel="icon"
-        type="image/png"
-        href="/images/CodeVerseLogo.png"
-    >
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Learn Responsive Web Design with CodeVerse." name="description"/>
+<title>Responsive Web Design | CodeVerse</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
 
         /* =====================================
            THEME VARIABLES
@@ -616,367 +598,96 @@
         }
 
     </style>
-
+<link href="/css/navbar.css" rel="stylesheet"/>
 </head>
-
 <body id="top">
-
-    <!-- =====================================
+<!-- =====================================
          NAVIGATION BAR
     ===================================== -->
-
-    <header class="navbar">
-
-        <a class="logo" href="/index.html">
-
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
-
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-
-        </a>
-
-        <nav class="nav-links" id="navLinks">
-
-            <a href="/index.html">Home</a>
-
-            <a class="active" href="/library.html">
-                Explore Books
-            </a>
-
-            <a href="/index.html#about">About</a>
-
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-
-                <a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-
-                <a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="navLinks"
-        >
-            ☰
-        </button>
-
-    </header>
-
-    <!-- BACK TO BOOKS -->
-
-    <header class="topbar">
-
-        <a class="back-link" href="/library.html">
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
+</div>
+<!-- BACK TO BOOKS -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
             ← Back to Books
         </a>
-
-    </header>
-
-    <!-- =====================================
+</header>
+<!-- =====================================
          BOOK COVER AND DETAILS
     ===================================== -->
-
-    <main class="book-container">
-
-        <!-- BOOK COVER IMAGE -->
-
-        <div class="book-cover-container">
-
-            <img
-                src="\images\book-covers\3rd year\ResponsiveWeb.jpg"
-                alt="Responsive Web Design Book Cover"
-                class="book-cover-image"
-            >
-
-        </div>
-
-        <!-- BOOK DETAILS -->
-
-        <section class="book-details">
-
-            <span class="featured-label">
+<main class="book-container">
+<!-- BOOK COVER IMAGE -->
+<div class="book-cover-container">
+<img alt="Responsive Web Design book cover" class="book-cover-image" loading="lazy" src="/images/book-covers/book-6.jpg"/>
+</div>
+<!-- BOOK DETAILS -->
+<section class="book-details">
+<span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-
-            <h1 class="book-title">
+<h1 class="book-title">
                 Responsive Web Design
             </h1>
-
-            <!-- BOOK STATISTICS -->
-
-            <div class="book-stats">
-
-                <div class="stat">
-                    <strong>15</strong>
-                    <span>Lessons</span>
-                </div>
-
-                <div class="stat">
-                    <strong>1</strong>
-                    <span>Knowledge Assessment</span>
-                </div>
-
-            </div>
-
-            <!-- BOOK DESCRIPTION -->
-
-            <p class="book-description">
-
-                Responsive Web Design (RWD) is an approach
-                to creating websites that display and
-                function effectively across different
-                screen sizes and resolutions.
-
-                Learn how to build flexible, mobile-friendly
-                websites using CSS media queries, breakpoints,
-                mobile-first design, Flexbox, CSS Grid,
-                responsive images, typography, and the
-                viewport meta tag.
-
-            </p>
-
-            <!-- ACTION BUTTONS -->
-
-            <div class="book-actions">
-
-                <a
-                    class="book-btn primary"
-                    href="/read/6"
-                >
+<!-- BOOK STATISTICS -->
+<div class="book-stats">
+<div class="stat">
+<strong>30</strong>
+<span>Lessons</span>
+</div>
+<div class="stat">
+<strong>1</strong>
+<span>Knowledge Assessment</span>
+</div>
+</div>
+<!-- BOOK DESCRIPTION -->
+<p class="book-description">Explore responsive web design through 30 structured lessons. Topics include Responsive web design, Mobile-first design, Using viewport units for responsive typography, Responsive Navigation Patterns and Testing and Debugging Responsive Websites. Open the contents to jump directly to any lesson.</p>
+<!-- ACTION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/6">
                     Start Reading
                 </a>
-
-                <button
-                    class="book-btn"
-                    id="contentsBtn"
-                    type="button"
-                    aria-haspopup="dialog"
-                >
+<button aria-haspopup="dialog" class="book-btn" id="contentsBtn" type="button">
                     ☰ Contents
                 </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- =====================================
+</div>
+</section>
+</main>
+<!-- =====================================
          TABLE OF CONTENTS POPUP
     ===================================== -->
-
-    <div
-        class="contents-overlay"
-        id="contentsPopup"
-        aria-hidden="true"
-    >
-
-        <div
-            class="contents-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contentsTitle"
-        >
-
-            <!-- CONTENTS HEADER -->
-
-            <div class="contents-header">
-
-                <div>
-
-                    <span class="contents-subtitle">
+<div aria-hidden="true" class="contents-overlay" id="contentsPopup">
+<div aria-labelledby="contentsTitle" aria-modal="true" class="contents-modal" role="dialog">
+<!-- CONTENTS HEADER -->
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">
                         RESPONSIVE WEB DESIGN
                     </span>
-
-                    <h2 id="contentsTitle">
+<h2 id="contentsTitle">
                         Table of Contents
                     </h2>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="close-contents"
-                    id="closeContents"
-                    aria-label="Close contents"
-                >
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <!-- SCROLLABLE TABLE OF CONTENTS -->
-
-            <div class="contents-list">
-
-                <a href="/read/6#responsive-web-design">
-                    <span class="contents-number">01</span>
-                    <span class="contents-name">
-                        Responsive Web Design
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#precursor-responsive-design">
-                    <span class="contents-number">02</span>
-                    <span class="contents-name">
-                        Precursor to Responsive Design: Mobile Web Design
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#introducing-responsive-design">
-                    <span class="contents-number">03</span>
-                    <span class="contents-name">
-                        Introducing Responsive Web Design
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#media-queries">
-                    <span class="contents-number">04</span>
-                    <span class="contents-name">
-                        Media Queries
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#responsive-breakpoints">
-                    <span class="contents-number">05</span>
-                    <span class="contents-name">
-                        Breakpoints
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#mobile-first-design">
-                    <span class="contents-number">06</span>
-                    <span class="contents-name">
-                        Mobile-first Design
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#responsive-layout-technologies">
-                    <span class="contents-number">07</span>
-                    <span class="contents-name">
-                        Responsive Layout Technologies
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#responsive-flexbox">
-                    <span class="contents-number">08</span>
-                    <span class="contents-name">
-                        Flexbox
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#responsive-css-grid">
-                    <span class="contents-number">09</span>
-                    <span class="contents-name">
-                        CSS Grid
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#responsive-images-media">
-                    <span class="contents-number">10</span>
-                    <span class="contents-name">
-                        Responsive Images/Media
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#responsive-typography">
-                    <span class="contents-number">11</span>
-                    <span class="contents-name">
-                        Responsive Typography
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#media-queries-typography">
-                    <span class="contents-number">12</span>
-                    <span class="contents-name">
-                        Using Media Queries for Responsive Typography
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#viewport-units-typography">
-                    <span class="contents-number">13</span>
-                    <span class="contents-name">
-                        Using Viewport Units for Responsive Typography
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#viewport-meta-tag">
-                    <span class="contents-number">14</span>
-                    <span class="contents-name">
-                        The Viewport Meta Tag
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#responsive-design-summary">
-                    <span class="contents-number">15</span>
-                    <span class="contents-name">
-                        Summary
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/6#quiz">
-                    <span class="contents-number">✓</span>
-                    <span class="contents-name">
-                        Knowledge Assessment Quiz
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- =====================================
+</div>
+<!-- SCROLLABLE TABLE OF CONTENTS -->
+<div class="contents-list"><a href="/read/5#references"><span class="contents-number">↗</span><span class="contents-name">References and Further Reading</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-web-design"><span class="contents-number">01</span><span class="contents-name">Responsive web design</span><span class="contents-arrow">›</span></a><a href="/read/5#precursor-responsive-design"><span class="contents-number">02</span><span class="contents-name">Precursor to responsive design: mobile web design</span><span class="contents-arrow">›</span></a><a href="/read/5#introducing-responsive-design"><span class="contents-number">03</span><span class="contents-name">Introducing responsive web design</span><span class="contents-arrow">›</span></a><a href="/read/5#media-queries"><span class="contents-number">04</span><span class="contents-name">Media Queries</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-breakpoints"><span class="contents-number">05</span><span class="contents-name">Breakpoints</span><span class="contents-arrow">›</span></a><a href="/read/5#mobile-first-design"><span class="contents-number">06</span><span class="contents-name">Mobile-first design</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-layout-technologies"><span class="contents-number">07</span><span class="contents-name">Responsive layout technologies</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-flexbox"><span class="contents-number">08</span><span class="contents-name">Flexbox</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-css-grid"><span class="contents-number">09</span><span class="contents-name">CSS grid</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-images-media"><span class="contents-number">10</span><span class="contents-name">Responsive images/media</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-typography"><span class="contents-number">11</span><span class="contents-name">Responsive typography</span><span class="contents-arrow">›</span></a><a href="/read/5#media-queries-typography"><span class="contents-number">12</span><span class="contents-name">Using media queries for responsive typography</span><span class="contents-arrow">›</span></a><a href="/read/5#viewport-units-typography"><span class="contents-number">13</span><span class="contents-name">Using viewport units for responsive typography</span><span class="contents-arrow">›</span></a><a href="/read/5#viewport-meta-tag"><span class="contents-number">14</span><span class="contents-name">The viewport meta tag</span><span class="contents-arrow">›</span></a><a href="/read/5#fluid-sizing"><span class="contents-number">15</span><span class="contents-name">Fluid Widths and Relative Units</span><span class="contents-arrow">›</span></a><a href="/read/5#box-sizing"><span class="contents-number">16</span><span class="contents-name">Box Sizing and Responsive Spacing</span><span class="contents-arrow">›</span></a><a href="/read/5#css-clamp"><span class="contents-number">17</span><span class="contents-name">CSS min(), max(), and clamp()</span><span class="contents-arrow">›</span></a><a href="/read/5#auto-fit-grid"><span class="contents-number">18</span><span class="contents-name">Auto-Fitting Grid Layouts</span><span class="contents-arrow">›</span></a><a href="/read/5#flex-wrap"><span class="contents-number">19</span><span class="contents-name">Flex Wrapping and Flexible Navigation</span><span class="contents-arrow">›</span></a><a href="/read/5#container-queries"><span class="contents-number">20</span><span class="contents-name">CSS Container Queries</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-navigation"><span class="contents-number">21</span><span class="contents-name">Responsive Navigation Patterns</span><span class="contents-arrow">›</span></a><a href="/read/5#touch-interactions"><span class="contents-number">22</span><span class="contents-name">Touch-Friendly Interfaces</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-tables"><span class="contents-number">23</span><span class="contents-name">Responsive Tables and Wide Data</span><span class="contents-arrow">›</span></a><a href="/read/5#aspect-ratio"><span class="contents-number">24</span><span class="contents-name">Aspect Ratio and Media Cropping</span><span class="contents-arrow">›</span></a><a href="/read/5#picture-art-direction"><span class="contents-number">25</span><span class="contents-name">Art Direction with the picture Element</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-accessibility"><span class="contents-number">26</span><span class="contents-name">Responsive Accessibility and Reflow</span><span class="contents-arrow">›</span></a><a href="/read/5#reduced-motion"><span class="contents-number">27</span><span class="contents-name">Reduced Motion and User Preferences</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-performance"><span class="contents-number">28</span><span class="contents-name">Responsive Performance Optimization</span><span class="contents-arrow">›</span></a><a href="/read/5#testing-responsive"><span class="contents-number">29</span><span class="contents-name">Testing and Debugging Responsive Websites</span><span class="contents-arrow">›</span></a><a href="/read/5#responsive-design-summary"><span class="contents-number">30</span><span class="contents-name">Summary</span><span class="contents-arrow">›</span></a><a href="/read/5#quiz"><span class="contents-number">✓</span><span class="contents-name">Knowledge Assessment Quiz</span><span class="contents-arrow">›</span></a><a href="/read/5#glossary"><span class="contents-number">A–Z</span><span class="contents-name">Glossary</span><span class="contents-arrow">›</span></a></div>
+</div>
+</div>
+<!-- =====================================
          JAVASCRIPT
     ===================================== -->
-
-    <script>
+<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1196,9 +907,7 @@
         });
 
     </script>
-
-    <!-- CODEVERSE ACCOUNT SYSTEM -->
-    <script src="/js/auth-nav.js" defer></script>
-
+<!-- CODEVERSE ACCOUNT SYSTEM -->
+<script defer="" src="/js/navbar-loader.js"></script>
 </body>
 </html>

@@ -249,4 +249,195 @@ document.addEventListener("DOMContentLoaded", () => {
         browseButtons.length
     );
 
+
+    /* ==========================================
+       CODEVERSE - BOOK SEARCH SYSTEM
+    ========================================== */
+
+    const searchForm =
+        document.getElementById("searchForm");
+
+    const bookSearch =
+        document.getElementById("bookSearch");
+
+    const noBooksMessage =
+        document.getElementById("noBooksMessage");
+
+    // Additional searchable topics for each collection
+    const yearKeywords = {
+        1: "first year 1st year introduction to computing computer fundamentals",
+        2: "second year 2nd year platform technologies systems architecture",
+        3: "third year 3rd year web technologies web development"
+    };
+
+    function normalizeSearch(value) {
+        return String(value)
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, " ")
+            .trim();
+    }
+
+    function findMatchingBooks(query) {
+
+        const searchTerm = normalizeSearch(query);
+
+        if (!searchTerm) {
+            return [];
+        }
+
+        const words = searchTerm.split(/\s+/);
+
+        const results = [];
+
+        Object.entries(yearLevels).forEach(([year, collection]) => {
+
+            collection.bookIds.forEach(bookId => {
+
+                const title = bookTitles[bookId] || "";
+
+                const searchableText = normalizeSearch([
+                    title,
+                    collection.title,
+                    collection.subject,
+                    yearKeywords[year],
+                    `book ${bookId}`
+                ].join(" "));
+
+                const matches = words.every(word =>
+                    searchableText.includes(word)
+                );
+
+                if (matches) {
+                    results.push({
+                        id: bookId,
+                        title: title,
+                        year: Number(year)
+                    });
+                }
+
+            });
+
+        });
+
+        return results;
+    }
+
+    function displaySearchResults(query) {
+
+        const results = findMatchingBooks(query);
+
+        // Show the existing collection container
+        selectedCollection.hidden = false;
+
+        selectedYearTitle.textContent =
+            `Search Results for "${query}"`;
+
+        selectedYearDescription.textContent =
+            `${results.length} book${results.length === 1 ? "" : "s"} found across all year levels.`;
+
+        const fragment =
+            document.createDocumentFragment();
+
+        results.forEach(book => {
+
+            const card = createBookCard(book.id);
+
+            // Add year-level information
+            const yearLabel =
+                document.createElement("p");
+
+            yearLabel.className = "book-search-year";
+
+            yearLabel.textContent =
+                yearLevels[book.year].title +
+                " — " +
+                yearLevels[book.year].subject;
+
+            const bookInfo =
+                card.querySelector(".book-info");
+
+            const heading =
+                bookInfo.querySelector("h3");
+
+            heading.insertAdjacentElement(
+                "afterend",
+                yearLabel
+            );
+
+            fragment.appendChild(card);
+
+        });
+
+        bookGrid.replaceChildren(fragment);
+
+        if (noBooksMessage) {
+
+            noBooksMessage.hidden =
+                results.length > 0;
+
+            noBooksMessage.textContent =
+                `No books found for "${query}". Try another title, topic, or year level.`;
+
+        }
+
+        selectedCollection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        console.log(
+            "CodeVerse search:",
+            query,
+            "Results:",
+            results.length
+        );
+    }
+
+    /* ==========================================
+       SEARCH FORM SUBMISSION
+    ========================================== */
+
+    if (searchForm && bookSearch) {
+
+        searchForm.addEventListener("submit", event => {
+
+            event.preventDefault();
+
+            const query = bookSearch.value.trim();
+
+            if (!query) {
+
+                bookSearch.focus();
+                return;
+
+            }
+
+            displaySearchResults(query);
+
+        });
+
+    }
+
+    /* ==========================================
+       RESET SEARCH WHEN BROWSING COLLECTIONS
+    ========================================== */
+
+    browseButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            if (bookSearch) {
+                bookSearch.value = "";
+            }
+
+            if (noBooksMessage) {
+                noBooksMessage.hidden = true;
+            }
+
+        });
+
+    });
+
+    console.log("CodeVerse search system ready.");
+
 });

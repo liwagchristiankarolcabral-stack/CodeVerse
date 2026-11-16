@@ -55,35 +55,41 @@ main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px soli
 [hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:20px 0 40px}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:250px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}
 @media(max-width:600px){.navbar{gap:10px}.logo{font-size:17px}.site-logo{width:31px;height:31px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;gap:12px}.nav-links.open{display:flex}.nav-actions{margin-left:auto}#accountActions{gap:6px}.account-username{max-width:110px;font-size:11px}.login-btn,.signup-btn,.logout-btn{padding:8px;font-size:11px}.layout{padding:0 12px;gap:14px}.reading-controls{gap:12px}.control-group{flex-wrap:wrap}}
-</style></head>
+</style>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
+
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -1359,6 +1365,126 @@ User C Print Request ---+        v
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of Operating System Fundamentals · CodeVerse Digital Library</footer>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Device Driver</h3>
+                <p>Software that enables communication with hardware.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>File System</h3>
+                <p>A structure for organizing stored files.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Kernel</h3>
+                <p>The central component of an operating system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Multitasking</h3>
+                <p>The execution of multiple tasks through CPU scheduling.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Operating System</h3>
+                <p>Software managing computer hardware and applications.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Process</h3>
+                <p>A program in execution.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Scheduler</h3>
+                <p>An operating system component that allocates CPU time.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>System Call</h3>
+                <p>An interface through which software requests operating system services.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Thread</h3>
+                <p>A unit of execution within a process.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Virtual Memory</h3>
+                <p>A memory-management mechanism using virtual addresses.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <script>
@@ -1906,4 +2032,6 @@ document.addEventListener('DOMContentLoaded', () => {
  fontFamily.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',fontFamily.value);applyReader();});
  menuToggle?.addEventListener('click',()=>navLinks?.classList.toggle('open'));
 });
-</script><script defer="True" src="/js/auth-nav.js"></script></body></html>
+</script>    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
+</body></html>

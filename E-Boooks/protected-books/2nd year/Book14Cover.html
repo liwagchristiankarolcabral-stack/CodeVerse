@@ -598,61 +598,41 @@
         }
 
     </style>
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 
 <body id="top">
 
     <!-- NAVIGATION BAR -->
 
-    <header class="navbar">
+    <div id="navbarContainer"></div>
 
-        <a class="logo" href="/index.html">
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
 
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-        </a>
+    <span id="themeIcon"></span>
 
-        <nav class="nav-links" id="navLinks">
-            <a href="/index.html">Home</a>
-            <a class="active" href="/library.html">Explore Books</a>
-            <a href="/index.html#about">About</a>
-        </nav>
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
 
-        <div class="nav-actions">
+    <nav id="navLinks"></nav>
+</div>
 
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-                <a class="login-btn" href="/LogIn.html">Log In</a>
-                <a class="signup-btn" href="/register.html">Sign Up</a>
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-        >
-            ☰
-        </button>
-
-    </header>
 
     <!-- BACK NAVIGATION -->
 
@@ -668,9 +648,10 @@
 
         <div class="book-cover-container">
             <img
-                src="/images/Authentication.png"
-                alt="Device and Input/Output Management"
+                src="/images/book-covers/book-24.jpg"
+                alt="The History of Computers and Computing Systems"
                 class="book-cover-image"
+                loading="lazy"
             >
         </div>
 
@@ -1223,7 +1204,8 @@
     </script>
 
     <!-- EXISTING CODEVERSE ACCOUNT SYSTEM -->
-    <script src="/js/auth-nav.js" defer></script>
+    
 
+    <script src="/js/navbar-loader.js" defer></script>
 </body>
 </html>

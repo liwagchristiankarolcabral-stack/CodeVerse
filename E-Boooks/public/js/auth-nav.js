@@ -1,34 +1,62 @@
 
+/* ==========================================
+   CODEVERSE - USER ACCOUNT NAVIGATION
+   Login Status + Username + Logout
+========================================== */
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    const accountActions =
-        document.getElementById("accountActions");
+    "use strict";
 
-    if (!accountActions) {
-        console.error("accountActions element was not found.");
+    /* ==========================================
+       GET HTML ELEMENTS
+    ========================================== */
+
+    const guestActions =
+        document.getElementById("guestActions");
+
+    const userActions =
+        document.getElementById("userActions");
+
+    const userName =
+        document.getElementById("userName");
+
+    const userAvatar =
+        document.getElementById("userAvatar");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+    if (
+        !guestActions ||
+        !userActions ||
+        !userName ||
+        !userAvatar ||
+        !logoutButton
+    ) {
+        console.error(
+            "CodeVerse: Account navigation elements were not found."
+        );
         return;
     }
 
-    // ==========================================
-    // DISPLAY GUEST BUTTONS
-    // ==========================================
+    /* ==========================================
+       DISPLAY GUEST BUTTONS
+    ========================================== */
 
     function showGuestButtons() {
 
-        accountActions.innerHTML = `
-            <a href="/LogIn.html" class="login-btn">
-                Log In
-            </a>
+        guestActions.hidden = false;
+        userActions.hidden = true;
 
-            <a href="/register.html" class="signup-btn">
-                Sign Up
-            </a>
-        `;
+        userName.textContent = "User";
+        userAvatar.textContent = "U";
+
     }
 
-    // ==========================================
-    // DISPLAY LOGGED-IN USER
-    // ==========================================
+    /* ==========================================
+       DISPLAY LOGGED-IN USER
+    ========================================== */
 
     function showLoggedInUser(user) {
 
@@ -37,87 +65,51 @@ document.addEventListener("DOMContentLoaded", function () {
             user.full_name ||
             "CodeVerse User";
 
-        accountActions.replaceChildren();
+        // Display registered full name
+        userName.textContent = fullName;
 
-        // Display user's registered full name
-        const username = document.createElement("span");
+        // Display first letter as avatar
+        userAvatar.textContent =
+            fullName.charAt(0).toUpperCase();
 
-        username.className = "account-username";
-        username.textContent = "👤 " + fullName;
+        // Hide Login and Sign Up
+        guestActions.hidden = true;
 
-        // Create Log Out button
-        const logoutButton = document.createElement("button");
+        // Show username and Logout
+        userActions.hidden = false;
 
-        logoutButton.type = "button";
-        logoutButton.className = "logout-btn";
-        logoutButton.id = "logoutButton";
-        logoutButton.textContent = "Log Out";
-
-        accountActions.append(
-            username,
-            logoutButton
-        );
-
-        // ==========================================
-        // LOG OUT FUNCTION
-        // ==========================================
-
-        logoutButton.addEventListener("click", async function () {
-
-            logoutButton.disabled = true;
-            logoutButton.textContent = "Logging out...";
-
-            try {
-
-                const response = await fetch("/api/logout", {
-                    method: "POST",
-                    credentials: "same-origin"
-                });
-
-                const data = await response.json();
-
-                if (!response.ok || !data.success) {
-                    throw new Error("Unable to log out.");
-                }
-
-                // Redirect to login page
-                window.location.replace("/LogIn.html");
-
-            } catch (error) {
-
-                console.error("Logout error:", error);
-
-                alert("Unable to log out. Please try again.");
-
-                logoutButton.disabled = false;
-                logoutButton.textContent = "Log Out";
-            }
-
-        });
     }
 
-    // ==========================================
-    // CHECK USER LOGIN STATUS
-    // ==========================================
+    /* ==========================================
+       CHECK USER LOGIN STATUS
+    ========================================== */
 
     async function checkLoginStatus() {
 
         try {
 
-            const response = await fetch("/api/user", {
-                method: "GET",
-                credentials: "same-origin",
-                cache: "no-store"
-            });
+            const response = await fetch(
+                "/api/auth/status",
+                {
+                    method: "GET",
+                    credentials: "same-origin",
+                    cache: "no-store"
+                }
+            );
 
             if (!response.ok) {
-                showGuestButtons();
-                return;
+                throw new Error(
+                    "Unable to check authentication status."
+                );
             }
 
             const data = await response.json();
 
-            if (data.success && data.user) {
+            if (
+                data.success &&
+                data.loggedIn &&
+                data.user
+            ) {
 
                 showLoggedInUser(data.user);
 
@@ -129,16 +121,98 @@ document.addEventListener("DOMContentLoaded", function () {
 
         } catch (error) {
 
-            console.error("Login status error:", error);
+            console.error(
+                "CodeVerse login status error:",
+                error
+            );
 
-            showGuestButtons();
+            // Do not incorrectly show guest buttons
+            // when the server is temporarily unavailable.
+            guestActions.hidden = true;
+            userActions.hidden = true;
 
         }
+
     }
+
+    /* ==========================================
+       LOG OUT FUNCTION
+    ========================================== */
+
+    async function logoutUser() {
+
+        logoutButton.disabled = true;
+        logoutButton.textContent = "Logging out...";
+
+        try {
+
+            const response = await fetch(
+                "/api/logout",
+                {
+                    method: "POST",
+                    credentials: "same-origin"
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+
+                throw new Error(
+                    data.message || "Unable to log out."
+                );
+
+            }
+
+            // Update navigation
+            showGuestButtons();
+
+            // Redirect to homepage
+            window.location.replace("/index.html");
+
+        } catch (error) {
+
+            console.error(
+                "CodeVerse logout error:",
+                error
+            );
+
+            alert(
+                "Unable to log out. Please try again."
+            );
+
+        } finally {
+
+            logoutButton.disabled = false;
+            logoutButton.textContent = "Log Out";
+
+        }
+
+    }
+
+    /* ==========================================
+       EVENT LISTENERS
+    ========================================== */
+
+    logoutButton.addEventListener(
+        "click",
+        logoutUser
+    );
+
+    /* ==========================================
+       INITIALIZE AUTHENTICATION
+    ========================================== */
+
+    guestActions.hidden = true;
+    userActions.hidden = true;
 
     checkLoginStatus();
 
-    // Refresh account information when returning to the page
-    window.addEventListener("pageshow", checkLoginStatus);
+    // Refresh login status when returning
+    // to this page using browser navigation.
+    window.addEventListener(
+        "pageshow",
+        checkLoginStatus
+    );
 
 });

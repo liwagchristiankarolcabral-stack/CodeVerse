@@ -2,7 +2,36 @@
 :root{--bg:#f5f8fd;--surface:#fff;--text:#1d2b42;--muted:#61718a;--primary:#315caa;--border:#dfe7f2;--soft:#edf3ff;--shadow:0 12px 36px #1c376018}body.dark-mode{--bg:#0e1726;--surface:#172338;--text:#e8effc;--muted:#afc0d8;--primary:#8fb6ff;--border:#31415b;--soft:#243655;--shadow:0 12px 36px #0004}
 html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;transition:background .2s,color .2s}button,select{font:inherit}a{color:var(--primary)}.navbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:24px;padding:12px max(20px,calc((100vw - 1420px)/2));background:var(--surface);border-bottom:1px solid var(--border);box-shadow:0 2px 10px #0001}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:24px;font-weight:800;color:var(--text);white-space:nowrap}.logo-highlight{color:var(--primary)}.site-logo{height:42px;width:42px;object-fit:contain}.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{text-decoration:none;color:var(--text);font-weight:600}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:12px}#accountActions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.login-btn,.signup-btn{padding:9px 14px;border-radius:9px;text-decoration:none;font-weight:700}.login-btn{border:1px solid var(--border)}.signup-btn{background:#315caa;color:white}.icon-btn,.menu-toggle{border:1px solid var(--border);border-radius:10px;background:var(--soft);color:var(--text);padding:9px 12px;cursor:pointer}.menu-toggle{display:none}.topbar,.reading-controls{max-width:1400px;margin:16px auto;padding:0 20px}.back-link{text-decoration:none;font-weight:700}.reading-controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center}.control-group{display:flex;gap:8px;align-items:center}.control-group label{font-size:13px;color:var(--muted);font-weight:700}.control-group select{border:1px solid var(--border);border-radius:9px;padding:8px;background:var(--surface);color:var(--text)}.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:24px;max-width:1400px;margin:20px auto;padding:0 20px;align-items:start}.toc{position:sticky;top:90px;max-height:calc(100vh - 112px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{font-size:18px;margin:0 0 14px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc a{padding:9px 10px;text-decoration:none;color:var(--muted);font-size:13px;border-radius:8px;line-height:1.45}.toc a:hover,.toc a:focus{background:var(--soft);color:var(--primary)}.book-main{min-width:0}.book-header{padding:32px;background:linear-gradient(130deg,#214781,#3871c2);color:white;border-radius:18px;margin-bottom:22px}.book-header .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,4vw,42px);line-height:1.2;margin:14px 0}.book-header p{line-height:1.7;max-width:740px;color:#e6efff}.chapter{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(20px,3vw,34px);margin-bottom:22px;box-shadow:var(--shadow);overflow-wrap:anywhere}.chapter h1,.chapter h2{color:var(--primary);font-size:1.55em;margin-top:0;line-height:1.3}.chapter h3{font-size:1.17em;margin-top:24px;color:var(--text)}.chapter p,.chapter li{line-height:1.85}.chapter li{margin:6px 0}.chapter table{display:block;overflow-x:auto;border-collapse:collapse;width:max-content;max-width:100%;min-width:min(100%,520px);margin:18px 0}.chapter th,.chapter td{border:1px solid var(--border);padding:12px 15px;text-align:left;vertical-align:top}.chapter th{background:var(--soft);color:var(--primary)}.chapter tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 35%,transparent)}.chapter pre{padding:18px;background:var(--soft);border-radius:12px;overflow:auto;line-height:1.6}.page-footer{text-align:center;padding:25px;color:var(--muted)}#quizProgress{display:inline-block;background:var(--soft);padding:9px 15px;border-radius:99px;font-weight:700;color:var(--primary)}.quiz-question{border:1px solid var(--border);padding:18px;border-radius:12px;margin:17px 0;background:var(--surface)}.quiz-question h3{font-size:1em;margin:0 0 12px}.quiz-option{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--border);border-radius:9px;margin:8px 0;cursor:pointer;line-height:1.5}.quiz-option:hover{background:var(--soft)}.quiz-option input{margin-top:4px;accent-color:#315caa}.quiz-option.correct{background:#e4f8eb;border-color:#3caa65;color:#155a2b}.quiz-option.incorrect{background:#ffe9e9;border-color:#d85d5d;color:#8b2020}.quiz-feedback{font-size:14px;font-weight:700}.quiz-actions{display:flex;gap:12px;flex-wrap:wrap}.quiz-actions button{background:#315caa;color:white;border:0;border-radius:10px;padding:12px 22px;font-weight:700;cursor:pointer}.quiz-actions button:hover{background:#244a8d}#quizResult{margin-top:18px;border-radius:12px;background:var(--soft);padding:20px;text-align:center}#quizResult h2{font-size:36px;margin:10px} [hidden]{display:none!important}
 @media(max-width:960px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:290px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}@media(max-width:650px){.navbar{gap:10px;padding:10px 14px}.logo{font-size:20px}.site-logo{width:34px;height:34px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:3;flex-basis:100%;flex-direction:column;gap:4px}.nav-links.open{display:flex}.nav-links a{padding:10px}.nav-actions{margin-left:auto}.layout{padding:0 12px}.book-header{padding:23px}.chapter{padding:20px}.reading-controls{padding:0 12px}}
-</style></head><body id="top"><header class="navbar"><a class="logo" href="/index.html"><img class="site-logo" src="/images/CodeVerseLogo.png" alt="CodeVerse logo"><span>Code<span class="logo-highlight">Verse</span></span></a><nav class="nav-links" id="navLinks"><a href="/index.html">Home</a><a href="/library.html">Explore Books</a><a href="/index.html#about">About</a></nav><div class="nav-actions"><button type="button" class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><span id="themeIcon">☾</span></button><div id="accountActions"><a class="login-btn" href="/LogIn.html">Log In</a><a class="signup-btn" href="/register.html">Sign Up</a></div></div><button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button></header><div class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></div><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px">Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans', sans-serif">DM Sans</option><option value="Arial, sans-serif">Arial</option><option value="Georgia, serif">Georgia</option><option value="'Times New Roman', serif">Times New Roman</option><option value="Verdana, sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><nav><a href="#cyber-introduction">Introduction</a>
+</style>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head><body id="top"><div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+<div class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></div><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px">Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans', sans-serif">DM Sans</option><option value="Arial, sans-serif">Arial</option><option value="Georgia, serif">Georgia</option><option value="'Times New Roman', serif">Times New Roman</option><option value="Verdana, sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><nav><a href="#cyber-introduction">Introduction</a>
 <a href="#cyber-foundations">Section 1: Foundations of Cybersecurity</a>
 <a href="#cia-triad">Section 2: The CIA Triad and Extension Models</a>
 <a href="#threat-actors">Section 3: Cyber Threat Actors and Motivation</a>
@@ -745,7 +774,127 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:va
         </button>
 </div>
 <div aria-live="polite" hidden="" id="quizResult"></div>
-</section><footer class="page-footer">End of Cybersecurity, Privacy, and Computer Ethics · CodeVerse Digital Library</footer></main></div><script>
+</section><footer class="page-footer">End of Cybersecurity, Privacy, and Computer Ethics · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Authentication</h3>
+                <p>Verification of a claimed identity.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Authorization</h3>
+                <p>Determining permitted actions or resources.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Cybersecurity</h3>
+                <p>Protection of digital systems and information.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Digital Privacy</h3>
+                <p>Control and protection of personal information.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Encryption</h3>
+                <p>Transforming information to protect confidentiality.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Firewall</h3>
+                <p>A mechanism for filtering network traffic.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Malware</h3>
+                <p>Software intended to cause harm or unauthorized actions.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Multi-Factor Authentication</h3>
+                <p>Authentication using multiple independent factors.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Phishing</h3>
+                <p>Deceptive communication intended to obtain information or access.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Vulnerability</h3>
+                <p>A weakness that may be exploited.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
+</main></div><script>
 
 
 
@@ -1322,4 +1471,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script><script>
 document.addEventListener('DOMContentLoaded',()=>{const body=document.body,theme=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily'),menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');function applyTheme(v){body.classList.toggle('dark-mode',v==='dark');icon.textContent=v==='dark'?'☀':'☾';}applyTheme(localStorage.getItem('readerTheme')||'light');theme.addEventListener('click',()=>{const v=body.classList.contains('dark-mode')?'light':'dark';localStorage.setItem('readerTheme',v);applyTheme(v);});const storedSize=localStorage.getItem('readerFontSize')||'16px';if([...size.options].some(o=>o.value===storedSize))size.value=storedSize;const storedFamily=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if([...family.options].some(o=>o.value===storedFamily))family.value=storedFamily;function updateReading(){document.querySelectorAll('.chapter').forEach(el=>{el.style.fontSize=size.value;el.style.fontFamily=family.value;})}updateReading();size.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);updateReading();});family.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);updateReading();});menu.addEventListener('click',()=>links.classList.toggle('open'));links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));});
-</script><script src="/js/auth-nav.js" defer></script></body></html>
+</script>    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
+</body></html>

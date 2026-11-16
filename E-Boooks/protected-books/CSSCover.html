@@ -1,24 +1,19 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CSS Styling, Layout, Flexbox, and Grid | CodeVerse</title>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="/images/CodeVerseLogo.png">
-
-    <!-- BUILT-IN CSS -->
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CSS Styling, Layout, Flexbox, and Grid | CodeVerse</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<!-- BUILT-IN CSS -->
+<style>
         :root {
             --background: #f4f7fc;
             --surface: #ffffff;
@@ -584,211 +579,96 @@
         }
 
     </style>
-
+<link href="/css/navbar.css" rel="stylesheet"/>
 </head>
-
 <body id="top">
-
-    <!-- =====================================
+<!-- =====================================
          NAVIGATION BAR
     ===================================== -->
-
-    <header class="navbar">
-
-        <a class="logo" href="/index.html">
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
-
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-        </a>
-
-        <nav class="nav-links" id="navLinks">
-            <a href="/index.html">Home</a>
-            <a class="active" href="/library.html">Explore Books</a>
-            <a href="/index.html#about">About</a>
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-                <a class="login-btn" href="/LogIn.html">Log In</a>
-                <a class="signup-btn" href="/register.html">Sign Up</a>
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="navLinks"
-        >
-            ☰
-        </button>
-
-    </header>
-
-    <!-- BACK TO BOOKS -->
-
-    <header class="topbar">
-        <a class="back-link" href="/library.html">
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
+</div>
+<!-- BACK TO BOOKS -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
             ← Back to Books
         </a>
-    </header>
-
-    <!-- =====================================
+</header>
+<!-- =====================================
          BOOK COVER AND DETAILS
     ===================================== -->
-
-    <main class="book-container">
-
-        <!-- BOOK COVER IMAGE -->
-
-        <div class="book-cover-container">
-            <img
-                src="\images\book-covers\3rd year\CSSStyling.jpg"
-                alt="CSS Styling, Layout, Flexbox, and Grid"
-                class="book-cover-image"
-            >
-        </div>
-
-        <!-- BOOK DETAILS -->
-
-        <section class="book-details">
-
-            <span class="featured-label">
+<main class="book-container">
+<!-- BOOK COVER IMAGE -->
+<div class="book-cover-container">
+<img alt="CSS Styling, Layout, Flexbox, and Grid book cover" class="book-cover-image" loading="lazy" src="/images/book-covers/book-4.jpg"/>
+</div>
+<!-- BOOK DETAILS -->
+<section class="book-details">
+<span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-
-            <h1 class="book-title">
+<h1 class="book-title">
                 CSS Styling, Layout, Flexbox, and Grid
             </h1>
-
-            <!-- BOOK STATISTICS -->
-
-            <div class="book-stats">
-
-                <div class="stat">
-                    <strong>17</strong>
-                    <span>Lessons</span>
-                </div>
-
-                <div class="stat">
-                    <strong>1</strong>
-                    <span>Knowledge Assessment</span>
-                </div>
-
-            </div>
-
-            <!-- BOOK DESCRIPTION -->
-
-            <p class="book-description">
-
-                Learn the fundamentals of CSS styling,
-                website layouts, Flexbox, and Grid to create
-                visually appealing, responsive, and
-                well-structured web pages.
-
-                Explore CSS selectors, colors, fonts,
-                website structure, headers, navigation bars,
-                footers, flexible layouts, and grid-based
-                designs through practical examples.
-
-            </p>
-
-            <!-- ACTION BUTTONS -->
-
-            <div class="book-actions">
-
-                <a
-                    class="book-btn primary"
-                    href="/read/4"
-                >
+<!-- BOOK STATISTICS -->
+<div class="book-stats">
+<div class="stat">
+<strong>30</strong>
+<span>Lessons</span>
+</div>
+<div class="stat">
+<strong>1</strong>
+<span>Knowledge Assessment</span>
+</div>
+</div>
+<!-- BOOK DESCRIPTION -->
+<p class="book-description">Explore css styling, layout, flexbox, and grid through 30 structured lessons. Topics include CSS Introduction, CSS Navigation Bar, CSS Grid Layout, 21. CSS Colors, Fonts, and Typography and 29. CSS Custom Properties and Reusable Themes. Open the contents to jump directly to any lesson.</p>
+<!-- ACTION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/4">
                     Start Reading
                 </a>
-
-                <a
-                    class="book-btn"
-                    href="#contentsPopup"
-                    id="contentsBtn"
-                    aria-haspopup="dialog"
-                >
+<a aria-haspopup="dialog" class="book-btn" href="#contentsPopup" id="contentsBtn">
                     ☰ Contents
                 </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- =====================================
+</div>
+</section>
+</main>
+<!-- =====================================
          TABLE OF CONTENTS POPUP
     ===================================== -->
-
-    <div class="contents-overlay" id="contentsPopup">
-
-        <div
-            class="contents-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contentsTitle"
-        >
-
-            <!-- CONTENTS HEADER -->
-
-            <div class="contents-header">
-
-                <div>
-                    <span class="contents-subtitle">
+<div class="contents-overlay" id="contentsPopup">
+<div aria-labelledby="contentsTitle" aria-modal="true" class="contents-modal" role="dialog">
+<!-- CONTENTS HEADER -->
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">
                         CSS STYLING, LAYOUT, FLEXBOX, AND GRID
                     </span>
-
-                    <h2 id="contentsTitle">
+<h2 id="contentsTitle">
                         Table of Contents
                     </h2>
-                </div>
-
-                <button
-                    type="button"
-                    class="close-contents"
-                    id="closeContents"
-                    aria-label="Close contents"
-                >
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <!-- CONTENTS GENERATED FROM EXACT READER ANCHORS -->
-
-            <div class="contents-list" id="contentsList"></div>
-
-        </div>
-
-    </div>
-
-    <!-- =====================================
+</div>
+<!-- CONTENTS GENERATED FROM EXACT READER ANCHORS -->
+<div class="contents-list" id="contentsList"><a href="/read/4#css-references"><span class="contents-number">↗</span><span class="contents-name">References and Further Reading</span><span class="contents-arrow">›</span></a><a href="/read/4#css-introduction"><span class="contents-number">01</span><span class="contents-name">CSS Introduction</span><span class="contents-arrow">›</span></a><a href="/read/4#what-is-css"><span class="contents-number">02</span><span class="contents-name">What is CSS?</span><span class="contents-arrow">›</span></a><a href="/read/4#why-use-css"><span class="contents-number">03</span><span class="contents-name">Why Use CSS?</span><span class="contents-arrow">›</span></a><a href="/read/4#css-website-layout"><span class="contents-number">04</span><span class="contents-name">CSS Website Layout</span><span class="contents-arrow">›</span></a><a href="/read/4#css-header"><span class="contents-number">05</span><span class="contents-name">CSS Header</span><span class="contents-arrow">›</span></a><a href="/read/4#css-navigation-bar"><span class="contents-number">06</span><span class="contents-name">CSS Navigation Bar</span><span class="contents-arrow">›</span></a><a href="/read/4#css-layout-content"><span class="contents-number">07</span><span class="contents-name">CSS Layout Content</span><span class="contents-arrow">›</span></a><a href="/read/4#css-basic-fixed-footer"><span class="contents-number">08</span><span class="contents-name">CSS Basic and Fixed Footer</span><span class="contents-arrow">›</span></a><a href="/read/4#css-flexbox"><span class="contents-number">09</span><span class="contents-name">CSS Flexbox</span><span class="contents-arrow">›</span></a><a href="/read/4#css-flexible-box-layout"><span class="contents-number">10</span><span class="contents-name">CSS Flexbox (Flexible Box Layout)</span><span class="contents-arrow">›</span></a><a href="/read/4#css-flexbox-components"><span class="contents-number">11</span><span class="contents-name">CSS Flexbox Components</span><span class="contents-arrow">›</span></a><a href="/read/4#css-three-flex-items"><span class="contents-number">12</span><span class="contents-name">A Flex Container with Three Flex Items</span><span class="contents-arrow">›</span></a><a href="/read/4#css-grid-layout"><span class="contents-number">13</span><span class="contents-name">CSS Grid Layout</span><span class="contents-arrow">›</span></a><a href="/read/4#css-grid-layout-module"><span class="contents-number">14</span><span class="contents-name">CSS Grid Layout Module</span><span class="contents-arrow">›</span></a><a href="/read/4#css-grid-components"><span class="contents-number">15</span><span class="contents-name">CSS Grid Components</span><span class="contents-arrow">›</span></a><a href="/read/4#css-five-grid-items"><span class="contents-number">16</span><span class="contents-name">A Grid Container with Five Grid Items</span><span class="contents-arrow">›</span></a><a href="/read/4#all-css-grid-properties"><span class="contents-number">17</span><span class="contents-name">All CSS Grid Properties</span><span class="contents-arrow">›</span></a><a href="/read/4#css-selectors"><span class="contents-number">18</span><span class="contents-name">18. CSS Selectors and Combinators</span><span class="contents-arrow">›</span></a><a href="/read/4#css-cascade"><span class="contents-number">19</span><span class="contents-name">19. The CSS Cascade and Specificity</span><span class="contents-arrow">›</span></a><a href="/read/4#css-box-model"><span class="contents-number">20</span><span class="contents-name">20. CSS Box Model</span><span class="contents-arrow">›</span></a><a href="/read/4#css-colors-typography"><span class="contents-number">21</span><span class="contents-name">21. CSS Colors, Fonts, and Typography</span><span class="contents-arrow">›</span></a><a href="/read/4#css-units"><span class="contents-number">22</span><span class="contents-name">22. CSS Units and Sizing</span><span class="contents-arrow">›</span></a><a href="/read/4#css-display"><span class="contents-number">23</span><span class="contents-name">23. Display, Visibility, and Overflow</span><span class="contents-arrow">›</span></a><a href="/read/4#css-positioning"><span class="contents-number">24</span><span class="contents-name">24. CSS Positioning and Stacking</span><span class="contents-arrow">›</span></a><a href="/read/4#css-pseudo"><span class="contents-number">25</span><span class="contents-name">25. Pseudo-Classes and Pseudo-Elements</span><span class="contents-arrow">›</span></a><a href="/read/4#css-flex-alignment"><span class="contents-number">26</span><span class="contents-name">26. Advanced Flexbox Alignment and Wrapping</span><span class="contents-arrow">›</span></a><a href="/read/4#css-grid-placement"><span class="contents-number">27</span><span class="contents-name">27. Advanced Grid Placement and Named Areas</span><span class="contents-arrow">›</span></a><a href="/read/4#css-media-queries"><span class="contents-number">28</span><span class="contents-name">28. Media Queries and Responsive Design</span><span class="contents-arrow">›</span></a><a href="/read/4#css-variables"><span class="contents-number">29</span><span class="contents-name">29. CSS Custom Properties and Reusable Themes</span><span class="contents-arrow">›</span></a><a href="/read/4#css-transitions"><span class="contents-number">30</span><span class="contents-name">30. CSS Transitions, Transforms, and Accessibility</span><span class="contents-arrow">›</span></a><a href="/read/4#quiz"><span class="contents-number">✓</span><span class="contents-name">Knowledge Assessment Quiz</span><span class="contents-arrow">›</span></a><a href="/read/4#glossary"><span class="contents-number">A–Z</span><span class="contents-name">Glossary</span><span class="contents-arrow">›</span></a></div>
+</div>
+</div>
+<!-- =====================================
          JAVASCRIPT
     ===================================== -->
-
-    <script>
+<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1096,9 +976,7 @@
         });
 
     </script>
-
-    <!-- CODEVERSE ACCOUNT SYSTEM -->
-    <script src="/js/auth-nav.js" defer></script>
-
+<!-- CODEVERSE ACCOUNT SYSTEM -->
+<script defer="" src="/js/navbar-loader.js"></script>
 </body>
 </html>

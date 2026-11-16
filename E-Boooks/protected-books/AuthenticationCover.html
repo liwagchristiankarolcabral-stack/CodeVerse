@@ -1,25 +1,18 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Authentication, Authorization, and Web Security | CodeVerse</title>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- FAVICON -->
-    <link rel="icon" type="image/png"
-          href="/images/CodeVerseLogo.png">
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Authentication, Authorization, and Web Security | CodeVerse</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
 
         /* =====================================
            THEME VARIABLES
@@ -604,277 +597,92 @@
         }
 
     </style>
-
+<link href="/css/navbar.css" rel="stylesheet"/>
 </head>
-
 <body id="top">
-
-    <!-- NAVIGATION BAR -->
-
-    <header class="navbar">
-
-        <a class="logo" href="/index.html">
-
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
-
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-
-        </a>
-
-        <nav class="nav-links" id="navLinks">
-
-            <a href="/index.html">Home</a>
-
-            <a class="active" href="/library.html">
-                Explore Books
-            </a>
-
-            <a href="/index.html#about">About</a>
-
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-
-                <a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-
-                <a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-        >
-            ☰
-        </button>
-
-    </header>
-
-    <!-- BACK TO LIBRARY -->
-
-    <header class="topbar">
-
-        <a class="back-link" href="/library.html">
+<!-- NAVIGATION BAR -->
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
+</div>
+<!-- BACK TO LIBRARY -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
             ← Back to Books
         </a>
-
-    </header>
-
-    <!-- BOOK DETAILS -->
-
-    <main class="book-container">
-
-        <div class="book-cover-container">
-
-            <img
-                src="\images\book-covers\3rd year\Athentication.jpg"
-                alt="Authentication, Authorization, and Web Security"
-                class="book-cover-image"
-            >
-
-        </div>
-
-        <section class="book-details">
-
-            <span class="featured-label">
+</header>
+<!-- BOOK DETAILS -->
+<main class="book-container">
+<div class="book-cover-container">
+<img alt="Authentication, Authorization, and Web Security book cover" class="book-cover-image" loading="lazy" src="/images/book-covers/book-9.jpg"/>
+</div>
+<section class="book-details">
+<span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-
-            <h1 class="book-title">
+<h1 class="book-title">
                 Authentication, Authorization, and Web Security
             </h1>
-
-            <!-- BOOK INFORMATION -->
-
-            <div class="book-stats">
-
-                <div class="stat">
-                    <strong>9</strong>
-                    <span>Book ID</span>
-                </div>
-
-                <div class="stat">
-                    <strong>Web</strong>
-                    <span>Security Topic</span>
-                </div>
-
-            </div>
-
-            <!-- DESCRIPTION -->
-
-            <p class="book-description">
-
-                Learn the fundamentals of authentication,
-                authorization, and web security to protect
-                user accounts, manage access, and secure
-                web applications.
-
-                Explore authentication methods, password
-                protection, session security, authorization
-                controls, and practical security principles
-                for modern websites.
-
-            </p>
-
-            <!-- ACTION BUTTONS -->
-
-            <div class="book-actions">
-
-                <a
-                    class="book-btn primary"
-                    href="/read/9"
-                >
+<!-- BOOK INFORMATION -->
+<div class="book-stats">
+<div class="stat">
+<strong>9</strong>
+<span>Book ID</span>
+</div>
+<div class="stat">
+<strong>Web</strong>
+<span>Security Topic</span>
+</div>
+<div class="stat"><strong>47</strong><span>Lessons</span></div></div>
+<!-- DESCRIPTION -->
+<p class="book-description">Explore authentication, authorization, and web security through 47 structured lessons. Topics include Authentication Cheat Sheet, Implement Proper Password Strength Controls, Re-authentication After Risk Events, Adaptive or Risk Based Authentication and Ensure Lookup IDs Are Not Accessible
+        Even When Guessed or Tampered With. Open the contents to jump directly to any lesson.</p>
+<!-- ACTION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/9">
                     Start Reading
                 </a>
-
-                <a
-                    class="book-btn"
-                    href="#contentsPopup"
-                    id="contentsBtn"
-                    aria-haspopup="dialog"
-                >
+<a aria-haspopup="dialog" class="book-btn" href="#contentsPopup" id="contentsBtn">
                     ☰ Contents
                 </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- TABLE OF CONTENTS POPUP -->
-
-    <div class="contents-overlay" id="contentsPopup">
-
-        <div
-            class="contents-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contentsTitle"
-        >
-
-            <div class="contents-header">
-
-                <div>
-
-                    <span class="contents-subtitle">
+</div>
+</section>
+</main>
+<!-- TABLE OF CONTENTS POPUP -->
+<div class="contents-overlay" id="contentsPopup">
+<div aria-labelledby="contentsTitle" aria-modal="true" class="contents-modal" role="dialog">
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">
                         AUTHENTICATION, AUTHORIZATION, AND WEB SECURITY
                     </span>
-
-                    <h2 id="contentsTitle">
+<h2 id="contentsTitle">
                         Table of Contents
                     </h2>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="close-contents"
-                    id="closeContents"
-                    aria-label="Close contents"
-                >
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <!-- TOPIC OVERVIEW -->
-            <!-- Replace links with verified reader anchors
+</div>
+<!-- TOPIC OVERVIEW -->
+<!-- Replace links with verified reader anchors
                  when Book 9's exact TOC is available. -->
-
-            <div class="contents-list">
-
-                <a href="/read/9">
-                    <span class="contents-number">01</span>
-                    <span class="contents-name">
-                        Authentication Fundamentals
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/9">
-                    <span class="contents-number">02</span>
-                    <span class="contents-name">
-                        Authentication Methods and Password Security
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/9">
-                    <span class="contents-number">03</span>
-                    <span class="contents-name">
-                        Session Management and Authentication Security
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/9">
-                    <span class="contents-number">04</span>
-                    <span class="contents-name">
-                        Authorization Fundamentals
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/9">
-                    <span class="contents-number">05</span>
-                    <span class="contents-name">
-                        Access Control and Permissions
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/9">
-                    <span class="contents-number">06</span>
-                    <span class="contents-name">
-                        Web Application Security
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/9">
-                    <span class="contents-number">07</span>
-                    <span class="contents-name">
-                        Security Best Practices
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- JAVASCRIPT -->
-
-    <script>
+<div class="contents-list"><a href="/read/9#authentication-cheat-sheet"><span class="contents-number">01</span><span class="contents-name">Authentication Cheat Sheet</span><span class="contents-arrow">›</span></a><a href="/read/9#authentication-general-guidelines"><span class="contents-number">02</span><span class="contents-name">Authentication General Guidelines</span><span class="contents-arrow">›</span></a><a href="/read/9#authentication-user-ids"><span class="contents-number">03</span><span class="contents-name">User IDs</span><span class="contents-arrow">›</span></a><a href="/read/9#authentication-usernames"><span class="contents-number">04</span><span class="contents-name">Usernames</span><span class="contents-arrow">›</span></a><a href="/read/9#sensitive-authentication-accounts"><span class="contents-number">05</span><span class="contents-name">Authentication Solution and Sensitive Accounts</span><span class="contents-arrow">›</span></a><a href="/read/9#password-strength-controls"><span class="contents-number">06</span><span class="contents-name">Implement Proper Password Strength Controls</span><span class="contents-arrow">›</span></a><a href="/read/9#secure-password-recovery"><span class="contents-number">07</span><span class="contents-name">Implement Secure Password Recovery Mechanism</span><span class="contents-arrow">›</span></a><a href="/read/9#secure-password-storage"><span class="contents-number">08</span><span class="contents-name">Store Passwords in a Secure Fashion</span><span class="contents-arrow">›</span></a><a href="/read/9#safe-password-comparison"><span class="contents-number">09</span><span class="contents-name">Compare Password Hashes Using Safe Functions</span><span class="contents-arrow">›</span></a><a href="/read/9#change-password-feature"><span class="contents-number">10</span><span class="contents-name">Change Password Feature</span><span class="contents-arrow">›</span></a><a href="/read/9#password-transport-tls"><span class="contents-number">11</span><span class="contents-name">Transmit Passwords Only Over TLS or Other Strong Transport</span><span class="contents-arrow">›</span></a><a href="/read/9#reauthentication-sensitive-features"><span class="contents-number">12</span><span class="contents-name">Require Re-authentication for Sensitive Features</span><span class="contents-arrow">›</span></a><a href="/read/9#reauthentication-risk-events"><span class="contents-number">13</span><span class="contents-name">Re-authentication After Risk Events</span><span class="contents-arrow">›</span></a><a href="/read/9#strong-transaction-authentication"><span class="contents-number">14</span><span class="contents-name">Consider Strong Transaction Authentication</span><span class="contents-arrow">›</span></a><a href="/read/9#authentication-error-messages"><span class="contents-number">15</span><span class="contents-name">Authentication and Error Messages</span><span class="contents-arrow">›</span></a><a href="/read/9#automated-authentication-attacks"><span class="contents-number">16</span><span class="contents-name">Protect Against Automated Attacks</span><span class="contents-arrow">›</span></a><a href="/read/9#authentication-logging-monitoring"><span class="contents-number">17</span><span class="contents-name">Logging and Monitoring</span><span class="contents-arrow">›</span></a><a href="/read/9#passwordless-authentication-protocols"><span class="contents-number">18</span><span class="contents-name">Use of Authentication Protocols That Require No Password</span><span class="contents-arrow">›</span></a><a href="/read/9#authentication-password-managers"><span class="contents-number">19</span><span class="contents-name">Password Managers</span><span class="contents-arrow">›</span></a><a href="/read/9#changing-registered-email"><span class="contents-number">20</span><span class="contents-name">Changing a User's Registered Email Address</span><span class="contents-arrow">›</span></a><a href="/read/9#adaptive-risk-based-authentication"><span class="contents-number">21</span><span class="contents-name">Adaptive or Risk Based Authentication</span><span class="contents-arrow">›</span></a><a href="/read/9#authorization-cheat-sheet"><span class="contents-number">22</span><span class="contents-name">Authorization Cheat Sheet</span><span class="contents-arrow">›</span></a><a href="/read/9#authorization-recommendations"><span class="contents-number">23</span><span class="contents-name">Authorization Recommendations</span><span class="contents-arrow">›</span></a><a href="/read/9#enforce-least-privileges"><span class="contents-number">24</span><span class="contents-name">Enforce Least Privileges</span><span class="contents-arrow">›</span></a><a href="/read/9#authorization-deny-by-default"><span class="contents-number">25</span><span class="contents-name">Deny by Default</span><span class="contents-arrow">›</span></a><a href="/read/9#validate-permissions-every-request"><span class="contents-number">26</span><span class="contents-name">Validate the Permissions on Every Request</span><span class="contents-arrow">›</span></a><a href="/read/9#review-authorization-technologies"><span class="contents-number">27</span><span class="contents-name">Thoroughly Review the Authorization Logic
+        of Chosen Tools and Technologies</span><span class="contents-arrow">›</span></a><a href="/read/9#attribute-relationship-access-control"><span class="contents-number">28</span><span class="contents-name">Prefer Attribute and Relationship Based
+        Access Control over RBAC</span><span class="contents-arrow">›</span></a><a href="/read/9#protect-lookup-identifiers"><span class="contents-number">29</span><span class="contents-name">Ensure Lookup IDs Are Not Accessible
+        Even When Guessed or Tampered With</span><span class="contents-arrow">›</span></a><a href="/read/9#static-resource-authorization"><span class="contents-number">30</span><span class="contents-name">Enforce Authorization Checks on Static Resources</span><span class="contents-arrow">›</span></a><a href="/read/9#authorization-check-location"><span class="contents-number">31</span><span class="contents-name">Verify That Authorization Checks
+        Are Performed in the Right Location</span><span class="contents-arrow">›</span></a><a href="/read/9#authorization-failure-safe"><span class="contents-number">32</span><span class="contents-name">Exit Safely When Authorization Checks Fail</span><span class="contents-arrow">›</span></a><a href="/read/9#web-service-security-cheat-sheet"><span class="contents-number">33</span><span class="contents-name">Web Service Security Cheat Sheet</span><span class="contents-arrow">›</span></a><a href="/read/9#transport-confidentiality"><span class="contents-number">34</span><span class="contents-name">Transport Confidentiality</span><span class="contents-arrow">›</span></a><a href="/read/9#web-service-server-authentication"><span class="contents-number">35</span><span class="contents-name">Server Authentication</span><span class="contents-arrow">›</span></a><a href="/read/9#web-service-user-authentication"><span class="contents-number">36</span><span class="contents-name">User Authentication</span><span class="contents-arrow">›</span></a><a href="/read/9#transport-encoding"><span class="contents-number">37</span><span class="contents-name">Transport Encoding</span><span class="contents-arrow">›</span></a><a href="/read/9#message-integrity"><span class="contents-number">38</span><span class="contents-name">Message Integrity</span><span class="contents-arrow">›</span></a><a href="/read/9#message-confidentiality"><span class="contents-number">39</span><span class="contents-name">Message Confidentiality</span><span class="contents-arrow">›</span></a><a href="/read/9#web-service-authorization"><span class="contents-number">40</span><span class="contents-name">Authorization</span><span class="contents-arrow">›</span></a><a href="/read/9#schema-validation"><span class="contents-number">41</span><span class="contents-name">Schema Validation</span><span class="contents-arrow">›</span></a><a href="/read/9#content-validation"><span class="contents-number">42</span><span class="contents-name">Content Validation</span><span class="contents-arrow">›</span></a><a href="/read/9#web-service-output-encoding"><span class="contents-number">43</span><span class="contents-name">Output Encoding</span><span class="contents-arrow">›</span></a><a href="/read/9#web-service-virus-protection"><span class="contents-number">44</span><span class="contents-name">Virus Protection</span><span class="contents-arrow">›</span></a><a href="/read/9#web-service-message-size"><span class="contents-number">45</span><span class="contents-name">Message Size</span><span class="contents-arrow">›</span></a><a href="/read/9#web-service-availability"><span class="contents-number">46</span><span class="contents-name">Availability</span><span class="contents-arrow">›</span></a><a href="/read/9#endpoint-security-profile"><span class="contents-number">47</span><span class="contents-name">Endpoint Security Profile</span><span class="contents-arrow">›</span></a><a href="/read/9#quiz"><span class="contents-number">✓</span><span class="contents-name">Knowledge Assessment Quiz</span><span class="contents-arrow">›</span></a><a href="/read/9#glossary"><span class="contents-number">A–Z</span><span class="contents-name">Glossary</span><span class="contents-arrow">›</span></a></div>
+</div>
+</div>
+<!-- JAVASCRIPT -->
+<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1053,9 +861,7 @@
         });
 
     </script>
-
-    <!-- ACCOUNT NAVIGATION -->
-    <script src="/js/auth-nav.js" defer></script>
-
+<!-- ACCOUNT NAVIGATION -->
+<script defer="" src="/js/navbar-loader.js"></script>
 </body>
 </html>

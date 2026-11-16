@@ -592,6 +592,7 @@
         }
     </style>
 
+  <link rel="stylesheet" href="/css/navbar.css">
 </head>
 
 <body id="top">
@@ -600,68 +601,34 @@
          NAVIGATION BAR
     ========================================== -->
 
-    <header class="navbar">
+    <div id="navbarContainer"></div>
 
-        <a class="logo" href="/index.html">
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
 
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
+    <span id="themeIcon"></span>
 
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
 
-        </a>
+    <nav id="navLinks"></nav>
+</div>
 
-        <nav class="nav-links" id="navLinks">
-
-            <a class="active" href="/index.html">Home</a>
-
-            <a href="/library.html">Explore Books</a>
-
-            <a href="/index.html#about">About</a>
-
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-
-                <a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-
-                <a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-        >
-            ☰
-        </button>
-
-    </header>
 
     <!-- ==========================================
          BACK NAVIGATION
@@ -682,13 +649,13 @@
     <main class="book-container">
 
         <!-- BOOK COVER IMAGE -->
-
         <div class="book-cover-container">
 
             <img
-                src="\images\book-covers\History&Evo.jpg"
+                src="/images/book-covers/book-11.jpg"
                 alt="The History of Computers and Computing Systems"
                 class="book-cover-image"
+                loading="lazy"
             >
 
         </div>
@@ -1003,56 +970,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
-            /* MOBILE NAVIGATION */
-
-            const menuToggle = document.getElementById("menuToggle");
-            const navLinks = document.getElementById("navLinks");
-
-            menuToggle.addEventListener("click", function () {
-
-                const visible = navLinks.classList.toggle("show");
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    String(visible)
-                );
-
-            });
-
-
-            /* DARK MODE */
-
-            const themeToggle = document.getElementById("themeToggle");
-            const themeIcon = document.getElementById("themeIcon");
-
-            function applyTheme() {
-
-                const isDark =
-                    localStorage.getItem("theme") === "dark";
-
-                document.body.classList.toggle("dark-mode", isDark);
-
-                themeIcon.textContent = isDark ? "☀" : "☾";
-
-            }
-
-            applyTheme();
-
-            themeToggle.addEventListener("click", function () {
-
-                const isDark =
-                    document.body.classList.contains("dark-mode");
-
-                localStorage.setItem(
-                    "theme",
-                    isDark ? "light" : "dark"
-                );
-
-                applyTheme();
-
-            });
-
-
             /* TABLE OF CONTENTS */
 
             const contentsBtn = document.getElementById("contentsBtn");
@@ -1142,7 +1059,7 @@
     </script>
 
     <!-- CODEVERSE ACCOUNT NAVIGATION -->
-    <script src="/js/auth-nav.js" defer></script>
 
+  <script src="/js/navbar-loader.js" defer></script>
 </body>
 </html>

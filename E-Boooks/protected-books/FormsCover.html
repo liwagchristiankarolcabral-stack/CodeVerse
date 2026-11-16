@@ -1,24 +1,19 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Forms and Input Validation | CodeVerse</title>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="/images/CodeVerseLogo.png">
-
-    <!-- BUILT-IN CSS -->
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Forms and Input Validation | CodeVerse</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<!-- BUILT-IN CSS -->
+<style>
         :root {
             --background: #f4f7fc;
             --surface: #ffffff;
@@ -583,317 +578,96 @@
             }
         }
     </style>
-
+<link href="/css/navbar.css" rel="stylesheet"/>
 </head>
-
 <body id="top">
-
-    <!-- =====================================
+<!-- =====================================
          NAVIGATION BAR
     ===================================== -->
-
-    <header class="navbar">
-
-        <a class="logo" href="/index.html">
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
-
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-        </a>
-
-        <nav class="nav-links" id="navLinks">
-
-            <a href="/index.html">Home</a>
-
-            <a class="active" href="/library.html">
-                Explore Books
-            </a>
-
-            <a href="/index.html#about">About</a>
-
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-
-                <a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-
-                <a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="navLinks"
-        >
-            ☰
-        </button>
-
-    </header>
-
-    <!-- BACK TO BOOKS -->
-
-    <header class="topbar">
-        <a class="back-link" href="/library.html">
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
+</div>
+<!-- BACK TO BOOKS -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
             ← Back to Books
         </a>
-    </header>
-
-    <!-- =====================================
+</header>
+<!-- =====================================
          BOOK COVER AND DETAILS
     ===================================== -->
-
-    <main class="book-container">
-
-        <!-- BOOK COVER IMAGE -->
-
-        <div class="book-cover-container">
-
-            <img
-                src="\images\book-covers\3rd year\FormsIinput.jpg"
-                alt="Forms and Input Validation"
-                class="book-cover-image"
-            >
-
-        </div>
-
-        <!-- BOOK DETAILS -->
-
-        <section class="book-details">
-
-            <span class="featured-label">
+<main class="book-container">
+<!-- BOOK COVER IMAGE -->
+<div class="book-cover-container">
+<img alt="Forms and Input Validation book cover" class="book-cover-image" loading="lazy" src="/images/book-covers/book-7.jpg"/>
+</div>
+<!-- BOOK DETAILS -->
+<section class="book-details">
+<span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-
-            <h1 class="book-title">
+<h1 class="book-title">
                 Forms and Input Validation
             </h1>
-
-            <!-- BOOK STATISTICS -->
-
-            <div class="book-stats">
-
-                <div class="stat">
-                    <strong>10</strong>
-                    <span>Lessons</span>
-                </div>
-
-                <div class="stat">
-                    <strong>1</strong>
-                    <span>Knowledge Assessment</span>
-                </div>
-
-            </div>
-
-            <!-- BOOK DESCRIPTION -->
-
-            <p class="book-description">
-
-                Learn how to create interactive web forms
-                and validate user inputs to ensure accurate
-                and secure data submission.
-
-                Explore form design, HTML form elements,
-                labels, input fields, text areas, buttons,
-                basic CSS styling, and how form data is
-                submitted to a web server.
-
-            </p>
-
-            <!-- ACTION BUTTONS -->
-
-            <div class="book-actions">
-
-                <a
-                    class="book-btn primary"
-                    href="/read/7"
-                >
+<!-- BOOK STATISTICS -->
+<div class="book-stats">
+<div class="stat">
+<strong>30</strong>
+<span>Lessons</span>
+</div>
+<div class="stat">
+<strong>1</strong>
+<span>Knowledge Assessment</span>
+</div>
+</div>
+<!-- BOOK DESCRIPTION -->
+<p class="book-description">Explore forms and input validation through 30 structured lessons. Topics include Your first form, The &lt;label&gt;, &lt;input&gt;, and &lt;textarea&gt; elements, Dropdown lists with select and option, JavaScript Constraint Validation API and CSRF, XSS, and safe form processing. Open the contents to jump directly to any lesson.</p>
+<!-- ACTION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/7">
                     Start Reading
                 </a>
-
-                <a
-                    class="book-btn"
-                    href="#contentsPopup"
-                    id="contentsBtn"
-                    aria-haspopup="dialog"
-                >
+<a aria-haspopup="dialog" class="book-btn" href="#contentsPopup" id="contentsBtn">
                     ☰ Contents
                 </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- =====================================
+</div>
+</section>
+</main>
+<!-- =====================================
          TABLE OF CONTENTS POPUP
     ===================================== -->
-
-    <div class="contents-overlay" id="contentsPopup">
-
-        <div
-            class="contents-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contentsTitle"
-        >
-
-            <!-- CONTENTS HEADER -->
-
-            <div class="contents-header">
-
-                <div>
-
-                    <span class="contents-subtitle">
+<div class="contents-overlay" id="contentsPopup">
+<div aria-labelledby="contentsTitle" aria-modal="true" class="contents-modal" role="dialog">
+<!-- CONTENTS HEADER -->
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">
                         FORMS AND INPUT VALIDATION
                     </span>
-
-                    <h2 id="contentsTitle">
+<h2 id="contentsTitle">
                         Table of Contents
                     </h2>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="close-contents"
-                    id="closeContents"
-                    aria-label="Close contents"
-                >
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <!-- SCROLLABLE CONTENTS -->
-
-            <div class="contents-list" id="contentsList">
-
-                <a href="/read/7#your-first-form">
-                    <span class="contents-number">01</span>
-                    <span class="contents-name">
-                        Your first form
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#what-are-web-forms">
-                    <span class="contents-number">02</span>
-                    <span class="contents-name">
-                        What are web forms?
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#designing-your-form">
-                    <span class="contents-number">03</span>
-                    <span class="contents-name">
-                        Designing your form
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#implementing-form-html">
-                    <span class="contents-number">04</span>
-                    <span class="contents-name">
-                        Implementing our form HTML
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#form-element">
-                    <span class="contents-number">05</span>
-                    <span class="contents-name">
-                        The &lt;form&gt; element
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#label-input-textarea">
-                    <span class="contents-number">06</span>
-                    <span class="contents-name">
-                        The &lt;label&gt;, &lt;input&gt;, and &lt;textarea&gt; elements
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#button-element">
-                    <span class="contents-number">07</span>
-                    <span class="contents-name">
-                        The &lt;button&gt; element
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#basic-form-styling">
-                    <span class="contents-number">08</span>
-                    <span class="contents-name">
-                        Basic form styling
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#sending-form-data">
-                    <span class="contents-number">09</span>
-                    <span class="contents-name">
-                        Sending form data to your web server
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#first-form-summary">
-                    <span class="contents-number">10</span>
-                    <span class="contents-name">
-                        Summary
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/7#quiz">
-                    <span class="contents-number">✓</span>
-                    <span class="contents-name">
-                        Knowledge Assessment Quiz
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- =====================================
+</div>
+<!-- SCROLLABLE CONTENTS -->
+<div class="contents-list" id="contentsList"><a href="/read/7#your-first-form"><span class="contents-number">01</span><span class="contents-name">Your first form</span><span class="contents-arrow">›</span></a><a href="/read/7#what-are-web-forms"><span class="contents-number">02</span><span class="contents-name">What are web forms?</span><span class="contents-arrow">›</span></a><a href="/read/7#designing-your-form"><span class="contents-number">03</span><span class="contents-name">Designing your form</span><span class="contents-arrow">›</span></a><a href="/read/7#implementing-form-html"><span class="contents-number">04</span><span class="contents-name">Implementing our form HTML</span><span class="contents-arrow">›</span></a><a href="/read/7#form-element"><span class="contents-number">05</span><span class="contents-name">The &lt;form&gt; element</span><span class="contents-arrow">›</span></a><a href="/read/7#label-input-textarea"><span class="contents-number">06</span><span class="contents-name">The &lt;label&gt;, &lt;input&gt;, and &lt;textarea&gt; elements</span><span class="contents-arrow">›</span></a><a href="/read/7#button-element"><span class="contents-number">07</span><span class="contents-name">The &lt;button&gt; element</span><span class="contents-arrow">›</span></a><a href="/read/7#basic-form-styling"><span class="contents-number">08</span><span class="contents-name">Basic form styling</span><span class="contents-arrow">›</span></a><a href="/read/7#sending-form-data"><span class="contents-number">09</span><span class="contents-name">Sending form data to your web server</span><span class="contents-arrow">›</span></a><a href="/read/7#first-form-summary"><span class="contents-number">10</span><span class="contents-name">Summary</span><span class="contents-arrow">›</span></a><a href="/read/7#html-input-types"><span class="contents-number">11</span><span class="contents-name">HTML input types</span><span class="contents-arrow">›</span></a><a href="/read/7#checkbox-radio"><span class="contents-number">12</span><span class="contents-name">Checkboxes and radio buttons</span><span class="contents-arrow">›</span></a><a href="/read/7#select-option"><span class="contents-number">13</span><span class="contents-name">Dropdown lists with select and option</span><span class="contents-arrow">›</span></a><a href="/read/7#fieldset-legend"><span class="contents-number">14</span><span class="contents-name">Grouping fields with fieldset and legend</span><span class="contents-arrow">›</span></a><a href="/read/7#placeholder-autocomplete"><span class="contents-number">15</span><span class="contents-name">Placeholder, autocomplete, and inputmode</span><span class="contents-arrow">›</span></a><a href="/read/7#required-validation"><span class="contents-number">16</span><span class="contents-name">Required fields and built-in validation</span><span class="contents-arrow">›</span></a><a href="/read/7#min-max-step"><span class="contents-number">17</span><span class="contents-name">Numeric and date constraints</span><span class="contents-arrow">›</span></a><a href="/read/7#minlength-maxlength"><span class="contents-number">18</span><span class="contents-name">Text length restrictions</span><span class="contents-arrow">›</span></a><a href="/read/7#pattern-validation"><span class="contents-number">19</span><span class="contents-name">Pattern-based input validation</span><span class="contents-arrow">›</span></a><a href="/read/7#validation-states"><span class="contents-number">20</span><span class="contents-name">Valid and invalid CSS states</span><span class="contents-arrow">›</span></a><a href="/read/7#constraint-api"><span class="contents-number">21</span><span class="contents-name">JavaScript Constraint Validation API</span><span class="contents-arrow">›</span></a><a href="/read/7#custom-validation"><span class="contents-number">22</span><span class="contents-name">Custom validation messages</span><span class="contents-arrow">›</span></a><a href="/read/7#submit-events"><span class="contents-number">23</span><span class="contents-name">Handling submit events in JavaScript</span><span class="contents-arrow">›</span></a><a href="/read/7#formdata-api"><span class="contents-number">24</span><span class="contents-name">Collecting values with FormData</span><span class="contents-arrow">›</span></a><a href="/read/7#fetch-submit"><span class="contents-number">25</span><span class="contents-name">Submitting forms with fetch</span><span class="contents-arrow">›</span></a><a href="/read/7#file-upload"><span class="contents-number">26</span><span class="contents-name">File uploads and validation</span><span class="contents-arrow">›</span></a><a href="/read/7#accessible-errors"><span class="contents-number">27</span><span class="contents-name">Accessible error messages</span><span class="contents-arrow">›</span></a><a href="/read/7#server-validation"><span class="contents-number">28</span><span class="contents-name">Server-side validation and security</span><span class="contents-arrow">›</span></a><a href="/read/7#security-csrf"><span class="contents-number">29</span><span class="contents-name">CSRF, XSS, and safe form processing</span><span class="contents-arrow">›</span></a><a href="/read/7#testing-forms"><span class="contents-number">30</span><span class="contents-name">Testing forms and validation</span><span class="contents-arrow">›</span></a><a href="/read/7#quiz"><span class="contents-number">✓</span><span class="contents-name">Knowledge Assessment Quiz</span><span class="contents-arrow">›</span></a><a href="/read/7#glossary"><span class="contents-number">A–Z</span><span class="contents-name">Glossary</span><span class="contents-arrow">›</span></a></div>
+</div>
+</div>
+<!-- =====================================
          JAVASCRIPT
     ===================================== -->
-
-    <script>
+<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1072,9 +846,7 @@
         });
 
     </script>
-
-    <!-- CODEVERSE ACCOUNT SYSTEM -->
-    <script src="/js/auth-nav.js" defer></script>
-
+<!-- CODEVERSE ACCOUNT SYSTEM -->
+<script defer="" src="/js/navbar-loader.js"></script>
 </body>
 </html>

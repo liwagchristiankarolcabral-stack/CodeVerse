@@ -4,16 +4,13 @@
 <head><title>Forms and Input Validation | CodeVerse</title>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <!-- External CSS -->
-
 <!--FavIcon-->
 <link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
@@ -29,35 +26,26 @@ html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:va
 @media(max-width:800px){.navbar{flex-wrap:wrap}.menu-toggle{display:block;order:3}.nav-actions{margin-left:auto}.nav-links{display:none;order:4;width:100%;flex-direction:column;align-items:stretch;padding:12px;border-top:1px solid var(--border)}.nav-links.show{display:flex}.layout{grid-template-columns:minmax(0,1fr)}.toc{position:relative;top:auto;max-height:240px}.reading-controls{justify-content:flex-start}}
 @media(max-width:480px){.navbar{padding:12px}.logo{font-size:19px}.site-logo{width:34px;height:34px}.login-btn,.signup-btn{padding:6px 8px;font-size:12px}.layout{padding:0 12px 32px}.book-header,.chapter{padding:18px}.control-group{width:100%;justify-content:space-between}.control-group select{width:58%}.quiz-actions button{width:100%}}
 </style>
-</head>
+<link href="/css/navbar.css" rel="stylesheet"/>
+<link href="/css/glossary.css" rel="stylesheet"/>
+<style>
+.book-references{margin-top:22px;padding:18px 20px;background:var(--code-background);border:1px solid var(--border);border-radius:12px}.book-references h2{margin:0 0 6px;font-size:1.15rem;color:var(--primary)}.book-references p{margin:4px 0 10px}.book-references ul{margin:0;padding-left:20px}.book-references li{margin:5px 0;overflow-wrap:anywhere}
+</style></head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -88,47 +76,25 @@ html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:va
 <h2>Table of Contents</h2>
 <nav>
 <!-- HTML INTRODUCTION -->
-<a href="#your-first-form">Your first form</a>
-<a href="#what-are-web-forms">
-        What are web forms?
-    </a>
-<a href="#designing-your-form">
-        Designing your form
-    </a>
-<a href="#implementing-form-html">
-        Implementing our form HTML
-    </a>
-<a href="#form-element">
-        The &lt;form&gt; element
-    </a>
-<a href="#label-input-textarea">
-        The &lt;label&gt;, &lt;input&gt;, and &lt;textarea&gt; elements
-    </a>
-<a href="#button-element">
-        The &lt;button&gt; element
-    </a>
-<a href="#basic-form-styling">
-        Basic form styling
-    </a>
-<a href="#sending-form-data">
-        Sending form data to your web server
-    </a>
-<a href="#first-form-summary">
-        Summary
-    </a>
-<a href="#quiz">
-        Knowledge Assessment Quiz
-    </a>
-</nav>
+
+
+
+
+
+
+
+
+
+
+
+<a href="#your-first-form">Your first form</a><a href="#what-are-web-forms">What are web forms?</a><a href="#designing-your-form">Designing your form</a><a href="#implementing-form-html">Implementing our form HTML</a><a href="#form-element">The &lt;form&gt; element</a><a href="#label-input-textarea">The &lt;label&gt;, &lt;input&gt;, and &lt;textarea&gt; elements</a><a href="#button-element">The &lt;button&gt; element</a><a href="#basic-form-styling">Basic form styling</a><a href="#sending-form-data">Sending form data to your web server</a><a href="#first-form-summary">Summary</a><a href="#html-input-types">HTML input types</a><a href="#checkbox-radio">Checkboxes and radio buttons</a><a href="#select-option">Dropdown lists with select and option</a><a href="#fieldset-legend">Grouping fields with fieldset and legend</a><a href="#placeholder-autocomplete">Placeholder, autocomplete, and inputmode</a><a href="#required-validation">Required fields and built-in validation</a><a href="#min-max-step">Numeric and date constraints</a><a href="#minlength-maxlength">Text length restrictions</a><a href="#pattern-validation">Pattern-based input validation</a><a href="#validation-states">Valid and invalid CSS states</a><a href="#constraint-api">JavaScript Constraint Validation API</a><a href="#custom-validation">Custom validation messages</a><a href="#submit-events">Handling submit events in JavaScript</a><a href="#formdata-api">Collecting values with FormData</a><a href="#fetch-submit">Submitting forms with fetch</a><a href="#file-upload">File uploads and validation</a><a href="#accessible-errors">Accessible error messages</a><a href="#server-validation">Server-side validation and security</a><a href="#security-csrf">CSRF, XSS, and safe form processing</a><a href="#testing-forms">Testing forms and validation</a><a href="#quiz">Knowledge Assessment Quiz</a><a href="#glossary">Glossary of Terms</a></nav>
 </aside>
 <main>
 <header class="book-header">
 <span class="eyebrow">Digital Book · Technology</span>
 <h1>Forms and Input Validation</h1>
 <p>Learn how to create interactive web forms and validate user inputs to ensure accurate and secure data submission.</p>
-</header>
-
-
+<div class="book-references"><h2>References</h2><p>Learn more from these authoritative web development resources:</p><ul><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Your_first_form" rel="noopener noreferrer" target="_blank">MDN — Your first form</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation" rel="noopener noreferrer" target="_blank">MDN — Client-side form validation</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input" rel="noopener noreferrer" target="_blank">MDN — HTML input element</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation" rel="noopener noreferrer" target="_blank">MDN — Constraint validation</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData" rel="noopener noreferrer" target="_blank">MDN — FormData API</a></li><li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html" rel="noopener noreferrer" target="_blank">OWASP — Input Validation Cheat Sheet</a></li><li><a href="https://www.w3.org/WAI/tutorials/forms/" rel="noopener noreferrer" target="_blank">W3C WAI — Forms Tutorial</a></li></ul></div></header>
 <section class="chapter" id="your-first-form">
 <h2>Your first form</h2>
 <p>
@@ -1124,8 +1090,65 @@ user_message=Hello! I would like to ask a question.</code></pre>
         controls, and server-side functionality.
     </p>
 </section>
-
-<section class="chapter" id="quiz">
+<section class="chapter" id="html-input-types"><h2>HTML input types</h2><p>Choose appropriate input types for text, email, passwords, numbers, dates, URLs, and telephone numbers. Semantic input types provide browser features and better mobile keyboards.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="email" name="email" type="email" required&gt;</code></pre></div><h3>Key takeaway</h3><p>Use type="password" for masked entry, but remember masking is not encryption. Use type="tel" for phone numbers because phone number formats vary.</p></section><section class="chapter" id="checkbox-radio"><h2>Checkboxes and radio buttons</h2><p>Checkboxes allow independent selections; radio buttons with the same name represent one choice from a group. Every control needs an understandable label.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label&gt;&lt;input type="checkbox" name="updates"&gt; Send updates&lt;/label&gt;
+&lt;fieldset&gt;
+  &lt;legend&gt;Preferred contact&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="contact" value="email"&gt; Email&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="contact" value="phone"&gt; Phone&lt;/label&gt;
+&lt;/fieldset&gt;</code></pre></div><h3>Key takeaway</h3><p>Unchecked checkboxes are generally omitted from submitted form data. Set a value when the server needs to distinguish selections.</p></section><section class="chapter" id="select-option"><h2>Dropdown lists with select and option</h2><p>Use select when the user should choose from a list of predefined values. Option values are submitted to the server, while visible text explains the choices.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="course"&gt;Course&lt;/label&gt;
+&lt;select id="course" name="course" required&gt;
+  &lt;option value=""&gt;Choose a course&lt;/option&gt;
+  &lt;option value="bsit"&gt;BS Information Technology&lt;/option&gt;
+  &lt;option value="bscs"&gt;BS Computer Science&lt;/option&gt;
+&lt;/select&gt;</code></pre></div><h3>Key takeaway</h3><p>Avoid very long dropdowns when a search interface would be easier to use.</p></section><section class="chapter" id="fieldset-legend"><h2>Grouping fields with fieldset and legend</h2><p>Related form fields should be grouped with fieldset and described with legend. This is especially helpful for sets of radio buttons and checkboxes.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Delivery preference&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="delivery" value="pickup"&gt; Pickup&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="delivery" value="courier"&gt; Courier&lt;/label&gt;
+&lt;/fieldset&gt;</code></pre></div><h3>Key takeaway</h3><p>The legend should clearly explain the question answered by the grouped controls.</p></section><section class="chapter" id="placeholder-autocomplete"><h2>Placeholder, autocomplete, and inputmode</h2><p>Placeholder text offers a temporary hint, not a substitute for a persistent label. Autocomplete helps browsers fill familiar data; inputmode suggests an appropriate virtual keyboard.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="phone"&gt;Phone number&lt;/label&gt;
+&lt;input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g., 0912 345 6789"&gt;</code></pre></div><h3>Key takeaway</h3><p>Use autocomplete values such as name, email, current-password, and new-password when appropriate.</p></section><section class="chapter" id="required-validation"><h2>Required fields and built-in validation</h2><p>The required attribute prevents normal submission of an empty required control. Browser constraint validation can check input type and other declared rules before a form is submitted.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="fullName"&gt;Full name&lt;/label&gt;
+&lt;input id="fullName" name="fullName" required&gt;</code></pre></div><h3>Key takeaway</h3><p>Mark required fields clearly. Browser validation is helpful but never replaces validation on the server.</p></section><section class="chapter" id="min-max-step"><h2>Numeric and date constraints</h2><p>The min, max, and step attributes specify allowed ranges and increments for supported controls. They are useful for quantities, dates, and other bounded values.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="quantity"&gt;Quantity (1–10)&lt;/label&gt;
+&lt;input id="quantity" name="quantity" type="number" min="1" max="10" step="1" required&gt;</code></pre></div><h3>Key takeaway</h3><p>A server must independently enforce the same range because clients can bypass browser constraints.</p></section><section class="chapter" id="minlength-maxlength"><h2>Text length restrictions</h2><p>The minlength and maxlength attributes describe length requirements for text inputs and textareas. Explain the requirements before users submit.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="username"&gt;Username (4–20 characters)&lt;/label&gt;
+&lt;input id="username" name="username" minlength="4" maxlength="20" required&gt;</code></pre></div><h3>Key takeaway</h3><p>Character length rules do not determine whether a username is unique or safe; the server must perform those checks.</p></section><section class="chapter" id="pattern-validation"><h2>Pattern-based input validation</h2><p>The pattern attribute applies a regular-expression rule to supported text-like input controls. Provide an example of the expected format to help users succeed.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="code"&gt;Code (three uppercase letters)&lt;/label&gt;
+&lt;input id="code" name="code" pattern="[A-Z]{3}" title="Enter three uppercase letters" required&gt;</code></pre></div><h3>Key takeaway</h3><p>Avoid overly restrictive patterns for names, addresses, and phone numbers; real-world formats vary.</p></section><section class="chapter" id="validation-states"><h2>Valid and invalid CSS states</h2><p>CSS pseudo-classes such as :valid, :invalid, :required, and :focus-visible can provide visual feedback. Use explanatory text as well as color.</p><h3>Example</h3><div class="code-example"><pre><code>input:focus-visible { outline: 3px solid #3157a4; }
+input:invalid:not(:placeholder-shown) { border-color: #b42318; }</code></pre></div><h3>Key takeaway</h3><p>Be careful not to show error styling before a user has had an opportunity to enter data.</p></section><section class="chapter" id="constraint-api"><h2>JavaScript Constraint Validation API</h2><p>JavaScript can inspect a control’s validity, call checkValidity(), or display a browser validation message with reportValidity().</p><h3>Example</h3><div class="code-example"><pre><code>const form = document.querySelector("#signupForm");
+if (!form.checkValidity()) {
+  form.reportValidity();
+}</code></pre></div><h3>Key takeaway</h3><p>The validity property provides flags such as valueMissing, typeMismatch, and patternMismatch.</p></section><section class="chapter" id="custom-validation"><h2>Custom validation messages</h2><p>Use setCustomValidity() to describe application-specific rules that built-in attributes cannot express. Clear custom errors when the value changes.</p><h3>Example</h3><div class="code-example"><pre><code>const password = document.querySelector("#password");
+password.addEventListener("input", () =&gt; {
+  password.setCustomValidity(password.value.includes(" ")
+    ? "Password cannot contain spaces." : "");
+});</code></pre></div><h3>Key takeaway</h3><p>Always ensure that custom messages are accurate and that users can correct the field.</p></section><section class="chapter" id="submit-events"><h2>Handling submit events in JavaScript</h2><p>The submit event occurs when a form is submitted. Use preventDefault() when JavaScript will handle submission, then validate and send data intentionally.</p><h3>Example</h3><div class="code-example"><pre><code>document.querySelector("#contactForm").addEventListener("submit", async (event) =&gt; {
+  event.preventDefault();
+  if (!event.currentTarget.reportValidity()) return;
+  // Send validated values to your server.
+});</code></pre></div><h3>Key takeaway</h3><p>A click handler on a button is not a complete substitute for a form submit handler; keyboard submissions matter too.</p></section><section class="chapter" id="formdata-api"><h2>Collecting values with FormData</h2><p>The FormData API collects successful form controls by their name attributes. It can be used with fetch() to submit text fields and files.</p><h3>Example</h3><div class="code-example"><pre><code>const form = document.querySelector("#contactForm");
+const data = new FormData(form);
+console.log(data.get("email"));</code></pre></div><h3>Key takeaway</h3><p>Do not assume every expected value exists; unchecked controls may not appear in FormData.</p></section><section class="chapter" id="fetch-submit"><h2>Submitting forms with fetch</h2><p>The Fetch API can submit form values asynchronously and handle server responses without navigating away from the current page.</p><h3>Example</h3><div class="code-example"><pre><code>const form = document.querySelector("#contactForm");
+const response = await fetch(form.action, {
+  method: "POST",
+  body: new FormData(form),
+  credentials: "same-origin"
+});
+if (!response.ok) throw new Error("Submission failed");</code></pre></div><h3>Key takeaway</h3><p>When sending FormData, do not manually set the multipart Content-Type header; the browser supplies the boundary.</p></section><section class="chapter" id="file-upload"><h2>File uploads and validation</h2><p>File inputs let users select files. Accept hints can narrow file choices, but the server must verify file type, size, and safe storage.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="resume"&gt;Upload résumé (PDF)&lt;/label&gt;
+&lt;input id="resume" name="resume" type="file" accept=".pdf,application/pdf"&gt;</code></pre></div><h3>Key takeaway</h3><p>The accept attribute is only a browser hint. Never trust a file extension or client-provided MIME type alone.</p></section><section class="chapter" id="accessible-errors"><h2>Accessible error messages</h2><p>Error messages should identify the affected field and explain how to fix it. Associate errors with controls using aria-describedby and announce important changes when needed.</p><h3>Example</h3><div class="code-example"><pre><code>&lt;label for="studentEmail"&gt;Email&lt;/label&gt;
+&lt;input id="studentEmail" name="email" aria-describedby="emailHelp"&gt;
+&lt;small id="emailHelp"&gt;Enter a valid email address.&lt;/small&gt;</code></pre></div><h3>Key takeaway</h3><p>Avoid using only red borders or icons to communicate an error.</p></section><section class="chapter" id="server-validation"><h2>Server-side validation and security</h2><p>All submitted data must be checked on the server, even when browser validation is present. Enforce required fields, length limits, permitted values, authorization, and business rules.</p><h3>Example</h3><div class="code-example"><pre><code>app.post("/api/contact", (req, res) =&gt; {
+  const email = String(req.body.email ?? "").trim();
+  if (email.length &gt; 254 || !email.includes("@")) {
+    return res.status(400).json({ message: "Invalid email." });
+  }
+  res.json({ success: true });
+});</code></pre></div><h3>Key takeaway</h3><p>This abbreviated example is illustrative, not production-ready email validation. Use trusted validation libraries and parameterized database queries.</p></section><section class="chapter" id="security-csrf"><h2>CSRF, XSS, and safe form processing</h2><p>Secure form handling must consider cross-site request forgery, cross-site scripting, and injection attacks. Use framework protections, output encoding, CSRF defenses where needed, and parameterized queries.</p><h3>Example</h3><div class="code-example"><pre><code>// Example: parameterized database query
+await db.query(
+  "INSERT INTO contacts (email) VALUES ($1)",
+  [email]
+);</code></pre></div><h3>Key takeaway</h3><p>Client-side sanitization alone is not sufficient. Encode data for its output context and protect authenticated state-changing requests.</p></section><section class="chapter" id="testing-forms"><h2>Testing forms and validation</h2><p>Test valid submissions, missing fields, wrong formats, boundary values, keyboard navigation, and server errors. Verify that failures do not erase entered data unnecessarily.</p><h3>Example</h3><div class="code-example"><pre><code>// Suggested test cases:
+// 1. Empty required field
+// 2. Invalid email
+// 3. Minimum and maximum length
+// 4. Keyboard-only submission
+// 5. Server returns 400 or 500</code></pre></div><h3>Key takeaway</h3><p>Test on mobile and desktop, with assistive technologies where possible, and confirm the server rejects bypassed client-side checks.</p></section><section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
 <p>Test your understanding of HTML forms, labels, inputs, textareas, buttons, form styling, and submitting data to a web server.</p>
 <div id="quizProgress">0 of 10 answered</div>
@@ -1141,6 +1164,71 @@ user_message=Hello! I would like to ask a question.</code></pre>
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of Forms and Input Validation · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+<section aria-labelledby="cvGlossaryHeading" class="cv-glossary chapter" id="glossary">
+<div class="cv-glossary-header">
+<h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+<p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+</div>
+<label class="cv-glossary-search-label" for="cvGlossarySearch">
+        Search glossary terms
+    </label>
+<input autocomplete="off" class="cv-glossary-search" id="cvGlossarySearch" placeholder="Search a term or definition..." type="search"/>
+<div aria-live="polite" class="cv-glossary-count">
+        10 terms
+    </div>
+<div class="cv-glossary-list">
+<article class="cv-glossary-item">
+<h3>Client-Side Validation</h3>
+<p>Validation performed in the user's browser.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Constraint Validation</h3>
+<p>Built-in browser validation of form controls.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Form</h3>
+<p>An interface for collecting user input.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Input</h3>
+<p>An HTML control for entering data.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Regular Expression</h3>
+<p>A pattern used to match text.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Required Field</h3>
+<p>A field that must contain an acceptable value.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Sanitization</h3>
+<p>Processing input to remove or neutralize unwanted content.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Server-Side Validation</h3>
+<p>Validation performed on the server.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Submit Event</h3>
+<p>An event triggered when a form is submitted.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Validation</h3>
+<p>Checking data against defined rules.</p>
+</article>
+</div>
+<p class="cv-glossary-empty" hidden="">
+        No matching glossary terms found.
+    </p>
+</section>
+<!-- CODEVERSE GLOSSARY END -->
 </main>
 </div>
 <script>
@@ -1562,4 +1650,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
-<script>document.addEventListener("DOMContentLoaded",()=>{const toggle=document.getElementById("menuToggle"),nav=document.getElementById("navLinks");if(toggle&&nav){toggle.setAttribute("aria-expanded","false");toggle.addEventListener("click",()=>{const opened=nav.classList.toggle("show");toggle.setAttribute("aria-expanded",String(opened));});nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("show");toggle.setAttribute("aria-expanded","false");}));}const links=[...document.querySelectorAll('.toc a[href^="#"]')];if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;links.forEach(a=>a.classList.toggle('current',a.getAttribute('href')==='#'+entry.target.id));}},{rootMargin:'-110px 0px -65% 0px'});document.querySelectorAll('section.chapter[id]').forEach(el=>observer.observe(el));}});</script></body></html>
+<script>document.addEventListener("DOMContentLoaded",()=>{const toggle=document.getElementById("menuToggle"),nav=document.getElementById("navLinks");if(toggle&&nav){toggle.setAttribute("aria-expanded","false");toggle.addEventListener("click",()=>{const opened=nav.classList.toggle("show");toggle.setAttribute("aria-expanded",String(opened));});nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("show");toggle.setAttribute("aria-expanded","false");}));}const links=[...document.querySelectorAll('.toc a[href^="#"]')];if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;links.forEach(a=>a.classList.toggle('current',a.getAttribute('href')==='#'+entry.target.id));}},{rootMargin:'-110px 0px -65% 0px'});document.querySelectorAll('section.chapter[id]').forEach(el=>observer.observe(el));}});</script> <script defer="" src="/js/navbar-loader.js"></script>
+<script defer="" src="/js/glossary.js"></script>
+</body></html>

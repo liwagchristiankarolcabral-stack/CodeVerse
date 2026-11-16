@@ -30,35 +30,41 @@ html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var
 @media(max-width:780px){#accountActions{display:flex}.nav-actions{margin-left:0}.menu-toggle{margin-left:auto}}
 @media(max-width:480px){.navbar{gap:8px}.nav-actions{order:3;width:100%;justify-content:flex-start}.menu-toggle{order:2}.reading-controls{padding:14px}.control-group{flex-wrap:wrap}}
 </style>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
 </head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a class="active" href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks">
-            ☰
-        </button>
-</header>
+
 <header class="topbar">
 <a class="back-link" href="/library.html">← Back to Books</a>
 </header>
@@ -106,6 +112,20 @@ html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var
 <a href="#css-grid-components">CSS Grid Components</a>
 <a href="#css-five-grid-items">Five Grid Items</a>
 <a href="#all-css-grid-properties">All CSS Grid Properties</a>
+<!-- ADDITIONAL CSS LESSONS -->
+<a href="#css-selectors">CSS Selectors and Combinators</a>
+<a href="#css-cascade">The CSS Cascade and Specificity</a>
+<a href="#css-box-model">CSS Box Model</a>
+<a href="#css-colors-typography">CSS Colors, Fonts, and Typography</a>
+<a href="#css-units">CSS Units and Sizing</a>
+<a href="#css-display">Display, Visibility, and Overflow</a>
+<a href="#css-positioning">CSS Positioning and Stacking</a>
+<a href="#css-pseudo">Pseudo-Classes and Pseudo-Elements</a>
+<a href="#css-flex-alignment">Advanced Flexbox Alignment and Wrapping</a>
+<a href="#css-grid-placement">Advanced Grid Placement and Named Areas</a>
+<a href="#css-media-queries">Media Queries and Responsive Design</a>
+<a href="#css-variables">CSS Custom Properties and Reusable Themes</a>
+<a href="#css-transitions">CSS Transitions, Transforms, and Accessibility</a>
 <!-- KNOWLEDGE ASSESSMENT -->
 <a href="#quiz">
             Knowledge Assessment Quiz
@@ -119,6 +139,18 @@ html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var
 <p>Learn the fundamentals of CSS styling, website layouts, Flexbox, 
                 and Grid to create visually appealing, responsive, and well-structured web pages.</p>
 </header>
+<section class="chapter" id="css-references" aria-labelledby="css-references-heading">
+<h2 id="css-references-heading">References</h2>
+<p>Use these educational resources to review CSS syntax, layouts, responsive design, and browser behavior.</p>
+<ul>
+<li>MDN Web Docs. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer">CSS: Cascading Style Sheets</a>.</li>
+<li>MDN Web Docs. <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics" target="_blank" rel="noopener noreferrer">CSS Styling Basics</a>.</li>
+<li>MDN Web Docs. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout" target="_blank" rel="noopener noreferrer">CSS Flexible Box Layout</a>.</li>
+<li>MDN Web Docs. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout" target="_blank" rel="noopener noreferrer">CSS Grid Layout</a>.</li>
+<li>MDN Web Docs. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries" target="_blank" rel="noopener noreferrer">CSS Media Queries</a>.</li>
+<li>W3Schools. <a href="https://www.w3schools.com/css/" target="_blank" rel="noopener noreferrer">CSS Tutorial</a>.</li>
+</ul>
+</section>
 <!-- ==========================================
      CODEVERSE - CSS INTRODUCTION
 ========================================== -->
@@ -950,6 +982,170 @@ ul.demo-topnav li a:hover {
         while the sidebar occupies the third column.
     </p>
 </section>
+<!-- LESSON 18: CSS Selectors and Combinators -->
+<section class="chapter" id="css-selectors">
+<h2>18. CSS Selectors and Combinators</h2>
+<p>Selectors identify the HTML elements that receive styles. Class selectors can be reused, ID selectors target a specific identifier, and combinators describe relationships between elements.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.card { border-radius: 12px; }
+#featured { background: #eef4ff; }
+nav a { text-decoration: none; }
+.card &gt; h3 { margin-top: 0; }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Use classes for reusable components, and avoid overly complex selectors that are difficult to maintain.</p>
+</section>
+<!-- LESSON 19: The CSS Cascade and Specificity -->
+<section class="chapter" id="css-cascade">
+<h2>19. The CSS Cascade and Specificity</h2>
+<p>When several CSS declarations target the same property, the browser resolves conflicts using cascade origin, importance, cascade layers, specificity, scoping proximity, and source order. Specificity compares selector weights.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.notice { color: navy; }
+.notice.important { color: crimson; }
+/* The second selector is more specific. */</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Prefer predictable class-based styling rather than repeatedly increasing selector specificity.</p>
+</section>
+<!-- LESSON 20: CSS Box Model -->
+<section class="chapter" id="css-box-model">
+<h2>20. CSS Box Model</h2>
+<p>Every CSS element has a content box surrounded by padding, border, and margin. Padding is inside the border, while margin creates space outside it.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.panel {
+  box-sizing: border-box;
+  width: 320px;
+  padding: 20px;
+  border: 2px solid #2458b6;
+  margin: 16px auto;
+}</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Using border-box makes declared widths include padding and borders, simplifying responsive sizing.</p>
+</section>
+<!-- LESSON 21: CSS Colors, Fonts, and Typography -->
+<section class="chapter" id="css-colors-typography">
+<h2>21. CSS Colors, Fonts, and Typography</h2>
+<p>Colors communicate hierarchy and brand identity. Typography controls readability through font families, sizes, weights, line heights, and letter spacing.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.article-title {
+  color: #173e83;
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+.article-body { line-height: 1.7; }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Maintain sufficient contrast and use relative font sizes where appropriate for accessibility.</p>
+</section>
+<!-- LESSON 22: CSS Units and Sizing -->
+<section class="chapter" id="css-units">
+<h2>22. CSS Units and Sizing</h2>
+<p>Absolute units such as px are useful for fine detail. Relative units such as rem, em, %, vw, and vh help layouts adapt to font settings and viewport dimensions.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.content { width: min(90%, 72rem); margin-inline: auto; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+.hero { min-height: 45vh; }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Use rem for scalable typography and percentages or flexible tracks for responsive layouts.</p>
+</section>
+<!-- LESSON 23: Display, Visibility, and Overflow -->
+<section class="chapter" id="css-display">
+<h2>23. Display, Visibility, and Overflow</h2>
+<p>The display property controls how elements participate in layout. Common values include block, inline, flex, grid, and none. Overflow controls what happens when content exceeds its box.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.code-panel { overflow-x: auto; }
+.hidden { display: none; }
+.inline-label { display: inline; }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Use overflow-x: auto for wide code examples and tables on small screens.</p>
+</section>
+<!-- LESSON 24: CSS Positioning and Stacking -->
+<section class="chapter" id="css-positioning">
+<h2>24. CSS Positioning and Stacking</h2>
+<p>CSS position supports static, relative, absolute, fixed, and sticky positioning. Positioned elements can overlap, and z-index helps control stacking order within stacking contexts.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.sidebar { position: sticky; top: 1rem; }
+.badge { position: absolute; top: 8px; right: 8px; }
+.card { position: relative; }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>A sticky sidebar can remain visible while scrolling, but it must have an appropriate top offset and sufficient scrolling space.</p>
+</section>
+<!-- LESSON 25: Pseudo-Classes and Pseudo-Elements -->
+<section class="chapter" id="css-pseudo">
+<h2>25. Pseudo-Classes and Pseudo-Elements</h2>
+<p>Pseudo-classes style elements in a state such as :hover, :focus-visible, or :checked. Pseudo-elements such as ::before and ::after style generated parts of an element.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>a:hover { text-decoration: underline; }
+button:focus-visible { outline: 3px solid royalblue; }
+.note::before { content: &quot;Tip: &quot;; font-weight: bold; }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Never rely on hover alone to communicate essential information; keyboard focus should also be visible.</p>
+</section>
+<!-- LESSON 26: Advanced Flexbox Alignment and Wrapping -->
+<section class="chapter" id="css-flex-alignment">
+<h2>26. Advanced Flexbox Alignment and Wrapping</h2>
+<p>Flexbox distributes space along a main axis and aligns items on a cross axis. flex-wrap permits multiple lines; flex-grow, flex-shrink, and flex-basis determine item sizing.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.cards { display: flex; flex-wrap: wrap; gap: 1rem; }
+.cards &gt; article { flex: 1 1 220px; }
+.toolbar { display: flex; justify-content: space-between; align-items: center; }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Use gap for consistent spacing and flex-wrap for card rows that should reflow on narrower screens.</p>
+</section>
+<!-- LESSON 27: Advanced Grid Placement and Named Areas -->
+<section class="chapter" id="css-grid-placement">
+<h2>27. Advanced Grid Placement and Named Areas</h2>
+<p>CSS Grid lets you place items using grid lines or named areas. The repeat() and minmax() functions simplify flexible track definitions, while grid-column and grid-row allow items to span tracks.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.dashboard {
+  display: grid;
+  grid-template-areas: &quot;header header&quot; &quot;main aside&quot;;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+.dashboard-header { grid-area: header; }
+.dashboard-main { grid-area: main; }
+.dashboard-aside { grid-area: aside; }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Named grid areas make large page layouts easier to read and rearrange at different breakpoints.</p>
+</section>
+<!-- LESSON 28: Media Queries and Responsive Design -->
+<section class="chapter" id="css-media-queries">
+<h2>28. Media Queries and Responsive Design</h2>
+<p>Media queries apply styles based on conditions such as viewport width and user preferences. A mobile-first approach begins with smaller screens and adds enhancements as space becomes available.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.gallery { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 700px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1100px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Choose breakpoints based on when content needs to change rather than targeting individual device models.</p>
+</section>
+<!-- LESSON 29: CSS Custom Properties and Reusable Themes -->
+<section class="chapter" id="css-variables">
+<h2>29. CSS Custom Properties and Reusable Themes</h2>
+<p>Custom properties store reusable values such as colors, spacing, and typography. They can be overridden on a parent element, allowing nested components and dark themes to inherit consistent settings.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>:root { --surface: #ffffff; --text: #1a2943; }
+.dark-mode { --surface: #172236; --text: #ecf3ff; }
+.panel { background: var(--surface); color: var(--text); }</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Define shared design tokens in :root and override them for dark mode rather than duplicating every component rule.</p>
+</section>
+<!-- LESSON 30: CSS Transitions, Transforms, and Accessibility -->
+<section class="chapter" id="css-transitions">
+<h2>30. CSS Transitions, Transforms, and Accessibility</h2>
+<p>Transitions animate changes between property values, while transforms can translate, rotate, or scale an element. Motion should be subtle and respect user preferences.</p>
+<h3>CSS Example</h3>
+<div class="code-example"><pre><code>.action { transition: transform 180ms ease; }
+.action:hover { transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .action { transition: none; }
+}</code></pre></div>
+<h3>Practical Guidance</h3>
+<p>Use prefers-reduced-motion to disable nonessential animation for people who request less motion.</p>
+</section>
 <!-- ==========================================
      CODEVERSE - CSS KNOWLEDGE ASSESSMENT QUIZ
 ========================================== -->
@@ -972,6 +1168,126 @@ ul.demo-topnav li a:hover {
 <div hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of CSS Styling, Layout, Flexbox, and Grid · CodeVerse Digital Library</footer>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Box Model</h3>
+                <p>The content, padding, border, and margin of an element.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>CSS</h3>
+                <p>A stylesheet language for presentation and layout.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Declaration</h3>
+                <p>A property-value pair in CSS.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Flexbox</h3>
+                <p>A one-dimensional CSS layout system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Grid</h3>
+                <p>A two-dimensional CSS layout system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Media Query</h3>
+                <p>A conditional rule for applying styles.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Property</h3>
+                <p>A CSS characteristic being configured.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Pseudo-Class</h3>
+                <p>A selector describing an element&#39;s state or condition.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Selector</h3>
+                <p>A pattern identifying elements to style.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Specificity</h3>
+                <p>A mechanism for comparing competing CSS selectors.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <script>
@@ -1418,4 +1734,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body></html>

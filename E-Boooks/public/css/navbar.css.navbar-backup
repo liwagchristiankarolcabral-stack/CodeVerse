@@ -1,0 +1,131 @@
+
+/* CODEVERSE SHARED NAVIGATION */
+
+.cv-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--surface, #ffffff);
+    border-bottom: 1px solid var(--border, #e6eaf1);
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+.cv-navbar-inner {
+    max-width: 1200px;
+    min-height: 76px;
+    margin: auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.cv-navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: 800;
+    color: var(--text, #202b40);
+    white-space: nowrap;
+}
+
+.cv-navbar-brand img {
+    width: 43px;
+    height: 43px;
+    object-fit: contain;
+}
+
+.cv-navbar-brand strong {
+    color: #3157a4;
+}
+
+.cv-navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-left: auto;
+}
+
+.cv-navbar-links a {
+    color: var(--text, #202b40);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cv-navbar-links a:hover {
+    color: #3157a4;
+}
+
+.cv-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cv-navbar-theme,
+.cv-navbar-menu {
+    width: 40px;
+    height: 40px;
+    background: var(--surface, #ffffff);
+    color: var(--text, #202b40);
+    border: 1px solid var(--border, #e6eaf1);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 19px;
+}
+
+.cv-navbar-menu {
+    display: none;
+}
+
+.cv-guest-actions[hidden],
+.cv-user-actions[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+
+    .cv-navbar-inner {
+        flex-wrap: wrap;
+    }
+
+    .cv-navbar-links {
+        display: none;
+        order: 3;
+        width: 100%;
+        margin-left: 0;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cv-navbar-links.open {
+        display: flex;
+    }
+
+    .cv-navbar-actions {
+        margin-left: auto;
+    }
+
+    .cv-navbar-menu {
+        display: block;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .cv-navbar-brand {
+        font-size: 18px;
+    }
+
+    .cv-navbar-brand img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .cv-navbar-actions {
+        flex-wrap: wrap;
+    }
+}

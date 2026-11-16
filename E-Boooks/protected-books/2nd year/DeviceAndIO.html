@@ -744,50 +744,41 @@
         }
 
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =====================================
          CODEVERSE NAVIGATION
     ====================================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>
-                Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">
-                Home
-            </a>
-<a class="active" href="/library.html">
-                Explore Books
-            </a>
-<a href="/index.html#about">
-                About
-            </a>
-</nav>
-<!-- NAVIGATION ACTIONS -->
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- LOG IN BUTTON -->
-<a class="btn-login" href="/LogIn.html">
-        Log In
-    </a>
-<!-- SIGN UP BUTTON -->
-<a class="btn-signup" href="/register.html">
-        Sign Up
-    </a>
-<!-- DARK MODE BUTTON -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Open navigation" class="menu-toggle" id="menuToggle" type="button">
 
-            ☰
-
-        </button>
-</header>
 <!-- =====================================
          BACK TO BOOKS
     ====================================== -->
@@ -2907,6 +2898,126 @@
                      END OF BOOK CONTENT
                 ====================================== -->
 </div>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Buffer</h3>
+                <p>Temporary storage used during data transfer.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Caching</h3>
+                <p>Keeping frequently used data in faster storage.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Device Controller</h3>
+                <p>Hardware that manages a device&#39;s operations.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Device Driver</h3>
+                <p>Software controlling communication with a device.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>DMA</h3>
+                <p>Direct memory access.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>I/O</h3>
+                <p>Input and output operations.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Interrupt</h3>
+                <p>A signal requesting processor attention.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Peripheral</h3>
+                <p>An external or additional hardware device.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Polling</h3>
+                <p>Repeatedly checking device status.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Spooling</h3>
+                <p>Queuing data for processing by a device.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <!-- =====================================
@@ -4079,5 +4190,7 @@
         });
 
     </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

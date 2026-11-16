@@ -372,6 +372,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
 </head>
 
 <body id="top">
@@ -379,52 +381,34 @@
     <!-- =========================
          NAVIGATION BAR
     ========================== -->
-    <header class="navbar">
+    <div id="navbarContainer"></div>
 
-        <a class="logo" href="/index.html">
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-                onerror="this.style.display='none'"
-            >
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-        </a>
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
 
-        <nav class="nav-links" id="navLinks">
-            <a href="F:\for chat\CodeVerse_Repaired_Website\E-Boooks\public\index.html">Home</a>
-            <a href="/library.html" class="active">Explore Books</a>
-            <a href="/index.html#about">About</a>
-        </nav>
+    <span id="themeIcon"></span>
 
-        <div class="nav-actions">
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
 
-            <div id="accountActions">
-                <a href="/LogIn.html" class="login-btn">Log In</a>
-                <a href="/register.html" class="signup-btn">Sign Up</a>
-            </div>
-        </div>
+    <nav id="navLinks"></nav>
+</div>
 
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open navigation menu"
-        >
-            ☰
-        </button>
-
-    </header>
 
     <!-- =========================
          BACK NAVIGATION
@@ -3248,7 +3232,127 @@ messageElement.textContent =
      CLOSE MAIN CONTENT
 ========================================== -->
 
-        </main>
+        
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Access Control</h3>
+                <p>Restrictions on who may access resources.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Authentication</h3>
+                <p>Verification of a user&#39;s identity.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Authorization</h3>
+                <p>Determining which actions a user may perform.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Cookie</h3>
+                <p>Data stored by a browser and sent with matching requests.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>CSRF</h3>
+                <p>An attack that tricks a browser into submitting an unwanted request.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Least Privilege</h3>
+                <p>Granting only the permissions required for a task.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>MFA</h3>
+                <p>Multi-factor authentication.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Password Hash</h3>
+                <p>A one-way representation used for password verification.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Session</h3>
+                <p>Server-maintained state associated with a user interaction.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>XSS</h3>
+                <p>An attack involving execution of untrusted script in a browser.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
+</main>
 
     </div>
 
@@ -4010,5 +4114,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

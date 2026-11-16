@@ -8,7 +8,7 @@
 
     <title>CodeVerse | Digital E-Book Library</title>
 
-    <!-- Google Fonts -->
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -17,15 +17,103 @@
         rel="stylesheet"
     >
 
-    <!-- External CSS -->
+    <!-- EXTERNAL CSS -->
     <link rel="stylesheet" href="/cssstyle.css">
 
-    <!-- Favicon -->
+    <!-- FAVICON -->
     <link
         rel="icon"
         type="image/png"
         href="/images/CodeVerseLogo.png"
     >
+
+    <!-- USER ACCOUNT STYLES -->
+    <style>
+        .cv-auth-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .cv-guest-actions,
+        .cv-user-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cv-guest-actions[hidden],
+        .cv-user-actions[hidden] {
+            display: none !important;
+        }
+
+        .cv-user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cv-user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #3157a4;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .cv-user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text, #202b40);
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .cv-logout-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .cv-logout-btn:hover {
+            background: #b52a37;
+        }
+
+        .cv-logout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .cv-user-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .cv-user-name {
+                max-width: 110px;
+            }
+
+            .cv-logout-btn {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+
 </head>
 
 <body id="top">
@@ -36,6 +124,7 @@
 
     <header class="navbar">
 
+        <!-- LOGO -->
         <a class="logo" href="/index.html">
 
             <img
@@ -50,6 +139,7 @@
 
         </a>
 
+        <!-- NAVIGATION LINKS -->
         <nav class="nav-links" id="navLinks">
 
             <a href="/index.html" class="active">
@@ -66,6 +156,7 @@
 
         </nav>
 
+        <!-- NAVIGATION ACTIONS -->
         <div class="nav-actions">
 
             <!-- DARK MODE -->
@@ -78,16 +169,67 @@
                 <span id="themeIcon">☾</span>
             </button>
 
-            <!-- ACCOUNT ACTIONS -->
-            <div id="accountActions">
+            <!-- USER AUTHENTICATION -->
+            <div class="cv-auth-container" id="authContainer">
 
-                <a href="/LogIn.html" class="login-btn">
-                    Log In
-                </a>
+                <!-- GUEST ACTIONS -->
+                <div
+                    class="cv-guest-actions"
+                    id="guestActions"
+                    hidden
+                >
 
-                <a href="/register.html" class="signup-btn">
-                    Sign Up
-                </a>
+                    <a
+                        href="/LogIn.html"
+                        class="login-btn"
+                    >
+                        Log In
+                    </a>
+
+                    <a
+                        href="/register.html"
+                        class="signup-btn"
+                    >
+                        Sign Up
+                    </a>
+
+                </div>
+
+                <!-- LOGGED-IN USER ACTIONS -->
+                <div
+                    class="cv-user-actions"
+                    id="userActions"
+                    hidden
+                >
+
+                    <div class="cv-user-profile">
+
+                        <span
+                            class="cv-user-avatar"
+                            id="userAvatar"
+                            aria-hidden="true"
+                        >
+                            U
+                        </span>
+
+                        <span
+                            class="cv-user-name"
+                            id="userName"
+                        >
+                            User
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="cv-logout-btn"
+                        id="logoutButton"
+                    >
+                        Log Out
+                    </button>
+
+                </div>
 
             </div>
 
@@ -284,7 +426,10 @@
              YEAR LEVEL COLLECTIONS
         ====================================== -->
 
-        <section class="cv-home-section cv-year-section" id="books">
+        <section
+            class="cv-home-section cv-year-section"
+            id="books"
+        >
 
             <div class="cv-section-heading">
 
@@ -304,10 +449,7 @@
 
             <div class="cv-year-grid">
 
-                <!-- ==================================
-                     FIRST YEAR IT
-                ================================== -->
-
+                <!-- FIRST YEAR IT -->
                 <article class="cv-year-card">
 
                     <div class="cv-year-icon">
@@ -357,10 +499,7 @@
                 </article>
 
 
-                <!-- ==================================
-                     SECOND YEAR IT
-                ================================== -->
-
+                <!-- SECOND YEAR IT -->
                 <article class="cv-year-card">
 
                     <div class="cv-year-icon">
@@ -410,10 +549,7 @@
                 </article>
 
 
-                <!-- ==================================
-                     THIRD YEAR IT
-                ================================== -->
-
+                <!-- THIRD YEAR IT -->
                 <article class="cv-year-card">
 
                     <div class="cv-year-icon">
@@ -510,19 +646,9 @@
                 ></div>
 
                 <!-- NO BOOKS MESSAGE -->
-                <p id="noBooksMessage" hidden>
-                    No books found.
-                </p>
-
-                </div>
-                <!-- END OF selectedCollection -->
-
-                <!-- BOOKS GENERATED BY JAVASCRIPT -->
-                <div class="book-grid" id="bookGrid"></div>
-
                 <p
                     id="noBooksMessage"
-                    style="display:none; text-align:center;"
+                    hidden
                 >
                     No books found.
                 </p>
@@ -660,7 +786,10 @@
                     digital reading materials.
                 </p>
 
-                <a class="about-btn" href="/About.html">
+                <a
+                    class="about-btn"
+                    href="/About.html"
+                >
                     Learn More About CodeVerse
                 </a>
 
@@ -778,5 +907,290 @@
     <!-- YEAR-LEVEL PASSKEY SYSTEM -->
     <script src="/js/book-passkey.js"></script>
 
+
+    <!-- ==========================================
+         USER AUTHENTICATION NAVBAR
+    ========================================== -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            "use strict";
+
+            const guestActions =
+                document.getElementById("guestActions");
+
+            const userActions =
+                document.getElementById("userActions");
+
+            const userName =
+                document.getElementById("userName");
+
+            const userAvatar =
+                document.getElementById("userAvatar");
+
+            const logoutButton =
+                document.getElementById("logoutButton");
+
+            if (
+                !guestActions ||
+                !userActions ||
+                !userName ||
+                !userAvatar ||
+                !logoutButton
+            ) {
+                console.error(
+                    "CodeVerse authentication elements not found."
+                );
+                return;
+            }
+
+            /* ======================================
+               SHOW GUEST ACTIONS
+            ====================================== */
+
+            function showGuest() {
+
+                guestActions.hidden = false;
+                userActions.hidden = true;
+
+                userName.textContent = "User";
+                userAvatar.textContent = "U";
+
+            }
+
+            /* ======================================
+               SHOW LOGGED-IN USER
+            ====================================== */
+
+            function showUser(user) {
+
+                const fullName =
+                    typeof user.fullName === "string"
+                        ? user.fullName.trim()
+                        : "";
+
+                const displayName = fullName || "User";
+
+                userName.textContent = displayName;
+
+                userAvatar.textContent =
+                    displayName.charAt(0).toUpperCase();
+
+                guestActions.hidden = true;
+                userActions.hidden = false;
+
+            }
+
+            /* ======================================
+               CHECK LOGIN STATUS
+            ====================================== */
+
+            async function checkLoginStatus() {
+
+                try {
+
+                    const response = await fetch(
+                        "/api/auth/status",
+                        {
+                            method: "GET",
+                            credentials: "same-origin",
+                            cache: "no-store"
+                        }
+                    );
+
+                    if (!response.ok) {
+                        throw new Error(
+                            "Unable to check login status."
+                        );
+                    }
+
+                    const data = await response.json();
+
+                    if (
+                        data.success &&
+                        data.loggedIn &&
+                        data.user
+                    ) {
+
+                        showUser(data.user);
+
+                    } else {
+
+                        showGuest();
+
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Authentication status error:",
+                        error
+                    );
+
+                    guestActions.hidden = true;
+                    userActions.hidden = true;
+
+                }
+
+            }
+
+            /* ======================================
+               LOGOUT FUNCTION
+            ====================================== */
+
+            async function logoutUser() {
+
+                const originalText =
+                    logoutButton.textContent;
+
+                logoutButton.disabled = true;
+                logoutButton.textContent =
+                    "Logging out...";
+
+                try {
+
+                    const response = await fetch(
+                        "/api/logout",
+                        {
+                            method: "POST",
+                            credentials: "same-origin"
+                        }
+                    );
+
+                    const contentType =
+                        response.headers.get(
+                            "content-type"
+                        ) || "";
+
+                    if (
+                        !contentType.includes(
+                            "application/json"
+                        )
+                    ) {
+                        throw new Error(
+                            "The server returned an invalid response."
+                        );
+                    }
+
+                    const data = await response.json();
+
+                    if (
+                        !response.ok ||
+                        !data.success
+                    ) {
+                        throw new Error(
+                            data.message ||
+                            "Logout failed."
+                        );
+                    }
+
+                    showGuest();
+
+                    window.location.replace(
+                        "/index.html"
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                    alert(
+                        "Unable to log out. Please try again."
+                    );
+
+                } finally {
+
+                    logoutButton.disabled = false;
+                    logoutButton.textContent =
+                        originalText;
+
+                }
+
+            }
+
+            /* ======================================
+               EVENT LISTENER
+            ====================================== */
+
+            logoutButton.addEventListener(
+                "click",
+                logoutUser
+            );
+
+            /* ======================================
+               INITIALIZE AUTHENTICATION
+            ====================================== */
+
+            guestActions.hidden = true;
+            userActions.hidden = true;
+
+            checkLoginStatus();
+
+        });
+    </script>
+
+
+    <!-- ==========================================
+         DARK MODE FUNCTIONALITY
+    ========================================== -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const themeToggle =
+                document.getElementById("themeToggle");
+
+            const themeIcon =
+                document.getElementById("themeIcon");
+
+            function applyTheme() {
+
+                const isDark =
+                    localStorage.getItem("theme") === "dark";
+
+                document.body.classList.toggle(
+                    "dark-mode",
+                    isDark
+                );
+
+                if (themeIcon) {
+                    themeIcon.textContent =
+                        isDark ? "☀" : "☾";
+                }
+
+            }
+
+            applyTheme();
+
+            if (themeToggle) {
+
+                themeToggle.addEventListener(
+                    "click",
+                    () => {
+
+                        const isDark =
+                            document.body.classList.contains(
+                                "dark-mode"
+                            );
+
+                        localStorage.setItem(
+                            "theme",
+                            isDark ? "light" : "dark"
+                        );
+
+                        applyTheme();
+
+                    }
+                );
+
+            }
+
+        });
+    </script>
+<script src="/js/auth-nav.js" defer></script>
 </body>
 </html>

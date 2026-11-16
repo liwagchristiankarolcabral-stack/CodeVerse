@@ -1,33 +1,19 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Explore Internet Fundamentals on CodeVerse.">
-
-    <title>Internet Fundamentals | CodeVerse</title>
-
-    <!-- FAVICON -->
-    <link rel="icon"
-          href="/images/CodeVerseLogo.png"
-          type="image/png">
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Explore Internet Fundamentals on CodeVerse." name="description"/>
+<title>Internet Fundamentals | CodeVerse</title>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
 
         /* =====================================
            THEME VARIABLES
@@ -587,358 +573,102 @@
         }
 
     </style>
-
+<link href="/css/navbar.css" rel="stylesheet"/>
 </head>
-
 <body id="top">
-
-    <!-- =====================================
+<!-- =====================================
          NAVIGATION BAR
     ===================================== -->
-
-    <header class="navbar">
-
-        <a class="logo" href="/index.html">
-
-            <img
-                alt="CodeVerse Logo"
-                class="site-logo"
-                src="/images/CodeVerseLogo.png"
-            >
-
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-
-        </a>
-
-        <nav
-            class="nav-links"
-            id="navLinks"
-            aria-label="Main navigation"
-        >
-
-            <a href="/index.html">Home</a>
-
-            <a href="/library.html" class="active">
-                Explore Books
-            </a>
-
-            <a href="/index.html#about">About</a>
-
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                aria-label="Toggle dark mode"
-                class="icon-btn"
-                id="themeToggle"
-                type="button"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-
-                <a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-
-                <a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-
-            </div>
-
-        </div>
-
-        <button
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="navLinks"
-            class="menu-toggle"
-            id="menuToggle"
-            type="button"
-        >
-            ☰
-        </button>
-
-    </header>
-
-    <!-- =====================================
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
+</div>
+<!-- =====================================
          BACK TO BOOKS
     ===================================== -->
-
-    <div class="topbar">
-
-        <a class="back-link" href="/library.html">
+<div class="topbar">
+<a class="back-link" href="/library.html">
             ← Back to Books
         </a>
-
-    </div>
-
-    <!-- =====================================
+</div>
+<!-- =====================================
          BOOK COVER AND DETAILS
     ===================================== -->
-
-    <main class="book-container">
-
-        <!-- BOOK COVER -->
-
-        <div class="book-cover-container">
-
-            <img
-                alt="Internet Fundamentals Book Cover"
-                class="book-cover-image"
-                src="\images\book-covers\3rd year\InterWWW.jpg"
-            >
-
-        </div>
-
-        <!-- BOOK DETAILS -->
-
-        <section class="book-details">
-
-            <span class="featured-label">
+<main class="book-container">
+<!-- BOOK COVER -->
+<div class="book-cover-container">
+<img alt="Internet Fundamentals book cover" class="book-cover-image" loading="lazy" src="/images/book-covers/book-1.jpg"/>
+</div>
+<!-- BOOK DETAILS -->
+<section class="book-details">
+<span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-
-            <h1 class="book-title">
+<h1 class="book-title">
                 Internet Fundamentals
             </h1>
-
-            <!-- STATISTICS -->
-
-            <div class="book-stats">
-
-                <div class="stat">
-                    <strong>8</strong>
-                    <span>Lessons</span>
-                </div>
-
-                <div class="stat">
-                    <strong>1</strong>
-                    <span>Knowledge Assessment</span>
-                </div>
-
-            </div>
-
-            <!-- DESCRIPTION -->
-
-            <p class="book-description">
-
-                Learn the fundamentals of the internet,
-                including how computer networks connect
-                people and devices around the world.
-
-                Explore the World Wide Web, internet
-                connectivity, cloud computing, web browsers,
-                hyperlinks, URLs, and online culture
-                through organized lessons and a
-                knowledge assessment.
-
-            </p>
-
-            <!-- ACTION BUTTONS -->
-
-            <div class="book-actions">
-
-                <a
-                    class="book-btn primary"
-                    href="/read/1"
-                >
+<!-- STATISTICS -->
+<div class="book-stats">
+<div class="stat">
+<strong>30</strong>
+<span>Lessons</span>
+</div>
+<div class="stat">
+<strong>1</strong>
+<span>Knowledge Assessment</span>
+</div>
+</div>
+<!-- DESCRIPTION -->
+<p class="book-description">Explore internet fundamentals through 30 structured lessons. Topics include Introduction: The Internet, Hyperlinks, The TCP/IP Model, Search Engines and Information Retrieval and Basic Internet Troubleshooting. Open the contents to jump directly to any lesson.</p>
+<!-- ACTION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/1">
                     Start Reading →
                 </a>
-
-                <button
-                    class="book-btn"
-                    id="contentsBtn"
-                    type="button"
-                    aria-haspopup="dialog"
-                >
+<button aria-haspopup="dialog" class="book-btn" id="contentsBtn" type="button">
                     ☰ Contents
                 </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-
-    <footer class="page-footer">
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="page-footer">
         Internet Fundamentals · CodeVerse Digital Library
     </footer>
-
-    <!-- =====================================
+<!-- =====================================
          TABLE OF CONTENTS POPUP
     ===================================== -->
-
-    <div
-        class="contents-overlay"
-        id="contentsPopup"
-        aria-hidden="true"
-    >
-
-        <div
-            class="contents-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contentsTitle"
-        >
-
-            <!-- CONTENTS HEADER -->
-
-            <div class="contents-header">
-
-                <div>
-
-                    <span class="contents-subtitle">
+<div aria-hidden="true" class="contents-overlay" id="contentsPopup">
+<div aria-labelledby="contentsTitle" aria-modal="true" class="contents-modal" role="dialog">
+<!-- CONTENTS HEADER -->
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">
                         INTERNET FUNDAMENTALS
                     </span>
-
-                    <h2 id="contentsTitle">
+<h2 id="contentsTitle">
                         Table of Contents
                     </h2>
-
-                </div>
-
-                <button
-                    aria-label="Close contents"
-                    class="close-contents"
-                    id="closeContents"
-                    type="button"
-                >
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <!-- SCROLLABLE CONTENTS -->
-
-            <div class="contents-list">
-
-                <a href="/read/1#internet">
-
-                    <span class="contents-number">01</span>
-
-                    <span class="contents-name">
-                        The Internet
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/1#www">
-
-                    <span class="contents-number">02</span>
-
-                    <span class="contents-name">
-                        The World Wide Web
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/1#connectivity">
-
-                    <span class="contents-number">03</span>
-
-                    <span class="contents-name">
-                        Internet Connectivity
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/1#cloud">
-
-                    <span class="contents-number">04</span>
-
-                    <span class="contents-name">
-                        Cloud Computing
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/1#browsers">
-
-                    <span class="contents-number">05</span>
-
-                    <span class="contents-name">
-                        Web Browsers
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/1#hyperlinks">
-
-                    <span class="contents-number">06</span>
-
-                    <span class="contents-name">
-                        Hyperlinks
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/1#urls">
-
-                    <span class="contents-number">07</span>
-
-                    <span class="contents-name">
-                        Uniform Resource Locators
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/1#culture">
-
-                    <span class="contents-number">08</span>
-
-                    <span class="contents-name">
-                        Culture
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/1#quiz">
-
-                    <span class="contents-number">✓</span>
-
-                    <span class="contents-name">
-                        Knowledge Assessment Quiz
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- =====================================
+</div>
+<!-- SCROLLABLE CONTENTS -->
+<div class="contents-list"><a href="/read/1#references"><span class="contents-number">↗</span><span class="contents-name">References and Further Reading</span><span class="contents-arrow">›</span></a><a href="/read/1#internet"><span class="contents-number">01</span><span class="contents-name">Introduction: The Internet</span><span class="contents-arrow">›</span></a><a href="/read/1#www"><span class="contents-number">02</span><span class="contents-name">The World Wide Web (WWW)</span><span class="contents-arrow">›</span></a><a href="/read/1#connectivity"><span class="contents-number">03</span><span class="contents-name">Internet Connectivity</span><span class="contents-arrow">›</span></a><a href="/read/1#cloud"><span class="contents-number">04</span><span class="contents-name">Cloud Computing</span><span class="contents-arrow">›</span></a><a href="/read/1#browsers"><span class="contents-number">05</span><span class="contents-name">Web Browsers</span><span class="contents-arrow">›</span></a><a href="/read/1#hyperlinks"><span class="contents-number">06</span><span class="contents-name">Hyperlinks</span><span class="contents-arrow">›</span></a><a href="/read/1#urls"><span class="contents-number">07</span><span class="contents-name">Uniform Resource Locators (URLs)</span><span class="contents-arrow">›</span></a><a href="/read/1#culture"><span class="contents-number">08</span><span class="contents-name">Culture</span><span class="contents-arrow">›</span></a><a href="/read/1#network-types"><span class="contents-number">09</span><span class="contents-name">Types of Computer Networks</span><span class="contents-arrow">›</span></a><a href="/read/1#network-topologies"><span class="contents-number">10</span><span class="contents-name">Network Topologies</span><span class="contents-arrow">›</span></a><a href="/read/1#network-hardware"><span class="contents-number">11</span><span class="contents-name">Essential Network Hardware</span><span class="contents-arrow">›</span></a><a href="/read/1#data-packets"><span class="contents-number">12</span><span class="contents-name">Data Packets and Packet Switching</span><span class="contents-arrow">›</span></a><a href="/read/1#tcp-ip"><span class="contents-number">13</span><span class="contents-name">The TCP/IP Model</span><span class="contents-arrow">›</span></a><a href="/read/1#ip-addresses"><span class="contents-number">14</span><span class="contents-name">IP Addresses and Subnets</span><span class="contents-arrow">›</span></a><a href="/read/1#dns"><span class="contents-number">15</span><span class="contents-name">Domain Name System (DNS)</span><span class="contents-arrow">›</span></a><a href="/read/1#domain-names"><span class="contents-number">16</span><span class="contents-name">Domain Names and Registration</span><span class="contents-arrow">›</span></a><a href="/read/1#http-https"><span class="contents-number">17</span><span class="contents-name">HTTP and HTTPS</span><span class="contents-arrow">›</span></a><a href="/read/1#client-server"><span class="contents-number">18</span><span class="contents-name">Client–Server Architecture</span><span class="contents-arrow">›</span></a><a href="/read/1#web-hosting"><span class="contents-number">19</span><span class="contents-name">Web Hosting and Web Servers</span><span class="contents-arrow">›</span></a><a href="/read/1#html-css-js"><span class="contents-number">20</span><span class="contents-name">HTML, CSS, and JavaScript</span><span class="contents-arrow">›</span></a><a href="/read/1#search-engines"><span class="contents-number">21</span><span class="contents-name">Search Engines and Information Retrieval</span><span class="contents-arrow">›</span></a><a href="/read/1#email"><span class="contents-number">22</span><span class="contents-name">Email and Internet Messaging</span><span class="contents-arrow">›</span></a><a href="/read/1#file-transfer"><span class="contents-number">23</span><span class="contents-name">File Transfer and Downloads</span><span class="contents-arrow">›</span></a><a href="/read/1#wifi-mobile"><span class="contents-number">24</span><span class="contents-name">Wi-Fi and Mobile Data</span><span class="contents-arrow">›</span></a><a href="/read/1#speed-latency"><span class="contents-number">25</span><span class="contents-name">Bandwidth, Speed, and Latency</span><span class="contents-arrow">›</span></a><a href="/read/1#cybersecurity"><span class="contents-number">26</span><span class="contents-name">Internet Security Fundamentals</span><span class="contents-arrow">›</span></a><a href="/read/1#privacy"><span class="contents-number">27</span><span class="contents-name">Online Privacy and Digital Footprints</span><span class="contents-arrow">›</span></a><a href="/read/1#digital-citizenship"><span class="contents-number">28</span><span class="contents-name">Digital Citizenship and Netiquette</span><span class="contents-arrow">›</span></a><a href="/read/1#troubleshooting"><span class="contents-number">29</span><span class="contents-name">Basic Internet Troubleshooting</span><span class="contents-arrow">›</span></a><a href="/read/1#future-internet"><span class="contents-number">30</span><span class="contents-name">Emerging Internet Technologies</span><span class="contents-arrow">›</span></a><a href="/read/1#quiz"><span class="contents-number">✓</span><span class="contents-name">Knowledge Assessment Quiz</span><span class="contents-arrow">›</span></a><a href="/read/1#glossary"><span class="contents-number">A–Z</span><span class="contents-name">Glossary</span><span class="contents-arrow">›</span></a></div>
+</div>
+</div>
+<!-- =====================================
          JAVASCRIPT
     ===================================== -->
-
-    <script>
+<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1148,9 +878,7 @@
         });
 
     </script>
-
-    <!-- CODEVERSE ACCOUNT NAVIGATION -->
-    <script src="/js/auth-nav.js" defer></script>
-
+<!-- CODEVERSE ACCOUNT NAVIGATION -->
+<script defer="" src="/js/navbar-loader.js"></script>
 </body>
 </html>

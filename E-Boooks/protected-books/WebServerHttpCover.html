@@ -1,31 +1,19 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Learn about web browsers, servers, HTTP, and HTTPS with CodeVerse.">
-
-    <title>Web Browsers, Servers, and HTTP/HTTPS | CodeVerse</title>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- FAVICON -->
-    <link rel="icon"
-          type="image/png"
-          href="/images/CodeVerseLogo.png">
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Learn about web browsers, servers, HTTP, and HTTPS with CodeVerse." name="description"/>
+<title>Web Browsers, Servers, and HTTP/HTTPS | CodeVerse</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
 
         /* =====================================
            THEME VARIABLES
@@ -610,298 +598,96 @@
         }
 
     </style>
-
+<link href="/css/navbar.css" rel="stylesheet"/>
 </head>
-
 <body id="top">
-
-    <!-- =====================================
+<!-- =====================================
          NAVIGATION BAR
     ===================================== -->
-
-    <header class="navbar">
-
-        <a class="logo" href="/index.html">
-
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
-
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-
-        </a>
-
-        <nav class="nav-links" id="navLinks">
-
-            <a href="/index.html">Home</a>
-
-            <a class="active" href="/library.html">
-                Explore Books
-            </a>
-
-            <a href="/index.html#about">About</a>
-
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-
-                <a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-
-                <a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="navLinks"
-        >
-            ☰
-        </button>
-
-    </header>
-
-    <!-- BACK TO BOOKS -->
-
-    <header class="topbar">
-
-        <a class="back-link" href="/library.html">
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
+</div>
+<!-- BACK TO BOOKS -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
             ← Back to Books
         </a>
-
-    </header>
-
-    <!-- =====================================
+</header>
+<!-- =====================================
          BOOK COVER AND DETAILS
     ===================================== -->
-
-    <main class="book-container">
-
-        <!-- BOOK COVER IMAGE -->
-
-        <div class="book-cover-container">
-
-            <img
-                src="\images\book-covers\3rd year\WebServer.jpg"
-                alt="Web Browsers, Servers, and HTTP/HTTPS Book Cover"
-                class="book-cover-image"
-            >
-
-        </div>
-
-        <!-- BOOK DETAILS -->
-
-        <section class="book-details">
-
-            <span class="featured-label">
+<main class="book-container">
+<!-- BOOK COVER IMAGE -->
+<div class="book-cover-container">
+<img alt="Web Browsers, Servers, and HTTP/HTTPS book cover" class="book-cover-image" loading="lazy" src="/images/book-covers/book-2.jpg"/>
+</div>
+<!-- BOOK DETAILS -->
+<section class="book-details">
+<span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-
-            <h1 class="book-title">
+<h1 class="book-title">
                 Web Browsers, Servers, and HTTP/HTTPS
             </h1>
-
-            <!-- BOOK STATISTICS -->
-
-            <div class="book-stats">
-
-                <div class="stat">
-                    <strong>4</strong>
-                    <span>Lessons</span>
-                </div>
-
-                <div class="stat">
-                    <strong>1</strong>
-                    <span>Knowledge Assessment</span>
-                </div>
-
-            </div>
-
-            <!-- BOOK DESCRIPTION -->
-
-            <p class="book-description">
-
-                Learn how web browsers load websites,
-                how servers deliver website resources,
-                and how HTTP and HTTPS enable communication
-                between browsers and servers.
-
-                Explore the browser rendering process,
-                CSS parsing, JavaScript execution,
-                and the technologies that make
-                modern websites work.
-
-            </p>
-
-            <!-- ACTION BUTTONS -->
-
-            <div class="book-actions">
-
-                <a
-                    class="book-btn primary"
-                    href="/read/2"
-                >
+<!-- BOOK STATISTICS -->
+<div class="book-stats">
+<div class="stat">
+<strong>30</strong>
+<span>Lessons</span>
+</div>
+<div class="stat">
+<strong>1</strong>
+<span>Knowledge Assessment</span>
+</div>
+</div>
+<!-- BOOK DESCRIPTION -->
+<p class="book-description">Explore web browsers, servers, and http/https through 30 structured lessons. Topics include How browsers load websites, 6. Major Components of a Browser, 13. Introduction to HTTP, 21. Digital Certificates and Certificate Authorities and 29. Web Performance and Loading Optimization. Open the contents to jump directly to any lesson.</p>
+<!-- ACTION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/2">
                     Start Reading
                 </a>
-
-                <button
-                    class="book-btn"
-                    id="contentsBtn"
-                    type="button"
-                    aria-haspopup="dialog"
-                >
+<button aria-haspopup="dialog" class="book-btn" id="contentsBtn" type="button">
                     ☰ Contents
                 </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- =====================================
+</div>
+</section>
+</main>
+<!-- =====================================
          TABLE OF CONTENTS POPUP
     ===================================== -->
-
-    <div
-        class="contents-overlay"
-        id="contentsPopup"
-        aria-hidden="true"
-    >
-
-        <div
-            class="contents-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contentsTitle"
-        >
-
-            <!-- CONTENTS HEADER -->
-
-            <div class="contents-header">
-
-                <div>
-
-                    <span class="contents-subtitle">
+<div aria-hidden="true" class="contents-overlay" id="contentsPopup">
+<div aria-labelledby="contentsTitle" aria-modal="true" class="contents-modal" role="dialog">
+<!-- CONTENTS HEADER -->
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">
                         WEB BROWSERS, SERVERS, AND HTTP/HTTPS
                     </span>
-
-                    <h2 id="contentsTitle">
+<h2 id="contentsTitle">
                         Table of Contents
                     </h2>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="close-contents"
-                    id="closeContents"
-                    aria-label="Close contents"
-                >
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <!-- SCROLLABLE TABLE OF CONTENTS -->
-
-            <div class="contents-list">
-
-                <a href="/read/2#how-browsers-load-websites">
-
-                    <span class="contents-number">01</span>
-
-                    <span class="contents-name">
-                        How Browsers Load Websites
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/2#parsing-css-rendering">
-
-                    <span class="contents-number">02</span>
-
-                    <span class="contents-name">
-                        Parsing CSS and Rendering the Page
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/2#handling-javascript">
-
-                    <span class="contents-number">03</span>
-
-                    <span class="contents-name">
-                        Handling JavaScript
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/2#the-browsers">
-
-                    <span class="contents-number">04</span>
-
-                    <span class="contents-name">
-                        The Browsers
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-                <a href="/read/2#quiz">
-
-                    <span class="contents-number">✓</span>
-
-                    <span class="contents-name">
-                        Knowledge Assessment Quiz
-                    </span>
-
-                    <span class="contents-arrow">›</span>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- =====================================
+</div>
+<!-- SCROLLABLE TABLE OF CONTENTS -->
+<div class="contents-list"><a href="/read/2#references"><span class="contents-number">↗</span><span class="contents-name">References and Further Reading</span><span class="contents-arrow">›</span></a><a href="/read/2#how-browsers-load-websites"><span class="contents-number">01</span><span class="contents-name">How browsers load websites</span><span class="contents-arrow">›</span></a><a href="/read/2#parsing-css-rendering"><span class="contents-number">02</span><span class="contents-name">Parsing CSS and rendering the page</span><span class="contents-arrow">›</span></a><a href="/read/2#handling-javascript"><span class="contents-number">03</span><span class="contents-name">Handling JavaScript</span><span class="contents-arrow">›</span></a><a href="/read/2#the-browsers"><span class="contents-number">04</span><span class="contents-name">The browser: a hostile and an awesome programming environment</span><span class="contents-arrow">›</span></a><a href="/read/2#what-is-web-browser"><span class="contents-number">05</span><span class="contents-name">5. What Is a Web Browser?</span><span class="contents-arrow">›</span></a><a href="/read/2#browser-components"><span class="contents-number">06</span><span class="contents-name">6. Major Components of a Browser</span><span class="contents-arrow">›</span></a><a href="/read/2#client-server-model"><span class="contents-number">07</span><span class="contents-name">7. The Client–Server Model</span><span class="contents-arrow">›</span></a><a href="/read/2#web-servers"><span class="contents-number">08</span><span class="contents-name">8. What Is a Web Server?</span><span class="contents-arrow">›</span></a><a href="/read/2#urls-and-uris"><span class="contents-number">09</span><span class="contents-name">9. Understanding URLs and Their Parts</span><span class="contents-arrow">›</span></a><a href="/read/2#domain-names-dns"><span class="contents-number">10</span><span class="contents-name">10. Domain Names and DNS Resolution</span><span class="contents-arrow">›</span></a><a href="/read/2#ip-addresses-ports"><span class="contents-number">11</span><span class="contents-name">11. IP Addresses and Port Numbers</span><span class="contents-arrow">›</span></a><a href="/read/2#tcp-udp-transport"><span class="contents-number">12</span><span class="contents-name">12. Transport Protocols: TCP and UDP</span><span class="contents-arrow">›</span></a><a href="/read/2#http-overview"><span class="contents-number">13</span><span class="contents-name">13. Introduction to HTTP</span><span class="contents-arrow">›</span></a><a href="/read/2#http-request-anatomy"><span class="contents-number">14</span><span class="contents-name">14. Anatomy of an HTTP Request</span><span class="contents-arrow">›</span></a><a href="/read/2#http-response-anatomy"><span class="contents-number">15</span><span class="contents-name">15. Anatomy of an HTTP Response</span><span class="contents-arrow">›</span></a><a href="/read/2#http-methods"><span class="contents-number">16</span><span class="contents-name">16. HTTP Methods: GET, POST, PUT, PATCH, DELETE</span><span class="contents-arrow">›</span></a><a href="/read/2#http-status-codes"><span class="contents-number">17</span><span class="contents-name">17. Understanding HTTP Status Codes</span><span class="contents-arrow">›</span></a><a href="/read/2#http-headers"><span class="contents-number">18</span><span class="contents-name">18. Important HTTP Headers</span><span class="contents-arrow">›</span></a><a href="/read/2#mime-types"><span class="contents-number">19</span><span class="contents-name">19. MIME Types and Browser Resource Handling</span><span class="contents-arrow">›</span></a><a href="/read/2#https-and-tls"><span class="contents-number">20</span><span class="contents-name">20. How HTTPS and TLS Protect Connections</span><span class="contents-arrow">›</span></a><a href="/read/2#tls-certificates"><span class="contents-number">21</span><span class="contents-name">21. Digital Certificates and Certificate Authorities</span><span class="contents-arrow">›</span></a><a href="/read/2#http-versions"><span class="contents-number">22</span><span class="contents-name">22. HTTP/1.1, HTTP/2, and HTTP/3</span><span class="contents-arrow">›</span></a><a href="/read/2#cookies-sessions"><span class="contents-number">23</span><span class="contents-name">23. Cookies and Web Sessions</span><span class="contents-arrow">›</span></a><a href="/read/2#browser-storage"><span class="contents-number">24</span><span class="contents-name">24. Browser Storage: Local Storage and Session Storage</span><span class="contents-arrow">›</span></a><a href="/read/2#browser-cache"><span class="contents-number">25</span><span class="contents-name">25. Browser Caching and Cache-Control</span><span class="contents-arrow">›</span></a><a href="/read/2#same-origin-cors"><span class="contents-number">26</span><span class="contents-name">26. Same-Origin Policy and CORS</span><span class="contents-arrow">›</span></a><a href="/read/2#apis-json"><span class="contents-number">27</span><span class="contents-name">27. Web APIs and JSON Responses</span><span class="contents-arrow">›</span></a><a href="/read/2#devtools-network"><span class="contents-number">28</span><span class="contents-name">28. Using Browser Developer Tools: Network Panel</span><span class="contents-arrow">›</span></a><a href="/read/2#performance-loading"><span class="contents-number">29</span><span class="contents-name">29. Web Performance and Loading Optimization</span><span class="contents-arrow">›</span></a><a href="/read/2#security-best-practices"><span class="contents-number">30</span><span class="contents-name">30. Browser and Server Security Best Practices</span><span class="contents-arrow">›</span></a><a href="/read/2#quiz"><span class="contents-number">✓</span><span class="contents-name">Knowledge Assessment Quiz</span><span class="contents-arrow">›</span></a><a href="/read/2#glossary"><span class="contents-number">A–Z</span><span class="contents-name">Glossary</span><span class="contents-arrow">›</span></a></div>
+</div>
+</div>
+<!-- =====================================
          JAVASCRIPT
     ===================================== -->
-
-    <script>
+<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1121,9 +907,7 @@
         });
 
     </script>
-
-    <!-- CODEVERSE ACCOUNT SYSTEM -->
-    <script src="/js/auth-nav.js" defer></script>
-
+<!-- CODEVERSE ACCOUNT SYSTEM -->
+<script defer="" src="/js/navbar-loader.js"></script>
 </body>
 </html>

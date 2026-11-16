@@ -1,86 +1,193 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Explore Books | CodeVerse</title>
 
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
 
+    <!-- EXTERNAL CSS -->
     <link rel="stylesheet" href="/cssstyle.css">
     <link rel="stylesheet" href="/css/library.css">
+    <link rel="stylesheet" href="/css/auth-navbar.css">
+    <link rel="stylesheet" href="/css/learning-dashboard.css">
 
-    <link rel="icon" type="image/png"
-          href="/images/CodeVerseLogo.png">
+
+    <!-- FAVICON -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="/images/CodeVerseLogo.png"
+    >
+
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- ==========================================
+         NAVIGATION BAR
+    ========================================== -->
+
     <header class="navbar">
 
+        <!-- LOGO -->
         <a href="/index.html" class="logo">
-            <img src="/images/CodeVerseLogo.png"
-                 alt="CodeVerse Logo"
-                 class="site-logo">
+
+            <img
+                src="/images/CodeVerseLogo.png"
+                alt="CodeVerse Logo"
+                class="site-logo"
+            >
 
             <span>
                 Code<span class="logo-highlight">Verse</span>
             </span>
+
         </a>
 
+        <!-- NAVIGATION LINKS -->
         <nav class="nav-links" id="navLinks">
-            <a href="/index.html">Home</a>
+
+            <a href="/index.html">
+                Home
+            </a>
+
             <a href="/library.html" class="active">
                 Explore Books
             </a>
-            <a href="/About.html">About</a>
+
+            <a href="/About.html">
+                About
+            </a>
+
         </nav>
 
+        <!-- NAVIGATION ACTIONS -->
         <div class="nav-actions">
-            <button type="button"
-                    class="icon-btn"
-                    id="themeToggle"
-                    aria-label="Toggle dark mode">
+
+            <!-- DARK MODE -->
+            <button
+                type="button"
+                class="icon-btn"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+            >
                 <span id="themeIcon">☾</span>
             </button>
 
-            <div id="accountActions">
-                <a href="/LogIn.html" class="login-btn">
-                    Log In
-                </a>
-                <a href="/register.html" class="signup-btn">
-                    Sign Up
-                </a>
+            <!-- USER AUTHENTICATION -->
+            <div
+                class="cv-auth-container"
+                id="authContainer"
+            >
+
+                <!-- GUEST ACTIONS -->
+                <div
+                    class="cv-guest-actions"
+                    id="guestActions"
+                    hidden
+                >
+
+                    <a
+                        href="/LogIn.html"
+                        class="login-btn"
+                    >
+                        Log In
+                    </a>
+
+                    <a
+                        href="/register.html"
+                        class="signup-btn"
+                    >
+                        Sign Up
+                    </a>
+
+                </div>
+
+                <!-- LOGGED-IN USER ACTIONS -->
+                <div
+                    class="cv-user-actions"
+                    id="userActions"
+                    hidden
+                >
+
+                    <div class="cv-user-profile">
+
+                        <span
+                            class="cv-user-avatar"
+                            id="userAvatar"
+                            aria-hidden="true"
+                        >
+                            U
+                        </span>
+
+                        <span
+                            class="cv-user-name"
+                            id="userName"
+                        >
+                            User
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="cv-logout-btn"
+                        id="logoutButton"
+                    >
+                        Log Out
+                    </button>
+
+                </div>
+
             </div>
+
         </div>
 
-        <button type="button"
-                class="menu-toggle"
-                id="menuToggle"
-                aria-label="Toggle navigation menu"
-                aria-expanded="false">
+        <!-- MOBILE MENU -->
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+        >
             ☰
         </button>
 
     </header>
 
+
+    <!-- ==========================================
+         MAIN CONTENT
+    ========================================== -->
+
     <main>
 
-        <!-- PAGE INTRODUCTION -->
+        <!-- ======================================
+             PAGE INTRODUCTION
+        ====================================== -->
+
         <section class="library-hero">
 
             <span class="section-label">
                 CODEVERSE DIGITAL LIBRARY
             </span>
 
-            <h1>Explore Our <span>Books</span></h1>
+            <h1>
+                Explore Our <span>Books</span>
+            </h1>
 
             <p>
                 Discover 30 educational e-books organized
@@ -89,69 +196,143 @@
             </p>
 
             <div class="library-summary">
+
                 <span>📚 30 E-Books</span>
+
                 <span>🎓 3 Year Levels</span>
+
                 <span>🔐 Protected Collections</span>
+
             </div>
 
         </section>
 
-        <!-- ACCESS INFORMATION -->
+
+        <!-- PERSONAL LEARNING DASHBOARD -->
+        <section class="cv-learning-dashboard" aria-labelledby="learningDashboardTitle">
+            <div class="cv-dashboard-heading">
+                <div>
+                    <span class="section-label">YOUR LEARNING ACTIVITY</span>
+                    <h2 id="learningDashboardTitle">My Reading & Quiz Progress</h2>
+                    <p>View books you have opened, mark finished books, and review your quiz attempts.</p>
+                </div>
+                <button type="button" id="refreshLearning" class="cv-dashboard-refresh">Refresh</button>
+            </div>
+            <div class="cv-learning-stats">
+                <div class="cv-learning-stat"><strong id="openedCount">—</strong><span>Books Opened</span></div>
+                <div class="cv-learning-stat"><strong id="completedCount">—</strong><span>Books Completed</span></div>
+                <div class="cv-learning-stat"><strong id="quizCount">—</strong><span>Quiz Attempts</span></div>
+                <div class="cv-learning-stat"><strong id="averageScore">—</strong><span>Average Quiz Score</span></div>
+            </div>
+            <div class="cv-learning-panel cv-download-all">
+                <h3>⬇ Download Any Book</h3>
+                <p>Choose one of the 30 e-books. Each download requires that book's four-digit year-level passkey.</p>
+                <div class="cv-download-picker">
+                    <label for="downloadBookSelect">Select book</label>
+                    <select id="downloadBookSelect"></select>
+                    <button type="button" class="cv-action-primary" id="downloadSelectedBook">Download Book</button>
+                </div>
+            </div>
+            <div class="cv-learning-panels">
+                <div class="cv-learning-panel">
+                    <h3>📖 My Reading History</h3>
+                    <p id="readingStatus" class="cv-learning-message" role="status">Loading reading history...</p>
+                    <div id="readingHistory" class="cv-learning-list"></div>
+                </div>
+                <div class="cv-learning-panel">
+                    <h3>📝 My Quiz Results</h3>
+                    <p id="quizStatus" class="cv-learning-message" role="status">Loading quiz results...</p>
+                    <div id="quizHistory" class="cv-learning-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             ACCESS INFORMATION
+        ====================================== -->
+
         <section class="library-notice">
 
             <div>
-                <strong>🔐 Year-Level Access Protection</strong>
+
+                <strong>
+                    🔐 Year-Level Access Protection
+                </strong>
 
                 <p>
                     Enter your assigned passkey to access
                     books in a year-level collection.
+
                     Unlocking another year automatically
                     locks your previously unlocked collection.
                 </p>
+
             </div>
 
-            <div class="active-access" id="activeAccess">
+            <div
+                class="active-access"
+                id="activeAccess"
+            >
                 No collection unlocked
             </div>
 
         </section>
 
-        <!-- ALL YEAR LEVELS -->
+
+        <!-- ======================================
+             ALL YEAR LEVELS
+        ====================================== -->
+
         <div class="library-container">
 
-            <!-- FIRST YEAR -->
-            <section class="year-collection"
-                     id="firstYear"
-                     data-year="1">
+            <!-- ==================================
+                 FIRST YEAR IT
+            ================================== -->
+
+            <section
+                class="year-collection"
+                id="firstYear"
+                data-year="1"
+            >
 
                 <div class="year-heading">
 
                     <div class="year-heading-content">
 
-                        <div class="year-icon">📘</div>
+                        <div class="year-icon">
+                            📘
+                        </div>
 
                         <div>
+
                             <span class="year-eyebrow">
                                 FIRST YEAR
                             </span>
 
                             <h2>1st Year IT</h2>
 
-                            <p>Introduction to Computing</p>
+                            <p>
+                                Introduction to Computing
+                            </p>
+
                         </div>
 
                     </div>
 
                     <div class="year-actions">
 
-                        <span class="cv-access-status"
-                              data-access-year="1">
+                        <span
+                            class="cv-access-status"
+                            data-access-year="1"
+                        >
                             🔒 Protected
                         </span>
 
-                        <button class="year-unlock-btn"
-                                type="button"
-                                data-unlock-year="1">
+                        <button
+                            class="year-unlock-btn"
+                            type="button"
+                            data-unlock-year="1"
+                        >
                             Unlock Collection
                         </button>
 
@@ -165,44 +346,62 @@
                     networks, and emerging technologies.
                 </p>
 
-                <div class="library-book-grid"
-                     id="year1Books"></div>
+                <div
+                    class="library-book-grid"
+                    id="year1Books"
+                ></div>
 
             </section>
 
-            <!-- SECOND YEAR -->
-            <section class="year-collection"
-                     id="secondYear"
-                     data-year="2">
+
+            <!-- ==================================
+                 SECOND YEAR IT
+            ================================== -->
+
+            <section
+                class="year-collection"
+                id="secondYear"
+                data-year="2"
+            >
 
                 <div class="year-heading">
 
                     <div class="year-heading-content">
 
-                        <div class="year-icon">💻</div>
+                        <div class="year-icon">
+                            💻
+                        </div>
 
                         <div>
+
                             <span class="year-eyebrow">
                                 SECOND YEAR
                             </span>
 
                             <h2>2nd Year IT</h2>
 
-                            <p>Platform Technologies</p>
+                            <p>
+                                Platform Technologies
+                            </p>
+
                         </div>
 
                     </div>
 
                     <div class="year-actions">
 
-                        <span class="cv-access-status"
-                              data-access-year="2">
+                        <span
+                            class="cv-access-status"
+                            data-access-year="2"
+                        >
                             🔒 Protected
                         </span>
 
-                        <button class="year-unlock-btn"
-                                type="button"
-                                data-unlock-year="2">
+                        <button
+                            class="year-unlock-btn"
+                            type="button"
+                            data-unlock-year="2"
+                        >
                             Unlock Collection
                         </button>
 
@@ -216,44 +415,62 @@
                     and related computing concepts.
                 </p>
 
-                <div class="library-book-grid"
-                     id="year2Books"></div>
+                <div
+                    class="library-book-grid"
+                    id="year2Books"
+                ></div>
 
             </section>
 
-            <!-- THIRD YEAR -->
-            <section class="year-collection"
-                     id="thirdYear"
-                     data-year="3">
+
+            <!-- ==================================
+                 THIRD YEAR IT
+            ================================== -->
+
+            <section
+                class="year-collection"
+                id="thirdYear"
+                data-year="3"
+            >
 
                 <div class="year-heading">
 
                     <div class="year-heading-content">
 
-                        <div class="year-icon">🌐</div>
+                        <div class="year-icon">
+                            🌐
+                        </div>
 
                         <div>
+
                             <span class="year-eyebrow">
                                 THIRD YEAR
                             </span>
 
                             <h2>3rd Year IT</h2>
 
-                            <p>Web Technologies</p>
+                            <p>
+                                Web Technologies
+                            </p>
+
                         </div>
 
                     </div>
 
                     <div class="year-actions">
 
-                        <span class="cv-access-status"
-                              data-access-year="3">
+                        <span
+                            class="cv-access-status"
+                            data-access-year="3"
+                        >
                             🔒 Protected
                         </span>
 
-                        <button class="year-unlock-btn"
-                                type="button"
-                                data-unlock-year="3">
+                        <button
+                            class="year-unlock-btn"
+                            type="button"
+                            data-unlock-year="3"
+                        >
                             Unlock Collection
                         </button>
 
@@ -267,8 +484,10 @@
                     accessibility, and web deployment.
                 </p>
 
-                <div class="library-book-grid"
-                     id="year3Books"></div>
+                <div
+                    class="library-book-grid"
+                    id="year3Books"
+                ></div>
 
             </section>
 
@@ -276,24 +495,38 @@
 
     </main>
 
-    <!-- YEAR-LEVEL PASSKEY MODAL -->
-    <div class="book-lock-overlay"
-         id="bookLockModal"
-         hidden>
 
-        <div class="book-lock-card"
-             role="dialog"
-             aria-modal="true"
-             aria-labelledby="bookLockTitle">
+    <!-- ==========================================
+         YEAR-LEVEL PASSKEY MODAL
+    ========================================== -->
 
-            <button type="button"
-                    class="book-lock-close"
-                    id="closeBookLock"
-                    aria-label="Close">
+    <div
+        class="book-lock-overlay"
+        id="bookLockModal"
+        hidden
+    >
+
+        <div
+            class="book-lock-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="bookLockTitle"
+            aria-describedby="bookLockDescription"
+        >
+
+            <!-- CLOSE BUTTON -->
+            <button
+                type="button"
+                class="book-lock-close"
+                id="closeBookLock"
+                aria-label="Close popup"
+            >
                 ×
             </button>
 
-            <div class="book-lock-icon">🔐</div>
+            <div class="book-lock-icon">
+                🔐
+            </div>
 
             <h2 id="bookLockTitle">
                 Year-Level Access Required
@@ -309,27 +542,38 @@
                     Year-Level Passkey
                 </label>
 
-                <input type="password"
-                       id="bookPasskey"
-                       inputmode="numeric"
-                       minlength="4"
-                       maxlength="4"
-                       pattern="[0-9]{4}"
-                       placeholder="Enter 4-digit passkey"
-                       autocomplete="off"
-                       required>
+                <input
+                    type="password"
+                    id="bookPasskey"
+                    inputmode="numeric"
+                    minlength="4"
+                    maxlength="4"
+                    pattern="[0-9]{4}"
+                    placeholder="Enter 4-digit passkey"
+                    autocomplete="off"
+                    required
+                >
 
                 <label class="show-passkey-label">
-                    <input type="checkbox"
-                           id="showBookPasskey">
+
+                    <input
+                        type="checkbox"
+                        id="showBookPasskey"
+                    >
+
                     Show passkey
+
                 </label>
 
-                <p id="bookLockMessage"
-                   aria-live="polite"></p>
+                <p
+                    id="bookLockMessage"
+                    aria-live="polite"
+                ></p>
 
-                <button type="submit"
-                        id="unlockBookButton">
+                <button
+                    type="submit"
+                    id="unlockBookButton"
+                >
                     Unlock Collection
                 </button>
 
@@ -339,14 +583,46 @@
 
     </div>
 
+
+    <!-- SECURE DOWNLOAD PASSKEY DIALOG -->
+    <div class="cv-download-overlay" id="downloadModal" hidden>
+        <div class="cv-download-dialog" role="dialog" aria-modal="true" aria-labelledby="downloadTitle">
+            <button type="button" id="closeDownloadModal" class="cv-download-close" aria-label="Close">×</button>
+            <h2 id="downloadTitle">🔐 Download Book</h2>
+            <p id="downloadBookName">Enter the four-digit passkey for this book's year level.</p>
+            <form id="downloadForm">
+                <label for="downloadPasskey">Year-Level Passkey</label>
+                <input id="downloadPasskey" type="password" inputmode="numeric" pattern="[0-9]{4}" minlength="4" maxlength="4" required autocomplete="off" placeholder="4-digit passkey">
+                <p id="downloadMessage" role="status"></p>
+                <button type="submit" id="confirmDownload">Verify & Download HTML</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+
     <footer class="library-footer">
+
         <p>
             © 2026 CodeVerse Digital E-Book Library.
             All rights reserved.
         </p>
+
     </footer>
 
-    <script src="/js/library.js"></script>
+
+    <!-- ==========================================
+         JAVASCRIPT FILES
+    ========================================== -->
+
+    <!-- EXISTING LIBRARY FUNCTIONALITY -->
+    <script src="/js/library.js" defer></script>
+
+    <!-- USER PROFILE AND LOGOUT -->
+    <script src="/js/auth-nav.js" defer></script>
+    <script src="/js/learning-dashboard.js" defer></script>
 
 </body>
 </html>

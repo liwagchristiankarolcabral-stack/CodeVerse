@@ -10,13 +10,8 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <!-- External CSS -->
-
 <!--FavIcon-->
 <link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-
-
-
-
 <style>
 :root{--bg:#f4f7fc;--surface:#fff;--text:#1d2b43;--muted:#65748a;--border:#dfe6f1;--primary:#3157a4;--primary2:#24427f;--code:#eff4fb;--shadow:0 10px 28px rgba(22,46,91,.07)}
 body.dark-mode{--bg:#0c1525;--surface:#17253a;--text:#e8effb;--muted:#b1bfd3;--border:#34465e;--primary:#94b6ff;--primary2:#b5ceff;--code:#101d30;--shadow:0 10px 28px rgba(0,0,0,.22)}
@@ -27,35 +22,24 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
 @media(max-width:760px){.navbar{height:66px;padding:0 15px;gap:10px}.logo{font-size:18px}.site-logo{height:34px;width:34px}.nav-links{display:none;position:absolute;top:65px;left:0;right:0;background:var(--surface);padding:16px;border-bottom:1px solid var(--border);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;margin:0}.nav-links.show{display:flex}.menu-toggle{display:block}.nav-actions{margin-left:auto}#accountActions{display:none}.layout{display:block;padding:0 13px}.toc{position:static;max-height:235px;margin-bottom:18px}.reading-controls,.topbar{padding-left:14px;padding-right:14px}.chapter{padding:22px 18px}.book-header{padding:25px 20px}.chapter pre{font-size:.79em}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+<link href="/css/navbar.css" rel="stylesheet"/>
+<link href="/css/glossary.css" rel="stylesheet"/>
 </head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -84,51 +68,14 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav>
-<a href="#designing-web-accessibility">
-        Designing for Web Accessibility
-    </a>
-<a href="#sufficient-color-contrast">
-        Provide sufficient contrast between foreground and background
-    </a>
-<a href="#dont-use-color-alone">
-        Don't use color alone to convey information
-    </a>
-<a href="#identifiable-interactive-elements">
-        Ensure that interactive elements are easy to identify
-    </a>
-<a href="#consistent-navigation">
-        Provide clear and consistent navigation options
-    </a>
-<a href="#accessible-form-labels">
-        Ensure that form elements include clearly associated labels
-    </a>
-<a href="#identifiable-feedback">
-        Provide easily identifiable feedback
-    </a>
-<a href="#headings-and-spacing">
-        Use headings and spacing to group related content
-    </a>
-<a href="#different-viewport-sizes">
-        Create designs for different viewport sizes
-    </a>
-<a href="#image-media-alternatives">
-        Include image and media alternatives in your design
-    </a>
-<a href="#automatic-content-controls">
-        Provide controls for content that starts automatically
-    </a>
-<a href="#quiz">
-        Knowledge Assessment Quiz
-    </a>
-</nav>
+<nav><a href="#references">References and Further Reading</a><a href="#designing-web-accessibility">1. Designing for Web Accessibility</a><a href="#sufficient-color-contrast">2. Provide sufficient contrast between foreground and background</a><a href="#dont-use-color-alone">3. Don't use color alone to convey information</a><a href="#identifiable-interactive-elements">4. Ensure that interactive elements are easy to identify</a><a href="#consistent-navigation">5. Provide clear and consistent navigation options</a><a href="#accessible-form-labels">6. Ensure that form elements include clearly associated labels</a><a href="#identifiable-feedback">7. Provide easily identifiable feedback</a><a href="#headings-and-spacing">8. Use headings and spacing to group related content</a><a href="#different-viewport-sizes">9. Create designs for different viewport sizes</a><a href="#image-media-alternatives">10. Include image and media alternatives in your design</a><a href="#automatic-content-controls">11. Provide controls for content that starts automatically</a><a href="#ui-ux-foundations">12. UI and UX Design Foundations</a><a href="#user-research">13. User Research and Personas</a><a href="#information-architecture">14. Information Architecture</a><a href="#wireframes-prototypes">15. Wireframes and Prototypes</a><a href="#visual-hierarchy">16. Visual Hierarchy and Layout</a><a href="#typography-readability">17. Typography and Readability</a><a href="#design-systems">18. Design Systems and Reusable Components</a><a href="#interaction-feedback">19. Interaction Design and Microinteractions</a><a href="#keyboard-navigation">20. Keyboard Navigation and Focus Order</a><a href="#semantic-html">21. Semantic HTML and Landmarks</a><a href="#screen-readers">22. Screen Readers and Accessible Names</a><a href="#aria-basics">23. ARIA Roles, States, and Properties</a><a href="#accessible-modals">24. Accessible Dialogs and Modals</a><a href="#form-validation">25. Accessible Form Validation</a><a href="#touch-targets">26. Touch Targets and Mobile Accessibility</a><a href="#cognitive-accessibility">27. Cognitive Accessibility and Plain Language</a><a href="#motion-preferences">28. Reduced Motion and Animation</a><a href="#accessibility-testing">29. Accessibility Testing Tools and Methods</a><a href="#inclusive-design-process">30. Inclusive Design Workflow and Continuous Improvement</a><a href="#quiz">Knowledge Assessment Quiz</a><a href="#glossary">Glossary of Terms</a></nav>
 </aside>
 <main>
 <header class="book-header">
 <span class="eyebrow">Digital Book · Technology</span>
 <h1>User Interface Design and Accessibility</h1>
 <p>Learn the fundamentals of user interface design and web accessibility to create attractive, user-friendly, and inclusive websites.</p>
-</header>
+</header><section aria-labelledby="references-title" class="chapter" id="references"><h2 id="references-title">References and Further Reading</h2><p>These resources support the accessibility guidance and additional lessons in this book.</p><ol><li><a href="https://www.w3.org/WAI/tips/designing/" rel="noopener noreferrer" target="_blank">W3C WAI – Designing for Web Accessibility</a></li><li><a href="https://www.w3.org/TR/WCAG22/" rel="noopener noreferrer" target="_blank">W3C – Web Content Accessibility Guidelines (WCAG) 2.2</a></li><li><a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/" rel="noopener noreferrer" target="_blank">W3C WAI – Accessibility Principles</a></li><li><a href="https://www.w3.org/WAI/tutorials/" rel="noopener noreferrer" target="_blank">W3C WAI – Tutorials</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility" rel="noopener noreferrer" target="_blank">MDN – Accessibility</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA" rel="noopener noreferrer" target="_blank">MDN – ARIA</a></li><li><a href="https://web.dev/learn/accessibility" rel="noopener noreferrer" target="_blank">web.dev – Learn Accessibility</a></li><li><a href="https://www.w3.org/WAI/test-evaluate/" rel="noopener noreferrer" target="_blank">W3C WAI – Evaluating Web Accessibility</a></li><li><a href="https://www.nngroup.com/articles/definition-user-experience/" rel="noopener noreferrer" target="_blank">Nielsen Norman Group – UX Basics</a></li><li><a href="https://designsystem.digital.gov/documentation/accessibility/" rel="noopener noreferrer" target="_blank">U.S. Web Design System – Accessibility</a></li></ol></section>
 <!-- ==========================================
      CODEVERSE - DESIGNING FOR WEB ACCESSIBILITY
 ========================================== -->
@@ -994,7 +941,7 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
 <!-- ==========================================
      CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
 ========================================== -->
-<section class="chapter" id="quiz">
+<section class="chapter" id="ui-ux-foundations"><h2>Lesson 12: UI and UX Design Foundations</h2><p>User interface (UI) design focuses on controls, layout, typography, and visual feedback. User experience (UX) design considers the complete journey, including usefulness, efficiency, and satisfaction.</p><h3>Practical Example</h3><p>A library page might look attractive but still have poor UX if learners cannot find a book.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;button type="button"&gt;Browse books&lt;/button&gt;</code></pre></div><h3>Key Takeaway</h3><p>Define the user’s task before choosing colors or components.</p></section><section class="chapter" id="user-research"><h2>Lesson 13: User Research and Personas</h2><p>User research helps designers understand goals, environments, skills, and barriers. Interviews, observation, surveys, and usability sessions can reveal problems that assumptions miss.</p><h3>Practical Example</h3><p>Interview students who read on phones and students who use keyboards or screen readers.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;form&gt;&lt;label for="goal"&gt;Reading goal&lt;/label&gt;&lt;input id="goal" name="goal"&gt;&lt;/form&gt;</code></pre></div><h3>Key Takeaway</h3><p>Use research findings to prioritize genuine user needs.</p></section><section class="chapter" id="information-architecture"><h2>Lesson 14: Information Architecture</h2><p>Information architecture organizes content into meaningful groups and labels. A clear hierarchy helps visitors predict where information belongs.</p><h3>Practical Example</h3><p>Group books by year level and subject, with a search option for users who know a title.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;nav aria-label="Book categories"&gt;&lt;a href="#first-year"&gt;First year&lt;/a&gt; &lt;a href="#second-year"&gt;Second year&lt;/a&gt;&lt;/nav&gt;</code></pre></div><h3>Key Takeaway</h3><p>Test category labels with real users instead of relying on internal terminology.</p></section><section class="chapter" id="wireframes-prototypes"><h2>Lesson 15: Wireframes and Prototypes</h2><p>A wireframe shows structure without detailed styling. A prototype demonstrates interaction and can be tested before implementation.</p><h3>Practical Example</h3><p>Sketch the home page, book detail page, and reader view, then test the route between them.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;main&gt;&lt;header&gt;Library&lt;/header&gt;&lt;section aria-label="Book results"&gt;Book cards&lt;/section&gt;&lt;/main&gt;</code></pre></div><h3>Key Takeaway</h3><p>Start with low-fidelity sketches and increase detail only when needed.</p></section><section class="chapter" id="visual-hierarchy"><h2>Lesson 16: Visual Hierarchy and Layout</h2><p>Visual hierarchy directs attention through size, position, spacing, contrast, and grouping. The most important actions should be easy to notice without overwhelming the page.</p><h3>Practical Example</h3><p>Make the book title prominent, keep metadata secondary, and provide one clear Read Book action.</p><h3>Example Code</h3><div class="code-example"><pre><code>.book-title { font-size: 1.8rem; } .book-meta { color: #526178; }</code></pre></div><h3>Key Takeaway</h3><p>Check whether the page remains understandable when scanned quickly.</p></section><section class="chapter" id="typography-readability"><h2>Lesson 17: Typography and Readability</h2><p>Readable typography uses appropriate font size, line height, line length, and clear heading levels. Text should remain usable at increased zoom and on narrow screens.</p><h3>Practical Example</h3><p>Use a comfortable reading width for lessons and allow readers to increase text size.</p><h3>Example Code</h3><div class="code-example"><pre><code>.lesson-copy { max-width: 68ch; line-height: 1.7; font-size: 1rem; }</code></pre></div><h3>Key Takeaway</h3><p>Avoid conveying hierarchy through font size alone; use semantic headings.</p></section><section class="chapter" id="design-systems"><h2>Lesson 18: Design Systems and Reusable Components</h2><p>A design system documents reusable patterns such as buttons, cards, form fields, spacing, and colors. Consistency makes interfaces easier to learn and maintain.</p><h3>Practical Example</h3><p>Use the same primary button style on book cards and the reader landing page.</p><h3>Example Code</h3><div class="code-example"><pre><code>:root { --brand: #3157a4; --space-3: 1rem; } .primary-button { background: var(--brand); color: white; }</code></pre></div><h3>Key Takeaway</h3><p>Document behavior, keyboard states, and accessible names alongside visual styles.</p></section><section class="chapter" id="interaction-feedback"><h2>Lesson 19: Interaction Design and Microinteractions</h2><p>Interaction design defines what happens when a user clicks, types, submits, or navigates. Feedback should confirm actions, communicate progress, and explain errors.</p><h3>Practical Example</h3><p>After a bookmark action, update the button label to Saved and announce the change.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;p id="save-status" role="status"&gt;Book saved to bookmarks.&lt;/p&gt;</code></pre></div><h3>Key Takeaway</h3><p>Make every important action understandable without animation or color alone.</p></section><section class="chapter" id="keyboard-navigation"><h2>Lesson 20: Keyboard Navigation and Focus Order</h2><p>All essential interactions should work without a mouse. Focus should move in a logical order, and focused elements must be visible.</p><h3>Practical Example</h3><p>Use Tab to reach navigation, search, book cards, and reading controls.</p><h3>Example Code</h3><div class="code-example"><pre><code>button:focus-visible, a:focus-visible { outline: 3px solid #3157a4; outline-offset: 3px; }</code></pre></div><h3>Key Takeaway</h3><p>Avoid positive tabindex values; prefer the natural order of semantic HTML.</p></section><section class="chapter" id="semantic-html"><h2>Lesson 21: Semantic HTML and Landmarks</h2><p>Semantic elements communicate the role of content to browsers and assistive technologies. Landmarks such as header, nav, main, and footer support efficient navigation.</p><h3>Practical Example</h3><p>Give the page one main region and distinguish repeated navigation regions with labels.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;header&gt;CodeVerse&lt;/header&gt;&lt;nav aria-label="Main"&gt;...&lt;/nav&gt;&lt;main id="content"&gt;...&lt;/main&gt;&lt;footer&gt;...&lt;/footer&gt;</code></pre></div><h3>Key Takeaway</h3><p>Choose native HTML elements before adding ARIA roles.</p></section><section class="chapter" id="screen-readers"><h2>Lesson 22: Screen Readers and Accessible Names</h2><p>Screen readers present text, controls, roles, and states through speech or braille. Accessible names help users identify controls that might otherwise appear as icons only.</p><h3>Practical Example</h3><p>Give an icon-only search button a descriptive accessible name.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;button type="button" aria-label="Search books"&gt;🔍&lt;/button&gt;</code></pre></div><h3>Key Takeaway</h3><p>Test actual announcements instead of assuming visible labels are sufficient.</p></section><section class="chapter" id="aria-basics"><h2>Lesson 23: ARIA Roles, States, and Properties</h2><p>Accessible Rich Internet Applications (ARIA) can describe states and relationships when native HTML is insufficient. Incorrect ARIA can make an interface harder to use.</p><h3>Practical Example</h3><p>A menu button can expose whether its controlled menu is expanded.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;button aria-expanded="false" aria-controls="book-menu"&gt;Categories&lt;/button&gt;&lt;div id="book-menu" hidden&gt;...&lt;/div&gt;</code></pre></div><h3>Key Takeaway</h3><p>Prefer native controls and keep ARIA states synchronized with JavaScript.</p></section><section class="chapter" id="accessible-modals"><h2>Lesson 24: Accessible Dialogs and Modals</h2><p>A modal dialog should have a clear title, predictable keyboard behavior, and a way to close it. When opened, focus should move inside; when closed, focus should return to the trigger.</p><h3>Practical Example</h3><p>Use a native dialog for a confirmation before deleting a saved bookmark.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;dialog id="confirm-dialog" aria-labelledby="dialog-title"&gt;&lt;h2 id="dialog-title"&gt;Remove bookmark?&lt;/h2&gt;&lt;form method="dialog"&gt;&lt;button&gt;Cancel&lt;/button&gt;&lt;/form&gt;&lt;/dialog&gt;</code></pre></div><h3>Key Takeaway</h3><p>Ensure keyboard users cannot accidentally interact with content behind a modal dialog.</p></section><section class="chapter" id="form-validation"><h2>Lesson 25: Accessible Form Validation</h2><p>Validation should identify the field, explain the issue, and suggest how to correct it. Required status and errors must not rely on color alone.</p><h3>Practical Example</h3><p>If registration fails, identify the email field and describe the expected format.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;label for="email-example"&gt;Email (required)&lt;/label&gt;&lt;input id="email-example" type="email" aria-describedby="email-help" required&gt;&lt;p id="email-help"&gt;Enter an address such as name@example.com.&lt;/p&gt;</code></pre></div><h3>Key Takeaway</h3><p>Connect error descriptions to their inputs and do not clear user entries unnecessarily.</p></section><section class="chapter" id="touch-targets"><h2>Lesson 26: Touch Targets and Mobile Accessibility</h2><p>Controls need enough size and separation for touch, stylus, and users with limited motor precision. Responsive layouts must not hide essential functionality.</p><h3>Practical Example</h3><p>Give bookmark and menu buttons comfortable tap areas and spacing.</p><h3>Example Code</h3><div class="code-example"><pre><code>.touch-button { min-width: 44px; min-height: 44px; padding: 10px; }</code></pre></div><h3>Key Takeaway</h3><p>Test with touch as well as keyboard and pointer input.</p></section><section class="chapter" id="cognitive-accessibility"><h2>Lesson 27: Cognitive Accessibility and Plain Language</h2><p>Simple language, predictable layouts, clear instructions, and manageable steps help users understand and complete tasks. Avoid unnecessary time pressure and distracting content.</p><h3>Practical Example</h3><p>Explain what happens when a student clicks Start Quiz and how the result is saved.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;p&gt;Step 1 of 2: Choose a book. Step 2 of 2: Start reading.&lt;/p&gt;</code></pre></div><h3>Key Takeaway</h3><p>Break complex tasks into steps and use familiar terms.</p></section><section class="chapter" id="motion-preferences"><h2>Lesson 28: Reduced Motion and Animation</h2><p>Motion can help communicate changes but may cause discomfort or distraction. Respect reduced-motion preferences and avoid essential information that appears only through animation.</p><h3>Practical Example</h3><p>Disable decorative transitions in the reader when reduced motion is requested.</p><h3>Example Code</h3><div class="code-example"><pre><code>@media (prefers-reduced-motion: reduce) { .animated { animation: none; transition: none; } }</code></pre></div><h3>Key Takeaway</h3><p>Never make animation the only way to understand a change.</p></section><section class="chapter" id="accessibility-testing"><h2>Lesson 29: Accessibility Testing Tools and Methods</h2><p>Automated audits can identify some issues, such as missing names or contrast problems, but they cannot establish full accessibility. Manual keyboard, zoom, screen-reader, and user testing are also important.</p><h3>Practical Example</h3><p>Audit the CodeVerse reader, then manually check the TOC, quiz, forms, and navigation.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;a href="#main-content"&gt;Skip to main content&lt;/a&gt;</code></pre></div><h3>Key Takeaway</h3><p>Record each issue, its impact, a fix, and the result of retesting.</p></section><section class="chapter" id="inclusive-design-process"><h2>Lesson 30: Inclusive Design Workflow and Continuous Improvement</h2><p>Accessibility works best when it is considered during planning, design, implementation, and testing. Involving people with different abilities helps reveal barriers that checklists alone miss.</p><h3>Practical Example</h3><p>Include accessibility acceptance criteria for every new CodeVerse feature.</p><h3>Example Code</h3><div class="code-example"><pre><code>&lt;ul&gt;&lt;li&gt;Plan&lt;/li&gt;&lt;li&gt;Prototype&lt;/li&gt;&lt;li&gt;Build&lt;/li&gt;&lt;li&gt;Test&lt;/li&gt;&lt;li&gt;Improve&lt;/li&gt;&lt;/ul&gt;</code></pre></div><h3>Key Takeaway</h3><p>Review accessibility whenever components, content, or interactions change.</p></section><section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
 <p>Test your understanding of accessible web design, contrast, navigation, form labels, feedback, responsive layouts, media alternatives, and user controls.</p>
 <div id="quizProgress">0 of 10 answered</div>
@@ -1010,6 +957,71 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of User Interface Design and Accessibility · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+<section aria-labelledby="cvGlossaryHeading" class="cv-glossary chapter" id="glossary">
+<div class="cv-glossary-header">
+<h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+<p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+</div>
+<label class="cv-glossary-search-label" for="cvGlossarySearch">
+        Search glossary terms
+    </label>
+<input autocomplete="off" class="cv-glossary-search" id="cvGlossarySearch" placeholder="Search a term or definition..." type="search"/>
+<div aria-live="polite" class="cv-glossary-count">
+        10 terms
+    </div>
+<div class="cv-glossary-list">
+<article class="cv-glossary-item">
+<h3>Accessibility</h3>
+<p>The usability of a system for people with different abilities.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Contrast</h3>
+<p>The visual difference between elements.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Navigation</h3>
+<p>Controls that help users move through content.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Prototype</h3>
+<p>An early model used to test a design.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Typography</h3>
+<p>The visual arrangement of text.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Usability</h3>
+<p>How effectively users accomplish tasks.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>User Experience</h3>
+<p>The overall experience of using a product.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>User Interface</h3>
+<p>The controls and visual elements used to interact with a system.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>WCAG</h3>
+<p>Web Content Accessibility Guidelines.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Wireframe</h3>
+<p>A simplified layout representation.</p>
+</article>
+</div>
+<p class="cv-glossary-empty" hidden="">
+        No matching glossary terms found.
+    </p>
+</section>
+<!-- CODEVERSE GLOSSARY END -->
 </main>
 </div>
 <script>
@@ -1456,4 +1468,6 @@ document.addEventListener('DOMContentLoaded', () => {
  const sections=entries.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
  if('IntersectionObserver' in window){const obs=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){entries.forEach(a=>a.classList.toggle('active',a.hash==='#'+item.target.id));}})},{rootMargin:'-95px 0px -65% 0px'});sections.forEach(section=>obs.observe(section));}
 });
-</script></body></html>
+</script> <script defer="" src="/js/navbar-loader.js"></script>
+<script defer="" src="/js/glossary.js"></script>
+</body></html>

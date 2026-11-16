@@ -2,7 +2,36 @@
 :root{--bg:#f4f7fd;--surface:#fff;--surface2:#eef3fc;--ink:#1d2c47;--muted:#65738b;--border:#dde5f1;--primary:#3157a4;--primary-dark:#23437f;--shadow:0 12px 38px rgba(30,50,90,.08);--reader-size:16px;--reader-font:'DM Sans',sans-serif}
 html[data-theme="dark"]{--bg:#0c1424;--surface:#152238;--surface2:#1c2c45;--ink:#e8eef9;--muted:#b1bfd3;--border:#30415b;--primary:#91b6ff;--primary-dark:#bdd1ff;--shadow:0 12px 38px rgba(0,0,0,.2)}
 html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;transition:background .2s,color .2s}*,*::before,*::after{box-sizing:border-box}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}.navbar{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);min-height:76px;padding:12px clamp(18px,4vw,65px);display:flex;align-items:center;gap:30px;box-shadow:0 4px 16px rgba(0,0,0,.03)}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:23px;font-weight:800;white-space:nowrap}.site-logo{width:38px;height:38px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;gap:24px;align-items:center;margin:auto}.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:700}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions,#accountActions{display:flex;align-items:center;gap:10px}.icon-btn,.menu-toggle{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:9px 13px;color:var(--ink)}.menu-toggle{display:none}.login-btn,.signup-btn,.logout-btn{display:inline-block;border-radius:9px;padding:10px 15px;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap}.login-btn{color:var(--primary);border:1px solid var(--border)}.signup-btn,.logout-btn{color:#fff;background:#3157a4;border:0}.account-username{font-size:13px;font-weight:700;overflow-wrap:anywhere;max-width:220px}.topbar{max-width:1400px;margin:auto;padding:18px 26px 0}.back-link{text-decoration:none;font-weight:700;font-size:13px}.reading-controls{max-width:1400px;margin:15px auto 0;padding:14px 22px;display:flex;justify-content:flex-end;gap:16px;flex-wrap:wrap}.control-group{display:flex;align-items:center;gap:8px}.control-group label{font-size:12px;color:var(--muted);font-weight:700}.control-group select{background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:9px;padding:9px}.layout{max-width:1400px;margin:12px auto 70px;padding:0 22px;display:grid;grid-template-columns:275px minmax(0,1fr);align-items:start;gap:24px}.toc{position:sticky;top:100px;max-height:calc(100vh - 120px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 14px;scrollbar-width:thin;box-shadow:var(--shadow)}.toc h2{font-size:15px;margin:0 8px 15px}.toc h3{margin:20px 8px 9px;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}.toc a{display:block;padding:9px 11px;margin:2px 0;text-decoration:none;color:var(--muted);border-radius:8px;font-size:12px;line-height:1.45}.toc a:hover,.toc a:focus{background:var(--surface2);color:var(--primary)}.book-main{min-width:0}.book-header{background:linear-gradient(120deg,#234785,#426dc0);color:#fff;border-radius:20px;padding:clamp(28px,5vw,60px);margin-bottom:22px;box-shadow:var(--shadow)}.eyebrow{display:inline-block;font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:800;color:#d9e7ff}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(30px,4vw,48px);line-height:1.17;margin:14px 0}.book-header p{max-width:700px;line-height:1.8;color:#e2eaff;margin:0}.chapter{background:var(--surface);border:1px solid var(--border);border-radius:17px;padding:clamp(20px,3.6vw,38px);margin-bottom:20px;box-shadow:var(--shadow);scroll-margin-top:105px;font-family:var(--reader-font);font-size:var(--reader-size);line-height:1.85}.chapter h1,.chapter h2,.chapter h3{font-family:'DM Sans',sans-serif;line-height:1.35;color:var(--ink)}.chapter h1{font-size:1.75em}.chapter h2{font-size:1.45em;margin:0 0 20px;padding-bottom:15px;border-bottom:1px solid var(--border)}.chapter h3{font-size:1.13em;margin:24px 0 12px;color:var(--primary)}.chapter p{margin:13px 0;color:var(--ink)}.chapter li{margin:8px 0}.chapter ul,.chapter ol{padding-left:25px}.chapter img{max-width:100%;height:auto;border-radius:12px}.lesson-table{border-collapse:collapse;width:100%;font-size:.9em;min-width:480px}.lesson-table th,.lesson-table td{border:1px solid var(--border);padding:12px 14px;text-align:left;vertical-align:top}.lesson-table th{background:var(--surface2);color:var(--primary)}.chapter:has(> .lesson-table){overflow-x:auto}.table-responsive{overflow-x:auto}.code-example{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface2);padding:16px;margin:18px 0}.code-example pre{margin:0;white-space:pre;overflow-x:auto;line-height:1.55;font-size:.85em;color:var(--ink)}#quizProgress{display:inline-block;padding:7px 13px;border-radius:20px;background:var(--surface2);color:var(--primary);font-size:13px;font-weight:800;margin-bottom:20px}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:18px;margin:16px 0;background:var(--surface)}.quiz-question h3{color:var(--ink);margin:0 0 14px;font-size:1em}.quiz-option{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--border);border-radius:9px;padding:10px 13px;margin:8px 0;cursor:pointer;font-size:.92em}.quiz-option:has(input:checked){border-color:var(--primary);background:var(--surface2)}.quiz-option.correct{background:#dff6e9;color:#155d36;border-color:#6bc995}.quiz-option.incorrect{background:#ffebed;color:#912c38;border-color:#f29ca4}.quiz-option input{margin-top:7px;accent-color:#3157a4}.quiz-feedback{font-size:.88em;font-weight:700}.quiz-actions{display:flex;gap:10px;margin-top:22px}.quiz-actions button{background:#3157a4;color:white;border:0;border-radius:10px;padding:12px 20px;font-weight:800}.quiz-actions button:disabled{opacity:.55}#quizResult{background:var(--surface2);border:1px solid var(--border);padding:22px;border-radius:12px;margin-top:20px;text-align:center}#quizResult h2{border:0;font-size:2.4em;padding:0;margin:5px}.page-footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 10px}.chapter [hidden],#quizResult[hidden],#retryQuiz[hidden]{display:none!important}@media(max-width:1000px){.layout{grid-template-columns:230px minmax(0,1fr);gap:15px}.nav-links{gap:12px}.navbar{gap:14px}}@media(max-width:760px){.navbar{flex-wrap:wrap;min-height:65px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;margin:0;flex-direction:column;align-items:stretch}.nav-links.open{display:flex}.nav-actions{margin-left:auto}.layout{display:block;padding:0 14px}.toc{position:relative;top:auto;max-height:220px;margin-bottom:18px}.reading-controls{justify-content:flex-start}.book-header{border-radius:14px}.chapter{border-radius:13px}.account-username{max-width:130px}.logo{font-size:19px}.site-logo{width:30px;height:30px}}@media(max-width:460px){.nav-actions{width:100%;justify-content:flex-end}.control-group{flex-wrap:wrap}.book-header h1{font-size:29px}}
-</style></head><body id="top"><header class="navbar"><a class="logo" href="/index.html"><img class="site-logo" src="/images/CodeVerseLogo.png" alt="CodeVerse Logo"><span>Code<span class="logo-highlight">Verse</span></span></a><nav class="nav-links" id="navLinks"><a href="/index.html">Home</a><a href="/library.html">Explore Books</a><a href="/index.html#about">About</a></nav><div class="nav-actions"><button type="button" class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><span id="themeIcon">☾</span></button><div id="accountActions"><a class="login-btn" href="/LogIn.html">Log In</a><a class="signup-btn" href="/register.html">Sign Up</a></div></div><button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button></header><header class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></header><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px" selected>Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans', sans-serif">DM Sans</option><option value="Arial, sans-serif">Arial</option><option value="Georgia, serif">Georgia</option><option value="'Times New Roman', serif">Times New Roman</option><option value="Verdana, sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><a href="#hardware-introduction">Introduction</a><a href="#section-1">1. Hardware and Software Interplay</a><a href="#section-2">2. Von Neumann and Harvard Architectures</a><a href="#section-3">3. CPU Core Architecture</a><a href="#section-4">4. CISC vs. RISC</a><a href="#section-5">5. Processor Pipelining</a><a href="#section-6">6. Multi-Core and Parallel Processing</a><a href="#section-7">7. RAM and ROM</a><a href="#section-8">8. Cache Memory Hierarchies</a><a href="#section-9">9. Secondary Storage</a><a href="#section-10">10. System Buses and PCIe</a><a href="#section-11">11. Input/Output Architecture</a><a href="#section-12">12. Motherboards and Chipsets</a><a href="#section-13">13. BIOS and UEFI</a><a href="#section-14">14. Software Classification</a><a href="#section-15">15. Operating Systems</a><a href="#section-16">16. Virtual Memory</a><a href="#section-17">17. File Systems</a><a href="#section-18">18. Programming Language Hierarchy</a><a href="#section-19">19. Compilers and Interpreters</a><a href="#section-20">20. Device Drivers and HAL</a><a href="#section-21">21. Application Frameworks</a><a href="#section-22">22. Virtualization and Hypervisors</a><a href="#section-23">23. Containers and Microservices</a><a href="#section-24">24. Embedded Systems and RTOS</a><a href="#section-25">25. SDLC Models</a><a href="#section-26">26. Performance and Benchmarking</a><a href="#section-27">27. Fault Tolerance and RAID</a><a href="#section-28">28. Software Testing and Security</a><a href="#section-29">29. Emerging Technologies</a><a href="#section-30">30. Academic Literature</a><h3>Assessment</h3><a href="#quiz">Knowledge Assessment Quiz</a></aside><main class="book-main"><header class="book-header"><span class="eyebrow">Digital Book · Introduction to Computing · Book 13</span><h1>Computer Hardware and Software Fundamentals</h1><p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p></header><section class="chapter" id="hardware-introduction">
+</style>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head><body id="top"><div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+<header class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></header><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px" selected>Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans', sans-serif">DM Sans</option><option value="Arial, sans-serif">Arial</option><option value="Georgia, serif">Georgia</option><option value="'Times New Roman', serif">Times New Roman</option><option value="Verdana, sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><a href="#hardware-introduction">Introduction</a><a href="#section-1">1. Hardware and Software Interplay</a><a href="#section-2">2. Von Neumann and Harvard Architectures</a><a href="#section-3">3. CPU Core Architecture</a><a href="#section-4">4. CISC vs. RISC</a><a href="#section-5">5. Processor Pipelining</a><a href="#section-6">6. Multi-Core and Parallel Processing</a><a href="#section-7">7. RAM and ROM</a><a href="#section-8">8. Cache Memory Hierarchies</a><a href="#section-9">9. Secondary Storage</a><a href="#section-10">10. System Buses and PCIe</a><a href="#section-11">11. Input/Output Architecture</a><a href="#section-12">12. Motherboards and Chipsets</a><a href="#section-13">13. BIOS and UEFI</a><a href="#section-14">14. Software Classification</a><a href="#section-15">15. Operating Systems</a><a href="#section-16">16. Virtual Memory</a><a href="#section-17">17. File Systems</a><a href="#section-18">18. Programming Language Hierarchy</a><a href="#section-19">19. Compilers and Interpreters</a><a href="#section-20">20. Device Drivers and HAL</a><a href="#section-21">21. Application Frameworks</a><a href="#section-22">22. Virtualization and Hypervisors</a><a href="#section-23">23. Containers and Microservices</a><a href="#section-24">24. Embedded Systems and RTOS</a><a href="#section-25">25. SDLC Models</a><a href="#section-26">26. Performance and Benchmarking</a><a href="#section-27">27. Fault Tolerance and RAID</a><a href="#section-28">28. Software Testing and Security</a><a href="#section-29">29. Emerging Technologies</a><a href="#section-30">30. Academic Literature</a><h3>Assessment</h3><a href="#quiz">Knowledge Assessment Quiz</a></aside><main class="book-main"><header class="book-header"><span class="eyebrow">Digital Book · Introduction to Computing · Book 13</span><h1>Computer Hardware and Software Fundamentals</h1><p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p></header><section class="chapter" id="hardware-introduction">
 <h1>Computer Hardware and Software Fundamentals</h1>
 <p>
             Computer hardware refers to the tangible electronic
@@ -1005,7 +1034,127 @@ S = Speedup of that portion</code></pre>
         </button>
 </div>
 <div aria-live="polite" hidden="" id="quizResult"></div>
-</section><footer class="page-footer">End of Computer Hardware and Software Fundamentals · CodeVerse Digital Library</footer></main></div><script>
+</section><footer class="page-footer">End of Computer Hardware and Software Fundamentals · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Application Software</h3>
+                <p>Software designed to perform user-oriented tasks.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>CPU</h3>
+                <p>The central processing unit that executes instructions.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>GPU</h3>
+                <p>A processor specialized for graphics and parallel workloads.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>HDD</h3>
+                <p>A storage device using magnetic disks.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Motherboard</h3>
+                <p>The main circuit board connecting computer components.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Operating System</h3>
+                <p>Software that manages hardware and system resources.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Peripheral</h3>
+                <p>A device connected to a computer for input, output, or storage.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>RAM</h3>
+                <p>Volatile memory used for active programs and data.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>ROM</h3>
+                <p>Nonvolatile memory commonly used for firmware.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>SSD</h3>
+                <p>A storage device using flash memory.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
+</main></div><script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const quizQuestions = document.getElementById("quizQuestions");
@@ -1514,4 +1663,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script><script>
 (function(){const root=document.documentElement;const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily'),menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');function setTheme(t){root.dataset.theme=t;icon.textContent=t==='dark'?'☀':'☾';localStorage.setItem('readerTheme',t)}setTheme(localStorage.getItem('readerTheme')==='dark'?'dark':'light');toggle.addEventListener('click',()=>setTheme(root.dataset.theme==='dark'?'light':'dark'));const savedSize=localStorage.getItem('readerFontSize');if(savedSize&&[...size.options].some(o=>o.value===savedSize))size.value=savedSize;const savedFont=localStorage.getItem('readerFontFamily');if(savedFont&&[...family.options].some(o=>o.value===savedFont))family.value=savedFont;function applyReader(){root.style.setProperty('--reader-size',size.value);root.style.setProperty('--reader-font',family.value)}applyReader();size.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);applyReader()});family.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);applyReader()});menu.addEventListener('click',()=>links.classList.toggle('open'));})();
-</script><script src="/js/auth-nav.js" defer></script></body></html>
+</script>    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
+</body></html>

@@ -1,0 +1,128 @@
+
+<header class="cv-navbar" aria-label="CodeVerse navigation">
+
+    <!-- BRAND -->
+
+    <a class="cv-brand" href="/index.html">
+
+        <img
+            src="/images/CodeVerseLogo.png"
+            alt="CodeVerse Logo"
+        >
+
+        <span class="cv-brand-name">
+            Code<span>Verse</span>
+        </span>
+
+    </a>
+
+    <!-- NAVIGATION LINKS -->
+
+    <nav
+        class="cv-nav-links"
+        id="cvNavLinks"
+        aria-label="Main navigation"
+    >
+
+        <a href="/index.html">
+            Home
+        </a>
+
+        <a href="/library.html">
+            Explore Books
+        </a>
+
+        <a href="/index.html#about">
+            About
+        </a>
+
+    </nav>
+
+    <!-- NAVIGATION ACTIONS -->
+
+    <div class="cv-nav-actions">
+
+        <!-- DARK MODE -->
+
+        <button
+            type="button"
+            class="cv-icon-button"
+            id="cvThemeToggle"
+            aria-label="Toggle dark mode"
+            aria-pressed="false"
+        >
+            ☾
+        </button>
+
+        <!-- GUEST -->
+
+        <div
+            class="cv-guest-actions"
+            id="guestActions"
+            hidden
+        >
+
+            <a
+                href="/LogIn.html"
+                class="cv-login-button"
+            >
+                Log In
+            </a>
+
+            <a
+                href="/register.html"
+                class="cv-signup-button"
+            >
+                Sign Up
+            </a>
+
+        </div>
+
+        <!-- LOGGED IN USER -->
+
+        <div
+            class="cv-user-actions"
+            id="userActions"
+            hidden
+        >
+
+            <span
+                class="cv-user-avatar"
+                id="userAvatar"
+            >
+                U
+            </span>
+
+            <span
+                class="cv-user-name"
+                id="userName"
+            >
+                User
+            </span>
+
+            <button
+                type="button"
+                class="cv-logout-button"
+                id="logoutButton"
+            >
+                Log Out
+            </button>
+
+        </div>
+
+        <!-- MOBILE MENU -->
+
+        <button
+            type="button"
+            class="cv-icon-button cv-mobile-toggle"
+            id="cvMenuToggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="cvNavLinks"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>

@@ -20,35 +20,41 @@
 </style>
 <style>
 :root{--primary:#3157a4;--bg:#f5f7fc;--surface:#fff;--text:#24314a;--muted:#65738b;--line:#e1e7f0;--shadow:0 8px 30px #1e325a12}html{scroll-behavior:smooth;scroll-padding-top:100px}*{box-sizing:border-box}body{margin:0;font-family:'DM Sans',Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .25s,color .25s}body.dark-mode{--primary:#92b4ff;--bg:#111827;--surface:#1c2739;--text:#eaf0fc;--muted:#b3c0d3;--line:#344257;--shadow:0 8px 30px #0003}a{color:var(--primary);text-decoration:none}button,select{font:inherit}.navbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;padding:13px clamp(16px,4vw,54px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;color:var(--text);white-space:nowrap}.site-logo{width:38px;height:38px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{color:var(--text);font-size:14px;font-weight:700}.nav-links a:hover{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 12px;cursor:pointer}#accountActions{display:flex;align-items:center;gap:10px}.login-btn,.signup-btn,.logout-btn{padding:9px 13px;border-radius:9px;font-size:13px;font-weight:700;white-space:nowrap}.login-btn{border:1px solid var(--line)}.signup-btn,.logout-btn{border:0;background:#3157a4;color:#fff;cursor:pointer}.account-username{font-size:13px;font-weight:700;color:var(--text);overflow-wrap:anywhere}.menu-toggle{display:none}.topbar{padding:16px clamp(18px,5vw,70px);border-bottom:1px solid var(--line)}.reading-controls{display:flex;flex-wrap:wrap;gap:18px;padding:15px clamp(18px,5vw,70px);background:var(--surface);border-bottom:1px solid var(--line)}.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-size:13px;font-weight:700}.control-group select{max-width:190px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text)}.layout{display:grid;grid-template-columns:minmax(210px,270px) minmax(0,1fr);gap:26px;max-width:1450px;margin:28px auto;padding:0 22px;align-items:start}.toc{position:sticky;top:93px;max-height:calc(100vh - 112px);overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{margin:0 0 14px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{display:block;padding:9px 10px;border-radius:8px;color:var(--muted);font-size:12px;line-height:1.45}.toc nav a:hover{background:var(--bg);color:var(--primary)}main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:clamp(20px,3vw,36px);margin-bottom:22px;box-shadow:var(--shadow)}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(27px,3vw,42px);margin:12px 0}.book-header p{color:var(--muted);line-height:1.8}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary)}.chapter{font-size:var(--reader-size,16px);font-family:var(--reader-font,'DM Sans',sans-serif);line-height:1.85}.chapter h1,.chapter h2,.chapter h3{line-height:1.35;color:var(--text)}.chapter h1{font-size:1.9em}.chapter h2{font-size:1.5em}.chapter h3{font-size:1.16em;margin-top:25px}.chapter p,.chapter li{color:var(--text)}.chapter li{margin-bottom:7px}.chapter table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:20px 0}.chapter th,.chapter td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:110px}.chapter th{background:var(--bg)}.code-example{overflow-x:auto;border:1px solid var(--line);background:var(--bg);padding:16px;border-radius:10px;margin:18px 0}.code-example pre{margin:0;white-space:pre;line-height:1.5;font-size:13px;color:var(--text)}.quiz-question{padding:18px 0;border-bottom:1px solid var(--line)}.quiz-question h3{margin:0 0 12px;font-size:1em}.quiz-option{display:flex;align-items:flex-start;gap:12px;padding:11px 13px;margin:7px 0;border:1px solid var(--line);border-radius:9px;cursor:pointer}.quiz-option:has(input:checked){border-color:var(--primary);background:var(--bg)}.quiz-option.correct{border-color:#24a36a;background:#24a36a19}.quiz-option.incorrect{border-color:#d95363;background:#d9536319}.quiz-feedback{font-size:.88em;font-weight:700}.quiz-actions{display:flex;gap:12px;margin-top:24px}.quiz-actions button{background:#3157a4;color:white;border:0;border-radius:9px;padding:12px 20px;cursor:pointer;font-weight:700}#quizProgress{color:var(--muted);font-weight:700}#quizResult{padding:22px;background:var(--bg);border-radius:12px;margin-top:18px;text-align:center}[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:20px 0 40px}@media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:250px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}@media(max-width:600px){.navbar{gap:10px}.logo{font-size:17px}.site-logo{width:31px;height:31px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;gap:12px}.nav-links.open{display:flex}.nav-actions{margin-left:auto}#accountActions{gap:6px}.account-username{max-width:110px;font-size:11px}.login-btn,.signup-btn,.logout-btn{padding:8px;font-size:11px}.layout{padding:0 12px;gap:14px}.reading-controls{gap:12px}.control-group{flex-wrap:wrap}}
-</style></head>
+</style>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
+
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -700,6 +706,126 @@
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of Emerging Technologies, Artificial Intelligence, Programs and Processes · CodeVerse Digital Library</footer>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Artificial Intelligence</h3>
+                <p>Technology enabling systems to perform tasks associated with intelligence.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Augmented Reality</h3>
+                <p>Digital content overlaid on a real-world view.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Automation</h3>
+                <p>Use of technology to perform tasks with reduced manual intervention.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Blockchain</h3>
+                <p>A distributed ledger structure.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Cloud Computing</h3>
+                <p>Delivery of computing resources over a network.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Deep Learning</h3>
+                <p>Machine learning using multilayer neural networks.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Internet of Things</h3>
+                <p>A network of connected physical devices.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Machine Learning</h3>
+                <p>Methods that learn patterns from data.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Robotics</h3>
+                <p>Design and operation of programmable machines.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Virtual Reality</h3>
+                <p>An immersive computer-generated environment.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <script>
@@ -1154,4 +1280,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 </script>
-<script>document.addEventListener('DOMContentLoaded',()=>{const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily');function theme(){const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);icon.textContent=dark?'☀':'☾'}theme();toggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');theme()});const oldSize=localStorage.getItem('readerFontSize')||'16px',oldFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if([...size.options].some(o=>o.value===oldSize))size.value=oldSize;if([...family.options].some(o=>o.value===oldFont))family.value=oldFont;function apply(){document.documentElement.style.setProperty('--reader-size',size.value);document.documentElement.style.setProperty('--reader-font',family.value)}apply();size.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);apply()});family.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);apply()});document.getElementById('menuToggle')?.addEventListener('click',()=>document.getElementById('navLinks')?.classList.toggle('open'))});</script><script defer="True" src="/js/auth-nav.js"></script></body></html>
+<script>document.addEventListener('DOMContentLoaded',()=>{const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily');function theme(){const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);icon.textContent=dark?'☀':'☾'}theme();toggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');theme()});const oldSize=localStorage.getItem('readerFontSize')||'16px',oldFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if([...size.options].some(o=>o.value===oldSize))size.value=oldSize;if([...family.options].some(o=>o.value===oldFont))family.value=oldFont;function apply(){document.documentElement.style.setProperty('--reader-size',size.value);document.documentElement.style.setProperty('--reader-font',family.value)}apply();size.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);apply()});family.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);apply()});document.getElementById('menuToggle')?.addEventListener('click',()=>document.getElementById('navLinks')?.classList.toggle('open'))});</script>    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
+</body></html>

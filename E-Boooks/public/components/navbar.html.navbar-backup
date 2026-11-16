@@ -1,0 +1,79 @@
+
+<header class="cv-navbar">
+    <div class="cv-navbar-inner">
+
+        <!-- LOGO -->
+        <a href="/index.html" class="cv-navbar-brand">
+            <img
+                src="/images/CodeVerseLogo.png"
+                alt="CodeVerse Logo"
+            >
+            <span>Code<strong>Verse</strong></span>
+        </a>
+
+        <!-- NAVIGATION LINKS -->
+        <nav class="cv-navbar-links" id="cvNavLinks">
+            <a href="/index.html">Home</a>
+            <a href="/library.html">Explore Books</a>
+            <a href="/About.html">About Us</a>
+        </nav>
+
+        <!-- NAVIGATION ACTIONS -->
+        <div class="cv-navbar-actions">
+
+            <button
+                type="button"
+                id="themeToggle"
+                class="cv-navbar-theme"
+                aria-label="Toggle dark mode"
+            >
+                ☾
+            </button>
+
+            <!-- GUEST -->
+            <div id="guestActions" class="cv-guest-actions" hidden>
+                <a href="/LogIn.html" class="login-btn">
+                    Log In
+                </a>
+                <a href="/register.html" class="signup-btn">
+                    Sign Up
+                </a>
+            </div>
+
+            <!-- LOGGED-IN USER -->
+            <div id="userActions" class="cv-user-actions" hidden>
+
+                <div class="cv-user-profile">
+                    <span id="userAvatar" class="cv-user-avatar">
+                        U
+                    </span>
+
+                    <span id="userName" class="cv-user-name">
+                        User
+                    </span>
+                </div>
+
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="cv-logout-btn"
+                >
+                    Log Out
+                </button>
+
+            </div>
+
+            <!-- MOBILE MENU -->
+            <button
+                type="button"
+                id="cvMenuToggle"
+                class="cv-navbar-menu"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+        </div>
+    </div>
+</header>

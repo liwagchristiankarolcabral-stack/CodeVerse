@@ -590,42 +590,41 @@
             }
         }
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>
-                Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a class="active" href="/library.html">
-                Explore Books
-            </a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-<a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button">
-            ☰
-        </button>
-</header>
+
 <!-- =========================
          BACK TO BOOKS
     ========================== -->
@@ -3663,6 +3662,126 @@
 <p id="resultMessage"></p>
 </div>
 </section>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Architecture</h3>
+                <p>The design and instruction model of a computing system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>ARM</h3>
+                <p>A family of processor instruction set architectures.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>BIOS</h3>
+                <p>Firmware traditionally used to initialize PCs.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Compatibility</h3>
+                <p>The ability of components to work together.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Cross-Platform</h3>
+                <p>Software designed to run on multiple platforms.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Firmware</h3>
+                <p>Software closely associated with device hardware.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Platform</h3>
+                <p>An environment supporting software execution.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>UEFI</h3>
+                <p>A modern firmware interface for system startup.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Virtual Machine</h3>
+                <p>A software-defined computing environment.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>x86</h3>
+                <p>A family of processor instruction set architectures.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <!-- =====================================
@@ -4805,5 +4924,7 @@
         renderQuiz();
 
     </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

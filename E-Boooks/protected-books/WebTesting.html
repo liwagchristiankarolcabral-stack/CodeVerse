@@ -1,22 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head><title>Website Testing, Hosting, Deployment, and Maintenance | CodeVerse</title>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <!-- External CSS -->
-
 <!--FavIcon-->
 <link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-
 <style>
 :root{--bg:#f4f7fc;--surface:#fff;--text:#1d2b43;--muted:#65748a;--border:#dfe6f1;--primary:#3157a4;--primary2:#24427f;--code:#eff4fb;--shadow:0 10px 28px rgba(22,46,91,.07)}
 body.dark-mode{--bg:#0c1525;--surface:#17253a;--text:#e8effb;--muted:#b1bfd3;--border:#34465e;--primary:#94b6ff;--primary2:#b5ceff;--code:#101d30;--shadow:0 10px 28px rgba(0,0,0,.22)}
@@ -28,35 +25,32 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 [hidden]{display:none!important}
+</style> <link href="/css/navbar.css" rel="stylesheet"/>
+<link href="/css/glossary.css" rel="stylesheet"/>
+<style>
+.book-references{margin-top:22px;padding:19px 22px;border:1px solid rgba(255,255,255,.32);border-radius:12px;background:rgba(0,0,0,.13)}
+.book-references h2{font-size:1.15rem;margin:0 0 8px;color:#fff}
+.book-references p{margin:0 0 12px;color:#e5efff}
+.book-references ul{margin:0;padding-left:21px;columns:2;column-gap:28px}
+.book-references li{break-inside:avoid;margin:5px 0;line-height:1.5}
+.book-references a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.book-references ul{columns:1}}
 </style></head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button">
-            ☰
-        </button>
-</header>
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -85,83 +79,14 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav>
-<h3>Publishing Your Website</h3>
-<a href="#publishing-your-website">
-        Publishing Your Website
-    </a>
-<a href="#publishing-options">
-        What Are the Options?
-    </a>
-<a href="#hosting-domain-name">
-        Getting Hosting and a Domain Name
-    </a>
-<a href="#publishing-to-server">
-        Publishing to Your Server
-    </a>
-<a href="#ftp-sftp">
-        FTP and SFTP
-    </a>
-<a href="#rsync">
-        Rsync
-    </a>
-<a href="#web-based-ide">
-        Using a Web-Based IDE Such as CodePen
-    </a>
-<a href="#online-publishing-tools">
-        Using an Online Publishing Tool
-    </a>
-<a href="#recommended-publishing-approach">
-        What Approach Would We Recommend?
-    </a>
-<!-- BROWSER DEVELOPER TOOLS -->
-<h3>Browser Developer Tools</h3>
-<a href="#browser-developer-tools">
-        What Are Browser Developer Tools?
-    </a>
-<a href="#what-are-devtools">
-        What Are DevTools?
-    </a>
-<a href="#opening-developer-tools">
-        How to Open the DevTools in Your Browser
-    </a>
-<a href="#dom-inspector-css-editor">
-        The Inspector: DOM Explorer and CSS Editor
-    </a>
-<a href="#exploring-dom-inspector">
-        Exploring the DOM Inspector
-    </a>
-<a href="#exploring-css-editor">
-        Exploring the CSS Editor
-    </a>
-<a href="#javascript-debugger">
-        The JavaScript Debugger
-    </a>
-<a href="#exploring-debugger">
-        Exploring the Debugger
-    </a>
-<a href="#javascript-console">
-        The JavaScript Console
-    </a>
-<a href="#network-inspector">
-        The Network Inspector
-    </a>
-<a href="#http-statuses">
-        HTTP Statuses
-    </a>
-<!-- ASSESSMENT -->
-<h3>Assessment</h3>
-<a href="#quiz">
-        Knowledge Assessment Quiz
-    </a>
-</nav>
+<nav><a href="#references">References</a><a href="#publishing-your-website">1. Publishing Your Website</a><a href="#publishing-options">2. What Are the Options?</a><a href="#hosting-domain-name">3. Getting Hosting and a Domain Name</a><a href="#publishing-to-server">4. Publishing to Your Server</a><a href="#ftp-sftp">5. FTP and SFTP</a><a href="#rsync">6. Rsync</a><a href="#web-based-ide">7. Using a Web-Based IDE Such as CodePen</a><a href="#online-publishing-tools">8. Using an Online Publishing Tool</a><a href="#recommended-publishing-approach">9. What Approach Would We Recommend?</a><a href="#browser-developer-tools">10. What Are Browser Developer Tools?</a><a href="#what-are-devtools">11. What Are DevTools?</a><a href="#opening-developer-tools">12. How to Open the DevTools in Your Browser</a><a href="#dom-inspector-css-editor">13. The Inspector: DOM Explorer and CSS Editor</a><a href="#exploring-dom-inspector">14. Exploring the DOM Inspector</a><a href="#exploring-css-editor">15. Exploring the CSS Editor</a><a href="#javascript-debugger">16. The JavaScript Debugger</a><a href="#exploring-debugger">17. Exploring the Debugger</a><a href="#javascript-console">18. The JavaScript Console</a><a href="#network-inspector">19. The Network Inspector</a><a href="#http-statuses">20. HTTP Statuses</a><a href="#testing-strategy">21. Planning a Website Testing Strategy</a><a href="#functional-testing">22. Functional and End-to-End Testing</a><a href="#responsive-cross-browser-testing">23. Responsive and Cross-Browser Testing</a><a href="#accessibility-testing">24. Accessibility Testing</a><a href="#performance-testing">25. Website Performance Testing</a><a href="#security-testing">26. Basic Website Security Testing</a><a href="#git-version-control">27. Version Control with Git</a><a href="#deployment-pipeline">28. Deployment Pipelines and Environments</a><a href="#monitoring-backups">29. Monitoring, Logs, and Backups</a><a href="#maintenance-release-checklist">30. Website Maintenance and Release Checklist</a><a href="#quiz">Knowledge Assessment Quiz</a><a href="#glossary">Glossary of Terms</a></nav>
 </aside>
 <main>
 <header class="book-header">
 <span class="eyebrow">Digital Book · Technology</span>
 <h1>Website Testing, Hosting, Deployment, and Maintenance</h1>
 <p>Learn the essentials of website testing, hosting, deployment, and maintenance to ensure reliable, secure, and well-performing websites.</p>
-</header>
+<section aria-labelledby="references-heading" class="book-references" id="references"><h2 id="references-heading">References</h2><p>Recommended documentation and learning resources for website testing, hosting, deployment, and maintenance.</p><ul><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Publishing_your_website" rel="noopener noreferrer" target="_blank">MDN — Publishing your website</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools" rel="noopener noreferrer" target="_blank">MDN — Browser developer tools</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status" rel="noopener noreferrer" target="_blank">MDN — HTTP response status codes</a></li><li><a href="https://web.dev/learn/performance" rel="noopener noreferrer" target="_blank">web.dev — Learn Performance</a></li><li><a href="https://web.dev/learn/testing" rel="noopener noreferrer" target="_blank">web.dev — Learn Testing</a></li><li><a href="https://www.w3.org/WAI/test-evaluate/" rel="noopener noreferrer" target="_blank">W3C WAI — Accessibility Evaluation Resources</a></li><li><a href="https://owasp.org/www-project-web-security-testing-guide/" rel="noopener noreferrer" target="_blank">OWASP — Web Security Testing Guide</a></li><li><a href="https://git-scm.com/doc" rel="noopener noreferrer" target="_blank">Git — Documentation</a></li><li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" rel="noopener noreferrer" target="_blank">GitHub Docs — About GitHub Pages</a></li><li><a href="https://developer.chrome.com/docs/lighthouse/overview" rel="noopener noreferrer" target="_blank">Google Chrome — Lighthouse</a></li></ul></section></header>
 <!-- ==========================================
      CODEVERSE - WEBSITE PUBLISHING
      AND BROWSER DEVELOPER TOOLS
@@ -1280,7 +1205,10 @@ HTTP/1.1 304 Not Modified</code></pre>
 <!-- ==========================================
      CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
 ========================================== -->
-<section class="chapter" id="quiz">
+<section class="chapter" id="testing-strategy"><h2>Planning a Website Testing Strategy</h2><p>A testing strategy defines what must work, who will test it, and which environments matter. Begin with critical journeys such as opening a page, logging in, submitting a form, and reading content. Record expected results before testing.</p><h3>Practical example</h3><pre><code>Test case: A visitor opens the home page, selects a book, and sees its content without a missing-resource error.</code></pre><h3>Key takeaway</h3><p>Prioritize high-impact features and repeat tests after each significant change.</p></section><section class="chapter" id="functional-testing"><h2>Functional and End-to-End Testing</h2><p>Functional tests check whether individual features meet requirements. End-to-end tests follow realistic user journeys across the interface, server, and database. Include successful actions and failure cases, such as invalid credentials or unavailable resources.</p><h3>Practical example</h3><pre><code>Scenario: Register → Sign in → Open a book → Complete a quiz → Verify the saved result.</code></pre><h3>Key takeaway</h3><p>A feature is not fully tested merely because its button responds to a click.</p></section><section class="chapter" id="responsive-cross-browser-testing"><h2>Responsive and Cross-Browser Testing</h2><p>Websites are viewed on phones, tablets, and desktops using different browsers. Test narrow and wide viewports, zoom levels, touch input, keyboard navigation, and content overflow. Check both layout and actual interaction.</p><h3>Practical example</h3><pre><code>Checklist: 375px phone width; 768px tablet width; 1440px desktop width; Chrome, Firefox, and Edge.</code></pre><h3>Key takeaway</h3><p>A layout that looks correct on one screen may fail on another.</p></section><section class="chapter" id="accessibility-testing"><h2>Accessibility Testing</h2><p>Accessibility testing checks whether people using keyboards, screen readers, magnification, or other assistive technology can use a website. Inspect heading order, accessible names, form labels, focus visibility, color contrast, and error announcements. Automated audits help, but manual testing is essential.</p><h3>Practical example</h3><pre><code>Keyboard test: Press Tab to navigate controls, Enter to activate links, and Escape to close supported dialogs.</code></pre><h3>Key takeaway</h3><p>Accessibility is a usability requirement, not just a visual design choice.</p></section><section class="chapter" id="performance-testing"><h2>Website Performance Testing</h2><p>Performance testing examines how quickly a page becomes useful and responds to interaction. Large images, blocking scripts, unnecessary requests, and slow server responses can reduce performance. Use browser performance tools and Lighthouse to identify opportunities.</p><h3>Practical example</h3><pre><code>Optimization example: Convert a large hero image to a modern format, size it appropriately, and add loading="lazy" to offscreen images.</code></pre><h3>Key takeaway</h3><p>Measure before and after an optimization instead of assuming it helped.</p></section><section class="chapter" id="security-testing"><h2>Basic Website Security Testing</h2><p>Security testing checks authentication, authorization, input handling, and sensitive data exposure. Verify that protected pages require a valid session, unauthorized requests are rejected, and credentials never appear in client-side code. Test safely in an authorized environment.</p><h3>Practical example</h3><pre><code>Example checks: Access a protected URL while signed out; submit invalid input; inspect responses for accidental secrets.</code></pre><h3>Key takeaway</h3><p>Client-side checks improve usability, but security rules must also be enforced on the server.</p></section><section class="chapter" id="git-version-control"><h2>Version Control with Git</h2><p>Git records changes to a project and helps developers collaborate. A typical workflow is to review modified files, stage changes, commit with a meaningful message, and push to a remote repository. Avoid committing secrets or environment files.</p><h3>Practical example</h3><pre><code>git status
+git add .
+git commit -m "Improve website testing"
+git push origin main</code></pre><h3>Key takeaway</h3><p>Commit small, understandable changes so mistakes are easier to trace and reverse.</p></section><section class="chapter" id="deployment-pipeline"><h2>Deployment Pipelines and Environments</h2><p>A deployment pipeline moves code from development into a live environment. Many teams use development, preview or staging, and production environments. Automated checks can run before release, while environment variables configure services without embedding secrets in source code.</p><h3>Practical example</h3><pre><code>Example flow: Commit → Automated checks → Preview deployment → Manual verification → Production deployment.</code></pre><h3>Key takeaway</h3><p>Verify configuration, database connectivity, and required files before promoting a release.</p></section><section class="chapter" id="monitoring-backups"><h2>Monitoring, Logs, and Backups</h2><p>After deployment, monitor availability, application errors, performance, and database health. Logs help identify when failures occurred and which requests were affected. Backups protect important data, but they are useful only when restoration has been tested.</p><h3>Practical example</h3><pre><code>Maintenance checklist: Review error logs; check uptime; back up database; verify a sample restore; review storage usage.</code></pre><h3>Key takeaway</h3><p>Monitoring detects problems; tested recovery procedures help the team respond.</p></section><section class="chapter" id="maintenance-release-checklist"><h2>Website Maintenance and Release Checklist</h2><p>Maintenance includes security updates, dependency reviews, content corrections, accessibility improvements, and performance checks. Before each release, test key workflows, verify links and assets, check environment settings, and prepare a rollback plan. Keep a record of changes.</p><h3>Practical example</h3><pre><code>Release checklist: Tests pass; no console errors; forms work; HTTPS is enabled; backups exist; rollback instructions are available.</code></pre><h3>Key takeaway</h3><p>A successful deployment is the beginning of ongoing maintenance, not the end.</p></section><section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
 <p>Test your knowledge of website publishing, hosting, deployment methods, browser developer tools, debugging, and HTTP status codes.</p>
 <div id="quizProgress">0 of 20 answered</div>
@@ -1296,6 +1224,71 @@ HTTP/1.1 304 Not Modified</code></pre>
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of Website Testing, Hosting, Deployment, and Maintenance · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+<section aria-labelledby="cvGlossaryHeading" class="cv-glossary chapter" id="glossary">
+<div class="cv-glossary-header">
+<h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+<p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+</div>
+<label class="cv-glossary-search-label" for="cvGlossarySearch">
+        Search glossary terms
+    </label>
+<input autocomplete="off" class="cv-glossary-search" id="cvGlossarySearch" placeholder="Search a term or definition..." type="search"/>
+<div aria-live="polite" class="cv-glossary-count">
+        10 terms
+    </div>
+<div class="cv-glossary-list">
+<article class="cv-glossary-item">
+<h3>Debugging</h3>
+<p>Investigating and correcting software defects.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Deployment</h3>
+<p>Making software available in an environment.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Developer Tools</h3>
+<p>Browser tools used to inspect and debug websites.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Git</h3>
+<p>A distributed version control system.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Hosting</h3>
+<p>Providing infrastructure to serve a website.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Integration Test</h3>
+<p>A test of interacting components.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Maintenance</h3>
+<p>Ongoing updates and improvements to software.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Testing</h3>
+<p>Evaluating software behavior against expectations.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Unit Test</h3>
+<p>A test of an individual component.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Version Control</h3>
+<p>Tracking changes to project files.</p>
+</article>
+</div>
+<p class="cv-glossary-empty" hidden="">
+        No matching glossary terms found.
+    </p>
+</section>
+<!-- CODEVERSE GLOSSARY END -->
 </main>
 </div>
 <script>
@@ -1802,4 +1795,6 @@ document.addEventListener('DOMContentLoaded', () => {
  const sections=entries.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
  if('IntersectionObserver' in window){const obs=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){entries.forEach(a=>a.classList.toggle('active',a.hash==='#'+item.target.id));}})},{rootMargin:'-95px 0px -65% 0px'});sections.forEach(section=>obs.observe(section));}
 });
-</script></body></html>
+</script> <script defer="" src="/js/navbar-loader.js"></script>
+<script defer="" src="/js/glossary.js"></script>
+</body></html>

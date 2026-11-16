@@ -24,35 +24,24 @@
 body.dark-mode{--primary:#9ab9ff;--primary-dark:#bfd0ff;--bg:#101725;--surface:#192437;--text:#edf2ff;--muted:#b2bfd3;--border:#30405a;--soft:#253651;--shadow:0 10px 30px rgba(0,0,0,.14)}body.dark-mode .book-header{background:linear-gradient(115deg,#1c3260,#2e4e8d)}body.dark-mode .signup-btn,body.dark-mode .quiz-actions button{background:#426cbe;color:white}body.dark-mode .quiz-option.correct{background:#163f30;color:#c4f5d3}body.dark-mode .quiz-option.incorrect{background:#4a272e;color:#ffd2d2}
 @media(max-width:1050px){.navbar{padding:0 22px;gap:16px}.nav-links{gap:15px}.layout{grid-template-columns:210px minmax(0,1fr)}.chapter{padding:27px}}@media(max-width:760px){.navbar{height:70px}.logo{font-size:21px}.site-logo{width:36px;height:36px}.menu-toggle{display:block;margin-left:0}.nav-links{display:none;position:absolute;top:69px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;flex-direction:column;align-items:stretch;gap:0}.nav-links.show{display:flex}.nav-links a{padding:11px}.nav-actions{margin-left:auto;gap:5px}.login-btn{padding:8px}.signup-btn{padding:8px 10px}.layout{display:flex;flex-direction:column;gap:16px}.toc{position:static;width:100%;max-height:250px}.toc nav{max-height:165px;overflow-y:auto}.layout main{width:100%}.book-header{padding:28px 24px}.chapter{padding:23px 20px}.reading-controls{margin:15px 20px 0}.topbar{padding:15px 20px 0}}@media(max-width:410px){.logo{font-size:18px}.site-logo{width:31px;height:31px}.signup-btn{display:none}.chapter{padding:20px 16px}.layout{padding:0 15px}.reading-controls{padding:13px}.control-group{width:100%;justify-content:space-between}}
 </style>
+<link href="/css/navbar.css" rel="stylesheet"/>
+<link href="/css/glossary.css" rel="stylesheet"/>
 </head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a class="active" href="/library.html">Explore Books</a>
-<a href="/About.html">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -81,24 +70,14 @@ body.dark-mode{--primary:#9ab9ff;--primary-dark:#bfd0ff;--bg:#101725;--surface:#
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav>
-<a href="#internet">The Internet</a>
-<a href="#www">The World Wide Web</a>
-<a href="#connectivity">Internet Connectivity</a>
-<a href="#cloud">Cloud Computing</a>
-<a href="#browsers">Web Browsers</a>
-<a href="#hyperlinks">Hyperlinks</a>
-<a href="#urls">Uniform Resource Locators</a>
-<a href="#culture">Culture</a>
-<a href="#quiz">Knowledge Assessment Quiz</a>
-</nav>
+<nav><a href="#internet">1. The Internet</a><a href="#www">2. The World Wide Web</a><a href="#connectivity">3. Internet Connectivity</a><a href="#cloud">4. Cloud Computing</a><a href="#browsers">5. Web Browsers</a><a href="#hyperlinks">6. Hyperlinks</a><a href="#urls">7. Uniform Resource Locators</a><a href="#culture">8. Culture</a><a href="#network-types">9. Types of Computer Networks</a><a href="#network-topologies">10. Network Topologies</a><a href="#network-hardware">11. Essential Network Hardware</a><a href="#data-packets">12. Data Packets and Packet Switching</a><a href="#tcp-ip">13. The TCP/IP Model</a><a href="#ip-addresses">14. IP Addresses and Subnets</a><a href="#dns">15. Domain Name System (DNS)</a><a href="#domain-names">16. Domain Names and Registration</a><a href="#http-https">17. HTTP and HTTPS</a><a href="#client-server">18. Client–Server Architecture</a><a href="#web-hosting">19. Web Hosting and Web Servers</a><a href="#html-css-js">20. HTML, CSS, and JavaScript</a><a href="#search-engines">21. Search Engines and Information Retrieval</a><a href="#email">22. Email and Internet Messaging</a><a href="#file-transfer">23. File Transfer and Downloads</a><a href="#wifi-mobile">24. Wi-Fi and Mobile Data</a><a href="#speed-latency">25. Bandwidth, Speed, and Latency</a><a href="#cybersecurity">26. Internet Security Fundamentals</a><a href="#privacy">27. Online Privacy and Digital Footprints</a><a href="#digital-citizenship">28. Digital Citizenship and Netiquette</a><a href="#troubleshooting">29. Basic Internet Troubleshooting</a><a href="#future-internet">30. Emerging Internet Technologies</a><a href="#references">References</a><a href="#quiz">Knowledge Assessment Quiz</a><a href="#glossary">Glossary of Terms</a></nav>
 </aside>
 <main>
 <header class="book-header">
 <span class="eyebrow">Digital Book · Technology</span>
 <h1>Internet Fundamentals</h1>
-<p>Learn about the Internet, the World Wide Web, Internet connectivity, cloud computing, web browsers, hyperlinks, URLs, and online culture.</p>
-</header>
+<p>Explore 30 lessons covering networks, web technologies, Internet services, online safety, and emerging technologies.</p>
+</header><section aria-labelledby="referencesTitle" class="chapter" id="references"><h2 id="referencesTitle">References and Further Reading</h2><p>These resources provide authoritative background for the lessons. The expanded explanations are original educational summaries, not quotations from these websites.</p><ol><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/How_does_the_Internet_work" rel="noopener noreferrer" target="_blank">MDN Web Docs — How does the Internet work?</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" rel="noopener noreferrer" target="_blank">MDN Web Docs — Overview of HTTP</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website" rel="noopener noreferrer" target="_blank">MDN Web Docs — Your first website</a></li><li><a href="https://www.cloudflare.com/learning/dns/what-is-dns/" rel="noopener noreferrer" target="_blank">Cloudflare Learning Center — What is DNS?</a></li><li><a href="https://www.cloudflare.com/learning/network-layer/what-is-a-packet/" rel="noopener noreferrer" target="_blank">Cloudflare Learning Center — What is a packet?</a></li><li><a href="https://www.icann.org/resources/pages/domain-name-registration-process-2020-02-25-en" rel="noopener noreferrer" target="_blank">ICANN — Domain Name Registration Process</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc9293" rel="noopener noreferrer" target="_blank">RFC 9293 — Transmission Control Protocol (TCP)</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc8200" rel="noopener noreferrer" target="_blank">RFC 8200 — Internet Protocol, Version 6 (IPv6)</a></li><li><a href="https://www.cisa.gov/secure-our-world" rel="noopener noreferrer" target="_blank">CISA — Secure Our World</a></li><li><a href="https://www.w3.org/standards/" rel="noopener noreferrer" target="_blank">World Wide Web Consortium (W3C) — Web Standards</a></li></ol></section>
 <section class="chapter" id="internet">
 <h2>Introduction: The Internet</h2>
 <h3>What is the Internet?</h3>
@@ -308,7 +287,7 @@ body.dark-mode{--primary:#9ab9ff;--primary-dark:#bfd0ff;--bg:#101725;--surface:#
 <p>Most forms typically look down on or prohibit "reviving" or "necroing" old threads by creating new posts in them.</p>
 <p>What counts as an old post depends highly on the specific community, with some considering day old threads to be old news, and others allowing for the posting in threads that are several years old.</p>
 <p>Generally, it's OK to post in a thread that has had active commentary recently. If a community has a thread that was started in 2008 and has had active discussion to the present day, it's not reviving that thread, since the thread never "died". However posting in a different thread that was started in 2008 and hasn't seen a post since 2009 would likely be seen as reviving a thread, and a potential breach of netiquette.</p>
-</section>
+</section><section class="chapter" id="network-types"><h2>Types of Computer Networks</h2><p>Networks connect devices so they can exchange data and share resources. They differ in coverage, ownership, and purpose.</p><h3>PAN, LAN, MAN, and WAN</h3><p>A personal area network (PAN) links nearby personal devices; a local area network (LAN) covers a home, office, or campus building; a metropolitan area network (MAN) spans a city; and a wide area network (WAN) covers larger regions.</p><h3>Intranets and extranets</h3><p>An intranet is a private network for an organization. An extranet provides controlled access to selected external users, such as partners.</p><h3>Practical example</h3><p>A classroom Wi-Fi network is a LAN. When a student uses it to visit an overseas website, traffic passes through interconnected networks across the Internet.</p></section><section class="chapter" id="network-topologies"><h2>Network Topologies</h2><p>A network topology describes how network devices are arranged and interconnected.</p><h3>Star topology</h3><p>Devices connect to a central switch or access point. It is common in modern local networks.</p><h3>Bus and ring topologies</h3><p>A bus uses a shared communication medium, while a ring connects devices in a loop. Both help illustrate network design trade-offs.</p><h3>Mesh topology</h3><p>Devices have multiple paths between them, improving redundancy but increasing complexity and cost.</p></section><section class="chapter" id="network-hardware"><h2>Essential Network Hardware</h2><p>Networking equipment directs traffic and provides connections between computers and networks.</p><h3>Switch</h3><p>Connects devices within a LAN and forwards Ethernet frames toward the correct destination.</p><h3>Router</h3><p>Connects different IP networks and chooses where packets should go.</p><h3>Wireless access point</h3><p>Allows Wi-Fi devices to join a local network.</p><h3>Modem and ONT</h3><p>A modem adapts signals for certain access technologies; an optical network terminal (ONT) terminates a fiber connection.</p></section><section class="chapter" id="data-packets"><h2>Data Packets and Packet Switching</h2><p>Internet data is divided into manageable units so multiple users and applications can share network links.</p><h3>Packets</h3><p>An IP packet carries addressing information and a portion of data. Large messages may require many packets.</p><h3>Packet switching</h3><p>Routers forward packets across available network paths instead of reserving a dedicated circuit for every conversation.</p><h3>Delivery and reassembly</h3><p>Higher-layer protocols and applications help detect missing data, maintain order when needed, and reconstruct the information.</p></section><section class="chapter" id="tcp-ip"><h2>The TCP/IP Model</h2><p>The TCP/IP suite provides the foundation for communication across interconnected networks.</p><h3>Application layer</h3><p>Protocols such as HTTP, DNS, and SMTP support web browsing, name lookup, and email.</p><h3>Transport layer</h3><p>TCP provides a reliable ordered byte stream; UDP sends datagrams with less protocol overhead and no built-in delivery guarantee.</p><h3>Internet and link layers</h3><p>IP handles addressing and routing, while Ethernet and Wi-Fi transmit data over local connections.</p></section><section class="chapter" id="ip-addresses"><h2>IP Addresses and Subnets</h2><p>An Internet Protocol (IP) address identifies a network interface for communication within an IP network.</p><h3>IPv4</h3><p>IPv4 addresses are 32 bits and are commonly written as four decimal numbers, such as 192.168.1.10.</p><h3>IPv6</h3><p>IPv6 addresses are 128 bits and are commonly written in hexadecimal groups, such as 2001:db8::1.</p><h3>Subnets</h3><p>A subnet groups addresses under a network prefix. Routers use prefixes to determine how traffic should be forwarded.</p></section><section class="chapter" id="dns"><h2>Domain Name System (DNS)</h2><p>DNS translates human-friendly domain names into records that applications can use to find services.</p><h3>Name resolution</h3><p>When a user enters a domain, the device can query a DNS resolver for records such as A (IPv4) or AAAA (IPv6).</p><h3>Caching</h3><p>Resolvers and devices temporarily store DNS answers to reduce repeated lookups.</p><h3>Why it matters</h3><p>DNS lets website operators change server addresses without requiring visitors to memorize IP addresses.</p></section><section class="chapter" id="domain-names"><h2>Domain Names and Registration</h2><p>Domain names provide recognizable identifiers for websites and other Internet services.</p><h3>Domain structure</h3><p>In www.example.com, com is a top-level domain, example is a second-level domain, and www is a subdomain.</p><h3>Registration</h3><p>Domain names are registered through accredited registrars under applicable registry rules.</p><h3>Domains versus hosting</h3><p>Registering a domain does not automatically provide website storage or a running web server; hosting is a separate service.</p></section><section class="chapter" id="http-https"><h2>HTTP and HTTPS</h2><p>Hypertext Transfer Protocol (HTTP) defines how clients and servers exchange requests and responses.</p><h3>Requests and responses</h3><p>A browser sends a request, such as GET /index.html. The server returns a status code, headers, and often a response body.</p><h3>HTTPS</h3><p>HTTPS protects HTTP communication using Transport Layer Security (TLS), helping provide encryption and server authentication.</p><h3>Status codes</h3><p>200 means success, 301 or 302 indicates redirection, 404 means the resource was not found, and 500 indicates a server-side error.</p></section><section class="chapter" id="client-server"><h2>Client–Server Architecture</h2><p>Many Internet services use clients that request resources from servers.</p><h3>Client</h3><p>A web browser, mobile application, or other program sends requests on behalf of a user.</p><h3>Server</h3><p>A server application processes requests and returns web pages, data, files, or other results.</p><h3>Example</h3><p>When CodeVerse loads a lesson, the browser requests the page and related files from the hosting service.</p></section><section class="chapter" id="web-hosting"><h2>Web Hosting and Web Servers</h2><p>A website must be stored and served through infrastructure that visitors can reach.</p><h3>Static hosting</h3><p>Static hosting delivers existing HTML, CSS, JavaScript, and media files.</p><h3>Dynamic hosting</h3><p>Dynamic sites use application code and often a database to generate responses or handle accounts.</p><h3>Deployment basics</h3><p>A deployment publishes a tested version of a website. Operators also configure domains, HTTPS, monitoring, and backups.</p></section><section class="chapter" id="html-css-js"><h2>HTML, CSS, and JavaScript</h2><p>These three core web technologies work together to create interactive web pages.</p><h3>HTML</h3><p>HyperText Markup Language structures headings, paragraphs, images, links, forms, and other page content.</p><h3>CSS</h3><p>Cascading Style Sheets control colors, typography, spacing, layouts, and responsive presentation.</p><h3>JavaScript</h3><p>JavaScript can respond to user actions, update page content, validate inputs, and communicate with servers.</p></section><section class="chapter" id="search-engines"><h2>Search Engines and Information Retrieval</h2><p>Search engines help users discover publicly accessible information on the web.</p><h3>Crawling</h3><p>Automated programs discover pages by following links and other discovery signals.</p><h3>Indexing</h3><p>A search service processes eligible pages into a searchable index.</p><h3>Ranking and evaluation</h3><p>Results are ordered using multiple signals. Students should evaluate source credibility, dates, authorship, and evidence rather than relying on the first result.</p></section><section class="chapter" id="email"><h2>Email and Internet Messaging</h2><p>Email is an Internet service for exchanging messages and attachments.</p><h3>Addresses</h3><p>An email address typically uses a local part and domain, such as student@example.com.</p><h3>SMTP, IMAP, and POP3</h3><p>SMTP is commonly used to send or relay messages. IMAP synchronizes mailboxes; POP3 retrieves messages.</p><h3>Safe email habits</h3><p>Check unexpected senders, avoid suspicious attachments, and verify requests for passwords or money through another channel.</p></section><section class="chapter" id="file-transfer"><h2>File Transfer and Downloads</h2><p>Internet users frequently upload and download files between devices and services.</p><h3>Upload and download</h3><p>Uploading sends data from a device to a remote service; downloading receives data from a remote service.</p><h3>Transfer methods</h3><p>HTTPS commonly transfers files through websites and APIs. SFTP transfers files over a secure SSH connection.</p><h3>File safety</h3><p>Confirm file sources, inspect extensions, and use appropriate malware protection before opening unfamiliar downloads.</p></section><section class="chapter" id="wifi-mobile"><h2>Wi-Fi and Mobile Data</h2><p>Wireless Internet access relies on different radio technologies and infrastructure.</p><h3>Wi-Fi</h3><p>Wi-Fi typically connects a device to a nearby access point that provides access to a local network.</p><h3>Mobile networks</h3><p>4G and 5G connect phones and other devices through cellular base stations and carrier networks.</p><h3>Performance factors</h3><p>Signal strength, interference, distance, congestion, and plan limitations can affect speed and reliability.</p></section><section class="chapter" id="speed-latency"><h2>Bandwidth, Speed, and Latency</h2><p>Network performance depends on more than the advertised download speed.</p><h3>Bandwidth and throughput</h3><p>Bandwidth describes potential carrying capacity; throughput is the rate of data successfully transferred.</p><h3>Latency</h3><p>Latency is the time it takes for data to travel between endpoints, often measured in milliseconds.</p><h3>Packet loss and jitter</h3><p>Packet loss means data does not arrive. Jitter is variation in delay and can disrupt calls and real-time games.</p></section><section class="chapter" id="cybersecurity"><h2>Internet Security Fundamentals</h2><p>Cybersecurity protects devices, accounts, networks, and information from unauthorized access and disruption.</p><h3>Common threats</h3><p>Phishing, malicious software, stolen credentials, and insecure software can compromise users.</p><h3>Protection</h3><p>Use unique passwords, a password manager, multifactor authentication, software updates, and reliable backups.</p><h3>Secure connections</h3><p>HTTPS helps protect data in transit, but it does not guarantee that a website or its content is trustworthy.</p></section><section class="chapter" id="privacy"><h2>Online Privacy and Digital Footprints</h2><p>Internet activity can generate information about users and their behavior.</p><h3>Personal data</h3><p>Names, contact details, location data, and account identifiers can be sensitive when linked to a person.</p><h3>Digital footprints</h3><p>Posts, searches, account activity, and website interactions may leave records across services.</p><h3>Privacy practices</h3><p>Review app permissions, minimize unnecessary sharing, understand privacy settings, and be careful with public posts.</p></section><section class="chapter" id="digital-citizenship"><h2>Digital Citizenship and Netiquette</h2><p>Responsible Internet use involves respectful communication, critical thinking, and ethical behavior.</p><h3>Netiquette</h3><p>Communicate respectfully, avoid harassment, and consider how written messages may be interpreted.</p><h3>Academic integrity</h3><p>Credit sources, distinguish quotation from paraphrase, and follow rules for using online materials.</p><h3>Misinformation</h3><p>Check claims against credible independent sources and verify context before reposting information.</p></section><section class="chapter" id="troubleshooting"><h2>Basic Internet Troubleshooting</h2><p>A structured troubleshooting process can identify common connection problems.</p><h3>Check the scope</h3><p>Determine whether the issue affects one website, one device, or the entire local network.</p><h3>Inspect connections</h3><p>Check Wi-Fi or Ethernet status, airplane mode, router power, and whether other devices work.</p><h3>Test carefully</h3><p>Try a known website, restart the affected device or router when appropriate, and check for provider outages.</p><h3>Escalate</h3><p>If the problem persists, document error messages and contact the network administrator or Internet service provider.</p></section><section class="chapter" id="future-internet"><h2>Emerging Internet Technologies</h2><p>Internet technologies continue to evolve as devices, applications, and network demands change.</p><h3>Internet of Things (IoT)</h3><p>Connected sensors and devices exchange information for homes, healthcare, transport, and industry.</p><h3>Edge computing</h3><p>Some processing occurs closer to users or devices to reduce delays and unnecessary data transfers.</p><h3>Newer network technologies</h3><p>IPv6 adoption, fiber networks, improved wireless systems, and modern web protocols support evolving Internet services.</p><h3>Responsible adoption</h3><p>New capabilities should be evaluated for security, accessibility, privacy, and environmental impact.</p></section>
 <section class="chapter quiz-section" id="quiz">
 <h2>Internet Fundamentals Quiz</h2>
 <p>Test your knowledge of what you have learned.</p>
@@ -328,6 +307,71 @@ body.dark-mode{--primary:#9ab9ff;--primary-dark:#bfd0ff;--bg:#101725;--surface:#
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of Internet Fundamentals · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+<section aria-labelledby="cvGlossaryHeading" class="cv-glossary chapter" id="glossary">
+<div class="cv-glossary-header">
+<h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+<p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+</div>
+<label class="cv-glossary-search-label" for="cvGlossarySearch">
+        Search glossary terms
+    </label>
+<input autocomplete="off" class="cv-glossary-search" id="cvGlossarySearch" placeholder="Search a term or definition..." type="search"/>
+<div aria-live="polite" class="cv-glossary-count">
+        10 terms
+    </div>
+<div class="cv-glossary-list">
+<article class="cv-glossary-item">
+<h3>DNS</h3>
+<p>The domain name system.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Domain Name</h3>
+<p>A human-readable name within the DNS hierarchy.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>HTTP</h3>
+<p>A protocol for transferring web resources.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>HTTPS</h3>
+<p>HTTP protected by transport encryption.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Internet</h3>
+<p>A global network of interconnected networks.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>ISP</h3>
+<p>An internet service provider.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>URL</h3>
+<p>An address identifying a resource.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Web Browser</h3>
+<p>Software used to access and display web content.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Web Server</h3>
+<p>Software or hardware serving web resources.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Website</h3>
+<p>A collection of related web pages.</p>
+</article>
+</div>
+<p class="cv-glossary-empty" hidden="">
+        No matching glossary terms found.
+    </p>
+</section>
+<!-- CODEVERSE GLOSSARY END -->
 </main>
 </div>
 <script>
@@ -637,5 +681,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadQuiz();
 });
 </script>
-<script>document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('menuToggle'),n=document.getElementById('navLinks');b.addEventListener('click',()=>{const open=n.classList.toggle('show');b.setAttribute('aria-expanded',String(open));});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('show');b.setAttribute('aria-expanded','false')}));const links=[...document.querySelectorAll('.toc a[href^="#"]')];const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('toc-active',a.hash==='#'+e.target.id))}})},{rootMargin:'-15% 0px -70% 0px'});document.querySelectorAll('section.chapter[id]').forEach(s=>obs.observe(s));});</script></body>
+<script>document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('menuToggle'),n=document.getElementById('navLinks');b.addEventListener('click',()=>{const open=n.classList.toggle('show');b.setAttribute('aria-expanded',String(open));});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('show');b.setAttribute('aria-expanded','false')}));const links=[...document.querySelectorAll('.toc a[href^="#"]')];const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('toc-active',a.hash==='#'+e.target.id))}})},{rootMargin:'-15% 0px -70% 0px'});document.querySelectorAll('section.chapter[id]').forEach(s=>obs.observe(s));});</script> <script defer="" src="/js/navbar-loader.js"></script>
+<script defer="" src="/js/glossary.js"></script>
+</body>
 </html>

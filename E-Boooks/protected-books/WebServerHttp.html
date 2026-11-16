@@ -24,35 +24,24 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
 
 .chapter figure{margin:18px 0;text-align:center}.chapter figure img{display:block;max-width:100%;height:auto;margin:auto;border-radius:10px;border:1px solid var(--border)}
 </style>
+<link href="/css/navbar.css" rel="stylesheet"/>
+<link href="/css/glossary.css" rel="stylesheet"/>
 </head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a class="active" href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -81,20 +70,7 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav>
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="#how-browsers-load-websites">How browsers load websites</a><a href="#parsing-css-rendering">Parsing CSS and rendering the page</a><a href="#handling-javascript">Handling JavaScript</a><a href="#the-browsers">The Browsers</a><a href="#quiz">Knowledge Assessment Quiz</a></nav>
+<nav><a href="#references">References</a><a href="#how-browsers-load-websites">How browsers load websites</a><a href="#parsing-css-rendering">Parsing CSS and rendering the page</a><a href="#handling-javascript">Handling JavaScript</a><a href="#the-browsers">The browser: a hostile and an awesome programming environment</a><a href="#what-is-web-browser">What Is a Web Browser?</a><a href="#browser-components">Major Components of a Browser</a><a href="#client-server-model">The Client–Server Model</a><a href="#web-servers">What Is a Web Server?</a><a href="#urls-and-uris">Understanding URLs and Their Parts</a><a href="#domain-names-dns">Domain Names and DNS Resolution</a><a href="#ip-addresses-ports">IP Addresses and Port Numbers</a><a href="#tcp-udp-transport">Transport Protocols: TCP and UDP</a><a href="#http-overview">Introduction to HTTP</a><a href="#http-request-anatomy">Anatomy of an HTTP Request</a><a href="#http-response-anatomy">Anatomy of an HTTP Response</a><a href="#http-methods">HTTP Methods: GET, POST, PUT, PATCH, DELETE</a><a href="#http-status-codes">Understanding HTTP Status Codes</a><a href="#http-headers">Important HTTP Headers</a><a href="#mime-types">MIME Types and Browser Resource Handling</a><a href="#https-and-tls">How HTTPS and TLS Protect Connections</a><a href="#tls-certificates">Digital Certificates and Certificate Authorities</a><a href="#http-versions">HTTP/1.1, HTTP/2, and HTTP/3</a><a href="#cookies-sessions">Cookies and Web Sessions</a><a href="#browser-storage">Browser Storage: Local Storage and Session Storage</a><a href="#browser-cache">Browser Caching and Cache-Control</a><a href="#same-origin-cors">Same-Origin Policy and CORS</a><a href="#apis-json">Web APIs and JSON Responses</a><a href="#devtools-network">Using Browser Developer Tools: Network Panel</a><a href="#performance-loading">Web Performance and Loading Optimization</a><a href="#security-best-practices">Browser and Server Security Best Practices</a><a href="#quiz">Knowledge Assessment Quiz</a><a href="#glossary">Glossary of Terms</a></nav>
 </aside>
 <main>
 <header class="book-header">
@@ -104,56 +80,43 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
                 servers are systems that store and deliver website data, 
                 and HTTP/HTTPS are protocols that allow browsers and servers to 
                 communicate, with HTTPS providing a secure connection.</p>
-</header>
+</header><section class="chapter" id="references"><h2>References</h2><p>The following resources support further study of browser behavior, web servers, HTTP, HTTPS, and web security.</p><ol><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works" rel="noopener noreferrer" target="_blank">MDN Web Docs — How the Web Works</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work" rel="noopener noreferrer" target="_blank">MDN — How Browsers Work</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview" rel="noopener noreferrer" target="_blank">MDN — HTTP Overview</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods" rel="noopener noreferrer" target="_blank">MDN — HTTP Methods</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status" rel="noopener noreferrer" target="_blank">MDN — HTTP Status Codes</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers" rel="noopener noreferrer" target="_blank">MDN — HTTP Headers</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Glossary/HTTPS" rel="noopener noreferrer" target="_blank">MDN — HTTPS</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS" rel="noopener noreferrer" target="_blank">MDN — CORS</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" rel="noopener noreferrer" target="_blank">MDN — Using the Fetch API</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc9110" rel="noopener noreferrer" target="_blank">HTTP Semantics — RFC 9110</a></li></ol></section>
 <!-- ==========================================
      CODEVERSE - DESIGNING FOR WEB ACCESSIBILITY
 ========================================== -->
-
 <!-- ==========================================
      SUFFICIENT COLOR CONTRAST
 ========================================== -->
-
 <!-- ==========================================
      DO NOT USE COLOR ALONE
 ========================================== -->
-
 <!-- ==========================================
      IDENTIFIABLE INTERACTIVE ELEMENTS
 ========================================== -->
-
 <!-- ==========================================
      CONSISTENT NAVIGATION
 ========================================== -->
-
 <!-- ==========================================
      ACCESSIBLE FORM LABELS
 ========================================== -->
-
 <!-- ==========================================
      IDENTIFIABLE FEEDBACK
 ========================================== -->
-
 <!-- ==========================================
      HEADINGS AND SPACING
 ========================================== -->
-
 <!-- ==========================================
      DIFFERENT VIEWPORT SIZES
 ========================================== -->
-
 <!-- ==========================================
      IMAGE AND MEDIA ALTERNATIVES
 ========================================== -->
-
 <!-- ==========================================
      AUTOMATICALLY STARTING CONTENT
 ========================================== -->
-
 <!-- ==========================================
      CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
 ========================================== -->
-
-
 <section class="chapter" id="how-browsers-load-websites">
 <h2>How browsers load websites</h2>
 <h3>What files are returned in HTTP responses?</h3>
@@ -274,9 +237,29 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
                         You don't need to worry about getting visitors to regularly download and install software updates.</li>
 <li>The web community is vibrant and helpful. As we discuss later on in our Research and learning article, there are lots of places you can go to ask for help, 
                         and great resources available to learn from.</li>
-</ul>
- KNOWLEDGE ASSESSMENT QUIZ 
-</section><section class="chapter" id="quiz">
+</ul></section><section class="chapter" id="what-is-web-browser"><h2>5. What Is a Web Browser?</h2><h3>Overview</h3><p>A browser is a client application that requests web resources, interprets HTML, CSS, and JavaScript, and presents an interactive document.</p><h3>How It Works</h3><p>The address bar accepts a URL, while the browser engine handles navigation, rendering, and user input.</p><h3>Important Concept</h3><p>A browser is not the same as a search engine: the browser displays pages; a search engine helps find them.</p><h3>Try It Yourself</h3><p>Open the same page in two browsers and compare the layout and available developer tools.</p><h3>Key Takeaway</h3><p>A browser is a client application that requests web resources, interprets HTML, CSS, and JavaScript, and presents an interactive document.</p></section><section class="chapter" id="browser-components"><h2>6. Major Components of a Browser</h2><h3>Overview</h3><p>Modern browsers contain a user interface, networking code, a rendering engine, JavaScript execution, storage, and security boundaries.</p><h3>How It Works</h3><p>The browser coordinates these components so a page can load while protecting other tabs and the operating system.</p><h3>Important Concept</h3><p>A rendering engine draws content; a JavaScript engine executes scripts. They have different responsibilities.</p><h3>Try It Yourself</h3><p>Use the browser task manager, where available, to inspect tab processes.</p><h3>Key Takeaway</h3><p>Modern browsers contain a user interface, networking code, a rendering engine, JavaScript execution, storage, and security boundaries.</p></section><section class="chapter" id="client-server-model"><h2>7. The Client–Server Model</h2><h3>Overview</h3><p>A client requests a service or resource and a server processes the request and sends a response.</p><h3>How It Works</h3><p>The browser usually acts as the client. An application server may query a database before responding.</p><h3>Important Concept</h3><p>The same server may serve static assets and dynamic API responses.</p><h3>Try It Yourself</h3><p>Draw the flow from a browser request to a server response.</p><h3>Key Takeaway</h3><p>A client requests a service or resource and a server processes the request and sends a response.</p></section><section class="chapter" id="web-servers"><h2>8. What Is a Web Server?</h2><h3>Overview</h3><p>A web server is software, and often the computer running it, that receives HTTP requests and returns resources or application results.</p><h3>How It Works</h3><p>Servers may return HTML files, images, JSON, redirects, or error messages.</p><h3>Important Concept</h3><p>Examples of web server software include Nginx and Apache; Node.js applications can also handle HTTP requests.</p><h3>Try It Yourself</h3><p>Run a local development server and observe the address and port it listens on.</p><h3>Key Takeaway</h3><p>A web server is software, and often the computer running it, that receives HTTP requests and returns resources or application results.</p></section><section class="chapter" id="urls-and-uris"><h2>9. Understanding URLs and Their Parts</h2><h3>Overview</h3><p>A URL identifies where a resource can be accessed. It commonly includes a scheme, host, optional port, path, query, and fragment.</p><h3>How It Works</h3><p>For https://example.com:443/books?id=2#chapter, the scheme is https, the host is example.com, and the query is id=2.</p><h3>Important Concept</h3><p>A fragment is normally handled by the browser and is not sent in the HTTP request target.</p><h3>Example</h3><div class="code-example"><pre><code>https://example.com:443/books?id=2#chapter</code></pre></div><h3>Try It Yourself</h3><p>Identify the scheme, host, path, query, and fragment of a URL you use.</p><h3>Key Takeaway</h3><p>A URL identifies where a resource can be accessed. It commonly includes a scheme, host, optional port, path, query, and fragment.</p></section><section class="chapter" id="domain-names-dns"><h2>10. Domain Names and DNS Resolution</h2><h3>Overview</h3><p>The Domain Name System (DNS) helps translate hostnames into network information such as IP addresses.</p><h3>How It Works</h3><p>A browser or operating system may use cached DNS information before asking a resolver.</p><h3>Important Concept</h3><p>DNS answers do not themselves encrypt web traffic; HTTPS/TLS handles transport security.</p><h3>Try It Yourself</h3><p>Compare a hostname with the IP address returned by a DNS lookup.</p><h3>Key Takeaway</h3><p>The Domain Name System (DNS) helps translate hostnames into network information such as IP addresses.</p></section><section class="chapter" id="ip-addresses-ports"><h2>11. IP Addresses and Port Numbers</h2><h3>Overview</h3><p>IP addresses identify network endpoints, while port numbers help direct traffic to a particular service.</p><h3>How It Works</h3><p>Common default ports are 80 for HTTP and 443 for HTTPS. A local development server may use port 3000.</p><h3>Important Concept</h3><p>A port is not part of a webpage path; it identifies a network service on the host.</p><h3>Try It Yourself</h3><p>Visit a local service at http://localhost:3000 and identify its port.</p><h3>Key Takeaway</h3><p>IP addresses identify network endpoints, while port numbers help direct traffic to a particular service.</p></section><section class="chapter" id="tcp-udp-transport"><h2>12. Transport Protocols: TCP and UDP</h2><h3>Overview</h3><p>Transport protocols carry data between network endpoints. TCP provides an ordered reliable byte stream; UDP sends datagrams without the same delivery guarantees.</p><h3>How It Works</h3><p>HTTP/1.1 and HTTP/2 generally use TCP, while HTTP/3 uses QUIC over UDP.</p><h3>Important Concept</h3><p>The application protocol HTTP is different from the underlying transport protocol.</p><h3>Try It Yourself</h3><p>Sketch how HTTP, TLS, TCP, QUIC, and IP fit into the networking stack.</p><h3>Key Takeaway</h3><p>Transport protocols carry data between network endpoints. TCP provides an ordered reliable byte stream; UDP sends datagrams without the same delivery guarantees.</p></section><section class="chapter" id="http-overview"><h2>13. Introduction to HTTP</h2><h3>Overview</h3><p>HTTP is an application-layer protocol for exchanging requests and responses between clients and servers.</p><h3>How It Works</h3><p>A request identifies a method and target; a response includes a status code and may include a body.</p><h3>Important Concept</h3><p>HTTP is stateless at the protocol level: each request is understandable without assuming application session state.</p><h3>Try It Yourself</h3><p>Inspect a network request and locate its method and response status.</p><h3>Key Takeaway</h3><p>HTTP is an application-layer protocol for exchanging requests and responses between clients and servers.</p></section><section class="chapter" id="http-request-anatomy"><h2>14. Anatomy of an HTTP Request</h2><h3>Overview</h3><p>An HTTP request includes a method, target, headers, and sometimes a message body.</p><h3>How It Works</h3><p>Headers convey metadata such as Accept or Content-Type. POST requests often include a body.</p><h3>Important Concept</h3><p>A request body is not limited to POST, but its meaning depends on the method and server.</p><h3>Example</h3><div class="code-example"><pre><code>GET /books HTTP/1.1
+Host: example.com
+Accept: text/html</code></pre></div><h3>Try It Yourself</h3><p>Use Developer Tools to inspect request headers and payload.</p><h3>Key Takeaway</h3><p>An HTTP request includes a method, target, headers, and sometimes a message body.</p></section><section class="chapter" id="http-response-anatomy"><h2>15. Anatomy of an HTTP Response</h2><h3>Overview</h3><p>An HTTP response includes a status code, headers, and usually a body containing content or data.</p><h3>How It Works</h3><p>Content-Type describes the media type, such as text/html or application/json.</p><h3>Important Concept</h3><p>A successful response may have no body, such as a 204 No Content response.</p><h3>Example</h3><div class="code-example"><pre><code>HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+
+&lt;h1&gt;Welcome&lt;/h1&gt;</code></pre></div><h3>Try It Yourself</h3><p>Inspect the response headers of an HTML page and an image.</p><h3>Key Takeaway</h3><p>An HTTP response includes a status code, headers, and usually a body containing content or data.</p></section><section class="chapter" id="http-methods"><h2>16. HTTP Methods: GET, POST, PUT, PATCH, DELETE</h2><h3>Overview</h3><p>HTTP methods describe the intended action: GET retrieves, POST submits, PUT replaces, PATCH partially modifies, and DELETE requests removal.</p><h3>How It Works</h3><p>GET is defined as safe and idempotent; PUT and DELETE are idempotent by specification, while POST generally is not.</p><h3>Important Concept</h3><p>Method semantics matter for caching, retries, and API design.</p><h3>Example</h3><div class="code-example"><pre><code>GET /api/books
+POST /api/login
+PATCH /api/profile
+DELETE /api/bookmarks/12</code></pre></div><h3>Try It Yourself</h3><p>Classify common website actions by HTTP method.</p><h3>Key Takeaway</h3><p>HTTP methods describe the intended action: GET retrieves, POST submits, PUT replaces, PATCH partially modifies, and DELETE requests removal.</p></section><section class="chapter" id="http-status-codes"><h2>17. Understanding HTTP Status Codes</h2><h3>Overview</h3><p>Status codes report the outcome of a request. The first digit indicates the broad category.</p><h3>How It Works</h3><p>2xx means success, 3xx redirection, 4xx client-side error conditions, and 5xx server-side errors.</p><h3>Important Concept</h3><p>Common examples include 200 OK, 301 Moved Permanently, 404 Not Found, and 500 Internal Server Error.</p><h3>Example</h3><div class="code-example"><pre><code>200 OK       — Request succeeded
+301 Redirect — Resource moved permanently
+404 Not Found — Resource not found
+500 Error    — Server encountered an error</code></pre></div><h3>Try It Yourself</h3><p>Find a 404 response in Developer Tools and inspect the requested URL.</p><h3>Key Takeaway</h3><p>Status codes report the outcome of a request. The first digit indicates the broad category.</p></section><section class="chapter" id="http-headers"><h2>18. Important HTTP Headers</h2><h3>Overview</h3><p>Headers carry metadata that affects content negotiation, caching, authentication, and security.</p><h3>How It Works</h3><p>Content-Type identifies the response format; Accept states preferred formats; Location often accompanies redirects.</p><h3>Important Concept</h3><p>Header names are case-insensitive. Browser security policies also depend on specific headers.</p><h3>Try It Yourself</h3><p>Compare Content-Type for an HTML document, CSS file, and JSON response.</p><h3>Key Takeaway</h3><p>Headers carry metadata that affects content negotiation, caching, authentication, and security.</p></section><section class="chapter" id="mime-types"><h2>19. MIME Types and Browser Resource Handling</h2><h3>Overview</h3><p>A MIME type identifies the kind of content being transferred, such as text/css or application/javascript.</p><h3>How It Works</h3><p>Browsers use content types and security rules to decide whether resources can be interpreted or executed.</p><h3>Important Concept</h3><p>A JavaScript URL returning an HTML error page can produce a MIME-type execution error.</p><h3>Example</h3><div class="code-example"><pre><code>Content-Type: text/html
+Content-Type: text/css
+Content-Type: application/javascript
+Content-Type: application/json</code></pre></div><h3>Try It Yourself</h3><p>Inspect the Content-Type of a script request and check whether its URL returns JavaScript.</p><h3>Key Takeaway</h3><p>A MIME type identifies the kind of content being transferred, such as text/css or application/javascript.</p></section><section class="chapter" id="https-and-tls"><h2>20. How HTTPS and TLS Protect Connections</h2><h3>Overview</h3><p>HTTPS is HTTP carried over an authenticated, encrypted transport using TLS.</p><h3>How It Works</h3><p>TLS helps protect data in transit from eavesdropping and tampering and authenticates the server certificate.</p><h3>Important Concept</h3><p>HTTPS does not guarantee that the website itself is trustworthy or that its application has no vulnerabilities.</p><h3>Try It Yourself</h3><p>Compare the scheme and connection information of HTTP and HTTPS pages.</p><h3>Key Takeaway</h3><p>HTTPS is HTTP carried over an authenticated, encrypted transport using TLS.</p></section><section class="chapter" id="tls-certificates"><h2>21. Digital Certificates and Certificate Authorities</h2><h3>Overview</h3><p>A TLS certificate binds a server identity to a public key and is validated against trusted certificate authorities.</p><h3>How It Works</h3><p>Browsers check certificate validity, hostname coverage, and a chain of trust.</p><h3>Important Concept</h3><p>Expired, mismatched, or untrusted certificates can trigger browser warnings.</p><h3>Try It Yourself</h3><p>Inspect the certificate details of an HTTPS website.</p><h3>Key Takeaway</h3><p>A TLS certificate binds a server identity to a public key and is validated against trusted certificate authorities.</p></section><section class="chapter" id="http-versions"><h2>22. HTTP/1.1, HTTP/2, and HTTP/3</h2><h3>Overview</h3><p>HTTP has evolved to improve efficiency while keeping the same core request–response semantics.</p><h3>How It Works</h3><p>HTTP/2 multiplexes streams over a connection; HTTP/3 uses QUIC to transport HTTP over UDP.</p><h3>Important Concept</h3><p>Different HTTP versions can serve the same URL and application content.</p><h3>Try It Yourself</h3><p>Find the protocol column in Developer Tools and inspect which version a request uses.</p><h3>Key Takeaway</h3><p>HTTP has evolved to improve efficiency while keeping the same core request–response semantics.</p></section><section class="chapter" id="cookies-sessions"><h2>23. Cookies and Web Sessions</h2><h3>Overview</h3><p>Cookies let servers ask browsers to store small pieces of state that can be sent with later requests.</p><h3>How It Works</h3><p>Session identifiers commonly associate requests with server-side login state.</p><h3>Important Concept</h3><p>Secure, HttpOnly, and SameSite attributes can reduce certain risks, but correct server-side session validation is still required.</p><h3>Example</h3><div class="code-example"><pre><code>Set-Cookie: session=opaque-id; Secure; HttpOnly; SameSite=Lax</code></pre></div><h3>Try It Yourself</h3><p>Inspect cookie attributes in browser developer tools without sharing their values.</p><h3>Key Takeaway</h3><p>Cookies let servers ask browsers to store small pieces of state that can be sent with later requests.</p></section><section class="chapter" id="browser-storage"><h2>24. Browser Storage: Local Storage and Session Storage</h2><h3>Overview</h3><p>Web Storage provides browser-managed key–value storage for same-origin web pages.</p><h3>How It Works</h3><p>localStorage usually persists across browser restarts; sessionStorage is scoped to a tab session.</p><h3>Important Concept</h3><p>Do not store passwords or sensitive session tokens in web storage when safer approaches are available.</p><h3>Example</h3><div class="code-example"><pre><code>localStorage.setItem("readerTheme", "dark");
+const theme = localStorage.getItem("readerTheme");</code></pre></div><h3>Try It Yourself</h3><p>Store a harmless theme preference and observe whether it survives a reload.</p><h3>Key Takeaway</h3><p>Web Storage provides browser-managed key–value storage for same-origin web pages.</p></section><section class="chapter" id="browser-cache"><h2>25. Browser Caching and Cache-Control</h2><h3>Overview</h3><p>Caching can reuse previously fetched responses to reduce network requests and loading time.</p><h3>How It Works</h3><p>Cache-Control directives tell caches how to store or revalidate resources; ETag can support conditional requests.</p><h3>Important Concept</h3><p>A 304 Not Modified response indicates a cached representation can be reused after validation.</p><h3>Example</h3><div class="code-example"><pre><code>Cache-Control: public, max-age=3600
+ETag: "version-123"</code></pre></div><h3>Try It Yourself</h3><p>Reload a page and look for cache-related headers or a 304 response.</p><h3>Key Takeaway</h3><p>Caching can reuse previously fetched responses to reduce network requests and loading time.</p></section><section class="chapter" id="same-origin-cors"><h2>26. Same-Origin Policy and CORS</h2><h3>Overview</h3><p>The same-origin policy limits how documents and scripts from different origins interact.</p><h3>How It Works</h3><p>An origin is defined by scheme, hostname, and port. CORS lets servers authorize certain cross-origin reads.</p><h3>Important Concept</h3><p>CORS is a browser access-control mechanism, not a replacement for authentication or authorization.</p><h3>Try It Yourself</h3><p>Compare two URLs and determine whether they have the same origin.</p><h3>Key Takeaway</h3><p>The same-origin policy limits how documents and scripts from different origins interact.</p></section><section class="chapter" id="apis-json"><h2>27. Web APIs and JSON Responses</h2><h3>Overview</h3><p>A web API exposes endpoints that clients can call to exchange data or request operations.</p><h3>How It Works</h3><p>JSON is a common text format for structured API responses, and fetch() is a browser API for making requests.</p><h3>Important Concept</h3><p>Always check response.ok before assuming an API call succeeded.</p><h3>Example</h3><div class="code-example"><pre><code>fetch("/api/books")
+  .then(response =&gt; {
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  })
+  .then(data =&gt; console.log(data))
+  .catch(error =&gt; console.error(error));</code></pre></div><h3>Try It Yourself</h3><p>Inspect a JSON response in the Network panel.</p><h3>Key Takeaway</h3><p>A web API exposes endpoints that clients can call to exchange data or request operations.</p></section><section class="chapter" id="devtools-network"><h2>28. Using Browser Developer Tools: Network Panel</h2><h3>Overview</h3><p>The Network panel reveals requests, response statuses, headers, timings, transferred sizes, and resource types.</p><h3>How It Works</h3><p>It is useful for diagnosing missing files, slow requests, redirects, and unexpected server responses.</p><h3>Important Concept</h3><p>A 404 script request often means the path is wrong or the file was not deployed.</p><h3>Try It Yourself</h3><p>Open Developer Tools, reload the page, and filter requests by JS or CSS.</p><h3>Key Takeaway</h3><p>The Network panel reveals requests, response statuses, headers, timings, transferred sizes, and resource types.</p></section><section class="chapter" id="performance-loading"><h2>29. Web Performance and Loading Optimization</h2><h3>Overview</h3><p>Website performance depends on network latency, resource size, server responsiveness, and rendering work.</p><h3>How It Works</h3><p>Compression, caching, responsive images, deferred scripts, and smaller assets can improve loading.</p><h3>Important Concept</h3><p>Measure performance before and after optimization rather than relying only on intuition.</p><h3>Try It Yourself</h3><p>Compare transferred sizes and loading times for a page before and after an image optimization.</p><h3>Key Takeaway</h3><p>Website performance depends on network latency, resource size, server responsiveness, and rendering work.</p></section><section class="chapter" id="security-best-practices"><h2>30. Browser and Server Security Best Practices</h2><h3>Overview</h3><p>Secure web applications validate input on the server, use HTTPS, manage sessions carefully, and keep dependencies updated.</p><h3>How It Works</h3><p>Security headers such as Content-Security-Policy can reduce certain injection risks; proper authorization checks remain essential.</p><h3>Important Concept</h3><p>Client-side validation improves usability but cannot replace server-side validation.</p><h3>Try It Yourself</h3><p>Review an example application for HTTPS, secure cookies, input validation, and safe error messages.</p><h3>Key Takeaway</h3><p>Secure web applications validate input on the server, use HTTPS, manage sessions carefully, and keep dependencies updated.</p></section><section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
 <p>
                     Test your understanding of Web Browsers,
@@ -293,7 +276,73 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var
                     </button>
 </div>
 <div aria-live="polite" hidden="" id="quizResult"></div>
-</section><footer class="page-footer">End of Web Browsers, Servers, and HTTP/HTTPS · CodeVerse Digital Library</footer></main>
+</section><footer class="page-footer">End of Web Browsers, Servers, and HTTP/HTTPS · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+<section aria-labelledby="cvGlossaryHeading" class="cv-glossary chapter" id="glossary">
+<div class="cv-glossary-header">
+<h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+<p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+</div>
+<label class="cv-glossary-search-label" for="cvGlossarySearch">
+        Search glossary terms
+    </label>
+<input autocomplete="off" class="cv-glossary-search" id="cvGlossarySearch" placeholder="Search a term or definition..." type="search"/>
+<div aria-live="polite" class="cv-glossary-count">
+        10 terms
+    </div>
+<div class="cv-glossary-list">
+<article class="cv-glossary-item">
+<h3>404</h3>
+<p>An HTTP status indicating that a resource was not found.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>500</h3>
+<p>An HTTP status indicating an internal server error.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>API</h3>
+<p>An interface through which software systems communicate.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>HTTP</h3>
+<p>Hypertext Transfer Protocol.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>HTTPS</h3>
+<p>HTTP secured using TLS.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Request</h3>
+<p>A message asking a server to perform an operation.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Response</h3>
+<p>A message returned in response to a request.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Status Code</h3>
+<p>A numeric indicator of an HTTP response result.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>TLS</h3>
+<p>A protocol providing secure communication.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Web Server</h3>
+<p>A system that handles requests for web resources.</p>
+</article>
+</div>
+<p class="cv-glossary-empty" hidden="">
+        No matching glossary terms found.
+    </p>
+</section>
+<!-- CODEVERSE GLOSSARY END -->
+</main>
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -662,4 +711,6 @@ document.addEventListener('DOMContentLoaded', () => {
  const sections=entries.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
  if('IntersectionObserver' in window){const obs=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){entries.forEach(a=>a.classList.toggle('active',a.hash==='#'+item.target.id));}})},{rootMargin:'-95px 0px -65% 0px'});sections.forEach(section=>obs.observe(section));}
 });
-</script></body></html>
+</script> <script defer="" src="/js/navbar-loader.js"></script>
+<script defer="" src="/js/glossary.js"></script>
+</body></html>

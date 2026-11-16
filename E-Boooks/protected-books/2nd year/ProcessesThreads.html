@@ -685,43 +685,41 @@
         }
 
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- ========================================
      CODEVERSE NAVIGATION
 ======================================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>
-            Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-controls="sidebar" aria-expanded="false" id="tocToggle" type="button">
-            ☰ Contents
-        </button>
-<button aria-label="Toggle dark mode" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">
-                Log In
-            </a>
-<a class="signup-btn" href="/register.html">
-                Sign Up
-            </a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle" type="button">
-            ☰
-        </button>
-</div>
-</header>
+
 <!-- ========================================
      BACK TO BOOKS
 ======================================== -->
@@ -4006,5 +4004,127 @@ retryQuiz.addEventListener("click", function () {
 renderQuiz();
 
 </script>
-</codeblock></main></div></body>
+</codeblock>
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Concurrency</h3>
+                <p>Overlapping progress of multiple tasks.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Context Switch</h3>
+                <p>Switching between execution contexts.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Critical Section</h3>
+                <p>Code accessing shared resources that require synchronization.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Mutex</h3>
+                <p>A synchronization mechanism providing mutual exclusion.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Parallelism</h3>
+                <p>Simultaneous execution of operations.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Race Condition</h3>
+                <p>Behavior dependent on the timing of concurrent operations.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Semaphore</h3>
+                <p>A synchronization primitive controlling access to resources.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Synchronization</h3>
+                <p>Coordination of concurrent operations.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Thread</h3>
+                <p>An execution unit within a process.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Thread Pool</h3>
+                <p>A collection of reusable worker threads.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
+</main></div>    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
+</body>
 </html>

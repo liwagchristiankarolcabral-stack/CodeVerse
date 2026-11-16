@@ -1036,53 +1036,41 @@
         }
 
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- ==========================================
          CODEVERSE NAVIGATION BAR
     ========================================== -->
-<header class="navbar">
-<!-- LOGO -->
-<a class="brand" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span class="logo">
-                Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<!-- NAVIGATION LINKS -->
-<nav aria-label="Main navigation" class="nav-links" id="navLinks">
-<a href="/index.html">
-                Home
-            </a>
-<a href="/library.html">
-                Explore Books
-            </a>
-<a href="/index.html#about">
-                About
-            </a>
-</nav>
-<!-- NAVIGATION ACTIONS -->
-<div class="nav-actions">
-<!-- LOG IN -->
-<a class="btn-login" href="/LogIn.html">
-                Log In
-            </a>
-<!-- SIGN UP -->
-<a class="btn-signup" href="/register.html">
-                Sign Up
-            </a>
-<!-- DARK MODE -->
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" title="Toggle dark mode" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- MOBILE MENU -->
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle" type="button">
+<div id="navbarContainer"></div>
 
-                ☰
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
 
-            </button>
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</header>
+
 <!-- ==========================================
          READING CONTROLS
     ========================================== -->
@@ -2504,6 +2492,126 @@
                     File Systems and Storage Management
                 </p>
 </footer>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Directory</h3>
+                <p>A structure used to organize files.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>File</h3>
+                <p>A named collection of stored data.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>File System</h3>
+                <p>A system for organizing and accessing stored data.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Fragmentation</h3>
+                <p>Storage of related data in separated locations.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Journaling</h3>
+                <p>Recording file system changes to aid recovery.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Metadata</h3>
+                <p>Information describing other data.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Mounting</h3>
+                <p>Making a file system accessible within a directory hierarchy.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Partition</h3>
+                <p>A logical division of storage.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Path</h3>
+                <p>A location within a file system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Permission</h3>
+                <p>An access rule for a resource.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <!-- ==========================================
@@ -4035,5 +4143,7 @@
     });
 
     </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

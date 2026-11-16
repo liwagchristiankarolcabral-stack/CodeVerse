@@ -1,0 +1,790 @@
+
+/* ==========================================
+   CODEVERSE - LEARNING DASHBOARD
+   Reading History, Quiz Results, Downloads
+========================================== */
+
+/* ==========================================
+   MAIN DASHBOARD
+========================================== */
+
+.cv-learning-dashboard {
+    width: min(1200px, calc(100% - 40px));
+    margin: 45px auto 65px;
+    padding: 0;
+    font-family: "DM Sans", Arial, sans-serif;
+    color: var(--text, #202b40);
+}
+
+/* ==========================================
+   DASHBOARD HEADER
+========================================== */
+
+.cv-dashboard-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.cv-dashboard-heading h2 {
+    margin: 7px 0 9px;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    color: var(--text, #202b40);
+    letter-spacing: -0.6px;
+}
+
+.cv-dashboard-heading p {
+    margin: 0;
+    color: var(--muted, #758096);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.cv-learning-dashboard .section-label {
+    display: inline-block;
+    color: #3157a4;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* REFRESH BUTTON */
+
+.cv-dashboard-refresh {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 11px 19px;
+
+    background: #ffffff;
+    color: #3157a4;
+
+    border: 1px solid #dce5f4;
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cv-dashboard-refresh:hover {
+    background: #edf3ff;
+    border-color: #3157a4;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   STATISTICS GRID
+========================================== */
+
+.cv-learning-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+/* STATISTIC CARDS */
+
+.cv-learning-stat {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 135px;
+    padding: 25px 23px;
+
+    background: var(--surface, #ffffff);
+    border: 1px solid var(--border, #e6eaf1);
+    border-radius: 18px;
+
+    box-shadow: 0 6px 25px rgba(35, 65, 120, 0.055);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.cv-learning-stat:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(35, 65, 120, 0.11);
+}
+
+/* TOP ACCENT */
+
+.cv-learning-stat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3157a4, #81a7f0);
+}
+
+.cv-learning-stat:nth-child(2)::before {
+    background: linear-gradient(90deg, #149c72, #60d5ad);
+}
+
+.cv-learning-stat:nth-child(3)::before {
+    background: linear-gradient(90deg, #8052c9, #bda0ed);
+}
+
+.cv-learning-stat:nth-child(4)::before {
+    background: linear-gradient(90deg, #e69b32, #f7c47c);
+}
+
+/* STATISTIC VALUES */
+
+.cv-learning-stat strong {
+    display: block;
+    font-size: 35px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: #3157a4;
+}
+
+.cv-learning-stat:nth-child(2) strong {
+    color: #149c72;
+}
+
+.cv-learning-stat:nth-child(3) strong {
+    color: #8052c9;
+}
+
+.cv-learning-stat:nth-child(4) strong {
+    color: #d38b25;
+}
+
+/* STATISTIC LABELS */
+
+.cv-learning-stat span {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted, #758096);
+}
+
+/* ==========================================
+   DOWNLOAD ANY BOOK SECTION
+========================================== */
+
+.cv-download-all {
+    background: var(--surface, #ffffff);
+
+    border: 1px solid var(--border, #e6eaf1);
+    border-radius: 20px;
+
+    padding: 28px 30px;
+    margin-bottom: 28px;
+
+    box-shadow: 0 6px 25px rgba(35, 65, 120, 0.055);
+}
+
+.cv-download-all h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0 0 10px;
+
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text, #202b40);
+}
+
+.cv-download-all p {
+    margin: 0 0 22px;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    color: var(--muted, #758096);
+}
+
+/* DOWNLOAD SELECTOR */
+
+.cv-download-picker {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.cv-download-picker label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text, #202b40);
+}
+
+.cv-download-picker select {
+    flex: 1;
+    min-width: 220px;
+    max-width: 480px;
+
+    padding: 12px 15px;
+
+    background: var(--surface, #ffffff);
+    color: var(--text, #202b40);
+
+    border: 1px solid var(--border, #dce5f4);
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+    cursor: pointer;
+
+    transition: border-color 0.2s ease;
+}
+
+.cv-download-picker select:focus {
+    border-color: #3157a4;
+    box-shadow: 0 0 0 3px rgba(49, 87, 164, 0.12);
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.cv-action-primary,
+.cv-action-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 11px 17px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+/* PRIMARY BUTTON */
+
+.cv-action-primary {
+    background: #3157a4;
+    color: #ffffff !important;
+    border: 1px solid #3157a4;
+}
+
+.cv-action-primary:hover {
+    background: #24427f;
+    border-color: #24427f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(49, 87, 164, 0.2);
+}
+
+/* SECONDARY BUTTON */
+
+.cv-action-secondary {
+    background: transparent;
+    color: #3157a4;
+    border: 1px solid #cddaf0;
+}
+
+.cv-action-secondary:hover {
+    background: #edf3ff;
+    border-color: #3157a4;
+}
+
+.cv-action-primary:disabled,
+.cv-action-secondary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==========================================
+   READING HISTORY AND QUIZ RESULTS
+========================================== */
+
+.cv-learning-panels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    align-items: start;
+}
+
+/* PANELS */
+
+.cv-learning-panel {
+    min-width: 0;
+    min-height: 245px;
+
+    padding: 26px;
+
+    background: var(--surface, #ffffff);
+
+    border: 1px solid var(--border, #e6eaf1);
+    border-radius: 20px;
+
+    box-shadow: 0 6px 25px rgba(35, 65, 120, 0.055);
+}
+
+.cv-learning-panel h3 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin: 0 0 21px;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid var(--border, #e6eaf1);
+
+    font-size: 19px;
+    font-weight: 800;
+
+    color: var(--text, #202b40);
+}
+
+/* EMPTY / STATUS MESSAGE */
+
+.cv-learning-message {
+    margin: 0;
+    padding: 17px;
+
+    background: var(--background, #f7f9fd);
+    border: 1px dashed var(--border, #dce5f4);
+    border-radius: 12px;
+
+    color: var(--muted, #758096);
+
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.cv-learning-message:empty {
+    display: none;
+}
+
+/* HISTORY LIST */
+
+.cv-learning-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* HISTORY ITEMS */
+
+.cv-learning-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    padding: 17px;
+
+    background: var(--background, #f7f9fd);
+    border: 1px solid var(--border, #e6eaf1);
+    border-radius: 13px;
+
+    transition: all 0.2s ease;
+}
+
+.cv-learning-item:hover {
+    border-color: #a9c1ed;
+    transform: translateY(-2px);
+}
+
+.cv-learning-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.cv-learning-item-info strong {
+    color: var(--text, #202b40);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.cv-learning-item-info small {
+    color: var(--muted, #758096);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.cv-learning-item-info span {
+    font-size: 12px;
+}
+
+/* READING STATUS */
+
+.cv-reading-complete {
+    color: #13956b;
+    font-weight: 800;
+}
+
+.cv-reading-progress {
+    color: #d18a25;
+    font-weight: 800;
+}
+
+/* ITEM ACTIONS */
+
+.cv-learning-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.cv-learning-actions .cv-action-primary,
+.cv-learning-actions .cv-action-secondary {
+    padding: 8px 11px;
+    font-size: 11px;
+}
+
+/* QUIZ SCORE */
+
+.cv-quiz-score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 70px;
+    padding: 10px 14px;
+
+    background: #e9f1ff;
+    color: #3157a4;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/* ==========================================
+   DOWNLOAD PASSKEY MODAL
+========================================== */
+
+.cv-download-overlay[hidden] {
+    display: none !important;
+}
+
+.cv-download-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(10, 22, 44, 0.72);
+    backdrop-filter: blur(5px);
+}
+
+/* MODAL BOX */
+
+.cv-download-dialog {
+    position: relative;
+
+    width: 100%;
+    max-width: 440px;
+
+    padding: 35px 30px;
+
+    background: var(--surface, #ffffff);
+    color: var(--text, #202b40);
+
+    border: 1px solid var(--border, #e6eaf1);
+    border-radius: 22px;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+}
+
+.cv-download-dialog h2 {
+    margin: 0 0 12px;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    color: var(--text, #202b40);
+}
+
+.cv-download-dialog p {
+    color: var(--muted, #758096);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* CLOSE BUTTON */
+
+.cv-download-close {
+    position: absolute;
+    top: 13px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 9px;
+
+    background: var(--background, #f7f9fd);
+    color: var(--text, #202b40);
+
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.cv-download-close:hover {
+    background: #e6ecf7;
+}
+
+/* FORM */
+
+.cv-download-dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 20px;
+}
+
+.cv-download-dialog label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.cv-download-dialog input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: var(--background, #f7f9fd);
+    color: var(--text, #202b40);
+
+    border: 1px solid var(--border, #dce5f4);
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 4px;
+
+    outline: none;
+}
+
+.cv-download-dialog input:focus {
+    border-color: #3157a4;
+    box-shadow: 0 0 0 3px rgba(49, 87, 164, 0.12);
+}
+
+/* CONFIRM DOWNLOAD */
+
+#confirmDownload {
+    width: 100%;
+    padding: 13px;
+
+    background: #3157a4;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#confirmDownload:hover {
+    background: #24427f;
+}
+
+#confirmDownload:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ERROR MESSAGE */
+
+#downloadMessage {
+    color: #d43c4d;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark-mode .cv-learning-dashboard {
+    color: var(--text, #eaf1ff);
+}
+
+body.dark-mode .cv-learning-stat,
+body.dark-mode .cv-download-all,
+body.dark-mode .cv-learning-panel,
+body.dark-mode .cv-download-dialog {
+    background: var(--surface, #17243a);
+    border-color: var(--border, #30415f);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.13);
+}
+
+body.dark-mode .cv-learning-item,
+body.dark-mode .cv-learning-message {
+    background: var(--background, #0e1728);
+    border-color: var(--border, #30415f);
+}
+
+body.dark-mode .cv-learning-stat strong {
+    filter: brightness(1.3);
+}
+
+body.dark-mode .cv-quiz-score {
+    background: #263f69;
+    color: #b5ccff;
+}
+
+body.dark-mode .cv-dashboard-refresh,
+body.dark-mode .cv-action-secondary {
+    background: #202f4a;
+    color: #b5ccff;
+    border-color: #354969;
+}
+
+body.dark-mode .cv-dashboard-refresh:hover,
+body.dark-mode .cv-action-secondary:hover {
+    background: #293f62;
+}
+
+body.dark-mode .cv-download-picker select,
+body.dark-mode .cv-download-dialog input {
+    background: #202f4a;
+    color: #eaf1ff;
+    border-color: #354969;
+}
+
+body.dark-mode .cv-download-close {
+    background: #202f4a;
+    color: #eaf1ff;
+}
+
+body.dark-mode .cv-learning-dashboard .section-label {
+    color: #a9c5ff;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 1050px) {
+
+    .cv-learning-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .cv-learning-panels {
+        grid-template-columns: 1fr;
+    }
+
+    .cv-learning-dashboard {
+        margin-top: 30px;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .cv-learning-dashboard {
+        width: calc(100% - 28px);
+        margin: 25px auto 45px;
+    }
+
+    .cv-learning-stats {
+        gap: 11px;
+    }
+
+    .cv-learning-stat {
+        min-height: 115px;
+        padding: 18px 15px;
+    }
+
+    .cv-learning-stat strong {
+        font-size: 28px;
+    }
+
+    .cv-learning-stat span {
+        font-size: 11px;
+    }
+
+    .cv-download-all,
+    .cv-learning-panel {
+        padding: 20px 17px;
+    }
+
+    .cv-download-picker {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .cv-download-picker select {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        flex: auto;
+    }
+
+    .cv-download-picker .cv-action-primary {
+        width: 100%;
+    }
+
+    .cv-learning-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cv-learning-actions {
+        width: 100%;
+    }
+
+    .cv-download-dialog {
+        padding: 30px 22px;
+    }
+
+}

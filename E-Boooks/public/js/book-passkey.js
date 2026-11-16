@@ -795,14 +795,26 @@ if (response.status === 401) {
                LOGIN REQUIRED
             ================================== */
 
-            if (response.status === 401) {
+            
+if (response.status === 401) {
 
-                window.location.assign(
-                    "/LogIn.html"
-                );
+    const authResponse = await fetch("/api/auth/status", {
+        credentials: "same-origin",
+        cache: "no-store"
+    });
 
-                return;
-            }
+    const authData = await authResponse.json();
+
+    if (authResponse.ok && authData.loggedIn === false) {
+        window.location.assign("/LogIn.html");
+        return;
+    }
+
+    throw new Error(
+        result.message || "Unable to unlock this collection."
+    );
+}
+
 
             /* ==================================
                INVALID PASSKEY

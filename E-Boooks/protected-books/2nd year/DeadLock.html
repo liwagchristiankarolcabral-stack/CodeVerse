@@ -711,44 +711,41 @@
         }
 
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =====================================
          CODEVERSE NAVIGATION BAR
     ====================================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>
-                Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a class="active" href="/library.html">
-                Explore Books
-            </a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-<a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-</div>
-</div>
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button">
+<div id="navbarContainer"></div>
 
-            ☰
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
 
-        </button>
-</header>
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
 <!-- =====================================
          BACK TO BOOKS
     ====================================== -->
@@ -3499,6 +3496,126 @@ P3 → P1</code></pre>
 </section>
 </div>
 <!-- END .book-content -->
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Circular Wait</h3>
+                <p>A cycle of processes waiting for resources held by one another.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Deadlock</h3>
+                <p>A state in which processes wait indefinitely for one another.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Deadlock Avoidance</h3>
+                <p>Allocating resources to avoid unsafe states.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Deadlock Prevention</h3>
+                <p>Preventing at least one necessary deadlock condition.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Hold and Wait</h3>
+                <p>Holding resources while waiting for additional resources.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Mutual Exclusion</h3>
+                <p>A condition in which a resource can be held by only one process at a time.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>No Preemption</h3>
+                <p>A condition where resources cannot be forcibly reclaimed.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Resource Allocation Graph</h3>
+                <p>A graph describing process-resource relationships.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Safe State</h3>
+                <p>A resource-allocation state with a possible completion sequence.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Starvation</h3>
+                <p>Indefinite postponement of a process or task.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <!-- END .layout -->
@@ -4715,5 +4832,7 @@ P3 → P1</code></pre>
         renderQuiz();
 
     </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

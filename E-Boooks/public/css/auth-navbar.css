@@ -1,0 +1,299 @@
+
+/* ==========================================
+   CODEVERSE - ACCOUNT NAVIGATION
+   Username, Avatar, Login and Logout
+========================================== */
+
+/* ACCOUNT CONTAINER */
+
+.cv-auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+/* GUEST AND USER ACTIONS */
+
+.cv-guest-actions,
+.cv-user-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cv-guest-actions[hidden],
+.cv-user-actions[hidden] {
+    display: none !important;
+}
+
+/* ==========================================
+   LOGIN AND SIGN UP BUTTONS
+========================================== */
+
+.cv-guest-actions .login-btn,
+.cv-guest-actions .signup-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.cv-guest-actions .login-btn {
+    background: transparent;
+    color: #3157a4;
+    border: 1px solid #3157a4;
+}
+
+.cv-guest-actions .login-btn:hover {
+    background: #edf2ff;
+}
+
+.cv-guest-actions .signup-btn {
+    background: #3157a4;
+    color: #ffffff;
+    border: 1px solid #3157a4;
+}
+
+.cv-guest-actions .signup-btn:hover {
+    background: #24427f;
+}
+
+/* ==========================================
+   LOGGED-IN USER PROFILE
+========================================== */
+
+.cv-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 5px 13px 5px 5px;
+
+    background: #f1f5fc;
+    border: 1px solid #dce5f4;
+    border-radius: 50px;
+
+    transition: all 0.2s ease;
+}
+
+.cv-user-profile:hover {
+    background: #e8effc;
+    border-color: #b8caed;
+}
+
+/* ==========================================
+   USER AVATAR
+========================================== */
+
+.cv-user-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    background: linear-gradient(
+        135deg,
+        #3157a4,
+        #648de0
+    );
+
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+
+    box-shadow: 0 3px 10px rgba(49, 87, 164, 0.2);
+}
+
+/* ==========================================
+   USER FULL NAME
+========================================== */
+
+.cv-user-name {
+    display: block;
+
+    max-width: 190px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #243653;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ==========================================
+   LOG OUT BUTTON
+========================================== */
+
+.cv-logout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 19px;
+
+    background: #dc3545;
+    color: #ffffff;
+
+    border: 1px solid #dc3545;
+    border-radius: 10px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.cv-logout-btn:hover {
+    background: #b92b3a;
+    border-color: #b92b3a;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+    transform: translateY(-1px);
+}
+
+.cv-logout-btn:active {
+    transform: translateY(0);
+}
+
+.cv-logout-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark-mode .cv-user-profile {
+    background: #202f4a;
+    border-color: #354969;
+}
+
+body.dark-mode .cv-user-profile:hover {
+    background: #293b5a;
+}
+
+body.dark-mode .cv-user-name {
+    color: #eaf1ff;
+}
+
+body.dark-mode .cv-user-avatar {
+    background: linear-gradient(
+        135deg,
+        #547bc9,
+        #3157a4
+    );
+}
+
+body.dark-mode .cv-guest-actions .login-btn {
+    color: #a9c5ff;
+    border-color: #547bc9;
+}
+
+body.dark-mode .cv-guest-actions .login-btn:hover {
+    background: #243653;
+}
+
+body.dark-mode .cv-guest-actions .signup-btn {
+    background: #426bc0;
+    border-color: #426bc0;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .cv-user-name {
+        max-width: 130px;
+    }
+
+    .cv-user-actions {
+        gap: 8px;
+    }
+
+    .cv-logout-btn {
+        padding: 9px 13px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .cv-auth-container {
+        max-width: 100%;
+    }
+
+    .cv-user-actions,
+    .cv-guest-actions {
+        gap: 7px;
+    }
+
+    .cv-user-profile {
+        padding: 4px 8px 4px 4px;
+    }
+
+    .cv-user-avatar {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        font-size: 13px;
+    }
+
+    .cv-user-name {
+        max-width: 95px;
+        font-size: 12px;
+    }
+
+    .cv-logout-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .cv-guest-actions .login-btn,
+    .cv-guest-actions .signup-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .cv-user-name {
+        max-width: 75px;
+    }
+
+    .cv-user-profile {
+        gap: 5px;
+    }
+
+    .cv-logout-btn {
+        padding: 7px 9px;
+    }
+
+}

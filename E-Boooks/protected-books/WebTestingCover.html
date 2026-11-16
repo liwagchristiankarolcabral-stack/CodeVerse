@@ -1,39 +1,21 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="Learn website testing, hosting, deployment, and maintenance with CodeVerse."
-    >
-
-    <title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Learn website testing, hosting, deployment, and maintenance with CodeVerse." name="description"/>
+<title>
         Website Testing, Hosting, Deployment, and Maintenance | CodeVerse
     </title>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- FAVICON -->
-    <link
-        rel="icon"
-        type="image/png"
-        href="/images/CodeVerseLogo.png"
-    >
-
-    <style>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
 
         /* =====================================
            THEME VARIABLES
@@ -627,430 +609,100 @@
         }
 
     </style>
-
+<link href="/css/navbar.css" rel="stylesheet"/>
 </head>
-
 <body id="top">
-
-    <!-- =====================================
+<!-- =====================================
          NAVIGATION BAR
     ===================================== -->
-
-    <header class="navbar">
-
-        <a class="logo" href="/index.html">
-
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
-
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-
-        </a>
-
-        <nav class="nav-links" id="navLinks">
-
-            <a href="/index.html">Home</a>
-
-            <a class="active" href="/library.html">
-                Explore Books
-            </a>
-
-            <a href="/index.html#about">About</a>
-
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-
-                <a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-
-                <a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="navLinks"
-        >
-            ☰
-        </button>
-
-    </header>
-
-    <!-- BACK TO BOOKS -->
-
-    <header class="topbar">
-
-        <a class="back-link" href="/library.html">
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
+</div>
+<!-- BACK TO BOOKS -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
             ← Back to Books
         </a>
-
-    </header>
-
-    <!-- =====================================
+</header>
+<!-- =====================================
          BOOK COVER AND DETAILS
     ===================================== -->
-
-    <main class="book-container">
-
-        <!-- BOOK COVER IMAGE -->
-
-        <div class="book-cover-container">
-
-            <img
-                src="\images\book-covers\3rd year\WebTest.jpg"
-                alt="Website Testing, Hosting, Deployment, and Maintenance Book Cover"
-                class="book-cover-image"
-            >
-
-        </div>
-
-        <!-- BOOK DETAILS -->
-
-        <section class="book-details">
-
-            <span class="featured-label">
+<main class="book-container">
+<!-- BOOK COVER IMAGE -->
+<div class="book-cover-container">
+<img alt="Website Testing, Hosting, Deployment, and Maintenance book cover" class="book-cover-image" loading="lazy" src="/images/book-covers/book-10.jpg"/>
+</div>
+<!-- BOOK DETAILS -->
+<section class="book-details">
+<span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-
-            <h1 class="book-title">
+<h1 class="book-title">
                 Website Testing, Hosting, Deployment, and Maintenance
             </h1>
-
-            <!-- BOOK STATISTICS -->
-
-            <div class="book-stats">
-
-                <div class="stat">
-                    <strong>20</strong>
-                    <span>Lessons</span>
-                </div>
-
-                <div class="stat">
-                    <strong>2</strong>
-                    <span>Sections</span>
-                </div>
-
-                <div class="stat">
-                    <strong>1</strong>
-                    <span>Knowledge Assessment</span>
-                </div>
-
-            </div>
-
-            <!-- BOOK DESCRIPTION -->
-
-            <p class="book-description">
-
-                Learn the essentials of website testing,
-                hosting, deployment, and maintenance to
-                ensure reliable, secure, and well-performing
-                websites.
-
-                Explore website publishing options,
-                hosting and domain names, FTP and SFTP,
-                online publishing tools, browser developer
-                tools, JavaScript debugging, network
-                inspection, and HTTP status codes.
-
-            </p>
-
-            <!-- ACTION BUTTONS -->
-
-            <div class="book-actions">
-
-                <a
-                    class="book-btn primary"
-                    href="/read/10"
-                >
+<!-- BOOK STATISTICS -->
+<div class="book-stats">
+<div class="stat">
+<strong>30</strong>
+<span>Lessons</span>
+</div>
+<div class="stat">
+<strong>30</strong>
+<span>Lessons</span>
+</div>
+<div class="stat">
+<strong>1</strong>
+<span>Knowledge Assessment</span>
+</div>
+</div>
+<!-- BOOK DESCRIPTION -->
+<p class="book-description">Explore website testing, hosting, deployment, and maintenance through 30 structured lessons. Topics include Publishing Your Website, Rsync, The Inspector: DOM Explorer and CSS Editor, Planning a Website Testing Strategy and Monitoring, Logs, and Backups. Open the contents to jump directly to any lesson.</p>
+<!-- ACTION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/10">
                     Start Reading
                 </a>
-
-                <button
-                    class="book-btn"
-                    id="contentsBtn"
-                    type="button"
-                    aria-haspopup="dialog"
-                >
+<button aria-haspopup="dialog" class="book-btn" id="contentsBtn" type="button">
                     ☰ Contents
                 </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- =====================================
+</div>
+</section>
+</main>
+<!-- =====================================
          TABLE OF CONTENTS POPUP
     ===================================== -->
-
-    <div
-        class="contents-overlay"
-        id="contentsPopup"
-        aria-hidden="true"
-    >
-
-        <div
-            class="contents-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contentsTitle"
-        >
-
-            <!-- CONTENTS HEADER -->
-
-            <div class="contents-header">
-
-                <div>
-
-                    <span class="contents-subtitle">
+<div aria-hidden="true" class="contents-overlay" id="contentsPopup">
+<div aria-labelledby="contentsTitle" aria-modal="true" class="contents-modal" role="dialog">
+<!-- CONTENTS HEADER -->
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">
                         WEBSITE TESTING, HOSTING, DEPLOYMENT, AND MAINTENANCE
                     </span>
-
-                    <h2 id="contentsTitle">
+<h2 id="contentsTitle">
                         Table of Contents
                     </h2>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="close-contents"
-                    id="closeContents"
-                    aria-label="Close contents"
-                >
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <!-- SCROLLABLE TABLE OF CONTENTS -->
-
-            <div class="contents-list">
-
-                <!-- SECTION 1 -->
-
-                <div class="contents-group">
-                    Section 1 — Publishing Your Website
-                </div>
-
-                <a href="/read/10#publishing-your-website">
-                    <span class="contents-number">01</span>
-                    <span class="contents-name">
-                        Publishing Your Website
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#publishing-options">
-                    <span class="contents-number">02</span>
-                    <span class="contents-name">
-                        What Are the Options?
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#hosting-domain-name">
-                    <span class="contents-number">03</span>
-                    <span class="contents-name">
-                        Getting Hosting and a Domain Name
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#publishing-to-server">
-                    <span class="contents-number">04</span>
-                    <span class="contents-name">
-                        Publishing to Your Server
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#ftp-sftp">
-                    <span class="contents-number">05</span>
-                    <span class="contents-name">
-                        FTP and SFTP
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#rsync">
-                    <span class="contents-number">06</span>
-                    <span class="contents-name">
-                        Rsync
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#web-based-ide">
-                    <span class="contents-number">07</span>
-                    <span class="contents-name">
-                        Using a Web-Based IDE Such as CodePen
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#online-publishing-tools">
-                    <span class="contents-number">08</span>
-                    <span class="contents-name">
-                        Using an Online Publishing Tool
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#recommended-publishing-approach">
-                    <span class="contents-number">09</span>
-                    <span class="contents-name">
-                        What Approach Would We Recommend?
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <!-- SECTION 2 -->
-
-                <div class="contents-group">
-                    Section 2 — Browser Developer Tools
-                </div>
-
-                <a href="/read/10#browser-developer-tools">
-                    <span class="contents-number">10</span>
-                    <span class="contents-name">
-                        What Are Browser Developer Tools?
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#what-are-devtools">
-                    <span class="contents-number">11</span>
-                    <span class="contents-name">
-                        What Are DevTools?
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#opening-developer-tools">
-                    <span class="contents-number">12</span>
-                    <span class="contents-name">
-                        How to Open the DevTools in Your Browser
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#dom-inspector-css-editor">
-                    <span class="contents-number">13</span>
-                    <span class="contents-name">
-                        The Inspector: DOM Explorer and CSS Editor
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#exploring-dom-inspector">
-                    <span class="contents-number">14</span>
-                    <span class="contents-name">
-                        Exploring the DOM Inspector
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#exploring-css-editor">
-                    <span class="contents-number">15</span>
-                    <span class="contents-name">
-                        Exploring the CSS Editor
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#javascript-debugger">
-                    <span class="contents-number">16</span>
-                    <span class="contents-name">
-                        The JavaScript Debugger
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#exploring-debugger">
-                    <span class="contents-number">17</span>
-                    <span class="contents-name">
-                        Exploring the Debugger
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#javascript-console">
-                    <span class="contents-number">18</span>
-                    <span class="contents-name">
-                        The JavaScript Console
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#network-inspector">
-                    <span class="contents-number">19</span>
-                    <span class="contents-name">
-                        The Network Inspector
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/10#http-statuses">
-                    <span class="contents-number">20</span>
-                    <span class="contents-name">
-                        HTTP Statuses
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <!-- ASSESSMENT -->
-
-                <div class="contents-group">
-                    Knowledge Assessment
-                </div>
-
-                <a href="/read/10#quiz">
-                    <span class="contents-number">✓</span>
-                    <span class="contents-name">
-                        Knowledge Assessment Quiz
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- =====================================
+</div>
+<!-- SCROLLABLE TABLE OF CONTENTS -->
+<div class="contents-list"><a href="/read/10#references"><span class="contents-number">↗</span><span class="contents-name">References and Further Reading</span><span class="contents-arrow">›</span></a><a href="/read/10#publishing-your-website"><span class="contents-number">01</span><span class="contents-name">Publishing Your Website</span><span class="contents-arrow">›</span></a><a href="/read/10#publishing-options"><span class="contents-number">02</span><span class="contents-name">What Are the Options?</span><span class="contents-arrow">›</span></a><a href="/read/10#hosting-domain-name"><span class="contents-number">03</span><span class="contents-name">Getting Hosting and a Domain Name</span><span class="contents-arrow">›</span></a><a href="/read/10#publishing-to-server"><span class="contents-number">04</span><span class="contents-name">Publishing to Your Server</span><span class="contents-arrow">›</span></a><a href="/read/10#ftp-sftp"><span class="contents-number">05</span><span class="contents-name">FTP and SFTP</span><span class="contents-arrow">›</span></a><a href="/read/10#rsync"><span class="contents-number">06</span><span class="contents-name">Rsync</span><span class="contents-arrow">›</span></a><a href="/read/10#web-based-ide"><span class="contents-number">07</span><span class="contents-name">Using a Web-Based IDE Such as CodePen</span><span class="contents-arrow">›</span></a><a href="/read/10#online-publishing-tools"><span class="contents-number">08</span><span class="contents-name">Using an Online Publishing Tool</span><span class="contents-arrow">›</span></a><a href="/read/10#recommended-publishing-approach"><span class="contents-number">09</span><span class="contents-name">What Approach Would We Recommend?</span><span class="contents-arrow">›</span></a><a href="/read/10#browser-developer-tools"><span class="contents-number">10</span><span class="contents-name">What Are Browser Developer Tools?</span><span class="contents-arrow">›</span></a><a href="/read/10#what-are-devtools"><span class="contents-number">11</span><span class="contents-name">What Are DevTools?</span><span class="contents-arrow">›</span></a><a href="/read/10#opening-developer-tools"><span class="contents-number">12</span><span class="contents-name">How to Open the DevTools in Your Browser</span><span class="contents-arrow">›</span></a><a href="/read/10#dom-inspector-css-editor"><span class="contents-number">13</span><span class="contents-name">The Inspector: DOM Explorer and CSS Editor</span><span class="contents-arrow">›</span></a><a href="/read/10#exploring-dom-inspector"><span class="contents-number">14</span><span class="contents-name">Exploring the DOM Inspector</span><span class="contents-arrow">›</span></a><a href="/read/10#exploring-css-editor"><span class="contents-number">15</span><span class="contents-name">Exploring the CSS Editor</span><span class="contents-arrow">›</span></a><a href="/read/10#javascript-debugger"><span class="contents-number">16</span><span class="contents-name">The JavaScript Debugger</span><span class="contents-arrow">›</span></a><a href="/read/10#exploring-debugger"><span class="contents-number">17</span><span class="contents-name">Exploring the Debugger</span><span class="contents-arrow">›</span></a><a href="/read/10#javascript-console"><span class="contents-number">18</span><span class="contents-name">The JavaScript Console</span><span class="contents-arrow">›</span></a><a href="/read/10#network-inspector"><span class="contents-number">19</span><span class="contents-name">The Network Inspector</span><span class="contents-arrow">›</span></a><a href="/read/10#http-statuses"><span class="contents-number">20</span><span class="contents-name">HTTP Statuses</span><span class="contents-arrow">›</span></a><a href="/read/10#testing-strategy"><span class="contents-number">21</span><span class="contents-name">Planning a Website Testing Strategy</span><span class="contents-arrow">›</span></a><a href="/read/10#functional-testing"><span class="contents-number">22</span><span class="contents-name">Functional and End-to-End Testing</span><span class="contents-arrow">›</span></a><a href="/read/10#responsive-cross-browser-testing"><span class="contents-number">23</span><span class="contents-name">Responsive and Cross-Browser Testing</span><span class="contents-arrow">›</span></a><a href="/read/10#accessibility-testing"><span class="contents-number">24</span><span class="contents-name">Accessibility Testing</span><span class="contents-arrow">›</span></a><a href="/read/10#performance-testing"><span class="contents-number">25</span><span class="contents-name">Website Performance Testing</span><span class="contents-arrow">›</span></a><a href="/read/10#security-testing"><span class="contents-number">26</span><span class="contents-name">Basic Website Security Testing</span><span class="contents-arrow">›</span></a><a href="/read/10#git-version-control"><span class="contents-number">27</span><span class="contents-name">Version Control with Git</span><span class="contents-arrow">›</span></a><a href="/read/10#deployment-pipeline"><span class="contents-number">28</span><span class="contents-name">Deployment Pipelines and Environments</span><span class="contents-arrow">›</span></a><a href="/read/10#monitoring-backups"><span class="contents-number">29</span><span class="contents-name">Monitoring, Logs, and Backups</span><span class="contents-arrow">›</span></a><a href="/read/10#maintenance-release-checklist"><span class="contents-number">30</span><span class="contents-name">Website Maintenance and Release Checklist</span><span class="contents-arrow">›</span></a><a href="/read/10#quiz"><span class="contents-number">✓</span><span class="contents-name">Knowledge Assessment Quiz</span><span class="contents-arrow">›</span></a><a href="/read/10#glossary"><span class="contents-number">A–Z</span><span class="contents-name">Glossary</span><span class="contents-arrow">›</span></a></div>
+</div>
+</div>
+<!-- =====================================
          JAVASCRIPT
     ===================================== -->
-
-    <script>
+<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1270,9 +922,7 @@
         });
 
     </script>
-
-    <!-- CODEVERSE ACCOUNT SYSTEM -->
-    <script src="/js/auth-nav.js" defer></script>
-
+<!-- CODEVERSE ACCOUNT SYSTEM -->
+<script defer="" src="/js/navbar-loader.js"></script>
 </body>
 </html>

@@ -1,0 +1,230 @@
+
+/* ==========================================
+   CODEVERSE - SHARED NAVIGATION LOADER
+========================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    "use strict";
+
+    const container =
+        document.getElementById("navbarContainer");
+
+    if (!container) {
+        console.error("Navbar container not found.");
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "/components/navbar.html",
+            {
+                cache: "no-cache"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `Navbar failed to load: ${response.status}`
+            );
+        }
+
+        container.innerHTML = await response.text();
+
+        initializeNavbar();
+
+    } catch (error) {
+
+        console.error(
+            "CodeVerse navbar error:",
+            error
+        );
+
+    }
+
+});
+
+
+/* ==========================================
+   INITIALIZE NAVBAR
+========================================== */
+
+async function initializeNavbar() {
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+    const menuToggle =
+        document.getElementById("cvMenuToggle");
+
+    const navLinks =
+        document.getElementById("cvNavLinks");
+
+    const guestActions =
+        document.getElementById("guestActions");
+
+    const userActions =
+        document.getElementById("userActions");
+
+    const userName =
+        document.getElementById("userName");
+
+    const userAvatar =
+        document.getElementById("userAvatar");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+
+    /* ======================================
+       DARK MODE
+    ====================================== */
+
+    function applyTheme() {
+
+        const dark =
+            localStorage.getItem("theme") === "dark";
+
+        document.body.classList.toggle(
+            "dark-mode",
+            dark
+        );
+
+        if (themeToggle) {
+            themeToggle.textContent =
+                dark ? "☀" : "☾";
+        }
+    }
+
+    applyTheme();
+
+    themeToggle?.addEventListener("click", () => {
+
+        const dark =
+            !document.body.classList.contains("dark-mode");
+
+        document.body.classList.toggle(
+            "dark-mode",
+            dark
+        );
+
+        localStorage.setItem(
+            "theme",
+            dark ? "dark" : "light"
+        );
+
+        themeToggle.textContent =
+            dark ? "☀" : "☾";
+
+    });
+
+
+    /* ======================================
+       MOBILE MENU
+    ====================================== */
+
+    menuToggle?.addEventListener("click", () => {
+
+        const isOpen =
+            navLinks.classList.toggle("open");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+    });
+
+
+    /* ======================================
+       AUTHENTICATION STATUS
+    ====================================== */
+
+    try {
+
+        const response = await fetch(
+            "/api/auth/status",
+            {
+                credentials: "same-origin",
+                cache: "no-store"
+            }
+        );
+
+        const data = await response.json();
+
+        if (
+            response.ok &&
+            data.success &&
+            data.loggedIn &&
+            data.user
+        ) {
+
+            const fullName =
+                data.user.fullName || "User";
+
+            userName.textContent = fullName;
+
+            userAvatar.textContent =
+                fullName.charAt(0).toUpperCase();
+
+            guestActions.hidden = true;
+            userActions.hidden = false;
+
+        } else {
+
+            guestActions.hidden = false;
+            userActions.hidden = true;
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Authentication check failed:",
+            error
+        );
+
+        guestActions.hidden = false;
+        userActions.hidden = true;
+
+    }
+
+
+    /* ======================================
+       LOGOUT
+    ====================================== */
+
+    logoutButton?.addEventListener("click", async () => {
+
+        logoutButton.disabled = true;
+
+        try {
+
+            const response = await fetch(
+                "/api/logout",
+                {
+                    method: "POST",
+                    credentials: "same-origin"
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error("Logout failed.");
+            }
+
+            window.location.href = "/index.html";
+
+        } catch (error) {
+
+            alert(error.message);
+
+            logoutButton.disabled = false;
+
+        }
+
+    });
+
+}

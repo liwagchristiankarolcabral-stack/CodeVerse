@@ -1,33 +1,19 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Learn User Interface Design and Accessibility with CodeVerse.">
-
-    <title>User Interface Design and Accessibility | CodeVerse</title>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- FAVICON -->
-    <link
-        rel="icon"
-        type="image/png"
-        href="/images/CodeVerseLogo.png"
-    >
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Learn User Interface Design and Accessibility with CodeVerse." name="description"/>
+<title>User Interface Design and Accessibility | CodeVerse</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
 
         /* =====================================
            THEME VARIABLES
@@ -612,336 +598,96 @@
         }
 
     </style>
-
+<link href="/css/navbar.css" rel="stylesheet"/>
 </head>
-
 <body id="top">
-
-    <!-- =====================================
+<!-- =====================================
          NAVIGATION BAR
     ===================================== -->
-
-    <header class="navbar">
-
-        <a class="logo" href="/index.html">
-
-            <img
-                src="/images/CodeVerseLogo.png"
-                alt="CodeVerse Logo"
-                class="site-logo"
-            >
-
-            <span>
-                Code<span class="logo-highlight">Verse</span>
-            </span>
-
-        </a>
-
-        <nav class="nav-links" id="navLinks">
-
-            <a href="/index.html">Home</a>
-
-            <a class="active" href="/library.html">
-                Explore Books
-            </a>
-
-            <a href="/index.html#about">About</a>
-
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="icon-btn"
-                id="themeToggle"
-                aria-label="Toggle dark mode"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
-
-            <div id="accountActions">
-
-                <a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-
-                <a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
-
-            </div>
-
-        </div>
-
-        <button
-            type="button"
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="navLinks"
-        >
-            ☰
-        </button>
-
-    </header>
-
-    <!-- BACK TO BOOKS -->
-
-    <header class="topbar">
-
-        <a class="back-link" href="/library.html">
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
+</div>
+<!-- BACK TO BOOKS -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
             ← Back to Books
         </a>
-
-    </header>
-
-    <!-- =====================================
+</header>
+<!-- =====================================
          BOOK COVER AND DETAILS
     ===================================== -->
-
-    <main class="book-container">
-
-        <!-- BOOK COVER IMAGE -->
-
-        <div class="book-cover-container">
-
-            <img
-                src="\images\book-covers\3rd year\UIDesign.jpg"
-                alt="User Interface Design and Accessibility Book Cover"
-                class="book-cover-image"
-            >
-
-        </div>
-
-        <!-- BOOK DETAILS -->
-
-        <section class="book-details">
-
-            <span class="featured-label">
+<main class="book-container">
+<!-- BOOK COVER IMAGE -->
+<div class="book-cover-container">
+<img alt="User Interface Design and Accessibility book cover" class="book-cover-image" loading="lazy" src="/images/book-covers/book-8.jpg"/>
+</div>
+<!-- BOOK DETAILS -->
+<section class="book-details">
+<span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-
-            <h1 class="book-title">
+<h1 class="book-title">
                 User Interface Design and Accessibility
             </h1>
-
-            <!-- BOOK STATISTICS -->
-
-            <div class="book-stats">
-
-                <div class="stat">
-                    <strong>11</strong>
-                    <span>Lessons</span>
-                </div>
-
-                <div class="stat">
-                    <strong>1</strong>
-                    <span>Knowledge Assessment</span>
-                </div>
-
-            </div>
-
-            <!-- BOOK DESCRIPTION -->
-
-            <p class="book-description">
-
-                Learn the fundamentals of user interface
-                design and web accessibility to create
-                attractive, user-friendly, and inclusive
-                websites.
-
-                Explore accessible color contrast,
-                understandable navigation, recognizable
-                interactive elements, form labels,
-                meaningful feedback, responsive layouts,
-                alternative media content, and controls
-                for automatically playing content.
-
-            </p>
-
-            <!-- ACTION BUTTONS -->
-
-            <div class="book-actions">
-
-                <a
-                    class="book-btn primary"
-                    href="/read/8"
-                >
+<!-- BOOK STATISTICS -->
+<div class="book-stats">
+<div class="stat">
+<strong>30</strong>
+<span>Lessons</span>
+</div>
+<div class="stat">
+<strong>1</strong>
+<span>Knowledge Assessment</span>
+</div>
+</div>
+<!-- BOOK DESCRIPTION -->
+<p class="book-description">Explore user interface design and accessibility through 30 structured lessons. Topics include Designing for Web Accessibility, Ensure that form elements include clearly associated labels, Lesson 13: User Research and Personas, Lesson 21: Semantic HTML and Landmarks and Lesson 29: Accessibility Testing Tools and Methods. Open the contents to jump directly to any lesson.</p>
+<!-- ACTION BUTTONS -->
+<div class="book-actions">
+<a class="book-btn primary" href="/read/8">
                     Start Reading
                 </a>
-
-                <button
-                    class="book-btn"
-                    id="contentsBtn"
-                    type="button"
-                    aria-haspopup="dialog"
-                >
+<button aria-haspopup="dialog" class="book-btn" id="contentsBtn" type="button">
                     ☰ Contents
                 </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- =====================================
+</div>
+</section>
+</main>
+<!-- =====================================
          TABLE OF CONTENTS POPUP
     ===================================== -->
-
-    <div
-        class="contents-overlay"
-        id="contentsPopup"
-        aria-hidden="true"
-    >
-
-        <div
-            class="contents-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contentsTitle"
-        >
-
-            <!-- CONTENTS HEADER -->
-
-            <div class="contents-header">
-
-                <div>
-
-                    <span class="contents-subtitle">
+<div aria-hidden="true" class="contents-overlay" id="contentsPopup">
+<div aria-labelledby="contentsTitle" aria-modal="true" class="contents-modal" role="dialog">
+<!-- CONTENTS HEADER -->
+<div class="contents-header">
+<div>
+<span class="contents-subtitle">
                         USER INTERFACE DESIGN AND ACCESSIBILITY
                     </span>
-
-                    <h2 id="contentsTitle">
+<h2 id="contentsTitle">
                         Table of Contents
                     </h2>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="close-contents"
-                    id="closeContents"
-                    aria-label="Close contents"
-                >
+</div>
+<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
                     ×
                 </button>
-
-            </div>
-
-            <!-- SCROLLABLE TABLE OF CONTENTS -->
-
-            <div class="contents-list">
-
-                <a href="/read/8#designing-web-accessibility">
-                    <span class="contents-number">01</span>
-                    <span class="contents-name">
-                        Designing for Web Accessibility
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#sufficient-color-contrast">
-                    <span class="contents-number">02</span>
-                    <span class="contents-name">
-                        Provide Sufficient Contrast Between Foreground and Background
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#dont-use-color-alone">
-                    <span class="contents-number">03</span>
-                    <span class="contents-name">
-                        Don't Use Color Alone to Convey Information
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#identifiable-interactive-elements">
-                    <span class="contents-number">04</span>
-                    <span class="contents-name">
-                        Ensure That Interactive Elements Are Easy to Identify
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#consistent-navigation">
-                    <span class="contents-number">05</span>
-                    <span class="contents-name">
-                        Provide Clear and Consistent Navigation Options
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#accessible-form-labels">
-                    <span class="contents-number">06</span>
-                    <span class="contents-name">
-                        Ensure That Form Elements Include Clearly Associated Labels
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#identifiable-feedback">
-                    <span class="contents-number">07</span>
-                    <span class="contents-name">
-                        Provide Easily Identifiable Feedback
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#headings-and-spacing">
-                    <span class="contents-number">08</span>
-                    <span class="contents-name">
-                        Use Headings and Spacing to Group Related Content
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#different-viewport-sizes">
-                    <span class="contents-number">09</span>
-                    <span class="contents-name">
-                        Create Designs for Different Viewport Sizes
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#image-media-alternatives">
-                    <span class="contents-number">10</span>
-                    <span class="contents-name">
-                        Include Image and Media Alternatives in Your Design
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#automatic-content-controls">
-                    <span class="contents-number">11</span>
-                    <span class="contents-name">
-                        Provide Controls for Content That Starts Automatically
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-                <a href="/read/8#quiz">
-                    <span class="contents-number">✓</span>
-                    <span class="contents-name">
-                        Knowledge Assessment Quiz
-                    </span>
-                    <span class="contents-arrow">›</span>
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- =====================================
+</div>
+<!-- SCROLLABLE TABLE OF CONTENTS -->
+<div class="contents-list"><a href="/read/8#references"><span class="contents-number">↗</span><span class="contents-name">References and Further Reading</span><span class="contents-arrow">›</span></a><a href="/read/8#designing-web-accessibility"><span class="contents-number">01</span><span class="contents-name">Designing for Web Accessibility</span><span class="contents-arrow">›</span></a><a href="/read/8#sufficient-color-contrast"><span class="contents-number">02</span><span class="contents-name">Provide sufficient contrast between foreground and background</span><span class="contents-arrow">›</span></a><a href="/read/8#dont-use-color-alone"><span class="contents-number">03</span><span class="contents-name">Don't use color alone to convey information</span><span class="contents-arrow">›</span></a><a href="/read/8#identifiable-interactive-elements"><span class="contents-number">04</span><span class="contents-name">Ensure that interactive elements are easy to identify</span><span class="contents-arrow">›</span></a><a href="/read/8#consistent-navigation"><span class="contents-number">05</span><span class="contents-name">Provide clear and consistent navigation options</span><span class="contents-arrow">›</span></a><a href="/read/8#accessible-form-labels"><span class="contents-number">06</span><span class="contents-name">Ensure that form elements include clearly associated labels</span><span class="contents-arrow">›</span></a><a href="/read/8#identifiable-feedback"><span class="contents-number">07</span><span class="contents-name">Provide easily identifiable feedback</span><span class="contents-arrow">›</span></a><a href="/read/8#headings-and-spacing"><span class="contents-number">08</span><span class="contents-name">Use headings and spacing to group related content</span><span class="contents-arrow">›</span></a><a href="/read/8#different-viewport-sizes"><span class="contents-number">09</span><span class="contents-name">Create designs for different viewport sizes</span><span class="contents-arrow">›</span></a><a href="/read/8#image-media-alternatives"><span class="contents-number">10</span><span class="contents-name">Include image and media alternatives in your design</span><span class="contents-arrow">›</span></a><a href="/read/8#automatic-content-controls"><span class="contents-number">11</span><span class="contents-name">Provide controls for content that starts automatically</span><span class="contents-arrow">›</span></a><a href="/read/8#ui-ux-foundations"><span class="contents-number">12</span><span class="contents-name">Lesson 12: UI and UX Design Foundations</span><span class="contents-arrow">›</span></a><a href="/read/8#user-research"><span class="contents-number">13</span><span class="contents-name">Lesson 13: User Research and Personas</span><span class="contents-arrow">›</span></a><a href="/read/8#information-architecture"><span class="contents-number">14</span><span class="contents-name">Lesson 14: Information Architecture</span><span class="contents-arrow">›</span></a><a href="/read/8#wireframes-prototypes"><span class="contents-number">15</span><span class="contents-name">Lesson 15: Wireframes and Prototypes</span><span class="contents-arrow">›</span></a><a href="/read/8#visual-hierarchy"><span class="contents-number">16</span><span class="contents-name">Lesson 16: Visual Hierarchy and Layout</span><span class="contents-arrow">›</span></a><a href="/read/8#typography-readability"><span class="contents-number">17</span><span class="contents-name">Lesson 17: Typography and Readability</span><span class="contents-arrow">›</span></a><a href="/read/8#design-systems"><span class="contents-number">18</span><span class="contents-name">Lesson 18: Design Systems and Reusable Components</span><span class="contents-arrow">›</span></a><a href="/read/8#interaction-feedback"><span class="contents-number">19</span><span class="contents-name">Lesson 19: Interaction Design and Microinteractions</span><span class="contents-arrow">›</span></a><a href="/read/8#keyboard-navigation"><span class="contents-number">20</span><span class="contents-name">Lesson 20: Keyboard Navigation and Focus Order</span><span class="contents-arrow">›</span></a><a href="/read/8#semantic-html"><span class="contents-number">21</span><span class="contents-name">Lesson 21: Semantic HTML and Landmarks</span><span class="contents-arrow">›</span></a><a href="/read/8#screen-readers"><span class="contents-number">22</span><span class="contents-name">Lesson 22: Screen Readers and Accessible Names</span><span class="contents-arrow">›</span></a><a href="/read/8#aria-basics"><span class="contents-number">23</span><span class="contents-name">Lesson 23: ARIA Roles, States, and Properties</span><span class="contents-arrow">›</span></a><a href="/read/8#accessible-modals"><span class="contents-number">24</span><span class="contents-name">Lesson 24: Accessible Dialogs and Modals</span><span class="contents-arrow">›</span></a><a href="/read/8#form-validation"><span class="contents-number">25</span><span class="contents-name">Lesson 25: Accessible Form Validation</span><span class="contents-arrow">›</span></a><a href="/read/8#touch-targets"><span class="contents-number">26</span><span class="contents-name">Lesson 26: Touch Targets and Mobile Accessibility</span><span class="contents-arrow">›</span></a><a href="/read/8#cognitive-accessibility"><span class="contents-number">27</span><span class="contents-name">Lesson 27: Cognitive Accessibility and Plain Language</span><span class="contents-arrow">›</span></a><a href="/read/8#motion-preferences"><span class="contents-number">28</span><span class="contents-name">Lesson 28: Reduced Motion and Animation</span><span class="contents-arrow">›</span></a><a href="/read/8#accessibility-testing"><span class="contents-number">29</span><span class="contents-name">Lesson 29: Accessibility Testing Tools and Methods</span><span class="contents-arrow">›</span></a><a href="/read/8#inclusive-design-process"><span class="contents-number">30</span><span class="contents-name">Lesson 30: Inclusive Design Workflow and Continuous Improvement</span><span class="contents-arrow">›</span></a><a href="/read/8#quiz"><span class="contents-number">✓</span><span class="contents-name">Knowledge Assessment Quiz</span><span class="contents-arrow">›</span></a><a href="/read/8#glossary"><span class="contents-number">A–Z</span><span class="contents-name">Glossary</span><span class="contents-arrow">›</span></a></div>
+</div>
+</div>
+<!-- =====================================
          JAVASCRIPT
     ===================================== -->
-
-    <script>
+<script>
 
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -1161,9 +907,7 @@
         });
 
     </script>
-
-    <!-- CODEVERSE ACCOUNT SYSTEM -->
-    <script src="/js/auth-nav.js" defer></script>
-
+<!-- CODEVERSE ACCOUNT SYSTEM -->
+<script defer="" src="/js/navbar-loader.js"></script>
 </body>
 </html>

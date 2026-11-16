@@ -774,56 +774,41 @@
         }
 
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- ========================================
          CODEVERSE NAVIGATION BAR
     ======================================== -->
-<header class="navbar">
-<!-- LOGO -->
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>
-                Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<!-- NAVIGATION LINKS -->
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">
-                Home
-            </a>
-<a href="/library.html">
-                Explore Books
-            </a>
-<a href="/index.html#about">
-                About
-            </a>
-</nav>
-<!-- NAVIGATION ACTIONS -->
-<div class="nav-actions">
-<!-- TABLE OF CONTENTS -->
-<button aria-controls="sidebar" aria-expanded="false" aria-label="Toggle table of contents" class="icon-btn" id="tocToggle" type="button">
-                ☰ Contents
-            </button>
-<!-- DARK MODE -->
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- ACCOUNT BUTTONS -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-<a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<!-- MOBILE NAVIGATION -->
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Open navigation menu" class="menu-toggle" id="menuToggle" type="button">
-            ☰
-        </button>
-</header>
+
 <!-- ========================================
          BACK TO BOOKS
     ======================================== -->
@@ -3652,6 +3637,126 @@ Each process receives CPU time.
 <p>CodeVerse Digital E-Book Library</p>
 <p>Operating System Concepts and Functions</p>
 </footer>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>File Management</h3>
+                <p>Organization and control of files.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>I/O Management</h3>
+                <p>Coordination of input and output devices.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Kernel Mode</h3>
+                <p>A privileged processor execution mode.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Memory Management</h3>
+                <p>Allocation and protection of memory.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Process Management</h3>
+                <p>Creation, scheduling, and control of processes.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Resource Allocation</h3>
+                <p>Distribution of computing resources.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Security</h3>
+                <p>Protection against unauthorized access and misuse.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>System Call</h3>
+                <p>A request for a service provided by the operating system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>System Utility</h3>
+                <p>Software supporting system maintenance and operation.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>User Mode</h3>
+                <p>A restricted processor execution mode.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <!-- ========================================
@@ -4557,5 +4662,7 @@ retryQuiz.addEventListener("click", function () {
 renderQuiz();
 
 </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

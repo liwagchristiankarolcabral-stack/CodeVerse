@@ -24,35 +24,41 @@ html{scroll-behavior:smooth;scroll-padding-top:96px}body{margin:0;background:var
 .topbar{padding:15px clamp(16px,5vw,64px);border-bottom:1px solid var(--line)}.back-link{font-weight:700;font-size:14px}.reading-controls{display:flex;flex-wrap:wrap;gap:18px;padding:14px clamp(16px,5vw,64px);background:var(--surface);border-bottom:1px solid var(--line)}.control-group{display:flex;align-items:center;gap:9px}.control-group label{font-size:13px;font-weight:700}.control-group select{padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text)}
 .layout{max-width:1450px;margin:28px auto;padding:0 22px;display:grid;grid-template-columns:minmax(215px,280px) minmax(0,1fr);gap:26px;align-items:start}.toc{position:sticky;top:91px;max-height:calc(100vh - 111px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{margin:0 0 13px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{display:block;color:var(--muted);font-size:12px;line-height:1.45;border-radius:8px;padding:9px 10px}.toc nav a:hover,.toc nav a.active{background:var(--soft);color:var(--primary)}main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:clamp(20px,3vw,38px);margin-bottom:22px;box-shadow:var(--shadow)}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3vw,42px);line-height:1.22;margin:12px 0}.book-header p{color:var(--muted);line-height:1.75}.eyebrow{color:var(--primary);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.chapter{font-size:var(--reader-size,16px);font-family:var(--reader-font,'DM Sans',sans-serif);line-height:1.85;overflow-wrap:anywhere}.chapter h1,.chapter h2,.chapter h3{line-height:1.4;color:var(--text)}.chapter h1{font-size:1.9em}.chapter h2{font-size:1.48em}.chapter h3{font-size:1.16em;margin-top:25px}.chapter p,.chapter li{color:var(--text)}.chapter li{margin-bottom:7px}.chapter table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:20px 0}.chapter th,.chapter td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:105px}.chapter th{background:var(--soft)}.code-example{overflow-x:auto;border:1px solid var(--line);background:var(--soft);padding:16px;border-radius:10px;margin:18px 0}.code-example pre{margin:0;white-space:pre;font-size:13px;line-height:1.5;color:var(--text)}.quiz-question{padding:18px 0;border-bottom:1px solid var(--line)}.quiz-question h3{font-size:1em;margin:0 0 12px}.quiz-option{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:9px;padding:11px 13px;margin:7px 0;cursor:pointer}.quiz-option:has(input:checked){border-color:var(--primary);background:var(--soft)}.quiz-option.correct{border-color:#24a36a;background:#24a36a18}.quiz-option.incorrect{border-color:#d95363;background:#d9536318}.quiz-feedback{font-weight:700;font-size:.88em}.quiz-actions{display:flex;gap:12px;margin-top:22px}.quiz-actions button{background:#3157a4;color:white;border:0;border-radius:9px;padding:12px 20px;font-weight:700}.quiz-actions button:disabled{opacity:.5}#quizProgress{color:var(--muted);font-weight:700}#quizResult{padding:22px;background:var(--soft);border-radius:12px;margin-top:18px;text-align:center}[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:20px 0 40px}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:255px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}@media(max-width:620px){.navbar{gap:9px}.logo{font-size:17px}.site-logo{width:30px;height:30px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;gap:12px}.nav-links.open{display:flex}.nav-actions{margin-left:auto}#accountActions{gap:6px}.account-username{max-width:105px;overflow-wrap:anywhere;font-size:11px}.login-btn,.signup-btn,.logout-btn{font-size:11px;padding:8px}.layout{padding:0 12px;gap:14px}.control-group{flex-wrap:wrap}}
-</style></head>
+</style>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
+
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -1003,6 +1009,126 @@ Producer:
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of Programs and Processes of Computer · CodeVerse Digital Library</footer>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Concurrency</h3>
+                <p>Managing multiple tasks with overlapping execution.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Context Switch</h3>
+                <p>Changing the processor&#39;s active execution context.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Deadlock</h3>
+                <p>A condition where processes cannot proceed because of resource dependencies.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Multithreading</h3>
+                <p>Using multiple threads within a program.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Parallelism</h3>
+                <p>Executing multiple operations simultaneously.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Process</h3>
+                <p>An executing instance of a program.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Process Control Block</h3>
+                <p>An operating system record describing a process.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Process State</h3>
+                <p>A condition such as ready, running, or waiting.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Program</h3>
+                <p>A set of instructions for a computer.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Thread</h3>
+                <p>An execution sequence within a process.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <script>
@@ -1543,4 +1669,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
-<script>document.addEventListener('DOMContentLoaded',()=>{const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily'),menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');const applyTheme=()=>{const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);if(icon)icon.textContent=dark?'☀':'☾';};applyTheme();toggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');applyTheme();});const savedSize=localStorage.getItem('readerFontSize')||'16px',savedFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if(size&&[...size.options].some(o=>o.value===savedSize))size.value=savedSize;if(family&&[...family.options].some(o=>o.value===savedFont))family.value=savedFont;const applyReader=()=>{document.documentElement.style.setProperty('--reader-size',size?.value||'16px');document.documentElement.style.setProperty('--reader-font',family?.value||"'DM Sans', sans-serif");};applyReader();size?.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);applyReader();});family?.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);applyReader();});menu?.addEventListener('click',()=>links?.classList.toggle('open'));});</script><script defer="True" src="/js/auth-nav.js"></script></body></html>
+<script>document.addEventListener('DOMContentLoaded',()=>{const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily'),menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');const applyTheme=()=>{const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);if(icon)icon.textContent=dark?'☀':'☾';};applyTheme();toggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');applyTheme();});const savedSize=localStorage.getItem('readerFontSize')||'16px',savedFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if(size&&[...size.options].some(o=>o.value===savedSize))size.value=savedSize;if(family&&[...family.options].some(o=>o.value===savedFont))family.value=savedFont;const applyReader=()=>{document.documentElement.style.setProperty('--reader-size',size?.value||'16px');document.documentElement.style.setProperty('--reader-font',family?.value||"'DM Sans', sans-serif");};applyReader();size?.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);applyReader();});family?.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);applyReader();});menu?.addEventListener('click',()=>links?.classList.toggle('open'));});</script>    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
+</body></html>

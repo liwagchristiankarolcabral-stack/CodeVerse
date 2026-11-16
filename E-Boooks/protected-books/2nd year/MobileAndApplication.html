@@ -465,47 +465,41 @@
             }
         }
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>
-                Code<span class="logo-highlight">Verse</span>
-</span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">
-                Home
-            </a>
-<a href="/library.html">
-                Explore Books
-            </a>
-<a href="/index.html#about">
-                About
-            </a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">
-                    Log In
-                </a>
-<a class="signup-btn" href="/register.html">
-                    Sign Up
-                </a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button">
-            ☰
-        </button>
-</header>
+
 <!-- =========================
          BACK TO BOOKS
     ========================== -->
@@ -1593,6 +1587,126 @@
 <div aria-live="polite" class="quiz-result" hidden="" id="quizResult" role="status"></div>
 </section>
 </div>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Android</h3>
+                <p>An operating system used on mobile devices.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>API</h3>
+                <p>Application programming interface.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>App Store</h3>
+                <p>A platform for distributing applications.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Hybrid App</h3>
+                <p>An application combining web and native technologies.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>iOS</h3>
+                <p>Apple&#39;s mobile operating system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Mobile Application</h3>
+                <p>Software designed for mobile devices.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Native App</h3>
+                <p>An application built for a particular platform.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Push Notification</h3>
+                <p>A message delivered to an application or device.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Responsive Interface</h3>
+                <p>An interface that adapts to different display sizes.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>SDK</h3>
+                <p>Software development kit.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <footer class="page-footer">
@@ -2060,5 +2174,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadQuiz();
 });
 </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

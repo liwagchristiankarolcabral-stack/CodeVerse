@@ -10,7 +10,36 @@ body.dark-mode{--bg:#0e1728;--surface:#17243a;--surface2:#1e3150;--ink:#eaf0fb;-
 @media(max-width:1050px){.layout{grid-template-columns:220px minmax(0,1fr);gap:16px}.navbar{gap:12px}.nav-links{gap:10px}}
 @media(max-width:760px){.layout{display:block;padding:0 12px 30px}.toc{position:static;max-height:240px;margin-bottom:18px}.navbar{flex-wrap:wrap;padding:10px 14px}.menu-toggle{display:block}.nav-links{display:none;order:5;width:100%;padding:12px 0}.nav-links.open{display:flex;flex-direction:column;align-items:flex-start}.nav-actions{margin-left:auto}.reading-controls{margin:12px 12px 0}.topbar{padding:14px 14px 0}.chapter{padding:20px}.book-header{padding:25px}.logo{font-size:19px}.logo img{width:30px;height:30px}}
 @media(max-width:440px){.control-group{width:100%;justify-content:space-between}.control-group select{max-width:65%}.account-username{max-width:110px}.nav-actions{gap:5px}.login-btn,.signup-btn,.logout-btn{padding:6px 8px}}
-</style></head><body id="top"><header class="navbar"><a class="logo" href="/index.html"><img src="/images/CodeVerseLogo.png" alt="CodeVerse logo"><span>Code<span class="logo-highlight">Verse</span></span></a><nav class="nav-links" id="navLinks"><a href="/index.html">Home</a><a href="/library.html">Explore Books</a><a href="/index.html#about">About</a></nav><div class="nav-actions"><button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" type="button"><span id="themeIcon">☾</span></button><div id="accountActions"><a href="/LogIn.html" class="login-btn">Log In</a><a href="/register.html" class="signup-btn">Sign Up</a></div></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" type="button">☰</button></header><div class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></div><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px" selected>Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans',Arial,sans-serif">DM Sans</option><option value="Arial,sans-serif">Arial</option><option value="Georgia,serif">Georgia</option><option value="'Times New Roman',serif">Times New Roman</option><option value="Verdana,sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><nav><a href="#ipos-introduction">The IPOS Cycle: Input, Processing, Output, and Storage</a><a href="#ipos-foundations">1. Foundations of the IPOS Cycle</a><a href="#input-architecture">2. Input Subsystem Architecture</a><a href="#human-input">3. Direct Human Input Devices</a><a href="#environmental-sensors">4. Sensors and Environmental Input Hardware</a><a href="#biometric-input">5. Biometric and Specialized Input Systems</a><a href="#input-protocols">6. Input Interfacing Protocols and Controllers</a><a href="#processing-foundations">7. Processing Subsystem Foundations</a><a href="#instruction-cycle">8. The Instruction Execution Cycle</a><a href="#alu-mechanics">9. Arithmetic Logic Unit Mechanics</a><a href="#control-unit">10. Control Unit and Microprogramming</a><a href="#pipeline-hazards">11. Processor Pipelining and Hazard Management</a><a href="#coprocessing">12. Accelerated and Co-Processing Systems</a><a href="#output-architecture">13. Output Subsystem Architecture</a><a href="#visual-output">14. Visual Output and Display Technologies</a><a href="#audio-haptics">15. Audio and Tactile Output Systems</a><a href="#printing-output">16. Hardcopy Output and Printing Systems</a><a href="#industrial-output">17. Industrial Actuation and Control Output</a><a href="#output-protocols">18. Output Interfacing Protocols</a><a href="#storage-taxonomy">19. Storage Subsystem Taxonomy</a><a href="#ram-memory">20. Primary Memory: Random-Access Memory</a><a href="#cache-registers">21. Primary Memory: Cache Architecture and Registers</a><a href="#firmware-storage">22. Non-Volatile System Firmware Storage</a><a href="#magnetic-storage">23. Secondary Storage: Magnetic Media Systems</a><a href="#solid-state-storage">24. Secondary Storage: Solid-State Media</a><a href="#storage-controllers">25. Storage Interfacing Protocols and Controllers</a><a href="#archival-storage">26. Tertiary and Archival Storage Systems</a><a href="#system-buses">27. System Interconnects and Tri-Bus Topology</a><a href="#interrupts-dma">28. Interrupts and Direct Memory Access</a><a href="#ipos-diagnostics">29. Unified IPOS Performance Diagnostics</a><a href="#ipos-future">30. Future Frontiers in IPOS Architecture</a><h3>Assessment</h3><a href="#quiz">Knowledge Assessment Quiz</a></nav></aside><main class="reader"><header class="book-header"><span class="eyebrow">Digital Book · Introduction to Computing · Book 14</span><h1>The IPOS Cycle: Input, Processing, Output, and Storage</h1><p>Explore how computer systems receive data, execute instructions, present results, and store information.</p></header><div class="book-content"><section class="chapter" id="ipos-introduction">
+</style>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head><body id="top"><div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+<div class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></div><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px" selected>Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans',Arial,sans-serif">DM Sans</option><option value="Arial,sans-serif">Arial</option><option value="Georgia,serif">Georgia</option><option value="'Times New Roman',serif">Times New Roman</option><option value="Verdana,sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><nav><a href="#ipos-introduction">The IPOS Cycle: Input, Processing, Output, and Storage</a><a href="#ipos-foundations">1. Foundations of the IPOS Cycle</a><a href="#input-architecture">2. Input Subsystem Architecture</a><a href="#human-input">3. Direct Human Input Devices</a><a href="#environmental-sensors">4. Sensors and Environmental Input Hardware</a><a href="#biometric-input">5. Biometric and Specialized Input Systems</a><a href="#input-protocols">6. Input Interfacing Protocols and Controllers</a><a href="#processing-foundations">7. Processing Subsystem Foundations</a><a href="#instruction-cycle">8. The Instruction Execution Cycle</a><a href="#alu-mechanics">9. Arithmetic Logic Unit Mechanics</a><a href="#control-unit">10. Control Unit and Microprogramming</a><a href="#pipeline-hazards">11. Processor Pipelining and Hazard Management</a><a href="#coprocessing">12. Accelerated and Co-Processing Systems</a><a href="#output-architecture">13. Output Subsystem Architecture</a><a href="#visual-output">14. Visual Output and Display Technologies</a><a href="#audio-haptics">15. Audio and Tactile Output Systems</a><a href="#printing-output">16. Hardcopy Output and Printing Systems</a><a href="#industrial-output">17. Industrial Actuation and Control Output</a><a href="#output-protocols">18. Output Interfacing Protocols</a><a href="#storage-taxonomy">19. Storage Subsystem Taxonomy</a><a href="#ram-memory">20. Primary Memory: Random-Access Memory</a><a href="#cache-registers">21. Primary Memory: Cache Architecture and Registers</a><a href="#firmware-storage">22. Non-Volatile System Firmware Storage</a><a href="#magnetic-storage">23. Secondary Storage: Magnetic Media Systems</a><a href="#solid-state-storage">24. Secondary Storage: Solid-State Media</a><a href="#storage-controllers">25. Storage Interfacing Protocols and Controllers</a><a href="#archival-storage">26. Tertiary and Archival Storage Systems</a><a href="#system-buses">27. System Interconnects and Tri-Bus Topology</a><a href="#interrupts-dma">28. Interrupts and Direct Memory Access</a><a href="#ipos-diagnostics">29. Unified IPOS Performance Diagnostics</a><a href="#ipos-future">30. Future Frontiers in IPOS Architecture</a><h3>Assessment</h3><a href="#quiz">Knowledge Assessment Quiz</a></nav></aside><main class="reader"><header class="book-header"><span class="eyebrow">Digital Book · Introduction to Computing · Book 14</span><h1>The IPOS Cycle: Input, Processing, Output, and Storage</h1><p>Explore how computer systems receive data, execute instructions, present results, and store information.</p></header><div class="book-content"><section class="chapter" id="ipos-introduction">
 <h1>The IPOS Cycle: Input, Processing, Output, and Storage</h1>
 <p>
         The IPOS Cycle describes the four fundamental operations
@@ -40,6 +69,9 @@ body.dark-mode{--bg:#0e1728;--surface:#17243a;--surface2:#1e3150;--ink:#eaf0fb;-
 </section>
 <section class="chapter" id="ipos-foundations">
 <h2>1. Foundations of the IPOS Cycle</h2>
+<h3>References</h3>
+<p>Tanenbaum, A. S., & Bos, H. (2014). Modern Operating Systems (4th ed.). Pearson.</p>
+<p>Petzold, C. (2000). CODE: The Hidden Language of Computer Hardware and Software. Microsoft Press. </p>
 <h3>1.1 System Data Flow Model</h3>
 <p>
         Input devices capture physical, optical, electrical, or
@@ -588,7 +620,127 @@ User Perception or System Action</code></pre>
         Its four subsystems operate together to support
         modern digital computing.
     </p>
-</section><section class="chapter" id="quiz"><h2>Knowledge Assessment Quiz</h2><p>Test your knowledge of input devices, processing systems, output technologies, storage architecture, and the complete IPOS cycle.</p><div id="quizProgress">0 of 30 answered</div><div id="quizQuestions"></div><div class="quiz-actions"><button id="submitQuiz" type="button">Submit Quiz</button><button id="retryQuiz" type="button" hidden>Try Again</button></div><div id="quizResult" aria-live="polite" hidden></div></section></div><footer class="page-footer">End of The IPOS Cycle: Input, Processing, Output, and Storage · CodeVerse Digital Library</footer></main></div><script>
+</section><section class="chapter" id="quiz"><h2>Knowledge Assessment Quiz</h2><p>Test your knowledge of input devices, processing systems, output technologies, storage architecture, and the complete IPOS cycle.</p><div id="quizProgress">0 of 30 answered</div><div id="quizQuestions"></div><div class="quiz-actions"><button id="submitQuiz" type="button">Submit Quiz</button><button id="retryQuiz" type="button" hidden>Try Again</button></div><div id="quizResult" aria-live="polite" hidden></div></section></div><footer class="page-footer">End of The IPOS Cycle: Input, Processing, Output, and Storage · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Data Flow</h3>
+                <p>Movement of data between system components.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Information</h3>
+                <p>Data organized into meaningful results.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Input</h3>
+                <p>Data entered into a computer system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Input Device</h3>
+                <p>Hardware used to enter data.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Memory</h3>
+                <p>Hardware used to hold data and instructions.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Output</h3>
+                <p>Information produced by a computer system.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Output Device</h3>
+                <p>Hardware used to present results.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Processing</h3>
+                <p>Operations performed to transform data.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Processor</h3>
+                <p>Hardware that executes computational instructions.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Storage</h3>
+                <p>Retention of data for later use.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
+</main></div><script>
 (() => {
  const themeToggle=document.getElementById('themeToggle');
  const themeIcon=document.getElementById('themeIcon');
@@ -1115,4 +1267,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadQuiz();
 });
-</script><script src="/js/auth-nav.js" defer></script></body></html>
+</script>    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
+</body></html>

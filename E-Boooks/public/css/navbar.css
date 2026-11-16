@@ -1,0 +1,385 @@
+
+/* ==========================================================
+   CODEVERSE SHARED NAVIGATION
+========================================================== */
+
+#navbarContainer {
+    position: relative;
+    z-index: 1200;
+}
+
+.cv-navbar,
+.cv-navbar * {
+    box-sizing: border-box;
+}
+
+.cv-navbar {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 24px;
+
+    width: 100%;
+    min-height: 78px;
+
+    padding: 12px 5%;
+
+    background: var(--surface, #ffffff);
+
+    color: var(--text, #202b40);
+
+    border-bottom: 1px solid
+        var(--border, #e6eaf1);
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+}
+
+.cv-navbar [hidden] {
+    display: none !important;
+}
+
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.cv-brand {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.cv-brand img {
+    width: 44px;
+    height: 44px;
+
+    object-fit: contain;
+}
+
+.cv-brand-name {
+    color: inherit;
+}
+
+.cv-brand-name span {
+    color: var(--primary, #3157a4);
+}
+
+/* ==========================================================
+   NAVIGATION LINKS
+========================================================== */
+
+.cv-nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
+    margin-left: auto;
+}
+
+.cv-nav-links a {
+    color: var(--muted, #64748b);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
+}
+
+.cv-nav-links a:hover {
+    color: var(--primary, #3157a4);
+}
+
+/* ==========================================================
+   ACTIONS
+========================================================== */
+
+.cv-nav-actions,
+.cv-guest-actions,
+.cv-user-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.cv-nav-actions {
+    flex-shrink: 0;
+}
+
+/* ==========================================================
+   ICON BUTTONS
+========================================================== */
+
+.cv-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    border-radius: 10px;
+
+    border: 1px solid
+        var(--border, #e6eaf1);
+
+    background: var(--surface, #ffffff);
+
+    color: var(--text, #202b40);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.cv-icon-button:hover {
+    transform: translateY(-1px);
+}
+
+/* ==========================================================
+   AUTHENTICATION BUTTONS
+========================================================== */
+
+.cv-login-button,
+.cv-signup-button,
+.cv-logout-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 15px;
+
+    min-height: 40px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+
+.cv-login-button {
+    background: transparent;
+
+    color: var(--text, #202b40);
+
+    border: 1px solid
+        var(--border, #e6eaf1);
+}
+
+.cv-signup-button,
+.cv-logout-button {
+    background: #3157a4;
+
+    color: #ffffff;
+
+    border: 1px solid #3157a4;
+}
+
+.cv-signup-button:hover,
+.cv-logout-button:hover {
+    background: #24427f;
+}
+
+/* ==========================================================
+   USER DETAILS
+========================================================== */
+
+.cv-user-avatar {
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #3157a4;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.cv-user-name {
+    max-width: 155px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ==========================================================
+   MOBILE NAVIGATION
+========================================================== */
+
+.cv-mobile-toggle {
+    display: none;
+}
+
+@media (max-width: 950px) {
+
+    .cv-navbar {
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .cv-nav-actions {
+        margin-left: auto;
+    }
+
+    .cv-mobile-toggle {
+        display: inline-flex;
+    }
+
+    .cv-nav-links {
+        display: none;
+
+        order: 3;
+
+        width: 100%;
+
+        margin: 0;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+    }
+
+    .cv-nav-links.cv-open {
+        display: flex;
+    }
+
+    .cv-nav-links a {
+        display: block;
+
+        padding: 13px 10px;
+
+        border-top: 1px solid
+            var(--border, #e6eaf1);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .cv-navbar {
+        padding: 10px 14px;
+    }
+
+    .cv-brand {
+        font-size: 18px;
+    }
+
+    .cv-brand img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .cv-nav-actions {
+        gap: 6px;
+    }
+
+    .cv-icon-button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .cv-user-name {
+        display: none;
+    }
+
+    .cv-login-button,
+    .cv-signup-button,
+    .cv-logout-button {
+        padding: 8px 10px;
+
+        min-height: 36px;
+
+        font-size: 11px;
+    }
+}
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+body.dark-mode .cv-navbar,
+body.dark .cv-navbar,
+html.dark .cv-navbar,
+html[data-theme="dark"] .cv-navbar {
+    background: #172235;
+
+    color: #f1f5f9;
+
+    border-bottom-color: #34445d;
+}
+
+body.dark-mode .cv-navbar a,
+body.dark .cv-navbar a,
+html.dark .cv-navbar a,
+html[data-theme="dark"] .cv-navbar a {
+    color: #e2e8f0;
+}
+
+body.dark-mode .cv-icon-button,
+body.dark .cv-icon-button,
+html.dark .cv-icon-button,
+html[data-theme="dark"] .cv-icon-button {
+    background: #24344c;
+
+    color: #f8fafc;
+
+    border-color: #40516c;
+}
+
+body.dark-mode .cv-login-button,
+body.dark .cv-login-button,
+html.dark .cv-login-button,
+html[data-theme="dark"] .cv-login-button {
+    color: #f8fafc;
+
+    border-color: #40516c;
+}

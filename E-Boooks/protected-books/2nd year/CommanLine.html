@@ -573,34 +573,41 @@
             }
         }
     </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
+</head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a href="/index.html">Home</a>
-<a class="active" href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button">
-            ☰
-        </button>
-</header>
+
 <header class="topbar">
 <a class="back-link" href="/library.html">
             ← Back to Books
@@ -1481,6 +1488,126 @@ ping example.com</code></pre>
                 End of Command-Line Interfaces and System Utilities
                 · CodeVerse Digital Library
             </footer>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>CLI</h3>
+                <p>Command-line interface.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Command</h3>
+                <p>An instruction entered into a shell.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Directory</h3>
+                <p>A location used to organize files.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Environment Variable</h3>
+                <p>A named value available to a process.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Path</h3>
+                <p>A representation of a file or directory location.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Permission</h3>
+                <p>An access right granted to a user or process.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Process ID</h3>
+                <p>A numeric identifier associated with a process.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Script</h3>
+                <p>A sequence of instructions for automated execution.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Shell</h3>
+                <p>Software that interprets commands.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Terminal</h3>
+                <p>An interface for entering text commands.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main>
 </div>
 <!-- =========================
@@ -2047,5 +2174,7 @@ ping example.com</code></pre>
 
         });
     </script>
+    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
 </body>
 </html>

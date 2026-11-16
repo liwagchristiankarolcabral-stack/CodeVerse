@@ -29,35 +29,41 @@ body.dark-mode{--bg:#101827;--surface:#1b283b;--text:#edf3ff;--muted:#b6c4d7;--l
 @media(max-width:760px){.navbar{flex-wrap:wrap;min-height:68px;padding:12px 16px}.logo{font-size:19px}.site-logo{width:33px;height:33px}.menu-toggle{display:block;margin-left:auto}.nav-actions{margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;align-items:stretch;padding:10px 0}.nav-links.show{display:flex}.nav-links a{padding:8px}.layout{display:block;padding:0 14px}.toc{position:static;max-height:260px;margin-bottom:20px}.book-header{padding:27px 22px}.chapter{padding:22px 18px}.reading-controls{margin:12px 14px 0;padding:12px}.topbar{padding:15px 14px 0}.account-username{max-width:115px;font-size:12px}}
 @media(max-width:450px){.navbar{gap:8px}.nav-actions{width:100%;justify-content:flex-end}.control-group{width:100%;justify-content:space-between}.control-group select{max-width:62%}.book-header h1{font-size:27px}.quiz-actions button{width:100%}}
 </style>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/glossary.css">
 </head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
+
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -137,6 +143,10 @@ body.dark-mode{--bg:#101827;--surface:#1b283b;--text:#edf3ff;--muted:#b6c4d7;--l
 <!-- SECTION 1 -->
 <section class="chapter" id="section-1">
 <h2>Section 1: Foundational Concepts of Computer Generations</h2>
+<h3>References</h3>
+<p>Campbell-Kelly, M., Aspray, W., Ensmenger, N., & Yost, J. R. (2013). Computer: A History of the Information Machine (3rd ed.). Westview Press.</p>
+<p>Ceruzzi, P. E. (2003). A History of Modern Computing (2nd ed.). MIT Press.</p>
+<p>Augarten, S. (1984). Bit by Bit: An Illustrated History of Computers. Ticknor & Fields.</p>
 <h3>1.1 Defining Hardware Generations</h3>
 <img alt="Evolution of computer generations" loading="lazy" src="/images/illustration-unavailable.svg"/>
 <p>
@@ -1253,6 +1263,126 @@ body.dark-mode{--bg:#101827;--surface:#1b283b;--text:#edf3ff;--muted:#b6c4d7;--l
 </section>
 <footer class="page-footer">End of Computer Generations and System Classifications · CodeVerse Digital Library</footer>
 </div>
+
+<!-- CODEVERSE GLOSSARY START -->
+
+<section
+    class="cv-glossary chapter"
+    id="glossary"
+    aria-labelledby="cvGlossaryHeading"
+>
+
+    <div class="cv-glossary-header">
+
+        <h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+
+        <p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+
+    </div>
+
+    <label
+        for="cvGlossarySearch"
+        class="cv-glossary-search-label"
+    >
+        Search glossary terms
+    </label>
+
+    <input
+        type="search"
+        id="cvGlossarySearch"
+        class="cv-glossary-search"
+        placeholder="Search a term or definition..."
+        autocomplete="off"
+    >
+
+    <div
+        class="cv-glossary-count"
+        aria-live="polite"
+    >
+        10 terms
+    </div>
+
+    <div class="cv-glossary-list">
+
+        
+            <article class="cv-glossary-item">
+                <h3>Embedded Computer</h3>
+                <p>A computer integrated into a larger device.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Fifth Generation</h3>
+                <p>A broad classification emphasizing advanced computing and artificial intelligence.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>First Generation</h3>
+                <p>Computers primarily using vacuum tubes.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Fourth Generation</h3>
+                <p>Computers associated with microprocessor technology.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Mainframe</h3>
+                <p>A large computer supporting substantial processing workloads.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Microcomputer</h3>
+                <p>A computer built around a microprocessor.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Minicomputer</h3>
+                <p>A historical category of midrange computer.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Second Generation</h3>
+                <p>Computers primarily using transistors.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Supercomputer</h3>
+                <p>A computer designed for extremely demanding calculations.</p>
+            </article>
+        
+
+            <article class="cv-glossary-item">
+                <h3>Third Generation</h3>
+                <p>Computers using integrated circuits.</p>
+            </article>
+        
+
+    </div>
+
+    <p
+        class="cv-glossary-empty"
+        hidden
+    >
+        No matching glossary terms found.
+    </p>
+
+</section>
+
+<!-- CODEVERSE GLOSSARY END -->
+
 </main></div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -1858,4 +1988,6 @@ document.addEventListener('DOMContentLoaded',()=>{
  links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('show')));
  document.querySelectorAll('.lesson-table').forEach(table=>{if(table.parentElement.classList.contains('table-responsive'))return;const wrapper=document.createElement('div');wrapper.className='table-responsive';table.parentNode.insertBefore(wrapper,table);wrapper.appendChild(table)});
 });
-</script><script defer="True" src="/js/auth-nav.js"></script></body></html>
+</script>    <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/glossary.js" defer></script>
+</body></html>

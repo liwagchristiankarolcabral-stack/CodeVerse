@@ -10,10 +10,8 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <!-- External CSS -->
-
 <!--FavIcon-->
 <link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
@@ -27,35 +25,24 @@ html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var
 #quizProgress{padding:12px 16px;background:var(--code-background);border-radius:9px;font-weight:700;margin-bottom:20px}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:20px;margin:15px 0}.quiz-question h3{margin-top:0}.quiz-option{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--border);border-radius:9px;padding:12px;margin:8px 0;cursor:pointer;background:var(--background)}.quiz-option input{margin-top:6px;accent-color:#3157a4}.quiz-option.correct{background:rgba(35,160,100,.14);border-color:#23a064}.quiz-option.incorrect{background:rgba(224,70,70,.13);border-color:#d34d4d}.quiz-feedback{font-weight:700}.quiz-actions{display:flex;gap:12px;flex-wrap:wrap}#retryQuiz{background:var(--code-background);color:var(--text);border:1px solid var(--border);border-radius:9px;padding:11px 19px;font-weight:700}#quizResult{margin-top:20px;text-align:center;background:var(--code-background);border-radius:12px;padding:20px} [hidden]{display:none!important}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:260px}.navbar{flex-wrap:wrap}.nav-links{order:3;width:100%;display:none;flex-direction:column;align-items:stretch;gap:0}.nav-links.show{display:flex}.nav-links a{padding:9px 0}.menu-toggle{display:block}.book-header,.chapter{padding:22px}}@media(min-width:901px){.nav-links{display:flex!important}}@media(max-width:520px){.navbar{gap:8px;padding:12px}.logo{font-size:18px}.site-logo{width:30px;height:30px}#accountActions{display:none}.layout{padding:0 12px 30px}.reading-controls{padding:12px}.control-group{width:100%;justify-content:space-between}.chapter,.book-header{padding:18px}}
 </style>
+<link href="/css/navbar.css" rel="stylesheet"/>
+<link href="/css/glossary.css" rel="stylesheet"/>
 </head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
     ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
+<div id="navbarContainer"></div>
+<div aria-hidden="true" hidden="" id="cvLegacyNavCompatibility" style="display:none!important">
+<button id="themeToggle" type="button">
+        Theme
+    </button>
+<span id="themeIcon"></span>
+<button aria-expanded="false" id="menuToggle" type="button">
+        Menu
+    </button>
+<nav id="navLinks"></nav>
 </div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
 <header class="topbar">
 <a class="back-link" href="/index.html#books">← Back to Books</a>
 </header>
@@ -84,18 +71,38 @@ html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav>
-<!-- HTML INTRODUCTION -->
-<a href="#internet">What is JavaScript?</a>
-<a href="#javascript-capabilities">So What Can JavaScript Really Do?</a>
-<a href="#javascript-execution">What Is JavaScript Doing on Your Page?</a>
-<a href="#adding-javascript">How Do You Add JavaScript to Your Page?</a>
-<a href="#javascript-comments">Comments and Summary</a>
-<a href="#dom-scripting">DOM Scripting Introduction</a>
-<a href="#document-object-model">The Document Object Model</a>
-<a href="#dom-manipulation">Doing Some Basic DOM Manipulation</a>
-<a href="#dynamic-shopping-list">Creating a Dynamic Shopping List and Summary</a>
+<nav><a href="#internet">1. What is JavaScript?</a>
+<a href="#javascript-capabilities">2. So What Can JavaScript Really Do?</a>
+<a href="#javascript-execution">3. What Is JavaScript Doing on Your Page?</a>
+<a href="#adding-javascript">4. How Do You Add JavaScript to Your Page?</a>
+<a href="#javascript-comments">5. Comments and Summary</a>
+<a href="#dom-scripting">6. DOM Scripting Introduction</a>
+<a href="#document-object-model">7. The Document Object Model</a>
+<a href="#dom-manipulation">8. Doing Some Basic DOM Manipulation</a>
+<a href="#dynamic-shopping-list">9. Creating a Dynamic Shopping List and Summary</a>
+<a href="#javascript-syntax">10. JavaScript Syntax and Statements</a>
+<a href="#variables-and-scope">11. Variables, Constants, and Scope</a>
+<a href="#data-types">12. JavaScript Data Types</a>
+<a href="#operators">13. Operators and Expressions</a>
+<a href="#strings-template-literals">14. Strings and Template Literals</a>
+<a href="#conditionals">15. Conditional Statements</a>
+<a href="#loops">16. Loops and Iteration</a>
+<a href="#functions">17. Functions and Parameters</a>
+<a href="#arrays">18. Arrays and Array Methods</a>
+<a href="#objects">19. Objects and Properties</a>
+<a href="#destructuring-spread">20. Destructuring and Spread Syntax</a>
+<a href="#error-handling">21. Errors and Debugging</a>
+<a href="#dom-selection">22. Advanced DOM Selection</a>
+<a href="#dom-traversal">23. Traversing the DOM Tree</a>
+<a href="#events">24. Event Handling and Event Objects</a>
+<a href="#event-delegation">25. Event Delegation and Bubbling</a>
+<a href="#forms-dom">26. Working with Forms and Inputs</a>
+<a href="#timers">27. Timers and the Event Loop</a>
+<a href="#promises-async">28. Promises and Async/Await</a>
+<a href="#fetch-api">29. Fetching Data from APIs</a>
+<a href="#storage-security">30. Browser Storage and Safe DOM Updates</a>
 <a href="#quiz">Knowledge Assessment Quiz</a>
+<a href="#glossary">Glossary of Terms</a>
 </nav>
 </aside>
 <main>
@@ -103,9 +110,7 @@ html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var
 <span class="eyebrow">Digital Book · Technology</span>
 <h1>JavaScript Fundamentals and DOM Manipulation</h1>
 <p>Learn JavaScript basics and DOM manipulation to create dynamic, interactive, and responsive websites.</p>
-</header>
-
-
+</header><section class="chapter" id="references"><h2>References</h2><p>These resources provide additional explanations, specifications, and examples for the lessons in this book.</p><ol><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" rel="noopener noreferrer" target="_blank">MDN — JavaScript Guide</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" rel="noopener noreferrer" target="_blank">MDN — JavaScript Reference</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" rel="noopener noreferrer" target="_blank">MDN — Introduction to the DOM</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events" rel="noopener noreferrer" target="_blank">MDN — DOM Events</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" rel="noopener noreferrer" target="_blank">MDN — Fetch API</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" rel="noopener noreferrer" target="_blank">MDN — Web Storage API</a></li><li><a href="https://javascript.info/" rel="noopener noreferrer" target="_blank">javascript.info — The JavaScript Language</a></li><li><a href="https://tc39.es/ecma262/" rel="noopener noreferrer" target="_blank">ECMA-262 — ECMAScript Specification</a></li><li><a href="https://dom.spec.whatwg.org/" rel="noopener noreferrer" target="_blank">W3C — DOM Standard</a></li><li><a href="https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html" rel="noopener noreferrer" target="_blank">OWASP — DOM Based XSS Prevention</a></li></ol></section>
 <section class="chapter" id="internet">
 <h1>What is JavaScript?</h1>
 <p>
@@ -783,6 +788,111 @@ form.addEventListener("submit", function(event) {
     </p>
 </section>
 
+<!-- ADDITIONAL CODEVERSE JAVASCRIPT LESSONS -->
+<section class="chapter" id="javascript-syntax"><h2>Lesson 10: JavaScript Syntax and Statements</h2><p>JavaScript programs contain statements, expressions, identifiers, and blocks. Statements describe actions; expressions produce values. Use semicolons consistently and braces to group related statements.</p><h3>JavaScript Example</h3><pre><code>const bookTitle = "CodeVerse";
+console.log(bookTitle);</code></pre><h3>Key Takeaway</h3><p>Use meaningful names and consistent formatting so code is easier to debug.</p></section>
+<section class="chapter" id="variables-and-scope"><h2>Lesson 11: Variables, Constants, and Scope</h2><p>Use const for bindings that are not reassigned and let for values that change. Block scope limits access to variables declared inside braces. Avoid var in new code because its function-scoping behavior can be surprising.</p><h3>JavaScript Example</h3><pre><code>const course = "JavaScript";
+let completed = 0;
+if (completed === 0) {
+  const status = "Starting";
+  console.log(status);
+}</code></pre><h3>Key Takeaway</h3><p>Choose const by default and let when reassignment is necessary.</p></section>
+<section class="chapter" id="data-types"><h2>Lesson 12: JavaScript Data Types</h2><p>Primitive values include string, number, boolean, bigint, undefined, symbol, and null. Objects hold collections of properties. typeof helps inspect values, although typeof null returns "object" for historical reasons.</p><h3>JavaScript Example</h3><pre><code>const title = "DOM";
+const pages = 30;
+const published = true;
+const metadata = { title, pages };
+console.log(typeof pages, metadata.title);</code></pre><h3>Key Takeaway</h3><p>Know the difference between primitives and objects before comparing or modifying values.</p></section>
+<section class="chapter" id="operators"><h2>Lesson 13: Operators and Expressions</h2><p>Arithmetic operators calculate values; comparison operators test relationships; logical operators combine conditions. Strict equality (===) compares without implicit type conversion and is usually preferable to ==.</p><h3>JavaScript Example</h3><pre><code>const score = 8;
+const passed = score &gt;= 6 &amp;&amp; score &lt;= 10;
+console.log(`Passed: ${passed}`);</code></pre><h3>Key Takeaway</h3><p>Use parentheses to make complex expressions easy to read.</p></section>
+<section class="chapter" id="strings-template-literals"><h2>Lesson 14: Strings and Template Literals</h2><p>Strings represent text. Template literals use backticks and ${...} placeholders to insert expressions. String methods such as trim(), includes(), and toLowerCase() help process user input.</p><h3>JavaScript Example</h3><pre><code>const name = "  CodeVerse  ".trim();
+const greeting = `Welcome to ${name}!`;
+console.log(greeting.toLowerCase());</code></pre><h3>Key Takeaway</h3><p>Use textContent rather than innerHTML when displaying untrusted text.</p></section>
+<section class="chapter" id="conditionals"><h2>Lesson 15: Conditional Statements</h2><p>if, else if, and else run code based on conditions. switch can handle several known values. A ternary expression is useful for a short two-way choice but should not obscure readability.</p><h3>JavaScript Example</h3><pre><code>const points = 85;
+if (points &gt;= 90) {
+  console.log("Excellent");
+} else if (points &gt;= 75) {
+  console.log("Passed");
+} else {
+  console.log("Keep practicing");
+}</code></pre><h3>Key Takeaway</h3><p>Conditions should be explicit and cover relevant edge cases.</p></section>
+<section class="chapter" id="loops"><h2>Lesson 16: Loops and Iteration</h2><p>Loops repeat tasks. for is useful when an index is needed, while for...of reads values from iterables such as arrays. while repeats until its condition becomes false. Avoid loops that never terminate.</p><h3>JavaScript Example</h3><pre><code>const topics = ["HTML", "CSS", "JavaScript"];
+for (const topic of topics) {
+  console.log(topic);
+}</code></pre><h3>Key Takeaway</h3><p>Use for...of for readable array iteration when you do not need an index.</p></section>
+<section class="chapter" id="functions"><h2>Lesson 17: Functions and Parameters</h2><p>Functions group reusable logic. Parameters receive inputs and return sends a result back to the caller. Functions can be declared with function or assigned to variables using arrow syntax.</p><h3>JavaScript Example</h3><pre><code>function calculateTotal(price, quantity) {
+  return price * quantity;
+}
+const double = value =&gt; value * 2;
+console.log(calculateTotal(50, 3), double(4));</code></pre><h3>Key Takeaway</h3><p>Prefer small functions with a clear purpose and predictable return value.</p></section>
+<section class="chapter" id="arrays"><h2>Lesson 18: Arrays and Array Methods</h2><p>Arrays store ordered values. push() adds an item, map() transforms each item, filter() selects matching items, and find() retrieves the first match. Array indices begin at zero.</p><h3>JavaScript Example</h3><pre><code>const books = ["HTML", "CSS", "JavaScript"];
+const shortNames = books.filter(book =&gt; book.length &lt;= 4);
+console.log(shortNames);</code></pre><h3>Key Takeaway</h3><p>Choose array methods that communicate the intended operation.</p></section>
+<section class="chapter" id="objects"><h2>Lesson 19: Objects and Properties</h2><p>Objects organize related data using key-value properties. Read properties with dot notation or brackets; methods are functions stored as properties. Optional chaining (?.) safely reads a possibly missing nested property.</p><h3>JavaScript Example</h3><pre><code>const book = { title: "JavaScript Basics", pages: 120 };
+book.pages = 125;
+console.log(book.title, book.author?.name);</code></pre><h3>Key Takeaway</h3><p>Objects are useful for representing a book, user, or application setting.</p></section>
+<section class="chapter" id="destructuring-spread"><h2>Lesson 20: Destructuring and Spread Syntax</h2><p>Destructuring extracts properties or array entries into variables. Spread syntax (...) copies enumerable properties or expands iterable values. A spread copy is shallow, so nested objects still share references.</p><h3>JavaScript Example</h3><pre><code>const book = { title: "DOM Guide", year: 2026 };
+const { title } = book;
+const updated = { ...book, year: 2027 };
+console.log(title, updated);</code></pre><h3>Key Takeaway</h3><p>Remember that spreading an object does not deeply clone nested data.</p></section>
+<section class="chapter" id="error-handling"><h2>Lesson 21: Errors and Debugging</h2><p>Syntax errors prevent parsing, while runtime errors occur during execution. Use the browser console, breakpoints, and try/catch around operations that may fail. Log useful context without exposing sensitive information.</p><h3>JavaScript Example</h3><pre><code>try {
+  const data = JSON.parse("{invalid json}");
+  console.log(data);
+} catch (error) {
+  console.error("Could not parse data:", error.message);
+}</code></pre><h3>Key Takeaway</h3><p>Debug the cause of an error rather than hiding it with an empty catch block.</p></section>
+<section class="chapter" id="dom-selection"><h2>Lesson 22: Advanced DOM Selection</h2><p>querySelector() returns the first matching element and querySelectorAll() returns a static NodeList. closest() finds a matching ancestor, and matches() checks whether an element satisfies a selector. Check for null before accessing a missing element.</p><h3>JavaScript Example</h3><pre><code>const card = document.querySelector(".book-card");
+if (card) {
+  const heading = card.querySelector("h3");
+  console.log(heading?.textContent);
+}</code></pre><h3>Key Takeaway</h3><p>Use specific selectors and verify elements exist before modifying them.</p></section>
+<section class="chapter" id="dom-traversal"><h2>Lesson 23: Traversing the DOM Tree</h2><p>DOM elements have parentElement, children, firstElementChild, and nextElementSibling relationships. These properties help navigate a known structure without repeatedly searching the entire document.</p><h3>JavaScript Example</h3><pre><code>const list = document.querySelector("#cvShoppingList");
+if (list) {
+  console.log(list.children.length);
+  console.log(list.firstElementChild);
+}</code></pre><h3>Key Takeaway</h3><p>Element-based properties skip text nodes, which often simplifies traversal.</p></section>
+<section class="chapter" id="events"><h2>Lesson 24: Event Handling and Event Objects</h2><p>addEventListener() registers a callback for events such as click, input, change, and submit. The event object identifies the target and can prevent a default browser action. Use named handlers when you need to remove them later.</p><h3>JavaScript Example</h3><pre><code>const button = document.querySelector("#saveButton");
+if (button) {
+  button.addEventListener("click", event =&gt; {
+    console.log("Clicked:", event.currentTarget.id);
+  });
+}</code></pre><h3>Key Takeaway</h3><p>Prefer addEventListener() over inline HTML event attributes.</p></section>
+<section class="chapter" id="event-delegation"><h2>Lesson 25: Event Delegation and Bubbling</h2><p>Many events bubble from the target element to ancestors. Event delegation attaches one listener to a parent and checks which child initiated the event. This is helpful for dynamically added list items.</p><h3>JavaScript Example</h3><pre><code>const list = document.querySelector("#cvShoppingList");
+list?.addEventListener("click", event =&gt; {
+  const button = event.target.closest("button");
+  if (button &amp;&amp; list.contains(button)) {
+    button.closest("li")?.remove();
+  }
+});</code></pre><h3>Key Takeaway</h3><p>Delegation can reduce the number of listeners in a dynamic interface.</p></section>
+<section class="chapter" id="forms-dom"><h2>Lesson 26: Working with Forms and Inputs</h2><p>JavaScript reads form values through input.value, checks form validity, and can respond to submit events. The FormData API collects successful form controls that have name attributes. Client-side validation improves usability but must be repeated on the server.</p><h3>JavaScript Example</h3><pre><code>const form = document.querySelector("#profileForm");
+form?.addEventListener("submit", event =&gt; {
+  event.preventDefault();
+  if (!form.reportValidity()) return;
+  const values = new FormData(form);
+  console.log(values.get("username"));
+});</code></pre><h3>Key Takeaway</h3><p>Never treat browser-side validation as a security boundary.</p></section>
+<section class="chapter" id="timers"><h2>Lesson 27: Timers and the Event Loop</h2><p>setTimeout() schedules a callback after a delay; setInterval() repeats a callback. JavaScript uses an event loop to coordinate tasks, so timers do not guarantee execution at an exact millisecond. Clear timers when they are no longer needed.</p><h3>JavaScript Example</h3><pre><code>const timerId = setTimeout(() =&gt; {
+  console.log("Reminder shown");
+}, 1000);
+// clearTimeout(timerId) cancels it.</code></pre><h3>Key Takeaway</h3><p>Timers schedule future work; they do not pause the entire browser.</p></section>
+<section class="chapter" id="promises-async"><h2>Lesson 28: Promises and Async/Await</h2><p>Promises represent future success or failure of asynchronous work. async functions return promises, and await lets code handle their outcomes in a readable order. Catch rejections so failures do not go unnoticed.</p><h3>JavaScript Example</h3><pre><code>async function loadMessage() {
+  try {
+    const result = await Promise.resolve("Ready");
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
+loadMessage();</code></pre><h3>Key Takeaway</h3><p>Use try/catch with awaited operations that may reject.</p></section>
+<section class="chapter" id="fetch-api"><h2>Lesson 29: Fetching Data from APIs</h2><p>fetch() makes HTTP requests and returns a Response object. Check response.ok because HTTP error statuses do not automatically reject the promise. Parse JSON only when the response format is JSON.</p><h3>JavaScript Example</h3><pre><code>async function loadBooks() {
+  const response = await fetch("/api/books");
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+}</code></pre><h3>Key Takeaway</h3><p>Handle network failures and unexpected response formats gracefully.</p></section>
+<section class="chapter" id="storage-security"><h2>Lesson 30: Browser Storage and Safe DOM Updates</h2><p>localStorage stores string data across browser sessions and sessionStorage lasts for a tab session. Avoid storing secrets or authentication tokens in web storage. Use textContent to render user-provided strings and validate URLs before assigning them to links.</p><h3>JavaScript Example</h3><pre><code>localStorage.setItem("readerFontSize", "18px");
+const size = localStorage.getItem("readerFontSize");
+const output = document.querySelector("#status");
+if (output) output.textContent = `Font size: ${size}`;</code></pre><h3>Key Takeaway</h3><p>Store only non-sensitive preferences and never insert untrusted strings as HTML.</p></section>
 <section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
 <p>Test your understanding of JavaScript fundamentals, browser APIs, events, DOM manipulation, and interactive forms.</p>
@@ -799,6 +909,71 @@ form.addEventListener("submit", function(event) {
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
 <footer class="page-footer">End of JavaScript Fundamentals and DOM Manipulation · CodeVerse Digital Library</footer>
+<!-- CODEVERSE GLOSSARY START -->
+<section aria-labelledby="cvGlossaryHeading" class="cv-glossary chapter" id="glossary">
+<div class="cv-glossary-header">
+<h2 id="cvGlossaryHeading">
+            Glossary of Terms
+        </h2>
+<p>
+            Explore important terms and their
+            definitions related to this book.
+        </p>
+</div>
+<label class="cv-glossary-search-label" for="cvGlossarySearch">
+        Search glossary terms
+    </label>
+<input autocomplete="off" class="cv-glossary-search" id="cvGlossarySearch" placeholder="Search a term or definition..." type="search"/>
+<div aria-live="polite" class="cv-glossary-count">
+        10 terms
+    </div>
+<div class="cv-glossary-list">
+<article class="cv-glossary-item">
+<h3>Array</h3>
+<p>An ordered collection of values.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Callback</h3>
+<p>A function passed for later execution.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>DOM</h3>
+<p>The document object model.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Event</h3>
+<p>An occurrence handled by a program.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Event Listener</h3>
+<p>A function registered to respond to an event.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Function</h3>
+<p>Reusable code that performs an operation.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>JavaScript</h3>
+<p>A programming language commonly used for web interactivity.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Object</h3>
+<p>A collection of properties.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Promise</h3>
+<p>An object representing an asynchronous result.</p>
+</article>
+<article class="cv-glossary-item">
+<h3>Variable</h3>
+<p>A named binding that stores a value.</p>
+</article>
+</div>
+<p class="cv-glossary-empty" hidden="">
+        No matching glossary terms found.
+    </p>
+</section>
+<!-- CODEVERSE GLOSSARY END -->
 </main>
 </div>
 <script>
@@ -1252,4 +1427,6 @@ document.addEventListener('DOMContentLoaded',function(){
  if(form&&input&&list){form.addEventListener('submit',e=>{e.preventDefault();const value=input.value.trim();if(!value)return;const li=document.createElement('li'),span=document.createElement('span'),btn=document.createElement('button');span.textContent=value;btn.type='button';btn.textContent='Delete';btn.addEventListener('click',()=>li.remove());li.append(span,btn);list.appendChild(li);input.value='';input.focus();});}
  const toc=document.querySelectorAll('.toc a[href^="#"]');toc.forEach(a=>a.addEventListener('click',()=>{toc.forEach(x=>x.classList.remove('current'));a.classList.add('current');}));
 });
-</script></body></html>
+</script> <script defer="" src="/js/navbar-loader.js"></script>
+<script defer="" src="/js/glossary.js"></script>
+</body></html>
