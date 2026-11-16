@@ -64,11 +64,18 @@ if (!process.env.SESSION_SECRET) {
     );
 }
 
+
 /* ==========================================
    2. POSTGRESQL CONNECTION
 ========================================== */
 
+const { Pool } = require("pg");
 
+if (!process.env.DATABASE_URL) {
+    throw new Error(
+        "DATABASE_URL is missing. Configure it in Vercel."
+    );
+}
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -78,21 +85,44 @@ const pool = new Pool({
     allowExitOnIdle: true
 });
 
+/* ==========================================
+   DATABASE ERROR HANDLING
+========================================== */
+
 pool.on("error", (error) => {
     console.error(
         "PostgreSQL idle connection error:",
-        error
+        error.message
     );
 });
 
+/* ==========================================
+   TEST DATABASE CONNECTION
+========================================== */
 
+async function testDatabaseConnection() {
+    try {
+        await pool.query("SELECT 1");
 
-pool.on("error", error => {
-    console.error(
-        "PostgreSQL idle connection error:",
-        error
-    );
-});
+        console.log(
+            "CodeVerse PostgreSQL connected successfully."
+        );
+
+        return true;
+
+    } catch (error) {
+        console.error(
+            "CodeVerse database connection failed:",
+            error.message
+        );
+
+        return false;
+    }
+}
+
+// Test on server startup
+testDatabaseConnection();
+
 
 /* ==========================================
    3. DATABASE TABLES
@@ -789,7 +819,7 @@ app.post(
                     attempts
                 );
 
-                return res.status(401).json({
+                return res.status(403).json({
                     success: false,
                     message: attempts.blockedUntil
                         ? "Too many incorrect attempts. Try again in 15 minutes."
