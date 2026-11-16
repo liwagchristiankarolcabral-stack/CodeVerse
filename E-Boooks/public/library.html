@@ -1,27 +1,352 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ReadSpace | Digital E-Book Library</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<!-- External CSS -->
-<link href="cssstyle.css" rel="stylesheet"/>
-<!--FavIcon-->
-<link href="images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Books | CodeVerse</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="/cssstyle.css">
+    <link rel="stylesheet" href="/css/library.css">
+
+    <link rel="icon" type="image/png"
+          href="/images/CodeVerseLogo.png">
 </head>
-<span id="welcomeUser"></span>
-<script src="js/auth.js"></script>
-<script>
-    checkUser().then(user => {
 
-        if (user) {
-            console.log("Welcome, " + user.fullName);
-        }
+<body>
 
-    });
-</script></html>
+    <!-- NAVIGATION -->
+    <header class="navbar">
+
+        <a href="/index.html" class="logo">
+            <img src="/images/CodeVerseLogo.png"
+                 alt="CodeVerse Logo"
+                 class="site-logo">
+
+            <span>
+                Code<span class="logo-highlight">Verse</span>
+            </span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="/index.html">Home</a>
+            <a href="/library.html" class="active">
+                Explore Books
+            </a>
+            <a href="/About.html">About</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button type="button"
+                    class="icon-btn"
+                    id="themeToggle"
+                    aria-label="Toggle dark mode">
+                <span id="themeIcon">☾</span>
+            </button>
+
+            <div id="accountActions">
+                <a href="/LogIn.html" class="login-btn">
+                    Log In
+                </a>
+                <a href="/register.html" class="signup-btn">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+
+        <button type="button"
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false">
+            ☰
+        </button>
+
+    </header>
+
+    <main>
+
+        <!-- PAGE INTRODUCTION -->
+        <section class="library-hero">
+
+            <span class="section-label">
+                CODEVERSE DIGITAL LIBRARY
+            </span>
+
+            <h1>Explore Our <span>Books</span></h1>
+
+            <p>
+                Discover 30 educational e-books organized
+                according to your Information Technology
+                year level.
+            </p>
+
+            <div class="library-summary">
+                <span>📚 30 E-Books</span>
+                <span>🎓 3 Year Levels</span>
+                <span>🔐 Protected Collections</span>
+            </div>
+
+        </section>
+
+        <!-- ACCESS INFORMATION -->
+        <section class="library-notice">
+
+            <div>
+                <strong>🔐 Year-Level Access Protection</strong>
+
+                <p>
+                    Enter your assigned passkey to access
+                    books in a year-level collection.
+                    Unlocking another year automatically
+                    locks your previously unlocked collection.
+                </p>
+            </div>
+
+            <div class="active-access" id="activeAccess">
+                No collection unlocked
+            </div>
+
+        </section>
+
+        <!-- ALL YEAR LEVELS -->
+        <div class="library-container">
+
+            <!-- FIRST YEAR -->
+            <section class="year-collection"
+                     id="firstYear"
+                     data-year="1">
+
+                <div class="year-heading">
+
+                    <div class="year-heading-content">
+
+                        <div class="year-icon">📘</div>
+
+                        <div>
+                            <span class="year-eyebrow">
+                                FIRST YEAR
+                            </span>
+
+                            <h2>1st Year IT</h2>
+
+                            <p>Introduction to Computing</p>
+                        </div>
+
+                    </div>
+
+                    <div class="year-actions">
+
+                        <span class="cv-access-status"
+                              data-access-year="1">
+                            🔒 Protected
+                        </span>
+
+                        <button class="year-unlock-btn"
+                                type="button"
+                                data-unlock-year="1">
+                            Unlock Collection
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <p class="year-description">
+                    Learn the foundations of computing,
+                    computer systems, digital information,
+                    networks, and emerging technologies.
+                </p>
+
+                <div class="library-book-grid"
+                     id="year1Books"></div>
+
+            </section>
+
+            <!-- SECOND YEAR -->
+            <section class="year-collection"
+                     id="secondYear"
+                     data-year="2">
+
+                <div class="year-heading">
+
+                    <div class="year-heading-content">
+
+                        <div class="year-icon">💻</div>
+
+                        <div>
+                            <span class="year-eyebrow">
+                                SECOND YEAR
+                            </span>
+
+                            <h2>2nd Year IT</h2>
+
+                            <p>Platform Technologies</p>
+                        </div>
+
+                    </div>
+
+                    <div class="year-actions">
+
+                        <span class="cv-access-status"
+                              data-access-year="2">
+                            🔒 Protected
+                        </span>
+
+                        <button class="year-unlock-btn"
+                                type="button"
+                                data-unlock-year="2">
+                            Unlock Collection
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <p class="year-description">
+                    Explore platform technologies,
+                    operating systems, architecture,
+                    and related computing concepts.
+                </p>
+
+                <div class="library-book-grid"
+                     id="year2Books"></div>
+
+            </section>
+
+            <!-- THIRD YEAR -->
+            <section class="year-collection"
+                     id="thirdYear"
+                     data-year="3">
+
+                <div class="year-heading">
+
+                    <div class="year-heading-content">
+
+                        <div class="year-icon">🌐</div>
+
+                        <div>
+                            <span class="year-eyebrow">
+                                THIRD YEAR
+                            </span>
+
+                            <h2>3rd Year IT</h2>
+
+                            <p>Web Technologies</p>
+                        </div>
+
+                    </div>
+
+                    <div class="year-actions">
+
+                        <span class="cv-access-status"
+                              data-access-year="3">
+                            🔒 Protected
+                        </span>
+
+                        <button class="year-unlock-btn"
+                                type="button"
+                                data-unlock-year="3">
+                            Unlock Collection
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <p class="year-description">
+                    Study HTML, CSS, JavaScript,
+                    responsive design, authentication,
+                    accessibility, and web deployment.
+                </p>
+
+                <div class="library-book-grid"
+                     id="year3Books"></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- YEAR-LEVEL PASSKEY MODAL -->
+    <div class="book-lock-overlay"
+         id="bookLockModal"
+         hidden>
+
+        <div class="book-lock-card"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="bookLockTitle">
+
+            <button type="button"
+                    class="book-lock-close"
+                    id="closeBookLock"
+                    aria-label="Close">
+                ×
+            </button>
+
+            <div class="book-lock-icon">🔐</div>
+
+            <h2 id="bookLockTitle">
+                Year-Level Access Required
+            </h2>
+
+            <p id="bookLockDescription">
+                Enter your assigned four-digit passkey.
+            </p>
+
+            <form id="bookLockForm">
+
+                <label for="bookPasskey">
+                    Year-Level Passkey
+                </label>
+
+                <input type="password"
+                       id="bookPasskey"
+                       inputmode="numeric"
+                       minlength="4"
+                       maxlength="4"
+                       pattern="[0-9]{4}"
+                       placeholder="Enter 4-digit passkey"
+                       autocomplete="off"
+                       required>
+
+                <label class="show-passkey-label">
+                    <input type="checkbox"
+                           id="showBookPasskey">
+                    Show passkey
+                </label>
+
+                <p id="bookLockMessage"
+                   aria-live="polite"></p>
+
+                <button type="submit"
+                        id="unlockBookButton">
+                    Unlock Collection
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <footer class="library-footer">
+        <p>
+            © 2026 CodeVerse Digital E-Book Library.
+            All rights reserved.
+        </p>
+    </footer>
+
+    <script src="/js/library.js"></script>
+
+</body>
+</html>

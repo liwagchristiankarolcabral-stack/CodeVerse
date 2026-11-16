@@ -1,45 +1,1156 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Explore Internet Fundamentals on CodeVerse.">
-<title>Internet Fundamentals | CodeVerse</title>
-<link rel="icon" href="/images/CodeVerseLogo.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f5f8ff;--surface:#fff;--text:#1b2b48;--muted:#67758d;--line:#e0e8f5;--blue:#315bb1;--blue2:#254687;--shadow:0 18px 48px rgba(32,58,111,.10)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'DM Sans',Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .2s,color .2s}body.dark-mode{--bg:#101827;--surface:#1a273b;--text:#edf3ff;--muted:#afbdd3;--line:#35445c;--blue:#8db1ff;--blue2:#6f9afa;--shadow:0 18px 48px rgba(0,0,0,.25)}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #f3b952;outline-offset:3px}.navbar{height:80px;padding:0 max(5%,calc((100vw - 1200px)/2));display:flex;align-items:center;gap:28px;background:var(--surface);border-bottom:1px solid var(--line);position:relative;z-index:5}.logo{display:flex;align-items:center;gap:11px;font-size:24px;font-weight:800;white-space:nowrap}.logo-highlight{color:var(--blue)}.site-logo{height:43px;width:43px;object-fit:contain}.nav-links{display:flex;align-items:center;gap:26px;margin-left:auto}.nav-links a{font-size:14px;font-weight:700;color:var(--muted)}.nav-links a:hover,.nav-links a.active{color:var(--blue)}.nav-actions{display:flex;align-items:center;gap:15px}.icon-btn,.menu-toggle{border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);width:42px;height:42px;font-size:23px}.menu-toggle{display:none}#accountActions{display:flex;gap:10px;align-items:center}.login-btn,.signup-btn{font-weight:700;font-size:13px;padding:12px 16px;border-radius:10px;white-space:nowrap}.login-btn{border:1px solid var(--line)}.signup-btn{background:#315bb1;color:#fff}.topbar{max-width:1150px;margin:24px auto 0;padding:0 20px}.back-link{font-size:14px;font-weight:700;color:var(--blue)}.back-link:hover{text-decoration:underline}.book-container{max-width:1150px;margin:28px auto 85px;padding:40px;display:grid;grid-template-columns:minmax(240px,390px) 1fr;gap:clamp(30px,6vw,85px);align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow)}.book-cover-container{display:flex;justify-content:center}.book-cover-image{display:block;width:100%;max-width:360px;aspect-ratio:3/4;object-fit:cover;border-radius:16px;box-shadow:15px 20px 32px rgba(20,39,77,.22)}.featured-label{display:inline-block;background:rgba(49,91,177,.11);color:var(--blue);padding:9px 13px;border-radius:50px;font-size:12px;font-weight:800;letter-spacing:.09em}.book-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(35px,4.4vw,58px);line-height:1.13;letter-spacing:-.03em;margin:20px 0 20px}.book-stats{display:flex;gap:16px;margin-bottom:24px}.stat{display:flex;flex-direction:column;gap:3px;border-left:3px solid var(--blue);padding-left:13px}.stat strong{font-size:25px}.stat span{font-size:13px;color:var(--muted)}.book-description{font-size:16px;line-height:1.9;color:var(--muted);max-width:550px}.book-actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:28px}.book-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 23px;border-radius:12px;border:1px solid var(--line);font-size:14px;font-weight:800;background:var(--surface);color:var(--text)}.book-btn.primary{background:#315bb1;border-color:#315bb1;color:#fff}.book-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(35,65,120,.12)}.page-footer{text-align:center;padding:0 20px 30px;color:var(--muted);font-size:13px}.contents-overlay{position:fixed;inset:0;background:rgba(8,18,37,.65);display:none;align-items:center;justify-content:center;z-index:20;padding:20px}.contents-overlay.show{display:flex}.contents-modal{background:var(--surface);color:var(--text);border-radius:22px;width:min(100%,590px);max-height:min(86vh,760px);display:flex;flex-direction:column;box-shadow:0 28px 75px rgba(0,0,0,.28);overflow:hidden}.contents-header{padding:25px 28px;border-bottom:1px solid var(--line);display:flex;align-items:start;justify-content:space-between;gap:15px}.contents-subtitle{font-size:11px;letter-spacing:.13em;font-weight:800;color:var(--blue)}.contents-header h2{font-family:'Playfair Display',Georgia,serif;font-size:28px;margin:7px 0 0}.close-contents{background:transparent;border:0;color:var(--muted);font-size:32px;line-height:1}.contents-list{overflow:auto;padding:10px 20px 22px}.contents-list a{display:flex;align-items:center;gap:18px;padding:16px 10px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px}.contents-list a:hover{color:var(--blue);background:rgba(49,91,177,.05)}.contents-number{color:var(--blue);font-size:12px;font-weight:800}.contents-arrow{margin-left:auto;font-size:24px;color:var(--muted)}.modal-hint{padding:0 28px 20px;color:var(--muted);font-size:12px;line-height:1.5}@media(max-width:900px){.navbar{padding:0 20px;gap:14px}.nav-links{gap:12px}.book-container{margin:25px 20px 60px;padding:30px;gap:30px;grid-template-columns:minmax(200px,300px) 1fr}}@media(max-width:700px){.navbar{height:72px}.logo{font-size:20px}.site-logo{width:37px;height:37px}.menu-toggle{display:block;order:3}.nav-actions{margin-left:auto}.nav-links{display:none;position:absolute;top:72px;left:0;right:0;margin:0;background:var(--surface);padding:16px 24px;border-bottom:1px solid var(--line);box-shadow:var(--shadow);flex-direction:column;align-items:stretch}.nav-links.show{display:flex}.nav-links a{padding:8px}.login-btn,.signup-btn{display:none}.book-container{grid-template-columns:1fr;padding:28px 23px}.book-cover-image{max-width:280px}.book-details{text-align:center}.book-stats,.book-actions{justify-content:center}.book-description{margin-left:auto;margin-right:auto}.stat{text-align:left}}@media(max-width:390px){.logo{font-size:18px}.navbar{padding:0 12px}.book-btn{width:100%}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Explore Internet Fundamentals on CodeVerse.">
+
+    <title>Internet Fundamentals | CodeVerse</title>
+
+    <!-- FAVICON -->
+    <link rel="icon"
+          href="/images/CodeVerseLogo.png"
+          type="image/png">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================
+           THEME VARIABLES
+        ===================================== */
+
+        :root {
+            --bg: #f5f8ff;
+            --surface: #ffffff;
+            --text: #1b2b48;
+            --muted: #67758d;
+            --line: #e0e8f5;
+            --blue: #315bb1;
+            --blue2: #254687;
+            --shadow: 0 18px 48px rgba(32, 58, 111, .10);
+        }
+
+        body.dark-mode {
+            --bg: #101827;
+            --surface: #1a273b;
+            --text: #edf3ff;
+            --muted: #afbdd3;
+            --line: #35445c;
+            --blue: #8db1ff;
+            --blue2: #6f9afa;
+            --shadow: 0 18px 48px rgba(0, 0, 0, .25);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "DM Sans", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background .2s, color .2s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #f3b952;
+            outline-offset: 3px;
+        }
+
+        /* =====================================
+           NAVIGATION BAR
+        ===================================== */
+
+        .navbar {
+            min-height: 80px;
+            padding: 12px 5%;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            position: relative;
+            z-index: 5;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 24px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .logo-highlight {
+            color: var(--blue);
+        }
+
+        .site-logo {
+            height: 43px;
+            width: 43px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--muted);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-btn,
+        .menu-toggle {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--surface);
+            color: var(--text);
+            width: 42px;
+            height: 42px;
+            font-size: 23px;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        #accountActions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .login-btn,
+        .signup-btn {
+            font-weight: 700;
+            font-size: 13px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .login-btn {
+            border: 1px solid var(--line);
+        }
+
+        .signup-btn {
+            background: #315bb1;
+            color: white;
+        }
+
+        /* =====================================
+           BACK TO LIBRARY
+        ===================================== */
+
+        .topbar {
+            max-width: 1150px;
+            margin: 24px auto 0;
+            padding: 0 20px;
+        }
+
+        .back-link {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* =====================================
+           BOOK CONTAINER
+        ===================================== */
+
+        .book-container {
+            max-width: 1150px;
+            margin: 28px auto 85px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: minmax(240px, 390px) 1fr;
+            gap: clamp(30px, 6vw, 85px);
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            box-shadow: var(--shadow);
+            box-sizing: border-box;
+        }
+
+        .book-cover-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .book-cover-image {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 15px 20px 32px rgba(20, 39, 77, .22);
+        }
+
+        /* =====================================
+           BOOK DETAILS
+        ===================================== */
+
+        .featured-label {
+            display: inline-block;
+            background: rgba(49, 91, 177, .11);
+            color: var(--blue);
+            padding: 9px 13px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .09em;
+        }
+
+        .book-title {
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(35px, 4.4vw, 58px);
+            line-height: 1.13;
+            letter-spacing: -.03em;
+            margin: 20px 0;
+        }
+
+        .book-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            border-left: 3px solid var(--blue);
+            padding-left: 13px;
+        }
+
+        .stat strong {
+            font-size: 25px;
+        }
+
+        .stat span {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .book-description {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--muted);
+            max-width: 550px;
+        }
+
+        /* =====================================
+           ACTION BUTTONS
+        ===================================== */
+
+        .book-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+            margin-top: 28px;
+        }
+
+        .book-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 12px 23px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            font-size: 14px;
+            font-weight: 800;
+            background: var(--surface);
+            color: var(--text);
+            box-sizing: border-box;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .book-btn.primary {
+            background: #315bb1;
+            border-color: #315bb1;
+            color: white;
+        }
+
+        .book-btn.primary:hover {
+            background: #254687;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(35, 65, 120, .12);
+        }
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        .page-footer {
+            text-align: center;
+            padding: 0 20px 30px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =====================================
+           CONTENTS POPUP
+        ===================================== */
+
+        .contents-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 18, 37, .65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .contents-overlay.show {
+            display: flex;
+        }
+
+        .contents-modal {
+            background: var(--surface);
+            color: var(--text);
+            border-radius: 22px;
+            width: min(100%, 590px);
+            max-height: min(86vh, 760px);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 28px 75px rgba(0, 0, 0, .28);
+            overflow: hidden;
+        }
+
+        .contents-header {
+            padding: 25px 28px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .contents-subtitle {
+            font-size: 11px;
+            letter-spacing: .13em;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .contents-header h2 {
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: 28px;
+            margin: 7px 0 0;
+        }
+
+        .close-contents {
+            background: transparent;
+            border: 0;
+            color: var(--muted);
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .contents-list {
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+            padding: 10px 20px 22px;
+        }
+
+        .contents-list a {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 16px 10px;
+            border-bottom: 1px solid var(--line);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .contents-list a:hover,
+        .contents-list a:focus-visible {
+            color: var(--blue);
+            background: rgba(49, 91, 177, .05);
+        }
+
+        .contents-number {
+            min-width: 26px;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .contents-name {
+            flex: 1;
+        }
+
+        .contents-arrow {
+            margin-left: auto;
+            font-size: 24px;
+            color: var(--muted);
+        }
+
+        /* =====================================
+           RESPONSIVE DESIGN
+        ===================================== */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                padding: 12px 20px;
+                gap: 14px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .book-container {
+                margin: 25px 20px 60px;
+                padding: 30px;
+                gap: 30px;
+                grid-template-columns: minmax(200px, 300px) 1fr;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                min-height: 72px;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .site-logo {
+                width: 37px;
+                height: 37px;
+            }
+
+            .menu-toggle {
+                display: block;
+                order: 3;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .nav-links {
+                display: none;
+                order: 4;
+                width: 100%;
+                margin: 0;
+                padding: 16px 0;
+                border-top: 1px solid var(--line);
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 8px;
+            }
+
+            .login-btn,
+            .signup-btn {
+                display: none;
+            }
+
+            .book-container {
+                grid-template-columns: 1fr;
+                padding: 28px 23px;
+            }
+
+            .book-cover-image {
+                max-width: 280px;
+            }
+
+            .book-details {
+                text-align: center;
+            }
+
+            .book-stats,
+            .book-actions {
+                justify-content: center;
+            }
+
+            .book-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .stat {
+                text-align: left;
+            }
+
+        }
+
+        @media (max-width: 390px) {
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .navbar {
+                padding: 12px;
+            }
+
+            .book-btn {
+                width: 100%;
+            }
+
+            .contents-header {
+                padding: 18px;
+            }
+
+            .contents-list {
+                padding: 8px;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .book-btn,
+            body {
+                transition: none;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 <body id="top">
-<header class="navbar">
-<a class="logo" href="/index.html"><img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"><span>Code<span class="logo-highlight">Verse</span></span></a>
-<nav class="nav-links" id="navLinks" aria-label="Main navigation"><a href="/index.html">Home</a><a href="/library.html" class="active">Explore Books</a><a href="/About.html">About</a></nav>
-<div class="nav-actions"><button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button"><span id="themeIcon">☾</span></button><div id="accountActions"><a class="login-btn" href="/LogIn.html">Log In</a><a class="signup-btn" href="/register.html">Sign Up</a></div></div>
-<button aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" class="menu-toggle" id="menuToggle" type="button">☰</button>
-</header>
-<div class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></div>
-<main class="book-container">
-<div class="book-cover-container"><img alt="Internet Fundamentals book cover" class="book-cover-image" src="/images/InternetFundamentals.jpg"></div>
-<section class="book-details"><span class="featured-label">★ FEATURED E-BOOK</span><h1 class="book-title">Internet Fundamentals</h1><div class="book-stats"><div class="stat"><strong>8</strong><span>Parts</span></div></div><p class="book-description">Learn the basics of the internet, including how it works, web browsers, search engines, online communication, and internet security.</p><div class="book-actions"><a class="book-btn primary" href="/read/1">Start Reading →</a><button class="book-btn" id="contentsBtn" type="button">☰ &nbsp; Contents</button></div></section>
-</main>
-<footer class="page-footer">Internet Fundamentals · CodeVerse Digital Library</footer>
-<div class="contents-overlay" id="contentsPopup" aria-hidden="true"><div class="contents-modal" role="dialog" aria-modal="true" aria-labelledby="contentsTitle"><div class="contents-header"><div><span class="contents-subtitle">INTERNET FUNDAMENTALS</span><h2 id="contentsTitle">Table of Contents</h2></div><button aria-label="Close contents" class="close-contents" id="closeContents" type="button">×</button></div><div class="contents-list">
-<a href="/read/1"><span class="contents-number">01</span>The Internet<span class="contents-arrow">›</span></a>
-<a href="/read/1"><span class="contents-number">02</span>The World Wide Web<span class="contents-arrow">›</span></a>
-<a href="/read/1"><span class="contents-number">03</span>Internet Connectivity<span class="contents-arrow">›</span></a>
-<a href="/read/1"><span class="contents-number">04</span>Cloud Computing<span class="contents-arrow">›</span></a>
-<a href="/read/1"><span class="contents-number">05</span>Web Browsers<span class="contents-arrow">›</span></a>
-<a href="/read/1"><span class="contents-number">06</span>Hyperlinks<span class="contents-arrow">›</span></a>
-<a href="/read/1"><span class="contents-number">07</span>Uniform Resource Locators<span class="contents-arrow">›</span></a>
-<a href="/read/1"><span class="contents-number">08</span>Culture<span class="contents-arrow">›</span></a>
-</div><p class="modal-hint">Select a topic to open the reader. Individual chapter links can be added once the reader's section IDs are confirmed.</p></div></div>
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
-const menu=document.getElementById('menuToggle'),nav=document.getElementById('navLinks');menu.addEventListener('click',()=>{const opened=nav.classList.toggle('show');menu.setAttribute('aria-expanded',String(opened));});
-const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon');let theme='light';try{theme=localStorage.getItem('readerTheme')||localStorage.getItem('theme')||'light'}catch(e){}function applyTheme(){document.body.classList.toggle('dark-mode',theme==='dark');icon.textContent=theme==='dark'?'☀':'☾'}applyTheme();toggle.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';try{localStorage.setItem('readerTheme',theme);localStorage.setItem('theme',theme)}catch(e){}applyTheme()});
-const btn=document.getElementById('contentsBtn'),overlay=document.getElementById('contentsPopup'),close=document.getElementById('closeContents');function setModal(open){overlay.classList.toggle('show',open);overlay.setAttribute('aria-hidden',String(!open));document.body.style.overflow=open?'hidden':'';if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setModal(true));close.addEventListener('click',()=>setModal(false));overlay.addEventListener('click',e=>{if(e.target===overlay)setModal(false)});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('show'))setModal(false)});
-});
-</script>
-</body></html>
+
+    <!-- =====================================
+         NAVIGATION BAR
+    ===================================== -->
+
+    <header class="navbar">
+
+        <a class="logo" href="/index.html">
+
+            <img
+                alt="CodeVerse Logo"
+                class="site-logo"
+                src="/images/CodeVerseLogo.png"
+            >
+
+            <span>
+                Code<span class="logo-highlight">Verse</span>
+            </span>
+
+        </a>
+
+        <nav
+            class="nav-links"
+            id="navLinks"
+            aria-label="Main navigation"
+        >
+
+            <a href="/index.html">Home</a>
+
+            <a href="/library.html" class="active">
+                Explore Books
+            </a>
+
+            <a href="/index.html#about">About</a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <button
+                aria-label="Toggle dark mode"
+                class="icon-btn"
+                id="themeToggle"
+                type="button"
+            >
+                <span id="themeIcon">☾</span>
+            </button>
+
+            <div id="accountActions">
+
+                <a class="login-btn" href="/LogIn.html">
+                    Log In
+                </a>
+
+                <a class="signup-btn" href="/register.html">
+                    Sign Up
+                </a>
+
+            </div>
+
+        </div>
+
+        <button
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+        >
+            ☰
+        </button>
+
+    </header>
+
+    <!-- =====================================
+         BACK TO BOOKS
+    ===================================== -->
+
+    <div class="topbar">
+
+        <a class="back-link" href="/library.html">
+            ← Back to Books
+        </a>
+
+    </div>
+
+    <!-- =====================================
+         BOOK COVER AND DETAILS
+    ===================================== -->
+
+    <main class="book-container">
+
+        <!-- BOOK COVER -->
+
+        <div class="book-cover-container">
+
+            <img
+                alt="Internet Fundamentals Book Cover"
+                class="book-cover-image"
+                src="\images\book-covers\3rd year\InterWWW.jpg"
+            >
+
+        </div>
+
+        <!-- BOOK DETAILS -->
+
+        <section class="book-details">
+
+            <span class="featured-label">
+                ★ FEATURED E-BOOK
+            </span>
+
+            <h1 class="book-title">
+                Internet Fundamentals
+            </h1>
+
+            <!-- STATISTICS -->
+
+            <div class="book-stats">
+
+                <div class="stat">
+                    <strong>8</strong>
+                    <span>Lessons</span>
+                </div>
+
+                <div class="stat">
+                    <strong>1</strong>
+                    <span>Knowledge Assessment</span>
+                </div>
+
+            </div>
+
+            <!-- DESCRIPTION -->
+
+            <p class="book-description">
+
+                Learn the fundamentals of the internet,
+                including how computer networks connect
+                people and devices around the world.
+
+                Explore the World Wide Web, internet
+                connectivity, cloud computing, web browsers,
+                hyperlinks, URLs, and online culture
+                through organized lessons and a
+                knowledge assessment.
+
+            </p>
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="book-actions">
+
+                <a
+                    class="book-btn primary"
+                    href="/read/1"
+                >
+                    Start Reading →
+                </a>
+
+                <button
+                    class="book-btn"
+                    id="contentsBtn"
+                    type="button"
+                    aria-haspopup="dialog"
+                >
+                    ☰ Contents
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="page-footer">
+        Internet Fundamentals · CodeVerse Digital Library
+    </footer>
+
+    <!-- =====================================
+         TABLE OF CONTENTS POPUP
+    ===================================== -->
+
+    <div
+        class="contents-overlay"
+        id="contentsPopup"
+        aria-hidden="true"
+    >
+
+        <div
+            class="contents-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contentsTitle"
+        >
+
+            <!-- CONTENTS HEADER -->
+
+            <div class="contents-header">
+
+                <div>
+
+                    <span class="contents-subtitle">
+                        INTERNET FUNDAMENTALS
+                    </span>
+
+                    <h2 id="contentsTitle">
+                        Table of Contents
+                    </h2>
+
+                </div>
+
+                <button
+                    aria-label="Close contents"
+                    class="close-contents"
+                    id="closeContents"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <!-- SCROLLABLE CONTENTS -->
+
+            <div class="contents-list">
+
+                <a href="/read/1#internet">
+
+                    <span class="contents-number">01</span>
+
+                    <span class="contents-name">
+                        The Internet
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+                <a href="/read/1#www">
+
+                    <span class="contents-number">02</span>
+
+                    <span class="contents-name">
+                        The World Wide Web
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+                <a href="/read/1#connectivity">
+
+                    <span class="contents-number">03</span>
+
+                    <span class="contents-name">
+                        Internet Connectivity
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+                <a href="/read/1#cloud">
+
+                    <span class="contents-number">04</span>
+
+                    <span class="contents-name">
+                        Cloud Computing
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+                <a href="/read/1#browsers">
+
+                    <span class="contents-number">05</span>
+
+                    <span class="contents-name">
+                        Web Browsers
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+                <a href="/read/1#hyperlinks">
+
+                    <span class="contents-number">06</span>
+
+                    <span class="contents-name">
+                        Hyperlinks
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+                <a href="/read/1#urls">
+
+                    <span class="contents-number">07</span>
+
+                    <span class="contents-name">
+                        Uniform Resource Locators
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+                <a href="/read/1#culture">
+
+                    <span class="contents-number">08</span>
+
+                    <span class="contents-name">
+                        Culture
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+                <a href="/read/1#quiz">
+
+                    <span class="contents-number">✓</span>
+
+                    <span class="contents-name">
+                        Knowledge Assessment Quiz
+                    </span>
+
+                    <span class="contents-arrow">›</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================
+         JAVASCRIPT
+    ===================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ===================================== */
+
+            const menu =
+                document.getElementById("menuToggle");
+
+            const nav =
+                document.getElementById("navLinks");
+
+            menu.addEventListener("click", function () {
+
+                const opened =
+                    nav.classList.toggle("show");
+
+                menu.setAttribute(
+                    "aria-expanded",
+                    String(opened)
+                );
+
+            });
+
+            /* =====================================
+               DARK MODE
+            ===================================== */
+
+            const toggle =
+                document.getElementById("themeToggle");
+
+            const icon =
+                document.getElementById("themeIcon");
+
+            let theme = "light";
+
+            try {
+
+                theme =
+                    localStorage.getItem("readerTheme") ||
+                    localStorage.getItem("theme") ||
+                    "light";
+
+            } catch (error) {
+                theme = "light";
+            }
+
+            function applyTheme() {
+
+                const isDark = theme === "dark";
+
+                document.body.classList.toggle(
+                    "dark-mode",
+                    isDark
+                );
+
+                icon.textContent =
+                    isDark ? "☀" : "☾";
+
+                toggle.setAttribute(
+                    "aria-label",
+                    isDark
+                        ? "Switch to light mode"
+                        : "Switch to dark mode"
+                );
+
+            }
+
+            applyTheme();
+
+            toggle.addEventListener("click", function () {
+
+                theme =
+                    theme === "dark"
+                        ? "light"
+                        : "dark";
+
+                try {
+
+                    localStorage.setItem(
+                        "readerTheme",
+                        theme
+                    );
+
+                    localStorage.setItem(
+                        "theme",
+                        theme
+                    );
+
+                } catch (error) {
+                    // Theme still changes for this session.
+                }
+
+                applyTheme();
+
+            });
+
+            /* =====================================
+               CONTENTS POPUP
+            ===================================== */
+
+            const btn =
+                document.getElementById("contentsBtn");
+
+            const overlay =
+                document.getElementById("contentsPopup");
+
+            const close =
+                document.getElementById("closeContents");
+
+            let previousFocus = null;
+
+            function setModal(open) {
+
+                overlay.classList.toggle("show", open);
+
+                overlay.setAttribute(
+                    "aria-hidden",
+                    String(!open)
+                );
+
+                document.body.style.overflow =
+                    open ? "hidden" : "";
+
+                if (open) {
+
+                    previousFocus = document.activeElement;
+
+                    close.focus();
+
+                } else if (previousFocus) {
+
+                    previousFocus.focus();
+
+                }
+
+            }
+
+            btn.addEventListener("click", function () {
+                setModal(true);
+            });
+
+            close.addEventListener("click", function () {
+                setModal(false);
+            });
+
+            overlay.addEventListener("click", function (event) {
+
+                if (event.target === overlay) {
+                    setModal(false);
+                }
+
+            });
+
+            /* =====================================
+               KEYBOARD ACCESSIBILITY
+            ===================================== */
+
+            document.addEventListener("keydown", function (event) {
+
+                if (!overlay.classList.contains("show")) {
+                    return;
+                }
+
+                if (event.key === "Escape") {
+
+                    setModal(false);
+                    return;
+
+                }
+
+                if (event.key === "Tab") {
+
+                    const focusable = [
+                        close,
+                        ...overlay.querySelectorAll(".contents-list a")
+                    ];
+
+                    const first = focusable[0];
+
+                    const last =
+                        focusable[focusable.length - 1];
+
+                    if (
+                        event.shiftKey &&
+                        document.activeElement === first
+                    ) {
+
+                        event.preventDefault();
+                        last.focus();
+
+                    } else if (
+                        !event.shiftKey &&
+                        document.activeElement === last
+                    ) {
+
+                        event.preventDefault();
+                        first.focus();
+
+                    }
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+    <!-- CODEVERSE ACCOUNT NAVIGATION -->
+    <script src="/js/auth-nav.js" defer></script>
+
+</body>
+</html>

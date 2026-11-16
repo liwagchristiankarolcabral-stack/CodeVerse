@@ -254,8 +254,8 @@ document.addEventListener("DOMContentLoaded", () => {
         description.textContent =
             `Enter your 4-digit passkey to unlock ` +
             `${collection.subject} and open "${bookTitle}". ` +
-            `You only need to unlock this collection ` +
-            `once per login session.`;
+            `Unlocking another year level will automatically ` +
+            `lock this collection again.`;
 
         modal.hidden = false;
 
@@ -309,14 +309,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             );
 
-            if (response.status === 401) {
+            
+if (response.status === 401) {
 
-                unlockedYears.clear();
+    // Confirm whether the login session has expired.
+    const authResponse = await fetch(
+        "/api/auth/status",
+        {
+            credentials: "same-origin",
+            cache: "no-store"
+        }
+    );
 
-                updateAccessIndicators();
+    if (!authResponse.ok) {
+        throw new Error(
+            "Unable to verify your login session."
+        );
+    }
 
-                return false;
-            }
+    const authData = await authResponse.json();
+
+    if (!authData.loggedIn) {
+        window.location.assign("/LogIn.html");
+        return;
+    }
+
+    // A logged-in user should see the actual
+    // passkey error instead of being redirected.
+    throw new Error(
+        result.message ||
+        "Unable to unlock the collection."
+    );
+}
+
 
             if (!response.ok) {
 
@@ -539,6 +564,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (access.redirectUrl) {
 
+                unlockedYears.clear();
                 unlockedYears.add(year);
 
                 updateAccessIndicators();
@@ -798,9 +824,8 @@ document.addEventListener("DOMContentLoaded", () => {
                PASSKEY VERIFIED
             ================================== */
 
-            unlockedYears.add(
-                selectedYear
-            );
+            unlockedYears.clear();
+            unlockedYears.add(selectedYear);
 
             updateAccessIndicators();
 

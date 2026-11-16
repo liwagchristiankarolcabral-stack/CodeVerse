@@ -1,0 +1,394 @@
+
+/* ==========================================
+   CODEVERSE - EXPLORE BOOKS PAGE
+========================================== */
+
+.library-hero {
+    padding: 75px 8% 60px;
+    text-align: center;
+    background: var(--surface);
+}
+
+.library-hero h1 {
+    margin: 15px 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(35px, 5vw, 52px);
+    color: var(--text);
+}
+
+.library-hero h1 span {
+    color: var(--primary);
+}
+
+.library-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.library-summary {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.library-summary span {
+    padding: 11px 18px;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ACCESS NOTICE */
+
+.library-notice {
+    max-width: 1250px;
+    margin: 35px auto 0;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--secondary);
+}
+
+.library-notice strong {
+    color: var(--text);
+}
+
+.library-notice p {
+    max-width: 750px;
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.active-access {
+    padding: 12px 17px;
+    border-radius: 9px;
+    background: var(--card);
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* COLLECTIONS */
+
+.library-container {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 45px 5% 85px;
+}
+
+.year-collection {
+    margin-bottom: 45px;
+    padding: 35px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+}
+
+.year-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.year-heading-content {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.year-icon {
+    width: 75px;
+    height: 75px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 17px;
+    background: var(--secondary);
+    font-size: 34px;
+}
+
+.year-eyebrow {
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.year-heading h2 {
+    margin: 6px 0;
+    color: var(--text);
+    font-size: 27px;
+}
+
+.year-heading p {
+    margin: 0;
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.year-description {
+    margin: 22px 0 28px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.year-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cv-access-status {
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.year-unlock-btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 9px;
+    background: #3157a4;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.year-unlock-btn:hover {
+    background: #24427f;
+}
+
+/* BOOK GRID */
+
+.library-book-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.library-book-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--card);
+    transition: transform .2s, box-shadow .2s;
+}
+
+.library-book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* ==========================================
+   CODEVERSE - LIBRARY BOOK COVERS
+========================================== */
+
+/* BOOK CARD */
+
+.library-book-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 13px;
+}
+
+/* IMAGE CONTAINER */
+
+.library-book-cover {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8eef9;
+    border-bottom: 1px solid #dce4f2;
+}
+
+/* COVER IMAGE */
+
+.library-book-cover-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+/* HOVER EFFECT */
+
+.library-book-card:hover .library-book-cover-image {
+    transform: scale(1.04);
+}
+
+/* BOOK INFORMATION */
+
+.library-book-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 18px;
+}
+
+.library-book-info h3 {
+    min-height: 65px;
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 700;
+    overflow-wrap: break-word;
+}
+
+/* READ BOOK BUTTON */
+
+.library-read-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #3157a4;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.library-read-btn:hover {
+    background: #24427f;
+}
+
+/* DARK MODE */
+
+body.dark-mode .library-book-cover {
+    background: #202c40;
+    border-bottom-color: #34435d;
+}
+
+
+.library-book-info {
+    padding: 18px;
+}
+
+.library-book-number {
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.library-book-info h3 {
+    min-height: 44px;
+    margin: 9px 0;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.library-book-info p {
+    min-height: 45px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.library-read-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #3157a4;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.library-read-btn:hover {
+    background: #24427f;
+}
+
+.library-footer {
+    padding: 25px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    text-align: center;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1150px) {
+    .library-notice {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .library-book-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
+    .year-heading,
+    .library-notice {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .library-book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .library-hero {
+        padding: 55px 6%;
+    }
+
+    .year-collection {
+        padding: 22px;
+    }
+
+    .year-heading-content {
+        align-items: flex-start;
+    }
+
+    .year-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 25px;
+    }
+
+    .year-heading h2 {
+        font-size: 22px;
+    }
+
+    .year-actions {
+        flex-wrap: wrap;
+    }
+
+    .library-book-grid {
+        grid-template-columns: 1fr;
+    }
+}

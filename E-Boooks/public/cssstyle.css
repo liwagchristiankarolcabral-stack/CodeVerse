@@ -1785,6 +1785,102 @@ img {
     }
 }
 
+/* ==========================================
+   CODEVERSE - BOOK CARD TITLES
+========================================== */
+
+.book-card .book-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    min-height: 72px;
+    margin-bottom: 12px;
+    overflow-wrap: break-word;
+}
+
+.book-card .book-description {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+
+/* ==========================================
+   CODEVERSE - BOOK COVER CONTAINERS
+========================================== */
+
+.book-card {
+    overflow: hidden;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* IMAGE CONTAINER */
+
+.book-cover-container {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8eef9;
+    border-bottom: 1px solid #dce4f2;
+}
+
+/* BOOK COVER IMAGE */
+
+.book-cover-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+/* HOVER EFFECT */
+
+.book-card:hover .book-cover-image {
+    transform: scale(1.04);
+}
+
+/* BOOK INFORMATION */
+
+.book-card .book-info {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.book-card .book-info h3 {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 700;
+    margin-bottom: 12px;
+    overflow-wrap: break-word;
+}
+
+/* READ BOOK BUTTON */
+
+.book-card .read-book-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* DARK MODE */
+
+body.dark-mode .book-cover-container {
+    background: #202c40;
+    border-bottom-color: #34435d;
+}
+
 
 /* ==========================================
    END OF CODEVERSE MAIN STYLESHEET

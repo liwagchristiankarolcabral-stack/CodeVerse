@@ -4,21 +4,23 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CodeVerse | Digital E-Book Library</title>
+<title>CodeVerse | Emerging Technologies, Artificial Intelligence, Programs and Processes</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <!-- External CSS -->
-<link href="/books/css/Authentication.css" rel="stylesheet"/>
+
 <!--FavIcon-->
 <link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+
+
+
 <style>
 </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<style>
+:root{--primary:#3157a4;--bg:#f5f7fc;--surface:#fff;--text:#24314a;--muted:#65738b;--line:#e1e7f0;--shadow:0 8px 30px #1e325a12}html{scroll-behavior:smooth;scroll-padding-top:100px}*{box-sizing:border-box}body{margin:0;font-family:'DM Sans',Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .25s,color .25s}body.dark-mode{--primary:#92b4ff;--bg:#111827;--surface:#1c2739;--text:#eaf0fc;--muted:#b3c0d3;--line:#344257;--shadow:0 8px 30px #0003}a{color:var(--primary);text-decoration:none}button,select{font:inherit}.navbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;padding:13px clamp(16px,4vw,54px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;color:var(--text);white-space:nowrap}.site-logo{width:38px;height:38px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{color:var(--text);font-size:14px;font-weight:700}.nav-links a:hover{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 12px;cursor:pointer}#accountActions{display:flex;align-items:center;gap:10px}.login-btn,.signup-btn,.logout-btn{padding:9px 13px;border-radius:9px;font-size:13px;font-weight:700;white-space:nowrap}.login-btn{border:1px solid var(--line)}.signup-btn,.logout-btn{border:0;background:#3157a4;color:#fff;cursor:pointer}.account-username{font-size:13px;font-weight:700;color:var(--text);overflow-wrap:anywhere}.menu-toggle{display:none}.topbar{padding:16px clamp(18px,5vw,70px);border-bottom:1px solid var(--line)}.reading-controls{display:flex;flex-wrap:wrap;gap:18px;padding:15px clamp(18px,5vw,70px);background:var(--surface);border-bottom:1px solid var(--line)}.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-size:13px;font-weight:700}.control-group select{max-width:190px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text)}.layout{display:grid;grid-template-columns:minmax(210px,270px) minmax(0,1fr);gap:26px;max-width:1450px;margin:28px auto;padding:0 22px;align-items:start}.toc{position:sticky;top:93px;max-height:calc(100vh - 112px);overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{margin:0 0 14px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{display:block;padding:9px 10px;border-radius:8px;color:var(--muted);font-size:12px;line-height:1.45}.toc nav a:hover{background:var(--bg);color:var(--primary)}main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:clamp(20px,3vw,36px);margin-bottom:22px;box-shadow:var(--shadow)}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(27px,3vw,42px);margin:12px 0}.book-header p{color:var(--muted);line-height:1.8}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary)}.chapter{font-size:var(--reader-size,16px);font-family:var(--reader-font,'DM Sans',sans-serif);line-height:1.85}.chapter h1,.chapter h2,.chapter h3{line-height:1.35;color:var(--text)}.chapter h1{font-size:1.9em}.chapter h2{font-size:1.5em}.chapter h3{font-size:1.16em;margin-top:25px}.chapter p,.chapter li{color:var(--text)}.chapter li{margin-bottom:7px}.chapter table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:20px 0}.chapter th,.chapter td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:110px}.chapter th{background:var(--bg)}.code-example{overflow-x:auto;border:1px solid var(--line);background:var(--bg);padding:16px;border-radius:10px;margin:18px 0}.code-example pre{margin:0;white-space:pre;line-height:1.5;font-size:13px;color:var(--text)}.quiz-question{padding:18px 0;border-bottom:1px solid var(--line)}.quiz-question h3{margin:0 0 12px;font-size:1em}.quiz-option{display:flex;align-items:flex-start;gap:12px;padding:11px 13px;margin:7px 0;border:1px solid var(--line);border-radius:9px;cursor:pointer}.quiz-option:has(input:checked){border-color:var(--primary);background:var(--bg)}.quiz-option.correct{border-color:#24a36a;background:#24a36a19}.quiz-option.incorrect{border-color:#d95363;background:#d9536319}.quiz-feedback{font-size:.88em;font-weight:700}.quiz-actions{display:flex;gap:12px;margin-top:24px}.quiz-actions button{background:#3157a4;color:white;border:0;border-radius:9px;padding:12px 20px;cursor:pointer;font-weight:700}#quizProgress{color:var(--muted);font-weight:700}#quizResult{padding:22px;background:var(--bg);border-radius:12px;margin-top:18px;text-align:center}[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:20px 0 40px}@media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:250px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}@media(max-width:600px){.navbar{gap:10px}.logo{font-size:17px}.site-logo{width:31px;height:31px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;gap:12px}.nav-links.open{display:flex}.nav-actions{margin-left:auto}#accountActions{gap:6px}.account-username{max-width:110px;font-size:11px}.login-btn,.signup-btn,.logout-btn{padding:8px;font-size:11px}.layout{padding:0 12px;gap:14px}.reading-controls{gap:12px}.control-group{flex-wrap:wrap}}
+</style></head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
@@ -75,50 +77,44 @@
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav></nav>
-<!-- EMERGING TECHNOLOGIES TABLE OF CONTENTS -->
-<a href="#emerging-introduction">Introduction</a>
-<a href="#ai-overview">1. Overview of AI and Emerging Technologies</a>
-<a href="#ai-applications">2. Key Application Domains</a>
-<a href="#ai-references">3. Academic References</a>
-<a href="#programs-processes-introduction">
+<nav><a href="#emerging-introduction">Introduction</a><a href="#ai-overview">1. Overview of AI and Emerging Technologies</a><a href="#ai-applications">2. Key Application Domains</a><a href="#ai-references">3. Academic References</a><a href="#programs-processes-introduction">
     Programs and Processes in Computer Systems
-</a>
-<a href="#program-process-foundations">1. Foundational Definitions</a>
-<a href="#compilation-linking">2. Program Compilation and Linking</a>
-<a href="#process-memory">3. Process Memory Architecture</a>
-<a href="#process-control-block">4. Process Control Block</a>
-<a href="#process-lifecycle">5. Process Lifecycle</a>
-<a href="#cpu-scheduling">6. CPU Scheduling Concepts</a>
-<a href="#scheduling-algorithms">7. CPU Scheduling Algorithms</a>
-<a href="#process-creation">8. Process Creation and Control</a>
-<a href="#threads-multithreading">9. Threads and Multithreading</a>
-<a href="#interprocess-communication">10. Inter-Process Communication</a>
-<a href="#process-synchronization">11. Process Synchronization</a>
-<a href="#deadlocks">12. Deadlocks and Starvation</a>
-<a href="#virtual-memory">13. Virtual Memory and Paging</a>
-<a href="#context-switching">14. Context Switching</a>
-<a href="#process-security">15. System Security and Process Isolation</a>
-<a href="#asynchronous-execution">16. Asynchronous Execution and Signals</a>
-<a href="#containers">17. Containers and Process Isolation</a>
-<a href="#process-monitoring">18. Performance Monitoring and Metrics</a>
-<a href="#quiz">Knowledge Assessment Quiz</a>
+</a><a href="#program-process-foundations">1. Foundational Definitions</a><a href="#compilation-linking">2. Program Compilation and Linking</a><a href="#process-memory">3. Process Memory Architecture</a><a href="#process-control-block">4. Process Control Block</a><a href="#process-lifecycle">5. Process Lifecycle</a><a href="#cpu-scheduling">6. CPU Scheduling Concepts</a><a href="#scheduling-algorithms">7. CPU Scheduling Algorithms</a><a href="#process-creation">8. Process Creation and Control</a><a href="#threads-multithreading">9. Threads and Multithreading</a><a href="#interprocess-communication">10. Inter-Process Communication</a><a href="#process-synchronization">11. Process Synchronization</a><a href="#deadlocks">12. Deadlocks and Starvation</a><a href="#virtual-memory">13. Virtual Memory and Paging</a><a href="#context-switching">14. Context Switching</a><a href="#process-security">15. System Security and Process Isolation</a><a href="#asynchronous-execution">16. Asynchronous Execution and Signals</a><a href="#containers">17. Containers and Process Isolation</a><a href="#process-monitoring">18. Performance Monitoring and Metrics</a><a href="#quiz">Knowledge Assessment Quiz</a></nav>
+<!-- EMERGING TECHNOLOGIES TABLE OF CONTENTS -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </aside>
 <main>
 <header class="book-header">
 <span class="eyebrow">Digital Book · Technology</span>
-<h1>Computer Hardware and Software Fundamentals</h1>
-<p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p>
+<h1>Emerging Technologies, Artificial Intelligence, Programs and Processes</h1>
+<p>Explore emerging technologies and artificial intelligence, followed by the fundamentals of computer programs, processes, CPU scheduling, memory management, and concurrency.</p>
 </header>
 <!-- ==========================================
      CODEVERSE - COMPUTER HISTORY
      TABLE OF CONTENTS
-========================================== -->
-<main class="book-content">
-<!-- INTRODUCTION -->
-<!-- ==========================================
- CODEVERSE - EMERGING TECHNOLOGIES,
- ARTIFICIAL INTELLIGENCE, PROGRAMS & PROCESSES
 ========================================== -->
 <section class="chapter" id="emerging-introduction">
 <h1>Emerging Technologies and Artificial Intelligence</h1>
@@ -129,8 +125,7 @@
         advanced computing, big data, and connectivity
         are important components of modern technology.
     </p>
-</section>
-<section class="chapter" id="ai-overview">
+</section><section class="chapter" id="ai-overview">
 <h2>1. Overview of AI and Emerging Technologies</h2>
 <p>
         Artificial Intelligence serves as the brain
@@ -161,8 +156,7 @@
             new computational and data-management capabilities.
         </li>
 </ul>
-</section>
-<section class="chapter" id="ai-applications">
+</section><section class="chapter" id="ai-applications">
 <h2>2. Key Application Domains</h2>
 <h3>Healthcare and Biometrics</h3>
 <p>
@@ -187,8 +181,7 @@
         AI enables fraud detection, algorithmic
         trading, and personalized recommendations.
     </p>
-</section>
-<section class="chapter" id="ai-references">
+</section><section class="chapter" id="ai-references">
 <h2>3. Academic References and Research Resources</h2>
 <p>
         The document identifies several sources
@@ -201,8 +194,7 @@
 <li>International Journal for Research in Technology and Innovation — Artificial Intelligence and Its Applications</li>
 <li>West, D. M. (2015) — What Happens if Robots Take the Jobs?</li>
 </ul>
-</section>
-<section class="chapter" id="programs-processes-introduction">
+</section><section class="chapter" id="programs-processes-introduction">
 <h1>Programs and Processes in Computer Systems</h1>
 <p>
         A program is a passive collection of
@@ -217,8 +209,7 @@
         CPU scheduling, memory management,
         concurrency, and computer security.
     </p>
-</section>
-<section class="chapter" id="program-process-foundations">
+</section><section class="chapter" id="program-process-foundations">
 <h2>Section 1: Foundational Definitions</h2>
 <h3>What Is a Program?</h3>
 <p>
@@ -260,8 +251,7 @@
 </tr>
 </tbody>
 </table>
-</section>
-<section class="chapter" id="compilation-linking">
+</section><section class="chapter" id="compilation-linking">
 <h2>Section 2: Program Compilation and Linking</h2>
 <p>
         Compiled programs pass through a toolchain
@@ -288,8 +278,7 @@
 <li>PE — Used by Microsoft Windows</li>
 <li>Mach-O — Used by macOS</li>
 </ul>
-</section>
-<section class="chapter" id="process-memory">
+</section><section class="chapter" id="process-memory">
 <h2>Section 3: Process Memory Architecture</h2>
 <p>
         A process uses a virtual address space
@@ -332,8 +321,7 @@
         memory usage exceeds its available limits,
         often because of excessive recursion.
     </p>
-</section>
-<section class="chapter" id="process-control-block">
+</section><section class="chapter" id="process-control-block">
 <h2>Section 4: Process Control Block</h2>
 <p>
         The Process Control Block (PCB) is a kernel
@@ -351,8 +339,7 @@
 <li>Accounting and timing information</li>
 <li>Open files and I/O information</li>
 </ul>
-</section>
-<section class="chapter" id="process-lifecycle">
+</section><section class="chapter" id="process-lifecycle">
 <h2>Section 5: Process Lifecycle</h2>
 <p>
         Processes transition between operating
@@ -373,8 +360,7 @@
          └── WAITING
          (event completed)</code></pre>
 </div>
-</section>
-<section class="chapter" id="cpu-scheduling">
+</section><section class="chapter" id="cpu-scheduling">
 <h2>Section 6: CPU Scheduling Concepts</h2>
 <p>
         CPU scheduling determines which ready
@@ -399,8 +385,7 @@
 <li>Waiting Time</li>
 <li>Response Time</li>
 </ul>
-</section>
-<section class="chapter" id="scheduling-algorithms">
+</section><section class="chapter" id="scheduling-algorithms">
 <h2>Section 7: CPU Scheduling Algorithms</h2>
 <h3>First-Come, First-Served</h3>
 <p>
@@ -428,8 +413,7 @@
         before the scheduler switches to another
         ready process.
     </p>
-</section>
-<section class="chapter" id="process-creation">
+</section><section class="chapter" id="process-creation">
 <h2>Section 8: Process Creation and Control</h2>
 <p>
         Unix-like operating systems provide
@@ -450,8 +434,7 @@
         process whose exit status has not yet
         been collected by its parent.
     </p>
-</section>
-<section class="chapter" id="threads-multithreading">
+</section><section class="chapter" id="threads-multithreading">
 <h2>Section 9: Threads and Multithreading</h2>
 <p>
         A thread is a sequence of execution
@@ -477,8 +460,7 @@
 <li>One-to-One</li>
 <li>Many-to-Many</li>
 </ul>
-</section>
-<section class="chapter" id="interprocess-communication">
+</section><section class="chapter" id="interprocess-communication">
 <h2>Section 10: Inter-Process Communication</h2>
 <p>
         Inter-Process Communication (IPC)
@@ -493,8 +475,7 @@
 <li><strong>Named Pipes:</strong> Enable communication through filesystem-visible channels.</li>
 <li><strong>Sockets:</strong> Support local or network communication.</li>
 </ul>
-</section>
-<section class="chapter" id="process-synchronization">
+</section><section class="chapter" id="process-synchronization">
 <h2>Section 11: Process Synchronization</h2>
 <p>
         Synchronization coordinates access
@@ -513,8 +494,7 @@
 <li><strong>Semaphore:</strong> Coordinates access using a counter.</li>
 <li><strong>Spinlock:</strong> Repeatedly checks until a lock becomes available.</li>
 </ul>
-</section>
-<section class="chapter" id="deadlocks">
+</section><section class="chapter" id="deadlocks">
 <h2>Section 12: Deadlocks and Starvation</h2>
 <p>
         A deadlock occurs when processes
@@ -540,8 +520,7 @@
         waits indefinitely because other
         processes repeatedly receive resources first.
     </p>
-</section>
-<section class="chapter" id="virtual-memory">
+</section><section class="chapter" id="virtual-memory">
 <h2>Section 13: Virtual Memory and Paging</h2>
 <p>
         Virtual memory gives each process
@@ -567,8 +546,7 @@
         system intervention, such as loading
         a page into RAM.
     </p>
-</section>
-<section class="chapter" id="context-switching">
+</section><section class="chapter" id="context-switching">
 <h2>Section 14: Context Switching</h2>
 <p>
         Context switching saves the execution
@@ -589,8 +567,7 @@
 <li>TLB effects</li>
 <li>CPU cache misses</li>
 </ul>
-</section>
-<section class="chapter" id="process-security">
+</section><section class="chapter" id="process-security">
 <h2>Section 15: System Security and Process Isolation</h2>
 <h3>Hardware Protection Rings</h3>
 <p>
@@ -614,8 +591,7 @@
         restrict operations according
         to assigned permissions.
     </p>
-</section>
-<section class="chapter" id="asynchronous-execution">
+</section><section class="chapter" id="asynchronous-execution">
 <h2>Section 16: Asynchronous Execution and Signals</h2>
 <p>
         Signals notify processes about
@@ -637,8 +613,7 @@
         event-driven execution to manage
         concurrent operations efficiently.
     </p>
-</section>
-<section class="chapter" id="containers">
+</section><section class="chapter" id="containers">
 <h2>Section 17: Containers and Process Isolation</h2>
 <p>
         Containers package applications
@@ -665,8 +640,7 @@
 <li>Docker</li>
 <li>LXC</li>
 </ul>
-</section>
-<section class="chapter" id="process-monitoring">
+</section><section class="chapter" id="process-monitoring">
 <h2>Section 18: Performance Monitoring and Metrics</h2>
 <p>
         Process monitoring helps identify
@@ -710,17 +684,10 @@
         efficient multitasking.
     </p>
 </section>
-</main>
 <section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
-<p>
-        Test your understanding of Data, Information,
-        Number Systems, and Computer Architecture.
-        Answer all 34 questions before submitting.
-    </p>
-<p aria-live="polite" id="quizProgress">
-        0 of 34 answered
-    </p>
+<p>Test your understanding of emerging technologies, artificial intelligence, programs, and processes. Answer all 21 questions before submitting.</p>
+<p aria-live="polite" id="quizProgress">0 of 21 answered</p>
 <div id="quizQuestions"></div>
 <div class="quiz-actions">
 <button id="submitQuiz" type="button">
@@ -732,7 +699,7 @@
 </div>
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
-<footer class="page-footer">End of Web Browsers, Servers, and Http/https · CodeVerse Digital Library</footer>
+<footer class="page-footer">End of Emerging Technologies, Artificial Intelligence, Programs and Processes · CodeVerse Digital Library</footer>
 </main>
 </div>
 <script>
@@ -1187,4 +1154,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 </script>
-</body></html>
+<script>document.addEventListener('DOMContentLoaded',()=>{const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily');function theme(){const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);icon.textContent=dark?'☀':'☾'}theme();toggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');theme()});const oldSize=localStorage.getItem('readerFontSize')||'16px',oldFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if([...size.options].some(o=>o.value===oldSize))size.value=oldSize;if([...family.options].some(o=>o.value===oldFont))family.value=oldFont;function apply(){document.documentElement.style.setProperty('--reader-size',size.value);document.documentElement.style.setProperty('--reader-font',family.value)}apply();size.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);apply()});family.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);apply()});document.getElementById('menuToggle')?.addEventListener('click',()=>document.getElementById('navLinks')?.classList.toggle('open'))});</script><script defer="True" src="/js/auth-nav.js"></script></body></html>

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CodeVerse | Digital E-Book Library</title>
+<title>CodeVerse | Operating System Fundamentals</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -16,9 +16,46 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+
 <style>
-</style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+:root{--primary:#3157a4;--primary-dark:#24427f;--bg:#f5f7fc;--surface:#fff;--text:#24314a;--muted:#65738b;--line:#e1e7f0;--shadow:0 8px 30px #1e325a12}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;font-family:'DM Sans',Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .25s,color .25s}
+body.dark-mode{--primary:#92b4ff;--primary-dark:#7297e5;--bg:#111827;--surface:#1c2739;--text:#eaf0fc;--muted:#b3c0d3;--line:#344257;--shadow:0 8px 30px #0003}
+a{color:var(--primary);text-decoration:none}button,select{font:inherit}
+.navbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;padding:13px clamp(16px,4vw,54px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;color:var(--text);white-space:nowrap}
+.site-logo{width:38px;height:38px;object-fit:contain}.logo-highlight{color:var(--primary)}
+.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{color:var(--text);font-size:14px;font-weight:700}.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 12px;cursor:pointer}
+#accountActions{display:flex;align-items:center;gap:10px}.login-btn,.signup-btn,.logout-btn{padding:9px 13px;border-radius:9px;font-size:13px;font-weight:700;white-space:nowrap}
+.login-btn{border:1px solid var(--line)}.signup-btn,.logout-btn{border:0;background:#3157a4;color:#fff;cursor:pointer}.account-username{font-size:13px;font-weight:700;color:var(--text);overflow-wrap:anywhere}
+.menu-toggle{display:none}.topbar{padding:16px clamp(18px,5vw,70px);border-bottom:1px solid var(--line)}
+.reading-controls{display:flex;flex-wrap:wrap;gap:18px;padding:15px clamp(18px,5vw,70px);background:var(--surface);border-bottom:1px solid var(--line)}
+.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-size:13px;font-weight:700}.control-group select{max-width:190px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+.layout{display:grid;grid-template-columns:minmax(210px,270px) minmax(0,1fr);gap:26px;max-width:1450px;margin:28px auto;padding:0 22px;align-items:start}
+.toc{position:sticky;top:93px;max-height:calc(100vh - 112px);overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}
+.toc h2{margin:0 0 14px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{display:block;padding:9px 10px;border-radius:8px;color:var(--muted);font-size:12px;line-height:1.45}.toc nav a:hover{background:var(--bg);color:var(--primary)}
+main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:clamp(20px,3vw,36px);margin-bottom:22px;box-shadow:var(--shadow)}
+.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(27px,3vw,42px);margin:12px 0}.book-header p{color:var(--muted);line-height:1.8}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary)}
+.chapter{font-size:var(--reader-size,16px);font-family:var(--reader-font,'DM Sans',sans-serif);line-height:1.85}
+.chapter h1,.chapter h2,.chapter h3{line-height:1.35;color:var(--text)}.chapter h1{font-size:1.9em}.chapter h2{font-size:1.5em}.chapter h3{font-size:1.16em;margin-top:25px}
+.chapter p,.chapter li{color:var(--text)}.chapter li{margin-bottom:7px}
+.chapter table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:20px 0}.chapter th,.chapter td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:110px}.chapter th{background:var(--bg)}
+.code-example{overflow-x:auto;border:1px solid var(--line);background:var(--bg);padding:16px;border-radius:10px;margin:18px 0}
+.code-example pre{margin:0;white-space:pre;line-height:1.5;font-size:13px;color:var(--text)}
+.quiz-question{padding:18px 0;border-bottom:1px solid var(--line)}.quiz-question h3{margin:0 0 12px;font-size:1em}
+.quiz-option{display:flex;align-items:flex-start;gap:12px;padding:11px 13px;margin:7px 0;border:1px solid var(--line);border-radius:9px;cursor:pointer}
+.quiz-option:has(input:checked){border-color:var(--primary);background:var(--bg)}
+.quiz-option.correct{border-color:#24a36a;background:#24a36a19}.quiz-option.incorrect{border-color:#d95363;background:#d9536319}
+.quiz-feedback{font-size:.88em;font-weight:700}.quiz-actions{display:flex;gap:12px;margin-top:24px}
+.quiz-actions button{background:#3157a4;color:white;border:0;border-radius:9px;padding:12px 20px;cursor:pointer;font-weight:700}
+#quizProgress{color:var(--muted);font-weight:700}#quizResult{padding:22px;background:var(--bg);border-radius:12px;margin-top:18px;text-align:center}
+[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:20px 0 40px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:250px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}
+@media(max-width:600px){.navbar{gap:10px}.logo{font-size:17px}.site-logo{width:31px;height:31px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;gap:12px}.nav-links.open{display:flex}.nav-actions{margin-left:auto}#accountActions{gap:6px}.account-username{max-width:110px;font-size:11px}.login-btn,.signup-btn,.logout-btn{padding:8px;font-size:11px}.layout{padding:0 12px;gap:14px}.reading-controls{gap:12px}.control-group{flex-wrap:wrap}}
+</style></head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
@@ -75,106 +112,106 @@
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav></nav>
-<a href="#os-introduction">
+<nav><a href="#os-introduction">
         Introduction to Operating Systems
-    </a>
-<a href="#os-architecture">
+    </a><a href="#os-architecture">
         Operating System Architecture and Kernel Structures
-    </a>
-<a href="#os-execution-modes">
+    </a><a href="#os-execution-modes">
         Hardware Abstraction and Execution Modes
-    </a>
-<a href="#os-system-calls">
+    </a><a href="#os-system-calls">
         System Calls and OS APIs
-    </a>
-<a href="#os-process-management">
+    </a><a href="#os-process-management">
         Process Management
-    </a>
-<a href="#os-process-scheduling">
+    </a><a href="#os-process-scheduling">
         Process Scheduling and Lifecycle
-    </a>
-<a href="#os-cpu-scheduling">
+    </a><a href="#os-cpu-scheduling">
         CPU Scheduling Algorithms
-    </a>
-<a href="#os-threads">
+    </a><a href="#os-threads">
         Threads and Concurrency
-    </a>
-<a href="#os-race-conditions">
+    </a><a href="#os-race-conditions">
         Process Synchronization and Race Conditions
-    </a>
-<a href="#os-synchronization">
+    </a><a href="#os-synchronization">
         Synchronization Primitives
-    </a>
-<a href="#os-deadlocks">
+    </a><a href="#os-deadlocks">
         Deadlocks: Characterization and Handling
-    </a>
-<a href="#os-deadlock-prevention">
+    </a><a href="#os-deadlock-prevention">
         Deadlock Prevention, Avoidance, and Recovery
-    </a>
-<a href="#os-memory-management">
+    </a><a href="#os-memory-management">
         Memory Management: Contiguous Allocation
-    </a>
-<a href="#os-paging">
+    </a><a href="#os-paging">
         Non-Contiguous Memory: Paging
-    </a>
-<a href="#os-advanced-paging">
+    </a><a href="#os-advanced-paging">
         Advanced Paging Architectures
-    </a>
-<a href="#os-segmentation">
+    </a><a href="#os-segmentation">
         Memory Segmentation
-    </a>
-<a href="#os-virtual-memory">
+    </a><a href="#os-virtual-memory">
         Virtual Memory Foundations
-    </a>
-<a href="#os-page-replacement">
+    </a><a href="#os-page-replacement">
         Page Replacement Algorithms
-    </a>
-<a href="#os-file-system">
+    </a><a href="#os-file-system">
         Storage and File System Abstraction
-    </a>
-<a href="#os-file-allocation">
+    </a><a href="#os-file-allocation">
         File Allocation Methods
-    </a>
-<a href="#os-free-space">
+    </a><a href="#os-free-space">
         Free Space Management
-    </a>
-<a href="#os-disk-scheduling">
+    </a><a href="#os-disk-scheduling">
         Disk Infrastructure and Scheduling
-    </a>
-<a href="#os-io-subsystem">
+    </a><a href="#os-io-subsystem">
         I/O Subsystem Architecture
-    </a>
-<a href="#os-buffering">
+    </a><a href="#os-buffering">
         I/O Buffering, Caching, and Spooling
-    </a>
-<a href="#os-access-control">
+    </a><a href="#os-access-control">
         Protection and Access Control
-    </a>
-<a href="#os-security">
+    </a><a href="#os-security">
         System Security and Threat Mitigation
-    </a>
-<a href="#os-virtualization">
+    </a><a href="#os-virtualization">
         Virtualization and Hypervisors
-    </a>
-<a href="#os-multiprocessing">
+    </a><a href="#os-multiprocessing">
         Distributed and Multiprocessor OS
-    </a>
-<a href="#os-real-time">
+    </a><a href="#os-real-time">
         Real-Time Operating Systems
-    </a>
-<a href="#os-modern-frontiers">
+    </a><a href="#os-modern-frontiers">
         Modern Operating System Frontiers
-    </a>
-<a href="#quiz">
+    </a><a href="#quiz">
         Knowledge Assessment Quiz
-    </a>
+    </a></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </aside>
 <main>
 <header class="book-header">
 <span class="eyebrow">Digital Book · Technology</span>
-<h1>Computer Hardware and Software Fundamentals</h1>
-<p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p>
+<h1>Operating System Fundamentals</h1>
+<p>Explore operating system architecture, processes, CPU scheduling, memory management, storage, security, and modern operating systems.</p>
 </header>
 <!-- ==========================================
      CODEVERSE - OPERATING SYSTEM FUNDAMENTALS
@@ -1308,14 +1345,8 @@ User C Print Request ---+        v
 </section>
 <section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
-<p>
-        Test your understanding of Data, Information,
-        Number Systems, and Computer Architecture.
-        Answer all 34 questions before submitting.
-    </p>
-<p aria-live="polite" id="quizProgress">
-        0 of 34 answered
-    </p>
+<p>Test your understanding of Operating System Fundamentals. Answer all 30 questions before submitting.</p>
+<p aria-live="polite" id="quizProgress">0 of 30 answered</p>
 <div id="quizQuestions"></div>
 <div class="quiz-actions">
 <button id="submitQuiz" type="button">
@@ -1327,7 +1358,7 @@ User C Print Request ---+        v
 </div>
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
-<footer class="page-footer">End of Web Browsers, Servers, and Http/https · CodeVerse Digital Library</footer>
+<footer class="page-footer">End of Operating System Fundamentals · CodeVerse Digital Library</footer>
 </main>
 </div>
 <script>
@@ -1857,4 +1888,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
-</body></html>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const themeToggle=document.getElementById('themeToggle'),themeIcon=document.getElementById('themeIcon');
+ const fontSize=document.getElementById('fontSize'),fontFamily=document.getElementById('fontFamily');
+ const menuToggle=document.getElementById('menuToggle'),navLinks=document.getElementById('navLinks');
+ const applyTheme=()=>{const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);themeIcon.textContent=dark?'☀':'☾';};
+ applyTheme();
+ themeToggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');applyTheme();});
+ const savedSize=localStorage.getItem('readerFontSize')||'16px';
+ const savedFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";
+ if([...fontSize.options].some(x=>x.value===savedSize))fontSize.value=savedSize;
+ if([...fontFamily.options].some(x=>x.value===savedFont))fontFamily.value=savedFont;
+ const applyReader=()=>{document.documentElement.style.setProperty('--reader-size',fontSize.value);document.documentElement.style.setProperty('--reader-font',fontFamily.value);};
+ applyReader();
+ fontSize.addEventListener('change',()=>{localStorage.setItem('readerFontSize',fontSize.value);applyReader();});
+ fontFamily.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',fontFamily.value);applyReader();});
+ menuToggle?.addEventListener('click',()=>navLinks?.classList.toggle('open'));
+});
+</script><script defer="True" src="/js/auth-nav.js"></script></body></html>

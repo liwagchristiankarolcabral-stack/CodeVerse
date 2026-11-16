@@ -4,21 +4,33 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CodeVerse | Digital E-Book Library</title>
+<title>CodeVerse | Data, Information, Number Systems, and Computer Architecture</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <!-- External CSS -->
-<link href="/books/css/Authentication.css" rel="stylesheet"/>
+
 <!--FavIcon-->
 <link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+
+
+
 <style>
+:root{--bg:#f3f6fc;--surface:#fff;--text:#18263e;--muted:#63738b;--line:#dce5f1;--blue:#3157a4;--blue-dark:#24427f;--soft:#edf3ff;--shadow:0 14px 36px rgba(31,56,100,.08);--reading-size:16px;--reading-family:'DM Sans',Arial,sans-serif;color-scheme:light}
+html[data-theme="dark"]{--bg:#101827;--surface:#1a2638;--text:#eaf0fa;--muted:#afbed1;--line:#34435a;--blue:#88adff;--blue-dark:#a7c1ff;--soft:#243755;--shadow:0 14px 36px rgba(0,0,0,.18);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;line-height:1.7}body,button,select{transition:background-color .2s,color .2s,border-color .2s}a{color:var(--blue)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.navbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:22px;padding:13px max(20px,calc((100vw - 1440px)/2));background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.035)}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:800;font-size:21px;white-space:nowrap}.site-logo{width:39px;height:39px;object-fit:contain}.logo-highlight{color:var(--blue)}.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{text-decoration:none;color:var(--muted);font-weight:700;font-size:14px}.nav-links a:hover,.nav-links a.active{color:var(--blue)}.nav-actions,#accountActions{display:flex;align-items:center;gap:10px}.nav-actions{margin-left:12px}.login-btn,.signup-btn,.logout-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 13px;border-radius:9px;text-decoration:none;font-weight:700;font-size:13px;white-space:nowrap}.login-btn{color:var(--blue);border:1px solid var(--line)}.signup-btn,.logout-btn{color:#fff;background:#3157a4;border:1px solid #3157a4}.account-username{font-size:13px;font-weight:700;color:var(--text);max-width:180px;overflow-wrap:anywhere}.icon-btn,.menu-toggle{border:1px solid var(--line);background:var(--soft);color:var(--text);border-radius:10px;min-width:38px;height:38px}.menu-toggle{display:none}
+.topbar{max-width:1400px;margin:18px auto 0;padding:0 22px}.back-link{text-decoration:none;font-size:14px;font-weight:700}.reading-controls{max-width:1400px;margin:12px auto 18px;padding:12px 22px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}.control-group{display:flex;gap:9px;align-items:center;font-size:13px;font-weight:700;color:var(--muted)}.control-group select{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 12px;border-radius:9px}
+.layout{max-width:1400px;margin:0 auto 55px;padding:0 22px;display:grid;grid-template-columns:minmax(230px,285px) minmax(0,1fr);gap:25px;align-items:start}.toc{position:sticky;top:92px;max-height:calc(100vh - 110px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{margin:0 0 13px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc a{display:block;padding:7px 9px;border-radius:8px;text-decoration:none;font-size:12.5px;line-height:1.5;color:var(--muted)}.toc a:hover,.toc a.current{background:var(--soft);color:var(--blue)}.toc h4{margin:14px 8px 3px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}.layout>main{min-width:0}.book-header{padding:35px 38px;border-radius:19px;background:linear-gradient(125deg,#1c3e7e,#396ec4);color:white;box-shadow:var(--shadow);margin-bottom:21px}.eyebrow{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:#c9dcff}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3.4vw,42px);line-height:1.2;margin:12px 0}.book-header p{color:#e2edff;margin:0;max-width:700px}
+.chapter{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:clamp(20px,3.2vw,38px);margin:0 0 20px;box-shadow:var(--shadow);font-family:var(--reading-family);font-size:var(--reading-size);overflow-wrap:anywhere}.chapter h1,.chapter h2,.chapter h3{line-height:1.3;color:var(--text)}.chapter h1,.chapter h2{margin:0 0 20px;letter-spacing:-.025em}.chapter h1{font-size:1.75em}.chapter h2{font-size:1.48em;padding-bottom:13px;border-bottom:1px solid var(--line)}.chapter h3{font-size:1.12em;margin:25px 0 10px;color:var(--blue)}.chapter p{margin:12px 0;color:var(--text)}.chapter li{margin:6px 0}.chapter strong{color:var(--text)}.code-example{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:11px;padding:14px;margin:18px 0;overflow:auto}.code-example pre{margin:0;white-space:pre;overflow:auto;font:13px/1.65 Consolas,'Courier New',monospace;color:var(--text)}.lesson-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.9em;display:block;overflow-x:auto}.lesson-table th,.lesson-table td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:110px}.lesson-table th{background:var(--soft);color:var(--text)}.lesson-table tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 45%,var(--surface))}
+#quizProgress{font-weight:800;color:var(--blue);padding:10px 14px;background:var(--soft);border-radius:10px}.quiz-question{padding:20px 0;border-bottom:1px solid var(--line)}.quiz-question h3{margin:0 0 12px;color:var(--text)}.quiz-option{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:8px 0;cursor:pointer}.quiz-option:hover{background:var(--soft)}.quiz-option input{margin-top:6px;accent-color:#3157a4}.quiz-option.correct{background:#e3f8ec;color:#125c38;border-color:#69c18b}.quiz-option.incorrect{background:#ffebec;color:#8c2431;border-color:#e5a4aa}.quiz-option.correct span,.quiz-option.incorrect span{color:inherit}.quiz-feedback{font-weight:700;font-size:.9em}.quiz-actions{display:flex;gap:12px;margin:22px 0}.quiz-actions button{padding:12px 20px;border:0;border-radius:10px;background:#3157a4;color:#fff;font-weight:800}.quiz-actions button:hover{background:#24427f}#retryQuiz{background:#596c89}#quizResult{background:var(--soft);border-radius:14px;padding:22px;text-align:center}#quizResult h2{border:0;font-size:2em;padding:0;margin:5px}.page-footer{text-align:center;color:var(--muted);font-size:13px;padding:16px}
+[hidden]{display:none!important}
+@media(max-width:1000px){.layout{grid-template-columns:220px minmax(0,1fr);gap:14px;padding:0 14px}.navbar{padding:12px 16px;gap:12px}.nav-links{gap:12px}.account-username{max-width:110px}}
+@media(max-width:760px){.navbar{flex-wrap:wrap}.nav-links{display:none;order:5;flex-basis:100%;margin:0;padding:12px 0;border-top:1px solid var(--line)}.nav-links.open{display:flex;flex-direction:column}.nav-actions{margin-left:auto}.menu-toggle{display:inline-block}.layout{display:block}.toc{position:relative;top:auto;max-height:220px;margin-bottom:17px}.book-header{padding:25px}.chapter{padding:21px}.reading-controls{padding:10px 15px}.topbar{padding:0 15px}#accountActions{gap:5px}.login-btn,.signup-btn,.logout-btn{padding:6px 8px;font-size:11px}.account-username{max-width:95px;font-size:11px}}
+@media(max-width:420px){.logo{font-size:17px}.site-logo{width:30px;height:30px}.nav-actions{gap:5px}.icon-btn,.menu-toggle{min-width:30px;height:32px}.account-username{max-width:70px}}
 </style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+</head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
@@ -75,59 +87,59 @@
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav></nav>
-<a href="#data-info-introduction">Introduction</a>
-<h4>Part I: Data and Number Systems</h4>
-<a href="#dikw-pyramid">1. DIKW Pyramid Architecture</a>
-<a href="#data-types">2. Data Types and Representation</a>
-<a href="#positional-systems">3. Positional Number Systems</a>
-<a href="#decimal-system">4. Decimal Number System</a>
-<a href="#binary-system">5. Binary Number System</a>
-<a href="#octal-system">6. Octal Number System</a>
-<a href="#hexadecimal-system">7. Hexadecimal Number System</a>
-<a href="#base-conversion">8. Base Conversion Procedures</a>
-<a href="#direct-base-mapping">9. Direct Base Mapping</a>
-<a href="#signed-binary">10. Signed Binary Encodings</a>
-<a href="#binary-arithmetic">11. Binary Arithmetic</a>
-<a href="#ieee-floating-point">12. IEEE 754 Floating-Point</a>
-<a href="#character-encoding">13. Character Encoding</a>
-<a href="#multimedia-representation">14. Multimedia Representation</a>
-<a href="#boolean-logic">15. Boolean Algebra and Logic Gates</a>
-<a href="#error-detection">16. Error Detection and Correction</a>
-<a href="#memory-endianness">17. Data Storage and Endianness</a>
-<h4>Part II: Computer Architecture</h4>
-<a href="#architecture-introduction">Computer Architecture Introduction</a>
-<a href="#computer-architecture">18. Architecture Foundations</a>
-<a href="#cpu-components">19. Central Processing Unit</a>
-<a href="#instruction-set">20. Instruction Set Architecture</a>
-<a href="#instruction-execution">21. Instruction Execution Cycle</a>
-<a href="#alu-design">22. ALU Design</a>
-<a href="#control-unit">23. Control Unit</a>
-<a href="#cpu-registers">24. Processor Registers</a>
-<a href="#cpu-pipelining">25. CPU Pipelining</a>
-<a href="#memory-hierarchy">26. Memory Hierarchy</a>
-<a href="#cache-memory">27. Cache Memory</a>
-<a href="#main-memory">28. Main Memory</a>
-<a href="#io-architecture">29. I/O Architecture</a>
-<a href="#system-bus">30. System Bus Architecture</a>
-<a href="#parallel-processing">31. Parallel Processing</a>
-<a href="#gpu-accelerators">32. GPUs and Accelerators</a>
-<a href="#power-thermal">33. Power and Thermal Dynamics</a>
-<a href="#hardware-performance">34. Hardware Performance</a>
-<h4>Assessment</h4>
-<a href="#quiz">Knowledge Assessment Quiz</a>
+<nav><a href="#data-info-introduction">Introduction</a><h4>Part I: Data and Number Systems</h4><a href="#dikw-pyramid">1. DIKW Pyramid Architecture</a><a href="#data-types">2. Data Types and Representation</a><a href="#positional-systems">3. Positional Number Systems</a><a href="#decimal-system">4. Decimal Number System</a><a href="#binary-system">5. Binary Number System</a><a href="#octal-system">6. Octal Number System</a><a href="#hexadecimal-system">7. Hexadecimal Number System</a><a href="#base-conversion">8. Base Conversion Procedures</a><a href="#direct-base-mapping">9. Direct Base Mapping</a><a href="#signed-binary">10. Signed Binary Encodings</a><a href="#binary-arithmetic">11. Binary Arithmetic</a><a href="#ieee-floating-point">12. IEEE 754 Floating-Point</a><a href="#character-encoding">13. Character Encoding</a><a href="#multimedia-representation">14. Multimedia Representation</a><a href="#boolean-logic">15. Boolean Algebra and Logic Gates</a><a href="#error-detection">16. Error Detection and Correction</a><a href="#memory-endianness">17. Data Storage and Endianness</a><h4>Part II: Computer Architecture</h4><a href="#architecture-introduction">Computer Architecture Introduction</a><a href="#computer-architecture">18. Architecture Foundations</a><a href="#cpu-components">19. Central Processing Unit</a><a href="#instruction-set">20. Instruction Set Architecture</a><a href="#instruction-execution">21. Instruction Execution Cycle</a><a href="#alu-design">22. ALU Design</a><a href="#control-unit">23. Control Unit</a><a href="#cpu-registers">24. Processor Registers</a><a href="#cpu-pipelining">25. CPU Pipelining</a><a href="#memory-hierarchy">26. Memory Hierarchy</a><a href="#cache-memory">27. Cache Memory</a><a href="#main-memory">28. Main Memory</a><a href="#io-architecture">29. I/O Architecture</a><a href="#system-bus">30. System Bus Architecture</a><a href="#parallel-processing">31. Parallel Processing</a><a href="#gpu-accelerators">32. GPUs and Accelerators</a><a href="#power-thermal">33. Power and Thermal Dynamics</a><a href="#hardware-performance">34. Hardware Performance</a><h4>Assessment</h4><a href="#quiz">Knowledge Assessment Quiz</a></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </aside>
 <main>
 <header class="book-header">
 <span class="eyebrow">Digital Book · Technology</span>
-<h1>Computer Hardware and Software Fundamentals</h1>
-<p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p>
+<h1>Data, Information, Number Systems, and Computer Architecture</h1>
+<p>Explore digital data, positional number systems, binary representation, CPU architecture, memory, and hardware performance.</p>
 </header>
 <!-- ==========================================
      CODEVERSE - COMPUTER HISTORY
      TABLE OF CONTENTS
 ========================================== -->
-<main class="book-content">
+<div class="book-content">
 <!-- INTRODUCTION -->
 <section class="chapter" id="data-info-introduction">
 <h1>Data, Information, Number Systems, and Computer Architecture</h1>
@@ -1001,7 +1013,7 @@ Little-Endian: 78   56   34   12</code></pre>
             by software applications.
         </p>
 </section>
-</main>
+</div>
 <section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
 <p>
@@ -1023,7 +1035,7 @@ Little-Endian: 78   56   34   12</code></pre>
 </div>
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
-<footer class="page-footer">End of Web Browsers, Servers, and Http/https · CodeVerse Digital Library</footer>
+<footer class="page-footer">End of Data, Information, Number Systems, and Computer Architecture · CodeVerse Digital Library</footer>
 </main>
 </div>
 <script>
@@ -1536,4 +1548,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
-</body></html>
+<script defer="True" src="/js/auth-nav.js"></script><script>
+(function(){
+ const root=document.documentElement;
+ const themeButton=document.getElementById('themeToggle'),themeIcon=document.getElementById('themeIcon');
+ const size=document.getElementById('fontSize'),family=document.getElementById('fontFamily');
+ const key='codeverseReaderTheme';
+ function setTheme(value){root.dataset.theme=value;themeIcon.textContent=value==='dark'?'☀':'☾';themeButton.setAttribute('aria-pressed',String(value==='dark'));try{localStorage.setItem(key,value)}catch(e){}}
+ let saved='light';try{saved=localStorage.getItem(key)||localStorage.getItem('readerTheme')||'light'}catch(e){}setTheme(saved==='dark'?'dark':'light');
+ themeButton.addEventListener('click',()=>setTheme(root.dataset.theme==='dark'?'light':'dark'));
+ try{const v=localStorage.getItem('readerFontSize');if([...size.options].some(o=>o.value===v))size.value=v;const f=localStorage.getItem('readerFontFamily');if([...family.options].some(o=>o.value===f))family.value=f}catch(e){}
+ function updateReader(){root.style.setProperty('--reading-size',size.value);root.style.setProperty('--reading-family',family.value);try{localStorage.setItem('readerFontSize',size.value);localStorage.setItem('readerFontFamily',family.value)}catch(e){}}
+ size.addEventListener('change',updateReader);family.addEventListener('change',updateReader);updateReader();
+ const menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
+ const tocLinks=[...document.querySelectorAll('.toc a[href^="#"]')];const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){tocLinks.forEach(a=>a.classList.toggle('current',a.getAttribute('href')==='#'+entry.target.id));break}}},{rootMargin:'-15% 0px -70% 0px'});document.querySelectorAll('section.chapter[id]').forEach(s=>observer.observe(s));
+})();
+</script></body></html>

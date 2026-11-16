@@ -1,131 +1,16 @@
-<!DOCTYPE html>
 
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CodeVerse | Digital E-Book Library</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<!-- External CSS -->
-<link href="/books/css/Authentication.css" rel="stylesheet"/>
-<!--FavIcon-->
-<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<style>
-</style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
-<body id="top">
-<!-- =========================
-         NAVIGATION BAR
-    ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
-</div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
-<header class="topbar">
-<a class="back-link" href="/index.html#books">← Back to Books</a>
-</header>
-<div class="reading-controls">
-<div class="control-group">
-<label for="fontSize">Font Size</label>
-<select id="fontSize">
-<option value="14px">Small</option>
-<option selected="" value="16px">Medium</option>
-<option value="18px">Large</option>
-<option value="20px">Extra Large</option>
-<option value="22px">Largest</option>
-</select>
-</div>
-<div class="control-group">
-<label for="fontFamily">Font Style</label>
-<select id="fontFamily">
-<option value="'DM Sans', sans-serif">DM Sans</option>
-<option value="Arial, sans-serif">Arial</option>
-<option value="Georgia, serif">Georgia</option>
-<option value="'Times New Roman', serif">Times New Roman</option>
-<option value="Verdana, sans-serif">Verdana</option>
-</select>
-</div>
-</div>
-<div class="layout">
-<aside class="toc">
-<h2>Table of Contents</h2>
-<nav></nav>
-<a href="#top">Introduction</a>
-<a href="#ipos-introduction">Introduction</a>
-<a href="#ipos-foundations">1. Foundations of the IPOS Cycle</a>
-<a href="#input-architecture">2. Input Subsystem Architecture</a>
-<a href="#human-input">3. Direct Human Input Devices</a>
-<a href="#environmental-sensors">4. Sensors and Environmental Input</a>
-<a href="#biometric-input">5. Biometric and Specialized Input</a>
-<a href="#input-protocols">6. Input Interfacing Protocols</a>
-<a href="#processing-foundations">7. Processing Subsystem Foundations</a>
-<a href="#instruction-cycle">8. Instruction Execution Cycle</a>
-<a href="#alu-mechanics">9. ALU Mechanics</a>
-<a href="#control-unit">10. Control Unit and Microprogramming</a>
-<a href="#pipeline-hazards">11. Processor Pipelining and Hazards</a>
-<a href="#coprocessing">12. Accelerated Processing Systems</a>
-<a href="#output-architecture">13. Output Subsystem Architecture</a>
-<a href="#visual-output">14. Visual Output Technologies</a>
-<a href="#audio-haptics">15. Audio and Tactile Output</a>
-<a href="#printing-output">16. Printing Systems</a>
-<a href="#industrial-output">17. Industrial Actuation</a>
-<a href="#output-protocols">18. Output Interfacing Protocols</a>
-<a href="#storage-taxonomy">19. Storage Subsystem Taxonomy</a>
-<a href="#ram-memory">20. Random-Access Memory</a>
-<a href="#cache-registers">21. Cache and Registers</a>
-<a href="#firmware-storage">22. Firmware Storage</a>
-<a href="#magnetic-storage">23. Magnetic Storage</a>
-<a href="#solid-state-storage">24. Solid-State Storage</a>
-<a href="#storage-controllers">25. Storage Controllers</a>
-<a href="#archival-storage">26. Archival Storage</a>
-<a href="#system-buses">27. System Interconnects</a>
-<a href="#interrupts-dma">28. Interrupts and DMA</a>
-<a href="#ipos-diagnostics">29. IPOS Performance Diagnostics</a>
-<a href="#ipos-future">30. Future IPOS Technologies</a>
-<a href="#quiz">Knowledge Assessment Quiz</a>
-<!-- QUIZ -->
-<h3>Assessment</h3>
-<a href="#quiz">Knowledge Assessment Quiz</a>
-</aside>
-<main>
-<header class="book-header">
-<span class="eyebrow">Digital Book · Technology</span>
-<h1>Computer Hardware and Software Fundamentals</h1>
-<p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p>
-</header>
-<!-- ==========================================
-     CODEVERSE - COMPUTER HISTORY
-     TABLE OF CONTENTS
-========================================== -->
-<main class="book-content">
-<!-- INTRODUCTION -->
-<section class="chapter" id="ipos-introduction">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The IPOS Cycle | CodeVerse Book 14</title><link rel="icon" type="image/png" href="/images/CodeVerseLogo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+:root{--bg:#f3f6fc;--surface:#fff;--surface2:#edf3ff;--ink:#182b4a;--muted:#61718a;--primary:#3157a4;--line:#dce5f2;--shadow:0 12px 34px rgba(24,49,99,.08);--reader-size:16px;--reader-family:'DM Sans',Arial,sans-serif;color-scheme:light}
+body.dark-mode{--bg:#0e1728;--surface:#17243a;--surface2:#1e3150;--ink:#eaf0fb;--muted:#a9b9d1;--primary:#8eb3ff;--line:#324763;--shadow:0 12px 34px rgba(0,0,0,.18);color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',Arial,sans-serif;line-height:1.7;transition:background .2s,color .2s}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #6b9dff;outline-offset:3px}
+.navbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:24px;justify-content:space-between;padding:13px clamp(16px,4vw,54px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 3px 15px rgba(0,0,0,.04)}.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:22px;text-decoration:none;color:var(--ink);white-space:nowrap}.logo img{height:37px;width:37px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:20px}.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:700}.nav-links a:hover{color:var(--primary)}.nav-actions,#accountActions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.nav-actions{margin-left:auto}.login-btn,.signup-btn,.logout-btn{display:inline-block;border-radius:9px;padding:8px 14px;font-size:13px;font-weight:700;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink)}.signup-btn,.logout-btn{background:#3157a4;color:#fff;border-color:#3157a4}.account-username{font-weight:700;font-size:13px;overflow-wrap:anywhere}.icon-btn,.menu-toggle{border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:9px;min-width:39px;height:39px}.menu-toggle{display:none}
+.topbar{max-width:1400px;margin:auto;padding:20px 24px 0}.back-link{font-size:14px;font-weight:700;text-decoration:none}.reading-controls{display:flex;flex-wrap:wrap;align-items:center;gap:18px;max-width:1400px;margin:16px auto 0;padding:13px 20px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-size:13px;font-weight:700;color:var(--muted)}.control-group select{max-width:210px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}
+.layout{display:grid;grid-template-columns:minmax(220px,270px) minmax(0,1fr);gap:26px;max-width:1400px;margin:24px auto;padding:0 20px 45px;align-items:start}.toc{position:sticky;top:87px;max-height:calc(100vh - 108px);overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;scrollbar-width:thin}.toc h2{font-size:16px;margin:0 0 12px}.toc a{display:block;text-decoration:none;color:var(--muted);font-size:13px;padding:8px 10px;border-radius:8px;line-height:1.45}.toc a:hover,.toc a.active{background:var(--surface2);color:var(--primary)}.toc h3{font-size:13px;margin:20px 0 4px;color:var(--primary)}.reader{min-width:0}.book-header{background:linear-gradient(125deg,#24447f,#315db2);color:#fff;padding:clamp(25px,5vw,54px);border-radius:18px;margin-bottom:24px}.eyebrow{display:inline-block;font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:#cfe1ff}.book-header h1{font-size:clamp(27px,3.5vw,43px);line-height:1.18;margin:12px 0}.book-header p{max-width:750px;color:#e3edff;margin:0;font-size:16px}.book-content{font-family:var(--reader-family);font-size:var(--reader-size)}.chapter{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,38px);margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:110px}.chapter h1,.chapter h2{color:var(--ink);line-height:1.3;margin:0 0 18px;font-size:1.55em}.chapter h3{font-size:1.12em;color:var(--primary);margin:24px 0 9px}.chapter p,.chapter li{color:var(--ink);line-height:1.85}.chapter p{margin:0 0 14px}.chapter ul,.chapter ol{padding-left:24px}.chapter li{margin:7px 0}.code-example{overflow-x:auto;background:var(--surface2);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:12px;padding:18px;margin:18px 0}.code-example pre{margin:0;overflow-x:auto;font-size:.85em;line-height:1.6}.code-example code{font-family:Consolas,'Courier New',monospace;color:var(--ink)}.lesson-table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:18px 0;font-size:.92em}.lesson-table th,.lesson-table td{padding:12px 14px;border:1px solid var(--line);text-align:left;min-width:115px;vertical-align:top}.lesson-table th{background:var(--surface2);color:var(--primary);font-weight:800}.lesson-table td{background:var(--surface)}
+#quizProgress{background:var(--surface2);padding:10px 15px;border-radius:9px;color:var(--primary);font-weight:700;margin:18px 0}.quiz-question{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--surface)}.quiz-question h3{margin:0 0 13px;color:var(--ink);font-size:1em}.quiz-option{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border:1px solid var(--line);border-radius:9px;margin:8px 0;cursor:pointer}.quiz-option:hover{background:var(--surface2)}.quiz-option input{margin-top:5px;accent-color:#3157a4}.quiz-option.correct{background:#e1f6e9;border-color:#40a56b;color:#145c34}.quiz-option.incorrect{background:#ffe8e8;border-color:#dc6969;color:#8a2525}.quiz-option.correct span,.quiz-option.incorrect span{color:inherit}.quiz-feedback{font-weight:700;font-size:.9em}.quiz-actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.quiz-actions button{border:0;background:#3157a4;color:white;padding:12px 20px;border-radius:9px;font-weight:800}#retryQuiz{background:#62738f}#quizResult{padding:22px;background:var(--surface2);border-radius:12px;text-align:center}#quizResult h2{font-size:2em;margin:8px}.save-status{font-size:.9em;color:var(--muted)}[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:22px;font-size:13px}
+@media(max-width:1050px){.layout{grid-template-columns:220px minmax(0,1fr);gap:16px}.navbar{gap:12px}.nav-links{gap:10px}}
+@media(max-width:760px){.layout{display:block;padding:0 12px 30px}.toc{position:static;max-height:240px;margin-bottom:18px}.navbar{flex-wrap:wrap;padding:10px 14px}.menu-toggle{display:block}.nav-links{display:none;order:5;width:100%;padding:12px 0}.nav-links.open{display:flex;flex-direction:column;align-items:flex-start}.nav-actions{margin-left:auto}.reading-controls{margin:12px 12px 0}.topbar{padding:14px 14px 0}.chapter{padding:20px}.book-header{padding:25px}.logo{font-size:19px}.logo img{width:30px;height:30px}}
+@media(max-width:440px){.control-group{width:100%;justify-content:space-between}.control-group select{max-width:65%}.account-username{max-width:110px}.nav-actions{gap:5px}.login-btn,.signup-btn,.logout-btn{padding:6px 8px}}
+</style></head><body id="top"><header class="navbar"><a class="logo" href="/index.html"><img src="/images/CodeVerseLogo.png" alt="CodeVerse logo"><span>Code<span class="logo-highlight">Verse</span></span></a><nav class="nav-links" id="navLinks"><a href="/index.html">Home</a><a href="/library.html">Explore Books</a><a href="/index.html#about">About</a></nav><div class="nav-actions"><button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" type="button"><span id="themeIcon">☾</span></button><div id="accountActions"><a href="/LogIn.html" class="login-btn">Log In</a><a href="/register.html" class="signup-btn">Sign Up</a></div></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" type="button">☰</button></header><div class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></div><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px" selected>Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans',Arial,sans-serif">DM Sans</option><option value="Arial,sans-serif">Arial</option><option value="Georgia,serif">Georgia</option><option value="'Times New Roman',serif">Times New Roman</option><option value="Verdana,sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><nav><a href="#ipos-introduction">The IPOS Cycle: Input, Processing, Output, and Storage</a><a href="#ipos-foundations">1. Foundations of the IPOS Cycle</a><a href="#input-architecture">2. Input Subsystem Architecture</a><a href="#human-input">3. Direct Human Input Devices</a><a href="#environmental-sensors">4. Sensors and Environmental Input Hardware</a><a href="#biometric-input">5. Biometric and Specialized Input Systems</a><a href="#input-protocols">6. Input Interfacing Protocols and Controllers</a><a href="#processing-foundations">7. Processing Subsystem Foundations</a><a href="#instruction-cycle">8. The Instruction Execution Cycle</a><a href="#alu-mechanics">9. Arithmetic Logic Unit Mechanics</a><a href="#control-unit">10. Control Unit and Microprogramming</a><a href="#pipeline-hazards">11. Processor Pipelining and Hazard Management</a><a href="#coprocessing">12. Accelerated and Co-Processing Systems</a><a href="#output-architecture">13. Output Subsystem Architecture</a><a href="#visual-output">14. Visual Output and Display Technologies</a><a href="#audio-haptics">15. Audio and Tactile Output Systems</a><a href="#printing-output">16. Hardcopy Output and Printing Systems</a><a href="#industrial-output">17. Industrial Actuation and Control Output</a><a href="#output-protocols">18. Output Interfacing Protocols</a><a href="#storage-taxonomy">19. Storage Subsystem Taxonomy</a><a href="#ram-memory">20. Primary Memory: Random-Access Memory</a><a href="#cache-registers">21. Primary Memory: Cache Architecture and Registers</a><a href="#firmware-storage">22. Non-Volatile System Firmware Storage</a><a href="#magnetic-storage">23. Secondary Storage: Magnetic Media Systems</a><a href="#solid-state-storage">24. Secondary Storage: Solid-State Media</a><a href="#storage-controllers">25. Storage Interfacing Protocols and Controllers</a><a href="#archival-storage">26. Tertiary and Archival Storage Systems</a><a href="#system-buses">27. System Interconnects and Tri-Bus Topology</a><a href="#interrupts-dma">28. Interrupts and Direct Memory Access</a><a href="#ipos-diagnostics">29. Unified IPOS Performance Diagnostics</a><a href="#ipos-future">30. Future Frontiers in IPOS Architecture</a><h3>Assessment</h3><a href="#quiz">Knowledge Assessment Quiz</a></nav></aside><main class="reader"><header class="book-header"><span class="eyebrow">Digital Book · Introduction to Computing · Book 14</span><h1>The IPOS Cycle: Input, Processing, Output, and Storage</h1><p>Explore how computer systems receive data, execute instructions, present results, and store information.</p></header><div class="book-content"><section class="chapter" id="ipos-introduction">
 <h1>The IPOS Cycle: Input, Processing, Output, and Storage</h1>
 <p>
         The IPOS Cycle describes the four fundamental operations
@@ -703,34 +588,28 @@ User Perception or System Action</code></pre>
         Its four subsystems operate together to support
         modern digital computing.
     </p>
-</section>
-</main>
-<!-- ==========================================
-     CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
-========================================== -->
-<section class="chapter" id="quiz">
-<h2>Knowledge Assessment Quiz</h2>
-<p>
-        Test your understanding of Responsive Web Design,
-        Media Queries, Flexbox, CSS Grid, Responsive Images,
-        Typography, and the Viewport Meta Tag.
-    </p>
-<div id="quizProgress">0 of 10 answered</div>
-<div id="quizQuestions"></div>
-<div class="quiz-actions">
-<button id="submitQuiz" type="button">
-            Submit Quiz
-        </button>
-<button hidden="" id="retryQuiz" type="button">
-            Try Again
-        </button>
-</div>
-<div aria-live="polite" hidden="" id="quizResult"></div>
-</section>
-<footer class="page-footer">End of Web Browsers, Servers, and Http/https · CodeVerse Digital Library</footer>
-</main>
-</div>
-<script>
+</section><section class="chapter" id="quiz"><h2>Knowledge Assessment Quiz</h2><p>Test your knowledge of input devices, processing systems, output technologies, storage architecture, and the complete IPOS cycle.</p><div id="quizProgress">0 of 30 answered</div><div id="quizQuestions"></div><div class="quiz-actions"><button id="submitQuiz" type="button">Submit Quiz</button><button id="retryQuiz" type="button" hidden>Try Again</button></div><div id="quizResult" aria-live="polite" hidden></div></section></div><footer class="page-footer">End of The IPOS Cycle: Input, Processing, Output, and Storage · CodeVerse Digital Library</footer></main></div><script>
+(() => {
+ const themeToggle=document.getElementById('themeToggle');
+ const themeIcon=document.getElementById('themeIcon');
+ const fontSize=document.getElementById('fontSize');
+ const fontFamily=document.getElementById('fontFamily');
+ const menuToggle=document.getElementById('menuToggle');
+ const navLinks=document.getElementById('navLinks');
+ const root=document.body;
+ function applyTheme(dark){root.classList.toggle('dark-mode',dark);themeIcon.textContent=dark?'☀':'☾';themeToggle.setAttribute('aria-pressed',String(dark));}
+ applyTheme(localStorage.getItem('readerTheme')==='dark');
+ themeToggle.addEventListener('click',()=>{const dark=!root.classList.contains('dark-mode');applyTheme(dark);localStorage.setItem('readerTheme',dark?'dark':'light');});
+ const savedSize=localStorage.getItem('readerFontSize');if([...fontSize.options].some(o=>o.value===savedSize))fontSize.value=savedSize;
+ const savedFamily=localStorage.getItem('readerFontFamily');if([...fontFamily.options].some(o=>o.value===savedFamily))fontFamily.value=savedFamily;
+ function applyFonts(){document.documentElement.style.setProperty('--reader-size',fontSize.value);document.documentElement.style.setProperty('--reader-family',fontFamily.value);}
+ fontSize.addEventListener('change',()=>{localStorage.setItem('readerFontSize',fontSize.value);applyFonts();});
+ fontFamily.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',fontFamily.value);applyFonts();});applyFonts();
+ menuToggle.addEventListener('click',()=>{const opened=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(opened));});
+ const tocLinks=[...document.querySelectorAll('.toc a[href^="#"]')];
+ tocLinks.forEach(a=>a.addEventListener('click',()=>{tocLinks.forEach(x=>x.classList.remove('active'));a.classList.add('active');}));
+})();
+</script><script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const quizQuestions = document.getElementById("quizQuestions");
@@ -1110,7 +989,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateProgress();
     }
 
-    submitQuiz.addEventListener("click", function () {
+    submitQuiz.addEventListener("click", async function () {
         let score = 0;
         let answered = 0;
 
@@ -1200,6 +1079,24 @@ document.addEventListener("DOMContentLoaded", function () {
         quizResult.hidden = false;
         submitQuiz.hidden = true;
         retryQuiz.hidden = false;
+        const saveStatus = document.createElement("p");
+        saveStatus.className = "save-status";
+        saveStatus.textContent = "Saving quiz result...";
+        quizResult.appendChild(saveStatus);
+        try {
+            const response = await fetch("/api/quiz-results", {
+                method: "POST", credentials: "same-origin",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ bookId: 14, score, totalQuestions: questions.length })
+            });
+            const data = await response.json();
+            saveStatus.textContent = response.ok && data.success
+                ? "Your quiz score has been saved!"
+                : (data.message || "Quiz completed, but score saving was unavailable.");
+        } catch (error) {
+            console.error("Quiz save error:", error);
+            saveStatus.textContent = "Quiz completed, but the score could not be saved.";
+        }
 
         quizResult.scrollIntoView({
             behavior: "smooth",
@@ -1218,5 +1115,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadQuiz();
 });
-</script>
-</body></html>
+</script><script src="/js/auth-nav.js" defer></script></body></html>

@@ -1,202 +1,1229 @@
 
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<!-- External CSS -->
-<link href="/css/WebServerHttp.css" rel="stylesheet"/>
-<!--FavIcon-->
-<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<style>
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeVerse | Device and Input/Output Management</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/images/CodeVerseLogo.png">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- ==========================================
+         COMPLETE BUILT-IN CSS
+    ========================================== -->
+
+    <style>
+
+        :root {
+            --bg: #f4f7fc;
+            --surface: #ffffff;
+            --text: #1c2a42;
+            --muted: #64748b;
+            --line: #e1e8f2;
+            --blue: #3157a4;
+            --blue-dark: #244581;
+            --shadow: 0 18px 50px rgba(22,48,91,.09);
+        }
+
+        body.dark-mode {
+            --bg: #101827;
+            --surface: #1d293c;
+            --text: #eef3fc;
+            --muted: #b2c0d5;
+            --line: #38475c;
+            --blue: #94b5ff;
+            --blue-dark: #bed0ff;
+            --shadow: 0 18px 50px rgba(0,0,0,.24);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "DM Sans", Arial, sans-serif;
+            transition: background .25s, color .25s;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* NAVIGATION BAR */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+
+            min-height: 78px;
+            padding: 14px 5%;
+
+            display: flex;
+            align-items: center;
+            gap: 34px;
+
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            box-shadow: 0 3px 14px rgba(0,0,0,.025);
+            box-sizing: border-box;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -.7px;
+            white-space: nowrap;
+        }
+
+        .site-logo {
+            width: 43px;
+            height: 43px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-btn,
+        .menu-toggle {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 11px;
+            min-width: 42px;
+            height: 42px;
+            font-size: 21px;
+        }
+
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 11px 17px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .login-btn {
+            border: 1px solid var(--line);
+        }
+
+        .signup-btn {
+            background: #3157a4;
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* BACK NAVIGATION */
+
+        .topbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 24px 0;
+        }
+
+        .back-link {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* BOOK CONTAINER */
+
+        .book-container {
+            max-width: 1120px;
+            margin: 34px auto 80px;
+            padding: 40px;
+
+            display: grid;
+            grid-template-columns: minmax(250px,380px) minmax(0,1fr);
+            gap: 60px;
+            align-items: center;
+
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            box-sizing: border-box;
+        }
+
+        .book-cover-container {
+            background: linear-gradient(145deg,#e3edff,#f4f7ff);
+            padding: 24px;
+            min-height: 410px;
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .book-cover-image {
+            display: block;
+            max-width: 100%;
+            max-height: 470px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 12px 15px rgba(0,0,0,.15));
+        }
+
+        .book-details {
+            min-width: 0;
+        }
+
+        .featured-label {
+            display: inline-block;
+            background: rgba(49,87,164,.11);
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            padding: 9px 13px;
+            border-radius: 999px;
+        }
+
+        .book-title {
+            font-family: "Playfair Display",Georgia,serif;
+            font-weight: 700;
+            line-height: 1.15;
+            font-size: clamp(30px,4vw,49px);
+            margin: 22px 0;
+        }
+
+        .book-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding: 12px 22px;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        .stat strong {
+            font-size: 23px;
+            color: var(--blue);
+        }
+
+        .stat span {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--muted);
+        }
+
+        .book-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 590px;
+        }
+
+        /* BOOK BUTTONS */
+
+        .book-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .book-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 49px;
+            padding: 12px 24px;
+            border-radius: 11px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 800;
+            border: 1px solid var(--line);
+            color: var(--text);
+            background: var(--surface);
+            box-sizing: border-box;
+            transition: transform .2s, background .2s;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-2px);
+            background: var(--bg);
+        }
+
+        .book-btn.primary {
+            background: #3157a4;
+            color: white;
+            border-color: #3157a4;
+        }
+
+        .book-btn.primary:hover {
+            background: #244581;
+        }
+
+        /* CONTENTS POPUP */
+
+        .contents-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(8,18,35,.75);
+            padding: 18px;
+            box-sizing: border-box;
+        }
+
+        .contents-overlay.show {
+            display: flex;
+        }
+
+        .contents-modal {
+            width: min(720px,100%);
+            max-height: min(86vh,850px);
+
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: 0 25px 90px rgba(0,0,0,.28);
+        }
+
+        .contents-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 24px 26px 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .contents-header h2 {
+            margin: 7px 0 0;
+            font-size: 25px;
+        }
+
+        .contents-subtitle {
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .09em;
+        }
+
+        .close-contents {
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+            color: var(--text);
+            font-size: 27px;
+            width: 42px;
+            height: 42px;
+        }
+
+        .contents-list {
+            padding: 10px 20px 22px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+        }
+
+        .contents-group {
+            padding: 18px 12px 8px;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .contents-list a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 12px;
+            border-bottom: 1px solid var(--line);
+            border-radius: 7px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .contents-list a:hover,
+        .contents-list a:focus-visible {
+            background: var(--bg);
+            color: var(--blue);
+        }
+
+        .contents-number {
+            min-width: 36px;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .contents-name {
+            flex: 1;
+        }
+
+        .contents-arrow {
+            font-size: 24px;
+            color: var(--muted);
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width:1000px) {
+            .navbar {
+                gap: 18px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .book-container {
+                margin: 25px 20px 65px;
+                gap: 32px;
+                padding: 28px;
+            }
+        }
+
+        @media (max-width:760px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 13px 18px;
+            }
+
+            .nav-links {
+                order: 4;
+                display: none;
+                width: 100%;
+                margin: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 12px 0;
+                border-top: 1px solid var(--line);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 11px;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .book-container {
+                grid-template-columns: 1fr;
+                gap: 26px;
+                max-width: 560px;
+            }
+
+            .book-cover-container {
+                min-height: 260px;
+            }
+
+            .book-cover-image {
+                max-height: 340px;
+            }
+
+            .book-title {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width:480px) {
+            .logo {
+                font-size: 20px;
+            }
+
+            .site-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .navbar {
+                gap: 8px;
+            }
+
+            .nav-actions {
+                gap: 6px;
+            }
+
+            .login-btn,
+            .signup-btn {
+                font-size: 11px;
+                padding: 9px 10px;
+            }
+
+            .icon-btn,
+            .menu-toggle {
+                width: 36px;
+                min-width: 36px;
+                height: 36px;
+            }
+
+            .book-container {
+                padding: 20px;
+                margin: 20px 12px 50px;
+            }
+
+            .book-title {
+                font-size: 29px;
+            }
+
+            .contents-header {
+                padding: 17px;
+            }
+
+            .contents-list {
+                padding: 8px;
+            }
+
+            .contents-list a {
+                font-size: 13px;
+            }
+
+            .contents-modal {
+                max-height: 90vh;
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .book-btn,
+            body {
+                transition: none;
+            }
+        }
+
+    </style>
 </head>
+
 <body id="top">
-<!-- =========================
-         NAVIGATION BAR
-    ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
-</div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+
+    <!-- NAVIGATION BAR -->
+
+    <header class="navbar">
+
+        <a class="logo" href="/index.html">
+            <img
+                src="/images/CodeVerseLogo.png"
+                alt="CodeVerse Logo"
+                class="site-logo"
+            >
+
+            <span>
+                Code<span class="logo-highlight">Verse</span>
+            </span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="/index.html">Home</a>
+            <a class="active" href="/library.html">Explore Books</a>
+            <a href="/index.html#about">About</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <button
+                type="button"
+                class="icon-btn"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+            >
+                <span id="themeIcon">☾</span>
+            </button>
+
+            <div id="accountActions">
+                <a class="login-btn" href="/LogIn.html">Log In</a>
+                <a class="signup-btn" href="/register.html">Sign Up</a>
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
             ☰
         </button>
-</header>
-<header class="topbar">
-<a class="back-link" href="/index.html">← Back to Books</a>
-</header>
-<main class="book-container">
-<!-- BOOK COVER IMAGE -->
-<div class="book-cover-container">
-<img alt="Authentication" class="book-cover-image" src="/images/Authentication.png"/>
-</div>
-<!-- BOOK DETAILS -->
-<section class="book-details">
-<span class="featured-label">
+
+    </header>
+
+    <!-- BACK NAVIGATION -->
+
+    <header class="topbar">
+        <a class="back-link" href="/library.html">
+            ← Back to Books
+        </a>
+    </header>
+
+    <!-- BOOK COVER AND DETAILS -->
+
+    <main class="book-container">
+
+        <div class="book-cover-container">
+            <img
+                src="/images/Authentication.png"
+                alt="Device and Input/Output Management"
+                class="book-cover-image"
+            >
+        </div>
+
+        <section class="book-details">
+
+            <span class="featured-label">
                 ★ FEATURED E-BOOK
             </span>
-<h1 class="book-title">
-            Device and Input/Output Management
+
+            <h1 class="book-title">
+                Device and Input/Output Management
             </h1>
-<!-- STATISTICS -->
-<div class="book-stats">
-<div class="stat">
-<strong>4</strong>
-<span>Parts</span>
-</div>
-</div>
-<!-- DESCRIPTION -->
-<p class="book-description">
-Explores emerging technologies and artificial intelligence and their impact on modern computing and everyday life.            </p>
-<!-- NAVIGATION BUTTONS -->
-<div class="book-actions">
-<a class="book-btn primary" href="/read/24">
-                    Start reading
+
+            <div class="book-stats">
+
+                <div class="stat">
+                    <strong>12</strong>
+                    <span>Parts</span>
+                </div>
+
+                <div class="stat">
+                    <strong>55</strong>
+                    <span>Topics</span>
+                </div>
+
+            </div>
+
+            <p class="book-description">
+
+                Learn how operating systems control and
+                coordinate hardware devices, manage input
+                and output operations, and handle communication
+                between computers and connected peripherals.
+
+                Explore device drivers, controllers, interrupts,
+                Direct Memory Access (DMA), buffering, caching,
+                spooling, device scheduling, hardware interfaces,
+                and practical I/O applications in modern
+                operating systems.
+
+            </p>
+
+            <div class="book-actions">
+
+                <a
+                    class="book-btn primary"
+                    href="/read/24"
+                >
+                    Start Reading
                 </a>
-<a class="book-btn" href="#" id="contentsBtn">
-                    ☰  Contents
+
+                <a
+                    class="book-btn"
+                    href="#contentsPopup"
+                    id="contentsBtn"
+                    aria-haspopup="dialog"
+                >
+                    ☰ Contents
                 </a>
-</div>
-</section>
-</main>
-<!-- TABLE OF CONTENTS POPUP -->
-<div class="contents-overlay" id="contentsPopup">
-<div class="contents-modal">
-<div class="contents-header">
-<div>
-<span class="contents-subtitle">WEB, SERVER, AND HTTP/HTTPS</span>
-<h2>Table of Contents</h2>
-</div>
-<button aria-label="Close contents" class="close-contents" id="closeContents" type="button">
-                ×
-            </button>
-</div>
-<div class="contents-list">
-<a href="">
-<span>01</span>
-                How browsers load websites
-                <span class="contents-arrow">›</span>
-</a>
-<a href="">
-<span>02</span>
-                Parsing CSS and Rendering
-                <span class="contents-arrow">›</span>
-</a>
-<a href="">
-<span>03</span>
-                Handling JavaScript
-                <span class="contents-arrow">›</span>
-</a>
-<a href="">
-<span>04</span>
-                The Browsers
-                <span class="contents-arrow">›</span>
-</a>
-</div>
-</div>
-</div>
-<script>
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
 
-    menuToggle.addEventListener("click", function () {
-        navLinks.classList.toggle("show");
-    });
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+            </div>
 
-    const themeToggle = document.getElementById("themeToggle");
-    const themeIcon = document.getElementById("themeIcon");
+        </section>
 
-    // Load saved theme
-    const savedTheme = localStorage.getItem("theme");
+    </main>
 
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-        themeIcon.textContent = "☀";
-    } else {
-        document.body.classList.remove("dark-mode");
-        themeIcon.textContent = "☾";
-    }
+    <!-- TABLE OF CONTENTS POPUP -->
 
-    // Toggle dark mode
-    themeToggle.addEventListener("click", function () {
+    <div class="contents-overlay" id="contentsPopup">
 
-        document.body.classList.toggle("dark-mode");
+        <div
+            class="contents-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contentsTitle"
+        >
 
-        const isDark = document.body.classList.contains("dark-mode");
+            <div class="contents-header">
 
-        if (isDark) {
-            themeIcon.textContent = "☀";
-            localStorage.setItem("theme", "dark");
-        } else {
-            themeIcon.textContent = "☾";
-            localStorage.setItem("theme", "light");
-        }
+                <div>
+                    <span class="contents-subtitle">
+                        DEVICE AND INPUT/OUTPUT MANAGEMENT
+                    </span>
 
-    });
+                    <h2 id="contentsTitle">
+                        Table of Contents
+                    </h2>
+                </div>
 
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+                <button
+                    type="button"
+                    class="close-contents"
+                    id="closeContents"
+                    aria-label="Close contents"
+                >
+                    ×
+                </button>
 
-    const contentsBtn = document.getElementById("contentsBtn");
-    const contentsPopup = document.getElementById("contentsPopup");
-    const closeContents = document.getElementById("closeContents");
+            </div>
 
-    // Open popup
-    contentsBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    contentsPopup.classList.add("show");
-    });
+            <!-- LINKS ARE GENERATED FROM THE READER'S
+                 EXISTING SECTION IDS -->
 
-    // Close popup
-    closeContents.addEventListener("click", function () {
-        contentsPopup.classList.remove("show");
-    });
+            <div class="contents-list" id="contentsList">
 
-    // Close when clicking outside the popup
-    contentsPopup.addEventListener("click", function (event) {
-        if (event.target === contentsPopup) {
-            contentsPopup.classList.remove("show");
-        }
-    });
+                <a href="/read/24#introduction">
+                    <span class="contents-number">00</span>
+                    <span class="contents-name">Introduction</span>
+                    <span class="contents-arrow">›</span>
+                </a>
 
-    // Close using Escape key
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            contentsPopup.classList.remove("show");
-        }
-    });
+                <div class="contents-group">
+                    Loading chapters...
+                </div>
 
-});
-</script>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         COMPLETE JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* ==================================
+               BOOK 24 TABLE OF CONTENTS DATA
+
+               Each ID matches the existing
+               reader HTML at /read/24.
+            ================================== */
+
+            const bookContents = [
+
+                {
+                    title: "Part 1 – Fundamentals",
+                    id: "part1",
+                    topics: [
+                        ["section1-1", "1.1 Device Management"],
+                        ["section1-2", "1.2 Input/Output Management"],
+                        ["section1-3", "1.3 Importance"],
+                        ["section1-4", "1.4 Objectives"]
+                    ]
+                },
+
+                {
+                    title: "Part 2 – Types of Devices",
+                    id: "part2",
+                    topics: [
+                        ["section2-1", "2.1 Input Devices"],
+                        ["section2-2", "2.2 Output Devices"],
+                        ["section2-3", "2.3 Input/Output Devices"],
+                        ["section2-4", "2.4 Comparison"]
+                    ]
+                },
+
+                {
+                    title: "Part 3 – OS Device Management",
+                    id: "part3",
+                    topics: [
+                        ["section3-1", "3.1 Role of the OS"],
+                        ["section3-2", "3.2 Device Drivers"],
+                        ["section3-3", "3.3 Types of Drivers"],
+                        ["section3-4", "3.4 Device Controllers"],
+                        ["section3-5", "3.5 Device Registers"]
+                    ]
+                },
+
+                {
+                    title: "Part 4 – I/O Techniques",
+                    id: "part4",
+                    topics: [
+                        ["section4-1", "4.1 Programmed I/O"],
+                        ["section4-2", "4.2 Interrupt-Driven I/O"],
+                        ["section4-3", "4.3 Direct Memory Access"],
+                        ["section4-4", "4.4 Comparison"],
+                        ["section4-5", "4.5 Synchronous and Asynchronous I/O"]
+                    ]
+                },
+
+                {
+                    title: "Part 5 – I/O Operations",
+                    id: "part5",
+                    topics: [
+                        ["section5-1", "5.1 Buffering"],
+                        ["section5-2", "5.2 Caching"],
+                        ["section5-3", "5.3 Spooling"],
+                        ["section5-4", "5.4 Device Scheduling"],
+                        ["section5-5", "5.5 Error Handling"]
+                    ]
+                },
+
+                {
+                    title: "Part 6 – Hardware Interfaces",
+                    id: "part6",
+                    topics: [
+                        ["section6-1", "6.1 Device Communication"],
+                        ["section6-2", "6.2 System Bus"],
+                        ["section6-3", "6.3 USB"],
+                        ["section6-4", "6.4 HDMI"],
+                        ["section6-5", "6.5 Bluetooth"],
+                        ["section6-6", "6.6 Network Interfaces"]
+                    ]
+                },
+
+                {
+                    title: "Part 7 – Interrupts and Resources",
+                    id: "part7",
+                    topics: [
+                        ["section7-1", "7.1 Interrupts"],
+                        ["section7-2", "7.2 Types of Interrupts"],
+                        ["section7-3", "7.3 ISR"],
+                        ["section7-4", "7.4 Interrupt Priority"],
+                        ["section7-5", "7.5 Resource Allocation"]
+                    ]
+                },
+
+                {
+                    title: "Part 8 – Modern Operating Systems",
+                    id: "part8",
+                    topics: [
+                        ["section8-1", "8.1 Windows"],
+                        ["section8-2", "8.2 Linux"],
+                        ["section8-3", "8.3 macOS"],
+                        ["section8-4", "8.4 Plug and Play"],
+                        ["section8-5", "8.5 Hot Plugging"]
+                    ]
+                },
+
+                {
+                    title: "Part 9 – Security and Performance",
+                    id: "part9",
+                    topics: [
+                        ["section9-1", "9.1 Device Security"],
+                        ["section9-2", "9.2 Driver Updates"],
+                        ["section9-3", "9.3 Power Management"],
+                        ["section9-4", "9.4 I/O Performance"],
+                        ["section9-5", "9.5 Troubleshooting"]
+                    ]
+                },
+
+                {
+                    title: "Part 10 – Practical Examples",
+                    id: "part10",
+                    topics: [
+                        ["section10-1", "10.1 Typing a Document"],
+                        ["section10-2", "10.2 Printing"],
+                        ["section10-3", "10.3 USB File Transfer"],
+                        ["section10-4", "10.4 Online Class"],
+                        ["section10-5", "10.5 Playing Music"],
+                        ["section10-6", "10.6 Scanning"],
+                        ["section10-7", "10.7 Touchscreen"]
+                    ]
+                },
+
+                {
+                    title: "Part 11 – Advantages and Limitations",
+                    id: "part11",
+                    topics: [
+                        ["section11-1", "11.1 Advantages"],
+                        ["section11-2", "11.2 Limitations"]
+                    ]
+                },
+
+                {
+                    title: "Part 12 – Summary and Conclusion",
+                    id: "part12",
+                    topics: [
+                        ["section12-1", "12.1 Summary"],
+                        ["section12-2", "12.2 Conclusion"]
+                    ]
+                }
+
+            ];
+
+
+            /* ==================================
+               BUILD TABLE OF CONTENTS
+            ================================== */
+
+            const contentsList =
+                document.getElementById("contentsList");
+
+            contentsList.innerHTML = "";
+
+            function addContentsLink(id, title, number) {
+
+                const link = document.createElement("a");
+
+                link.href = "/read/24#" + id;
+
+                const numberSpan = document.createElement("span");
+                numberSpan.className = "contents-number";
+                numberSpan.textContent = number;
+
+                const titleSpan = document.createElement("span");
+                titleSpan.className = "contents-name";
+                titleSpan.textContent = title;
+
+                const arrowSpan = document.createElement("span");
+                arrowSpan.className = "contents-arrow";
+                arrowSpan.textContent = "›";
+
+                link.appendChild(numberSpan);
+                link.appendChild(titleSpan);
+                link.appendChild(arrowSpan);
+
+                contentsList.appendChild(link);
+
+            }
+
+            /* INTRODUCTION */
+
+            addContentsLink(
+                "introduction",
+                "Introduction",
+                "00"
+            );
+
+            /* ALL 12 PARTS AND 55 TOPICS */
+
+            bookContents.forEach(function (part, index) {
+
+                const heading = document.createElement("div");
+
+                heading.className = "contents-group";
+                heading.textContent = part.title;
+
+                contentsList.appendChild(heading);
+
+                addContentsLink(
+                    part.id,
+                    part.title,
+                    String(index + 1).padStart(2, "0")
+                );
+
+                part.topics.forEach(function (topic) {
+
+                    addContentsLink(
+                        topic[0],
+                        topic[1],
+                        "•"
+                    );
+
+                });
+
+            });
+
+            /* FINAL QUIZ */
+
+            const quizHeading = document.createElement("div");
+            quizHeading.className = "contents-group";
+            quizHeading.textContent = "Final Assessment";
+            contentsList.appendChild(quizHeading);
+
+            addContentsLink(
+                "quiz",
+                "Knowledge Assessment Quiz",
+                "✓"
+            );
+
+
+            /* ==================================
+               MOBILE NAVIGATION
+            ================================== */
+
+            const menuToggle =
+                document.getElementById("menuToggle");
+
+            const navLinks =
+                document.getElementById("navLinks");
+
+            menuToggle.addEventListener("click", function () {
+
+                const visible =
+                    navLinks.classList.toggle("show");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(visible)
+                );
+
+            });
+
+
+            /* ==================================
+               DARK MODE
+            ================================== */
+
+            const themeToggle =
+                document.getElementById("themeToggle");
+
+            const themeIcon =
+                document.getElementById("themeIcon");
+
+            function applyTheme() {
+
+                const isDark =
+                    localStorage.getItem("theme") === "dark";
+
+                document.body.classList.toggle(
+                    "dark-mode",
+                    isDark
+                );
+
+                themeIcon.textContent =
+                    isDark ? "☀" : "☾";
+
+                themeToggle.setAttribute(
+                    "aria-label",
+                    isDark
+                        ? "Switch to light mode"
+                        : "Switch to dark mode"
+                );
+
+            }
+
+            applyTheme();
+
+            themeToggle.addEventListener("click", function () {
+
+                const isDark =
+                    document.body.classList.contains("dark-mode");
+
+                localStorage.setItem(
+                    "theme",
+                    isDark ? "light" : "dark"
+                );
+
+                applyTheme();
+
+            });
+
+
+            /* ==================================
+               CONTENTS POPUP
+            ================================== */
+
+            const contentsBtn =
+                document.getElementById("contentsBtn");
+
+            const contentsPopup =
+                document.getElementById("contentsPopup");
+
+            const closeContents =
+                document.getElementById("closeContents");
+
+            let lastFocus = null;
+
+            function openContents(event) {
+
+                event.preventDefault();
+
+                lastFocus = document.activeElement;
+
+                contentsPopup.classList.add("show");
+
+                document.body.style.overflow = "hidden";
+
+                closeContents.focus();
+
+            }
+
+            function hideContents() {
+
+                contentsPopup.classList.remove("show");
+
+                document.body.style.overflow = "";
+
+                if (lastFocus) {
+                    lastFocus.focus();
+                }
+
+            }
+
+            contentsBtn.addEventListener(
+                "click",
+                openContents
+            );
+
+            closeContents.addEventListener(
+                "click",
+                hideContents
+            );
+
+            contentsPopup.addEventListener("click", function (event) {
+
+                if (event.target === contentsPopup) {
+                    hideContents();
+                }
+
+            });
+
+
+            /* ==================================
+               KEYBOARD ACCESSIBILITY
+            ================================== */
+
+            document.addEventListener("keydown", function (event) {
+
+                if (!contentsPopup.classList.contains("show")) {
+                    return;
+                }
+
+                if (event.key === "Escape") {
+                    hideContents();
+                    return;
+                }
+
+                if (event.key === "Tab") {
+
+                    const focusable = [
+                        closeContents,
+                        ...contentsPopup.querySelectorAll(
+                            ".contents-list a"
+                        )
+                    ];
+
+                    const first = focusable[0];
+                    const last = focusable[focusable.length - 1];
+
+                    if (
+                        event.shiftKey &&
+                        document.activeElement === first
+                    ) {
+
+                        event.preventDefault();
+                        last.focus();
+
+                    } else if (
+                        !event.shiftKey &&
+                        document.activeElement === last
+                    ) {
+
+                        event.preventDefault();
+                        first.focus();
+
+                    }
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+    <!-- EXISTING CODEVERSE ACCOUNT SYSTEM -->
+    <script src="/js/auth-nav.js" defer></script>
+
 </body>
 </html>

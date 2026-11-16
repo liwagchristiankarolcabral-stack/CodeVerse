@@ -4,21 +4,27 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CodeVerse | Digital E-Book Library</title>
+<title>CodeVerse | Programs and Processes of Computer</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+
 <!-- External CSS -->
-<link href="/books/css/Authentication.css" rel="stylesheet"/>
+
 <!--FavIcon-->
 <link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
+
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+
+
 <style>
-</style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+:root{--primary:#3157a4;--primary-strong:#24427f;--bg:#f4f7fc;--surface:#fff;--text:#243149;--muted:#65748d;--line:#e1e7f0;--soft:#edf3ff;--shadow:0 10px 32px #1e325a12}
+html{scroll-behavior:smooth;scroll-padding-top:96px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;transition:background .2s,color .2s}body.dark-mode{--primary:#9bbcff;--primary-strong:#bfd1ff;--bg:#101827;--surface:#1b2739;--text:#edf3fc;--muted:#b4c1d5;--line:#34445c;--soft:#253954;--shadow:0 10px 32px #0004}a{color:var(--primary);text-decoration:none}button,select{font:inherit}button{cursor:pointer}
+.navbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:13px clamp(16px,4vw,52px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:800;font-size:22px;white-space:nowrap}.site-logo{width:37px;height:37px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{color:var(--text);font-size:14px;font-weight:700}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px}.menu-toggle{display:none}#accountActions{display:flex;align-items:center;gap:9px}.login-btn,.signup-btn,.logout-btn{display:inline-block;padding:9px 12px;border-radius:9px;font-size:13px;font-weight:700;white-space:nowrap}.login-btn{border:1px solid var(--line)}.signup-btn,.logout-btn{background:#3157a4;color:white;border:0}.account-username{font-size:13px;color:var(--text);font-weight:700}
+.topbar{padding:15px clamp(16px,5vw,64px);border-bottom:1px solid var(--line)}.back-link{font-weight:700;font-size:14px}.reading-controls{display:flex;flex-wrap:wrap;gap:18px;padding:14px clamp(16px,5vw,64px);background:var(--surface);border-bottom:1px solid var(--line)}.control-group{display:flex;align-items:center;gap:9px}.control-group label{font-size:13px;font-weight:700}.control-group select{padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text)}
+.layout{max-width:1450px;margin:28px auto;padding:0 22px;display:grid;grid-template-columns:minmax(215px,280px) minmax(0,1fr);gap:26px;align-items:start}.toc{position:sticky;top:91px;max-height:calc(100vh - 111px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{margin:0 0 13px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{display:block;color:var(--muted);font-size:12px;line-height:1.45;border-radius:8px;padding:9px 10px}.toc nav a:hover,.toc nav a.active{background:var(--soft);color:var(--primary)}main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:clamp(20px,3vw,38px);margin-bottom:22px;box-shadow:var(--shadow)}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3vw,42px);line-height:1.22;margin:12px 0}.book-header p{color:var(--muted);line-height:1.75}.eyebrow{color:var(--primary);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.chapter{font-size:var(--reader-size,16px);font-family:var(--reader-font,'DM Sans',sans-serif);line-height:1.85;overflow-wrap:anywhere}.chapter h1,.chapter h2,.chapter h3{line-height:1.4;color:var(--text)}.chapter h1{font-size:1.9em}.chapter h2{font-size:1.48em}.chapter h3{font-size:1.16em;margin-top:25px}.chapter p,.chapter li{color:var(--text)}.chapter li{margin-bottom:7px}.chapter table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:20px 0}.chapter th,.chapter td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:105px}.chapter th{background:var(--soft)}.code-example{overflow-x:auto;border:1px solid var(--line);background:var(--soft);padding:16px;border-radius:10px;margin:18px 0}.code-example pre{margin:0;white-space:pre;font-size:13px;line-height:1.5;color:var(--text)}.quiz-question{padding:18px 0;border-bottom:1px solid var(--line)}.quiz-question h3{font-size:1em;margin:0 0 12px}.quiz-option{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:9px;padding:11px 13px;margin:7px 0;cursor:pointer}.quiz-option:has(input:checked){border-color:var(--primary);background:var(--soft)}.quiz-option.correct{border-color:#24a36a;background:#24a36a18}.quiz-option.incorrect{border-color:#d95363;background:#d9536318}.quiz-feedback{font-weight:700;font-size:.88em}.quiz-actions{display:flex;gap:12px;margin-top:22px}.quiz-actions button{background:#3157a4;color:white;border:0;border-radius:9px;padding:12px 20px;font-weight:700}.quiz-actions button:disabled{opacity:.5}#quizProgress{color:var(--muted);font-weight:700}#quizResult{padding:22px;background:var(--soft);border-radius:12px;margin-top:18px;text-align:center}[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:20px 0 40px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:255px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}@media(max-width:620px){.navbar{gap:9px}.logo{font-size:17px}.site-logo{width:30px;height:30px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;gap:12px}.nav-links.open{display:flex}.nav-actions{margin-left:auto}#accountActions{gap:6px}.account-username{max-width:105px;overflow-wrap:anywhere;font-size:11px}.login-btn,.signup-btn,.logout-btn{font-size:11px;padding:8px}.layout{padding:0 12px;gap:14px}.control-group{flex-wrap:wrap}}
+</style></head>
 <body id="top">
 <!-- =========================
          NAVIGATION BAR
@@ -75,38 +81,38 @@
 <div class="layout">
 <aside class="toc">
 <h2>Table of Contents</h2>
-<nav></nav>
-<a href="#programs-processes-intro">Introduction to Programs and Processes</a>
-<a href="#program-foundations">1. Foundational Definitions and Operational Paradigms</a>
-<a href="#compilation-linking">2. Compilation, Assembly, and Linking</a>
-<a href="#process-memory">3. Process Memory Architecture</a>
-<a href="#process-control-block">4. Process Control Block (PCB)</a>
-<a href="#process-lifecycle">5. Process Lifecycle State Machine</a>
-<a href="#cpu-scheduling-principles">6. CPU Scheduling Principles and Metrics</a>
-<a href="#cpu-scheduling-algorithms">7. CPU Scheduling Algorithms</a>
-<a href="#process-creation">8. Process Creation and Control</a>
-<a href="#threads-multithreading">9. Threads and Multithreading</a>
-<a href="#interprocess-communication">10. Inter-Process Communication</a>
-<a href="#process-synchronization">11. Process Synchronization</a>
-<a href="#deadlocks-resource-management">12. Deadlocks and Resource Allocation</a>
-<a href="#virtual-memory-paging">13. Virtual Memory and Paging</a>
-<a href="#context-switching">14. Context Switching and Kernel Overhead</a>
-<a href="#process-security">15. Security and Process Isolation</a>
-<a href="#signals-events">16. Signals and Event-Driven Architecture</a>
-<a href="#containers-diagnostics">17. Containers and System Diagnostics</a>
-<a href="#quiz">Knowledge Assessment Quiz</a>
+<nav><a href="#programs-processes-intro">Introduction to Programs and Processes</a><a href="#program-foundations">1. Foundational Definitions and Operational Paradigms</a><a href="#compilation-linking">2. Compilation, Assembly, and Linking</a><a href="#process-memory">3. Process Memory Architecture</a><a href="#process-control-block">4. Process Control Block (PCB)</a><a href="#process-lifecycle">5. Process Lifecycle State Machine</a><a href="#cpu-scheduling-principles">6. CPU Scheduling Principles and Metrics</a><a href="#cpu-scheduling-algorithms">7. CPU Scheduling Algorithms</a><a href="#process-creation">8. Process Creation and Control</a><a href="#threads-multithreading">9. Threads and Multithreading</a><a href="#interprocess-communication">10. Inter-Process Communication</a><a href="#process-synchronization">11. Process Synchronization</a><a href="#deadlocks-resource-management">12. Deadlocks and Resource Allocation</a><a href="#virtual-memory-paging">13. Virtual Memory and Paging</a><a href="#context-switching">14. Context Switching and Kernel Overhead</a><a href="#process-security">15. Security and Process Isolation</a><a href="#signals-events">16. Signals and Event-Driven Architecture</a><a href="#containers-diagnostics">17. Containers and System Diagnostics</a><a href="#quiz">Knowledge Assessment Quiz</a></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </aside>
 <main>
 <header class="book-header">
 <span class="eyebrow">Digital Book · Technology</span>
-<h1>Computer Hardware and Software Fundamentals</h1>
-<p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p>
+<h1>Programs and Processes of Computer</h1>
+<p>Explore how computer programs become running processes, including CPU scheduling, memory, threads, synchronization, and process security.</p>
 </header>
 <!-- ==========================================
      CODEVERSE - COMPUTER HISTORY
      TABLE OF CONTENTS
 ========================================== -->
-<main class="book-content">
+<div class="book-content">
 <!-- INTRODUCTION -->
 <!-- ==========================================
      CODEVERSE
@@ -978,14 +984,10 @@ Producer:
         stable multitasking environments.
     </p>
 </section>
-</main>
+</div>
 <section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
-<p>
-        Test your understanding of Data, Information,
-        Number Systems, and Computer Architecture.
-        Answer all 34 questions before submitting.
-    </p>
+<p>Test your understanding of Programs and Processes of Computer. Answer all 30 questions before submitting.</p>
 <p aria-live="polite" id="quizProgress">
         0 of 34 answered
     </p>
@@ -1000,7 +1002,7 @@ Producer:
 </div>
 <div aria-live="polite" hidden="" id="quizResult"></div>
 </section>
-<footer class="page-footer">End of Web Browsers, Servers, and Http/https · CodeVerse Digital Library</footer>
+<footer class="page-footer">End of Programs and Processes of Computer · CodeVerse Digital Library</footer>
 </main>
 </div>
 <script>
@@ -1541,4 +1543,4 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
-</body></html>
+<script>document.addEventListener('DOMContentLoaded',()=>{const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily'),menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');const applyTheme=()=>{const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);if(icon)icon.textContent=dark?'☀':'☾';};applyTheme();toggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');applyTheme();});const savedSize=localStorage.getItem('readerFontSize')||'16px',savedFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if(size&&[...size.options].some(o=>o.value===savedSize))size.value=savedSize;if(family&&[...family.options].some(o=>o.value===savedFont))family.value=savedFont;const applyReader=()=>{document.documentElement.style.setProperty('--reader-size',size?.value||'16px');document.documentElement.style.setProperty('--reader-font',family?.value||"'DM Sans', sans-serif");};applyReader();size?.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);applyReader();});family?.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);applyReader();});menu?.addEventListener('click',()=>links?.classList.toggle('open'));});</script><script defer="True" src="/js/auth-nav.js"></script></body></html>

@@ -1,131 +1,39 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CodeVerse | Digital E-Book Library</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<!-- External CSS -->
-<link href="/books/css/Authentication.css" rel="stylesheet"/>
-<!--FavIcon-->
-<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<style>
-</style>
-<link href="/css/book-fixes.css" rel="stylesheet"/></head>
-<body id="top">
-<!-- =========================
-         NAVIGATION BAR
-    ========================== -->
-<header class="navbar">
-<a class="logo" href="/index.html">
-<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
-<span>Code<span class="logo-highlight">Verse</span></span>
-</a>
-<nav class="nav-links" id="navLinks">
-<a class="active" href="/index.html">Home</a>
-<a href="/library.html">Explore Books</a>
-<a href="/index.html#about">About</a>
-</nav>
-<div class="nav-actions">
-<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
-<span id="themeIcon">☾</span>
-</button>
-<!-- Account buttons will be displayed by JavaScript -->
-<div id="accountActions">
-<a class="login-btn" href="/LogIn.html">Log In</a>
-<a class="signup-btn" href="/register.html">Sign Up</a>
-</div>
-</div>
-<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
-</header>
-<header class="topbar">
-<a class="back-link" href="/index.html#books">← Back to Books</a>
-</header>
-<div class="reading-controls">
-<div class="control-group">
-<label for="fontSize">Font Size</label>
-<select id="fontSize">
-<option value="14px">Small</option>
-<option selected="" value="16px">Medium</option>
-<option value="18px">Large</option>
-<option value="20px">Extra Large</option>
-<option value="22px">Largest</option>
-</select>
-</div>
-<div class="control-group">
-<label for="fontFamily">Font Style</label>
-<select id="fontFamily">
-<option value="'DM Sans', sans-serif">DM Sans</option>
-<option value="Arial, sans-serif">Arial</option>
-<option value="Georgia, serif">Georgia</option>
-<option value="'Times New Roman', serif">Times New Roman</option>
-<option value="Verdana, sans-serif">Verdana</option>
-</select>
-</div>
-</div>
-<div class="layout">
-<aside class="toc">
-<h2>Table of Contents</h2>
-<nav></nav>
-<!-- CODEVERSE - CYBERSECURITY TABLE OF CONTENTS -->
-<a href="#cyber-introduction">Introduction</a>
-<a href="#cyber-foundations">1. Foundations of Cybersecurity</a>
-<a href="#cia-triad">2. CIA Triad and Extension Models</a>
-<a href="#threat-actors">3. Cyber Threat Actors</a>
-<a href="#malware-taxonomy">4. Malware Architectures and Taxonomy</a>
-<a href="#social-engineering">5. Social Engineering and Identity Attacks</a>
-<a href="#defense-in-depth">6. Network Security and Defense in Depth</a>
-<a href="#endpoint-security">7. Endpoint Security and Detection</a>
-<a href="#identity-access">8. Identity and Access Management</a>
-<a href="#cryptography">9. Cryptography and Data Protection</a>
-<a href="#incident-response">10. Security Operations and Incident Response</a>
-<a href="#vulnerability-testing">11. Vulnerability Management and Pen Testing</a>
-<a href="#cloud-security">12. Cloud Security and Shared Responsibility</a>
-<a href="#zero-trust">13. Zero Trust Architecture</a>
-<a href="#security-frameworks">14. Cybersecurity Frameworks and Standards</a>
-<a href="#information-privacy">15. Foundations of Information Privacy</a>
-<a href="#privacy-regulations">16. Global Privacy Regulations</a>
-<a href="#privacy-by-design">17. Privacy by Design</a>
-<a href="#privacy-technologies">18. Privacy-Enhancing Technologies</a>
-<a href="#digital-surveillance">19. Data Surveillance and Digital Footprints</a>
-<a href="#surveillance-capitalism">20. Surveillance Capitalism and User Rights</a>
-<a href="#computer-ethics">21. Foundations of Computer Ethics</a>
-<a href="#professional-ethics">22. Professional Codes of Ethics</a>
-<a href="#intellectual-property">23. Intellectual Property</a>
-<a href="#ai-ethics">24. AI Ethics and Algorithmic Bias</a>
-<a href="#autonomous-ethics">25. Autonomous Systems and Ethical Choice</a>
-<a href="#digital-divide">26. Digital Divide and Social Equity</a>
-<a href="#cyber-law">27. Digital Governance and Cyber Law</a>
-<a href="#responsible-disclosure">28. Responsible Disclosure</a>
-<a href="#future-cybersecurity">29. Future Cybersecurity and Privacy</a>
-<a href="#cyber-references">30. Academic Literature and References</a>
-<a href="#quiz">Knowledge Assessment Quiz</a>
-</aside>
-<main>
-<header class="book-header">
-<span class="eyebrow">Digital Book · Technology</span>
-<h1>Computer Hardware and Software Fundamentals</h1>
-<p>Introduces the essential components of computer hardware and software, explaining their functions and how they work together in a computing system.</p>
-</header>
-<!-- ==========================================
-     CODEVERSE - COMPUTER HISTORY
-     TABLE OF CONTENTS
-========================================== -->
-<main class="book-content">
-<!-- ==========================================
-     CODEVERSE - CYBERSECURITY, PRIVACY,
-     AND COMPUTER ETHICS
-========================================== -->
-<section class="chapter" id="cyber-introduction">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cybersecurity, Privacy, and Computer Ethics | CodeVerse</title><link rel="icon" href="/images/CodeVerseLogo.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"><style>
+:root{--bg:#f5f8fd;--surface:#fff;--text:#1d2b42;--muted:#61718a;--primary:#315caa;--border:#dfe7f2;--soft:#edf3ff;--shadow:0 12px 36px #1c376018}body.dark-mode{--bg:#0e1726;--surface:#172338;--text:#e8effc;--muted:#afc0d8;--primary:#8fb6ff;--border:#31415b;--soft:#243655;--shadow:0 12px 36px #0004}
+html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;transition:background .2s,color .2s}button,select{font:inherit}a{color:var(--primary)}.navbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:24px;padding:12px max(20px,calc((100vw - 1420px)/2));background:var(--surface);border-bottom:1px solid var(--border);box-shadow:0 2px 10px #0001}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:24px;font-weight:800;color:var(--text);white-space:nowrap}.logo-highlight{color:var(--primary)}.site-logo{height:42px;width:42px;object-fit:contain}.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{text-decoration:none;color:var(--text);font-weight:600}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:12px}#accountActions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.login-btn,.signup-btn{padding:9px 14px;border-radius:9px;text-decoration:none;font-weight:700}.login-btn{border:1px solid var(--border)}.signup-btn{background:#315caa;color:white}.icon-btn,.menu-toggle{border:1px solid var(--border);border-radius:10px;background:var(--soft);color:var(--text);padding:9px 12px;cursor:pointer}.menu-toggle{display:none}.topbar,.reading-controls{max-width:1400px;margin:16px auto;padding:0 20px}.back-link{text-decoration:none;font-weight:700}.reading-controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center}.control-group{display:flex;gap:8px;align-items:center}.control-group label{font-size:13px;color:var(--muted);font-weight:700}.control-group select{border:1px solid var(--border);border-radius:9px;padding:8px;background:var(--surface);color:var(--text)}.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:24px;max-width:1400px;margin:20px auto;padding:0 20px;align-items:start}.toc{position:sticky;top:90px;max-height:calc(100vh - 112px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{font-size:18px;margin:0 0 14px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc a{padding:9px 10px;text-decoration:none;color:var(--muted);font-size:13px;border-radius:8px;line-height:1.45}.toc a:hover,.toc a:focus{background:var(--soft);color:var(--primary)}.book-main{min-width:0}.book-header{padding:32px;background:linear-gradient(130deg,#214781,#3871c2);color:white;border-radius:18px;margin-bottom:22px}.book-header .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,4vw,42px);line-height:1.2;margin:14px 0}.book-header p{line-height:1.7;max-width:740px;color:#e6efff}.chapter{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(20px,3vw,34px);margin-bottom:22px;box-shadow:var(--shadow);overflow-wrap:anywhere}.chapter h1,.chapter h2{color:var(--primary);font-size:1.55em;margin-top:0;line-height:1.3}.chapter h3{font-size:1.17em;margin-top:24px;color:var(--text)}.chapter p,.chapter li{line-height:1.85}.chapter li{margin:6px 0}.chapter table{display:block;overflow-x:auto;border-collapse:collapse;width:max-content;max-width:100%;min-width:min(100%,520px);margin:18px 0}.chapter th,.chapter td{border:1px solid var(--border);padding:12px 15px;text-align:left;vertical-align:top}.chapter th{background:var(--soft);color:var(--primary)}.chapter tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 35%,transparent)}.chapter pre{padding:18px;background:var(--soft);border-radius:12px;overflow:auto;line-height:1.6}.page-footer{text-align:center;padding:25px;color:var(--muted)}#quizProgress{display:inline-block;background:var(--soft);padding:9px 15px;border-radius:99px;font-weight:700;color:var(--primary)}.quiz-question{border:1px solid var(--border);padding:18px;border-radius:12px;margin:17px 0;background:var(--surface)}.quiz-question h3{font-size:1em;margin:0 0 12px}.quiz-option{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--border);border-radius:9px;margin:8px 0;cursor:pointer;line-height:1.5}.quiz-option:hover{background:var(--soft)}.quiz-option input{margin-top:4px;accent-color:#315caa}.quiz-option.correct{background:#e4f8eb;border-color:#3caa65;color:#155a2b}.quiz-option.incorrect{background:#ffe9e9;border-color:#d85d5d;color:#8b2020}.quiz-feedback{font-size:14px;font-weight:700}.quiz-actions{display:flex;gap:12px;flex-wrap:wrap}.quiz-actions button{background:#315caa;color:white;border:0;border-radius:10px;padding:12px 22px;font-weight:700;cursor:pointer}.quiz-actions button:hover{background:#244a8d}#quizResult{margin-top:18px;border-radius:12px;background:var(--soft);padding:20px;text-align:center}#quizResult h2{font-size:36px;margin:10px} [hidden]{display:none!important}
+@media(max-width:960px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:290px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}@media(max-width:650px){.navbar{gap:10px;padding:10px 14px}.logo{font-size:20px}.site-logo{width:34px;height:34px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:3;flex-basis:100%;flex-direction:column;gap:4px}.nav-links.open{display:flex}.nav-links a{padding:10px}.nav-actions{margin-left:auto}.layout{padding:0 12px}.book-header{padding:23px}.chapter{padding:20px}.reading-controls{padding:0 12px}}
+</style></head><body id="top"><header class="navbar"><a class="logo" href="/index.html"><img class="site-logo" src="/images/CodeVerseLogo.png" alt="CodeVerse logo"><span>Code<span class="logo-highlight">Verse</span></span></a><nav class="nav-links" id="navLinks"><a href="/index.html">Home</a><a href="/library.html">Explore Books</a><a href="/index.html#about">About</a></nav><div class="nav-actions"><button type="button" class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><span id="themeIcon">☾</span></button><div id="accountActions"><a class="login-btn" href="/LogIn.html">Log In</a><a class="signup-btn" href="/register.html">Sign Up</a></div></div><button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button></header><div class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></div><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px">Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans', sans-serif">DM Sans</option><option value="Arial, sans-serif">Arial</option><option value="Georgia, serif">Georgia</option><option value="'Times New Roman', serif">Times New Roman</option><option value="Verdana, sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><nav><a href="#cyber-introduction">Introduction</a>
+<a href="#cyber-foundations">Section 1: Foundations of Cybersecurity</a>
+<a href="#cia-triad">Section 2: The CIA Triad and Extension Models</a>
+<a href="#threat-actors">Section 3: Cyber Threat Actors and Motivation</a>
+<a href="#malware-taxonomy">Section 4: Malware Architectures and Taxonomy</a>
+<a href="#social-engineering">Section 5: Social Engineering and Identity Attacks</a>
+<a href="#defense-in-depth">Section 6: Network Security and Defense in Depth</a>
+<a href="#endpoint-security">Section 7: Endpoint Security and Detection</a>
+<a href="#identity-access">Section 8: Identity and Access Management</a>
+<a href="#cryptography">Section 9: Applied Cryptography and Data Protection</a>
+<a href="#incident-response">Section 10: Security Operations and Incident Response</a>
+<a href="#vulnerability-testing">Section 11: Vulnerability Management and Penetration Testing</a>
+<a href="#cloud-security">Section 12: Cloud Security and Shared Responsibility</a>
+<a href="#zero-trust">Section 13: Zero Trust Architecture</a>
+<a href="#security-frameworks">Section 14: Cybersecurity Frameworks and Standards</a>
+<a href="#information-privacy">Section 15: Foundations of Information Privacy</a>
+<a href="#privacy-regulations">Section 16: Global Privacy Regulations</a>
+<a href="#privacy-by-design">Section 17: Privacy by Design Framework</a>
+<a href="#privacy-technologies">Section 18: Privacy-Enhancing Technologies</a>
+<a href="#digital-surveillance">Section 19: Data Surveillance and Digital Footprints</a>
+<a href="#surveillance-capitalism">Section 20: Surveillance Capitalism and User Rights</a>
+<a href="#computer-ethics">Section 21: Foundations of Computer Ethics</a>
+<a href="#professional-ethics">Section 22: Professional Codes of Ethics</a>
+<a href="#intellectual-property">Section 23: Intellectual Property in the Digital Age</a>
+<a href="#ai-ethics">Section 24: AI Ethics and Algorithmic Bias</a>
+<a href="#autonomous-ethics">Section 25: Autonomous Systems and Ethical Choice</a>
+<a href="#digital-divide">Section 26: Digital Divide and Social Equity</a>
+<a href="#cyber-law">Section 27: Digital Governance and Cyber Law</a>
+<a href="#responsible-disclosure">Section 28: Whistleblowing and Responsible Disclosure</a>
+<a href="#future-cybersecurity">Section 29: Future Frontiers in Cybersecurity and Privacy</a>
+<a href="#cyber-references">Section 30: Academic Literature and RRL Bibliography</a>
+<a href="#quiz">Knowledge Assessment Quiz</a></nav></aside><main class="book-main"><header class="book-header"><span class="eyebrow">Digital Book · Technology</span><h1>Cybersecurity, Privacy, and Computer Ethics</h1><p>Explore cybersecurity defenses, digital privacy, responsible technology use, cyber law, and the ethical challenges of modern computing.</p></header><section class="chapter" id="cyber-introduction">
 <h1>Cybersecurity, Privacy, and Computer Ethics</h1>
 <p>
         Cybersecurity protects digital systems from malicious
@@ -141,8 +49,7 @@
         surveillance, professional ethics, artificial
         intelligence, cyber law, and emerging technologies.
     </p>
-</section>
-<section class="chapter" id="cyber-foundations">
+</section><section class="chapter" id="cyber-foundations">
 <h2>Section 1: Foundations of Cybersecurity</h2>
 <h3>What Is Cybersecurity?</h3>
 <p>
@@ -179,8 +86,7 @@
 </tr>
 </tbody>
 </table>
-</section>
-<section class="chapter" id="cia-triad">
+</section><section class="chapter" id="cia-triad">
 <h2>Section 2: The CIA Triad and Extension Models</h2>
 <h3>The CIA Triad</h3>
 <ul>
@@ -212,8 +118,7 @@
         by including Possession or Control,
         Authenticity, and Utility.
     </p>
-</section>
-<section class="chapter" id="threat-actors">
+</section><section class="chapter" id="threat-actors">
 <h2>Section 3: Cyber Threat Actors and Motivation</h2>
 <p>
         Threat actors are individuals or organizations
@@ -251,8 +156,7 @@
 </tr>
 </tbody>
 </table>
-</section>
-<section class="chapter" id="malware-taxonomy">
+</section><section class="chapter" id="malware-taxonomy">
 <h2>Section 4: Malware Architectures and Taxonomy</h2>
 <p>
         Malware is software designed to perform
@@ -269,8 +173,7 @@
 <li><strong>Keylogger:</strong> Records keyboard input.</li>
 <li><strong>Fileless Malware:</strong> Uses existing system tools and memory-based execution.</li>
 </ul>
-</section>
-<section class="chapter" id="social-engineering">
+</section><section class="chapter" id="social-engineering">
 <h2>Section 5: Social Engineering and Identity Attacks</h2>
 <p>
         Social engineering manipulates human behavior
@@ -287,8 +190,7 @@
 <li><strong>Pretexting:</strong> Inventing a false scenario or identity.</li>
 <li><strong>Credential Stuffing:</strong> Attempting logins using previously exposed credentials.</li>
 </ul>
-</section>
-<section class="chapter" id="defense-in-depth">
+</section><section class="chapter" id="defense-in-depth">
 <h2>Section 6: Network Security and Defense in Depth</h2>
 <p>
         Defense in Depth uses multiple independent
@@ -309,8 +211,7 @@
         into smaller zones to restrict unnecessary access
         and reduce the spread of attacks.
     </p>
-</section>
-<section class="chapter" id="endpoint-security">
+</section><section class="chapter" id="endpoint-security">
 <h2>Section 7: Endpoint Security and Detection</h2>
 <h3>Antivirus Protection</h3>
 <p>
@@ -332,8 +233,7 @@
 <li>Operating system hardening</li>
 <li>Security updates and patch management</li>
 </ul>
-</section>
-<section class="chapter" id="identity-access">
+</section><section class="chapter" id="identity-access">
 <h2>Section 8: Identity and Access Management</h2>
 <h3>The AAA Framework</h3>
 <table>
@@ -358,8 +258,7 @@
 <li><strong>PAM:</strong> Controls privileged accounts and activities.</li>
 <li><strong>SSO:</strong> Allows users to access multiple services through one sign-in process.</li>
 </ul>
-</section>
-<section class="chapter" id="cryptography">
+</section><section class="chapter" id="cryptography">
 <h2>Section 9: Applied Cryptography and Data Protection</h2>
 <h3>Symmetric Encryption</h3>
 <p>
@@ -384,8 +283,7 @@
         PKI manages digital certificates and public keys
         to support authenticated and secure communication.
     </p>
-</section>
-<section class="chapter" id="incident-response">
+</section><section class="chapter" id="incident-response">
 <h2>Section 10: Security Operations and Incident Response</h2>
 <p>
         Incident response provides a structured approach
@@ -405,8 +303,7 @@
 <li><strong>SOAR:</strong> Supports automated security workflows.</li>
 <li><strong>SOC:</strong> Team responsible for security monitoring and response.</li>
 </ul>
-</section>
-<section class="chapter" id="vulnerability-testing">
+</section><section class="chapter" id="vulnerability-testing">
 <h2>Section 11: Vulnerability Management and Penetration Testing</h2>
 <h3>Vulnerability Management</h3>
 <p>
@@ -432,8 +329,7 @@
 <li>Blue Team — Defends systems and responds to threats.</li>
 <li>Purple Team — Coordinates offensive and defensive learning.</li>
 </ul>
-</section>
-<section class="chapter" id="cloud-security">
+</section><section class="chapter" id="cloud-security">
 <h2>Section 12: Cloud Security and Shared Responsibility</h2>
 <p>
         Cloud security responsibilities are divided
@@ -466,8 +362,7 @@
 </tr>
 </tbody>
 </table>
-</section>
-<section class="chapter" id="zero-trust">
+</section><section class="chapter" id="zero-trust">
 <h2>Section 13: Zero Trust Architecture</h2>
 <p>
         Zero Trust is a security architecture based
@@ -486,8 +381,7 @@
         Microsegmentation divides network environments
         into smaller security zones with restricted access.
     </p>
-</section>
-<section class="chapter" id="security-frameworks">
+</section><section class="chapter" id="security-frameworks">
 <h2>Section 14: Cybersecurity Frameworks and Standards</h2>
 <h3>NIST Cybersecurity Framework 2.0</h3>
 <table>
@@ -508,8 +402,7 @@
 <li>ISO/IEC 27001 — Information Security Management Systems</li>
 <li>CIS Controls — Prioritized security safeguards</li>
 </ul>
-</section>
-<section class="chapter" id="information-privacy">
+</section><section class="chapter" id="information-privacy">
 <h2>Section 15: Foundations of Information Privacy</h2>
 <p>
         Information privacy concerns how personal
@@ -522,8 +415,7 @@
 <li><strong>Quasi-Identifiers:</strong> Combinations such as birth date and postal code.</li>
 <li><strong>Sensitive Information:</strong> Medical records, financial details, and other protected personal data.</li>
 </ul>
-</section>
-<section class="chapter" id="privacy-regulations">
+</section><section class="chapter" id="privacy-regulations">
 <h2>Section 16: Global Privacy Regulations</h2>
 <h3>General Data Protection Regulation</h3>
 <p>
@@ -552,8 +444,7 @@
         consumer rights and regulates certain
         business practices involving personal data.
     </p>
-</section>
-<section class="chapter" id="privacy-by-design">
+</section><section class="chapter" id="privacy-by-design">
 <h2>Section 17: Privacy by Design Framework</h2>
 <p>
         Privacy by Design, associated with
@@ -570,8 +461,7 @@
 <li>Visibility and transparency.</li>
 <li>Respect for user privacy.</li>
 </ol>
-</section>
-<section class="chapter" id="privacy-technologies">
+</section><section class="chapter" id="privacy-technologies">
 <h2>Section 18: Privacy-Enhancing Technologies</h2>
 <p>
         Privacy-enhancing technologies support
@@ -586,8 +476,7 @@
 <li><strong>L-Diversity:</strong> Requires diversity of sensitive values within anonymized groups.</li>
 <li><strong>Secure Multi-Party Computation:</strong> Allows parties to compute results without exposing their private inputs to one another.</li>
 </ul>
-</section>
-<section class="chapter" id="digital-surveillance">
+</section><section class="chapter" id="digital-surveillance">
 <h2>Section 19: Data Surveillance and Digital Footprints</h2>
 <p>
         Digital surveillance involves monitoring
@@ -609,8 +498,7 @@
         including searches, website visits,
         account activity, and shared content.
     </p>
-</section>
-<section class="chapter" id="surveillance-capitalism">
+</section><section class="chapter" id="surveillance-capitalism">
 <h2>Section 20: Surveillance Capitalism and User Rights</h2>
 <p>
         Surveillance capitalism, described by
@@ -630,8 +518,7 @@
         repeated privacy notices and permission
         requests, making informed decisions difficult.
     </p>
-</section>
-<section class="chapter" id="computer-ethics">
+</section><section class="chapter" id="computer-ethics">
 <h2>Section 21: Foundations of Computer Ethics</h2>
 <p>
         Computer ethics studies the moral problems
@@ -650,8 +537,7 @@
         where existing laws and ethical policies
         do not provide clear guidance.
     </p>
-</section>
-<section class="chapter" id="professional-ethics">
+</section><section class="chapter" id="professional-ethics">
 <h2>Section 22: Professional Codes of Ethics</h2>
 <h3>ACM Code of Ethics</h3>
 <p>
@@ -672,8 +558,7 @@
         public welfare, responsible engineering,
         and ethical technical decisions.
     </p>
-</section>
-<section class="chapter" id="intellectual-property">
+</section><section class="chapter" id="intellectual-property">
 <h2>Section 23: Intellectual Property in the Digital Age</h2>
 <h3>Intellectual Property Protections</h3>
 <ul>
@@ -693,8 +578,7 @@
         copying or distribution of software
         in violation of applicable rights.
     </p>
-</section>
-<section class="chapter" id="ai-ethics">
+</section><section class="chapter" id="ai-ethics">
 <h2>Section 24: AI Ethics and Algorithmic Bias</h2>
 <p>
         AI ethics examines fairness, accountability,
@@ -713,8 +597,7 @@
         for understanding and interpreting
         model predictions and decisions.
     </p>
-</section>
-<section class="chapter" id="autonomous-ethics">
+</section><section class="chapter" id="autonomous-ethics">
 <h2>Section 25: Autonomous Systems and Ethical Choice</h2>
 <p>
         Autonomous systems can make decisions
@@ -737,8 +620,7 @@
         Similar concerns arise in autonomous
         robotics and lethal autonomous weapons systems.
     </p>
-</section>
-<section class="chapter" id="digital-divide">
+</section><section class="chapter" id="digital-divide">
 <h2>Section 26: Digital Divide and Social Equity</h2>
 <p>
         The digital divide describes unequal
@@ -757,8 +639,7 @@
         employment, financial services,
         and access to public information.
     </p>
-</section>
-<section class="chapter" id="cyber-law">
+</section><section class="chapter" id="cyber-law">
 <h2>Section 27: Digital Governance and Cyber Law</h2>
 <p>
         Cyber law addresses legal responsibilities,
@@ -777,8 +658,7 @@
         international cooperation in combating
         cybercrime and handling electronic evidence.
     </p>
-</section>
-<section class="chapter" id="responsible-disclosure">
+</section><section class="chapter" id="responsible-disclosure">
 <h2>Section 28: Whistleblowing and Responsible Disclosure</h2>
 <h3>Full Disclosure</h3>
 <p>
@@ -799,8 +679,7 @@
         qualifying vulnerabilities under
         authorized program rules.
     </p>
-</section>
-<section class="chapter" id="future-cybersecurity">
+</section><section class="chapter" id="future-cybersecurity">
 <h2>Section 29: Future Frontiers in Cybersecurity and Privacy</h2>
 <h3>Post-Quantum Cryptography</h3>
 <p>
@@ -821,8 +700,7 @@
         concerns about protecting neural data
         and preserving individual privacy.
     </p>
-</section>
-<section class="chapter" id="cyber-references">
+</section><section class="chapter" id="cyber-references">
 <h2>Section 30: Academic Literature and RRL Bibliography</h2>
 <p>
         Cybersecurity and computer ethics research
@@ -847,9 +725,7 @@
         digital systems, safeguard individual rights,
         and encourage responsible technology development.
     </p>
-</section>
-</main>
-<section class="chapter" id="quiz">
+</section><section class="chapter" id="quiz">
 <h2>Knowledge Assessment Quiz</h2>
 <p>
         Test your understanding of Data, Information,
@@ -869,11 +745,7 @@
         </button>
 </div>
 <div aria-live="polite" hidden="" id="quizResult"></div>
-</section>
-<footer class="page-footer">End of Web Browsers, Servers, and Http/https · CodeVerse Digital Library</footer>
-</main>
-</div>
-<script>
+</section><footer class="page-footer">End of Cybersecurity, Privacy, and Computer Ethics · CodeVerse Digital Library</footer></main></div><script>
 
 
 
@@ -1448,5 +1320,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-</script>
-</body></html>
+</script><script>
+document.addEventListener('DOMContentLoaded',()=>{const body=document.body,theme=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily'),menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');function applyTheme(v){body.classList.toggle('dark-mode',v==='dark');icon.textContent=v==='dark'?'☀':'☾';}applyTheme(localStorage.getItem('readerTheme')||'light');theme.addEventListener('click',()=>{const v=body.classList.contains('dark-mode')?'light':'dark';localStorage.setItem('readerTheme',v);applyTheme(v);});const storedSize=localStorage.getItem('readerFontSize')||'16px';if([...size.options].some(o=>o.value===storedSize))size.value=storedSize;const storedFamily=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if([...family.options].some(o=>o.value===storedFamily))family.value=storedFamily;function updateReading(){document.querySelectorAll('.chapter').forEach(el=>{el.style.fontSize=size.value;el.style.fontFamily=family.value;})}updateReading();size.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);updateReading();});family.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);updateReading();});menu.addEventListener('click',()=>links.classList.toggle('open'));links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));});
+</script><script src="/js/auth-nav.js" defer></script></body></html>
