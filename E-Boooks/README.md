@@ -167,11 +167,32 @@ If your `package.json` defines a development script, you may use that instead.
 4. Confirm that the Vercel build/function configuration matches your Express application.
 5. Deploy and test the homepage, authentication routes, protected books, and quiz-result endpoint.
 
-If the Vercel CLI is installed, deployment can be initiated with:
+Technology Stack and Development Tools
 
-```powershell
-vercel.cmd --prod
-```
+CodeVerse identifies the technologies and tools used to develop, maintain, and deploy the website. The following stack reflects the current Node.js, Express, and Neon PostgreSQL implementation.
+
+Category                                        Technologies and Tools Used                                     Purpose
+
+Frontend                                        HTML5, CSS3, JavaScript                 Page structure, responsive styling, interactive book reader, and client-side functionality
+
+Backend                                           Node.js, Express.js                   Web server, application routes, authentication APIs, and protected book access
+
+Database                                            Neon PostgreSQL                     Cloud database for user accounts, quiz results, and reading progress
+
+Authentication and Sessions         bcryptjs, express-session, connect-pg-simple        Password hashing and persistent database-backed login sessions
+
+Database Connection                                 pg (node-postgres)                  Connects the Express application to PostgreSQL
+
+Development Environment                         Visual Studio Code, npm                      Code editing and package management
+
+Version Control                                         Git, GitHub                      Source-code tracking and repository hosting
+
+Deployment and Hosting                                     Vercel                       Hosting and deployment of the CodeVerse website
+
+Environment Configuration                                 dotenv                        Loads local environment variables such as database configuration and session secrets
+
+Earlier implementation: CodeVerse previously used SQLite for local development; the current backend uses Neon PostgreSQL.
+
 
 **Note:** Running an Express application on Vercel requires a compatible serverless entry point or adapter. A locally working `node server.js` setup does not, by itself, guarantee a successful Vercel deployment. Database-backed sessions should use a persistent shared session store rather than in-memory sessions.
 
