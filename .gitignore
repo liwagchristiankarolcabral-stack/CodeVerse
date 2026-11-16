@@ -4,3 +4,10 @@ node_modules/
 *.db
 *.db-shm
 *.db-wal
+.vercel
+
+.env
+.env.*
+just.env
+node_modules/
+.vercel/
