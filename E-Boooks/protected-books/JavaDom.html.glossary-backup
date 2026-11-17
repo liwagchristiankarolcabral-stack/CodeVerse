@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JavaScript Fundamentals and DOM Manipulation | CodeVerse</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--primary:#3157a4;--primary-dark:#24427f;--background:#f5f7fc;--surface:#fff;--text:#202b40;--muted:#66758c;--border:#e0e6f0;--code-background:#eef3fb;--shadow:0 8px 26px rgba(30,50,90,.08)}
+body.dark-mode{--primary:#9dbbff;--primary-dark:#c5d6ff;--background:#101827;--surface:#1b273a;--text:#edf2fc;--muted:#b1bfd3;--border:#33445d;--code-background:#152137;--shadow:0 8px 26px rgba(0,0,0,.2)}
+html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var(--background);color:var(--text);font-family:'DM Sans',Arial,sans-serif;line-height:1.75;transition:background .2s,color .2s}a{color:var(--primary)}button,select,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.navbar{display:flex;align-items:center;gap:22px;justify-content:space-between;background:var(--surface);border-bottom:1px solid var(--border);padding:14px max(22px,calc((100vw - 1250px)/2));position:sticky;top:0;z-index:20;box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:9px;color:var(--text);font-size:22px;font-weight:800;text-decoration:none;white-space:nowrap}.site-logo{width:39px;height:39px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:22px}.nav-links a{text-decoration:none;color:var(--text);font-weight:700;font-size:14px}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{border:1px solid var(--border);background:var(--code-background);color:var(--text);border-radius:10px;padding:7px 12px}.menu-toggle{display:none}.login-btn,.signup-btn{display:inline-block;padding:8px 13px;border-radius:9px;text-decoration:none;font-weight:700;font-size:13px}.login-btn{color:var(--primary);border:1px solid var(--border)}.signup-btn{background:#3157a4;color:#fff}#accountActions{display:flex;gap:8px}.topbar{max-width:1250px;margin:auto;padding:14px 22px}.back-link{text-decoration:none;font-size:14px;font-weight:700}.reading-controls{max-width:1250px;margin:0 auto 16px;padding:12px 22px;display:flex;gap:18px;flex-wrap:wrap}.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-weight:700;font-size:13px}.control-group select{padding:8px 10px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:9px}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;max-width:1250px;margin:auto;padding:0 22px 40px}.toc{position:sticky;top:88px;align-self:start;max-height:calc(100vh - 110px);overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}.toc h2{font-size:17px;margin:0 0 12px}.toc nav{display:flex;flex-direction:column;gap:5px}.toc a{padding:9px 10px;text-decoration:none;border-radius:8px;font-size:13px;color:var(--muted);line-height:1.45}.toc a:hover,.toc a.current{background:var(--code-background);color:var(--primary)}main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px;margin-bottom:20px;box-shadow:var(--shadow)}.book-header h1{font-size:clamp(27px,3vw,40px);line-height:1.25;margin:8px 0}.book-header p{color:var(--muted);margin-bottom:0}.eyebrow{color:var(--primary);font-size:12px;letter-spacing:.08em;font-weight:800;text-transform:uppercase}.chapter{scroll-margin-top:100px}.chapter h1,.chapter h2{line-height:1.35;color:var(--text)}.chapter h1{font-size:1.8em}.chapter h2{font-size:1.5em}.chapter h3{font-size:1.18em}.chapter p,.chapter li{color:var(--text)}.chapter pre{overflow-x:auto;background:var(--code-background);border:1px solid var(--border);border-radius:11px;padding:18px;line-height:1.55;font-size:14px;white-space:pre}.chapter code{font-family:Consolas,'Courier New',monospace}.chapter p code,.chapter li code{background:var(--code-background);padding:2px 5px;border-radius:4px}.chapter ul,.chapter ol{padding-left:25px}.page-footer{text-align:center;color:var(--muted);font-size:13px;padding:25px}
+#cvShoppingForm{display:flex;align-items:center;flex-wrap:wrap;gap:10px;background:var(--code-background);padding:15px;border-radius:10px}#cvShoppingInput{min-width:150px;flex:1;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text)}#cvShoppingForm button,#submitQuiz{border:0;background:#3157a4;color:white;border-radius:9px;padding:11px 19px;font-weight:700}#cvShoppingList{list-style:none;padding:0}#cvShoppingList li{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid var(--border);padding:10px 0;overflow-wrap:anywhere}#cvShoppingList li button{border:1px solid var(--border);background:var(--code-background);color:var(--text);padding:6px 12px;border-radius:8px}
+#quizProgress{padding:12px 16px;background:var(--code-background);border-radius:9px;font-weight:700;margin-bottom:20px}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:20px;margin:15px 0}.quiz-question h3{margin-top:0}.quiz-option{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--border);border-radius:9px;padding:12px;margin:8px 0;cursor:pointer;background:var(--background)}.quiz-option input{margin-top:6px;accent-color:#3157a4}.quiz-option.correct{background:rgba(35,160,100,.14);border-color:#23a064}.quiz-option.incorrect{background:rgba(224,70,70,.13);border-color:#d34d4d}.quiz-feedback{font-weight:700}.quiz-actions{display:flex;gap:12px;flex-wrap:wrap}#retryQuiz{background:var(--code-background);color:var(--text);border:1px solid var(--border);border-radius:9px;padding:11px 19px;font-weight:700}#quizResult{margin-top:20px;text-align:center;background:var(--code-background);border-radius:12px;padding:20px} [hidden]{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:260px}.navbar{flex-wrap:wrap}.nav-links{order:3;width:100%;display:none;flex-direction:column;align-items:stretch;gap:0}.nav-links.show{display:flex}.nav-links a{padding:9px 0}.menu-toggle{display:block}.book-header,.chapter{padding:22px}}@media(min-width:901px){.nav-links{display:flex!important}}@media(max-width:520px){.navbar{gap:8px;padding:12px}.logo{font-size:18px}.site-logo{width:30px;height:30px}#accountActions{display:none}.layout{padding:0 12px 30px}.reading-controls{padding:12px}.control-group{width:100%;justify-content:space-between}.chapter,.book-header{padding:18px}}
+</style>
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav>
+<!-- HTML INTRODUCTION -->
+<a href="#internet">What is JavaScript?</a>
+<a href="#javascript-capabilities">So What Can JavaScript Really Do?</a>
+<a href="#javascript-execution">What Is JavaScript Doing on Your Page?</a>
+<a href="#adding-javascript">How Do You Add JavaScript to Your Page?</a>
+<a href="#javascript-comments">Comments and Summary</a>
+<a href="#dom-scripting">DOM Scripting Introduction</a>
+<a href="#document-object-model">The Document Object Model</a>
+<a href="#dom-manipulation">Doing Some Basic DOM Manipulation</a>
+<a href="#dynamic-shopping-list">Creating a Dynamic Shopping List and Summary</a>
+<a href="#quiz">Knowledge Assessment Quiz</a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>JavaScript Fundamentals and DOM Manipulation</h1>
+<p>Learn JavaScript basics and DOM manipulation to create dynamic, interactive, and responsive websites.</p>
+</header>
+
+
+<section class="chapter" id="internet">
+<h1>What is JavaScript?</h1>
+<p>
+        JavaScript is a programming language used to make
+        websites interactive and dynamic. It allows developers
+        to respond to user actions, update content, validate
+        forms, create animations, and build web applications.
+    </p>
+<p>
+        JavaScript works together with HTML and CSS to create
+        complete websites. HTML defines the content, CSS
+        controls its appearance, and JavaScript adds behavior.
+    </p>
+<h2>A High-Level Definition</h2>
+<p>
+        JavaScript is one of the three fundamental technologies
+        used in front-end web development.
+    </p>
+<ul>
+<li>
+<strong>HTML:</strong> Creates the structure of a
+            web page, including headings, paragraphs, images,
+            buttons, and forms.
+        </li>
+<li>
+<strong>CSS:</strong> Controls colors, fonts,
+            spacing, positioning, and responsive layouts.
+        </li>
+<li>
+<strong>JavaScript:</strong> Adds interactive
+            functionality and allows page content to change.
+        </li>
+</ul>
+<h3>Example: Interactive Button</h3>
+<p>
+        The following example changes a button's text when
+        a user clicks it.
+    </p>
+<pre><code>&lt;button id="welcomeButton"&gt;
+    Click Me
+&lt;/button&gt;
+
+&lt;script&gt;
+const button = document.getElementById("welcomeButton");
+
+button.addEventListener("click", function() {
+    button.textContent = "Welcome to JavaScript!";
+});
+&lt;/script&gt;</code></pre>
+<p>
+        The HTML creates the button, while JavaScript detects
+        the click and updates the displayed text.
+    </p>
+</section>
+<!-- ==========================================
+     CHAPTER 2: JAVASCRIPT CAPABILITIES
+========================================== -->
+<section class="chapter" id="javascript-capabilities">
+<h2>So What Can JavaScript Really Do?</h2>
+<p>
+        JavaScript provides programming features that allow
+        developers to process information and create
+        interactive experiences.
+    </p>
+<h3>Variables</h3>
+<p>
+        Variables store values that can be used throughout
+        a program.
+    </p>
+<pre><code>const websiteName = "CodeVerse";
+let totalBooks = 10;
+
+console.log(websiteName);
+console.log(totalBooks);</code></pre>
+<h3>Working with Strings</h3>
+<p>
+        Strings represent text. JavaScript can combine,
+        compare, and modify strings.
+    </p>
+<pre><code>const firstName = "Alex";
+const message = "Welcome, " + firstName;
+
+console.log(message);</code></pre>
+<h3>Responding to Events</h3>
+<p>
+        Events are actions that occur in a web page,
+        such as clicking a button, typing in a text field,
+        or submitting a form.
+    </p>
+<pre><code>const button = document.querySelector("#saveButton");
+
+button.addEventListener("click", function() {
+    alert("Your changes have been saved!");
+});</code></pre>
+<h2>Application Programming Interfaces (APIs)</h2>
+<p>
+        APIs provide predefined functionality that developers
+        can use without building every feature from scratch.
+        JavaScript can work with browser APIs and external
+        services.
+    </p>
+<h3>Browser APIs</h3>
+<ul>
+<li>
+<strong>DOM API:</strong> Accesses and changes
+            HTML elements and their properties.
+        </li>
+<li>
+<strong>Geolocation API:</strong> Requests access
+            to the user's geographical location.
+        </li>
+<li>
+<strong>Canvas API:</strong> Draws graphics,
+            shapes, and animations.
+        </li>
+<li>
+<strong>WebGL API:</strong> Supports advanced
+            graphics rendering.
+        </li>
+<li>
+<strong>Audio and Video APIs:</strong> Control
+            multimedia playback and related features.
+        </li>
+</ul>
+<h3>Third-Party APIs</h3>
+<p>
+        Third-party APIs are provided by external services.
+        They allow websites to integrate features such as
+        maps, weather information, and social media content.
+    </p>
+<p>
+        Examples include mapping services and APIs that
+        retrieve information from other websites.
+    </p>
+</section>
+<!-- ==========================================
+     CHAPTER 3: JAVASCRIPT EXECUTION
+========================================== -->
+<section class="chapter" id="javascript-execution">
+<h2>What Is JavaScript Doing on Your Page?</h2>
+<p>
+        When a browser opens a web page, it processes
+        HTML, applies CSS, and executes JavaScript.
+        JavaScript can then modify the page while the
+        user interacts with it.
+    </p>
+<h3>Browser Security</h3>
+<p>
+        Browsers use security restrictions to help prevent
+        websites from accessing private information or
+        interfering with unrelated websites.
+    </p>
+<p>
+        JavaScript generally operates within the security
+        environment provided by the browser. Access to
+        sensitive features may require user permission.
+    </p>
+<h3>JavaScript Running Order</h3>
+<p>
+        JavaScript statements generally execute in sequence.
+        Variables and elements must be available before
+        code attempts to use them.
+    </p>
+<pre><code>const username = "Alex";
+
+console.log(username);
+
+const greeting = "Hello, " + username;
+
+console.log(greeting);</code></pre>
+<p>
+        In this example, the username is defined before
+        it is used to create the greeting.
+    </p>
+<h3>Interpreted Versus Compiled Code</h3>
+<p>
+        Programming languages can use different methods
+        to prepare and execute instructions.
+    </p>
+<ul>
+<li>
+<strong>Interpreted execution:</strong>
+            Processes instructions during program execution.
+        </li>
+<li>
+<strong>Compiled execution:</strong>
+            Transforms source code into another representation
+            before it runs.
+        </li>
+</ul>
+<p>
+        Modern JavaScript engines commonly use
+        just-in-time compilation to improve performance.
+        Developers can still write JavaScript directly
+        without manually compiling ordinary browser scripts.
+    </p>
+<h3>Client-Side Versus Server-Side JavaScript</h3>
+<p>
+        Client-side JavaScript runs in the user's browser.
+        It is commonly responsible for interactive buttons,
+        form behavior, and dynamic page updates.
+    </p>
+<p>
+        Server-side JavaScript runs on a server, often using
+        environments such as Node.js. It can process requests,
+        interact with databases, and generate responses.
+    </p>
+<pre><code>// Client-side example
+document.title = "CodeVerse Library";
+
+// Server-side Node.js example
+console.log("Server application started");</code></pre>
+<p>
+        Both approaches can work together to build
+        complete web applications.
+    </p>
+</section>
+<!-- ==========================================
+     CHAPTER 4: ADDING JAVASCRIPT
+========================================== -->
+<section class="chapter" id="adding-javascript">
+<h2>How Do You Add JavaScript to Your Page?</h2>
+<p>
+        JavaScript is connected to HTML using the
+        &lt;script&gt; element. Scripts can be written
+        directly inside HTML or stored in external files.
+    </p>
+<h3>Internal JavaScript</h3>
+<p>
+        Internal JavaScript is written inside a script
+        element in the HTML document.
+    </p>
+<pre><code>&lt;button id="helloButton"&gt;
+    Say Hello
+&lt;/button&gt;
+
+&lt;script&gt;
+document.getElementById("helloButton")
+    .addEventListener("click", function() {
+        alert("Hello, CodeVerse!");
+    });
+&lt;/script&gt;</code></pre>
+<h3>External JavaScript</h3>
+<p>
+        External JavaScript is stored in a separate file
+        with the .js extension. This makes code easier
+        to organize and maintain.
+    </p>
+<p><strong>HTML:</strong></p>
+<pre><code>&lt;script src="script.js" defer&gt;&lt;/script&gt;</code></pre>
+<p><strong>script.js:</strong></p>
+<pre><code>console.log("External JavaScript loaded!");</code></pre>
+<h3>Inline JavaScript</h3>
+<p>
+        JavaScript can also be written directly inside
+        an HTML event attribute.
+    </p>
+<pre><code>&lt;button onclick="alert('Hello!')"&gt;
+    Click Me
+&lt;/button&gt;</code></pre>
+<p>
+        Although inline JavaScript works, using
+        addEventListener() in a separate script is generally
+        preferred because it keeps HTML and JavaScript
+        responsibilities separate.
+    </p>
+<h3>Script Loading Strategies</h3>
+<p>
+        The position and attributes of a script element
+        influence when JavaScript executes.
+    </p>
+<ul>
+<li>
+<strong>defer:</strong> Downloads a classic
+            external script while HTML is being parsed,
+            then executes it after parsing is complete.
+        </li>
+<li>
+<strong>async:</strong> Downloads a script
+            without blocking parsing and executes it
+            when available, without guaranteeing order
+            relative to other scripts.
+        </li>
+<li>
+<strong>type="module":</strong> Loads JavaScript
+            as a module and defers execution by default.
+        </li>
+</ul>
+<pre><code>&lt;script src="app.js" defer&gt;&lt;/script&gt;
+
+&lt;script src="analytics.js" async&gt;&lt;/script&gt;
+
+&lt;script type="module" src="main.js"&gt;&lt;/script&gt;</code></pre>
+</section>
+<!-- ==========================================
+     CHAPTER 5: JAVASCRIPT COMMENTS
+========================================== -->
+<section class="chapter" id="javascript-comments">
+<h2>Comments</h2>
+<p>
+        Comments are notes written inside source code
+        to explain its purpose. JavaScript ignores comments
+        when executing a program.
+    </p>
+<h3>Single-Line Comments</h3>
+<p>
+        A single-line comment begins with two forward
+        slashes.
+    </p>
+<pre><code>// Display a message
+console.log("Hello World");</code></pre>
+<h3>Multi-Line Comments</h3>
+<p>
+        Multi-line comments begin with /* and end with */.
+        They are useful for explanations spanning several lines.
+    </p>
+<pre><code>/*
+    This function displays a welcome
+    message in the browser console.
+*/
+
+function welcome() {
+    console.log("Welcome to CodeVerse!");
+}</code></pre>
+<h3>Why Comments Are Important</h3>
+<ul>
+<li>Explain complicated code.</li>
+<li>Help developers understand program behavior.</li>
+<li>Improve teamwork and maintainability.</li>
+<li>Document important decisions.</li>
+</ul>
+<h2>Summary</h2>
+<p>
+        JavaScript adds dynamic functionality to websites.
+        It works alongside HTML and CSS, supports variables,
+        events, and APIs, and can run in both browsers and
+        server environments.
+    </p>
+<p>
+        Developers can add JavaScript internally or through
+        external files, control script loading, and use
+        comments to make programs easier to understand.
+    </p>
+</section>
+<!-- ==========================================
+     CHAPTER 6: DOM SCRIPTING INTRODUCTION
+========================================== -->
+<section class="chapter" id="dom-scripting">
+<h1>DOM Scripting Introduction</h1>
+<p>
+        DOM scripting is the process of using JavaScript
+        to access and modify the structure, content,
+        and appearance of a web page.
+    </p>
+<p>
+        The Document Object Model, or DOM, provides
+        a programming interface that represents an
+        HTML document as a collection of connected objects.
+    </p>
+<h2>The Important Parts of a Web Browser</h2>
+<p>
+        JavaScript interacts with several browser objects
+        that provide access to different features.
+    </p>
+<h3>The Window Object</h3>
+<p>
+        The window object represents the browser window
+        or tab containing the web page.
+    </p>
+<pre><code>console.log(window.innerWidth);
+console.log(window.innerHeight);</code></pre>
+<p>
+        These properties return the dimensions of the
+        browser's viewport.
+    </p>
+<h3>The Navigator Object</h3>
+<p>
+        The navigator object provides information about
+        the browser and selected capabilities.
+    </p>
+<pre><code>console.log(navigator.language);
+console.log(navigator.onLine);</code></pre>
+<h3>The Document Object</h3>
+<p>
+        The document object represents the web page
+        and allows JavaScript to access its elements.
+    </p>
+<pre><code>console.log(document.title);
+
+document.title = "Learning DOM Scripting";</code></pre>
+</section>
+<!-- ==========================================
+     CHAPTER 7: DOCUMENT OBJECT MODEL
+========================================== -->
+<section class="chapter" id="document-object-model">
+<h2>The Document Object Model</h2>
+<p>
+        The DOM organizes an HTML document into a tree-like
+        structure. Each element, text section, and other
+        document component is represented by a node.
+    </p>
+<h3>Example HTML Structure</h3>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;section&gt;
+            &lt;h1&gt;CodeVerse&lt;/h1&gt;
+            &lt;p&gt;Learn JavaScript&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h3>DOM Tree Representation</h3>
+<pre><code>HTML
+ └── BODY
+      └── SECTION
+           ├── H1
+           │    └── "CodeVerse"
+           └── P
+                └── "Learn JavaScript"</code></pre>
+<h3>DOM Node Relationships</h3>
+<ul>
+<li>
+<strong>Root Node:</strong> The topmost
+            element of the document tree.
+        </li>
+<li>
+<strong>Parent Node:</strong> A node that
+            contains another node.
+        </li>
+<li>
+<strong>Child Node:</strong> A node directly
+            contained within another node.
+        </li>
+<li>
+<strong>Sibling Nodes:</strong> Nodes that
+            share the same parent.
+        </li>
+<li>
+<strong>Descendant Node:</strong> A node
+            contained anywhere inside another node,
+            even several levels deeper.
+        </li>
+</ul>
+<p>
+        Understanding these relationships helps developers
+        navigate and manipulate HTML elements.
+    </p>
+</section>
+<!-- ==========================================
+     CHAPTER 8: BASIC DOM MANIPULATION
+========================================== -->
+<section class="chapter" id="dom-manipulation">
+<h2>Doing Some Basic DOM Manipulation</h2>
+<p>
+        DOM manipulation allows JavaScript to select
+        elements, change their content, create new
+        elements, remove existing elements, and
+        modify styles.
+    </p>
+<h3>Selecting an Element</h3>
+<p>
+        The querySelector() method returns the first
+        element matching a CSS selector.
+    </p>
+<pre><code>const heading = document.querySelector("h1");
+
+console.log(heading);</code></pre>
+<h3>Selecting Multiple Elements</h3>
+<p>
+        The querySelectorAll() method returns all
+        matching elements as a NodeList.
+    </p>
+<pre><code>const paragraphs = document.querySelectorAll("p");
+
+paragraphs.forEach(function(paragraph) {
+    console.log(paragraph.textContent);
+});</code></pre>
+<h3>Other Selection Methods</h3>
+<pre><code>// Select by ID
+const title = document.getElementById("pageTitle");
+
+// Select by tag name
+const items = document.getElementsByTagName("li");</code></pre>
+<h3>Changing Text Content</h3>
+<p>
+        The textContent property allows developers
+        to read or replace the text inside an element.
+    </p>
+<pre><code>const title = document.getElementById("pageTitle");
+
+title.textContent = "Welcome to CodeVerse";</code></pre>
+<h3>Changing Attributes</h3>
+<p>
+        JavaScript can update attributes such as
+        href, src, alt, and class.
+    </p>
+<pre><code>const link = document.querySelector("#resourceLink");
+
+link.href = "https://developer.mozilla.org/";
+link.textContent = "Visit MDN";</code></pre>
+<h3>Creating New Elements</h3>
+<p>
+        The createElement() method creates an HTML
+        element that can be inserted into the page.
+    </p>
+<pre><code>const paragraph = document.createElement("p");
+
+paragraph.textContent = "This is a new paragraph.";
+
+document.body.appendChild(paragraph);</code></pre>
+<h3>Creating Text Nodes</h3>
+<p>
+        Text nodes can be created separately and
+        attached to existing elements.
+    </p>
+<pre><code>const message = document.createElement("p");
+
+const text = document.createTextNode(
+    "JavaScript can create text dynamically."
+);
+
+message.appendChild(text);
+
+document.body.appendChild(message);</code></pre>
+<h3>Removing Elements</h3>
+<p>
+        The remove() method deletes an element
+        from the DOM.
+    </p>
+<pre><code>const message = document.querySelector("#oldMessage");
+
+if (message) {
+    message.remove();
+}</code></pre>
+<h3>Moving Elements</h3>
+<p>
+        Appending an existing DOM element to a different
+        parent moves that element to its new position.
+    </p>
+<pre><code>const item = document.querySelector("#bookItem");
+const container = document.querySelector("#bookContainer");
+
+if (item &amp;&amp; container) {
+    container.appendChild(item);
+}</code></pre>
+<h3>Manipulating CSS Styles</h3>
+<p>
+        JavaScript can change inline styles through
+        an element's style property.
+    </p>
+<pre><code>const heading = document.querySelector("#pageTitle");
+
+heading.style.color = "blue";
+heading.style.fontSize = "30px";
+heading.style.backgroundColor = "lightgray";</code></pre>
+<h3>Using CSS Classes</h3>
+<p>
+        The classList property provides methods for
+        adding, removing, and toggling CSS classes.
+        This is often preferable to setting many
+        individual inline styles.
+    </p>
+<pre><code>const container = document.querySelector("#content");
+
+container.classList.add("active");
+container.classList.remove("hidden");
+container.classList.toggle("dark-mode");</code></pre>
+</section>
+<!-- ==========================================
+     CHAPTER 9: DYNAMIC SHOPPING LIST
+========================================== -->
+<section class="chapter" id="dynamic-shopping-list">
+<h2>Creating a Dynamic Shopping List</h2>
+<p>
+        A dynamic shopping list demonstrates how
+        JavaScript can create and remove HTML elements
+        in response to user input.
+    </p>
+<h3>Learning Objectives</h3>
+<ul>
+<li>Read text from an input field.</li>
+<li>Create new list items.</li>
+<li>Display items on the page.</li>
+<li>Remove items using buttons.</li>
+<li>Clear and refocus the input field.</li>
+</ul>
+<h3>Interactive Example</h3>
+<form id="cvShoppingForm">
+<label for="cvShoppingInput">
+            Enter a shopping item:
+        </label>
+<input id="cvShoppingInput" placeholder="Example: Notebook" required="" type="text"/>
+<button type="submit">
+            Add Item
+        </button>
+</form>
+<ul id="cvShoppingList"></ul>
+<h3>JavaScript Implementation</h3>
+<p>
+        The following script selects the form and list,
+        creates new elements when an item is submitted,
+        and removes items when their Delete buttons
+        are clicked.
+    </p>
+<pre><code>const form = document.getElementById("cvShoppingForm");
+const input = document.getElementById("cvShoppingInput");
+const list = document.getElementById("cvShoppingList");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const itemName = input.value.trim();
+
+    if (itemName === "") {
+        return;
+    }
+
+    const listItem = document.createElement("li");
+    const itemText = document.createElement("span");
+    const deleteButton = document.createElement("button");
+
+    itemText.textContent = itemName;
+    deleteButton.textContent = "Delete";
+    deleteButton.type = "button";
+
+    listItem.appendChild(itemText);
+    listItem.appendChild(deleteButton);
+
+    list.appendChild(listItem);
+
+    deleteButton.addEventListener("click", function() {
+        listItem.remove();
+    });
+
+    input.value = "";
+    input.focus();
+
+});</code></pre>
+<h3>How the Program Works</h3>
+<ol>
+<li>
+            The user enters the name of an item.
+        </li>
+<li>
+            The form's submit event is detected.
+        </li>
+<li>
+            preventDefault() stops the page from reloading.
+        </li>
+<li>
+            JavaScript creates a list item and a Delete button.
+        </li>
+<li>
+            The new item is appended to the shopping list.
+        </li>
+<li>
+            Clicking Delete removes that item.
+        </li>
+<li>
+            The input is cleared and focused for the next entry.
+        </li>
+</ol>
+<h2>Summary</h2>
+<p>
+        DOM scripting allows developers to control web page
+        content using JavaScript. The DOM represents HTML
+        as a tree of connected nodes that can be selected,
+        created, modified, moved, and removed.
+    </p>
+<p>
+        By combining DOM methods with event listeners,
+        developers can build interactive features such
+        as shopping lists, navigation menus, form validation,
+        and dynamic book libraries.
+    </p>
+</section>
+
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>Test your understanding of JavaScript fundamentals, browser APIs, events, DOM manipulation, and interactive forms.</p>
+<div id="quizProgress">0 of 10 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of JavaScript Fundamentals and DOM Manipulation · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const fontSize = document.getElementById("fontSize");
+    const fontFamily = document.getElementById("fontFamily");
+
+    // Restore saved settings
+    const savedTheme = localStorage.getItem("readerTheme");
+    const savedSize = localStorage.getItem("readerFontSize");
+    const savedFont = localStorage.getItem("readerFontFamily");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (savedSize) {
+        fontSize.value = savedSize;
+    }
+
+    if (savedFont) {
+        fontFamily.value = savedFont;
+    }
+
+    function updateThemeIcon() {
+        themeIcon.textContent =
+            document.body.classList.contains("dark-mode") ? "☀" : "☾";
+    }
+
+    function applyFontSize() {
+        document.querySelectorAll("main .chapter").forEach(chapter => {
+            chapter.style.fontSize = fontSize.value;
+        });
+
+        localStorage.setItem("readerFontSize", fontSize.value);
+    }
+
+    function applyFontFamily() {
+        document.querySelector("main").style.fontFamily = fontFamily.value;
+        localStorage.setItem("readerFontFamily", fontFamily.value);
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "readerTheme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+    });
+
+    fontSize.addEventListener("change", applyFontSize);
+    fontFamily.addEventListener("change", applyFontFamily);
+
+    applyFontSize();
+    applyFontFamily();
+    updateThemeIcon();
+});
+   
+
+
+/* ==========================================
+   CODEVERSE - JAVASCRIPT AND DOM QUIZ
+========================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz || !retryQuiz ||
+        !quizResult || !quizProgress) {
+        console.error("JavaScript quiz elements not found.");
+        return;
+    }
+
+    /* ==========================================
+       QUIZ QUESTIONS
+    ========================================== */
+
+    const questions = [
+        {
+            question: "What is the primary purpose of JavaScript in web development?",
+            options: [
+                "To define the structure of webpages",
+                "To add interactivity and dynamic behavior",
+                "To control only the colors and fonts",
+                "To replace HTML and CSS completely"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which JavaScript keyword declares a variable that can be reassigned?",
+            options: [
+                "const",
+                "static",
+                "let",
+                "define"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which method is used to respond to a user's click on an HTML button?",
+            options: [
+                "addEventListener()",
+                "createElement()",
+                "querySelector()",
+                "appendChild()"
+            ],
+            answer: 0
+        },
+        {
+            question: "What does DOM stand for?",
+            options: [
+                "Digital Object Management",
+                "Document Operation Method",
+                "Data Organization Model",
+                "Document Object Model"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which JavaScript method selects the first HTML element matching a CSS selector?",
+            options: [
+                "document.createElement()",
+                "document.querySelector()",
+                "document.appendChild()",
+                "document.remove()"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which property changes the text inside an HTML element?",
+            options: [
+                "textContent",
+                "classList",
+                "innerWidth",
+                "nodeName"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which method creates a new HTML element using JavaScript?",
+            options: [
+                "querySelectorAll()",
+                "getElementById()",
+                "createElement()",
+                "removeChild()"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is the purpose of the defer attribute in a classic external JavaScript script?",
+            options: [
+                "To permanently disable JavaScript execution",
+                "To execute the script before HTML parsing starts",
+                "To remove the need for a JavaScript file",
+                "To execute the script after HTML parsing finishes"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which JavaScript method removes an existing HTML element from the DOM?",
+            options: [
+                "appendChild()",
+                "remove()",
+                "createElement()",
+                "querySelector()"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does event.preventDefault() do when used in a form submission handler?",
+            options: [
+                "Deletes all form fields",
+                "Automatically submits the form to a database",
+                "Prevents the browser's default form submission action",
+                "Disables every event listener on the page"
+            ],
+            answer: 2
+        }
+    ];
+
+    let quizSubmitted = false;
+
+    /* ==========================================
+       LOAD QUIZ
+    ========================================== */
+
+    function loadQuiz() {
+
+        quizSubmitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = String(optionIndex);
+
+                radio.addEventListener("change", updateProgress);
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+
+            });
+
+            quizQuestions.appendChild(box);
+
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    /* ==========================================
+       UPDATE PROGRESS
+    ========================================== */
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    /* ==========================================
+       SUBMIT QUIZ
+    ========================================== */
+
+    submitQuiz.addEventListener("click", async function () {
+
+        if (quizSubmitted) return;
+
+        const selections = questions.map((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+
+        });
+
+        if (selections.includes(null)) {
+
+            alert("Please answer all questions before submitting.");
+            return;
+
+        }
+
+        quizSubmitted = true;
+        submitQuiz.disabled = true;
+
+        let score = 0;
+
+        /* ==========================================
+           CHECK ANSWERS
+        ========================================== */
+
+        questions.forEach((item, index) => {
+
+            const box = quizQuestions.children[index];
+            const selectedAnswer = selections[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+
+        });
+
+        /* ==========================================
+           CALCULATE SCORE
+        ========================================== */
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent work!";
+        } else if (percentage >= 75) {
+            message = "Great job!";
+        } else if (percentage >= 60) {
+            message = "Good effort! Keep reviewing.";
+        } else {
+            message = "Review the chapters and try again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+            <p id="quizSaveStatus" aria-live="polite">
+                Saving quiz result...
+            </p>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        /* ==========================================
+           SAVE RESULT TO CODEVERSE DATABASE
+        ========================================== */
+
+        const saveStatus = document.getElementById("quizSaveStatus");
+
+        try {
+
+            const response = await fetch("/api/quiz-results", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    bookId: 6,
+                    score: score,
+                    totalQuestions: questions.length
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            saveStatus.textContent = data.success
+                ? "Your quiz score has been saved!"
+                : (data.message || "Quiz score could not be saved.");
+
+        } catch (error) {
+
+            console.error("Quiz save error:", error);
+
+            saveStatus.textContent =
+                "Quiz completed, but the score could not be saved.";
+
+        }
+
+    });
+
+    /* ==========================================
+       RETRY QUIZ
+    ========================================== */
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+    /* ==========================================
+       INITIALIZE
+    ========================================== */
+
+    loadQuiz();
+
+});
+
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+ const menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');
+ if(menu&&links){menu.setAttribute('aria-expanded','false');menu.addEventListener('click',()=>{const open=links.classList.toggle('show');menu.setAttribute('aria-expanded',String(open));});links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('show');menu.setAttribute('aria-expanded','false');}));}
+ const form=document.getElementById('cvShoppingForm'),input=document.getElementById('cvShoppingInput'),list=document.getElementById('cvShoppingList');
+ if(form&&input&&list){form.addEventListener('submit',e=>{e.preventDefault();const value=input.value.trim();if(!value)return;const li=document.createElement('li'),span=document.createElement('span'),btn=document.createElement('button');span.textContent=value;btn.type='button';btn.textContent='Delete';btn.addEventListener('click',()=>li.remove());li.append(span,btn);list.appendChild(li);input.value='';input.focus();});}
+ const toc=document.querySelectorAll('.toc a[href^="#"]');toc.forEach(a=>a.addEventListener('click',()=>{toc.forEach(x=>x.classList.remove('current'));a.classList.add('current');}));
+});
+</script>    <script src="/js/navbar-loader.js" defer></script>
+</body></html>

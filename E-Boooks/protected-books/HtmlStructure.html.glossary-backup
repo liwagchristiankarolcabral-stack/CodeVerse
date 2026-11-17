@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head><title>HTML Structure and Semantic Elements | CodeVerse</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- Google Fonts -->
+
+
+
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+
+
+
+
+<style>
+:root{--primary:#3157a4;--primary-dark:#24427f;--background:#f5f7fc;--surface:#fff;--text:#202b40;--muted:#65748c;--border:#e1e7f1;--code-background:#edf2fb;--shadow:0 8px 28px rgba(27,48,91,.08)}
+body.dark-mode{--primary:#91b4ff;--primary-dark:#b8ceff;--background:#101827;--surface:#1b2638;--text:#ecf2ff;--muted:#afbdd2;--border:#34465d;--code-background:#111e30;--shadow:0 8px 28px rgba(0,0,0,.22)}
+html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:var(--background);color:var(--text);font-family:'DM Sans',Arial,sans-serif;line-height:1.7;transition:background .25s,color .25s}body,button,select{box-sizing:border-box}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--primary);outline-offset:3px}
+.navbar{display:flex;align-items:center;gap:25px;padding:15px max(20px,calc((100vw - 1340px)/2));background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20;min-height:65px;box-sizing:border-box}.logo{display:flex;align-items:center;gap:9px;color:var(--text);font-size:21px;font-weight:800;text-decoration:none;white-space:nowrap}.site-logo{width:38px;height:38px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:22px;margin-left:auto}.nav-links a{text-decoration:none;font-size:14px;font-weight:700;color:var(--muted)}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{border:1px solid var(--border);background:var(--background);color:var(--text);padding:8px 12px;border-radius:9px}.menu-toggle{display:none}.login-btn,.signup-btn{display:inline-block;padding:8px 12px;text-decoration:none;border-radius:8px;font-size:13px;font-weight:700}.login-btn{color:var(--text)}.signup-btn{background:#3157a4;color:white}.topbar{padding:12px max(20px,calc((100vw - 1340px)/2));background:var(--surface)}.back-link{font-size:14px;text-decoration:none;font-weight:700}.reading-controls{display:flex;gap:22px;align-items:center;flex-wrap:wrap;padding:14px max(20px,calc((100vw - 1340px)/2));background:var(--surface);border-bottom:1px solid var(--border)}.control-group{display:flex;align-items:center;gap:9px}.control-group label{font-size:13px;font-weight:700}.control-group select{border:1px solid var(--border);border-radius:8px;background:var(--background);color:var(--text);padding:7px 10px}
+.layout{max-width:1380px;margin:30px auto;display:grid;grid-template-columns:270px minmax(0,1fr);gap:26px;padding:0 22px}.toc{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;position:sticky;top:95px;max-height:calc(100vh - 115px);overflow-y:auto;align-self:start}.toc h2{font-size:17px;margin:0 0 12px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc a{font-size:13px;padding:9px 10px;border-radius:7px;text-decoration:none;color:var(--muted)}.toc a:hover,.toc a.current{color:var(--primary);background:var(--code-background)}main{min-width:0}.book-header{background:linear-gradient(120deg,#24427f,#3157a4);color:white;border-radius:18px;padding:38px 35px;margin-bottom:24px}.book-header .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;opacity:.85}.book-header h1{font-size:clamp(25px,4vw,38px);line-height:1.25;margin:12px 0}.book-header p{max-width:650px;margin:0;color:#e4ecff}
+.chapter{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:30px 34px;margin:0 0 22px;box-shadow:var(--shadow);scroll-margin-top:115px}.chapter h2{font-size:clamp(22px,3vw,28px);line-height:1.3;color:var(--primary);margin:0 0 18px}.chapter h3{font-size:19px;margin:24px 0 10px}.chapter p,.chapter li{line-height:1.8}.chapter ul,.chapter ol{padding-left:25px}.chapter code{font-family:Consolas,Monaco,monospace;font-size:.9em;overflow-wrap:anywhere}.code-example{background:var(--code-background);border:1px solid var(--border);border-radius:11px;padding:17px;margin:16px 0;overflow-x:auto}.code-example pre{margin:0;white-space:pre;overflow-x:auto;line-height:1.55}.code-example code{color:var(--text);overflow-wrap:normal}.lesson-table{width:100%;border-collapse:collapse;display:block;overflow-x:auto;margin:18px 0}.lesson-table th,.lesson-table td{border:1px solid var(--border);padding:12px 15px;text-align:left;min-width:110px}.lesson-table th{background:var(--code-background)}.browser-preview{border:1px solid var(--border);padding:18px 22px;border-radius:12px;background:var(--background)}.page-footer{text-align:center;color:var(--muted);padding:25px 0 45px;font-size:13px}
+#quizProgress{padding:12px 15px;border-radius:9px;background:var(--code-background);font-weight:700;margin:16px 0}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:20px;margin:16px 0}.quiz-question h3{margin:0 0 15px;font-size:17px}.quiz-option{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--border);background:var(--background);border-radius:9px;margin:8px 0;cursor:pointer}.quiz-option input{margin-top:6px;accent-color:#3157a4}.quiz-option.correct{border-color:#23a66c;background:rgba(35,166,108,.13)}.quiz-option.incorrect{border-color:#e85c66;background:rgba(232,92,102,.12)}.quiz-feedback{font-size:14px;font-weight:700;color:var(--primary)}.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.quiz-actions button{padding:12px 22px;border:0;border-radius:9px;font-weight:700;background:#3157a4;color:white}.quiz-actions #retryQuiz{background:var(--code-background);color:var(--text);border:1px solid var(--border)}#quizResult{padding:20px;text-align:center;border:1px solid var(--border);background:var(--code-background);border-radius:12px;margin-top:20px}[hidden]{display:none!important}
+@media(max-width:950px){.layout{grid-template-columns:220px minmax(0,1fr)}.navbar{gap:12px}.nav-links{gap:12px}.chapter{padding:25px}}@media(max-width:720px){.navbar{flex-wrap:wrap}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;flex-basis:100%;flex-direction:column;align-items:stretch;margin:0;padding:12px 0}.nav-links.show{display:flex}.nav-actions{margin-left:auto}.layout{display:block;padding:0 14px;margin-top:16px}.toc{position:static;max-height:260px;margin-bottom:18px}.book-header{padding:27px 22px}.chapter{padding:21px 18px}.reading-controls{gap:12px}.control-group{flex-wrap:wrap}.quiz-actions button{flex:1}}@media(max-width:430px){.nav-actions #accountActions{display:none}.book-header h1{font-size:25px}}
+</style>
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav>
+<!-- HTML INTRODUCTION -->
+<a href="#html-introduction">
+            HTML Introduction
+        </a>
+<a href="#what-is-html">
+            What is HTML?
+        </a>
+<a href="#simple-html-document">
+            A Simple HTML Document
+        </a>
+<a href="#what-is-html-element">
+            What is an HTML Element?
+        </a>
+<a href="#web-browsers">
+            Web Browsers
+        </a>
+<a href="#html-page-structure">
+            HTML Page Structure
+        </a>
+<a href="#html-history">
+            HTML History
+        </a>
+<!-- HTML SEMANTIC ELEMENTS -->
+<a href="#html-semantic-elements">
+            HTML Semantic Elements
+        </a>
+<a href="#what-are-semantic-elements">
+            What are Semantic Elements?
+        </a>
+<a href="#semantic-elements-in-html">
+            Semantic Elements in HTML
+        </a>
+<!-- KNOWLEDGE ASSESSMENT -->
+<a href="#quiz">
+            Knowledge Assessment Quiz
+        </a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>HTML Structure and Semantic Elements</h1>
+<p>Learn the basic structure of HTML and how semantic elements organize web content.</p>
+</header>
+<!-- HTML INTRODUCTION -->
+<section class="chapter" id="html-introduction">
+<h2>HTML Introduction</h2>
+<p>
+                HTML is the foundation of web development.
+                It provides the structure used to organize
+                text, images, links, and other content on websites.
+            </p>
+</section>
+<!-- WHAT IS HTML -->
+<section class="chapter" id="what-is-html">
+<h2>What is HTML?</h2>
+<p>
+                HTML stands for HyperText Markup Language.
+                It is the standard language used to structure
+                content displayed in web browsers.
+            </p>
+<ul>
+<li>HTML defines the structure of web pages.</li>
+<li>HTML uses elements to organize content.</li>
+<li>HTML elements are represented by tags.</li>
+<li>Browsers interpret HTML to display web pages.</li>
+<li>HTML identifies headings, paragraphs, links, and images.</li>
+</ul>
+</section>
+<section class="chapter" id="simple-html-document">
+<h2>A Simple HTML Document</h2>
+<p>
+                An HTML document contains elements that define
+                the page's structure and visible content.
+            </p>
+<h3>Example</h3>
+<div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+            &lt;html lang="en"&gt;
+            &lt;head&gt;
+                &lt;meta charset="UTF-8"&gt;
+                &lt;title&gt;My First Website&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+                &lt;p&gt;Learning HTML is fun!&lt;/p&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;</code></pre>
+</div>
+<h3>Example Explained</h3>
+<ul>
+<li>
+<code>&lt;!DOCTYPE html&gt;</code>
+                    declares the HTML document type.
+                </li>
+<li>
+<code>&lt;html&gt;</code>
+                    is the root element of the document.
+                </li>
+<li>
+<code>&lt;head&gt;</code>
+                    contains metadata and document settings.
+                </li>
+<li>
+<code>&lt;title&gt;</code>
+                    sets the title displayed in the browser tab.
+                </li>
+<li>
+<code>&lt;body&gt;</code>
+                    contains the visible page content.
+                </li>
+<li>
+<code>&lt;h1&gt;</code>
+                    defines a primary heading.
+                </li>
+<li>
+<code>&lt;p&gt;</code>
+                    defines a paragraph.
+                </li>
+</ul>
+</section>
+<!-- HTML ELEMENTS -->
+<section class="chapter" id="what-is-html-element">
+<h2>What is an HTML Element?</h2>
+<p>
+                An HTML element usually consists of an opening tag,
+                content, and a closing tag.
+            </p>
+<div class="code-example">
+<pre><code>&lt;h1&gt;Hello World&lt;/h1&gt;
+
+            &lt;p&gt;This is a paragraph.&lt;/p&gt;</code></pre>
+</div>
+<h3>Parts of an HTML Element</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Opening Tag</th>
+<th>Content</th>
+<th>Closing Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;h1&gt;</td>
+<td>Hello World</td>
+<td>&lt;/h1&gt;</td>
+</tr>
+<tr>
+<td>&lt;p&gt;</td>
+<td>This is a paragraph.</td>
+<td>&lt;/p&gt;</td>
+</tr>
+<tr>
+<td>&lt;br&gt;</td>
+<td>No content</td>
+<td>Not required</td>
+</tr>
+</tbody>
+</table>
+<p>
+<strong>Note:</strong> Some elements, such as
+                <code>&lt;br&gt;</code> and
+                <code>&lt;img&gt;</code>, are void elements.
+                They do not require closing tags.
+            </p>
+</section>
+<!-- WEB BROWSERS -->
+<section class="chapter" id="web-browsers">
+<h2>Web Browsers</h2>
+<p>
+                A web browser is an application that reads HTML
+                documents and displays them as web pages.
+            </p>
+<p>Popular web browsers include:</p>
+<ul>
+<li>Google Chrome</li>
+<li>Mozilla Firefox</li>
+<li>Microsoft Edge</li>
+<li>Safari</li>
+<li>Opera</li>
+</ul>
+<p>
+                Browsers interpret HTML elements and render
+                the content without displaying the HTML tags
+                themselves.
+            </p>
+<h3>Browser Output Example</h3>
+<div class="browser-preview">
+<h3>Welcome to My Website</h3>
+<p>Learning HTML is fun!</p>
+</div>
+</section>
+<!-- HTML PAGE STRUCTURE -->
+<section class="chapter" id="html-page-structure">
+<h2>HTML Page Structure</h2>
+<p>
+                    Every HTML document follows a basic structure.
+                    The head contains document information, while
+                    the body contains the content users can see.
+                </p>
+<div class="code-example">
+<pre><code>&lt;html&gt;
+
+        &lt;head&gt;
+            &lt;title&gt;Page Title&lt;/title&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+
+            &lt;h1&gt;Main Heading&lt;/h1&gt;
+
+            &lt;p&gt;First paragraph.&lt;/p&gt;
+
+            &lt;p&gt;Second paragraph.&lt;/p&gt;
+
+        &lt;/body&gt;
+
+    &lt;/html&gt;</code></pre>
+</div>
+<p>
+<strong>Remember:</strong> Content inside the
+                    <code>&lt;body&gt;</code> is rendered on the page,
+                    while the <code>&lt;title&gt;</code> identifies
+                    the document in the browser tab.
+                </p>
+</section>
+<!-- HTML HISTORY -->
+<section class="chapter" id="html-history">
+<h2>HTML History</h2>
+<p>
+                    HTML has developed through several versions
+                    since the creation of the World Wide Web.
+                    Each major update introduced improvements
+                    to web document structure and capabilities.
+                </p>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Year</th>
+
+<th>Development</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1989</td>
+
+<td>Tim Berners-Lee proposed the World Wide Web.</td>
+</tr>
+<tr>
+<td>1991</td>
+
+<td>HTML was introduced for creating web documents.</td>
+</tr>
+<tr>
+<td>1993</td>
+
+<td>Dave Raggett proposed HTML+.</td>
+</tr>
+<tr>
+<td>1995</td>
+
+<td>HTML 2.0 became a formal specification.</td>
+</tr>
+<tr>
+<td>1997</td>
+
+<td>HTML 3.2 became a W3C Recommendation.</td>
+</tr>
+<tr>
+<td>1999</td>
+
+<td>HTML 4.01 was published.</td>
+</tr>
+<tr>
+<td>2000</td>
+
+<td>XHTML 1.0 was released.</td>
+</tr>
+<tr>
+<td>2008</td>
+
+<td>The first public HTML5 draft was published by WHATWG.</td>
+</tr>
+<tr>
+<td>2012</td>
+
+<td>WHATWG adopted the HTML Living Standard.</td>
+</tr>
+<tr>
+<td>2014</td>
+
+<td>HTML5 became a W3C Recommendation.</td>
+</tr>
+<tr>
+<td>2016</td>
+
+<td>HTML 5.1 reached Candidate Recommendation status.</td>
+</tr>
+<tr>
+<td>2017</td>
+
+<td>HTML 5.1 Second Edition and HTML 5.2 were published.</td>
+</tr>
+</tbody>
+</table>
+<p>
+                    Modern HTML continues to evolve through the
+                    HTML Living Standard, which supports the
+                    development of today's websites and web applications.
+                </p>
+</section>
+<!-- ==========================================
+        CODEVERSE - HTML SEMANTIC ELEMENTS
+    ========================================== -->
+<!-- HTML SEMANTIC ELEMENTS -->
+<section class="chapter" id="html-semantic-elements">
+<h2>HTML Semantic Elements</h2>
+<p>
+            Semantic elements are HTML elements that clearly
+            describe the purpose and meaning of their content.
+            They help developers and web browsers understand
+            how different parts of a webpage are organized.
+        </p>
+<p>
+            HTML provides semantic elements that make web pages
+            more meaningful, readable, and easier to maintain.
+        </p>
+</section>
+<!-- WHAT ARE SEMANTIC ELEMENTS? -->
+<section class="chapter" id="what-are-semantic-elements">
+<h2>What are Semantic Elements?</h2>
+<p>
+            A semantic element is an HTML element whose name
+            communicates the type or purpose of the content
+            it contains.
+        </p>
+<p>
+            Semantic elements describe their meaning to both
+            the web browser and the developer.
+        </p>
+<h3>Non-Semantic Elements</h3>
+<p>
+            Non-semantic elements do not explain what their
+            content represents. They are commonly used as
+            general-purpose containers.
+        </p>
+<ul>
+<li>
+<code>&lt;div&gt;</code> -
+                A general container used to group HTML elements.
+            </li>
+<li>
+<code>&lt;span&gt;</code> -
+                An inline container used to group text or
+                other inline content.
+            </li>
+</ul>
+<h3>Example of Non-Semantic HTML</h3>
+<div class="code-example">
+<pre><code>&lt;div class="header"&gt;
+        &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;/div&gt;
+
+    &lt;div class="content"&gt;
+        &lt;p&gt;Welcome to my website.&lt;/p&gt;
+    &lt;/div&gt;</code></pre>
+</div>
+<p>
+            Although these elements can organize content,
+            their tag names do not identify the purpose
+            of each section.
+        </p>
+<h3>Semantic Elements</h3>
+<p>
+            Semantic elements provide meaningful information
+            about the content they contain.
+        </p>
+<ul>
+<li>
+<code>&lt;img&gt;</code> -
+                Represents an image.
+            </li>
+<li>
+<code>&lt;table&gt;</code> -
+                Represents tabular data.
+            </li>
+<li>
+<code>&lt;article&gt;</code> -
+                Represents independent, self-contained content.
+            </li>
+</ul>
+<h3>Example of Semantic HTML</h3>
+<div class="code-example">
+<pre><code>&lt;header&gt;
+        &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Welcome&lt;/h2&gt;
+            &lt;p&gt;This is my first article.&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;</code></pre>
+</div>
+<p>
+            In this example, the elements identify the
+            page header, main content, and an independent
+            article.
+        </p>
+</section>
+<!-- SEMANTIC ELEMENTS IN HTML -->
+<section class="chapter" id="semantic-elements-in-html">
+<h2>Semantic Elements in HTML</h2>
+<p>
+            Many websites previously relied on generic
+            containers with IDs or classes to identify
+            different parts of a webpage.
+        </p>
+<h3>Example of Traditional HTML Structure</h3>
+<div class="code-example">
+<pre><code>&lt;div id="header"&gt;
+        Website Header
+    &lt;/div&gt;
+
+    &lt;div id="nav"&gt;
+        Navigation Menu
+    &lt;/div&gt;
+
+    &lt;div id="content"&gt;
+        Main Content
+    &lt;/div&gt;
+
+    &lt;div id="footer"&gt;
+        Website Footer
+    &lt;/div&gt;</code></pre>
+</div>
+<p>
+            Modern HTML provides semantic elements that
+            describe the different areas of a webpage
+            more clearly.
+        </p>
+<h3>Common HTML Semantic Elements</h3>
+<ul>
+<li><code>&lt;article&gt;</code></li>
+<li><code>&lt;aside&gt;</code></li>
+<li><code>&lt;details&gt;</code></li>
+<li><code>&lt;figcaption&gt;</code></li>
+<li><code>&lt;figure&gt;</code></li>
+<li><code>&lt;footer&gt;</code></li>
+<li><code>&lt;header&gt;</code></li>
+<li><code>&lt;main&gt;</code></li>
+<li><code>&lt;mark&gt;</code></li>
+<li><code>&lt;nav&gt;</code></li>
+<li><code>&lt;section&gt;</code></li>
+<li><code>&lt;summary&gt;</code></li>
+<li><code>&lt;time&gt;</code></li>
+</ul>
+<h3>Example of Semantic Page Structure</h3>
+<div class="code-example">
+<pre><code>&lt;header&gt;
+        &lt;h1&gt;CodeVerse Library&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;nav&gt;
+        &lt;a href="index.html"&gt;Home&lt;/a&gt;
+        &lt;a href="library.html"&gt;Library&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;main&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Featured Books&lt;/h2&gt;
+
+            &lt;article&gt;
+                &lt;h3&gt;HTML Fundamentals&lt;/h3&gt;
+                &lt;p&gt;Learn the basics of HTML.&lt;/p&gt;
+            &lt;/article&gt;
+
+        &lt;/section&gt;
+
+        &lt;aside&gt;
+            &lt;h3&gt;Related Topics&lt;/h3&gt;
+            &lt;p&gt;CSS and JavaScript&lt;/p&gt;
+        &lt;/aside&gt;
+
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;CodeVerse Digital Library&lt;/p&gt;
+    &lt;/footer&gt;</code></pre>
+</div>
+<p>
+            Using semantic elements helps describe the
+            structure of a webpage without depending
+            entirely on generic containers.
+        </p>
+</section>
+<!-- KNOWLEDGE ASSESSMENT QUIZ -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>Test your understanding of HTML structure, elements, browsers, and semantic HTML.</p>
+<div aria-live="polite" id="quizProgress">0 of 10 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+                        Submit Quiz
+                    </button>
+<button hidden="" id="retryQuiz" type="button">
+                        Try Again
+                    </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of HTML Structure and Semantic Elements · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const fontSize = document.getElementById("fontSize");
+    const fontFamily = document.getElementById("fontFamily");
+
+    // Restore saved settings
+    const savedTheme = localStorage.getItem("readerTheme");
+    const savedSize = localStorage.getItem("readerFontSize");
+    const savedFont = localStorage.getItem("readerFontFamily");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (savedSize) {
+        fontSize.value = savedSize;
+    }
+
+    if (savedFont) {
+        fontFamily.value = savedFont;
+    }
+
+    function updateThemeIcon() {
+        themeIcon.textContent =
+            document.body.classList.contains("dark-mode") ? "☀" : "☾";
+    }
+
+    function applyFontSize() {
+        document.querySelectorAll("main .chapter").forEach(chapter => {
+            chapter.style.fontSize = fontSize.value;
+        });
+
+        localStorage.setItem("readerFontSize", fontSize.value);
+    }
+
+    function applyFontFamily() {
+        document.querySelector("main").style.fontFamily = fontFamily.value;
+        localStorage.setItem("readerFontFamily", fontFamily.value);
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "readerTheme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+    });
+
+    fontSize.addEventListener("change", applyFontSize);
+    fontFamily.addEventListener("change", applyFontFamily);
+
+    applyFontSize();
+    applyFontFamily();
+    updateThemeIcon();
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", function () {
+            const opened = navLinks.classList.toggle("show");
+            menuToggle.setAttribute("aria-expanded", String(opened));
+        });
+        navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", function () {
+            navLinks.classList.remove("show");
+            menuToggle.setAttribute("aria-expanded", "false");
+        }));
+    }
+    if ("IntersectionObserver" in window) {
+        const links = [...document.querySelectorAll('.toc a[href^="#"]')];
+        const observer = new IntersectionObserver(entries => {
+            for (const entry of entries) {
+                if (entry.isIntersecting) {
+                    links.forEach(a => a.classList.toggle("current", a.getAttribute("href") === "#" + entry.target.id));
+                }
+            }
+        }, {rootMargin:"-100px 0px -65% 0px"});
+        document.querySelectorAll("main .chapter[id]").forEach(el => observer.observe(el));
+    }
+});
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ==========================================
+       CODEVERSE - HTML STRUCTURE & SEMANTIC QUIZ
+    ========================================== */
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz || !retryQuiz ||
+        !quizResult || !quizProgress) {
+        console.error("Quiz elements not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What does HTML stand for?",
+            options: [
+                "HyperText Markup Language",
+                "HyperText Markdown Language",
+                "High Technology Markup Language",
+                "Hyperlink Text Management Language"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which HTML element contains the visible content of a webpage?",
+            options: [
+                "<head>",
+                "<title>",
+                "<body>",
+                "<meta>"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which HTML element is used to define a paragraph?",
+            options: [
+                "<h1>",
+                "<p>",
+                "<br>",
+                "<div>"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which of the following is a void HTML element?",
+            options: [
+                "<article>",
+                "<section>",
+                "<footer>",
+                "<br>"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is the main purpose of semantic HTML elements?",
+            options: [
+                "To make websites load without Internet",
+                "To describe the meaning and purpose of webpage content",
+                "To replace all CSS styling",
+                "To store information in databases"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which of the following is a non-semantic HTML element?",
+            options: [
+                "<article>",
+                "<header>",
+                "<div>",
+                "<footer>"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which semantic element represents independent, self-contained content?",
+            options: [
+                "<article>",
+                "<aside>",
+                "<nav>",
+                "<main>"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which semantic HTML element is used for navigation links?",
+            options: [
+                "<section>",
+                "<header>",
+                "<footer>",
+                "<nav>"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which semantic element represents the main content of a webpage?",
+            options: [
+                "<aside>",
+                "<main>",
+                "<figure>",
+                "<span>"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is an advantage of using semantic HTML elements?",
+            options: [
+                "They eliminate the need for web browsers",
+                "They automatically create a database",
+                "They make webpage structure more meaningful and readable",
+                "They prevent all website errors"
+            ],
+            answer: 2
+        }
+    ];
+
+    let quizSubmitted = false;
+
+    /* ==========================================
+       LOAD QUIZ
+    ========================================== */
+
+    function loadQuiz() {
+        quizSubmitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener("change", updateProgress);
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+
+            });
+
+            quizQuestions.appendChild(box);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    /* ==========================================
+       UPDATE PROGRESS
+    ========================================== */
+
+    function updateProgress() {
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) answered++;
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    /* ==========================================
+       SUBMIT QUIZ
+    ========================================== */
+
+    submitQuiz.addEventListener("click", async function () {
+        if (quizSubmitted) return;
+
+        const selections = questions.map((item, index) => {
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+        });
+
+        if (selections.includes(null)) {
+            alert("Please answer all questions before submitting.");
+            return;
+        }
+
+        quizSubmitted = true;
+        submitQuiz.disabled = true;
+        let score = 0;
+
+        questions.forEach((item, index) => {
+
+            const box = quizQuestions.children[index];
+            const selectedAnswer = selections[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+        });
+
+        /* CALCULATE SCORE */
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent work!";
+        } else if (percentage >= 75) {
+            message = "Great job!";
+        } else if (percentage >= 60) {
+            message = "Good effort! Keep reviewing.";
+        } else {
+            message = "Review the chapters and try again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+            <p id="quizSaveStatus" aria-live="polite">
+                Saving quiz result...
+            </p>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        /* ==========================================
+           SAVE RESULT TO CODEVERSE DATABASE
+        ========================================== */
+
+        const saveStatus = document.getElementById("quizSaveStatus");
+
+        try {
+            const response = await fetch("/api/quiz-results", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    bookId: 3,
+                    score: score,
+                    totalQuestions: questions.length
+                })
+            });
+
+            const data = await response.json();
+
+            saveStatus.textContent =
+                response.ok && data.success
+                    ? "Your quiz score has been saved!"
+                    : (data.message || "Quiz score could not be saved.");
+
+        } catch (error) {
+            console.error("Quiz save error:", error);
+            saveStatus.textContent =
+                "Quiz completed, but the score could not be saved.";
+        }
+
+    });
+
+    /* ==========================================
+       RETRY QUIZ
+    ========================================== */
+
+    retryQuiz.addEventListener("click", function () {
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+
+    loadQuiz();
+
+});
+</script>
+    <script src="/js/navbar-loader.js" defer></script>
+</body></html>

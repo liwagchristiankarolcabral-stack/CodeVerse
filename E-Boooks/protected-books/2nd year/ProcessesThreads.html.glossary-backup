@@ -1,0 +1,4008 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Processes, Threads, and Process Scheduling | CodeVerse</title>
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* ==========================================
+           CODEVERSE E-BOOK READER
+           PROCESSES, THREADS AND SCHEDULING
+        ========================================== */
+
+        :root {
+            --primary: #3157a4;
+            --primary-dark: #24427f;
+            --background: #f7f9fd;
+            --surface: #ffffff;
+            --text: #202b40;
+            --muted: #758096;
+            --border: #e6eaf1;
+            --shadow: 0 8px 30px rgba(30, 50, 90, .07);
+            --reader-size: 16px;
+            --reader-family: 'DM Sans', sans-serif;
+        }
+
+        body.dark-mode {
+            --primary: #91b4ff;
+            --primary-dark: #b8ceff;
+            --background: #101827;
+            --surface: #1b273a;
+            --text: #eaf0fb;
+            --muted: #a4b2c9;
+            --border: #34435a;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .2);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 105px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            transition: background .3s, color .3s;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           NAVIGATION BAR
+        ========================================== */
+
+        .navbar {
+            min-height: 82px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 12px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 23px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .site-logo {
+            width: 43px;
+            height: 43px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .nav-actions button {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 10px 13px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .nav-actions button:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 16px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .login-btn {
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .signup-btn {
+            color: #ffffff;
+            background: #3157a4;
+            border: 1px solid #3157a4;
+        }
+
+        .signup-btn:hover {
+            background: #24427f;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* ==========================================
+           BACK NAVIGATION
+        ========================================== */
+
+        .topbar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 13px 5%;
+        }
+
+        .back-link {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ==========================================
+           READING CONTROLS
+        ========================================== */
+
+        .reading-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            padding: 17px 20px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .control-group label {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .control-group select {
+            background: var(--background);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           READER LAYOUT
+        ========================================== */
+
+        .reader-layout {
+            display: grid;
+            grid-template-columns: 290px minmax(0, 1fr);
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        /* ==========================================
+           SIDEBAR AND TABLE OF CONTENTS
+        ========================================== */
+
+        .sidebar {
+            height: calc(100vh - 82px);
+            position: sticky;
+            top: 82px;
+            overflow-y: auto;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 25px 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+
+        .sidebar h3 {
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin: 23px 0 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 12px;
+            margin-bottom: 3px;
+            border-radius: 9px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.5;
+            transition: background .2s, color .2s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--background);
+            color: var(--primary);
+        }
+
+        .sidebar a.active {
+            font-weight: 800;
+        }
+
+        /* ==========================================
+           MAIN READER
+        ========================================== */
+
+        .reader {
+            padding: 35px;
+            max-width: 1100px;
+            width: 100%;
+            min-width: 0;
+            margin: auto;
+        }
+
+        /* ==========================================
+           HERO SECTION
+        ========================================== */
+
+        .hero {
+            background: linear-gradient(
+                135deg,
+                #254783,
+                #547ed0
+            );
+            color: white;
+            border-radius: 20px;
+            padding: 55px 40px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            line-height: 1.9;
+            max-width: 700px;
+        }
+
+        /* ==========================================
+           CHAPTER SECTIONS
+        ========================================== */
+
+        .chapter {
+            background: var(--surface);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+        }
+
+        .chapter-number {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .chapter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            margin: 12px 0 20px;
+        }
+
+        .chapter h3 {
+            color: var(--primary);
+            font-size: 19px;
+            margin-top: 28px;
+        }
+
+        .chapter p,
+        .chapter li {
+            font-family: var(--reader-family);
+            font-size: var(--reader-size);
+            line-height: 1.9;
+        }
+
+        .chapter li {
+            margin-bottom: 7px;
+        }
+
+        .chapter ul,
+        .chapter ol {
+            padding-left: 25px;
+        }
+
+        /* ==========================================
+           CODE AND DIAGRAMS
+        ========================================== */
+
+        .chapter pre {
+            background: var(--background);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            line-height: 1.7;
+            font-size: 14px;
+            white-space: pre;
+        }
+
+        .chapter pre code {
+            font-family: Consolas, monospace;
+        }
+
+        /* ==========================================
+           TABLES
+        ========================================== */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .chapter th,
+        .chapter td {
+            padding: 13px;
+            border: 1px solid var(--border);
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .chapter th {
+            background: var(--background);
+            color: var(--text);
+        }
+
+        /* ==========================================
+           INFORMATION NOTES
+        ========================================== */
+
+        .note {
+            border-left: 4px solid var(--primary);
+            background: var(--background);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        /* ==========================================
+           INTERACTIVE QUIZ
+        ========================================== */
+
+        .quiz-question {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+
+        .quiz-question h3 {
+            font-size: 16px;
+            color: var(--text);
+            margin-top: 0;
+        }
+
+        .quiz-question label {
+            display: block;
+            padding: 11px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .quiz-question label:hover {
+            background: var(--background);
+        }
+
+        .quiz-question input {
+            margin-right: 10px;
+            accent-color: #3157a4;
+        }
+
+        .quiz-question label.correct {
+            background: rgba(38, 162, 105, .12);
+            border-radius: 8px;
+        }
+
+        .quiz-question label.incorrect {
+            background: rgba(211, 91, 91, .12);
+            border-radius: 8px;
+        }
+
+        .quiz-button {
+            padding: 14px 25px;
+            background: #3157a4;
+            border: none;
+            color: white;
+            border-radius: 9px;
+            font-weight: 700;
+            margin: 10px 8px 10px 0;
+        }
+
+        .quiz-button:hover {
+            background: #24427f;
+        }
+
+        .quiz-result {
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--background);
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-question.correct {
+            border-color: #26a269;
+        }
+
+        .quiz-question.incorrect {
+            border-color: #d35b5b;
+        }
+
+        .quiz-feedback {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .quiz-progress {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .progress-track {
+            height: 8px;
+            background: var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: #3157a4;
+            transition: width .2s;
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 30px;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           RESPONSIVE NAVIGATION
+        ========================================== */
+
+        @media (max-width: 1100px) {
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+        }
+
+        @media (max-width: 950px) {
+
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--surface);
+                border-bottom: 1px solid var(--border);
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .reader-layout {
+                display: block;
+            }
+
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 82px;
+                left: 0;
+                width: min(330px, 90vw);
+                height: calc(100vh - 82px);
+                z-index: 999;
+                box-shadow: var(--shadow);
+            }
+
+            .sidebar.show {
+                display: block;
+            }
+
+            .reader {
+                padding: 20px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 12px 15px;
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .site-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .nav-actions {
+                gap: 5px;
+            }
+
+            .nav-actions button {
+                padding: 9px;
+                font-size: 12px;
+            }
+
+            .login-btn,
+            .signup-btn {
+                padding: 9px;
+                font-size: 12px;
+            }
+
+            .reading-controls {
+                justify-content: flex-start;
+            }
+
+            .reader {
+                padding: 15px;
+            }
+
+            .chapter {
+                padding: 23px;
+            }
+
+            .hero {
+                padding: 30px 25px;
+            }
+
+        }
+
+        @media (max-width: 420px) {
+
+            .navbar {
+                justify-content: center;
+            }
+
+            .nav-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+        }
+
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- ========================================
+     CODEVERSE NAVIGATION
+======================================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<!-- ========================================
+     BACK TO BOOKS
+======================================== -->
+<div class="topbar">
+<a class="back-link" href="/index.html#books">
+        ← Back to Books
+    </a>
+</div>
+<!-- ========================================
+     READING CONTROLS
+======================================== -->
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size:</label>
+<select id="fontSize">
+<option value="14px">Small — 14px</option>
+<option selected="" value="16px">Normal — 16px</option>
+<option value="18px">Medium — 18px</option>
+<option value="20px">Large — 20px</option>
+<option value="22px">Extra Large — 22px</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style:</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">
+                DM Sans
+            </option>
+<option value="Arial, sans-serif">
+                Arial
+            </option>
+<option value="Georgia, serif">
+                Georgia
+            </option>
+<option value="'Times New Roman', serif">
+                Times New Roman
+            </option>
+<option value="Verdana, sans-serif">
+                Verdana
+            </option>
+</select>
+</div>
+</div>
+<!-- ========================================
+     READER LAYOUT
+======================================== -->
+<div class="reader-layout">
+<!-- ========================================
+         TABLE OF CONTENTS
+    ======================================== -->
+<aside class="sidebar" id="sidebar">
+<h3>TABLE OF CONTENTS</h3>
+<nav aria-label="E-book table of contents">
+<a href="#introduction">Introduction</a>
+<h3>CHAPTER 1</h3>
+<a href="#chapter-1">Introduction to Processes</a>
+<a href="#section-1-1">1.1 What Is a Process?</a>
+<a href="#section-1-2">1.2 Difference Between a Program and a Process</a>
+<a href="#section-1-3">1.3 Why Are Processes Important?</a>
+<a href="#section-1-4">1.4 Real-Life Examples of Processes</a>
+<a href="#section-1-5">1.5 How the Operating System Manages Processes</a>
+<h3>CHAPTER 2</h3>
+<a href="#chapter-2">Process Concepts and Characteristics</a>
+<a href="#section-2-1">2.1 Main Components of a Process</a>
+<a href="#section-2-2">2.2 Process Identification</a>
+<a href="#section-2-3">2.3 Process Resource Requirements</a>
+<a href="#section-2-4">2.4 Process Creation</a>
+<a href="#section-2-5">2.5 Process Termination</a>
+<h3>CHAPTER 3</h3>
+<a href="#chapter-3">Process States and Life Cycle</a>
+<a href="#section-3-1">3.1 What Are Process States?</a>
+<a href="#section-3-2">3.2 Five Main Process States</a>
+<a href="#section-3-3">3.3 Process State Transitions</a>
+<a href="#section-3-4">3.4 Example of Process States</a>
+<h3>CHAPTER 4</h3>
+<a href="#chapter-4">Process Control Block (PCB)</a>
+<a href="#section-4-1">4.1 What Is a Process Control Block?</a>
+<a href="#section-4-2">4.2 Information Stored in a PCB</a>
+<a href="#section-4-3">4.3 Importance of the Process Control Block</a>
+<a href="#section-4-4">4.4 Example of a Process Control Block</a>
+<a href="#section-4-5">4.5 Context Switching</a>
+<h3>CHAPTER 5</h3>
+<a href="#chapter-5">Introduction to Threads</a>
+<a href="#section-5-1">5.1 What Is a Thread?</a>
+<a href="#section-5-2">5.2 Why Are Threads Used?</a>
+<a href="#section-5-3">5.3 Characteristics of Threads</a>
+<a href="#section-5-4">5.4 Components of a Thread</a>
+<a href="#section-5-5">5.5 Examples of Threads in Real Applications</a>
+<h3>CHAPTER 6</h3>
+<a href="#chapter-6">Types of Threads</a>
+<a href="#section-6-1">6.1 User-Level Threads</a>
+<a href="#section-6-2">6.2 Kernel-Level Threads</a>
+<a href="#section-6-3">6.3 Difference Between User-Level and Kernel-Level Threads</a>
+<a href="#section-6-4">6.4 Thread Mapping Models</a>
+<h3>CHAPTER 7</h3>
+<a href="#chapter-7">Multithreading</a>
+<a href="#section-7-1">7.1 What Is Multithreading?</a>
+<a href="#section-7-2">7.2 Types of Multithreading</a>
+<a href="#section-7-3">7.3 Benefits of Multithreading</a>
+<a href="#section-7-4">7.4 Challenges of Multithreading</a>
+<a href="#section-7-5">7.5 Example of Multithreading</a>
+<h3>CHAPTER 8</h3>
+<a href="#chapter-8">Processes vs. Threads</a>
+<a href="#section-8-1">8.1 Understanding the Difference</a>
+<a href="#section-8-2">8.2 Comparison Between Processes and Threads</a>
+<a href="#section-8-3">8.3 Example of Processes and Threads Working Together</a>
+<a href="#section-8-4">8.4 Why Both Are Important</a>
+<h3>CHAPTER 9</h3>
+<a href="#chapter-9">Introduction to Process Scheduling</a>
+<a href="#section-9-1">9.1 What Is Process Scheduling?</a>
+<a href="#section-9-2">9.2 Why Is Process Scheduling Needed?</a>
+<a href="#section-9-3">9.3 The Role of the CPU Scheduler</a>
+<a href="#section-9-4">9.4 Ready Queue</a>
+<h3>CHAPTER 10</h3>
+<a href="#chapter-10">Types of Process Scheduling</a>
+<a href="#section-10-1">10.1 Long-Term Scheduler</a>
+<a href="#section-10-2">10.2 Short-Term Scheduler</a>
+<a href="#section-10-3">10.3 Medium-Term Scheduler</a>
+<a href="#section-10-4">10.4 Comparison of Scheduling Types</a>
+<a href="#section-10-5">10.5 Preemptive Scheduling</a>
+<a href="#section-10-6">10.6 Non-Preemptive Scheduling</a>
+<a href="#section-10-7">10.7 Difference Between Preemptive and Non-Preemptive Scheduling</a>
+<h3>CHAPTER 11</h3>
+<a href="#chapter-11">CPU Scheduling Algorithms</a>
+<a href="#section-11-1">11.1 What Are CPU Scheduling Algorithms?</a>
+<a href="#section-11-2">11.2 First-Come, First-Served (FCFS)</a>
+<a href="#section-11-3">11.3 Shortest Job First (SJF)</a>
+<a href="#section-11-4">11.4 Shortest Remaining Time First (SRTF)</a>
+<a href="#section-11-5">11.5 Priority Scheduling</a>
+<a href="#section-11-6">11.6 Round Robin (RR)</a>
+<a href="#section-11-7">11.7 Multilevel Queue Scheduling</a>
+<a href="#section-11-8">11.8 Comparison of CPU Scheduling Algorithms</a>
+<h3>CHAPTER 12</h3>
+<a href="#chapter-12">Important Scheduling Terms and Performance Measures</a>
+<a href="#section-12-1">12.1 Arrival Time</a>
+<a href="#section-12-2">12.2 Burst Time</a>
+<a href="#section-12-3">12.3 Completion Time</a>
+<a href="#section-12-4">12.4 Turnaround Time</a>
+<a href="#section-12-5">12.5 Waiting Time</a>
+<a href="#section-12-6">12.6 Response Time</a>
+<a href="#section-12-7">12.7 CPU Utilization</a>
+<a href="#section-12-8">12.8 Throughput</a>
+<a href="#section-12-9">12.9 Average Waiting Time</a>
+<a href="#section-12-10">12.10 Why Performance Measures Matter</a>
+<h3>CHAPTER 13</h3>
+<a href="#chapter-13">Importance and Real-World Applications</a>
+<a href="#section-13-1">13.1 Processes in Everyday Computer Use</a>
+<a href="#section-13-2">13.2 Threads in Modern Applications</a>
+<a href="#section-13-3">13.3 Process Scheduling in Multitasking</a>
+<a href="#section-13-4">13.4 Processes and Threads in Mobile Devices</a>
+<a href="#section-13-5">13.5 Processes and Threads in Servers</a>
+<a href="#section-13-6">13.6 Processes and Threads in Operating System Security</a>
+<h3>CHAPTER 14</h3>
+<a href="#chapter-14">Common Problems in Process and Thread Management</a>
+<a href="#section-14-1">14.1 Starvation</a>
+<a href="#section-14-2">14.2 Deadlock</a>
+<a href="#section-14-3">14.3 Race Conditions</a>
+<a href="#section-14-4">14.4 Excessive Context Switching</a>
+<a href="#section-14-5">14.5 Resource Contention</a>
+<h3>CHAPTER 15</h3>
+<a href="#chapter-15">Practical Applications and Scenarios</a>
+<a href="#section-15-1">15.1 Scenario: Using Multiple Applications</a>
+<a href="#section-15-2">15.2 Scenario: Downloading While Watching a Video</a>
+<a href="#section-15-3">15.3 Scenario: Online Gaming</a>
+<a href="#section-15-4">15.4 Scenario: School Computer Laboratory</a>
+<h3>CHAPTER 16</h3>
+<a href="#chapter-16">How Processes, Threads, and Scheduling Work Together</a>
+<a href="#section-16-1">16.1 Understanding Their Relationship</a>
+<a href="#section-16-2">16.2 Step-by-Step Explanation</a>
+<a href="#section-16-3">16.3 Summary of Their Responsibilities</a>
+<a href="#section-16-4">16.4 Why They Must Work Together</a>
+<h3>CHAPTER 17</h3>
+<a href="#chapter-17">Summary and Key Learnings</a>
+<h3>CHAPTER 18</h3>
+<a href="#chapter-18">Key Terms and Definitions</a>
+<h3>CHAPTER 19</h3>
+<a href="#chapter-19">Final Conclusion</a>
+<h3>ASSESSMENT</h3>
+<a href="#top">30-Question Quiz</a>
+</nav>
+</aside>
+<!-- ========================================
+         MAIN CONTENT
+    ======================================== -->
+<main class="reader">
+<section class="hero" id="introduction">
+<span>CODEVERSE DIGITAL E-BOOK LIBRARY</span>
+<h1>Processes, Threads, and Process Scheduling</h1>
+<p>
+        Explore how operating systems create, organize,
+        execute, and schedule processes and threads to
+        support multitasking and efficient CPU utilization.
+    </p>
+<p>19 Chapters • Interactive Assessment</p>
+</section>
+<!-- ========================================
+     CHAPTER 1
+======================================== -->
+<section class="chapter" id="chapter-1">
+<span class="chapter-number">CHAPTER 01</span>
+<h2>Introduction to Processes</h2>
+<p>
+        A process is a fundamental concept in operating
+        systems. It represents a program that is currently
+        being executed by a computer.
+    </p>
+</section>
+<section class="chapter" id="section-1-1">
+<span class="chapter-number">SECTION 1.1</span>
+<h2>What Is a Process?</h2>
+<p>
+        A process is a program in execution. It is an
+        active entity that uses computer resources
+        such as CPU time, memory, and input/output devices.
+    </p>
+<p>
+        When a user opens an application, the operating
+        system creates a process to execute the
+        application's instructions.
+    </p>
+<h3>Examples</h3>
+<ul>
+<li>Opening a web browser</li>
+<li>Running Microsoft Word</li>
+<li>Playing a computer game</li>
+<li>Executing a Java program</li>
+<li>Running a media player</li>
+</ul>
+<div class="note">
+<strong>Example:</strong>
+        When Google Chrome is launched, the operating
+        system creates processes that allow the browser
+        to operate.
+    </div>
+</section>
+<section class="chapter" id="section-1-2">
+<span class="chapter-number">SECTION 1.2</span>
+<h2>Difference Between a Program and a Process</h2>
+<p>
+        A program is a collection of instructions
+        stored on a storage device.
+    </p>
+<p>
+        A process is the active execution of
+        those instructions.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Program</th>
+<th>Process</th>
+</tr>
+<tr>
+<td>Passive</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>Stored instructions</td>
+<td>Instructions being executed</td>
+</tr>
+<tr>
+<td>Stored on disk</td>
+<td>Uses CPU and memory resources</td>
+</tr>
+<tr>
+<td>Does not execute by itself</td>
+<td>Managed by the operating system</td>
+</tr>
+</table>
+</div>
+<div class="note">
+        A Java source file is part of a program.
+        Running the compiled application creates
+        a process.
+    </div>
+</section>
+<section class="chapter" id="section-1-3">
+<span class="chapter-number">SECTION 1.3</span>
+<h2>Why Are Processes Important?</h2>
+<h3>1. Multitasking</h3>
+<p>
+        Processes allow computers to run multiple
+        applications during the same period.
+    </p>
+<h3>2. Resource Management</h3>
+<p>
+        The operating system allocates CPU time,
+        memory, and other resources to processes.
+    </p>
+<h3>3. Program Execution</h3>
+<p>
+        Processes provide the environment required
+        for programs to execute.
+    </p>
+<h3>4. Process Isolation</h3>
+<p>
+        Operating systems help protect processes
+        from interfering with one another.
+    </p>
+<h3>5. System Efficiency</h3>
+<p>
+        Process scheduling helps improve the
+        utilization of computing resources.
+    </p>
+</section>
+<section class="chapter" id="section-1-4">
+<span class="chapter-number">SECTION 1.4</span>
+<h2>Real-Life Examples of Processes</h2>
+<h3>Web Browsing</h3>
+<p>
+        A browser executes processes to manage
+        web content and application functions.
+    </p>
+<h3>Document Editing</h3>
+<p>
+        A word processor executes instructions
+        for editing, formatting, and saving documents.
+    </p>
+<h3>Gaming</h3>
+<p>
+        A computer game uses processing resources
+        to handle input, game logic, and rendering.
+    </p>
+<h3>Programming</h3>
+<p>
+        When a student runs a program, the
+        operating system creates a process
+        to execute the compiled instructions.
+    </p>
+</section>
+<section class="chapter" id="section-1-5">
+<span class="chapter-number">SECTION 1.5</span>
+<h2>How the Operating System Manages Processes</h2>
+<ol>
+<li>A user starts an application.</li>
+<li>The operating system creates a process.</li>
+<li>Memory and other resources are assigned.</li>
+<li>The process becomes eligible for CPU execution.</li>
+<li>The CPU executes the process instructions.</li>
+<li>The process may wait for input or other resources.</li>
+<li>The process eventually finishes or is terminated.</li>
+</ol>
+</section>
+<!-- ========================================
+     CHAPTER 2
+======================================== -->
+<section class="chapter" id="chapter-2">
+<span class="chapter-number">CHAPTER 02</span>
+<h2>Process Concepts and Characteristics</h2>
+<p>
+        Processes contain several components and
+        characteristics that help the operating
+        system manage their execution.
+    </p>
+</section>
+<section class="chapter" id="section-2-1">
+<span class="chapter-number">SECTION 2.1</span>
+<h2>Main Components of a Process</h2>
+<h3>Program Code</h3>
+<p>
+        Contains the instructions that the
+        process executes.
+    </p>
+<h3>Program Counter</h3>
+<p>
+        Identifies the next instruction
+        to be executed.
+    </p>
+<h3>CPU Registers</h3>
+<p>
+        Hold temporary data and information
+        needed during processing.
+    </p>
+<h3>Stack</h3>
+<p>
+        Stores function call information,
+        local variables, and return addresses.
+    </p>
+<h3>Heap</h3>
+<p>
+        Stores dynamically allocated data.
+    </p>
+<h3>Data Section</h3>
+<p>
+        Stores global and static variables.
+    </p>
+</section>
+<section class="chapter" id="section-2-2">
+<span class="chapter-number">SECTION 2.2</span>
+<h2>Process Identification</h2>
+<p>
+        Each process is assigned a unique
+        identifier called a Process ID or PID
+        within the operating system.
+    </p>
+<p>
+        The PID allows the operating system
+        to distinguish and manage processes.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Process</th>
+<th>Example PID</th>
+</tr>
+<tr>
+<td>Browser</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>Text Editor</td>
+<td>2048</td>
+</tr>
+<tr>
+<td>Media Player</td>
+<td>3072</td>
+</tr>
+</table>
+</div>
+<p>
+        The identifiers above are illustrative.
+        Actual process IDs are assigned by
+        the operating system.
+    </p>
+</section>
+<section class="chapter" id="section-2-3">
+<span class="chapter-number">SECTION 2.3</span>
+<h2>Process Resource Requirements</h2>
+<p>
+        Processes require resources to execute.
+    </p>
+<ul>
+<li>CPU processing time</li>
+<li>Memory space</li>
+<li>Storage access</li>
+<li>Input/output devices</li>
+<li>Files and network resources</li>
+</ul>
+<p>
+        The operating system coordinates
+        these resources to support
+        multiple processes.
+    </p>
+</section>
+<section class="chapter" id="section-2-4">
+<span class="chapter-number">SECTION 2.4</span>
+<h2>Process Creation</h2>
+<p>
+        Process creation occurs when the
+        operating system starts a new process.
+    </p>
+<h3>Reasons for Process Creation</h3>
+<ul>
+<li>A user opens an application.</li>
+<li>A running process creates another process.</li>
+<li>A system service starts.</li>
+<li>A scheduled task begins execution.</li>
+</ul>
+<p>
+        The operating system creates the
+        necessary process information and
+        prepares resources for execution.
+    </p>
+</section>
+<section class="chapter" id="section-2-5">
+<span class="chapter-number">SECTION 2.5</span>
+<h2>Process Termination</h2>
+<p>
+        Process termination occurs when
+        a process stops executing.
+    </p>
+<h3>Common Causes</h3>
+<ul>
+<li>Normal completion</li>
+<li>User-initiated termination</li>
+<li>Application errors</li>
+<li>Operating system termination</li>
+</ul>
+<p>
+        After termination, the operating
+        system can release resources
+        associated with the process.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 3
+======================================== -->
+<section class="chapter" id="chapter-3">
+<span class="chapter-number">CHAPTER 03</span>
+<h2>Process States and Life Cycle</h2>
+<p>
+        A process passes through different
+        states during its lifetime.
+    </p>
+</section>
+<section class="chapter" id="section-3-1">
+<span class="chapter-number">SECTION 3.1</span>
+<h2>What Are Process States?</h2>
+<p>
+        Process states describe the current
+        condition of a process during
+        its execution life cycle.
+    </p>
+<p>
+        The operating system uses these
+        states to determine whether
+        a process is running, waiting,
+        or ready to execute.
+    </p>
+</section>
+<section class="chapter" id="section-3-2">
+<span class="chapter-number">SECTION 3.2</span>
+<h2>Five Main Process States</h2>
+<h3>1. New</h3>
+<p>
+        The process is being created.
+    </p>
+<h3>2. Ready</h3>
+<p>
+        The process is prepared to execute
+        and is waiting for CPU time.
+    </p>
+<h3>3. Running</h3>
+<p>
+        The CPU is currently executing
+        the process instructions.
+    </p>
+<h3>4. Waiting or Blocked</h3>
+<p>
+        The process is waiting for an event
+        or resource, such as input/output completion.
+    </p>
+<h3>5. Terminated</h3>
+<p>
+        The process has completed or
+        stopped its execution.
+    </p>
+</section>
+<section class="chapter" id="section-3-3">
+<span class="chapter-number">SECTION 3.3</span>
+<h2>Process State Transitions</h2>
+<pre>
+NEW
+ |
+ v
+READY --------&gt; RUNNING
+  ^                |
+  |                |
+  |          +-----+-----+
+  |          |           |
+  |          v           v
+  |       WAITING     TERMINATED
+  |          |
+  +----------+
+    </pre>
+<p>
+        A running process may return to
+        the ready state when it is preempted.
+        It may also enter the waiting state
+        while waiting for an event.
+    </p>
+</section>
+<section class="chapter" id="section-3-4">
+<span class="chapter-number">SECTION 3.4</span>
+<h2>Example of Process States</h2>
+<ol>
+<li>A user opens a text editor: New.</li>
+<li>The application waits for CPU time: Ready.</li>
+<li>The CPU executes instructions: Running.</li>
+<li>The application waits for disk access: Waiting.</li>
+<li>Disk access finishes: Ready.</li>
+<li>The application resumes execution: Running.</li>
+<li>The application closes: Terminated.</li>
+</ol>
+</section>
+<!-- ========================================
+     CHAPTER 4
+======================================== -->
+<section class="chapter" id="chapter-4">
+<span class="chapter-number">CHAPTER 04</span>
+<h2>Process Control Block (PCB)</h2>
+<p>
+        The operating system maintains
+        information about each process
+        using a Process Control Block.
+    </p>
+</section>
+<section class="chapter" id="section-4-1">
+<span class="chapter-number">SECTION 4.1</span>
+<h2>What Is a Process Control Block?</h2>
+<p>
+        A Process Control Block (PCB) is
+        a data structure maintained by the
+        operating system to store important
+        information about a process.
+    </p>
+<p>
+        The PCB allows the operating system
+        to manage, schedule, and monitor
+        process execution.
+    </p>
+</section>
+<section class="chapter" id="section-4-2">
+<span class="chapter-number">SECTION 4.2</span>
+<h2>Information Stored in a PCB</h2>
+<ul>
+<li>Process ID</li>
+<li>Process state</li>
+<li>Program counter</li>
+<li>CPU register values</li>
+<li>CPU scheduling information</li>
+<li>Memory management information</li>
+<li>Accounting information</li>
+<li>Input/output status information</li>
+</ul>
+</section>
+<section class="chapter" id="section-4-3">
+<span class="chapter-number">SECTION 4.3</span>
+<h2>Importance of the Process Control Block</h2>
+<p>
+        The PCB allows the operating system
+        to save and restore process information.
+    </p>
+<h3>Functions</h3>
+<ul>
+<li>Tracks process states.</li>
+<li>Supports CPU scheduling.</li>
+<li>Stores execution information.</li>
+<li>Supports context switching.</li>
+<li>Helps manage process resources.</li>
+</ul>
+</section>
+<section class="chapter" id="section-4-4">
+<span class="chapter-number">SECTION 4.4</span>
+<h2>Example of a Process Control Block</h2>
+<div class="table-wrapper">
+<table>
+<tr><th>Field</th><th>Example</th></tr>
+<tr><td>Process ID</td><td>1050</td></tr>
+<tr><td>Process Name</td><td>TextEditor.exe</td></tr>
+<tr><td>Process State</td><td>Ready</td></tr>
+<tr><td>Priority</td><td>Normal</td></tr>
+<tr><td>Program Counter</td><td>Next instruction address</td></tr>
+<tr><td>Memory Information</td><td>Assigned memory mappings</td></tr>
+</table>
+</div>
+</section>
+<section class="chapter" id="section-4-5">
+<span class="chapter-number">SECTION 4.5</span>
+<h2>Context Switching</h2>
+<p>
+        Context switching occurs when the
+        CPU switches from executing one
+        process or thread to another.
+    </p>
+<h3>How Context Switching Works</h3>
+<ol>
+<li>The operating system interrupts or pauses the current execution.</li>
+<li>The current execution context is saved.</li>
+<li>The scheduler selects another runnable task.</li>
+<li>The selected task's context is restored.</li>
+<li>Execution resumes.</li>
+</ol>
+<p>
+        Context switching supports multitasking,
+        but frequent switching creates overhead.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 5
+======================================== -->
+<section class="chapter" id="chapter-5">
+<span class="chapter-number">CHAPTER 05</span>
+<h2>Introduction to Threads</h2>
+<p>
+        Threads allow a process to perform
+        multiple activities concurrently.
+    </p>
+</section>
+<section class="chapter" id="section-5-1">
+<span class="chapter-number">SECTION 5.1</span>
+<h2>What Is a Thread?</h2>
+<p>
+        A thread is the smallest unit of
+        execution that can be independently
+        scheduled within a process.
+    </p>
+<p>
+        A process can contain one or
+        multiple threads.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A media player may use different
+        threads to handle user input,
+        audio playback, and video processing.
+    </div>
+</section>
+<section class="chapter" id="section-5-2">
+<span class="chapter-number">SECTION 5.2</span>
+<h2>Why Are Threads Used?</h2>
+<h3>1. Responsiveness</h3>
+<p>
+        Threads help applications remain
+        responsive while other work continues.
+    </p>
+<h3>2. Resource Sharing</h3>
+<p>
+        Threads within the same process
+        can share memory and other resources.
+    </p>
+<h3>3. Concurrent Execution</h3>
+<p>
+        Multiple threads can make progress
+        during overlapping time periods.
+    </p>
+<h3>4. Parallelism</h3>
+<p>
+        On multicore processors, different
+        threads may execute simultaneously.
+    </p>
+</section>
+<section class="chapter" id="section-5-3">
+<span class="chapter-number">SECTION 5.3</span>
+<h2>Characteristics of Threads</h2>
+<ul>
+<li>Threads belong to a process.</li>
+<li>Threads share the process address space.</li>
+<li>Each thread has its own execution context.</li>
+<li>Threads may execute concurrently.</li>
+<li>Threads can communicate through shared memory.</li>
+<li>Shared data may require synchronization.</li>
+</ul>
+</section>
+<section class="chapter" id="section-5-4">
+<span class="chapter-number">SECTION 5.4</span>
+<h2>Components of a Thread</h2>
+<ul>
+<li><strong>Thread ID:</strong> Identifies a thread.</li>
+<li><strong>Program Counter:</strong> Tracks the next instruction.</li>
+<li><strong>CPU Registers:</strong> Store execution values.</li>
+<li><strong>Stack:</strong> Stores function calls and local data.</li>
+<li><strong>Thread State:</strong> Indicates its execution condition.</li>
+</ul>
+</section>
+<section class="chapter" id="section-5-5">
+<span class="chapter-number">SECTION 5.5</span>
+<h2>Examples of Threads in Real Applications</h2>
+<h3>Web Browser</h3>
+<p>
+        Threads may handle rendering,
+        user interaction, and background work.
+    </p>
+<h3>Video Game</h3>
+<p>
+        Threads may handle game logic,
+        audio processing, and resource loading.
+    </p>
+<h3>Media Player</h3>
+<p>
+        Threads can support audio playback,
+        video decoding, and user controls.
+    </p>
+<h3>Programming Application</h3>
+<p>
+        An IDE may use background threads
+        for code analysis, indexing,
+        and other development tasks.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 6
+======================================== -->
+<section class="chapter" id="chapter-6">
+<span class="chapter-number">CHAPTER 06</span>
+<h2>Types of Threads</h2>
+<p>
+        Threads can be classified according to how
+        they are managed by the operating system
+        and the application.
+    </p>
+<p>
+        The two primary types are user-level
+        threads and kernel-level threads.
+    </p>
+</section>
+<section class="chapter" id="section-6-1">
+<span class="chapter-number">SECTION 6.1</span>
+<h2>User-Level Threads</h2>
+<p>
+        User-level threads are managed by a thread
+        library in user space rather than directly
+        by the operating system kernel.
+    </p>
+<p>
+        The thread library is responsible for
+        creating, scheduling, and managing
+        these threads.
+    </p>
+<h3>Advantages</h3>
+<ul>
+<li>Thread creation can be fast.</li>
+<li>Thread switching can require less overhead.</li>
+<li>Thread management can be customized by applications.</li>
+<li>Some operations do not require kernel intervention.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>In a many-to-one model, a blocking system call can block all user threads.</li>
+<li>In a many-to-one model, multiple user threads cannot run simultaneously on different CPU cores.</li>
+<li>The kernel may not recognize individual user-level threads.</li>
+</ul>
+<div class="note">
+<strong>Example:</strong>
+        A user-space threading library may schedule
+        several user threads over one kernel thread.
+    </div>
+</section>
+<section class="chapter" id="section-6-2">
+<span class="chapter-number">SECTION 6.2</span>
+<h2>Kernel-Level Threads</h2>
+<p>
+        Kernel-level threads are managed directly
+        by the operating system kernel.
+    </p>
+<p>
+        The operating system is responsible for
+        scheduling and managing these threads.
+    </p>
+<h3>Advantages</h3>
+<ul>
+<li>The operating system can schedule threads independently.</li>
+<li>Threads may execute simultaneously on multiple CPU cores.</li>
+<li>Blocking one thread does not necessarily block the other threads of the process.</li>
+<li>Kernel scheduling can support system-wide priorities.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Thread creation may involve additional overhead.</li>
+<li>Switching between threads may require kernel operations.</li>
+<li>Kernel-managed threads consume operating system resources.</li>
+</ul>
+</section>
+<section class="chapter" id="section-6-3">
+<span class="chapter-number">SECTION 6.3</span>
+<h2>Difference Between User-Level and Kernel-Level Threads</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>User-Level Threads</th>
+<th>Kernel-Level Threads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Management</td>
+<td>User-space thread library</td>
+<td>Operating system kernel</td>
+</tr>
+<tr>
+<td>Creation</td>
+<td>Often faster</td>
+<td>May require kernel operations</td>
+</tr>
+<tr>
+<td>Scheduling</td>
+<td>Thread library</td>
+<td>Operating system scheduler</td>
+</tr>
+<tr>
+<td>Blocking</td>
+<td>Depends on thread mapping model</td>
+<td>Individual threads can block independently</td>
+</tr>
+<tr>
+<td>Parallel Execution</td>
+<td>Depends on mapping to kernel threads</td>
+<td>Can run on multiple CPU cores</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="chapter" id="section-6-4">
+<span class="chapter-number">SECTION 6.4</span>
+<h2>Thread Mapping Models</h2>
+<p>
+        Thread mapping models describe the relationship
+        between user-level threads and kernel-level threads.
+    </p>
+<h3>1. Many-to-One Model</h3>
+<p>
+        Multiple user-level threads are mapped
+        to a single kernel thread.
+    </p>
+<pre>
+User Threads:
+T1    T2    T3
+ \    |    /
+  \   |   /
+   \  |  /
+ Kernel Thread
+       K1
+    </pre>
+<p>
+        This model is simple but does not allow
+        those user threads to execute in parallel
+        on multiple CPU cores.
+    </p>
+<h3>2. One-to-One Model</h3>
+<p>
+        Each user-level thread is mapped
+        to a corresponding kernel thread.
+    </p>
+<pre>
+User Threads:
+T1    T2    T3
+ |     |     |
+ v     v     v
+K1    K2    K3
+
+Kernel Threads
+    </pre>
+<p>
+        This model supports parallel execution
+        but can require more kernel resources.
+    </p>
+<h3>3. Many-to-Many Model</h3>
+<p>
+        Multiple user-level threads are mapped
+        to multiple kernel-level threads.
+    </p>
+<p>
+        This model allows flexibility in scheduling
+        and can support parallel execution.
+    </p>
+<h3>4. Two-Level Model</h3>
+<p>
+        The two-level model is a variation
+        of the many-to-many model that can
+        allow certain user threads to be
+        bound to specific kernel threads.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 7
+======================================== -->
+<section class="chapter" id="chapter-7">
+<span class="chapter-number">CHAPTER 07</span>
+<h2>Multithreading</h2>
+<p>
+        Multithreading allows a process to contain
+        multiple threads that execute concurrently.
+    </p>
+<p>
+        It helps applications perform several
+        operations during overlapping periods.
+    </p>
+</section>
+<section class="chapter" id="section-7-1">
+<span class="chapter-number">SECTION 7.1</span>
+<h2>What Is Multithreading?</h2>
+<p>
+        Multithreading is a programming and operating
+        system technique in which a single process
+        uses multiple threads of execution.
+    </p>
+<p>
+        These threads share the resources of
+        their parent process while maintaining
+        separate execution contexts.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A web browser may use multiple threads
+        to process user interaction, load resources,
+        and perform background activities.
+    </div>
+</section>
+<section class="chapter" id="section-7-2">
+<span class="chapter-number">SECTION 7.2</span>
+<h2>Types of Multithreading</h2>
+<h3>Concurrent Multithreading</h3>
+<p>
+        Multiple threads make progress during
+        overlapping time periods.
+    </p>
+<p>
+        On a single CPU core, execution may
+        alternate rapidly between threads.
+    </p>
+<h3>Parallel Multithreading</h3>
+<p>
+        Multiple threads execute at the same time
+        on different CPU cores or available
+        hardware execution resources.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Concurrency</th>
+<th>Parallelism</th>
+</tr>
+<tr>
+<td>Tasks make progress over overlapping periods.</td>
+<td>Tasks execute simultaneously.</td>
+</tr>
+<tr>
+<td>Can occur on one CPU core.</td>
+<td>Requires suitable parallel hardware.</td>
+</tr>
+<tr>
+<td>Focuses on managing multiple tasks.</td>
+<td>Focuses on simultaneous execution.</td>
+</tr>
+</table>
+</div>
+</section>
+<section class="chapter" id="section-7-3">
+<span class="chapter-number">SECTION 7.3</span>
+<h2>Benefits of Multithreading</h2>
+<h3>1. Improved Responsiveness</h3>
+<p>
+        Applications can respond to user
+        actions while background work continues.
+    </p>
+<h3>2. Resource Sharing</h3>
+<p>
+        Threads within a process can share
+        the same memory and resources.
+    </p>
+<h3>3. Better CPU Utilization</h3>
+<p>
+        Threads can use available CPU resources
+        when other threads are waiting.
+    </p>
+<h3>4. Improved Performance</h3>
+<p>
+        Suitable workloads can benefit from
+        concurrent or parallel execution.
+    </p>
+<h3>5. Efficient Application Design</h3>
+<p>
+        Complex applications can separate
+        different responsibilities into threads.
+    </p>
+</section>
+<section class="chapter" id="section-7-4">
+<span class="chapter-number">SECTION 7.4</span>
+<h2>Challenges of Multithreading</h2>
+<h3>Race Conditions</h3>
+<p>
+        Race conditions occur when program
+        behavior depends on the timing
+        of concurrent operations.
+    </p>
+<h3>Deadlocks</h3>
+<p>
+        Deadlocks occur when threads or processes
+        wait indefinitely for resources held
+        by one another.
+    </p>
+<h3>Synchronization Problems</h3>
+<p>
+        Threads accessing shared data may
+        require synchronization to prevent
+        incorrect results.
+    </p>
+<h3>Debugging Difficulty</h3>
+<p>
+        Concurrent execution can make program
+        errors difficult to reproduce.
+    </p>
+<h3>Context Switching Overhead</h3>
+<p>
+        Excessive thread switching can
+        consume processing time.
+    </p>
+</section>
+<section class="chapter" id="section-7-5">
+<span class="chapter-number">SECTION 7.5</span>
+<h2>Example of Multithreading</h2>
+<p>
+        The following Java example creates
+        two threads that perform different tasks.
+    </p>
+<pre><code>public class MultithreadingExample {
+
+    public static void main(String[] args) {
+
+        Thread thread1 = new Thread(() -&gt; {
+            for (int i = 1; i &lt;= 5; i++) {
+                System.out.println("Thread 1: " + i);
+            }
+        });
+
+        Thread thread2 = new Thread(() -&gt; {
+            for (int i = 1; i &lt;= 5; i++) {
+                System.out.println("Thread 2: " + i);
+            }
+        });
+
+        thread1.start();
+        thread2.start();
+    }
+}</code></pre>
+<p>
+        The two threads can execute concurrently.
+        The order of the displayed output may
+        vary between program executions.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 8
+======================================== -->
+<section class="chapter" id="chapter-8">
+<span class="chapter-number">CHAPTER 08</span>
+<h2>Processes vs. Threads</h2>
+<p>
+        Processes and threads are both essential
+        components of modern operating systems,
+        but they have different responsibilities.
+    </p>
+</section>
+<section class="chapter" id="section-8-1">
+<span class="chapter-number">SECTION 8.1</span>
+<h2>Understanding the Difference</h2>
+<p>
+        A process is an independent execution
+        environment with its own virtual
+        address space and resources.
+    </p>
+<p>
+        A thread is a unit of execution
+        within a process.
+    </p>
+<p>
+        Threads belonging to the same process
+        normally share its memory and resources.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A browser process may contain
+        multiple threads responsible for
+        different operations.
+    </div>
+</section>
+<section class="chapter" id="section-8-2">
+<span class="chapter-number">SECTION 8.2</span>
+<h2>Comparison Between Processes and Threads</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Process</th>
+<th>Thread</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Definition</td>
+<td>Program in execution</td>
+<td>Execution unit within a process</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Separate virtual address space</td>
+<td>Shares process address space</td>
+</tr>
+<tr>
+<td>Creation</td>
+<td>Usually more resource-intensive</td>
+<td>Usually less resource-intensive</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Often requires interprocess communication</td>
+<td>Can use shared process memory</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Generally stronger isolation</td>
+<td>Shares process resources</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>Contains one or more threads</td>
+<td>Executes instructions</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="chapter" id="section-8-3">
+<span class="chapter-number">SECTION 8.3</span>
+<h2>Example of Processes and Threads Working Together</h2>
+<p>
+        Consider a computer running a browser,
+        music player, and word processor.
+    </p>
+<h3>Processes</h3>
+<ul>
+<li>Browser process</li>
+<li>Music player process</li>
+<li>Word processor process</li>
+</ul>
+<h3>Threads Within the Browser</h3>
+<ul>
+<li>User interface thread</li>
+<li>Rendering-related thread</li>
+<li>Network-related thread</li>
+<li>Background processing thread</li>
+</ul>
+<p>
+        The operating system schedules the
+        runnable threads while managing
+        their process resources.
+    </p>
+</section>
+<section class="chapter" id="section-8-4">
+<span class="chapter-number">SECTION 8.4</span>
+<h2>Why Both Are Important</h2>
+<h3>Processes</h3>
+<ul>
+<li>Provide separate execution environments.</li>
+<li>Support application isolation.</li>
+<li>Help organize system resources.</li>
+</ul>
+<h3>Threads</h3>
+<ul>
+<li>Support concurrent execution.</li>
+<li>Allow shared-memory communication.</li>
+<li>Improve application responsiveness.</li>
+</ul>
+<p>
+        Processes provide the execution
+        environment, while threads perform
+        the actual instructions within it.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 9
+======================================== -->
+<section class="chapter" id="chapter-9">
+<span class="chapter-number">CHAPTER 09</span>
+<h2>Introduction to Process Scheduling</h2>
+<p>
+        Process scheduling is one of the
+        important responsibilities of
+        an operating system.
+    </p>
+<p>
+        It determines which runnable process
+        or thread should use the CPU.
+    </p>
+</section>
+<section class="chapter" id="section-9-1">
+<span class="chapter-number">SECTION 9.1</span>
+<h2>What Is Process Scheduling?</h2>
+<p>
+        Process scheduling is the method used
+        by an operating system to select
+        which ready process or thread
+        should execute on the CPU.
+    </p>
+<p>
+        Since many processes may compete
+        for CPU time, scheduling helps
+        organize their execution.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        When a student uses a browser,
+        a music player, and a programming
+        application, the operating system
+        schedules their runnable tasks.
+    </div>
+</section>
+<section class="chapter" id="section-9-2">
+<span class="chapter-number">SECTION 9.2</span>
+<h2>Why Is Process Scheduling Needed?</h2>
+<h3>1. Efficient CPU Utilization</h3>
+<p>
+        Scheduling helps keep the CPU busy
+        with useful work.
+    </p>
+<h3>2. Multitasking</h3>
+<p>
+        Multiple applications can make
+        progress during overlapping periods.
+    </p>
+<h3>3. Fair Resource Distribution</h3>
+<p>
+        Scheduling policies can distribute
+        CPU time among competing tasks.
+    </p>
+<h3>4. Better Response Time</h3>
+<p>
+        Interactive applications can receive
+        CPU attention quickly.
+    </p>
+<h3>5. Improved System Performance</h3>
+<p>
+        Scheduling helps balance responsiveness,
+        throughput, and CPU utilization.
+    </p>
+</section>
+<section class="chapter" id="section-9-3">
+<span class="chapter-number">SECTION 9.3</span>
+<h2>The Role of the CPU Scheduler</h2>
+<p>
+        The CPU scheduler selects a runnable
+        task from the ready queue.
+    </p>
+<h3>Main Responsibilities</h3>
+<ul>
+<li>Select the next task for CPU execution.</li>
+<li>Apply the scheduling policy.</li>
+<li>Support efficient processor utilization.</li>
+<li>Coordinate with the dispatcher.</li>
+<li>Help maintain system responsiveness.</li>
+</ul>
+<p>
+        The dispatcher transfers CPU control
+        to the task selected by the scheduler.
+    </p>
+</section>
+<section class="chapter" id="section-9-4">
+<span class="chapter-number">SECTION 9.4</span>
+<h2>Ready Queue</h2>
+<p>
+        The ready queue contains processes
+        or threads that are prepared to execute
+        but are waiting for CPU time.
+    </p>
+<pre>
+READY QUEUE
+
++--------+   +--------+   +--------+
+|   P1   |--&gt;|   P2   |--&gt;|   P3   |
++--------+   +--------+   +--------+
+                              |
+                              v
+                         CPU Scheduler
+                              |
+                              v
+                             CPU
+    </pre>
+<p>
+        The scheduler chooses a task
+        according to the scheduling algorithm.
+        The ready queue does not necessarily
+        follow a first-in, first-out order.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 10
+======================================== -->
+<section class="chapter" id="chapter-10">
+<span class="chapter-number">CHAPTER 10</span>
+<h2>Types of Process Scheduling</h2>
+<p>
+        Operating systems use different types
+        of schedulers to control process
+        admission, execution, and suspension.
+    </p>
+</section>
+<section class="chapter" id="section-10-1">
+<span class="chapter-number">SECTION 10.1</span>
+<h2>Long-Term Scheduler</h2>
+<p>
+        The long-term scheduler, also called
+        the job scheduler, selects jobs
+        from secondary storage and admits
+        them into the system for execution.
+    </p>
+<h3>Functions</h3>
+<ul>
+<li>Controls admission of new jobs.</li>
+<li>Influences the degree of multiprogramming.</li>
+<li>Helps balance CPU-bound and I/O-bound workloads.</li>
+</ul>
+<p>
+        Long-term scheduling is typically
+        less frequent than short-term scheduling.
+    </p>
+</section>
+<section class="chapter" id="section-10-2">
+<span class="chapter-number">SECTION 10.2</span>
+<h2>Short-Term Scheduler</h2>
+<p>
+        The short-term scheduler, also called
+        the CPU scheduler, selects a ready
+        task to execute on the CPU.
+    </p>
+<h3>Functions</h3>
+<ul>
+<li>Selects runnable tasks.</li>
+<li>Determines CPU execution order.</li>
+<li>Supports multitasking.</li>
+<li>Runs frequently during system operation.</li>
+</ul>
+<div class="note">
+<strong>Example:</strong>
+        The CPU scheduler selects between
+        a ready browser task and a ready
+        text editor task.
+    </div>
+</section>
+<section class="chapter" id="section-10-3">
+<span class="chapter-number">SECTION 10.3</span>
+<h2>Medium-Term Scheduler</h2>
+<p>
+        The medium-term scheduler manages
+        the temporary suspension and
+        resumption of processes.
+    </p>
+<p>
+        It may remove processes from main
+        memory and later restore them.
+    </p>
+<h3>Functions</h3>
+<ul>
+<li>Supports process suspension.</li>
+<li>Helps control memory pressure.</li>
+<li>Can influence the degree of multiprogramming.</li>
+<li>Supports swapping in systems that use it.</li>
+</ul>
+</section>
+<section class="chapter" id="section-10-4">
+<span class="chapter-number">SECTION 10.4</span>
+<h2>Comparison of Scheduling Types</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Scheduler</th>
+<th>Main Function</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Long-Term</td>
+<td>Admits jobs into the system</td>
+<td>Relatively infrequent</td>
+</tr>
+<tr>
+<td>Short-Term</td>
+<td>Selects tasks for CPU execution</td>
+<td>Very frequent</td>
+</tr>
+<tr>
+<td>Medium-Term</td>
+<td>Suspends and resumes processes</td>
+<td>As required</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="chapter" id="section-10-5">
+<span class="chapter-number">SECTION 10.5</span>
+<h2>Preemptive Scheduling</h2>
+<p>
+        Preemptive scheduling allows the
+        operating system to interrupt
+        a running task and assign the
+        CPU to another ready task.
+    </p>
+<h3>Advantages</h3>
+<ul>
+<li>Can improve responsiveness.</li>
+<li>Supports time-sharing systems.</li>
+<li>Allows urgent tasks to receive CPU time.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>May increase context switching overhead.</li>
+<li>Requires careful synchronization.</li>
+<li>Can create starvation under some policies.</li>
+</ul>
+<h3>Examples</h3>
+<ul>
+<li>Round Robin</li>
+<li>Shortest Remaining Time First</li>
+<li>Preemptive Priority Scheduling</li>
+</ul>
+</section>
+<section class="chapter" id="section-10-6">
+<span class="chapter-number">SECTION 10.6</span>
+<h2>Non-Preemptive Scheduling</h2>
+<p>
+        In non-preemptive scheduling, a task
+        normally retains the CPU until it
+        finishes its CPU burst or blocks.
+    </p>
+<h3>Advantages</h3>
+<ul>
+<li>Simple to implement.</li>
+<li>Generally requires fewer forced context switches.</li>
+<li>Can reduce scheduling overhead.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Long CPU bursts may delay shorter tasks.</li>
+<li>Interactive response time may be poor.</li>
+<li>Some workloads experience long waiting times.</li>
+</ul>
+<h3>Examples</h3>
+<ul>
+<li>First-Come, First-Served</li>
+<li>Non-Preemptive Shortest Job First</li>
+<li>Non-Preemptive Priority Scheduling</li>
+</ul>
+</section>
+<section class="chapter" id="section-10-7">
+<span class="chapter-number">SECTION 10.7</span>
+<h2>Difference Between Preemptive and Non-Preemptive Scheduling</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Preemptive</th>
+<th>Non-Preemptive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU Interruption</td>
+<td>A running task may be interrupted.</td>
+<td>A running task generally continues until completion or blocking.</td>
+</tr>
+<tr>
+<td>Responsiveness</td>
+<td>Can provide faster interactive response.</td>
+<td>May delay short or interactive tasks.</td>
+</tr>
+<tr>
+<td>Context Switching</td>
+<td>May occur more frequently.</td>
+<td>Generally fewer forced switches.</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>Often more complex.</td>
+<td>Often simpler.</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>Round Robin, SRTF</td>
+<td>FCFS, non-preemptive SJF</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<strong>Key Difference:</strong>
+        Preemptive scheduling allows the
+        operating system to take the CPU
+        away from a running task.
+        Non-preemptive scheduling does not
+        forcibly interrupt a running CPU burst.
+    </div>
+</section>
+<!-- ========================================
+     CHAPTER 11
+======================================== -->
+<section class="chapter" id="chapter-11">
+<span class="chapter-number">CHAPTER 11</span>
+<h2>CPU Scheduling Algorithms</h2>
+<p>
+        CPU scheduling algorithms determine the order
+        in which ready processes receive CPU time.
+        Different algorithms use arrival times,
+        burst times, priorities, or time slices
+        to make scheduling decisions.
+    </p>
+</section>
+<section class="chapter" id="section-11-1">
+<span class="chapter-number">SECTION 11.1</span>
+<h2>What Are CPU Scheduling Algorithms?</h2>
+<p>
+        CPU scheduling algorithms are methods used
+        by the operating system to determine the
+        order in which processes receive CPU time.
+    </p>
+<p>
+        Different algorithms use different rules
+        to select processes. Some prioritize
+        the process that arrives first, while
+        others consider execution time or
+        process priority.
+    </p>
+<p>
+        The main goal is to improve CPU utilization,
+        reduce waiting time, and provide a smooth
+        experience for users.
+    </p>
+</section>
+<section class="chapter" id="section-11-2">
+<span class="chapter-number">SECTION 11.2</span>
+<h2>First-Come, First-Served (FCFS)</h2>
+<p>
+        First-Come, First-Served is a scheduling
+        algorithm that executes processes according
+        to their arrival order.
+    </p>
+<p>
+        The process that arrives first receives
+        the CPU first. Other processes wait until
+        the current process finishes its CPU burst.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Uses arrival order.</li>
+<li>Simple to understand and implement.</li>
+<li>Non-preemptive scheduling algorithm.</li>
+<li>Processes are generally handled in a queue.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Easy to implement.</li>
+<li>Fair based on arrival order.</li>
+<li>Simple process management.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Long processes can make shorter processes wait.</li>
+<li>May produce high average waiting time.</li>
+<li>Not ideal for interactive systems.</li>
+</ul>
+<h3>Example</h3>
+<p>
+        Three processes arrive in the following order:
+    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Process</th>
+<th>Arrival Time</th>
+<th>Burst Time</th>
+</tr>
+<tr><td>P1</td><td>0 ms</td><td>5 ms</td></tr>
+<tr><td>P2</td><td>1 ms</td><td>3 ms</td></tr>
+<tr><td>P3</td><td>2 ms</td><td>2 ms</td></tr>
+</table>
+</div>
+<p><strong>Execution order:</strong> P1 → P2 → P3</p>
+<h3>Gantt Chart</h3>
+<pre>
++----------+--------+------+
+|    P1    |   P2   |  P3  |
++----------+--------+------+
+0          5        8     10
+    </pre>
+<h3>Step-by-Step Explanation</h3>
+<ol>
+<li>P1 arrives at 0 ms and executes for 5 ms.</li>
+<li>P2 executes from 5 ms to 8 ms.</li>
+<li>P3 executes from 8 ms to 10 ms.</li>
+</ol>
+<h3>Waiting Time</h3>
+<p>P1 = 0 − 0 = 0 ms</p>
+<p>P2 = 5 − 1 = 4 ms</p>
+<p>P3 = 8 − 2 = 6 ms</p>
+<div class="note">
+<strong>Average Waiting Time:</strong>
+        (0 + 4 + 6) / 3 = 3.33 ms
+    </div>
+</section>
+<section class="chapter" id="section-11-3">
+<span class="chapter-number">SECTION 11.3</span>
+<h2>Shortest Job First (SJF)</h2>
+<p>
+        Shortest Job First selects the available
+        process with the shortest CPU burst time.
+    </p>
+<p>
+        In its non-preemptive form, the selected
+        process continues until its CPU burst
+        finishes or it blocks.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Selects the shortest available CPU burst.</li>
+<li>Can be implemented in preemptive or non-preemptive forms.</li>
+<li>Helps reduce average waiting time.</li>
+<li>Requires burst-time information or estimates.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Can provide low average waiting time.</li>
+<li>Allows shorter processes to finish quickly.</li>
+<li>Useful for predictable workloads.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Longer processes may wait for extended periods.</li>
+<li>Exact CPU burst times are difficult to predict.</li>
+<li>Starvation can occur.</li>
+</ul>
+<h3>Example</h3>
+<p>
+        Assume all processes arrive at 0 ms.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr><th>Process</th><th>Burst Time</th></tr>
+<tr><td>P1</td><td>6 ms</td></tr>
+<tr><td>P2</td><td>2 ms</td></tr>
+<tr><td>P3</td><td>4 ms</td></tr>
+</table>
+</div>
+<p><strong>Execution order:</strong> P2 → P3 → P1</p>
+<h3>Gantt Chart</h3>
+<pre>
++------+----------+--------------+
+|  P2  |    P3    |      P1      |
++------+----------+--------------+
+0      2          6             12
+    </pre>
+<h3>Waiting Time</h3>
+<p>P2 = 0 ms</p>
+<p>P3 = 2 ms</p>
+<p>P1 = 6 ms</p>
+<div class="note">
+<strong>Average Waiting Time:</strong>
+        (0 + 2 + 6) / 3 = 2.67 ms
+    </div>
+</section>
+<section class="chapter" id="section-11-4">
+<span class="chapter-number">SECTION 11.4</span>
+<h2>Shortest Remaining Time First (SRTF)</h2>
+<p>
+        Shortest Remaining Time First is the
+        preemptive version of Shortest Job First.
+    </p>
+<p>
+        It selects the process with the shortest
+        remaining CPU execution time.
+    </p>
+<p>
+        If a new process arrives with a shorter
+        remaining time than the currently running
+        process, the CPU may switch to the new process.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Preemptive scheduling algorithm.</li>
+<li>Considers remaining execution time.</li>
+<li>Allows shorter processes to interrupt longer ones.</li>
+<li>Can reduce waiting time for short processes.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Prioritizes processes with less remaining work.</li>
+<li>Can improve average waiting time.</li>
+<li>Helps short tasks complete quickly.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Requires tracking remaining burst times.</li>
+<li>May cause frequent context switching.</li>
+<li>Long processes may experience starvation.</li>
+</ul>
+<h3>Example</h3>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Process</th>
+<th>Arrival Time</th>
+<th>Burst Time</th>
+</tr>
+<tr><td>P1</td><td>0 ms</td><td>8 ms</td></tr>
+<tr><td>P2</td><td>2 ms</td><td>3 ms</td></tr>
+</table>
+</div>
+<h3>Step-by-Step Execution</h3>
+<ol>
+<li>P1 begins executing at 0 ms.</li>
+<li>At 2 ms, P1 has 6 ms remaining.</li>
+<li>P2 arrives with a burst time of 3 ms.</li>
+<li>P2 has the shortest remaining time, so it preempts P1.</li>
+<li>P2 completes at 5 ms.</li>
+<li>P1 resumes and completes at 11 ms.</li>
+</ol>
+<h3>Gantt Chart</h3>
+<pre>
++------+--------+--------------+
+|  P1  |   P2   |      P1      |
++------+--------+--------------+
+0      2        5             11
+    </pre>
+<h3>Waiting Time</h3>
+<p>P1 = (11 − 0) − 8 = 3 ms</p>
+<p>P2 = (5 − 2) − 3 = 0 ms</p>
+<div class="note">
+<strong>Average Waiting Time:</strong>
+        (3 + 0) / 2 = 1.5 ms
+    </div>
+</section>
+<section class="chapter" id="section-11-5">
+<span class="chapter-number">SECTION 11.5</span>
+<h2>Priority Scheduling</h2>
+<p>
+        Priority Scheduling selects processes
+        according to their assigned priorities.
+    </p>
+<p>
+        A higher-priority process is selected
+        before a lower-priority process.
+    </p>
+<p>
+        Priority values can be interpreted differently.
+        In this example, a smaller number represents
+        a higher priority.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Processes are assigned priority levels.</li>
+<li>Higher-priority processes execute first.</li>
+<li>Can be preemptive or non-preemptive.</li>
+<li>May use aging to reduce starvation.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Important tasks can receive CPU time earlier.</li>
+<li>Supports priority-based task management.</li>
+<li>Useful when tasks have different levels of importance.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Low-priority processes may wait too long.</li>
+<li>Starvation may occur.</li>
+<li>Assigning appropriate priorities can be difficult.</li>
+</ul>
+<h3>Example</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Process</th><th>Priority</th></tr>
+<tr><td>P1</td><td>3</td></tr>
+<tr><td>P2</td><td>1</td></tr>
+<tr><td>P3</td><td>2</td></tr>
+</table>
+</div>
+<p>
+        Assuming all three processes are ready
+        and smaller numbers indicate higher priority:
+    </p>
+<p><strong>Execution order:</strong> P2 → P3 → P1</p>
+<div class="note">
+<strong>Aging:</strong>
+        Aging gradually increases the priority
+        of a waiting process to help prevent starvation.
+    </div>
+</section>
+<section class="chapter" id="section-11-6">
+<span class="chapter-number">SECTION 11.6</span>
+<h2>Round Robin (RR)</h2>
+<p>
+        Round Robin is a preemptive scheduling
+        algorithm that gives each process a fixed
+        amount of CPU time called a time quantum.
+    </p>
+<p>
+        Each process receives a turn to execute.
+        If it does not finish within its assigned
+        time quantum, it is interrupted and placed
+        at the back of the ready queue.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Uses a fixed time quantum.</li>
+<li>Gives processes turns to use the CPU.</li>
+<li>Preemptive scheduling algorithm.</li>
+<li>Commonly associated with time-sharing systems.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Provides regular CPU access.</li>
+<li>Prevents one process from continuously occupying the CPU.</li>
+<li>Suitable for interactive environments.</li>
+<li>Allows processes to make progress.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>A small time quantum causes frequent context switching.</li>
+<li>A very large time quantum makes it behave similarly to FCFS.</li>
+<li>Performance depends on the chosen time quantum.</li>
+</ul>
+<h3>Example</h3>
+<p>
+        Assume all processes arrive at 0 ms
+        and the time quantum is 2 ms.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr><th>Process</th><th>Burst Time</th></tr>
+<tr><td>P1</td><td>5 ms</td></tr>
+<tr><td>P2</td><td>3 ms</td></tr>
+<tr><td>P3</td><td>4 ms</td></tr>
+</table>
+</div>
+<h3>Execution Timeline</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Time</th><th>Process</th><th>Remaining Burst</th></tr>
+<tr><td>0–2</td><td>P1</td><td>3 ms</td></tr>
+<tr><td>2–4</td><td>P2</td><td>1 ms</td></tr>
+<tr><td>4–6</td><td>P3</td><td>2 ms</td></tr>
+<tr><td>6–8</td><td>P1</td><td>1 ms</td></tr>
+<tr><td>8–9</td><td>P2</td><td>0 ms</td></tr>
+<tr><td>9–11</td><td>P3</td><td>0 ms</td></tr>
+<tr><td>11–12</td><td>P1</td><td>0 ms</td></tr>
+</table>
+</div>
+<h3>Gantt Chart</h3>
+<pre>
++----+----+----+----+--+----+--+
+| P1 | P2 | P3 | P1 |P2| P3 |P1|
++----+----+----+----+--+----+--+
+0    2    4    6    8  9   11 12
+    </pre>
+<h3>Completion Times</h3>
+<p>P1 = 12 ms</p>
+<p>P2 = 9 ms</p>
+<p>P3 = 11 ms</p>
+<h3>Waiting Times</h3>
+<p>P1 = 12 − 5 = 7 ms</p>
+<p>P2 = 9 − 3 = 6 ms</p>
+<p>P3 = 11 − 4 = 7 ms</p>
+<div class="note">
+<strong>Average Waiting Time:</strong>
+        (7 + 6 + 7) / 3 = 6.67 ms
+    </div>
+</section>
+<section class="chapter" id="section-11-7">
+<span class="chapter-number">SECTION 11.7</span>
+<h2>Multilevel Queue Scheduling</h2>
+<p>
+        Multilevel Queue Scheduling divides
+        the ready queue into several separate
+        queues based on process categories.
+    </p>
+<p>
+        Each queue may have its own scheduling
+        algorithm and priority level.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Uses multiple ready queues.</li>
+<li>Groups processes by characteristics.</li>
+<li>Each queue may use a different scheduling algorithm.</li>
+<li>Queues may have different priorities.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Organizes different process categories.</li>
+<li>Allows different scheduling policies.</li>
+<li>Helps manage tasks according to requirements.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Processes may be restricted to one queue.</li>
+<li>Lower-priority queues may experience starvation.</li>
+<li>Managing multiple queues can be complex.</li>
+</ul>
+<h3>Example</h3>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Queue</th>
+<th>Process Type</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>Queue 1</td>
+<td>System Processes</td>
+<td>System services</td>
+</tr>
+<tr>
+<td>Queue 2</td>
+<td>Interactive Processes</td>
+<td>Text editor</td>
+</tr>
+<tr>
+<td>Queue 3</td>
+<td>Background Processes</td>
+<td>File backup</td>
+</tr>
+</table>
+</div>
+</section>
+<section class="chapter" id="section-11-8">
+<span class="chapter-number">SECTION 11.8</span>
+<h2>Comparison of CPU Scheduling Algorithms</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Main Rule</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCFS</td>
+<td>First process to arrive executes first</td>
+<td>Non-preemptive</td>
+</tr>
+<tr>
+<td>SJF</td>
+<td>Shortest available CPU burst first</td>
+<td>Non-preemptive form</td>
+</tr>
+<tr>
+<td>SRTF</td>
+<td>Shortest remaining execution time first</td>
+<td>Preemptive</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td>Highest-priority process first</td>
+<td>Both</td>
+</tr>
+<tr>
+<td>Round Robin</td>
+<td>Each process receives a time quantum</td>
+<td>Preemptive</td>
+</tr>
+<tr>
+<td>Multilevel Queue</td>
+<td>Processes are separated into queues</td>
+<td>Depends on policy</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- ========================================
+     CHAPTER 12
+======================================== -->
+<section class="chapter" id="chapter-12">
+<span class="chapter-number">CHAPTER 12</span>
+<h2>Important Scheduling Terms and Performance Measures</h2>
+<p>
+        Scheduling performance is evaluated using
+        measurements such as waiting time,
+        turnaround time, response time,
+        CPU utilization, and throughput.
+    </p>
+</section>
+<section class="chapter" id="section-12-1">
+<span class="chapter-number">SECTION 12.1</span>
+<h2>Arrival Time</h2>
+<p>
+        Arrival time is the time when a process
+        enters the ready queue and becomes
+        available for CPU scheduling.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        If P1 enters the ready queue at 0 ms,
+        its arrival time is 0 ms.
+    </div>
+</section>
+<section class="chapter" id="section-12-2">
+<span class="chapter-number">SECTION 12.2</span>
+<h2>Burst Time</h2>
+<p>
+        Burst time is the amount of CPU time
+        required by a process to complete
+        a particular CPU burst.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        If a process needs 5 ms of CPU time,
+        its burst time is 5 ms.
+    </div>
+</section>
+<section class="chapter" id="section-12-3">
+<span class="chapter-number">SECTION 12.3</span>
+<h2>Completion Time</h2>
+<p>
+        Completion time is the time when
+        a process finishes execution.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A process finishes at 5 ms.
+        Its completion time is 5 ms.
+    </div>
+</section>
+<section class="chapter" id="section-12-4">
+<span class="chapter-number">SECTION 12.4</span>
+<h2>Turnaround Time</h2>
+<p>
+        Turnaround time is the total time
+        between a process's arrival
+        and its completion.
+    </p>
+<h3>Formula</h3>
+<pre>
+Turnaround Time = Completion Time - Arrival Time
+
+TAT = CT - AT
+    </pre>
+<h3>Example</h3>
+<p>Arrival Time = 2 ms</p>
+<p>Completion Time = 10 ms</p>
+<pre>
+TAT = 10 - 2
+TAT = 8 ms
+    </pre>
+<div class="note">
+        The turnaround time is <strong>8 ms</strong>.
+    </div>
+</section>
+<section class="chapter" id="section-12-5">
+<span class="chapter-number">SECTION 12.5</span>
+<h2>Waiting Time</h2>
+<p>
+        Waiting time is the total amount
+        of time a process spends waiting
+        in the ready queue for CPU execution.
+    </p>
+<h3>Formula</h3>
+<pre>
+Waiting Time = Turnaround Time - Burst Time
+
+WT = TAT - BT
+    </pre>
+<h3>Example</h3>
+<p>Turnaround Time = 10 ms</p>
+<p>Burst Time = 4 ms</p>
+<pre>
+WT = 10 - 4
+WT = 6 ms
+    </pre>
+<div class="note">
+        The waiting time is <strong>6 ms</strong>.
+    </div>
+<p>
+        This formula assumes the burst time
+        represents the process's total CPU
+        execution time without additional
+        I/O waiting periods.
+    </p>
+</section>
+<section class="chapter" id="section-12-6">
+<span class="chapter-number">SECTION 12.6</span>
+<h2>Response Time</h2>
+<p>
+        Response time is the time between
+        a process's arrival and the first
+        time it receives CPU execution.
+    </p>
+<h3>Formula</h3>
+<pre>
+Response Time = First CPU Start - Arrival Time
+
+RT = First Start - AT
+    </pre>
+<h3>Example</h3>
+<p>Arrival Time = 0 ms</p>
+<p>First CPU Start = 3 ms</p>
+<pre>
+RT = 3 - 0
+RT = 3 ms
+    </pre>
+<div class="note">
+        The response time is <strong>3 ms</strong>.
+    </div>
+</section>
+<section class="chapter" id="section-12-7">
+<span class="chapter-number">SECTION 12.7</span>
+<h2>CPU Utilization</h2>
+<p>
+        CPU utilization measures the percentage
+        of time the CPU is busy executing tasks.
+    </p>
+<h3>Formula</h3>
+<pre>
+CPU Utilization = (Busy Time / Total Time) × 100
+    </pre>
+<h3>Example</h3>
+<p>Busy Time = 80 seconds</p>
+<p>Total Time = 100 seconds</p>
+<pre>
+CPU Utilization = (80 / 100) × 100
+CPU Utilization = 80%
+    </pre>
+<div class="note">
+        The CPU utilization is <strong>80%</strong>.
+    </div>
+</section>
+<section class="chapter" id="section-12-8">
+<span class="chapter-number">SECTION 12.8</span>
+<h2>Throughput</h2>
+<p>
+        Throughput measures the number of
+        processes completed within a
+        specific period.
+    </p>
+<h3>Formula</h3>
+<pre>
+Throughput = Completed Processes / Total Time
+    </pre>
+<h3>Example</h3>
+<p>Completed Processes = 10</p>
+<p>Total Time = 5 seconds</p>
+<pre>
+Throughput = 10 / 5
+Throughput = 2 processes per second
+    </pre>
+</section>
+<section class="chapter" id="section-12-9">
+<span class="chapter-number">SECTION 12.9</span>
+<h2>Average Waiting Time</h2>
+<p>
+        Average waiting time is the average
+        amount of time all processes spend
+        waiting in the ready queue.
+    </p>
+<h3>Formula</h3>
+<pre>
+Average Waiting Time = Sum of Waiting Times
+                       --------------------
+                       Number of Processes
+    </pre>
+<h3>Example</h3>
+<p>
+        Three processes have waiting times
+        of 2 ms, 4 ms, and 6 ms.
+    </p>
+<pre>
+AWT = (2 + 4 + 6) / 3
+AWT = 12 / 3
+AWT = 4 ms
+    </pre>
+<div class="note">
+        The average waiting time is <strong>4 ms</strong>.
+    </div>
+</section>
+<section class="chapter" id="section-12-10">
+<span class="chapter-number">SECTION 12.10</span>
+<h2>Why Performance Measures Matter</h2>
+<p>
+        Performance measures help developers
+        and system designers evaluate
+        scheduling algorithms.
+    </p>
+<ul>
+<li>Measure how efficiently CPU time is used.</li>
+<li>Evaluate process waiting times.</li>
+<li>Determine application responsiveness.</li>
+<li>Measure completed work over time.</li>
+<li>Compare scheduling algorithms.</li>
+</ul>
+</section>
+<!-- ========================================
+     CHAPTER 13
+======================================== -->
+<codeblock editable="" language="html">
+<!-- ========================================
+     CHAPTER 13
+======================================== -->
+<section class="chapter" id="chapter-13">
+<span class="chapter-number">CHAPTER 13</span>
+<h2>Importance and Real-World Applications</h2>
+<p>
+        Processes, threads, and scheduling
+        are essential to modern computing
+        environments, from personal computers
+        to smartphones and servers.
+    </p>
+</section>
+<section class="chapter" id="section-13-1">
+<span class="chapter-number">SECTION 13.1</span>
+<h2>Processes in Everyday Computer Use</h2>
+<p>
+        Processes are involved whenever
+        a computer runs applications
+        or performs system activities.
+    </p>
+<h3>Examples</h3>
+<ul>
+<li>Opening a web browser</li>
+<li>Playing music or videos</li>
+<li>Editing documents</li>
+<li>Downloading files</li>
+<li>Running antivirus software</li>
+<li>Installing applications</li>
+<li>Performing system updates</li>
+</ul>
+</section>
+<section class="chapter" id="section-13-2">
+<span class="chapter-number">SECTION 13.2</span>
+<h2>Threads in Modern Applications</h2>
+<h3>Web Browsers</h3>
+<p>
+        Threads may handle user input,
+        background work, and browser activities.
+    </p>
+<h3>Games</h3>
+<p>
+        Threads may handle sound,
+        input, and background calculations.
+    </p>
+<h3>Video Editing Software</h3>
+<p>
+        Threads can assist with video processing,
+        rendering, and interface operations.
+    </p>
+<h3>Communication Applications</h3>
+<p>
+        Threads may handle messages,
+        notifications, and background tasks.
+    </p>
+</section>
+<section class="chapter" id="section-13-3">
+<span class="chapter-number">SECTION 13.3</span>
+<h2>Process Scheduling in Multitasking</h2>
+<p>
+        Imagine a student performing
+        the following activities:
+    </p>
+<ul>
+<li>Listening to music</li>
+<li>Browsing the internet</li>
+<li>Typing a school assignment</li>
+<li>Downloading a document</li>
+</ul>
+<p>
+        The operating system manages
+        the processes associated with
+        these activities and distributes
+        CPU time among runnable tasks.
+    </p>
+<p>
+        This allows applications to make
+        progress while background
+        activities continue.
+    </p>
+</section>
+<section class="chapter" id="section-13-4">
+<span class="chapter-number">SECTION 13.4</span>
+<h2>Processes and Threads in Mobile Devices</h2>
+<p>
+        Mobile operating systems manage
+        applications using processes and threads.
+    </p>
+<h3>Examples</h3>
+<ul>
+<li>A messaging application receives notifications.</li>
+<li>A music application plays audio.</li>
+<li>A browser loads a website.</li>
+<li>A camera application processes an image.</li>
+</ul>
+<p>
+        The operating system coordinates
+        CPU time, memory, and battery usage.
+    </p>
+</section>
+<section class="chapter" id="section-13-5">
+<span class="chapter-number">SECTION 13.5</span>
+<h2>Processes and Threads in Servers</h2>
+<p>
+        Servers use processes and threads
+        to handle requests from multiple users.
+    </p>
+<p>
+        For example, a web server may
+        process incoming requests,
+        communicate with databases,
+        and deliver responses to users.
+    </p>
+<p>
+        Concurrent execution helps online
+        services handle many requests.
+    </p>
+</section>
+<section class="chapter" id="section-13-6">
+<span class="chapter-number">SECTION 13.6</span>
+<h2>Processes and Threads in Operating System Security</h2>
+<p>
+        Process isolation helps protect
+        applications from directly accessing
+        another process's memory without permission.
+    </p>
+<p>
+        Operating systems use memory protection
+        and access controls to separate processes.
+    </p>
+<p>
+        Threads within the same process
+        share memory, making synchronization
+        and access management important.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 14
+======================================== -->
+<section class="chapter" id="chapter-14">
+<span class="chapter-number">CHAPTER 14</span>
+<h2>Common Problems in Process and Thread Management</h2>
+<p>
+        Process and thread management can
+        encounter problems involving scheduling,
+        synchronization, and resource sharing.
+    </p>
+</section>
+<section class="chapter" id="section-14-1">
+<span class="chapter-number">SECTION 14.1</span>
+<h2>Starvation</h2>
+<p>
+        Starvation occurs when a process
+        waits for a very long time because
+        other processes continually receive priority.
+    </p>
+<h3>Example</h3>
+<p>
+        A low-priority background process
+        remains in the ready queue because
+        higher-priority processes repeatedly
+        receive CPU time.
+    </p>
+<h3>Possible Solution: Aging</h3>
+<p>
+        Aging gradually increases the priority
+        of a waiting process so it eventually
+        receives CPU time.
+    </p>
+</section>
+<section class="chapter" id="section-14-2">
+<span class="chapter-number">SECTION 14.2</span>
+<h2>Deadlock</h2>
+<p>
+        Deadlock occurs when two or more
+        processes or threads become blocked
+        because each is waiting for a
+        resource held by another.
+    </p>
+<h3>Example</h3>
+<pre>
+Process A holds Resource 1
+Process A waits for Resource 2
+
+Process B holds Resource 2
+Process B waits for Resource 1
+    </pre>
+<p>
+        Neither process can continue
+        because each is waiting
+        for the other.
+    </p>
+</section>
+<section class="chapter" id="section-14-3">
+<span class="chapter-number">SECTION 14.3</span>
+<h2>Race Conditions</h2>
+<p>
+        A race condition occurs when
+        multiple threads access shared
+        information and the result depends
+        on the timing of their operations.
+    </p>
+<h3>Example</h3>
+<p>
+        Two threads attempt to update
+        the same shared counter.
+    </p>
+<p>
+        Without proper synchronization,
+        one update may be lost.
+    </p>
+<h3>Possible Solutions</h3>
+<ul>
+<li>Mutex locks</li>
+<li>Semaphores</li>
+<li>Atomic operations</li>
+<li>Proper synchronization</li>
+</ul>
+</section>
+<section class="chapter" id="section-14-4">
+<span class="chapter-number">SECTION 14.4</span>
+<h2>Excessive Context Switching</h2>
+<p>
+        Context switching is necessary
+        for multitasking, but excessive
+        switching can reduce performance.
+    </p>
+<h3>Example</h3>
+<p>
+        A Round Robin scheduler uses
+        an extremely small time quantum.
+        As a result, the CPU spends
+        considerable time switching tasks.
+    </p>
+<h3>Possible Solution</h3>
+<p>
+        Select an appropriate time quantum
+        and reduce unnecessary scheduling overhead.
+    </p>
+</section>
+<section class="chapter" id="section-14-5">
+<span class="chapter-number">SECTION 14.5</span>
+<h2>Resource Contention</h2>
+<p>
+        Resource contention occurs when
+        multiple processes or threads compete
+        for limited system resources.
+    </p>
+<h3>Examples of Shared Resources</h3>
+<ul>
+<li>CPU time</li>
+<li>Memory</li>
+<li>Storage</li>
+<li>Input/output devices</li>
+<li>Network connections</li>
+</ul>
+<p>
+        The operating system must coordinate
+        resource access to maintain performance
+        and stability.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 15
+======================================== -->
+<section class="chapter" id="chapter-15">
+<span class="chapter-number">CHAPTER 15</span>
+<h2>Practical Applications and Scenarios</h2>
+<p>
+        The following scenarios demonstrate
+        how processes, threads, and scheduling
+        work together in everyday computing.
+    </p>
+</section>
+<section class="chapter" id="section-15-1">
+<span class="chapter-number">SECTION 15.1</span>
+<h2>Scenario: Using Multiple Applications</h2>
+<p>
+        Imagine a student using a computer
+        to complete a school project.
+    </p>
+<p>
+        The student opens a web browser
+        to research information, a word
+        processor to write the project,
+        and a music player.
+    </p>
+<h3>What Happens?</h3>
+<ol>
+<li>The operating system creates processes when applications open.</li>
+<li>Each process receives memory and other resources.</li>
+<li>Applications may use multiple threads.</li>
+<li>The CPU scheduler selects runnable tasks.</li>
+<li>The operating system manages execution and task switching.</li>
+</ol>
+<div class="note">
+        This scenario demonstrates how
+        processes, threads, and scheduling
+        support multitasking.
+    </div>
+</section>
+<section class="chapter" id="section-15-2">
+<span class="chapter-number">SECTION 15.2</span>
+<h2>Scenario: Downloading While Watching a Video</h2>
+<p>
+        A user downloads a large file
+        while watching an online video.
+    </p>
+<p>
+        The browser handles video playback,
+        manages the download, and responds
+        to user interactions.
+    </p>
+<h3>Importance</h3>
+<ul>
+<li>Allows different activities to make progress.</li>
+<li>Maintains application responsiveness.</li>
+<li>Manages CPU and memory resources.</li>
+<li>Supports background operations.</li>
+</ul>
+</section>
+<section class="chapter" id="section-15-3">
+<span class="chapter-number">SECTION 15.3</span>
+<h2>Scenario: Online Gaming</h2>
+<p>
+        Online games perform many activities
+        during execution.
+    </p>
+<ul>
+<li>Receiving player input</li>
+<li>Processing game information</li>
+<li>Updating graphics</li>
+<li>Handling sound</li>
+<li>Communicating with game servers</li>
+</ul>
+<p>
+        Threads can organize these activities
+        while the operating system schedules
+        the application's execution alongside
+        other system tasks.
+    </p>
+</section>
+<section class="chapter" id="section-15-4">
+<span class="chapter-number">SECTION 15.4</span>
+<h2>Scenario: School Computer Laboratory</h2>
+<p>
+        In a computer laboratory, students
+        may use programming software,
+        browsers, and document editors.
+    </p>
+<p>
+        Each computer uses process management
+        to organize running programs and
+        scheduling to distribute CPU time.
+    </p>
+<p>
+        The operating system coordinates
+        the applications so students can
+        work efficiently.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 16
+======================================== -->
+<section class="chapter" id="chapter-16">
+<span class="chapter-number">CHAPTER 16</span>
+<h2>How Processes, Threads, and Scheduling Work Together</h2>
+<p>
+        Processes, threads, and process scheduling
+        are connected concepts that allow modern
+        operating systems to manage applications
+        and computer resources efficiently.
+    </p>
+</section>
+<section class="chapter" id="section-16-1">
+<span class="chapter-number">SECTION 16.1</span>
+<h2>Understanding Their Relationship</h2>
+<p>
+        A process provides the execution environment
+        for a running program.
+    </p>
+<p>
+        Threads perform individual tasks within
+        the process.
+    </p>
+<p>
+        Process scheduling determines which eligible
+        process or thread receives CPU time.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        Processes organize application execution,
+        threads perform tasks, and scheduling
+        coordinates CPU access.
+    </div>
+<h3>Relationship Diagram</h3>
+<pre>
+        OPERATING SYSTEM
+               |
+               v
+        PROCESS CREATION
+               |
+               v
+          +---------+
+          | PROCESS |
+          +---------+
+               |
+       +-------+-------+
+       |       |       |
+       v       v       v
+    Thread 1 Thread 2 Thread 3
+       |       |       |
+       +-------+-------+
+               |
+               v
+         CPU SCHEDULER
+               |
+               v
+              CPU
+    </pre>
+</section>
+<section class="chapter" id="section-16-2">
+<span class="chapter-number">SECTION 16.2</span>
+<h2>Step-by-Step Explanation</h2>
+<p>
+        Consider a user opening a web browser
+        and playing a video.
+    </p>
+<h3>Step 1: Process Creation</h3>
+<p>
+        The user opens the browser.
+        The operating system creates
+        a process to execute the application.
+    </p>
+<h3>Step 2: Resource Allocation</h3>
+<p>
+        The operating system provides
+        the process with memory and
+        other required resources.
+    </p>
+<h3>Step 3: Thread Creation</h3>
+<p>
+        The browser uses threads to
+        perform different activities,
+        such as loading content,
+        responding to user input,
+        and processing background tasks.
+    </p>
+<h3>Step 4: Process and Thread Scheduling</h3>
+<p>
+        The operating system scheduler
+        determines which eligible process
+        or thread should receive CPU time.
+    </p>
+<h3>Step 5: Context Switching</h3>
+<p>
+        The CPU may switch between
+        processes or threads so that
+        multiple activities can make progress.
+    </p>
+<h3>Step 6: Task Completion</h3>
+<p>
+        When an activity finishes,
+        its thread may terminate.
+        When the user closes the browser
+        and its remaining activities end,
+        the associated processes can terminate.
+    </p>
+</section>
+<section class="chapter" id="section-16-3">
+<span class="chapter-number">SECTION 16.3</span>
+<h2>Summary of Their Responsibilities</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Main Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Process</td>
+<td>Provides an environment for program execution.</td>
+</tr>
+<tr>
+<td>Thread</td>
+<td>Performs an individual task within a process.</td>
+</tr>
+<tr>
+<td>Process Scheduling</td>
+<td>Determines which process or thread receives CPU time.</td>
+</tr>
+<tr>
+<td>PCB</td>
+<td>Stores important information about a process.</td>
+</tr>
+<tr>
+<td>Context Switching</td>
+<td>Saves and restores execution information.</td>
+</tr>
+<tr>
+<td>CPU Scheduler</td>
+<td>Selects the next eligible process or thread.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="chapter" id="section-16-4">
+<span class="chapter-number">SECTION 16.4</span>
+<h2>Why They Must Work Together</h2>
+<p>
+        Computers need processes to execute
+        applications, threads to organize
+        application activities, and scheduling
+        to manage CPU access.
+    </p>
+<p>
+        These components help the operating
+        system manage multiple activities
+        while maintaining performance
+        and responsiveness.
+    </p>
+<p>
+        They are especially important because
+        users expect applications to run smoothly
+        even when several tasks are happening
+        at the same time.
+    </p>
+</section>
+<!-- ========================================
+     CHAPTER 17
+======================================== -->
+<section class="chapter" id="chapter-17">
+<span class="chapter-number">CHAPTER 17</span>
+<h2>Summary and Key Learnings</h2>
+<p>
+        Processes, threads, and process scheduling
+        are important concepts in operating systems.
+        They explain how computers execute
+        applications, manage tasks, and
+        distribute CPU resources.
+    </p>
+<h3>Processes</h3>
+<p>
+        A process is a program in execution
+        that requires memory, CPU time,
+        and other resources.
+    </p>
+<p>
+        It has its own address space
+        and is managed by the operating
+        system through information stored
+        in its Process Control Block.
+    </p>
+<h3>Threads</h3>
+<p>
+        A thread is a smaller unit of execution
+        within a process.
+    </p>
+<p>
+        Threads share resources within their
+        process but have their own stacks,
+        registers, and program counters.
+    </p>
+<h3>Multithreading</h3>
+<p>
+        Multithreading allows applications
+        to perform several activities
+        concurrently or in parallel.
+    </p>
+<p>
+        It improves responsiveness and
+        can help applications use multiple
+        CPU cores effectively.
+    </p>
+<h3>Process Scheduling</h3>
+<p>
+        Process scheduling determines which
+        process or thread receives CPU time.
+    </p>
+<p>
+        Scheduling algorithms such as FCFS,
+        SJF, Priority Scheduling, and
+        Round Robin use different rules
+        to organize execution.
+    </p>
+<h3>Key Learnings</h3>
+<ul>
+<li>A process is a program in execution.</li>
+<li>A thread is a unit of execution within a process.</li>
+<li>Threads within one process share resources.</li>
+<li>Multithreading supports concurrent activities.</li>
+<li>The PCB stores important process information.</li>
+<li>Context switching supports multitasking.</li>
+<li>The CPU scheduler selects eligible tasks.</li>
+<li>Scheduling algorithms use different selection rules.</li>
+<li>Performance measures help evaluate scheduling.</li>
+<li>Proper process management improves system responsiveness.</li>
+</ul>
+</section>
+<!-- ========================================
+     CHAPTER 18
+======================================== -->
+<section class="chapter" id="chapter-18">
+<span class="chapter-number">CHAPTER 18</span>
+<h2>Key Terms and Definitions</h2>
+<p>
+        The following terms summarize important
+        concepts discussed throughout this e-book.
+    </p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Process</td>
+<td>A program that is currently executing.</td>
+</tr>
+<tr>
+<td>Thread</td>
+<td>The smallest unit of execution within a process.</td>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>Software that manages computer hardware and software resources.</td>
+</tr>
+<tr>
+<td>Process ID</td>
+<td>A unique number assigned to a process.</td>
+</tr>
+<tr>
+<td>PCB</td>
+<td>A data structure containing information about a process.</td>
+</tr>
+<tr>
+<td>Process State</td>
+<td>The current condition of a process.</td>
+</tr>
+<tr>
+<td>Ready Queue</td>
+<td>A collection of processes waiting for CPU execution.</td>
+</tr>
+<tr>
+<td>CPU Scheduler</td>
+<td>A component that selects the next process or thread for execution.</td>
+</tr>
+<tr>
+<td>Context Switching</td>
+<td>Saving one execution state and restoring another.</td>
+</tr>
+<tr>
+<td>Multithreading</td>
+<td>Performing multiple tasks using multiple threads.</td>
+</tr>
+<tr>
+<td>CPU Burst Time</td>
+<td>The CPU execution time needed for a particular burst.</td>
+</tr>
+<tr>
+<td>Arrival Time</td>
+<td>The time a process enters the ready queue.</td>
+</tr>
+<tr>
+<td>Completion Time</td>
+<td>The time a process finishes execution.</td>
+</tr>
+<tr>
+<td>Waiting Time</td>
+<td>The time a process spends waiting for CPU execution.</td>
+</tr>
+<tr>
+<td>Turnaround Time</td>
+<td>The total time from process arrival to completion.</td>
+</tr>
+<tr>
+<td>Response Time</td>
+<td>The time from process arrival until its first CPU execution.</td>
+</tr>
+<tr>
+<td>CPU Utilization</td>
+<td>The percentage of time the CPU is busy.</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>The number of completed processes per unit of time.</td>
+</tr>
+<tr>
+<td>Starvation</td>
+<td>A situation where a process waits excessively for resources or CPU time.</td>
+</tr>
+<tr>
+<td>Deadlock</td>
+<td>A situation where processes wait indefinitely for resources held by one another.</td>
+</tr>
+<tr>
+<td>Race Condition</td>
+<td>A problem where results depend on the timing of concurrent operations.</td>
+</tr>
+<tr>
+<td>Time Quantum</td>
+<td>The fixed CPU time allocated in Round Robin scheduling.</td>
+</tr>
+<tr>
+<td>Preemptive Scheduling</td>
+<td>Scheduling that allows a running process to be interrupted.</td>
+</tr>
+<tr>
+<td>Non-Preemptive Scheduling</td>
+<td>Scheduling in which a process normally continues until its CPU burst ends or it waits.</td>
+</tr>
+<tr>
+<td>Aging</td>
+<td>A method of gradually increasing the priority of waiting processes.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- ========================================
+     CHAPTER 19
+======================================== -->
+<section class="chapter" id="chapter-19">
+<span class="chapter-number">CHAPTER 19</span>
+<h2>Final Conclusion</h2>
+<p>
+        Processes, threads, and process scheduling
+        play an important role in modern
+        computer systems.
+    </p>
+<p>
+        They allow computers to execute applications,
+        manage different activities, and distribute
+        resources efficiently.
+    </p>
+<p>
+        Processes provide the environment needed
+        for programs to run, while threads help
+        applications perform multiple tasks
+        within a single process.
+    </p>
+<p>
+        Process scheduling controls how CPU time
+        is distributed among processes and threads.
+    </p>
+<p>
+        Understanding these concepts explains
+        why computers can run multiple applications,
+        respond to user commands, and perform
+        background activities simultaneously.
+    </p>
+<p>
+        These concepts are also important for
+        Information Technology students because
+        they provide foundational knowledge
+        about operating systems, computer
+        performance, multitasking, and
+        application development.
+    </p>
+</section>
+<!-- ========================================
+     INTERACTIVE QUIZ
+======================================== -->
+<script>
+/* ==========================================
+   QUIZ ELEMENTS
+========================================== */
+
+const quizForm = document.getElementById("quizForm");
+const quizContainer = document.getElementById("quizContainer");
+const quizResult = document.getElementById("quizResult");
+const quizProgress = document.getElementById("quizProgress");
+const progressFill = document.getElementById("progressFill");
+const submitQuiz = document.getElementById("submitQuiz");
+const retryQuiz = document.getElementById("retryQuiz");
+
+let quizSubmitted = false;
+
+/* ==========================================
+   RENDER QUIZ
+========================================== */
+
+function renderQuiz() {
+    quizContainer.innerHTML = "";
+    quizSubmitted = false;
+
+    quizQuestions.forEach(function (item, index) {
+        const questionBox = document.createElement("div");
+
+        questionBox.className = "quiz-question";
+        questionBox.id = "question-" + index;
+
+        const questionTitle = document.createElement("h3");
+
+        questionTitle.textContent =
+            (index + 1) + ". " + item.question;
+
+        questionBox.appendChild(questionTitle);
+
+        item.options.forEach(function (option, optionIndex) {
+            const label = document.createElement("label");
+            const radio = document.createElement("input");
+
+            radio.type = "radio";
+            radio.name = "question" + index;
+            radio.value = String(optionIndex);
+
+            radio.addEventListener("change", updateProgress);
+
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(option));
+
+            questionBox.appendChild(label);
+        });
+
+        quizContainer.appendChild(questionBox);
+    });
+
+    quizResult.style.display = "none";
+    quizResult.innerHTML = "";
+
+    submitQuiz.style.display = "inline-block";
+    retryQuiz.style.display = "none";
+
+    updateProgress();
+}
+
+/* ==========================================
+   UPDATE QUIZ PROGRESS
+========================================== */
+
+function updateProgress() {
+    let answered = 0;
+
+    quizQuestions.forEach(function (item, index) {
+        const selected = quizForm.querySelector(
+            'input[name="question' + index + '"]:checked'
+        );
+
+        if (selected) {
+            answered++;
+        }
+    });
+
+    quizProgress.textContent =
+        "Answered " + answered +
+        " of " + quizQuestions.length + " questions";
+
+    const percentage =
+        (answered / quizQuestions.length) * 100;
+
+    progressFill.style.width = percentage + "%";
+}
+
+/* ==========================================
+   SUBMIT QUIZ
+========================================== */
+
+quizForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (quizSubmitted) return;
+
+    let score = 0;
+    let answered = 0;
+    let firstUnanswered = null;
+
+    quizQuestions.forEach(function (item, index) {
+        const selected = quizForm.querySelector(
+            'input[name="question' + index + '"]:checked'
+        );
+
+        if (selected) {
+            answered++;
+        } else if (firstUnanswered === null) {
+            firstUnanswered = index;
+        }
+    });
+
+    if (answered !== quizQuestions.length) {
+        quizResult.style.display = "block";
+
+        quizResult.textContent =
+            "Please answer all questions before submitting. " +
+            "You have answered " + answered +
+            " out of " + quizQuestions.length + ".";
+
+        if (firstUnanswered !== null) {
+            document.getElementById(
+                "question-" + firstUnanswered
+            ).scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+        return;
+    }
+
+    quizSubmitted = true;
+
+    quizQuestions.forEach(function (item, index) {
+        const questionBox = document.getElementById(
+            "question-" + index
+        );
+
+        const selected = quizForm.querySelector(
+            'input[name="question' + index + '"]:checked'
+        );
+
+        const selectedAnswer = Number(selected.value);
+
+        questionBox.classList.remove(
+            "correct",
+            "incorrect"
+        );
+
+        if (selectedAnswer === item.answer) {
+            score++;
+            questionBox.classList.add("correct");
+        } else {
+            questionBox.classList.add("incorrect");
+        }
+
+        const correctAnswer = document.createElement("p");
+
+        correctAnswer.style.fontWeight = "700";
+        correctAnswer.style.fontSize = "14px";
+
+        correctAnswer.textContent =
+            "Correct Answer: " +
+            item.options[item.answer];
+
+        questionBox.appendChild(correctAnswer);
+
+        questionBox.querySelectorAll(
+            'input[type="radio"]'
+        ).forEach(function (radio) {
+            radio.disabled = true;
+        });
+    });
+
+    const percentage = Math.round(
+        (score / quizQuestions.length) * 100
+    );
+
+    const passed = percentage >= 75;
+
+    quizResult.style.display = "block";
+    quizResult.innerHTML = "";
+
+    const heading = document.createElement("h3");
+    heading.textContent = passed
+        ? "Congratulations! You Passed!"
+        : "Keep Learning!";
+
+    const scoreText = document.createElement("p");
+    scoreText.textContent =
+        "Your Score: " + score +
+        " / " + quizQuestions.length;
+
+    const percentageText = document.createElement("p");
+    percentageText.textContent =
+        "Percentage: " + percentage + "%";
+
+    const statusText = document.createElement("p");
+    statusText.textContent =
+        "Result: " + (passed ? "PASSED" : "FAILED");
+
+    statusText.style.fontWeight = "800";
+    statusText.style.color = passed
+        ? "#26a269"
+        : "#d35b5b";
+
+    quizResult.appendChild(heading);
+    quizResult.appendChild(scoreText);
+    quizResult.appendChild(percentageText);
+    quizResult.appendChild(statusText);
+
+    submitQuiz.style.display = "none";
+    retryQuiz.style.display = "inline-block";
+
+    quizResult.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+
+/* ==========================================
+   RETRY QUIZ
+========================================== */
+
+retryQuiz.addEventListener("click", function () {
+    renderQuiz();
+
+    document.getElementById("quiz").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+});
+
+/* ==========================================
+   INITIALIZE QUIZ
+========================================== */
+
+renderQuiz();
+
+</script>
+</codeblock></main></div>    <script src="/js/navbar-loader.js" defer></script>
+</body>
+</html>

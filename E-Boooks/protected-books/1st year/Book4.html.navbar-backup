@@ -1,0 +1,1118 @@
+
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The IPOS Cycle | CodeVerse Book 14</title><link rel="icon" type="image/png" href="/images/CodeVerseLogo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+:root{--bg:#f3f6fc;--surface:#fff;--surface2:#edf3ff;--ink:#182b4a;--muted:#61718a;--primary:#3157a4;--line:#dce5f2;--shadow:0 12px 34px rgba(24,49,99,.08);--reader-size:16px;--reader-family:'DM Sans',Arial,sans-serif;color-scheme:light}
+body.dark-mode{--bg:#0e1728;--surface:#17243a;--surface2:#1e3150;--ink:#eaf0fb;--muted:#a9b9d1;--primary:#8eb3ff;--line:#324763;--shadow:0 12px 34px rgba(0,0,0,.18);color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:115px}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',Arial,sans-serif;line-height:1.7;transition:background .2s,color .2s}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #6b9dff;outline-offset:3px}
+.navbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:24px;justify-content:space-between;padding:13px clamp(16px,4vw,54px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 3px 15px rgba(0,0,0,.04)}.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:22px;text-decoration:none;color:var(--ink);white-space:nowrap}.logo img{height:37px;width:37px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:20px}.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:700}.nav-links a:hover{color:var(--primary)}.nav-actions,#accountActions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.nav-actions{margin-left:auto}.login-btn,.signup-btn,.logout-btn{display:inline-block;border-radius:9px;padding:8px 14px;font-size:13px;font-weight:700;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink)}.signup-btn,.logout-btn{background:#3157a4;color:#fff;border-color:#3157a4}.account-username{font-weight:700;font-size:13px;overflow-wrap:anywhere}.icon-btn,.menu-toggle{border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:9px;min-width:39px;height:39px}.menu-toggle{display:none}
+.topbar{max-width:1400px;margin:auto;padding:20px 24px 0}.back-link{font-size:14px;font-weight:700;text-decoration:none}.reading-controls{display:flex;flex-wrap:wrap;align-items:center;gap:18px;max-width:1400px;margin:16px auto 0;padding:13px 20px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-size:13px;font-weight:700;color:var(--muted)}.control-group select{max-width:210px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}
+.layout{display:grid;grid-template-columns:minmax(220px,270px) minmax(0,1fr);gap:26px;max-width:1400px;margin:24px auto;padding:0 20px 45px;align-items:start}.toc{position:sticky;top:87px;max-height:calc(100vh - 108px);overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;scrollbar-width:thin}.toc h2{font-size:16px;margin:0 0 12px}.toc a{display:block;text-decoration:none;color:var(--muted);font-size:13px;padding:8px 10px;border-radius:8px;line-height:1.45}.toc a:hover,.toc a.active{background:var(--surface2);color:var(--primary)}.toc h3{font-size:13px;margin:20px 0 4px;color:var(--primary)}.reader{min-width:0}.book-header{background:linear-gradient(125deg,#24447f,#315db2);color:#fff;padding:clamp(25px,5vw,54px);border-radius:18px;margin-bottom:24px}.eyebrow{display:inline-block;font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:#cfe1ff}.book-header h1{font-size:clamp(27px,3.5vw,43px);line-height:1.18;margin:12px 0}.book-header p{max-width:750px;color:#e3edff;margin:0;font-size:16px}.book-content{font-family:var(--reader-family);font-size:var(--reader-size)}.chapter{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,38px);margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:110px}.chapter h1,.chapter h2{color:var(--ink);line-height:1.3;margin:0 0 18px;font-size:1.55em}.chapter h3{font-size:1.12em;color:var(--primary);margin:24px 0 9px}.chapter p,.chapter li{color:var(--ink);line-height:1.85}.chapter p{margin:0 0 14px}.chapter ul,.chapter ol{padding-left:24px}.chapter li{margin:7px 0}.code-example{overflow-x:auto;background:var(--surface2);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:12px;padding:18px;margin:18px 0}.code-example pre{margin:0;overflow-x:auto;font-size:.85em;line-height:1.6}.code-example code{font-family:Consolas,'Courier New',monospace;color:var(--ink)}.lesson-table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:18px 0;font-size:.92em}.lesson-table th,.lesson-table td{padding:12px 14px;border:1px solid var(--line);text-align:left;min-width:115px;vertical-align:top}.lesson-table th{background:var(--surface2);color:var(--primary);font-weight:800}.lesson-table td{background:var(--surface)}
+#quizProgress{background:var(--surface2);padding:10px 15px;border-radius:9px;color:var(--primary);font-weight:700;margin:18px 0}.quiz-question{border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0;background:var(--surface)}.quiz-question h3{margin:0 0 13px;color:var(--ink);font-size:1em}.quiz-option{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border:1px solid var(--line);border-radius:9px;margin:8px 0;cursor:pointer}.quiz-option:hover{background:var(--surface2)}.quiz-option input{margin-top:5px;accent-color:#3157a4}.quiz-option.correct{background:#e1f6e9;border-color:#40a56b;color:#145c34}.quiz-option.incorrect{background:#ffe8e8;border-color:#dc6969;color:#8a2525}.quiz-option.correct span,.quiz-option.incorrect span{color:inherit}.quiz-feedback{font-weight:700;font-size:.9em}.quiz-actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.quiz-actions button{border:0;background:#3157a4;color:white;padding:12px 20px;border-radius:9px;font-weight:800}#retryQuiz{background:#62738f}#quizResult{padding:22px;background:var(--surface2);border-radius:12px;text-align:center}#quizResult h2{font-size:2em;margin:8px}.save-status{font-size:.9em;color:var(--muted)}[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:22px;font-size:13px}
+@media(max-width:1050px){.layout{grid-template-columns:220px minmax(0,1fr);gap:16px}.navbar{gap:12px}.nav-links{gap:10px}}
+@media(max-width:760px){.layout{display:block;padding:0 12px 30px}.toc{position:static;max-height:240px;margin-bottom:18px}.navbar{flex-wrap:wrap;padding:10px 14px}.menu-toggle{display:block}.nav-links{display:none;order:5;width:100%;padding:12px 0}.nav-links.open{display:flex;flex-direction:column;align-items:flex-start}.nav-actions{margin-left:auto}.reading-controls{margin:12px 12px 0}.topbar{padding:14px 14px 0}.chapter{padding:20px}.book-header{padding:25px}.logo{font-size:19px}.logo img{width:30px;height:30px}}
+@media(max-width:440px){.control-group{width:100%;justify-content:space-between}.control-group select{max-width:65%}.account-username{max-width:110px}.nav-actions{gap:5px}.login-btn,.signup-btn,.logout-btn{padding:6px 8px}}
+</style></head><body id="top"><header class="navbar"><a class="logo" href="/index.html"><img src="/images/CodeVerseLogo.png" alt="CodeVerse logo"><span>Code<span class="logo-highlight">Verse</span></span></a><nav class="nav-links" id="navLinks"><a href="/index.html">Home</a><a href="/library.html">Explore Books</a><a href="/index.html#about">About</a></nav><div class="nav-actions"><button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" type="button"><span id="themeIcon">☾</span></button><div id="accountActions"><a href="/LogIn.html" class="login-btn">Log In</a><a href="/register.html" class="signup-btn">Sign Up</a></div></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" type="button">☰</button></header><div class="topbar"><a class="back-link" href="/library.html">← Back to Books</a></div><div class="reading-controls"><div class="control-group"><label for="fontSize">Font Size</label><select id="fontSize"><option value="14px">Small</option><option value="16px" selected>Medium</option><option value="18px">Large</option><option value="20px">Extra Large</option><option value="22px">Largest</option></select></div><div class="control-group"><label for="fontFamily">Font Style</label><select id="fontFamily"><option value="'DM Sans',Arial,sans-serif">DM Sans</option><option value="Arial,sans-serif">Arial</option><option value="Georgia,serif">Georgia</option><option value="'Times New Roman',serif">Times New Roman</option><option value="Verdana,sans-serif">Verdana</option></select></div></div><div class="layout"><aside class="toc"><h2>Table of Contents</h2><nav><a href="#ipos-introduction">The IPOS Cycle: Input, Processing, Output, and Storage</a><a href="#ipos-foundations">1. Foundations of the IPOS Cycle</a><a href="#input-architecture">2. Input Subsystem Architecture</a><a href="#human-input">3. Direct Human Input Devices</a><a href="#environmental-sensors">4. Sensors and Environmental Input Hardware</a><a href="#biometric-input">5. Biometric and Specialized Input Systems</a><a href="#input-protocols">6. Input Interfacing Protocols and Controllers</a><a href="#processing-foundations">7. Processing Subsystem Foundations</a><a href="#instruction-cycle">8. The Instruction Execution Cycle</a><a href="#alu-mechanics">9. Arithmetic Logic Unit Mechanics</a><a href="#control-unit">10. Control Unit and Microprogramming</a><a href="#pipeline-hazards">11. Processor Pipelining and Hazard Management</a><a href="#coprocessing">12. Accelerated and Co-Processing Systems</a><a href="#output-architecture">13. Output Subsystem Architecture</a><a href="#visual-output">14. Visual Output and Display Technologies</a><a href="#audio-haptics">15. Audio and Tactile Output Systems</a><a href="#printing-output">16. Hardcopy Output and Printing Systems</a><a href="#industrial-output">17. Industrial Actuation and Control Output</a><a href="#output-protocols">18. Output Interfacing Protocols</a><a href="#storage-taxonomy">19. Storage Subsystem Taxonomy</a><a href="#ram-memory">20. Primary Memory: Random-Access Memory</a><a href="#cache-registers">21. Primary Memory: Cache Architecture and Registers</a><a href="#firmware-storage">22. Non-Volatile System Firmware Storage</a><a href="#magnetic-storage">23. Secondary Storage: Magnetic Media Systems</a><a href="#solid-state-storage">24. Secondary Storage: Solid-State Media</a><a href="#storage-controllers">25. Storage Interfacing Protocols and Controllers</a><a href="#archival-storage">26. Tertiary and Archival Storage Systems</a><a href="#system-buses">27. System Interconnects and Tri-Bus Topology</a><a href="#interrupts-dma">28. Interrupts and Direct Memory Access</a><a href="#ipos-diagnostics">29. Unified IPOS Performance Diagnostics</a><a href="#ipos-future">30. Future Frontiers in IPOS Architecture</a><h3>Assessment</h3><a href="#quiz">Knowledge Assessment Quiz</a></nav></aside><main class="reader"><header class="book-header"><span class="eyebrow">Digital Book · Introduction to Computing · Book 14</span><h1>The IPOS Cycle: Input, Processing, Output, and Storage</h1><p>Explore how computer systems receive data, execute instructions, present results, and store information.</p></header><div class="book-content"><section class="chapter" id="ipos-introduction">
+<h1>The IPOS Cycle: Input, Processing, Output, and Storage</h1>
+<p>
+        The IPOS Cycle describes the four fundamental operations
+        of a computer system: Input, Processing, Output, and Storage.
+        Computers receive data, process it using electronic circuits,
+        present results, and preserve information for later use.
+    </p>
+<div class="code-example">
+<pre><code>+-------------+     +----------------+     +-------------+
+|    INPUT    | --&gt; |   PROCESSING   | --&gt; |   OUTPUT    |
+| Keyboard    |     | CPU / ALU / GPU|     | Display     |
+| Mouse       |     | Control Unit   |     | Speaker     |
+| Sensors     |     | Registers      |     | Printer     |
++-------------+     +-------+--------+     +-------------+
+                            |
+                            v
+                    +---------------+
+                    |    STORAGE    |
+                    | RAM / Cache   |
+                    | SSD / HDD     |
+                    +---------------+</code></pre>
+</div>
+<p>
+        Storage also supplies instructions and data back to
+        processing, making the IPOS model an interconnected cycle.
+    </p>
+</section>
+<section class="chapter" id="ipos-foundations">
+<h2>1. Foundations of the IPOS Cycle</h2>
+<h3>1.1 System Data Flow Model</h3>
+<p>
+        Input devices capture physical, optical, electrical, or
+        numerical signals. Processing hardware transforms these
+        signals according to stored instructions. Output devices
+        render the results, while storage preserves data and
+        system states temporarily or permanently.
+    </p>
+<h3>1.2 Signal Transformation Pipeline</h3>
+<div class="code-example">
+<pre><code>Physical Phenomenon
+        ↓
+Electrical Signal
+        ↓
+Digital Data Conversion
+        ↓
+CPU Registers and ALU
+        ↓
+Output Signal Generation
+        ↓
+User Perception or System Action</code></pre>
+</div>
+</section>
+<section class="chapter" id="input-architecture">
+<h2>2. Input Subsystem Architecture</h2>
+<h3>2.1 Transduction and Signal Acquisition</h3>
+<p>
+        The input subsystem connects the physical environment
+        to the computer's digital processing system.
+        Transducers convert physical phenomena such as
+        sound, light, pressure, and temperature into
+        electrical signals.
+    </p>
+<h3>2.2 Analog-to-Digital Conversion (ADC)</h3>
+<p>
+        Analog-to-Digital Converters transform continuous
+        electrical signals into digital values.
+    </p>
+<ul>
+<li><strong>Sampling:</strong> Measuring a signal at regular intervals.</li>
+<li><strong>Quantization:</strong> Mapping measured values to discrete digital levels.</li>
+<li><strong>Bit Resolution:</strong> Determines how many digital levels can represent the signal.</li>
+</ul>
+<p>
+        A 12-bit ADC can represent 4,096 different digital levels.
+    </p>
+</section>
+<section class="chapter" id="human-input">
+<h2>3. Direct Human Input Devices</h2>
+<h3>3.1 Keyboards and Switch Matrices</h3>
+<p>
+        Keyboards detect keypresses through an electrical matrix
+        of rows and columns. A keyboard controller scans the
+        matrix, detects pressed keys, and sends scan codes
+        to the computer.
+    </p>
+<p>
+        Debouncing prevents accidental repeated signals caused
+        by mechanical contact vibration. Key rollover describes
+        the keyboard's ability to recognize simultaneous presses.
+    </p>
+<h3>3.2 Optical and Laser Pointing Systems</h3>
+<p>
+        Optical mice illuminate a surface and capture successive
+        images using a CMOS sensor. A Digital Signal Processor
+        compares the images to calculate movement and direction.
+    </p>
+</section>
+<section class="chapter" id="environmental-sensors">
+<h2>4. Sensors and Environmental Input Hardware</h2>
+<h3>4.1 Capacitive Touch Arrays</h3>
+<p>
+        Projected Capacitive Touch technology detects changes
+        in an electrostatic field when a conductive finger
+        approaches a touchscreen. The controller calculates
+        the touch position using a conductive grid.
+    </p>
+<h3>4.2 CMOS Image Sensors</h3>
+<p>
+        CMOS image sensors convert incoming light into
+        electrical charge through photodiodes. Color filters
+        separate red, green, and blue information, while
+        conversion circuits generate digital image values.
+    </p>
+</section>
+<section class="chapter" id="biometric-input">
+<h2>5. Biometric and Specialized Input Systems</h2>
+<h3>5.1 Fingerprint Scanning Technologies</h3>
+<ul>
+<li><strong>Capacitive Sensors:</strong> Detect differences between fingerprint ridges and valleys.</li>
+<li><strong>Optical Sensors:</strong> Capture fingerprint patterns using reflected light.</li>
+<li><strong>Ultrasonic Sensors:</strong> Use acoustic reflections to map fingerprint features.</li>
+</ul>
+<h3>5.2 RFID and NFC</h3>
+<p>
+        Radio Frequency Identification (RFID) and Near-Field
+        Communication (NFC) allow short-range wireless
+        identification and communication. Passive tags can
+        receive power through electromagnetic induction
+        from a nearby reader.
+    </p>
+</section>
+<section class="chapter" id="input-protocols">
+<h2>6. Input Interfacing Protocols and Controllers</h2>
+<h3>6.1 Human Interface Device Standard</h3>
+<p>
+        USB HID standardizes communication for input devices
+        such as keyboards, mice, and controllers.
+        HID report descriptors describe device capabilities
+        so operating systems can interpret their data.
+    </p>
+<h3>6.2 UART, SPI, and I2C</h3>
+<table class="lesson-table">
+<thead>
+<tr><th>Protocol</th><th>Communication</th><th>Typical Use</th></tr>
+</thead>
+<tbody>
+<tr><td>UART</td><td>Asynchronous serial</td><td>GPS modules, serial devices</td></tr>
+<tr><td>I2C</td><td>Synchronous two-wire bus</td><td>Environmental sensors, touch controllers</td></tr>
+<tr><td>SPI</td><td>Synchronous serial interface</td><td>High-speed sensors and peripherals</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="processing-foundations">
+<h2>7. Processing Subsystem Foundations</h2>
+<h3>7.1 CPU Microarchitecture Essentials</h3>
+<p>
+        The Central Processing Unit executes instructions,
+        manipulates binary data, and coordinates system operations.
+    </p>
+<table class="lesson-table">
+<thead><tr><th>Component</th><th>Function</th></tr></thead>
+<tbody>
+<tr><td>Control Unit</td><td>Decodes instructions and coordinates control signals.</td></tr>
+<tr><td>Arithmetic Logic Unit</td><td>Performs arithmetic and logical operations.</td></tr>
+<tr><td>Registers</td><td>Store operands and intermediate results inside the processor.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="instruction-cycle">
+<h2>8. The Instruction Execution Cycle</h2>
+<h3>8.1 Classical Five-Stage Pipeline</h3>
+<ol>
+<li><strong>Instruction Fetch:</strong> Retrieves the next instruction from memory or cache.</li>
+<li><strong>Instruction Decode:</strong> Interprets the opcode and identifies operands.</li>
+<li><strong>Execute:</strong> Performs the required arithmetic or logical operation.</li>
+<li><strong>Memory Access:</strong> Reads or writes memory when required.</li>
+<li><strong>Writeback:</strong> Stores the result in the destination register.</li>
+</ol>
+<div class="code-example">
+<pre><code>FETCH → DECODE → EXECUTE → MEMORY → WRITEBACK
+ IF       ID       EX       MEM        WB</code></pre>
+</div>
+</section>
+<section class="chapter" id="alu-mechanics">
+<h2>9. Arithmetic Logic Unit Mechanics</h2>
+<h3>9.1 Digital Logic and Adders</h3>
+<p>
+        ALUs use logic gates and arithmetic circuits to perform
+        operations. Full adders calculate binary sums and carry
+        outputs, while carry-lookahead circuits reduce delays
+        associated with carry propagation.
+    </p>
+<h3>9.2 Status Condition Flags</h3>
+<table class="lesson-table">
+<thead><tr><th>Flag</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Zero</td><td>Indicates a zero result.</td></tr>
+<tr><td>Sign</td><td>Indicates the sign of a result.</td></tr>
+<tr><td>Carry</td><td>Indicates carry or borrow conditions in unsigned arithmetic.</td></tr>
+<tr><td>Overflow</td><td>Indicates signed arithmetic overflow.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="control-unit">
+<h2>10. Control Unit and Microprogramming</h2>
+<h3>10.1 Hardwired Control</h3>
+<p>
+        Hardwired control units use fixed digital logic
+        to generate processor control signals.
+        Their behavior is implemented directly in hardware.
+    </p>
+<h3>10.2 Microprogrammed Control</h3>
+<p>
+        Microprogrammed control units use sequences of
+        microinstructions to coordinate processor operations.
+        Microcode allows complex instructions to be broken
+        into lower-level steps.
+    </p>
+</section>
+<section class="chapter" id="pipeline-hazards">
+<h2>11. Processor Pipelining and Hazard Management</h2>
+<h3>11.1 Instruction-Level Parallelism</h3>
+<p>
+        Pipelining overlaps instruction stages to improve
+        processor throughput. Hazards can interrupt this flow.
+    </p>
+<ul>
+<li><strong>Structural Hazard:</strong> Two operations compete for the same hardware resource.</li>
+<li><strong>Data Hazard:</strong> An instruction depends on an unfinished earlier result.</li>
+<li><strong>Control Hazard:</strong> A branch changes the expected instruction sequence.</li>
+</ul>
+<p>
+        Data forwarding, pipeline stalls, and branch prediction
+        help manage these hazards.
+    </p>
+</section>
+<section class="chapter" id="coprocessing">
+<h2>12. Accelerated and Co-Processing Systems</h2>
+<h3>12.1 Heterogeneous Processing Engines</h3>
+<table class="lesson-table">
+<thead><tr><th>Processor</th><th>Primary Function</th></tr></thead>
+<tbody>
+<tr><td>GPU</td><td>Parallel graphics and matrix processing.</td></tr>
+<tr><td>TPU / NPU</td><td>Neural network and AI computations.</td></tr>
+<tr><td>DSP</td><td>Audio, radio, and sensor signal processing.</td></tr>
+<tr><td>Cryptographic Engine</td><td>Hardware-accelerated encryption and hashing.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="output-architecture">
+<h2>13. Output Subsystem Architecture</h2>
+<h3>13.1 Signal Conversion and Rendering</h3>
+<p>
+        The output subsystem transforms processed digital
+        information into visible images, sound waves,
+        printed documents, or mechanical movement.
+    </p>
+<h3>13.2 Digital-to-Analog Conversion</h3>
+<p>
+        A Digital-to-Analog Converter (DAC) converts digital
+        values into analog signals. DACs are used in audio
+        systems and other output circuits requiring
+        continuous electrical signals.
+    </p>
+</section>
+<section class="chapter" id="visual-output">
+<h2>14. Visual Output and Display Technologies</h2>
+<h3>14.1 Frame Buffers and Pixel Addressing</h3>
+<p>
+        A frame buffer stores pixel color information
+        used to generate an image. The GPU updates
+        pixel values, while the display controller
+        sends image data to the screen.
+    </p>
+<h3>14.2 Display Technologies</h3>
+<ul>
+<li><strong>LCD:</strong> Uses liquid crystals to control transmitted backlight.</li>
+<li><strong>OLED:</strong> Uses light-emitting organic materials in individual pixels.</li>
+<li><strong>MicroLED:</strong> Uses microscopic inorganic light-emitting elements.</li>
+</ul>
+<p>
+        Refresh rate measures how often the display
+        updates its image per second, expressed in hertz.
+    </p>
+</section>
+<section class="chapter" id="audio-haptics">
+<h2>15. Audio and Tactile Output Systems</h2>
+<h3>15.1 Digital Audio Output</h3>
+<p>
+        Digital audio is processed, transmitted to an
+        audio DAC, converted into an analog waveform,
+        amplified, and reproduced through speakers.
+    </p>
+<h3>15.2 Haptic Feedback</h3>
+<ul>
+<li><strong>ERM Motors:</strong> Produce vibration using an off-center rotating mass.</li>
+<li><strong>LRA Actuators:</strong> Produce controlled vibration through linear movement.</li>
+</ul>
+</section>
+<section class="chapter" id="printing-output">
+<h2>16. Hardcopy Output and Printing Systems</h2>
+<h3>16.1 Laser Printing Process</h3>
+<ol>
+<li><strong>Charging:</strong> Applies an electrostatic charge to the drum.</li>
+<li><strong>Exposing:</strong> Uses a laser to form the image pattern.</li>
+<li><strong>Developing:</strong> Toner adheres to selected drum regions.</li>
+<li><strong>Transferring:</strong> Toner moves onto paper.</li>
+<li><strong>Fusing:</strong> Heat and pressure bond toner to paper.</li>
+<li><strong>Cleaning:</strong> Removes remaining toner from the drum.</li>
+</ol>
+<p>
+        Other printing technologies include thermal inkjet
+        systems and additive manufacturing through
+        three-dimensional layer deposition.
+    </p>
+</section>
+<section class="chapter" id="industrial-output">
+<h2>17. Industrial Actuation and Control Output</h2>
+<h3>17.1 Pulse-Width Modulation</h3>
+<p>
+        Pulse-Width Modulation (PWM) controls effective
+        output power by rapidly switching a digital signal
+        between ON and OFF states.
+    </p>
+<div class="code-example">
+<pre><code>Duty Cycle (%) =
+    ON Time / (ON Time + OFF Time) × 100</code></pre>
+</div>
+<h3>17.2 Motors and Relays</h3>
+<p>
+        Stepper motors move in discrete angular increments.
+        Servo systems control position or movement using
+        feedback, while relays electrically switch
+        external circuits.
+    </p>
+</section>
+<section class="chapter" id="output-protocols">
+<h2>18. Output Interfacing Protocols</h2>
+<table class="lesson-table">
+<thead><tr><th>Interface</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>HDMI</td><td>Digital audio and video output.</td></tr>
+<tr><td>DisplayPort</td><td>High-bandwidth digital display connection.</td></tr>
+<tr><td>I2S</td><td>Digital audio communication between integrated circuits.</td></tr>
+<tr><td>PCIe</td><td>High-speed communication with expansion devices.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="storage-taxonomy">
+<h2>19. Storage Subsystem Taxonomy</h2>
+<h3>19.1 Memory Hierarchy</h3>
+<p>
+        Storage technologies are arranged according to
+        access speed, capacity, cost, and persistence.
+    </p>
+<div class="code-example">
+<pre><code>          REGISTERS
+              ↓
+         L1 / L2 / L3
+              ↓
+         MAIN MEMORY
+              ↓
+         SSD / HDD
+              ↓
+      ARCHIVAL STORAGE</code></pre>
+</div>
+<p>
+        Primary memory supports active computation,
+        secondary storage preserves files, and
+        tertiary storage supports long-term archival.
+    </p>
+</section>
+<section class="chapter" id="ram-memory">
+<h2>20. Primary Memory: Random-Access Memory</h2>
+<h3>20.1 SRAM and DRAM</h3>
+<table class="lesson-table">
+<thead><tr><th>SRAM</th><th>DRAM</th></tr></thead>
+<tbody>
+<tr><td>Uses latch-based memory cells.</td><td>Uses capacitor-based memory cells.</td></tr>
+<tr><td>Does not require periodic refresh while powered.</td><td>Requires periodic refresh.</td></tr>
+<tr><td>Generally faster and more expensive.</td><td>Generally denser and less expensive.</td></tr>
+<tr><td>Commonly used for cache.</td><td>Commonly used for main memory.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="cache-registers">
+<h2>21. Primary Memory: Cache Architecture and Registers</h2>
+<h3>21.1 Multi-Level Cache Organization</h3>
+<ul>
+<li><strong>L1 Cache:</strong> Small, fast cache located close to each CPU core.</li>
+<li><strong>L2 Cache:</strong> Larger cache that supports fast access to frequently used information.</li>
+<li><strong>L3 Cache:</strong> Larger cache often shared among processor cores.</li>
+</ul>
+<p>
+        Cache lines hold blocks of data. Cache tags
+        identify which memory blocks are stored,
+        while hit and miss ratios describe cache
+        access effectiveness.
+    </p>
+</section>
+<section class="chapter" id="firmware-storage">
+<h2>22. Non-Volatile System Firmware Storage</h2>
+<h3>22.1 System ROM Technologies</h3>
+<ul>
+<li><strong>Mask ROM:</strong> Permanently programmed during manufacturing.</li>
+<li><strong>EPROM:</strong> Can be erased using ultraviolet light.</li>
+<li><strong>EEPROM:</strong> Can be electrically erased and reprogrammed.</li>
+<li><strong>NOR Flash:</strong> Commonly used for rewritable firmware storage.</li>
+</ul>
+<p>
+        Firmware storage retains BIOS or UEFI startup
+        instructions even when the computer is powered off.
+    </p>
+</section>
+<section class="chapter" id="magnetic-storage">
+<h2>23. Secondary Storage: Magnetic Media Systems</h2>
+<h3>23.1 Hard Disk Drive Mechanics</h3>
+<p>
+        Hard Disk Drives store data magnetically on
+        rotating platters. Read/write heads move across
+        the platter surfaces to access stored information.
+    </p>
+<h3>23.2 Access Latency</h3>
+<p>
+        HDD access time includes the time needed to position
+        the read/write head, wait for the desired sector
+        to rotate into position, and transfer data.
+    </p>
+</section>
+<section class="chapter" id="solid-state-storage">
+<h2>24. Secondary Storage: Solid-State Media</h2>
+<h3>24.1 NAND Flash Memory</h3>
+<p>
+        SSDs use NAND flash memory to preserve data
+        electronically without mechanical moving parts.
+        Stored electrical charge represents data states.
+    </p>
+<h3>24.2 NAND Flash Types</h3>
+<table class="lesson-table">
+<thead><tr><th>Type</th><th>Bits per Cell</th></tr></thead>
+<tbody>
+<tr><td>SLC</td><td>1</td></tr>
+<tr><td>MLC</td><td>2</td></tr>
+<tr><td>TLC</td><td>3</td></tr>
+<tr><td>QLC</td><td>4</td></tr>
+</tbody>
+</table>
+<p>
+        Wear leveling distributes write operations
+        across flash cells to reduce concentrated wear.
+    </p>
+</section>
+<section class="chapter" id="storage-controllers">
+<h2>25. Storage Interfacing Protocols and Controllers</h2>
+<h3>25.1 SATA and NVMe</h3>
+<table class="lesson-table">
+<thead><tr><th>SATA / AHCI</th><th>NVMe / PCIe</th></tr></thead>
+<tbody>
+<tr><td>Designed around traditional storage interfaces.</td><td>Optimized for high-speed solid-state storage.</td></tr>
+<tr><td>Typically lower maximum throughput.</td><td>Supports high-throughput parallel command queues.</td></tr>
+<tr><td>Common with SATA HDDs and SSDs.</td><td>Common with modern PCIe SSDs.</td></tr>
+</tbody>
+</table>
+<p>
+        The Flash Translation Layer (FTL) maps logical
+        storage addresses to physical flash locations.
+    </p>
+</section>
+<section class="chapter" id="archival-storage">
+<h2>26. Tertiary and Archival Storage Systems</h2>
+<h3>26.1 Magnetic Tape</h3>
+<p>
+        Linear Tape-Open (LTO) cartridges provide
+        high-capacity archival storage. Automated
+        tape libraries can locate and load cartridges
+        for long-term data retention.
+    </p>
+<h3>26.2 Optical Storage</h3>
+<p>
+        Blu-ray and M-DISC media use optical techniques
+        to preserve and retrieve stored information.
+        Laser systems read encoded patterns from discs.
+    </p>
+</section>
+<section class="chapter" id="system-buses">
+<h2>27. System Interconnects and Tri-Bus Topology</h2>
+<h3>27.1 System Bus Functions</h3>
+<table class="lesson-table">
+<thead><tr><th>Bus</th><th>Function</th></tr></thead>
+<tbody>
+<tr><td>Data Bus</td><td>Transfers data between components.</td></tr>
+<tr><td>Address Bus</td><td>Identifies memory and device addresses.</td></tr>
+<tr><td>Control Bus</td><td>Transfers read, write, clock, and control signals.</td></tr>
+</tbody>
+</table>
+<p>
+        Bus arbitration determines which device
+        can access a shared communication bus.
+    </p>
+</section>
+<section class="chapter" id="interrupts-dma">
+<h2>28. Interrupts and Direct Memory Access</h2>
+<h3>28.1 Interrupt Requests</h3>
+<p>
+        An Interrupt Request (IRQ) notifies the CPU
+        that hardware requires attention. The processor
+        can execute an Interrupt Service Routine (ISR)
+        to handle the event.
+    </p>
+<h3>28.2 Direct Memory Access</h3>
+<p>
+        DMA controllers transfer blocks of data between
+        devices and memory without requiring the CPU
+        to process each individual transfer through
+        its registers.
+    </p>
+</section>
+<section class="chapter" id="ipos-diagnostics">
+<h2>29. Unified IPOS Performance Diagnostics</h2>
+<h3>29.1 Performance Measurement</h3>
+<table class="lesson-table">
+<thead>
+<tr><th>Subsystem</th><th>Metrics</th><th>Tools</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Polling rate, sampling jitter, latency</td>
+<td>Oscilloscope, USB analyzer</td>
+</tr>
+<tr>
+<td>Processing</td>
+<td>IPC, clock speed, thermal power</td>
+<td>htop, Intel VTune, perf</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Frame time, color accuracy, latency</td>
+<td>Photometer, capture equipment</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>IOPS, read/write speed</td>
+<td>CrystalDiskMark, fio, SMART tools</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="ipos-future">
+<h2>30. Future Frontiers in IPOS Architecture</h2>
+<h3>30.1 Emerging Technologies</h3>
+<ul>
+<li>
+<strong>Processing-in-Memory:</strong>
+            Integrates computation closer to stored data
+            to reduce data movement.
+        </li>
+<li>
+<strong>Silicon Photonics:</strong>
+            Uses optical interconnects for high-speed
+            communication between computing components.
+        </li>
+<li>
+<strong>Quantum Transduction:</strong>
+            Explores converting quantum information
+            between different physical signal types.
+        </li>
+</ul>
+<h3>Conclusion</h3>
+<p>
+        The IPOS Cycle provides a foundational model for
+        understanding how computers interact with their
+        environment, process instructions, generate
+        meaningful results, and retain information.
+        Its four subsystems operate together to support
+        modern digital computing.
+    </p>
+</section><section class="chapter" id="quiz"><h2>Knowledge Assessment Quiz</h2><p>Test your knowledge of input devices, processing systems, output technologies, storage architecture, and the complete IPOS cycle.</p><div id="quizProgress">0 of 30 answered</div><div id="quizQuestions"></div><div class="quiz-actions"><button id="submitQuiz" type="button">Submit Quiz</button><button id="retryQuiz" type="button" hidden>Try Again</button></div><div id="quizResult" aria-live="polite" hidden></div></section></div><footer class="page-footer">End of The IPOS Cycle: Input, Processing, Output, and Storage · CodeVerse Digital Library</footer></main></div><script>
+(() => {
+ const themeToggle=document.getElementById('themeToggle');
+ const themeIcon=document.getElementById('themeIcon');
+ const fontSize=document.getElementById('fontSize');
+ const fontFamily=document.getElementById('fontFamily');
+ const menuToggle=document.getElementById('menuToggle');
+ const navLinks=document.getElementById('navLinks');
+ const root=document.body;
+ function applyTheme(dark){root.classList.toggle('dark-mode',dark);themeIcon.textContent=dark?'☀':'☾';themeToggle.setAttribute('aria-pressed',String(dark));}
+ applyTheme(localStorage.getItem('readerTheme')==='dark');
+ themeToggle.addEventListener('click',()=>{const dark=!root.classList.contains('dark-mode');applyTheme(dark);localStorage.setItem('readerTheme',dark?'dark':'light');});
+ const savedSize=localStorage.getItem('readerFontSize');if([...fontSize.options].some(o=>o.value===savedSize))fontSize.value=savedSize;
+ const savedFamily=localStorage.getItem('readerFontFamily');if([...fontFamily.options].some(o=>o.value===savedFamily))fontFamily.value=savedFamily;
+ function applyFonts(){document.documentElement.style.setProperty('--reader-size',fontSize.value);document.documentElement.style.setProperty('--reader-family',fontFamily.value);}
+ fontSize.addEventListener('change',()=>{localStorage.setItem('readerFontSize',fontSize.value);applyFonts();});
+ fontFamily.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',fontFamily.value);applyFonts();});applyFonts();
+ menuToggle.addEventListener('click',()=>{const opened=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(opened));});
+ const tocLinks=[...document.querySelectorAll('.toc a[href^="#"]')];
+ tocLinks.forEach(a=>a.addEventListener('click',()=>{tocLinks.forEach(x=>x.classList.remove('active'));a.classList.add('active');}));
+})();
+</script><script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const quizProgress = document.getElementById("quizProgress");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+
+    if (!quizQuestions || !quizProgress ||
+        !submitQuiz || !retryQuiz || !quizResult) {
+        console.error("IPOS quiz elements are missing.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What does IPOS stand for?",
+            options: [
+                "Input, Processing, Output, Storage",
+                "Internet, Programming, Operations, Security",
+                "Input, Performance, Operations, Software",
+                "Information, Processing, Organization, Systems"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is the main purpose of an Analog-to-Digital Converter?",
+            options: [
+                "To convert digital values into sound",
+                "To store binary instructions",
+                "To convert analog signals into digital values",
+                "To transmit video to a monitor"
+            ],
+            answer: 2
+        },
+        {
+            question: "How does a keyboard controller identify pressed keys?",
+            options: [
+                "By reading hard disk sectors",
+                "By scanning a matrix of electrical switches",
+                "By measuring screen brightness",
+                "By decoding audio waveforms"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does a capacitive touchscreen detect?",
+            options: [
+                "Magnetic disk rotation",
+                "Processor clock frequency",
+                "Changes in capacitance",
+                "Laser printer toner levels"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which technology can identify fingerprint patterns using acoustic reflections?",
+            options: [
+                "Optical disk scanning",
+                "Infrared keyboard scanning",
+                "Magnetic stripe reading",
+                "Ultrasonic fingerprint scanning"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which protocol standardizes communication for keyboards and mice?",
+            options: [
+                "USB HID",
+                "HDMI",
+                "NVMe",
+                "DisplayPort"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which CPU component performs arithmetic and logical operations?",
+            options: [
+                "Control Unit",
+                "Arithmetic Logic Unit",
+                "Memory Controller",
+                "Instruction Cache"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which stage comes immediately after Instruction Decode in the classical five-stage pipeline?",
+            options: [
+                "Writeback",
+                "Memory Access",
+                "Execute",
+                "Instruction Fetch"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which ALU condition flag indicates that an operation produced a zero result?",
+            options: [
+                "Carry Flag",
+                "Overflow Flag",
+                "Sign Flag",
+                "Zero Flag"
+            ],
+            answer: 3
+        },
+        {
+            question: "Where are microinstructions commonly stored in a microprogrammed control unit?",
+            options: [
+                "Control ROM",
+                "Display frame buffer",
+                "Hard disk platter",
+                "Keyboard matrix"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which pipeline hazard occurs when an instruction depends on an unfinished earlier result?",
+            options: [
+                "Structural Hazard",
+                "Data Hazard",
+                "Control Hazard",
+                "Thermal Hazard"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which processor is specialized for neural network workloads?",
+            options: [
+                "Audio DAC",
+                "Storage Controller",
+                "Neural Processing Unit",
+                "Display Controller"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is the primary function of the output subsystem?",
+            options: [
+                "To capture physical input signals",
+                "To decode CPU instructions",
+                "To allocate memory addresses",
+                "To convert processed information into observable results"
+            ],
+            answer: 3
+        },
+        {
+            question: "What does a frame buffer store?",
+            options: [
+                "Pixel color information",
+                "Keyboard scan codes",
+                "Processor microcode",
+                "Storage partition tables"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which component converts digital audio values into analog waveforms?",
+            options: [
+                "Analog-to-Digital Converter",
+                "Digital-to-Analog Converter",
+                "Memory Management Unit",
+                "USB Host Controller"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which laser printing stage permanently bonds toner to paper using heat and pressure?",
+            options: [
+                "Charging",
+                "Exposing",
+                "Fusing",
+                "Developing"
+            ],
+            answer: 2
+        },
+        {
+            question: "What does Pulse-Width Modulation primarily adjust?",
+            options: [
+                "CPU register count",
+                "Storage sector size",
+                "Screen pixel resolution",
+                "The duty cycle of a switching signal"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which interface is commonly used for digital audio and video output to televisions?",
+            options: [
+                "HDMI",
+                "UART",
+                "SATA",
+                "I2C"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which storage component is generally closest to the CPU in the memory hierarchy?",
+            options: [
+                "Hard Disk Drive",
+                "CPU Registers",
+                "Magnetic Tape",
+                "Optical Disc"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which memory technology requires periodic refresh cycles?",
+            options: [
+                "SRAM",
+                "NOR Flash",
+                "DRAM",
+                "Mask ROM"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which cache level is commonly shared among multiple CPU cores?",
+            options: [
+                "L1 Cache",
+                "Instruction Register",
+                "Program Counter",
+                "L3 Cache"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which firmware storage technology can be erased using ultraviolet light?",
+            options: [
+                "EPROM",
+                "Mask ROM",
+                "DRAM",
+                "SRAM"
+            ],
+            answer: 0
+        },
+        {
+            question: "How does an HDD store information?",
+            options: [
+                "Using electrical charge in capacitors",
+                "Using magnetic patterns on rotating platters",
+                "Using optical signals in RAM",
+                "Using CPU register states"
+            ],
+            answer: 1
+        },
+        {
+            question: "How many bits per cell does TLC NAND flash store?",
+            options: [
+                "1 bit",
+                "2 bits",
+                "3 bits",
+                "4 bits"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which storage protocol is optimized for SSDs connected through PCIe?",
+            options: [
+                "AHCI",
+                "UART",
+                "I2S",
+                "NVMe"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which technology is commonly used for long-term enterprise archival storage?",
+            options: [
+                "LTO Magnetic Tape",
+                "CPU L1 Cache",
+                "Processor Registers",
+                "DRAM Modules"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which system bus identifies memory and device locations?",
+            options: [
+                "Control Bus",
+                "Address Bus",
+                "Data Bus",
+                "Audio Bus"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the purpose of Direct Memory Access?",
+            options: [
+                "To generate graphics directly",
+                "To increase CPU clock frequency",
+                "To transfer data between devices and memory without CPU handling each transfer",
+                "To convert digital audio into analog signals"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which metric measures storage input/output operations per second?",
+            options: [
+                "IPC",
+                "FPS",
+                "GHz",
+                "IOPS"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is the goal of Processing-in-Memory technology?",
+            options: [
+                "To reduce data movement by integrating computation near memory",
+                "To replace RAM with optical discs",
+                "To eliminate all storage devices",
+                "To convert every CPU into a display controller"
+            ],
+            answer: 0
+        }
+    ];
+
+    function updateProgress() {
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+            const selected = quizQuestions.querySelector(
+                `input[name="iposQuestion${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    function loadQuiz() {
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+            const questionBox = document.createElement("div");
+            questionBox.className = "quiz-question";
+
+            const title = document.createElement("h3");
+            title.textContent = `${index + 1}. ${item.question}`;
+
+            questionBox.appendChild(title);
+
+            item.options.forEach((option, optionIndex) => {
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `iposQuestion${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener("change", updateProgress);
+
+                const answerText = document.createElement("span");
+                answerText.textContent = option;
+
+                label.appendChild(radio);
+                label.appendChild(answerText);
+
+                questionBox.appendChild(label);
+            });
+
+            quizQuestions.appendChild(questionBox);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+        retryQuiz.hidden = true;
+
+        updateProgress();
+    }
+
+    submitQuiz.addEventListener("click", async function () {
+        let score = 0;
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+            const selected = quizQuestions.querySelector(
+                `input[name="iposQuestion${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        if (answered < questions.length) {
+            alert(
+                `Please answer all questions. ` +
+                `You have answered ${answered} of ${questions.length}.`
+            );
+            return;
+        }
+
+        questions.forEach((item, index) => {
+            const questionBox = quizQuestions.children[index];
+
+            const selected = questionBox.querySelector(
+                `input[name="iposQuestion${index}"]:checked`
+            );
+
+            const selectedAnswer = Number(selected.value);
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            const options = questionBox.querySelectorAll(".quiz-option");
+
+            options.forEach((label, optionIndex) => {
+                const radio = label.querySelector("input");
+                radio.disabled = true;
+
+                label.classList.remove("correct", "incorrect");
+
+                if (optionIndex === item.answer) {
+                    label.classList.add("correct");
+                } else if (optionIndex === selectedAnswer) {
+                    label.classList.add("incorrect");
+                }
+            });
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            if (selectedAnswer === item.answer) {
+                feedback.textContent = "Correct answer!";
+            } else {
+                feedback.textContent =
+                    "Correct answer: " + item.options[item.answer];
+            }
+
+            questionBox.appendChild(feedback);
+        });
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message = "";
+
+        if (percentage >= 90) {
+            message = "Excellent! You have mastered the IPOS concepts.";
+        } else if (percentage >= 75) {
+            message = "Great job! You understand most IPOS concepts.";
+        } else if (percentage >= 60) {
+            message = "Good effort! Review the topics you missed.";
+        } else {
+            message = "Keep studying and try the quiz again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+        const saveStatus = document.createElement("p");
+        saveStatus.className = "save-status";
+        saveStatus.textContent = "Saving quiz result...";
+        quizResult.appendChild(saveStatus);
+        try {
+            const response = await fetch("/api/quiz-results", {
+                method: "POST", credentials: "same-origin",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ bookId: 14, score, totalQuestions: questions.length })
+            });
+            const data = await response.json();
+            saveStatus.textContent = response.ok && data.success
+                ? "Your quiz score has been saved!"
+                : (data.message || "Quiz completed, but score saving was unavailable.");
+        } catch (error) {
+            console.error("Quiz save error:", error);
+            saveStatus.textContent = "Quiz completed, but the score could not be saved.";
+        }
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    });
+
+    retryQuiz.addEventListener("click", function () {
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    loadQuiz();
+});
+</script><script src="/js/auth-nav.js" defer></script></body></html>

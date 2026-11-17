@@ -2,20 +2,21 @@
 "use strict";
 
 /* ==========================================
-   CODEVERSE - COMPLETE SERVER.JS
-   Node.js + Express + Neon PostgreSQL + Vercel
+   CODEVERSE - COMPLETE UPDATED SERVER.JS
+   Express + Neon PostgreSQL + Vercel
 
    FEATURES:
-   - Registration and Login
-   - PostgreSQL Sessions
-   - Year-Level Passkeys
-   - Protected HTML E-Books
-   - Protected Book Covers
+   - Registration / Login / Logout
+   - Persistent PostgreSQL Sessions
+   - Year-Level Passkey Protection
+   - Protected HTML E-Books and Covers
    - Reading History
-   - Completed Books
+   - Book Completion Tracking
    - Quiz Results
+   - Offline Quiz Synchronization
+   - Duplicate-Safe Quiz Submissions
    - Passkey-Protected Downloads
-   - PWA / Offline Public Pages
+   - PWA / Offline Support
 ========================================== */
 
 require("dotenv").config();
@@ -37,10 +38,7 @@ const isProduction =
     process.env.NODE_ENV === "production" || isVercel;
 
 const PUBLIC_FOLDER = path.join(__dirname, "public");
-const PROTECTED_FOLDER = path.join(
-    __dirname,
-    "protected-books"
-);
+const PROTECTED_FOLDER = path.join(__dirname, "protected-books");
 
 const BOOK_MANIFEST_FILE = path.join(
     __dirname,
@@ -63,9 +61,7 @@ if (!process.env.DATABASE_URL) {
 }
 
 if (!process.env.SESSION_SECRET) {
-    throw new Error(
-        "SESSION_SECRET is missing."
-    );
+    throw new Error("SESSION_SECRET is missing.");
 }
 
 /* ==========================================
@@ -88,20 +84,6 @@ pool.on("error", error => {
         error.message
     );
 });
-
-async function testDatabaseConnection() {
-    try {
-        await pool.query("SELECT 1");
-        console.log("CodeVerse PostgreSQL connected.");
-        return true;
-    } catch (error) {
-        console.error(
-            "Database connection failed:",
-            error.message
-        );
-        return false;
-    }
-}
 
 /* ==========================================
    3. DATABASE INITIALIZATION
@@ -132,6 +114,7 @@ async function initializeDatabase() {
             score INTEGER NOT NULL,
             total_questions INTEGER NOT NULL,
             percentage INTEGER NOT NULL,
+            client_submission_id TEXT,
             completed_at TIMESTAMPTZ
                 DEFAULT CURRENT_TIMESTAMP
         )
@@ -150,6 +133,26 @@ async function initializeDatabase() {
             completed_at TIMESTAMPTZ,
             PRIMARY KEY (user_id, book_id)
         )
+    `);
+
+    /* ======================================
+       OFFLINE QUIZ SYNCHRONIZATION SUPPORT
+    ====================================== */
+
+    await pool.query(`
+        ALTER TABLE quiz_results
+        ADD COLUMN IF NOT EXISTS
+            client_submission_id TEXT
+    `);
+
+    await pool.query(`
+        CREATE UNIQUE INDEX IF NOT EXISTS
+            quiz_submission_unique
+        ON quiz_results (
+            user_id,
+            client_submission_id
+        )
+        WHERE client_submission_id IS NOT NULL
     `);
 
     console.log(
@@ -228,15 +231,7 @@ app.get("/favicon.ico", (req, res, next) => {
 });
 
 /* ==========================================
-   5A. PWA / OFFLINE PUBLIC FILES
-
-   Public PWA resources are served before
-   session and database middleware.
-
-   Required files:
-   public/sw.js
-   public/manifest.json
-   public/offline.html
+   6. PWA / OFFLINE PUBLIC FILES
 ========================================== */
 
 app.get("/sw.js", (req, res) => {
@@ -277,7 +272,7 @@ app.get("/offline.html", (req, res) => {
 });
 
 /* ==========================================
-   6. PERSISTENT SESSION STORAGE
+   7. PERSISTENT SESSION STORAGE
 ========================================== */
 
 const sessionStore = new PgSession({
@@ -302,7 +297,7 @@ app.use(session({
 }));
 
 /* ==========================================
-   6A. PRIVATE CONTENT CACHE PROTECTION
+   8. PRIVATE CONTENT CACHE PROTECTION
 ========================================== */
 
 app.use((req, res, next) => {
@@ -313,9 +308,11 @@ app.use((req, res, next) => {
         "/library.html"
     ];
 
-    if (privatePrefixes.some(prefix =>
-        req.path.startsWith(prefix)
-    )) {
+    if (
+        privatePrefixes.some(prefix =>
+            req.path.startsWith(prefix)
+        )
+    ) {
         res.set(
             "Cache-Control",
             "private, no-store"
@@ -326,13 +323,14 @@ app.use((req, res, next) => {
 });
 
 /* ==========================================
-   7. DATABASE READY MIDDLEWARE
+   9. DATABASE READY MIDDLEWARE
 ========================================== */
 
 app.use(async (req, res, next) => {
     try {
         await ensureDatabaseReady();
         next();
+
     } catch (error) {
         console.error(
             "Database unavailable:",
@@ -354,7 +352,7 @@ app.use(async (req, res, next) => {
 });
 
 /* ==========================================
-   8. AUTHENTICATION HELPERS
+   10. AUTHENTICATION HELPERS
 ========================================== */
 
 function isLoggedIn(req) {
@@ -388,7 +386,10 @@ function requireApiLogin(req, res, next) {
 function regenerateSession(req) {
     return new Promise((resolve, reject) => {
         req.session.regenerate(error => {
-            if (error) return reject(error);
+            if (error) {
+                return reject(error);
+            }
+
             resolve();
         });
     });
@@ -397,14 +398,17 @@ function regenerateSession(req) {
 function saveSession(req) {
     return new Promise((resolve, reject) => {
         req.session.save(error => {
-            if (error) return reject(error);
+            if (error) {
+                return reject(error);
+            }
+
             resolve();
         });
     });
 }
 
 /* ==========================================
-   9. YEAR-LEVEL COLLECTIONS
+   11. YEAR-LEVEL COLLECTIONS
 ========================================== */
 
 const YEAR_LEVELS = {
@@ -449,7 +453,7 @@ for (const [year, collection] of
 const MAX_BOOK_ID = 30;
 
 /* ==========================================
-   10. BOOK ACCESS HELPERS
+   12. BOOK ACCESS HELPERS
 ========================================== */
 
 function isValidBookId(bookId) {
@@ -526,7 +530,7 @@ function secureCompare(first, second) {
 }
 
 /* ==========================================
-   11. LOAD BOOK MANIFESTS
+   13. LOAD BOOK MANIFESTS
 ========================================== */
 
 function loadManifest(filePath) {
@@ -555,6 +559,7 @@ function loadManifest(filePath) {
         }
 
         return manifest;
+
     } catch (error) {
         console.error(
             "Manifest error:",
@@ -574,7 +579,7 @@ const coverManifest = loadManifest(
 );
 
 /* ==========================================
-   12. PROTECTED FILE RESOLUTION
+   14. PROTECTED FILE RESOLUTION
 ========================================== */
 
 function getProtectedHtmlFile(manifest, bookId) {
@@ -645,6 +650,7 @@ function getProtectedHtmlFile(manifest, bookId) {
         }
 
         return file;
+
     } catch {
         return null;
     }
@@ -665,7 +671,7 @@ function getProtectedCoverFile(bookId) {
 }
 
 /* ==========================================
-   13. HEALTH CHECK
+   15. HEALTH CHECK
 ========================================== */
 
 app.get("/api/health", async (req, res) => {
@@ -677,6 +683,7 @@ app.get("/api/health", async (req, res) => {
             status: "OK",
             database: "connected"
         });
+
     } catch (error) {
         console.error(
             "Health check failed:",
@@ -692,7 +699,7 @@ app.get("/api/health", async (req, res) => {
 });
 
 /* ==========================================
-   14. PROTECTED LIBRARY
+   16. PROTECTED LIBRARY
 ========================================== */
 
 app.get(
@@ -709,7 +716,7 @@ app.get(
 );
 
 /* ==========================================
-   15. BLOCK DIRECT BOOK ACCESS
+   17. BLOCK DIRECT BOOK ACCESS
 ========================================== */
 
 app.use((req, res, next) => {
@@ -736,7 +743,7 @@ app.use((req, res, next) => {
 });
 
 /* ==========================================
-   16. AUTHENTICATION STATUS
+   18. AUTHENTICATION STATUS
 ========================================== */
 
 app.get("/api/auth/status", (req, res) => {
@@ -750,7 +757,7 @@ app.get("/api/auth/status", (req, res) => {
 });
 
 /* ==========================================
-   17. YEAR ACCESS STATUS
+   19. YEAR ACCESS STATUS
 ========================================== */
 
 app.get(
@@ -770,7 +777,7 @@ app.get(
 );
 
 /* ==========================================
-   18. UNLOCK YEAR COLLECTION
+   20. UNLOCK YEAR COLLECTION
 ========================================== */
 
 const failedAttempts = new Map();
@@ -968,7 +975,7 @@ app.post(
 );
 
 /* ==========================================
-   19. OPEN BOOK API
+   21. OPEN BOOK API
 ========================================== */
 
 app.get(
@@ -1023,7 +1030,7 @@ app.get(
 );
 
 /* ==========================================
-   20. PROTECTED BOOK COVER
+   22. PROTECTED BOOK COVER
 ========================================== */
 
 app.get(
@@ -1066,8 +1073,7 @@ app.get(
 );
 
 /* ==========================================
-   21. PROTECTED BOOK READER
-   RECORD READING HISTORY
+   23. PROTECTED BOOK READER
 ========================================== */
 
 app.get(
@@ -1138,7 +1144,7 @@ app.get(
 );
 
 /* ==========================================
-   22. READING HISTORY API
+   24. READING HISTORY API
 ========================================== */
 
 app.get(
@@ -1182,7 +1188,7 @@ app.get(
 );
 
 /* ==========================================
-   23. MARK BOOK AS COMPLETED
+   25. MARK BOOK AS COMPLETED
 ========================================== */
 
 app.post(
@@ -1263,14 +1269,7 @@ app.post(
 );
 
 /* ==========================================
-   24. PASSKEY-PROTECTED BOOK DOWNLOAD
-
-   REQUIRES:
-   - Logged-in user
-   - Valid book ID
-   - Correct four-digit passkey
-
-   Passkey is checked for every download.
+   26. PASSKEY-PROTECTED BOOK DOWNLOAD
 ========================================== */
 
 app.post(
@@ -1365,7 +1364,7 @@ app.post(
 );
 
 /* ==========================================
-   25. USER REGISTRATION
+   27. USER REGISTRATION
 ========================================== */
 
 app.post("/api/register", async (req, res) => {
@@ -1507,7 +1506,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 /* ==========================================
-   26. USER LOGIN
+   28. USER LOGIN
 ========================================== */
 
 app.post("/api/login", async (req, res) => {
@@ -1595,7 +1594,7 @@ app.post("/api/login", async (req, res) => {
 });
 
 /* ==========================================
-   27. CURRENT USER
+   29. CURRENT USER
 ========================================== */
 
 app.get("/api/user", (req, res) => {
@@ -1613,7 +1612,7 @@ app.get("/api/user", (req, res) => {
 });
 
 /* ==========================================
-   28. LOGOUT
+   30. LOGOUT
 ========================================== */
 
 app.post("/api/logout", (req, res) => {
@@ -1640,7 +1639,8 @@ app.post("/api/logout", (req, res) => {
 });
 
 /* ==========================================
-   29. SAVE QUIZ RESULTS
+   31. SAVE QUIZ RESULTS
+   OFFLINE SYNCHRONIZATION SUPPORTED
 ========================================== */
 
 app.post(
@@ -1652,7 +1652,8 @@ app.post(
         const {
             bookId,
             score,
-            totalQuestions
+            totalQuestions,
+            clientSubmissionId
         } = req.body || {};
 
         if (
@@ -1677,6 +1678,22 @@ app.post(
             });
         }
 
+        if (
+            clientSubmissionId !== undefined &&
+            (
+                typeof clientSubmissionId !== "string" ||
+                !/^[a-zA-Z0-9_-]{8,100}$/.test(
+                    clientSubmissionId
+                )
+            )
+        ) {
+            return res.status(400).json({
+                success: false,
+                message:
+                    "Invalid submission ID."
+            });
+        }
+
         const percentage = Math.round(
             (score / totalQuestions) * 100
         );
@@ -1688,16 +1705,29 @@ app.post(
                     book_id,
                     score,
                     total_questions,
-                    percentage
+                    percentage,
+                    client_submission_id
                 )
-                VALUES ($1, $2, $3, $4, $5)
+                VALUES ($1, $2, $3, $4, $5, $6)
+
+                ON CONFLICT (
+                    user_id,
+                    client_submission_id
+                )
+                WHERE client_submission_id IS NOT NULL
+
+                DO UPDATE SET
+                    client_submission_id =
+                        EXCLUDED.client_submission_id
+
                 RETURNING id
             `, [
                 userId,
                 bookId,
                 score,
                 totalQuestions,
-                percentage
+                percentage,
+                clientSubmissionId || null
             ]);
 
             return res.json({
@@ -1726,7 +1756,7 @@ app.post(
 );
 
 /* ==========================================
-   30. QUIZ HISTORY
+   32. QUIZ HISTORY
 ========================================== */
 
 app.get(
@@ -1774,7 +1804,7 @@ app.get(
 );
 
 /* ==========================================
-   31. PUBLIC HTML PAGES
+   33. PUBLIC HTML PAGES
 ========================================== */
 
 app.get("/", (req, res) => {
@@ -1793,7 +1823,7 @@ app.use(express.static(PUBLIC_FOLDER, {
 }));
 
 /* ==========================================
-   32. API NOT FOUND
+   34. API NOT FOUND
 ========================================== */
 
 app.use("/api", (req, res) => {
@@ -1804,7 +1834,7 @@ app.use("/api", (req, res) => {
 });
 
 /* ==========================================
-   33. ERROR HANDLER
+   35. ERROR HANDLER
 ========================================== */
 
 app.use((error, req, res, next) => {
@@ -1835,7 +1865,7 @@ app.use((error, req, res, next) => {
 });
 
 /* ==========================================
-   34. VERCEL EXPORT AND LOCAL SERVER
+   36. VERCEL EXPORT AND LOCAL SERVER
 ========================================== */
 
 module.exports = app;
@@ -1874,11 +1904,15 @@ if (!isVercel && require.main === module) {
                 );
 
                 console.log(
+                    "Offline Quiz Sync: Configured"
+                );
+
+                console.log(
                     "Passkey Downloads: Enabled"
                 );
 
                 console.log(
-                    "PWA Offline Public Pages: Enabled"
+                    "PWA Offline Routes: Enabled"
                 );
 
                 console.log("====================================");

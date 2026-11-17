@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Website Testing, Hosting, Deployment, and Maintenance | CodeVerse</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+
+<style>
+:root{--bg:#f4f7fc;--surface:#fff;--text:#1d2b43;--muted:#65748a;--border:#dfe6f1;--primary:#3157a4;--primary2:#24427f;--code:#eff4fb;--shadow:0 10px 28px rgba(22,46,91,.07)}
+body.dark-mode{--bg:#0c1525;--surface:#17253a;--text:#e8effb;--muted:#b1bfd3;--border:#34465e;--primary:#94b6ff;--primary2:#b5ceff;--code:#101d30;--shadow:0 10px 28px rgba(0,0,0,.22)}
+html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;transition:background .2s,color .2s}body,button,input,select{box-sizing:border-box}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #76a3ff;outline-offset:3px}
+.navbar{height:72px;position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;padding:0 max(20px,calc((100vw - 1380px)/2));box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text);font-size:21px;font-weight:800;white-space:nowrap}.site-logo{height:39px;width:39px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:22px;margin-left:auto}.nav-links a{font-size:14px;text-decoration:none;font-weight:700;color:var(--muted)}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:10px}.icon-btn,.menu-toggle{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;padding:9px 13px}.menu-toggle{display:none}.login-btn,.signup-btn{font-size:13px;font-weight:700;text-decoration:none;padding:10px 13px;border-radius:9px;display:inline-block}.login-btn{border:1px solid var(--border)}.signup-btn{background:#3157a4;color:white!important}#accountActions{display:flex;gap:7px}.topbar{max-width:1380px;margin:auto;padding:20px 24px 0}.back-link{text-decoration:none;font-weight:700;font-size:14px}.reading-controls{max-width:1380px;margin:14px auto 0;padding:0 24px;display:flex;gap:14px;flex-wrap:wrap}.control-group{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700}.control-group select{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px;border-radius:9px;max-width:200px}.layout{max-width:1380px;margin:20px auto 50px;padding:0 24px;display:grid;grid-template-columns:265px minmax(0,1fr);gap:25px;align-items:start}.toc{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;position:sticky;top:94px;max-height:calc(100vh - 116px);overflow:auto}.toc h2{font-size:15px;margin:0 0 14px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{text-decoration:none;padding:9px 10px;border-radius:8px;color:var(--muted);font-size:13px;line-height:1.45}.toc nav a:hover,.toc nav a.active{background:var(--code);color:var(--primary)}main{min-width:0}.book-header{padding:32px 36px;border-radius:18px;background:linear-gradient(125deg,#25477f,#3971bc);color:white;margin-bottom:22px}.book-header .eyebrow{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#d5e6ff}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(29px,3.5vw,42px);margin:12px 0}.book-header p{max-width:680px;line-height:1.7;color:#e5efff;margin:0}.chapter{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px 35px;margin:0 0 22px;box-shadow:var(--shadow);line-height:1.8;overflow-wrap:anywhere;scroll-margin-top:92px}.chapter h1,.chapter h2,.chapter h3{line-height:1.35;color:var(--text)}.chapter h2{font-size:1.55em;margin:0 0 17px}.chapter h3{font-size:1.15em;margin:25px 0 10px}.chapter p{margin:13px 0;color:var(--text)}.chapter li{margin:6px 0}.chapter pre{max-width:100%;overflow:auto;background:var(--code);color:var(--text);padding:18px;border-radius:11px;border:1px solid var(--border);font-size:.88em;line-height:1.6;white-space:pre}.chapter code{font-family:Consolas,'Courier New',monospace}.chapter :not(pre)>code{background:var(--code);padding:2px 5px;border-radius:4px}.code-example{max-width:100%}.page-footer{text-align:center;color:var(--muted);padding:22px 0 40px;font-size:13px}
+#quizProgress{font-weight:700;color:var(--primary);margin:12px 0 20px}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px;background:var(--surface)}.quiz-question h3{margin:0 0 14px;font-size:1em}.quiz-option{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--border);border-radius:9px;padding:11px 13px;margin:8px 0;cursor:pointer;line-height:1.5}.quiz-option input{margin-top:5px;accent-color:#3157a4}.quiz-option:hover{background:var(--code)}.quiz-option.correct{border-color:#28a36a;background:rgba(40,163,106,.13)}.quiz-option.incorrect{border-color:#dc5656;background:rgba(220,86,86,.12)}.quiz-feedback{font-weight:700;font-size:.88em}.quiz-actions{display:flex;gap:10px;flex-wrap:wrap}.quiz-actions button{border:0;border-radius:9px;background:#3157a4;color:white;padding:12px 19px;font-weight:700}.quiz-actions button:hover{background:#24427f}#quizResult{margin-top:22px;padding:20px;border-radius:12px;background:var(--code);text-align:center}#quizResult h2{font-size:2.4em;margin:6px 0;color:var(--primary)}[hidden]{display:none!important}
+@media(max-width:1000px){.layout{grid-template-columns:215px minmax(0,1fr);gap:16px}.chapter{padding:25px}.navbar{gap:12px}.nav-links{gap:12px}}
+@media(max-width:760px){.navbar{height:66px;padding:0 15px;gap:10px}.logo{font-size:18px}.site-logo{height:34px;width:34px}.nav-links{display:none;position:absolute;top:65px;left:0;right:0;background:var(--surface);padding:16px;border-bottom:1px solid var(--border);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;margin:0}.nav-links.show{display:flex}.menu-toggle{display:block}.nav-actions{margin-left:auto}#accountActions{display:none}.layout{display:block;padding:0 13px}.toc{position:static;max-height:235px;margin-bottom:18px}.reading-controls,.topbar{padding-left:14px;padding-right:14px}.chapter{padding:22px 18px}.book-header{padding:25px 20px}.chapter pre{font-size:.79em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+[hidden]{display:none!important}
+</style>    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav>
+<h3>Publishing Your Website</h3>
+<a href="#publishing-your-website">
+        Publishing Your Website
+    </a>
+<a href="#publishing-options">
+        What Are the Options?
+    </a>
+<a href="#hosting-domain-name">
+        Getting Hosting and a Domain Name
+    </a>
+<a href="#publishing-to-server">
+        Publishing to Your Server
+    </a>
+<a href="#ftp-sftp">
+        FTP and SFTP
+    </a>
+<a href="#rsync">
+        Rsync
+    </a>
+<a href="#web-based-ide">
+        Using a Web-Based IDE Such as CodePen
+    </a>
+<a href="#online-publishing-tools">
+        Using an Online Publishing Tool
+    </a>
+<a href="#recommended-publishing-approach">
+        What Approach Would We Recommend?
+    </a>
+<!-- BROWSER DEVELOPER TOOLS -->
+<h3>Browser Developer Tools</h3>
+<a href="#browser-developer-tools">
+        What Are Browser Developer Tools?
+    </a>
+<a href="#what-are-devtools">
+        What Are DevTools?
+    </a>
+<a href="#opening-developer-tools">
+        How to Open the DevTools in Your Browser
+    </a>
+<a href="#dom-inspector-css-editor">
+        The Inspector: DOM Explorer and CSS Editor
+    </a>
+<a href="#exploring-dom-inspector">
+        Exploring the DOM Inspector
+    </a>
+<a href="#exploring-css-editor">
+        Exploring the CSS Editor
+    </a>
+<a href="#javascript-debugger">
+        The JavaScript Debugger
+    </a>
+<a href="#exploring-debugger">
+        Exploring the Debugger
+    </a>
+<a href="#javascript-console">
+        The JavaScript Console
+    </a>
+<a href="#network-inspector">
+        The Network Inspector
+    </a>
+<a href="#http-statuses">
+        HTTP Statuses
+    </a>
+<!-- ASSESSMENT -->
+<h3>Assessment</h3>
+<a href="#quiz">
+        Knowledge Assessment Quiz
+    </a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Website Testing, Hosting, Deployment, and Maintenance</h1>
+<p>Learn the essentials of website testing, hosting, deployment, and maintenance to ensure reliable, secure, and well-performing websites.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - WEBSITE PUBLISHING
+     AND BROWSER DEVELOPER TOOLS
+========================================== -->
+<!-- ==========================================
+     PART 1 - PUBLISHING YOUR WEBSITE
+========================================== -->
+<section class="chapter" id="publishing-your-website">
+<h2>Publishing Your Website</h2>
+<p>
+        After creating a website using HTML, CSS,
+        and JavaScript, the next step is to publish
+        it online so other people can access it.
+    </p>
+<p>
+        Publishing a website means making its files
+        available through a web server that users
+        can reach over the internet.
+    </p>
+<p>
+        A website usually contains HTML documents,
+        CSS stylesheets, JavaScript files, images,
+        and other resources that work together
+        to display its content.
+    </p>
+<h3>Why Publish a Website?</h3>
+<ul>
+<li>Make your website accessible to other users.</li>
+<li>Share projects and educational content online.</li>
+<li>Build a professional portfolio.</li>
+<li>Provide information or services through the web.</li>
+<li>Allow users to access your website from different locations.</li>
+</ul>
+<h3>Learning Objectives</h3>
+<ul>
+<li>Understand web hosting and domain names.</li>
+<li>Identify different website publishing methods.</li>
+<li>Understand FTP, SFTP, and Rsync.</li>
+<li>Explore web-based development environments.</li>
+<li>Learn how online publishing platforms work.</li>
+<li>Understand the basic GitHub Pages publishing process.</li>
+</ul>
+</section>
+<!-- ==========================================
+     WHAT ARE THE OPTIONS?
+========================================== -->
+<section class="chapter" id="publishing-options">
+<h2>What Are the Options?</h2>
+<p>
+        There are several ways to publish a website.
+        The appropriate method depends on the type
+        of website, available resources, technical
+        experience, and desired level of control.
+    </p>
+<h3>Common Website Publishing Options</h3>
+<ul>
+<li>Getting web hosting and a domain name.</li>
+<li>Using a web-based integrated development environment.</li>
+<li>Using an online publishing platform.</li>
+</ul>
+<h3>Comparison of Publishing Methods</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Typical Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web Hosting</td>
+<td>Stores website files on a server.</td>
+<td>Professional websites and applications.</td>
+</tr>
+<tr>
+<td>Web-Based IDE</td>
+<td>Provides an online code editor and preview.</td>
+<td>Learning and demonstrations.</td>
+</tr>
+<tr>
+<td>Online Publishing Tool</td>
+<td>Publishes website files through a hosting platform.</td>
+<td>Static websites and portfolios.</td>
+</tr>
+</tbody>
+</table>
+<p>
+        Some publishing platforms provide free
+        services for small projects, while others
+        require payment for additional features
+        or resources.
+    </p>
+</section>
+<!-- ==========================================
+     HOSTING AND DOMAIN NAME
+========================================== -->
+<section class="chapter" id="hosting-domain-name">
+<h2>Getting Hosting and a Domain Name</h2>
+<p>
+        Website owners who want greater control
+        over their website's appearance, content,
+        and configuration often obtain web hosting
+        and register a domain name.
+    </p>
+<h3>What Is Web Hosting?</h3>
+<p>
+        Web hosting is a service that provides
+        storage and server resources for a website.
+    </p>
+<p>
+        A hosting provider stores website files
+        and makes them accessible to visitors
+        through the internet.
+    </p>
+<h3>Examples of Website Files</h3>
+<div class="code-example">
+<pre><code>my-website/
+│
+├── index.html
+├── about.html
+├── contact.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   └── script.js
+│
+└── images/
+    └── logo.png</code></pre>
+</div>
+<p>
+        These files can be uploaded to a hosting
+        server so that visitors can view the website.
+    </p>
+<h3>What Is a Domain Name?</h3>
+<p>
+        A domain name is a human-readable address
+        used to locate a website on the internet.
+    </p>
+<h3>Example</h3>
+<div class="code-example">
+<pre><code>https://www.example.com</code></pre>
+</div>
+<p>
+        Domain names are registered through
+        domain registrars and usually require
+        periodic renewal.
+    </p>
+<h3>Connecting Hosting and a Domain</h3>
+<p>
+        A domain name must point to the server
+        where the website is hosted.
+    </p>
+<p>
+        This connection is commonly configured
+        using Domain Name System (DNS) records.
+    </p>
+<h3>Common DNS Records</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Record</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Maps a domain name to an IPv4 address.</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>Maps one domain name to another domain name.</td>
+</tr>
+</tbody>
+</table>
+<h3>Tips for Finding Hosting and Domains</h3>
+<ul>
+<li>Compare hosting features and costs.</li>
+<li>Check whether your desired domain is available.</li>
+<li>Review renewal fees.</li>
+<li>Consider technical support and reliability.</li>
+<li>Verify that the hosting service supports your website's requirements.</li>
+</ul>
+<p>
+        Some hosting services are designed
+        for static websites, while others
+        support server-side applications,
+        databases, and additional features.
+    </p>
+</section>
+<!-- ==========================================
+     PUBLISHING TO YOUR SERVER
+========================================== -->
+<section class="chapter" id="publishing-to-server">
+<h2>Publishing to Your Server</h2>
+<p>
+        Once a hosting service is available,
+        website files must be transferred
+        from the developer's computer
+        to the hosting server.
+    </p>
+<p>
+        Hosting providers may support several
+        deployment methods, including file
+        transfer tools, synchronization tools,
+        and Git-based deployment.
+    </p>
+<h3>Common File Transfer Methods</h3>
+<ul>
+<li>FTP and SFTP clients</li>
+<li>Rsync</li>
+<li>Git repositories</li>
+<li>Hosting provider deployment tools</li>
+</ul>
+<h3>General Publishing Process</h3>
+<ol>
+<li>Prepare the website files.</li>
+<li>Choose a hosting service.</li>
+<li>Obtain the server connection details.</li>
+<li>Transfer or deploy the website files.</li>
+<li>Configure the website address.</li>
+<li>Open the website in a browser.</li>
+<li>Test its pages and resources.</li>
+</ol>
+</section>
+<!-- ==========================================
+     FTP AND SFTP
+========================================== -->
+<section class="chapter" id="ftp-sftp">
+<h2>FTP and SFTP</h2>
+<p>
+        File Transfer Protocol (FTP) is used
+        to transfer files between computers
+        over a network.
+    </p>
+<p>
+        SSH File Transfer Protocol (SFTP)
+        provides file transfer through
+        a secure SSH connection.
+    </p>
+<p>
+        Unlike traditional unencrypted FTP,
+        SFTP protects file-transfer
+        communications in transit.
+    </p>
+<h3>Common File Transfer Clients</h3>
+<ul>
+<li>FileZilla</li>
+<li>WinSCP</li>
+<li>Cyberduck</li>
+</ul>
+<h3>Typical Connection Information</h3>
+<div class="code-example">
+<pre><code>Protocol: SFTP
+
+Host: sftp.example-host.com
+
+Username: website-user
+
+Port: 22
+
+Remote Directory: /public_html/</code></pre>
+</div>
+<p>
+        These values are illustrative.
+        Actual connection details and
+        upload directories are supplied
+        by the hosting provider.
+    </p>
+<h3>Uploading Website Files</h3>
+<ol>
+<li>Open an SFTP client.</li>
+<li>Enter the server connection details.</li>
+<li>Connect to the remote server.</li>
+<li>Locate the website's destination directory.</li>
+<li>Select the local website files.</li>
+<li>Upload them to the server.</li>
+<li>Verify that the files are accessible online.</li>
+</ol>
+<h3>Important Reminder</h3>
+<p>
+        Use secure file transfer methods
+        whenever possible and protect
+        hosting credentials from unauthorized
+        access.
+    </p>
+</section>
+<!-- ==========================================
+     RSYNC
+========================================== -->
+<section class="chapter" id="rsync">
+<h2>Rsync</h2>
+<p>
+        Rsync is a file synchronization tool
+        that can copy and update files
+        between local and remote computers.
+    </p>
+<p>
+        It is commonly used through
+        the command line and can transfer
+        only the differences needed
+        to synchronize files.
+    </p>
+<h3>Basic Rsync Command</h3>
+<div class="code-example">
+<pre><code>rsync -avz -e ssh ./website/ user@example.com:/var/www/html/</code></pre>
+</div>
+<h3>Command Explanation</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rsync</td>
+<td>Runs the synchronization program.</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>Uses archive mode.</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>Displays detailed progress information.</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>Compresses file data during transfer.</td>
+</tr>
+<tr>
+<td>-e ssh</td>
+<td>Uses SSH as the remote connection method.</td>
+</tr>
+</tbody>
+</table>
+<h3>Advantages of Rsync</h3>
+<ul>
+<li>Supports efficient file synchronization.</li>
+<li>Can preserve file attributes.</li>
+<li>Supports remote transfers through SSH.</li>
+<li>Can be integrated into deployment scripts.</li>
+</ul>
+</section>
+<!-- ==========================================
+     WEB-BASED IDE
+========================================== -->
+<section class="chapter" id="web-based-ide">
+<h2>Using a Web-Based IDE Such as CodePen</h2>
+<p>
+        A web-based Integrated Development
+        Environment (IDE) allows developers
+        to write and test code directly
+        inside a web browser.
+    </p>
+<p>
+        Many web-based IDEs provide separate
+        editors for HTML, CSS, and JavaScript,
+        together with a live preview.
+    </p>
+<h3>Examples</h3>
+<ul>
+<li>CodePen</li>
+<li>JSFiddle</li>
+<li>JSBin</li>
+<li>Scrimba</li>
+</ul>
+<h3>How Web-Based IDEs Work</h3>
+<ol>
+<li>Open the web-based development environment.</li>
+<li>Write HTML code in the HTML editor.</li>
+<li>Add styling in the CSS editor.</li>
+<li>Add interactive behavior using JavaScript.</li>
+<li>View the rendered webpage.</li>
+<li>Share the project through its available link.</li>
+</ol>
+<h3>Advantages</h3>
+<ul>
+<li>Easy to use for beginners.</li>
+<li>Provides immediate visual feedback.</li>
+<li>Useful for sharing code examples.</li>
+<li>Often provides free basic features.</li>
+</ul>
+<h3>Limitations</h3>
+<ul>
+<li>May offer limited project configuration.</li>
+<li>May restrict file storage.</li>
+<li>May not support full backend applications.</li>
+<li>May require paid plans for advanced features.</li>
+</ul>
+</section>
+<!-- ==========================================
+     ONLINE PUBLISHING TOOLS
+========================================== -->
+<section class="chapter" id="online-publishing-tools">
+<h2>Using an Online Publishing Tool</h2>
+<p>
+        Online publishing tools allow
+        developers to make websites
+        available on the internet
+        without manually managing
+        every server configuration.
+    </p>
+<h3>GitHub</h3>
+<p>
+        GitHub is a platform for hosting
+        Git repositories, managing source
+        code, and collaborating on projects.
+    </p>
+<p>
+        Developers can upload their website
+        files to a repository and use
+        supported deployment features
+        to publish them.
+    </p>
+<h3>GitHub Pages</h3>
+<p>
+        GitHub Pages is a static website
+        hosting service that can publish
+        HTML, CSS, JavaScript, and other
+        static assets from a repository.
+    </p>
+<h3>Netlify</h3>
+<p>
+        Netlify provides website hosting
+        and deployment features, including
+        deployment from Git repositories.
+    </p>
+<p>
+        It also offers features such as
+        deployment previews, functions,
+        and form handling.
+    </p>
+<h3>Comparison</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Platform</th>
+<th>Common Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub Pages</td>
+<td>Static hosting from a repository.</td>
+</tr>
+<tr>
+<td>Netlify</td>
+<td>Static hosting, deployment automation, and additional services.</td>
+</tr>
+</tbody>
+</table>
+<p>
+        Both platforms provide options
+        suitable for publishing
+        static websites.
+    </p>
+</section>
+<!-- ==========================================
+     RECOMMENDED PUBLISHING APPROACH
+========================================== -->
+<section class="chapter" id="recommended-publishing-approach">
+<h2>What Approach Would We Recommend?</h2>
+<p>
+        For beginners publishing a
+        static website, MDN recommends
+        GitHub Pages because it provides
+        a relatively straightforward
+        publishing process.
+    </p>
+<h3>Publishing with GitHub Pages</h3>
+<ol>
+<li>Create a GitHub account.</li>
+<li>Create a repository for your website.</li>
+<li>Upload your HTML, CSS, JavaScript, and image files.</li>
+<li>Open the repository settings.</li>
+<li>Configure GitHub Pages deployment.</li>
+<li>Wait for the publishing process to complete.</li>
+<li>Open the generated website address.</li>
+</ol>
+<h3>Example Published Address</h3>
+<div class="code-example">
+<pre><code>https://username.github.io/my-website/</code></pre>
+</div>
+<p>
+        The address depends on the
+        GitHub username and repository name.
+    </p>
+<h3>Important Limitation</h3>
+<p>
+        GitHub Pages serves static content.
+        It does not directly run persistent
+        Node.js servers or SQLite databases.
+    </p>
+<p>
+        Applications that require server-side
+        login, sessions, and database operations
+        need a hosting environment that
+        supports those technologies.
+    </p>
+</section>
+<!-- ==========================================
+     PART 2 - BROWSER DEVELOPER TOOLS
+========================================== -->
+<section class="chapter" id="browser-developer-tools">
+<h2>What Are Browser Developer Tools?</h2>
+<p>
+        Browser Developer Tools, commonly
+        called DevTools, are built-in tools
+        that help developers inspect,
+        test, and debug websites.
+    </p>
+<p>
+        Modern browsers such as Chrome,
+        Firefox, Edge, and Safari include
+        developer tools.
+    </p>
+<h3>What Can Developer Tools Do?</h3>
+<ul>
+<li>Inspect HTML elements.</li>
+<li>View and modify CSS styles.</li>
+<li>Debug JavaScript code.</li>
+<li>Display JavaScript errors.</li>
+<li>Inspect network requests.</li>
+<li>Test different viewport sizes.</li>
+<li>Inspect page accessibility information.</li>
+</ul>
+<h3>Why Are Developer Tools Important?</h3>
+<p>
+        Developer tools help identify
+        problems that may not be obvious
+        when viewing a webpage normally.
+    </p>
+<p>
+        They allow developers to examine
+        how the browser interprets
+        and displays website code.
+    </p>
+</section>
+<!-- ==========================================
+     WHAT ARE DEVTOOLS?
+========================================== -->
+<section class="chapter" id="what-are-devtools">
+<h2>What Are DevTools?</h2>
+<p>
+        DevTools display the current
+        state of a webpage as it
+        exists inside the browser.
+    </p>
+<p>
+        The browser's current Document
+        Object Model (DOM) may differ
+        from the original HTML source
+        because JavaScript can modify
+        webpage elements dynamically.
+    </p>
+<h3>Example</h3>
+<div class="code-example">
+<pre><code>&lt;p id="message"&gt;Hello&lt;/p&gt;
+
+&lt;script&gt;
+    document.getElementById("message")
+        .textContent = "Welcome!";
+&lt;/script&gt;</code></pre>
+</div>
+<p>
+        After the JavaScript executes,
+        the displayed paragraph changes
+        from "Hello" to "Welcome!".
+    </p>
+<p>
+        Developer tools can inspect
+        the updated DOM rather than
+        only the original HTML source.
+    </p>
+<h3>Common DevTools Panels</h3>
+<ul>
+<li>Elements or Inspector</li>
+<li>Styles or CSS Editor</li>
+<li>Sources or Debugger</li>
+<li>Console</li>
+<li>Network</li>
+</ul>
+</section>
+<!-- ==========================================
+     OPENING DEVELOPER TOOLS
+========================================== -->
+<section class="chapter" id="opening-developer-tools">
+<h2>How to Open the DevTools in Your Browser</h2>
+<p>
+        Browser developer tools can
+        usually be opened using
+        keyboard shortcuts, browser
+        menus, or the context menu.
+    </p>
+<h3>Keyboard Shortcuts</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Operating System</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows / Linux</td>
+<td>F12 or Ctrl + Shift + I</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>Command + Option + I</td>
+</tr>
+</tbody>
+</table>
+<h3>Using the Context Menu</h3>
+<ol>
+<li>Open a webpage.</li>
+<li>Right-click an element.</li>
+<li>Select Inspect or Inspect Element.</li>
+<li>Examine the selected element in DevTools.</li>
+</ol>
+<h3>Using Browser Menus</h3>
+<p>
+        Chrome, Edge, Firefox, Opera,
+        and Safari provide menu options
+        for opening developer tools.
+    </p>
+<p>
+        Safari may require enabling
+        developer features in its
+        advanced settings first.
+    </p>
+</section>
+<!-- ==========================================
+     INSPECTOR
+========================================== -->
+<section class="chapter" id="dom-inspector-css-editor">
+<h2>The Inspector: DOM Explorer and CSS Editor</h2>
+<p>
+        The Inspector allows developers
+        to examine the HTML structure
+        of a webpage and the CSS
+        applied to its elements.
+    </p>
+<p>
+        In Chrome and Edge, this
+        functionality is commonly
+        found in the Elements panel.
+    </p>
+<p>
+        In Firefox, it is called
+        the Inspector panel.
+    </p>
+<h3>Common Inspector Features</h3>
+<ul>
+<li>View HTML elements.</li>
+<li>Inspect element attributes.</li>
+<li>Examine parent and child elements.</li>
+<li>Modify HTML temporarily.</li>
+<li>View applied CSS rules.</li>
+<li>Inspect layout dimensions.</li>
+</ul>
+</section>
+<!-- ==========================================
+     EXPLORING DOM INSPECTOR
+========================================== -->
+<section class="chapter" id="exploring-dom-inspector">
+<h2>Exploring the DOM Inspector</h2>
+<p>
+        The DOM Inspector displays
+        the hierarchical structure
+        of webpage elements.
+    </p>
+<p>
+        Developers can select an
+        element to inspect its
+        attributes, content,
+        and relationship to
+        other elements.
+    </p>
+<h3>Example HTML</h3>
+<div class="code-example">
+<pre><code>&lt;div class="card"&gt;
+
+    &lt;h2&gt;Book Title&lt;/h2&gt;
+
+    &lt;p&gt;
+        A short book description.
+    &lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+</div>
+<h3>Common Inspector Actions</h3>
+<ul>
+<li>Delete a selected node.</li>
+<li>Edit an element's HTML.</li>
+<li>Copy an element's markup.</li>
+<li>Inspect element attributes.</li>
+<li>Force hover, active, or focus states.</li>
+</ul>
+<h3>Important Reminder</h3>
+<p>
+        Changes made directly through
+        the DOM Inspector are generally
+        temporary and do not automatically
+        modify the original website files.
+    </p>
+</section>
+<!-- ==========================================
+     EXPLORING CSS EDITOR
+========================================== -->
+<section class="chapter" id="exploring-css-editor">
+<h2>Exploring the CSS Editor</h2>
+<p>
+        The CSS Editor displays
+        the styling rules applied
+        to a selected HTML element.
+    </p>
+<p>
+        Developers can temporarily
+        modify CSS properties and
+        immediately observe the result.
+    </p>
+<h3>Example CSS</h3>
+<div class="code-example">
+<pre><code>.card {
+    background-color: white;
+    color: #202b40;
+    padding: 20px;
+    border-radius: 10px;
+}</code></pre>
+</div>
+<h3>Testing CSS Changes</h3>
+<p>
+        A developer can change
+        the background color,
+        padding, font size,
+        or other properties
+        using the Styles panel.
+    </p>
+<h3>Computed Styles</h3>
+<p>
+        The Computed panel shows
+        the final calculated
+        styles applied to
+        an element.
+    </p>
+<h3>Layout Information</h3>
+<p>
+        The Layout panel can
+        provide information
+        about CSS Grid,
+        Flexbox, and other
+        layout systems.
+    </p>
+<h3>CSS Box Model</h3>
+<p>
+        The box model describes
+        the content, padding,
+        border, and margin
+        of an element.
+    </p>
+<div class="code-example">
+<pre><code>Margin
+  Border
+    Padding
+      Content</code></pre>
+</div>
+<h3>Useful CSS Debugging Tasks</h3>
+<ul>
+<li>Identify overridden CSS properties.</li>
+<li>Inspect element spacing.</li>
+<li>Test different colors.</li>
+<li>Check font styles.</li>
+<li>Investigate unexpected layouts.</li>
+</ul>
+</section>
+<!-- ==========================================
+     JAVASCRIPT DEBUGGER
+========================================== -->
+<section class="chapter" id="javascript-debugger">
+<h2>The JavaScript Debugger</h2>
+<p>
+        The JavaScript Debugger
+        helps developers examine
+        JavaScript execution
+        and locate errors.
+    </p>
+<p>
+        Developers can pause
+        JavaScript execution
+        at selected locations
+        and inspect variables.
+    </p>
+<h3>Common Debugger Features</h3>
+<ul>
+<li>Set breakpoints.</li>
+<li>Pause script execution.</li>
+<li>Inspect variable values.</li>
+<li>Step through code.</li>
+<li>View the call stack.</li>
+<li>Examine variable scope.</li>
+</ul>
+<h3>Example JavaScript</h3>
+<div class="code-example">
+<pre><code>let score = 0;
+
+function addScore() {
+    score += 10;
+    console.log(score);
+}
+
+addScore();</code></pre>
+</div>
+<p>
+        A breakpoint can be placed
+        inside the addScore function
+        to inspect the value
+        of the score variable.
+    </p>
+</section>
+<!-- ==========================================
+     EXPLORING DEBUGGER
+========================================== -->
+<section class="chapter" id="exploring-debugger">
+<h2>Exploring the Debugger</h2>
+<p>
+        The JavaScript Debugger
+        commonly contains panels
+        for source files,
+        code inspection,
+        and debugging information.
+    </p>
+<h3>File List</h3>
+<p>
+        The file list displays
+        JavaScript files associated
+        with the current webpage.
+    </p>
+<h3>Source Code</h3>
+<p>
+        The source code panel
+        displays the selected
+        JavaScript file.
+    </p>
+<p>
+        Developers can place
+        breakpoints on specific
+        lines to pause execution.
+    </p>
+<h3>Watch Expressions</h3>
+<p>
+        Watch expressions allow
+        developers to monitor
+        selected expressions
+        while debugging.
+    </p>
+<h3>Breakpoints</h3>
+<p>
+        A breakpoint is a
+        designated location
+        where JavaScript
+        execution pauses.
+    </p>
+<h3>Call Stack</h3>
+<p>
+        The call stack displays
+        the sequence of function
+        calls leading to the
+        current execution point.
+    </p>
+<h3>Scopes</h3>
+<p>
+        The Scopes panel displays
+        variables accessible
+        from the current
+        execution context.
+    </p>
+</section>
+<!-- ==========================================
+     JAVASCRIPT CONSOLE
+========================================== -->
+<section class="chapter" id="javascript-console">
+<h2>The JavaScript Console</h2>
+<p>
+        The JavaScript Console
+        allows developers to
+        execute JavaScript commands
+        and inspect errors
+        directly in the browser.
+    </p>
+<h3>Example: Display a Message</h3>
+<div class="code-example">
+<pre><code>console.log("Hello, CodeVerse!");</code></pre>
+</div>
+<h3>Example: Display an Alert</h3>
+<div class="code-example">
+<pre><code>alert("Welcome to CodeVerse!");</code></pre>
+</div>
+<h3>Example: Modify Page Styling</h3>
+<div class="code-example">
+<pre><code>document.body.style.backgroundColor =
+    "lightblue";</code></pre>
+</div>
+<h3>Example: JavaScript Error</h3>
+<div class="code-example">
+<pre><code>console.log(unknownVariable);</code></pre>
+</div>
+<p>
+        If unknownVariable has not
+        been declared, the browser
+        reports a ReferenceError.
+    </p>
+<h3>Common Console Uses</h3>
+<ul>
+<li>Test JavaScript expressions.</li>
+<li>Display debugging messages.</li>
+<li>Inspect objects and variables.</li>
+<li>Identify runtime errors.</li>
+<li>Experiment with DOM manipulation.</li>
+</ul>
+</section>
+<!-- ==========================================
+     NETWORK INSPECTOR
+========================================== -->
+<section class="chapter" id="network-inspector">
+<h2>The Network Inspector</h2>
+<p>
+        The Network Inspector
+        displays the network
+        requests and responses
+        generated while loading
+        and using a webpage.
+    </p>
+<p>
+        It helps developers
+        determine whether
+        website resources
+        are loading correctly.
+    </p>
+<h3>Resources Commonly Requested</h3>
+<ul>
+<li>HTML documents</li>
+<li>CSS stylesheets</li>
+<li>JavaScript files</li>
+<li>Images</li>
+<li>Fonts</li>
+<li>API responses</li>
+</ul>
+<h3>Example Network Requests</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Resource</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index.html</td>
+<td>200 OK</td>
+</tr>
+<tr>
+<td>style.css</td>
+<td>200 OK</td>
+</tr>
+<tr>
+<td>script.js</td>
+<td>200 OK</td>
+</tr>
+<tr>
+<td>missing-image.png</td>
+<td>404 Not Found</td>
+</tr>
+</tbody>
+</table>
+<h3>How to Use the Network Inspector</h3>
+<ol>
+<li>Open Developer Tools.</li>
+<li>Select the Network panel.</li>
+<li>Reload the webpage.</li>
+<li>Examine the requests displayed.</li>
+<li>Check response status codes.</li>
+<li>Investigate failed requests.</li>
+</ol>
+</section>
+<!-- ==========================================
+     HTTP STATUSES
+========================================== -->
+<section class="chapter" id="http-statuses">
+<h2>HTTP Statuses</h2>
+<p>
+        HTTP status codes are
+        three-digit numbers
+        returned by servers
+        to describe the result
+        of a request.
+    </p>
+<p>
+        These codes help
+        developers determine
+        whether a request
+        succeeded, redirected,
+        failed because of
+        a client issue,
+        or encountered
+        a server problem.
+    </p>
+<h3>Common HTTP Status Codes</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>The requested resource was successfully delivered.</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+<td>The resource has permanently moved to another location.</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+<td>The cached resource can be reused because it has not changed.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>The server refuses access to the requested resource.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>The requested resource could not be found.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>The server encountered an unexpected problem.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>The service is temporarily unable to handle the request.</td>
+</tr>
+</tbody>
+</table>
+<h3>HTTP Status Code Categories</h3>
+<ul>
+<li><strong>1xx:</strong> Informational responses.</li>
+<li><strong>2xx:</strong> Successful requests.</li>
+<li><strong>3xx:</strong> Redirection responses.</li>
+<li><strong>4xx:</strong> Client error responses.</li>
+<li><strong>5xx:</strong> Server error responses.</li>
+</ul>
+<h3>Example: Missing File</h3>
+<div class="code-example">
+<pre><code>GET /images/logo.png
+
+HTTP/1.1 404 Not Found</code></pre>
+</div>
+<p>
+        A 404 response may indicate
+        that the file does not exist
+        at the requested path,
+        the filename is incorrect,
+        or the file was not uploaded.
+    </p>
+<h3>Example: Successful Request</h3>
+<div class="code-example">
+<pre><code>GET /index.html
+
+HTTP/1.1 200 OK</code></pre>
+</div>
+<p>
+        A 200 response indicates
+        that the request was successful.
+    </p>
+<h3>Example: Cached Resource</h3>
+<div class="code-example">
+<pre><code>GET /css/style.css
+
+HTTP/1.1 304 Not Modified</code></pre>
+</div>
+<p>
+        A 304 response allows
+        the browser to reuse
+        a previously cached
+        representation when
+        the relevant cache
+        validation conditions
+        are satisfied.
+    </p>
+<h3>Why HTTP Status Codes Matter</h3>
+<ul>
+<li>Help identify missing resources.</li>
+<li>Assist with debugging API requests.</li>
+<li>Reveal server-side failures.</li>
+<li>Explain redirects and caching behavior.</li>
+<li>Help developers troubleshoot website problems.</li>
+</ul>
+</section>
+<!-- ==========================================
+     CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
+========================================== -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>Test your knowledge of website publishing, hosting, deployment methods, browser developer tools, debugging, and HTTP status codes.</p>
+<div id="quizProgress">0 of 20 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Website Testing, Hosting, Deployment, and Maintenance · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const fontSize = document.getElementById("fontSize");
+    const fontFamily = document.getElementById("fontFamily");
+
+    // Restore saved settings
+    const savedTheme = localStorage.getItem("readerTheme");
+    const savedSize = localStorage.getItem("readerFontSize");
+    const savedFont = localStorage.getItem("readerFontFamily");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (savedSize) {
+        fontSize.value = savedSize;
+    }
+
+    if (savedFont) {
+        fontFamily.value = savedFont;
+    }
+
+    function updateThemeIcon() {
+        themeIcon.textContent =
+            document.body.classList.contains("dark-mode") ? "☀" : "☾";
+    }
+
+    function applyFontSize() {
+        document.querySelectorAll("main .chapter").forEach(chapter => {
+            chapter.style.fontSize = fontSize.value;
+        });
+
+        localStorage.setItem("readerFontSize", fontSize.value);
+    }
+
+    function applyFontFamily() {
+        document.querySelector("main").style.fontFamily = fontFamily.value;
+        localStorage.setItem("readerFontFamily", fontFamily.value);
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "readerTheme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+    });
+
+    fontSize.addEventListener("change", applyFontSize);
+    fontFamily.addEventListener("change", applyFontFamily);
+
+    applyFontSize();
+    applyFontFamily();
+    updateThemeIcon();
+});
+   
+</script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz ||
+        !retryQuiz || !quizResult || !quizProgress) {
+        console.error("Quiz elements not found.");
+        return;
+    }
+
+    /* ==========================================
+       QUIZ QUESTIONS
+    ========================================== */
+
+    const questions = [
+
+        // PART 1 - PUBLISHING YOUR WEBSITE
+
+        {
+            question: "What does publishing a website mean?",
+            options: [
+                "Writing HTML code without saving it",
+                "Making website files accessible through the internet",
+                "Changing the website's background color",
+                "Installing a browser on a computer"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the main purpose of web hosting?",
+            options: [
+                "To provide storage and server resources for a website",
+                "To create CSS animations",
+                "To replace JavaScript",
+                "To design website logos"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is a domain name?",
+            options: [
+                "A programming language used for websites",
+                "A tool for editing JavaScript",
+                "A human-readable address used to locate a website",
+                "A database management system"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which DNS record maps a domain name to an IPv4 address?",
+            options: [
+                "CNAME",
+                "MX",
+                "TXT",
+                "A"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which file transfer protocol uses an SSH connection?",
+            options: [
+                "FTP",
+                "SFTP",
+                "HTTP",
+                "SMTP"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is Rsync primarily used for?",
+            options: [
+                "Synchronizing files between computers",
+                "Creating HTML elements",
+                "Inspecting CSS properties",
+                "Managing browser cookies"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is a web-based IDE?",
+            options: [
+                "A tool used only for database encryption",
+                "A physical server used for hosting",
+                "An online environment for writing and testing code",
+                "A protocol used for secure file transfer"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which platform is commonly used to publish static websites from Git repositories?",
+            options: [
+                "Microsoft Word",
+                "Adobe Photoshop",
+                "SQLite",
+                "GitHub Pages"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which website feature cannot run directly on GitHub Pages?",
+            options: [
+                "HTML documents",
+                "A persistent Node.js and SQLite backend",
+                "CSS stylesheets",
+                "Client-side JavaScript"
+            ],
+            answer: 1
+        },
+        {
+            question: "What publishing approach does the MDN lesson recommend for beginners creating static websites?",
+            options: [
+                "GitHub Pages",
+                "Building a custom data center",
+                "Running a local-only web server",
+                "Purchasing a dedicated physical server"
+            ],
+            answer: 0
+        },
+
+        // PART 2 - BROWSER DEVELOPER TOOLS
+
+        {
+            question: "What is the primary purpose of browser developer tools?",
+            options: [
+                "To register domain names",
+                "To purchase web hosting",
+                "To inspect, test, and debug webpages",
+                "To create computer operating systems"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which keyboard shortcut commonly opens DevTools on Windows?",
+            options: [
+                "Ctrl + C",
+                "Ctrl + S",
+                "Alt + F4",
+                "F12"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which DevTools panel allows developers to inspect HTML elements and CSS styles?",
+            options: [
+                "Network",
+                "Elements or Inspector",
+                "Console",
+                "Sources"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does the DOM Inspector display?",
+            options: [
+                "The hierarchical structure of webpage elements",
+                "The physical location of the web server",
+                "The registered owner of a domain name",
+                "The computer's installed applications"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is the purpose of the CSS Editor in DevTools?",
+            options: [
+                "To permanently change hosting configuration",
+                "To install CSS frameworks automatically",
+                "To inspect and temporarily modify CSS properties",
+                "To manage website database tables"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is a breakpoint in JavaScript debugging?",
+            options: [
+                "A CSS rule that changes the page layout",
+                "A network request that fails",
+                "A command that deletes JavaScript files",
+                "A location where JavaScript execution pauses"
+            ],
+            answer: 3
+        },
+        {
+            question: "What does the JavaScript Console allow developers to do?",
+            options: [
+                "Register domain names",
+                "Execute JavaScript commands and inspect errors",
+                "Purchase SSL certificates",
+                "Upload files through SFTP"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does the Network Inspector display?",
+            options: [
+                "Network requests and responses generated by a webpage",
+                "Only the website's HTML headings",
+                "The browser's installed extensions",
+                "The computer's operating system settings"
+            ],
+            answer: 0
+        },
+        {
+            question: "What does HTTP status code 404 mean?",
+            options: [
+                "The request succeeded",
+                "The resource has permanently moved",
+                "The requested resource was not found",
+                "The server encountered an internal error"
+            ],
+            answer: 2
+        },
+        {
+            question: "What does HTTP status code 304 indicate?",
+            options: [
+                "The server encountered an internal error",
+                "The requested resource was deleted",
+                "The client is forbidden from accessing the resource",
+                "The resource has not been modified and a cached representation may be reused"
+            ],
+            answer: 3
+        }
+
+    ];
+
+    let quizSubmitted = false;
+
+    /* ==========================================
+       LOAD QUIZ
+    ========================================== */
+
+    function loadQuiz() {
+
+        quizSubmitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = String(optionIndex);
+
+                radio.addEventListener("change", updateProgress);
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+            });
+
+            quizQuestions.appendChild(box);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    /* ==========================================
+       UPDATE QUIZ PROGRESS
+    ========================================== */
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    /* ==========================================
+       SUBMIT QUIZ
+    ========================================== */
+
+    submitQuiz.addEventListener("click", function () {
+
+        if (quizSubmitted) return;
+
+        const selections = questions.map((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+        });
+
+        /* VALIDATE ANSWERS */
+
+        if (selections.includes(null)) {
+
+            alert("Please answer all questions before submitting.");
+            return;
+        }
+
+        quizSubmitted = true;
+        submitQuiz.disabled = true;
+
+        let score = 0;
+
+        /* ==========================================
+           CHECK ANSWERS
+        ========================================== */
+
+        questions.forEach((item, index) => {
+
+            const box = quizQuestions.children[index];
+            const selectedAnswer = selections[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+        });
+
+        /* ==========================================
+           CALCULATE QUIZ RESULT
+        ========================================== */
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent work!";
+        } else if (percentage >= 75) {
+            message = "Great job!";
+        } else if (percentage >= 60) {
+            message = "Good effort! Keep reviewing.";
+        } else {
+            message = "Review the chapters and try again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    });
+
+    /* ==========================================
+       RETRY QUIZ
+    ========================================== */
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    /* ==========================================
+       INITIALIZE QUIZ
+    ========================================== */
+
+    loadQuiz();
+
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const menu = document.getElementById('menuToggle');
+ const links = document.getElementById('navLinks');
+ menu?.setAttribute('aria-expanded','false');
+ menu?.addEventListener('click', () => {const open=links.classList.toggle('show');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');});
+ links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('show');menu?.setAttribute('aria-expanded','false');}));
+ const entries=[...document.querySelectorAll('.toc a[href^="#"]')];
+ const sections=entries.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
+ if('IntersectionObserver' in window){const obs=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){entries.forEach(a=>a.classList.toggle('active',a.hash==='#'+item.target.id));}})},{rootMargin:'-95px 0px -65% 0px'});sections.forEach(section=>obs.observe(section));}
+});
+</script>    <script src="/js/navbar-loader.js" defer></script>
+</body></html>

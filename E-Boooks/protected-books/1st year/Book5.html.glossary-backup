@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeVerse | Data, Information, Number Systems, and Computer Architecture</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+
+
+
+<style>
+:root{--bg:#f3f6fc;--surface:#fff;--text:#18263e;--muted:#63738b;--line:#dce5f1;--blue:#3157a4;--blue-dark:#24427f;--soft:#edf3ff;--shadow:0 14px 36px rgba(31,56,100,.08);--reading-size:16px;--reading-family:'DM Sans',Arial,sans-serif;color-scheme:light}
+html[data-theme="dark"]{--bg:#101827;--surface:#1a2638;--text:#eaf0fa;--muted:#afbed1;--line:#34435a;--blue:#88adff;--blue-dark:#a7c1ff;--soft:#243755;--shadow:0 14px 36px rgba(0,0,0,.18);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;line-height:1.7}body,button,select{transition:background-color .2s,color .2s,border-color .2s}a{color:var(--blue)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.navbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:22px;padding:13px max(20px,calc((100vw - 1440px)/2));background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.035)}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:800;font-size:21px;white-space:nowrap}.site-logo{width:39px;height:39px;object-fit:contain}.logo-highlight{color:var(--blue)}.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{text-decoration:none;color:var(--muted);font-weight:700;font-size:14px}.nav-links a:hover,.nav-links a.active{color:var(--blue)}.nav-actions,#accountActions{display:flex;align-items:center;gap:10px}.nav-actions{margin-left:12px}.login-btn,.signup-btn,.logout-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 13px;border-radius:9px;text-decoration:none;font-weight:700;font-size:13px;white-space:nowrap}.login-btn{color:var(--blue);border:1px solid var(--line)}.signup-btn,.logout-btn{color:#fff;background:#3157a4;border:1px solid #3157a4}.account-username{font-size:13px;font-weight:700;color:var(--text);max-width:180px;overflow-wrap:anywhere}.icon-btn,.menu-toggle{border:1px solid var(--line);background:var(--soft);color:var(--text);border-radius:10px;min-width:38px;height:38px}.menu-toggle{display:none}
+.topbar{max-width:1400px;margin:18px auto 0;padding:0 22px}.back-link{text-decoration:none;font-size:14px;font-weight:700}.reading-controls{max-width:1400px;margin:12px auto 18px;padding:12px 22px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}.control-group{display:flex;gap:9px;align-items:center;font-size:13px;font-weight:700;color:var(--muted)}.control-group select{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 12px;border-radius:9px}
+.layout{max-width:1400px;margin:0 auto 55px;padding:0 22px;display:grid;grid-template-columns:minmax(230px,285px) minmax(0,1fr);gap:25px;align-items:start}.toc{position:sticky;top:92px;max-height:calc(100vh - 110px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{margin:0 0 13px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc a{display:block;padding:7px 9px;border-radius:8px;text-decoration:none;font-size:12.5px;line-height:1.5;color:var(--muted)}.toc a:hover,.toc a.current{background:var(--soft);color:var(--blue)}.toc h4{margin:14px 8px 3px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}.layout>main{min-width:0}.book-header{padding:35px 38px;border-radius:19px;background:linear-gradient(125deg,#1c3e7e,#396ec4);color:white;box-shadow:var(--shadow);margin-bottom:21px}.eyebrow{display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:#c9dcff}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3.4vw,42px);line-height:1.2;margin:12px 0}.book-header p{color:#e2edff;margin:0;max-width:700px}
+.chapter{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:clamp(20px,3.2vw,38px);margin:0 0 20px;box-shadow:var(--shadow);font-family:var(--reading-family);font-size:var(--reading-size);overflow-wrap:anywhere}.chapter h1,.chapter h2,.chapter h3{line-height:1.3;color:var(--text)}.chapter h1,.chapter h2{margin:0 0 20px;letter-spacing:-.025em}.chapter h1{font-size:1.75em}.chapter h2{font-size:1.48em;padding-bottom:13px;border-bottom:1px solid var(--line)}.chapter h3{font-size:1.12em;margin:25px 0 10px;color:var(--blue)}.chapter p{margin:12px 0;color:var(--text)}.chapter li{margin:6px 0}.chapter strong{color:var(--text)}.code-example{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:11px;padding:14px;margin:18px 0;overflow:auto}.code-example pre{margin:0;white-space:pre;overflow:auto;font:13px/1.65 Consolas,'Courier New',monospace;color:var(--text)}.lesson-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.9em;display:block;overflow-x:auto}.lesson-table th,.lesson-table td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:110px}.lesson-table th{background:var(--soft);color:var(--text)}.lesson-table tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 45%,var(--surface))}
+#quizProgress{font-weight:800;color:var(--blue);padding:10px 14px;background:var(--soft);border-radius:10px}.quiz-question{padding:20px 0;border-bottom:1px solid var(--line)}.quiz-question h3{margin:0 0 12px;color:var(--text)}.quiz-option{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:8px 0;cursor:pointer}.quiz-option:hover{background:var(--soft)}.quiz-option input{margin-top:6px;accent-color:#3157a4}.quiz-option.correct{background:#e3f8ec;color:#125c38;border-color:#69c18b}.quiz-option.incorrect{background:#ffebec;color:#8c2431;border-color:#e5a4aa}.quiz-option.correct span,.quiz-option.incorrect span{color:inherit}.quiz-feedback{font-weight:700;font-size:.9em}.quiz-actions{display:flex;gap:12px;margin:22px 0}.quiz-actions button{padding:12px 20px;border:0;border-radius:10px;background:#3157a4;color:#fff;font-weight:800}.quiz-actions button:hover{background:#24427f}#retryQuiz{background:#596c89}#quizResult{background:var(--soft);border-radius:14px;padding:22px;text-align:center}#quizResult h2{border:0;font-size:2em;padding:0;margin:5px}.page-footer{text-align:center;color:var(--muted);font-size:13px;padding:16px}
+[hidden]{display:none!important}
+@media(max-width:1000px){.layout{grid-template-columns:220px minmax(0,1fr);gap:14px;padding:0 14px}.navbar{padding:12px 16px;gap:12px}.nav-links{gap:12px}.account-username{max-width:110px}}
+@media(max-width:760px){.navbar{flex-wrap:wrap}.nav-links{display:none;order:5;flex-basis:100%;margin:0;padding:12px 0;border-top:1px solid var(--line)}.nav-links.open{display:flex;flex-direction:column}.nav-actions{margin-left:auto}.menu-toggle{display:inline-block}.layout{display:block}.toc{position:relative;top:auto;max-height:220px;margin-bottom:17px}.book-header{padding:25px}.chapter{padding:21px}.reading-controls{padding:10px 15px}.topbar{padding:0 15px}#accountActions{gap:5px}.login-btn,.signup-btn,.logout-btn{padding:6px 8px;font-size:11px}.account-username{max-width:95px;font-size:11px}}
+@media(max-width:420px){.logo{font-size:17px}.site-logo{width:30px;height:30px}.nav-actions{gap:5px}.icon-btn,.menu-toggle{min-width:30px;height:32px}.account-username{max-width:70px}}
+</style>
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav><a href="#data-info-introduction">Introduction</a><h4>Part I: Data and Number Systems</h4><a href="#dikw-pyramid">1. DIKW Pyramid Architecture</a><a href="#data-types">2. Data Types and Representation</a><a href="#positional-systems">3. Positional Number Systems</a><a href="#decimal-system">4. Decimal Number System</a><a href="#binary-system">5. Binary Number System</a><a href="#octal-system">6. Octal Number System</a><a href="#hexadecimal-system">7. Hexadecimal Number System</a><a href="#base-conversion">8. Base Conversion Procedures</a><a href="#direct-base-mapping">9. Direct Base Mapping</a><a href="#signed-binary">10. Signed Binary Encodings</a><a href="#binary-arithmetic">11. Binary Arithmetic</a><a href="#ieee-floating-point">12. IEEE 754 Floating-Point</a><a href="#character-encoding">13. Character Encoding</a><a href="#multimedia-representation">14. Multimedia Representation</a><a href="#boolean-logic">15. Boolean Algebra and Logic Gates</a><a href="#error-detection">16. Error Detection and Correction</a><a href="#memory-endianness">17. Data Storage and Endianness</a><h4>Part II: Computer Architecture</h4><a href="#architecture-introduction">Computer Architecture Introduction</a><a href="#computer-architecture">18. Architecture Foundations</a><a href="#cpu-components">19. Central Processing Unit</a><a href="#instruction-set">20. Instruction Set Architecture</a><a href="#instruction-execution">21. Instruction Execution Cycle</a><a href="#alu-design">22. ALU Design</a><a href="#control-unit">23. Control Unit</a><a href="#cpu-registers">24. Processor Registers</a><a href="#cpu-pipelining">25. CPU Pipelining</a><a href="#memory-hierarchy">26. Memory Hierarchy</a><a href="#cache-memory">27. Cache Memory</a><a href="#main-memory">28. Main Memory</a><a href="#io-architecture">29. I/O Architecture</a><a href="#system-bus">30. System Bus Architecture</a><a href="#parallel-processing">31. Parallel Processing</a><a href="#gpu-accelerators">32. GPUs and Accelerators</a><a href="#power-thermal">33. Power and Thermal Dynamics</a><a href="#hardware-performance">34. Hardware Performance</a><h4>Assessment</h4><a href="#quiz">Knowledge Assessment Quiz</a></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Data, Information, Number Systems, and Computer Architecture</h1>
+<p>Explore digital data, positional number systems, binary representation, CPU architecture, memory, and hardware performance.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - COMPUTER HISTORY
+     TABLE OF CONTENTS
+========================================== -->
+<div class="book-content">
+<!-- INTRODUCTION -->
+<section class="chapter" id="data-info-introduction">
+<h1>Data, Information, Number Systems, and Computer Architecture</h1>
+<p>
+            Computers represent, organize, process, and store information
+            using digital signals and binary number systems. Understanding
+            how data becomes information, how numbers are represented,
+            and how computer hardware executes instructions is essential
+            to studying information technology.
+        </p>
+<p>
+            This lesson explores data representation, positional number
+            systems, binary arithmetic, character encoding, logic gates,
+            error detection, CPU architecture, memory systems, and
+            hardware performance.
+        </p>
+</section>
+<!-- ==========================================
+         PART I: DATA AND NUMBER SYSTEMS
+    ========================================== -->
+<section class="chapter" id="dikw-pyramid">
+<h2>1. The DIKW Pyramid Architecture</h2>
+<h3>1.1 Data vs. Information</h3>
+<p>
+<strong>Data</strong> refers to raw, unprocessed facts,
+            symbols, signals, or observations that have not yet
+            been given meaningful context.
+        </p>
+<p>
+<strong>Information</strong> is data that has been
+            organized, processed, and interpreted to become
+            meaningful and useful for decision-making.
+        </p>
+<h3>1.2 The DIKW Hierarchy</h3>
+<div class="code-example">
+<pre><code>                 WISDOM
+             Applied Judgment
+                    ▲
+                KNOWLEDGE
+          Understanding and Experience
+                    ▲
+               INFORMATION
+           Processed and Organized Data
+                    ▲
+                   DATA
+             Raw Facts and Values</code></pre>
+</div>
+<h3>1.3 Comparison</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data</td>
+<td>Unprocessed facts</td>
+<td>39.5</td>
+</tr>
+<tr>
+<td>Information</td>
+<td>Data with context</td>
+<td>Body temperature: 39.5°C</td>
+</tr>
+<tr>
+<td>Knowledge</td>
+<td>Information combined with understanding</td>
+<td>A high temperature may indicate fever.</td>
+</tr>
+<tr>
+<td>Wisdom</td>
+<td>Informed judgment and decisions</td>
+<td>Seek appropriate medical assessment.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="data-types">
+<h2>2. Data Types and Data Representation</h2>
+<h3>2.1 Primitive Data Types</h3>
+<p>
+            Primitive data types are basic categories of values
+            supported by programming languages and computer hardware.
+        </p>
+<ul>
+<li><strong>Integer:</strong> Whole numbers without fractional parts.</li>
+<li><strong>Floating-Point:</strong> Numbers represented with fractional precision.</li>
+<li><strong>Character:</strong> Letters, digits, and symbols represented numerically.</li>
+<li><strong>Boolean:</strong> Logical values TRUE and FALSE.</li>
+</ul>
+<h3>2.2 Data Abstraction Hierarchy</h3>
+<div class="code-example">
+<pre><code>Abstract Data Types
+(Stack, Queue, Tree, Graph)
+          ▲
+Composite Data Structures
+(Arrays, Objects, Structures)
+          ▲
+Primitive Data Types
+(Integer, Float, Character, Boolean)
+          ▲
+Hardware Binary Representation
+(0 and 1)</code></pre>
+</div>
+</section>
+<section class="chapter" id="positional-systems">
+<h2>3. Positional Number Systems</h2>
+<h3>3.1 Radix or Base</h3>
+<p>
+            A positional number system represents numbers using
+            digits whose values depend on their position.
+            The number of available digit symbols is called
+            the <strong>radix</strong> or <strong>base</strong>.
+        </p>
+<table class="lesson-table">
+<thead>
+<tr><th>System</th><th>Base</th><th>Digits</th></tr>
+</thead>
+<tbody>
+<tr><td>Binary</td><td>2</td><td>0–1</td></tr>
+<tr><td>Octal</td><td>8</td><td>0–7</td></tr>
+<tr><td>Decimal</td><td>10</td><td>0–9</td></tr>
+<tr><td>Hexadecimal</td><td>16</td><td>0–9, A–F</td></tr>
+</tbody>
+</table>
+<h3>3.2 Positional Expansion</h3>
+<div class="code-example">
+<pre><code>Number Value = Sum of (Digit × Base^Position)
+
+Example:
+
+(1011)₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰
+        = 8 + 0 + 2 + 1
+        = (11)₁₀</code></pre>
+</div>
+</section>
+<section class="chapter" id="decimal-system">
+<h2>4. The Decimal Number System (Base-10)</h2>
+<p>
+            The decimal system uses ten digits, from 0 to 9.
+            Each position represents a power of ten.
+        </p>
+<h3>4.1 Decimal Positional Expansion</h3>
+<div class="code-example">
+<pre><code>Number: 4,582
+
+4 × 10³ = 4000
+5 × 10² =  500
+8 × 10¹ =   80
+2 × 10⁰ =    2
+----------------
+Total     = 4582</code></pre>
+</div>
+<p>
+            Decimal is widely used in everyday calculations,
+            financial records, measurements, and human-readable
+            computer interfaces.
+        </p>
+</section>
+<section class="chapter" id="binary-system">
+<h2>5. The Binary Number System (Base-2)</h2>
+<p>
+            Binary uses two digits: 0 and 1. Computers use
+            binary because digital electronic circuits can
+            distinguish two logical states.
+        </p>
+<h3>5.1 Binary Storage Units</h3>
+<table class="lesson-table">
+<thead>
+<tr><th>Unit</th><th>Size</th></tr>
+</thead>
+<tbody>
+<tr><td>Bit</td><td>1 binary digit</td></tr>
+<tr><td>Nibble</td><td>4 bits</td></tr>
+<tr><td>Byte</td><td>8 bits</td></tr>
+<tr><td>32-bit Word</td><td>4 bytes</td></tr>
+<tr><td>64-bit Word</td><td>8 bytes</td></tr>
+</tbody>
+</table>
+<h3>5.2 Binary to Decimal Example</h3>
+<div class="code-example">
+<pre><code>(1101)₂
+
+1 × 8 = 8
+1 × 4 = 4
+0 × 2 = 0
+1 × 1 = 1
+
+Result: (13)₁₀</code></pre>
+</div>
+</section>
+<section class="chapter" id="octal-system">
+<h2>6. The Octal Number System (Base-8)</h2>
+<p>
+            Octal uses digits 0 through 7. Each octal digit
+            corresponds to exactly three binary bits.
+        </p>
+<h3>6.1 Binary and Octal Mapping</h3>
+<div class="code-example">
+<pre><code>Binary: 111 101 100
+Octal:    7   5   4
+
+Result: (111101100)₂ = (754)₈</code></pre>
+</div>
+<h3>6.2 Unix File Permissions</h3>
+<p>
+            Unix and Linux systems use octal notation to
+            represent file permissions.
+        </p>
+<div class="code-example">
+<pre><code>Read    (r) = 4
+Write   (w) = 2
+Execute (x) = 1
+
+rwx = 4 + 2 + 1 = 7
+r-x = 4 + 0 + 1 = 5
+r-- = 4 + 0 + 0 = 4
+
+Permission Code: 754</code></pre>
+</div>
+</section>
+<section class="chapter" id="hexadecimal-system">
+<h2>7. The Hexadecimal Number System (Base-16)</h2>
+<p>
+            Hexadecimal uses sixteen symbols: 0–9 and A–F.
+            The letters A through F represent decimal
+            values 10 through 15.
+        </p>
+<h3>7.1 Hexadecimal Conversion</h3>
+<div class="code-example">
+<pre><code>Binary: 1111 1010
+Hex:       F    A
+
+Result: (11111010)₂ = (FA)₁₆</code></pre>
+</div>
+<h3>7.2 Applications</h3>
+<ul>
+<li>Memory addresses, such as 0x7FFF.</li>
+<li>Web color codes, such as #FF5733.</li>
+<li>Machine code and debugging.</li>
+<li>Compact representation of binary values.</li>
+</ul>
+</section>
+<section class="chapter" id="base-conversion">
+<h2>8. Algorithmic Base Conversion Procedures</h2>
+<h3>8.1 Decimal to Binary</h3>
+<p>
+            To convert a decimal integer into binary,
+            repeatedly divide it by two and record
+            each remainder. Read the remainders
+            from bottom to top.
+        </p>
+<div class="code-example">
+<pre><code>Convert 156 to Binary
+
+156 ÷ 2 = 78  R0
+ 78 ÷ 2 = 39  R0
+ 39 ÷ 2 = 19  R1
+ 19 ÷ 2 =  9  R1
+  9 ÷ 2 =  4  R1
+  4 ÷ 2 =  2  R0
+  2 ÷ 2 =  1  R0
+  1 ÷ 2 =  0  R1
+
+Read upward: 10011100
+
+(156)₁₀ = (10011100)₂</code></pre>
+</div>
+<h3>8.2 Binary to Decimal</h3>
+<p>
+            Multiply each binary digit by its corresponding
+            power of two and add the results.
+        </p>
+</section>
+<section class="chapter" id="direct-base-mapping">
+<h2>9. Direct Binary, Octal, and Hexadecimal Mapping</h2>
+<p>
+            Binary values can be converted directly into
+            octal or hexadecimal by grouping bits.
+        </p>
+<ul>
+<li>Binary to Octal: Group bits in sets of three.</li>
+<li>Binary to Hexadecimal: Group bits in sets of four.</li>
+</ul>
+<h3>9.1 Conversion Examples</h3>
+<div class="code-example">
+<pre><code>Binary to Octal:
+
+101 110 011
+ 5   6   3
+
+Result: (563)₈
+
+
+Binary to Hexadecimal:
+
+1010 1111
+  A    F
+
+Result: (AF)₁₆</code></pre>
+</div>
+</section>
+<section class="chapter" id="signed-binary">
+<h2>10. Signed Binary Number Encodings</h2>
+<p>
+            Signed binary representations allow computers
+            to store both positive and negative integers.
+        </p>
+<h3>10.1 Sign-Magnitude</h3>
+<p>
+            The most significant bit indicates the sign,
+            while the remaining bits store the magnitude.
+        </p>
+<h3>10.2 One's Complement</h3>
+<p>
+            Negative values are created by inverting
+            every bit of the positive representation.
+        </p>
+<h3>10.3 Two's Complement</h3>
+<p>
+            Two's complement represents negative integers
+            by inverting the bits and adding one.
+        </p>
+<div class="code-example">
+<pre><code>Represent -5 using 8 bits
+
++5 = 00000101
+
+Invert:
+     11111010
+
+Add 1:
+     11111011
+
+-5 = 11111011</code></pre>
+</div>
+</section>
+<section class="chapter" id="binary-arithmetic">
+<h2>11. Binary Arithmetic Mechanics and Overflow</h2>
+<h3>11.1 Binary Addition Rules</h3>
+<div class="code-example">
+<pre><code>0 + 0 = 0
+0 + 1 = 1
+1 + 0 = 1
+1 + 1 = 10
+1 + 1 + 1 = 11</code></pre>
+</div>
+<h3>11.2 Binary Subtraction</h3>
+<p>
+            Subtraction can be implemented using
+            two's complement addition.
+        </p>
+<div class="code-example">
+<pre><code>7 - 5 = 2
+
+  00000111
++ 11111011
+-----------
+1 00000010
+
+Discard carry-out.
+
+Result: 00000010 = 2</code></pre>
+</div>
+<h3>11.3 Arithmetic Overflow</h3>
+<p>
+            Signed overflow occurs when a result exceeds
+            the range representable by the selected
+            number of bits.
+        </p>
+</section>
+<section class="chapter" id="ieee-floating-point">
+<h2>12. IEEE 754 Floating-Point Representation</h2>
+<p>
+            IEEE 754 defines standardized representations
+            and operations for floating-point numbers.
+        </p>
+<h3>12.1 Single Precision</h3>
+<div class="code-example">
+<pre><code>32-bit Floating-Point Format
+
++------+------------+----------------------+
+| Sign | Exponent   | Fraction             |
+| 1 bit| 8 bits     | 23 bits              |
++------+------------+----------------------+</code></pre>
+</div>
+<h3>12.2 Double Precision</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Format</th>
+<th>Total Bits</th>
+<th>Exponent</th>
+<th>Fraction</th>
+<th>Bias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single</td>
+<td>32</td>
+<td>8</td>
+<td>23</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Double</td>
+<td>64</td>
+<td>11</td>
+<td>52</td>
+<td>1023</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="character-encoding">
+<h2>13. Character Encoding Standards</h2>
+<h3>13.1 ASCII</h3>
+<p>
+            ASCII uses seven-bit character codes
+            to represent 128 values, including
+            letters, digits, punctuation, and
+            control characters.
+        </p>
+<h3>13.2 Unicode</h3>
+<p>
+            Unicode provides a universal framework
+            for representing characters from
+            different writing systems.
+        </p>
+<table class="lesson-table">
+<thead>
+<tr><th>Encoding</th><th>Size</th></tr>
+</thead>
+<tbody>
+<tr><td>UTF-8</td><td>1–4 bytes</td></tr>
+<tr><td>UTF-16</td><td>2 or 4 bytes</td></tr>
+<tr><td>UTF-32</td><td>4 bytes</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="multimedia-representation">
+<h2>14. Digital Multimedia Data Representation</h2>
+<h3>14.1 Digital Images</h3>
+<p>
+            Raster images consist of pixels arranged
+            in a two-dimensional grid. Each pixel
+            stores color information.
+        </p>
+<p>
+            In 24-bit RGB color, each pixel contains
+            eight bits for red, eight for green,
+            and eight for blue.
+        </p>
+<h3>14.2 Digital Audio</h3>
+<p>
+            Pulse Code Modulation converts analog
+            sound waves into digital values through
+            sampling and quantization.
+        </p>
+<ul>
+<li>Sampling measures signal amplitude at regular intervals.</li>
+<li>Quantization assigns measurements to discrete levels.</li>
+<li>CD audio commonly uses 44.1 kHz sampling and 16-bit resolution.</li>
+</ul>
+</section>
+<section class="chapter" id="boolean-logic">
+<h2>15. Boolean Algebra and Fundamental Logic Gates</h2>
+<p>
+            Boolean algebra describes logical operations
+            performed using binary truth values.
+        </p>
+<table class="lesson-table">
+<thead>
+<tr><th>Gate</th><th>Function</th></tr>
+</thead>
+<tbody>
+<tr><td>AND</td><td>1 when both inputs are 1.</td></tr>
+<tr><td>OR</td><td>1 when at least one input is 1.</td></tr>
+<tr><td>NOT</td><td>Inverts the input.</td></tr>
+<tr><td>NAND</td><td>Inverse of AND.</td></tr>
+<tr><td>NOR</td><td>Inverse of OR.</td></tr>
+<tr><td>XOR</td><td>1 when inputs differ.</td></tr>
+<tr><td>XNOR</td><td>1 when inputs are equal.</td></tr>
+</tbody>
+</table>
+<h3>15.1 Truth Table</h3>
+<div class="code-example">
+<pre><code>A B | AND OR XOR
+----------------
+0 0 |  0   0   0
+0 1 |  0   1   1
+1 0 |  0   1   1
+1 1 |  1   1   0</code></pre>
+</div>
+</section>
+<section class="chapter" id="error-detection">
+<h2>16. Error Detection and Correction Codes</h2>
+<p>
+            Error detection and correction mechanisms
+            help maintain data integrity during
+            transmission and storage.
+        </p>
+<h3>16.1 Parity Bits</h3>
+<p>
+            A parity bit is added to make the number
+            of binary ones either even or odd.
+        </p>
+<h3>16.2 Hamming Code</h3>
+<p>
+            Hamming codes use redundant check bits
+            to locate and correct certain bit errors.
+            Extended Hamming codes can provide
+            single-error correction and double-error
+            detection (SECDED).
+        </p>
+<h3>16.3 Cyclic Redundancy Check</h3>
+<p>
+            CRC uses polynomial division to generate
+            a check value for detecting errors,
+            particularly burst errors.
+        </p>
+</section>
+<section class="chapter" id="memory-endianness">
+<h2>17. Data Storage and Hardware Layout</h2>
+<h3>17.1 Endianness</h3>
+<p>
+            Endianness determines the order in which
+            bytes of a multi-byte value are stored
+            in memory.
+        </p>
+<div class="code-example">
+<pre><code>Value: 0x12345678
+
+Address:       00   01   02   03
+
+Big-Endian:    12   34   56   78
+
+Little-Endian: 78   56   34   12</code></pre>
+</div>
+<h3>17.2 Memory Alignment</h3>
+<p>
+            Memory alignment places data at suitable
+            address boundaries to support efficient
+            hardware access.
+        </p>
+</section>
+<!-- ==========================================
+         PART II: COMPUTER ARCHITECTURE
+    ========================================== -->
+<section class="chapter" id="architecture-introduction">
+<h2>Part II: Computer Architecture</h2>
+<p>
+            Computer architecture defines the structural
+            organization and operational behavior of
+            computer hardware, including processors,
+            memory systems, buses, input/output
+            controllers, and execution mechanisms.
+        </p>
+</section>
+<section class="chapter" id="computer-architecture">
+<h2>18. Computer System Architecture Foundations</h2>
+<h3>18.1 Von Neumann Architecture</h3>
+<p>
+            Von Neumann architecture stores program
+            instructions and data within a shared
+            memory system.
+        </p>
+<h3>18.2 Harvard Architecture</h3>
+<p>
+            Harvard architecture uses separate
+            instruction and data memory paths,
+            allowing concurrent access.
+        </p>
+<table class="lesson-table">
+<thead>
+<tr><th>Von Neumann</th><th>Harvard</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared instruction and data memory</td>
+<td>Separate instruction and data memories</td>
+</tr>
+<tr>
+<td>Shared memory path</td>
+<td>Separate memory paths</td>
+</tr>
+<tr>
+<td>Simpler organization</td>
+<td>More specialized organization</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="cpu-components">
+<h2>19. The Central Processing Unit (CPU)</h2>
+<p>
+            The CPU executes program instructions
+            and coordinates computer operations.
+        </p>
+<ul>
+<li><strong>Control Unit:</strong> Directs instruction execution.</li>
+<li><strong>ALU:</strong> Performs arithmetic and logical operations.</li>
+<li><strong>Registers:</strong> Provide high-speed internal storage.</li>
+</ul>
+</section>
+<section class="chapter" id="instruction-set">
+<h2>20. Instruction Set Architecture (ISA)</h2>
+<p>
+            An ISA defines the instructions and
+            programmer-visible behavior supported
+            by a processor.
+        </p>
+<h3>20.1 CISC</h3>
+<p>
+            Complex Instruction Set Computer
+            architectures provide instructions
+            capable of performing relatively
+            complex operations.
+        </p>
+<h3>20.2 RISC</h3>
+<p>
+            Reduced Instruction Set Computer
+            architectures emphasize simpler
+            instructions and efficient execution.
+        </p>
+<table class="lesson-table">
+<thead>
+<tr><th>CISC</th><th>RISC</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Complex instruction capabilities</td>
+<td>Simpler instruction design</td>
+</tr>
+<tr>
+<td>Examples: x86, x86-64</td>
+<td>Examples: ARM, RISC-V</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="instruction-execution">
+<h2>21. The Instruction Execution Cycle</h2>
+<p>
+            A classical five-stage instruction
+            pipeline includes the following stages:
+        </p>
+<ol>
+<li><strong>Fetch:</strong> Retrieve the instruction.</li>
+<li><strong>Decode:</strong> Interpret the instruction.</li>
+<li><strong>Execute:</strong> Perform the operation.</li>
+<li><strong>Memory Access:</strong> Read or write memory when required.</li>
+<li><strong>Writeback:</strong> Store the result.</li>
+</ol>
+<div class="code-example">
+<pre><code>FETCH → DECODE → EXECUTE → MEMORY → WRITEBACK</code></pre>
+</div>
+</section>
+<section class="chapter" id="alu-design">
+<h2>22. Arithmetic Logic Unit (ALU) Design</h2>
+<p>
+            ALUs use digital logic circuits,
+            adders, and multiplexers to perform
+            arithmetic and logical operations.
+        </p>
+<h3>22.1 Condition Flags</h3>
+<ul>
+<li><strong>Zero:</strong> Result equals zero.</li>
+<li><strong>Sign:</strong> Result is negative.</li>
+<li><strong>Carry:</strong> Unsigned carry-out occurs.</li>
+<li><strong>Overflow:</strong> Signed result exceeds its range.</li>
+</ul>
+</section>
+<section class="chapter" id="control-unit">
+<h2>23. Control Unit Implementation</h2>
+<h3>23.1 Hardwired Control</h3>
+<p>
+            Hardwired control units generate
+            control signals using fixed logic circuits.
+        </p>
+<h3>23.2 Microprogrammed Control</h3>
+<p>
+            Microprogrammed control units use
+            microinstructions to implement
+            processor control operations.
+        </p>
+</section>
+<section class="chapter" id="cpu-registers">
+<h2>24. Processor Register Organization</h2>
+<table class="lesson-table">
+<thead>
+<tr><th>Register</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td>PC</td><td>Address of the next instruction.</td></tr>
+<tr><td>IR</td><td>Currently held instruction.</td></tr>
+<tr><td>MAR</td><td>Memory address for an access.</td></tr>
+<tr><td>MBR/MDR</td><td>Data being transferred to or from memory.</td></tr>
+<tr><td>SP</td><td>Current stack position.</td></tr>
+<tr><td>ACC</td><td>Intermediate arithmetic results.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="cpu-pipelining">
+<h2>25. CPU Pipelining and Hazard Management</h2>
+<p>
+            Pipelining overlaps different stages
+            of multiple instructions to improve
+            processor throughput.
+        </p>
+<h3>25.1 Pipeline Hazards</h3>
+<ul>
+<li><strong>Structural:</strong> Hardware resource conflicts.</li>
+<li><strong>Data:</strong> Dependencies between instructions.</li>
+<li><strong>Control:</strong> Branches change instruction flow.</li>
+</ul>
+<p>
+            Forwarding, stalls, and branch prediction
+            help reduce pipeline disruptions.
+        </p>
+</section>
+<section class="chapter" id="memory-hierarchy">
+<h2>26. Memory Hierarchy Architecture</h2>
+<p>
+            Computer memory is organized into levels
+            according to access speed, capacity,
+            and cost.
+        </p>
+<div class="code-example">
+<pre><code>        CPU REGISTERS
+             ↓
+          L1 CACHE
+             ↓
+        L2 / L3 CACHE
+             ↓
+         MAIN MEMORY
+             ↓
+       SECONDARY STORAGE</code></pre>
+</div>
+</section>
+<section class="chapter" id="cache-memory">
+<h2>27. Cache Memory Mapping and Replacement</h2>
+<h3>27.1 Cache Mapping</h3>
+<ul>
+<li><strong>Direct-Mapped:</strong> Each block maps to one cache line.</li>
+<li><strong>Fully Associative:</strong> A block can occupy any cache line.</li>
+<li><strong>Set-Associative:</strong> A block maps to a set containing multiple possible lines.</li>
+</ul>
+<h3>27.2 Replacement Policies</h3>
+<ul>
+<li>Least Recently Used (LRU)</li>
+<li>First-In, First-Out (FIFO)</li>
+<li>Random Replacement</li>
+</ul>
+</section>
+<section class="chapter" id="main-memory">
+<h2>28. Main Memory Systems (RAM)</h2>
+<table class="lesson-table">
+<thead>
+<tr><th>SRAM</th><th>DRAM</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Uses latch-based storage</td>
+<td>Uses capacitor-based storage</td>
+</tr>
+<tr>
+<td>No periodic refresh required while powered</td>
+<td>Requires periodic refresh</td>
+</tr>
+<tr>
+<td>Typically used for cache</td>
+<td>Typically used for main RAM</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="io-architecture">
+<h2>29. Input/Output Control Architectures</h2>
+<h3>29.1 Programmed I/O</h3>
+<p>
+            The CPU repeatedly checks device
+            status while waiting for an operation.
+        </p>
+<h3>29.2 Interrupt-Driven I/O</h3>
+<p>
+            A device notifies the processor
+            when attention is required.
+        </p>
+<h3>29.3 Direct Memory Access</h3>
+<p>
+            DMA transfers data between memory
+            and peripherals without CPU handling
+            every individual transfer.
+        </p>
+</section>
+<section class="chapter" id="system-bus">
+<h2>30. System Bus Architecture</h2>
+<ul>
+<li><strong>Data Bus:</strong> Transfers data.</li>
+<li><strong>Address Bus:</strong> Identifies target locations.</li>
+<li><strong>Control Bus:</strong> Carries control signals.</li>
+</ul>
+</section>
+<section class="chapter" id="parallel-processing">
+<h2>31. Parallel Processing and Flynn's Taxonomy</h2>
+<table class="lesson-table">
+<thead>
+<tr><th>Classification</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>SISD</td><td>Single Instruction, Single Data</td></tr>
+<tr><td>SIMD</td><td>Single Instruction, Multiple Data</td></tr>
+<tr><td>MISD</td><td>Multiple Instruction, Single Data</td></tr>
+<tr><td>MIMD</td><td>Multiple Instruction, Multiple Data</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="gpu-accelerators">
+<h2>32. Graphics Processing Units and Accelerators</h2>
+<p>
+            CPUs emphasize flexible execution
+            and low-latency processing, while
+            GPUs are designed for high-throughput
+            parallel computations.
+        </p>
+<p>
+            GPUs are widely used in graphics
+            rendering, scientific computation,
+            and artificial intelligence.
+        </p>
+</section>
+<section class="chapter" id="power-thermal">
+<h2>33. Power and Thermal Dynamics</h2>
+<p>
+            Modern processors manage electrical
+            power consumption and heat generation
+            using techniques such as Dynamic
+            Voltage and Frequency Scaling (DVFS).
+        </p>
+<p>
+            DVFS adjusts operating voltage and
+            frequency to balance performance
+            and energy consumption.
+        </p>
+</section>
+<section class="chapter" id="hardware-performance">
+<h2>34. Hardware Performance Diagnostic Metrics</h2>
+<table class="lesson-table">
+<thead>
+<tr><th>Metric</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>Clock Rate</td><td>Processor cycles per second.</td></tr>
+<tr><td>IPC</td><td>Instructions retired per cycle.</td></tr>
+<tr><td>Execution Time</td><td>Time required to complete a workload.</td></tr>
+<tr><td>FLOPS</td><td>Floating-point operations per second.</td></tr>
+</tbody>
+</table>
+<h3>Conclusion</h3>
+<p>
+            Data representation and computer architecture
+            work together to make modern computing possible.
+            Binary encoding enables digital information
+            processing, while processors, memory, and
+            interconnects execute the operations required
+            by software applications.
+        </p>
+</section>
+</div>
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+        Test your understanding of Data, Information,
+        Number Systems, and Computer Architecture.
+        Answer all 34 questions before submitting.
+    </p>
+<p aria-live="polite" id="quizProgress">
+        0 of 34 answered
+    </p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Data, Information, Number Systems, and Computer Architecture · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const quizProgress = document.getElementById("quizProgress");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+
+    if (!quizQuestions || !quizProgress ||
+        !submitQuiz || !retryQuiz || !quizResult) {
+        console.error("Quiz HTML elements not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What is the correct order of the DIKW hierarchy?",
+            options: [
+                "Wisdom, Data, Knowledge, Information",
+                "Data, Information, Knowledge, Wisdom",
+                "Information, Data, Wisdom, Knowledge",
+                "Knowledge, Wisdom, Data, Information"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which of the following is a primitive data type?",
+            options: [
+                "Graph",
+                "Queue",
+                "Boolean",
+                "Tree"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is the radix of the binary number system?",
+            options: ["8", "10", "16", "2"],
+            answer: 3
+        },
+        {
+            question: "Which digits are used in the decimal system?",
+            options: [
+                "0 through 9",
+                "0 through 7",
+                "0 and 1",
+                "0 through F"
+            ],
+            answer: 0
+        },
+        {
+            question: "How many bits are contained in one byte?",
+            options: ["4", "8", "16", "32"],
+            answer: 1
+        },
+        {
+            question: "How many binary bits represent one octal digit?",
+            options: ["2", "4", "3", "8"],
+            answer: 2
+        },
+        {
+            question: "What decimal value does hexadecimal F represent?",
+            options: ["10", "12", "14", "15"],
+            answer: 3
+        },
+        {
+            question: "What is the binary equivalent of decimal 156?",
+            options: [
+                "10011100",
+                "10101100",
+                "11001100",
+                "11110000"
+            ],
+            answer: 0
+        },
+        {
+            question: "How many bits are grouped for binary-to-hexadecimal conversion?",
+            options: ["3", "4", "5", "8"],
+            answer: 1
+        },
+        {
+            question: "How is a negative number formed using two's complement?",
+            options: [
+                "Add two to the positive number",
+                "Remove the most significant bit",
+                "Invert all bits and add one",
+                "Reverse the order of the bits"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is the result of binary addition 1 + 1?",
+            options: ["0", "1", "11", "10"],
+            answer: 3
+        },
+        {
+            question: "How many bits are used in IEEE 754 single precision?",
+            options: ["32", "16", "64", "128"],
+            answer: 0
+        },
+        {
+            question: "Which encoding uses 1 to 4 bytes per Unicode code point?",
+            options: [
+                "ASCII",
+                "UTF-8",
+                "UTF-32",
+                "Binary Coded Decimal"
+            ],
+            answer: 1
+        },
+        {
+            question: "What are the three color channels of RGB images?",
+            options: [
+                "Cyan, Magenta, Yellow",
+                "Red, Gray, Black",
+                "Red, Green, Blue",
+                "White, Black, Yellow"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which logic gate outputs 1 when its two inputs differ?",
+            options: ["AND", "NOR", "XNOR", "XOR"],
+            answer: 3
+        },
+        {
+            question: "Which coding technique uses redundant bits to correct single-bit errors?",
+            options: [
+                "Hamming Code",
+                "ASCII",
+                "RGB",
+                "Floating-Point Encoding"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which byte ordering stores the least significant byte first?",
+            options: [
+                "Big-Endian",
+                "Little-Endian",
+                "Binary-Endian",
+                "Reverse ASCII"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which architecture uses separate instruction and data memories?",
+            options: [
+                "Von Neumann",
+                "CISC",
+                "Harvard",
+                "MIMD"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which CPU component performs arithmetic and logical operations?",
+            options: [
+                "Control Unit",
+                "RAM",
+                "Program Counter",
+                "Arithmetic Logic Unit"
+            ],
+            answer: 3
+        },
+        {
+            question: "What does ISA stand for?",
+            options: [
+                "Instruction Set Architecture",
+                "Internal Storage Application",
+                "Integrated System Algorithm",
+                "Input Signal Architecture"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is the first stage of the classical instruction cycle?",
+            options: [
+                "Execute",
+                "Fetch",
+                "Writeback",
+                "Memory Access"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which ALU flag indicates a result of zero?",
+            options: [
+                "Carry Flag",
+                "Overflow Flag",
+                "Zero Flag",
+                "Sign Flag"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which control unit implementation uses microinstructions?",
+            options: [
+                "Hardwired Control",
+                "Optical Control",
+                "Mechanical Control",
+                "Microprogrammed Control"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which CPU register holds the address of the next instruction?",
+            options: [
+                "Program Counter",
+                "Instruction Register",
+                "Accumulator",
+                "Stack Pointer"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which pipeline hazard occurs when instructions depend on unfinished results?",
+            options: [
+                "Structural Hazard",
+                "Data Hazard",
+                "Thermal Hazard",
+                "Power Hazard"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which memory component is closest to the CPU in the memory hierarchy?",
+            options: [
+                "Hard Disk Drive",
+                "Main RAM",
+                "CPU Registers",
+                "Optical Storage"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which cache mapping allows a memory block to occupy any cache line?",
+            options: [
+                "Direct-Mapped",
+                "Set-Associative",
+                "Fixed-Mapped",
+                "Fully Associative"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which RAM technology requires periodic refreshing?",
+            options: [
+                "DRAM",
+                "SRAM",
+                "ROM",
+                "Flash Memory"
+            ],
+            answer: 0
+        },
+        {
+            question: "What does DMA stand for?",
+            options: [
+                "Digital Memory Algorithm",
+                "Direct Memory Access",
+                "Dynamic Machine Architecture",
+                "Data Management Application"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which system bus carries memory addresses?",
+            options: [
+                "Data Bus",
+                "Control Bus",
+                "Address Bus",
+                "Audio Bus"
+            ],
+            answer: 2
+        },
+        {
+            question: "What does SIMD mean?",
+            options: [
+                "Single Input, Multiple Devices",
+                "System Instruction, Memory Data",
+                "Sequential Instructions, Multiple Devices",
+                "Single Instruction, Multiple Data"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which processor is designed for high-throughput parallel graphics computations?",
+            options: [
+                "GPU",
+                "Keyboard Controller",
+                "Storage Controller",
+                "BIOS"
+            ],
+            answer: 0
+        },
+        {
+            question: "What does DVFS adjust?",
+            options: [
+                "Memory addresses and file names",
+                "Processor voltage and frequency",
+                "Keyboard input and mouse sensitivity",
+                "Screen size and resolution"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does IPC measure in processor performance?",
+            options: [
+                "Internet packets per connection",
+                "Input ports per computer",
+                "Instructions per cycle",
+                "Internal processes per core"
+            ],
+            answer: 2
+        }
+    ];
+
+    // ==========================================
+    // LOAD QUIZ
+    // ==========================================
+
+    function loadQuiz() {
+
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const questionBox = document.createElement("div");
+            questionBox.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            questionBox.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener("change", updateProgress);
+
+                const text = document.createElement("span");
+                text.textContent = option;
+
+                label.appendChild(radio);
+                label.appendChild(text);
+
+                questionBox.appendChild(label);
+            });
+
+            quizQuestions.appendChild(questionBox);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+        retryQuiz.hidden = true;
+
+        updateProgress();
+    }
+
+    // ==========================================
+    // UPDATE PROGRESS
+    // ==========================================
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) answered++;
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    // ==========================================
+    // SUBMIT QUIZ
+    // ==========================================
+
+    submitQuiz.addEventListener("click", function () {
+
+        let score = 0;
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) answered++;
+        });
+
+        if (answered !== questions.length) {
+
+            alert(
+                `Please answer all questions first. ` +
+                `You answered ${answered} of ${questions.length}.`
+            );
+
+            return;
+        }
+
+        questions.forEach((item, index) => {
+
+            const questionBox = quizQuestions.children[index];
+
+            const selected = questionBox.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            const selectedAnswer = Number(selected.value);
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            const labels = questionBox.querySelectorAll(".quiz-option");
+
+            labels.forEach((label, optionIndex) => {
+
+                const radio = label.querySelector("input");
+                radio.disabled = true;
+
+                if (optionIndex === item.answer) {
+                    label.classList.add("correct");
+                } else if (optionIndex === selectedAnswer) {
+                    label.classList.add("incorrect");
+                }
+            });
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            questionBox.appendChild(feedback);
+        });
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message = "";
+
+        if (percentage >= 90) {
+            message = "Excellent! You have mastered the lesson.";
+        } else if (percentage >= 75) {
+            message = "Great job! You understand most of the topics.";
+        } else if (percentage >= 60) {
+            message = "Good effort! Review the questions you missed.";
+        } else {
+            message = "Keep studying and try again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    });
+
+    // ==========================================
+    // RETRY QUIZ
+    // ==========================================
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    loadQuiz();
+
+});
+</script>
+<script>
+(function(){
+ const root=document.documentElement;
+ const themeButton=document.getElementById('themeToggle'),themeIcon=document.getElementById('themeIcon');
+ const size=document.getElementById('fontSize'),family=document.getElementById('fontFamily');
+ const key='codeverseReaderTheme';
+ function setTheme(value){root.dataset.theme=value;themeIcon.textContent=value==='dark'?'☀':'☾';themeButton.setAttribute('aria-pressed',String(value==='dark'));try{localStorage.setItem(key,value)}catch(e){}}
+ let saved='light';try{saved=localStorage.getItem(key)||localStorage.getItem('readerTheme')||'light'}catch(e){}setTheme(saved==='dark'?'dark':'light');
+ themeButton.addEventListener('click',()=>setTheme(root.dataset.theme==='dark'?'light':'dark'));
+ try{const v=localStorage.getItem('readerFontSize');if([...size.options].some(o=>o.value===v))size.value=v;const f=localStorage.getItem('readerFontFamily');if([...family.options].some(o=>o.value===f))family.value=f}catch(e){}
+ function updateReader(){root.style.setProperty('--reading-size',size.value);root.style.setProperty('--reading-family',family.value);try{localStorage.setItem('readerFontSize',size.value);localStorage.setItem('readerFontFamily',family.value)}catch(e){}}
+ size.addEventListener('change',updateReader);family.addEventListener('change',updateReader);updateReader();
+ const menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
+ const tocLinks=[...document.querySelectorAll('.toc a[href^="#"]')];const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){tocLinks.forEach(a=>a.classList.toggle('current',a.getAttribute('href')==='#'+entry.target.id));break}}},{rootMargin:'-15% 0px -70% 0px'});document.querySelectorAll('section.chapter[id]').forEach(s=>observer.observe(s));
+})();
+</script>    <script src="/js/navbar-loader.js" defer></script>
+</body></html>

@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeVerse | Programs and Processes of Computer</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+
+
+<style>
+:root{--primary:#3157a4;--primary-strong:#24427f;--bg:#f4f7fc;--surface:#fff;--text:#243149;--muted:#65748d;--line:#e1e7f0;--soft:#edf3ff;--shadow:0 10px 32px #1e325a12}
+html{scroll-behavior:smooth;scroll-padding-top:96px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;transition:background .2s,color .2s}body.dark-mode{--primary:#9bbcff;--primary-strong:#bfd1ff;--bg:#101827;--surface:#1b2739;--text:#edf3fc;--muted:#b4c1d5;--line:#34445c;--soft:#253954;--shadow:0 10px 32px #0004}a{color:var(--primary);text-decoration:none}button,select{font:inherit}button{cursor:pointer}
+.navbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:13px clamp(16px,4vw,52px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:800;font-size:22px;white-space:nowrap}.site-logo{width:37px;height:37px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{color:var(--text);font-size:14px;font-weight:700}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px}.menu-toggle{display:none}#accountActions{display:flex;align-items:center;gap:9px}.login-btn,.signup-btn,.logout-btn{display:inline-block;padding:9px 12px;border-radius:9px;font-size:13px;font-weight:700;white-space:nowrap}.login-btn{border:1px solid var(--line)}.signup-btn,.logout-btn{background:#3157a4;color:white;border:0}.account-username{font-size:13px;color:var(--text);font-weight:700}
+.topbar{padding:15px clamp(16px,5vw,64px);border-bottom:1px solid var(--line)}.back-link{font-weight:700;font-size:14px}.reading-controls{display:flex;flex-wrap:wrap;gap:18px;padding:14px clamp(16px,5vw,64px);background:var(--surface);border-bottom:1px solid var(--line)}.control-group{display:flex;align-items:center;gap:9px}.control-group label{font-size:13px;font-weight:700}.control-group select{padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text)}
+.layout{max-width:1450px;margin:28px auto;padding:0 22px;display:grid;grid-template-columns:minmax(215px,280px) minmax(0,1fr);gap:26px;align-items:start}.toc{position:sticky;top:91px;max-height:calc(100vh - 111px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{margin:0 0 13px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{display:block;color:var(--muted);font-size:12px;line-height:1.45;border-radius:8px;padding:9px 10px}.toc nav a:hover,.toc nav a.active{background:var(--soft);color:var(--primary)}main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:clamp(20px,3vw,38px);margin-bottom:22px;box-shadow:var(--shadow)}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3vw,42px);line-height:1.22;margin:12px 0}.book-header p{color:var(--muted);line-height:1.75}.eyebrow{color:var(--primary);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.chapter{font-size:var(--reader-size,16px);font-family:var(--reader-font,'DM Sans',sans-serif);line-height:1.85;overflow-wrap:anywhere}.chapter h1,.chapter h2,.chapter h3{line-height:1.4;color:var(--text)}.chapter h1{font-size:1.9em}.chapter h2{font-size:1.48em}.chapter h3{font-size:1.16em;margin-top:25px}.chapter p,.chapter li{color:var(--text)}.chapter li{margin-bottom:7px}.chapter table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:20px 0}.chapter th,.chapter td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:105px}.chapter th{background:var(--soft)}.code-example{overflow-x:auto;border:1px solid var(--line);background:var(--soft);padding:16px;border-radius:10px;margin:18px 0}.code-example pre{margin:0;white-space:pre;font-size:13px;line-height:1.5;color:var(--text)}.quiz-question{padding:18px 0;border-bottom:1px solid var(--line)}.quiz-question h3{font-size:1em;margin:0 0 12px}.quiz-option{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:9px;padding:11px 13px;margin:7px 0;cursor:pointer}.quiz-option:has(input:checked){border-color:var(--primary);background:var(--soft)}.quiz-option.correct{border-color:#24a36a;background:#24a36a18}.quiz-option.incorrect{border-color:#d95363;background:#d9536318}.quiz-feedback{font-weight:700;font-size:.88em}.quiz-actions{display:flex;gap:12px;margin-top:22px}.quiz-actions button{background:#3157a4;color:white;border:0;border-radius:9px;padding:12px 20px;font-weight:700}.quiz-actions button:disabled{opacity:.5}#quizProgress{color:var(--muted);font-weight:700}#quizResult{padding:22px;background:var(--soft);border-radius:12px;margin-top:18px;text-align:center}[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:20px 0 40px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:255px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}@media(max-width:620px){.navbar{gap:9px}.logo{font-size:17px}.site-logo{width:30px;height:30px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;gap:12px}.nav-links.open{display:flex}.nav-actions{margin-left:auto}#accountActions{gap:6px}.account-username{max-width:105px;overflow-wrap:anywhere;font-size:11px}.login-btn,.signup-btn,.logout-btn{font-size:11px;padding:8px}.layout{padding:0 12px;gap:14px}.control-group{flex-wrap:wrap}}
+</style>    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav><a href="#programs-processes-intro">Introduction to Programs and Processes</a><a href="#program-foundations">1. Foundational Definitions and Operational Paradigms</a><a href="#compilation-linking">2. Compilation, Assembly, and Linking</a><a href="#process-memory">3. Process Memory Architecture</a><a href="#process-control-block">4. Process Control Block (PCB)</a><a href="#process-lifecycle">5. Process Lifecycle State Machine</a><a href="#cpu-scheduling-principles">6. CPU Scheduling Principles and Metrics</a><a href="#cpu-scheduling-algorithms">7. CPU Scheduling Algorithms</a><a href="#process-creation">8. Process Creation and Control</a><a href="#threads-multithreading">9. Threads and Multithreading</a><a href="#interprocess-communication">10. Inter-Process Communication</a><a href="#process-synchronization">11. Process Synchronization</a><a href="#deadlocks-resource-management">12. Deadlocks and Resource Allocation</a><a href="#virtual-memory-paging">13. Virtual Memory and Paging</a><a href="#context-switching">14. Context Switching and Kernel Overhead</a><a href="#process-security">15. Security and Process Isolation</a><a href="#signals-events">16. Signals and Event-Driven Architecture</a><a href="#containers-diagnostics">17. Containers and System Diagnostics</a><a href="#quiz">Knowledge Assessment Quiz</a></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Programs and Processes of Computer</h1>
+<p>Explore how computer programs become running processes, including CPU scheduling, memory, threads, synchronization, and process security.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - COMPUTER HISTORY
+     TABLE OF CONTENTS
+========================================== -->
+<div class="book-content">
+<!-- INTRODUCTION -->
+<!-- ==========================================
+     CODEVERSE
+     PROGRAMS AND PROCESSES OF COMPUTER
+========================================== -->
+<section class="chapter" id="programs-processes-intro">
+<h1>Programs and Processes of Computer</h1>
+<p>
+        Programs and processes are fundamental concepts in
+        computer science, operating systems, and software execution.
+        A program is a passive collection of instructions stored on
+        secondary storage, while a process is an active instance
+        of a program executing under operating system control.
+    </p>
+<h3>Program vs. Process</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Program</th>
+<th>Process</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nature</td>
+<td>Static / Passive</td>
+<td>Dynamic / Active</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Secondary storage (SSD/HDD)</td>
+<td>RAM and CPU execution context</td>
+</tr>
+<tr>
+<td>Lifespan</td>
+<td>Remains stored until removed</td>
+<td>Exists during execution</td>
+</tr>
+<tr>
+<td>Resources</td>
+<td>Storage space</td>
+<td>CPU, RAM, files, and I/O</td>
+</tr>
+<tr>
+<td>OS Management</td>
+<td>File system</td>
+<td>Kernel scheduler and PCB</td>
+</tr>
+</tbody>
+</table>
+<h3>Basic Computer Components</h3>
+<ul>
+<li><strong>Input Unit:</strong> Receives data and instructions.</li>
+<li><strong>Output Unit:</strong> Presents processed results.</li>
+<li><strong>Memory Unit:</strong> Stores actively used instructions and data.</li>
+<li><strong>Arithmetic Logic Unit (ALU):</strong> Performs calculations and logical operations.</li>
+<li><strong>Control Unit (CU):</strong> Coordinates instruction execution.</li>
+<li><strong>Secondary Storage:</strong> Stores programs and data for long-term use.</li>
+</ul>
+<h3>How a Computer Executes Instructions</h3>
+<ol>
+<li>A programmer creates instructions and data.</li>
+<li>The program is translated and stored on disk.</li>
+<li>The operating system loads the executable into memory.</li>
+<li>The CPU fetches an instruction using the program counter.</li>
+<li>The control unit decodes the instruction.</li>
+<li>The CPU obtains operands and executes the operation.</li>
+<li>Results are stored and the next instruction is fetched.</li>
+</ol>
+<div class="code-example">
+<pre><code>PROGRAM + DATA
+      |
+      v
+SECONDARY STORAGE
+      |
+      v
+OPERATING SYSTEM LOADER
+      |
+      v
+PRIMARY MEMORY (RAM)
+      |
+      v
+CPU: FETCH -&gt; DECODE -&gt; EXECUTE
+      |
+      v
+OUTPUT / STORED RESULTS</code></pre>
+</div>
+<p>
+        Computers represent programs and data using binary digits,
+        or bits, consisting of 0 and 1. Eight bits form one byte.
+    </p>
+</section>
+<section class="chapter" id="program-foundations">
+<h2>Section 1: Foundational Definitions and Operational Paradigms</h2>
+<h3>What Is a Program?</h3>
+<p>
+        A computer program is a collection of instructions written
+        in a programming language such as C, C++, Rust, Go,
+        Python, Java, or assembly language.
+    </p>
+<p>
+        A program exists as a passive entity on non-volatile
+        storage until the operating system initiates its execution.
+    </p>
+<h3>What Is a Process?</h3>
+<p>
+        A process is an active execution instance of a program.
+        The operating system loads the executable, establishes
+        a virtual address space, allocates resources, and
+        assigns a Process ID (PID).
+    </p>
+<h3>Executable File Formats</h3>
+<ul>
+<li><strong>ELF:</strong> Common executable format on Linux and UNIX-like systems.</li>
+<li><strong>PE:</strong> Portable Executable format used by Windows.</li>
+<li><strong>Mach-O:</strong> Executable format used by macOS.</li>
+</ul>
+<p>
+        A single executable program may create multiple independent
+        processes, each with its own execution state.
+    </p>
+</section>
+<section class="chapter" id="compilation-linking">
+<h2>Section 2: Compilation, Assembly, and Linking Pipeline</h2>
+<p>
+        Before source code can execute as a native program,
+        it may pass through several translation stages.
+    </p>
+<h3>Four Stages of Binary Translation</h3>
+<ol>
+<li>
+<strong>Preprocessing:</strong>
+            Resolves directives such as #include and #define,
+            expands macros, and prepares source code.
+        </li>
+<li>
+<strong>Compilation:</strong>
+            Translates source code into assembly instructions
+            while performing syntax checks and optimization.
+        </li>
+<li>
+<strong>Assembly:</strong>
+            Converts assembly instructions into machine-code
+            object files such as .o or .obj.
+        </li>
+<li>
+<strong>Linking:</strong>
+            Resolves references between object files and
+            libraries to create an executable.
+        </li>
+</ol>
+<div class="code-example">
+<pre><code>SOURCE CODE
+    |
+    v
+PREPROCESSOR
+    |
+    v
+COMPILER
+    |
+    v
+ASSEMBLER
+    |
+    v
+OBJECT FILES
+    |
+    v
+LINKER + LIBRARIES
+    |
+    v
+EXECUTABLE PROGRAM
+    |
+    v
+OS LOADER -&gt; RUNNING PROCESS</code></pre>
+</div>
+<h3>Static Linking vs. Dynamic Linking</h3>
+<table>
+<thead>
+<tr>
+<th>Static Linking</th>
+<th>Dynamic Linking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copies library code into the executable.</td>
+<td>Uses external shared libraries.</td>
+</tr>
+<tr>
+<td>Generally increases executable size.</td>
+<td>Can reduce executable size.</td>
+</tr>
+<tr>
+<td>Fewer external runtime library dependencies.</td>
+<td>Requires compatible shared libraries at runtime.</td>
+</tr>
+</tbody>
+</table>
+<h3>Executable Headers</h3>
+<p>
+        Executable headers contain information such as the
+        target CPU architecture, entry point, segment mappings,
+        and memory permissions.
+    </p>
+</section>
+<section class="chapter" id="process-memory">
+<h2>Section 3: Detailed Process Memory Architecture</h2>
+<p>
+        The operating system organizes each process into a
+        virtual address space containing several memory regions.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Memory Segment</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text</td>
+<td>Compiled executable instructions.</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Initialized global and static variables.</td>
+</tr>
+<tr>
+<td>BSS</td>
+<td>Uninitialized global and static variables.</td>
+</tr>
+<tr>
+<td>Heap</td>
+<td>Dynamic memory allocations.</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Function calls, local variables, and return addresses.</td>
+</tr>
+</tbody>
+</table>
+<h3>Conceptual Memory Layout</h3>
+<div class="code-example">
+<pre><code>HIGH MEMORY ADDRESSES
++--------------------------+
+| Kernel Reserved Space    |
++--------------------------+
+| Stack                    |
+| Grows Downward           |
+|           v              |
++--------------------------+
+|                          |
+|           ^              |
+| Heap                     |
+| Grows Upward             |
++--------------------------+
+| BSS                      |
++--------------------------+
+| Initialized Data         |
++--------------------------+
+| Text / Program Code      |
++--------------------------+
+LOW MEMORY ADDRESSES</code></pre>
+</div>
+<p>
+        Dynamic allocation functions such as malloc() and
+        new request heap memory. The stack follows a
+        Last-In, First-Out (LIFO) organization.
+    </p>
+<p>
+        Exceeding available stack space can cause
+        a stack overflow.
+    </p>
+</section>
+<section class="chapter" id="process-control-block">
+<h2>Section 4: The Process Control Block (PCB)</h2>
+<p>
+        The Process Control Block is a kernel data structure
+        that stores the information required to manage,
+        interrupt, and resume a process.
+    </p>
+<h3>PCB Components</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Process ID (PID)</td>
+<td>Unique process identifier.</td>
+</tr>
+<tr>
+<td>Process State</td>
+<td>Current execution status.</td>
+</tr>
+<tr>
+<td>Program Counter</td>
+<td>Address of the next instruction.</td>
+</tr>
+<tr>
+<td>CPU Registers</td>
+<td>Saved processor values.</td>
+</tr>
+<tr>
+<td>Scheduling Metadata</td>
+<td>Priority and scheduling information.</td>
+</tr>
+<tr>
+<td>Memory Information</td>
+<td>Page tables and memory mappings.</td>
+</tr>
+<tr>
+<td>I/O Information</td>
+<td>Open files and device handles.</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td>CPU time and execution statistics.</td>
+</tr>
+</tbody>
+</table>
+<p>
+        The PCB is especially important during context switching,
+        when the operating system saves and restores execution state.
+    </p>
+</section>
+<section class="chapter" id="process-lifecycle">
+<h2>Section 5: Process Lifecycle State Machine</h2>
+<p>
+        A process moves through several operating states
+        during its lifetime.
+    </p>
+<h3>Five Fundamental Process States</h3>
+<ul>
+<li><strong>New:</strong> The process is being created.</li>
+<li><strong>Ready:</strong> Waiting for CPU assignment.</li>
+<li><strong>Running:</strong> Instructions are executing.</li>
+<li><strong>Waiting / Blocked:</strong> Waiting for an event or I/O completion.</li>
+<li><strong>Terminated:</strong> Execution has finished.</li>
+</ul>
+<div class="code-example">
+<pre><code>NEW ---&gt; READY ---&gt; RUNNING ---&gt; TERMINATED
+           ^          |
+           |          | I/O Request
+           |          v
+           +------- WAITING
+             I/O Completed
+
+RUNNING ---&gt; READY
+  (Preemption / Time Slice Expired)</code></pre>
+</div>
+<p>
+        The CPU scheduler dispatches ready processes.
+        A blocked process returns to the ready queue
+        when its required event is completed.
+    </p>
+</section>
+<section class="chapter" id="cpu-scheduling-principles">
+<h2>Section 6: CPU Scheduling Principles and Metrics</h2>
+<p>
+        CPU scheduling determines which ready process
+        receives execution time on an available processor core.
+    </p>
+<h3>Preemptive Scheduling</h3>
+<p>
+        The operating system can interrupt a running process
+        and assign the CPU to another process.
+    </p>
+<h3>Non-Preemptive Scheduling</h3>
+<p>
+        A running process keeps the CPU until it completes,
+        blocks, or voluntarily releases control.
+    </p>
+<h3>Performance Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU Utilization</td>
+<td>Percentage of time the CPU is busy.</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>Processes completed per unit time.</td>
+</tr>
+<tr>
+<td>Turnaround Time</td>
+<td>Time from submission to completion.</td>
+</tr>
+<tr>
+<td>Waiting Time</td>
+<td>Time spent in the ready queue.</td>
+</tr>
+<tr>
+<td>Response Time</td>
+<td>Time until the first response.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="cpu-scheduling-algorithms">
+<h2>Section 7: In-Depth CPU Scheduling Algorithms</h2>
+<h3>First-Come, First-Served (FCFS)</h3>
+<p>
+        Processes execute in arrival order.
+        This simple method can cause the convoy effect,
+        where short jobs wait behind long-running jobs.
+    </p>
+<h3>Shortest Job First (SJF)</h3>
+<p>
+        Selects the process with the shortest estimated
+        CPU burst. It can reduce average waiting time.
+    </p>
+<h3>Shortest Remaining Time First (SRTF)</h3>
+<p>
+        A preemptive version of SJF that can interrupt
+        a running process when a shorter job arrives.
+    </p>
+<h3>Priority Scheduling</h3>
+<p>
+        Processes are selected according to priority.
+        Aging can reduce starvation by increasing
+        the priority of waiting processes.
+    </p>
+<h3>Round-Robin Scheduling</h3>
+<p>
+        Each process receives a fixed time quantum.
+        A process that does not finish is returned
+        to the ready queue.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Advantage</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCFS</td>
+<td>Simple implementation</td>
+<td>Convoy effect</td>
+</tr>
+<tr>
+<td>SJF</td>
+<td>Low average waiting time</td>
+<td>Requires burst estimates</td>
+</tr>
+<tr>
+<td>SRTF</td>
+<td>Responds to shorter jobs</td>
+<td>Preemption overhead</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td>Supports task importance</td>
+<td>Possible starvation</td>
+</tr>
+<tr>
+<td>Round Robin</td>
+<td>Fair time sharing</td>
+<td>Context-switch overhead</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="process-creation">
+<h2>Section 8: Process Creation and Control Primitives</h2>
+<p>
+        UNIX-like operating systems provide system calls
+        for creating, replacing, waiting for, and
+        terminating processes.
+    </p>
+<h3>Core System Calls</h3>
+<ul>
+<li><strong>fork():</strong> Creates a child process.</li>
+<li><strong>execve():</strong> Replaces the current process image with a new executable.</li>
+<li><strong>wait():</strong> Allows a parent to collect a child's termination status.</li>
+<li><strong>exit():</strong> Ends process execution.</li>
+</ul>
+<div class="code-example">
+<pre><code>PARENT PROCESS
+      |
+      | fork()
+      v
+CHILD PROCESS
+      |
+      | execve()
+      v
+NEW PROGRAM IMAGE
+      |
+      | exit()
+      v
+CHILD TERMINATES
+      |
+      | Parent calls wait()
+      v
+EXIT STATUS COLLECTED</code></pre>
+</div>
+<h3>Orphan Process</h3>
+<p>
+        A child process whose parent has terminated
+        before the child completes execution.
+    </p>
+<h3>Zombie Process</h3>
+<p>
+        A terminated process whose exit status
+        has not yet been collected by its parent.
+    </p>
+<h3>Copy-On-Write (COW)</h3>
+<p>
+        Copy-On-Write delays copying memory pages
+        until one of the processes modifies them,
+        reducing unnecessary memory duplication.
+    </p>
+</section>
+<section class="chapter" id="threads-multithreading">
+<h2>Section 9: Threads and Multithreading Frameworks</h2>
+<p>
+        A thread is an execution unit within a process.
+        Threads belonging to the same process share
+        code, global data, heap memory, and open files.
+    </p>
+<p>
+        Each thread maintains its own stack,
+        program counter, and register state.
+    </p>
+<h3>Thread Mapping Models</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Many-to-One</td>
+<td>Multiple user threads map to one kernel thread.</td>
+</tr>
+<tr>
+<td>One-to-One</td>
+<td>Each user thread maps to a separate kernel thread.</td>
+</tr>
+<tr>
+<td>Many-to-Many</td>
+<td>Many user threads share a set of kernel threads.</td>
+</tr>
+</tbody>
+</table>
+<h3>Threads vs. Processes</h3>
+<p>
+        Processes provide isolated address spaces,
+        while threads support concurrent execution
+        within a shared process environment.
+    </p>
+</section>
+<section class="chapter" id="interprocess-communication">
+<h2>Section 10: Inter-Process Communication (IPC)</h2>
+<p>
+        Inter-Process Communication allows processes
+        to exchange data and coordinate operations
+        despite having separate address spaces.
+    </p>
+<h3>Shared Memory</h3>
+<p>
+        Multiple processes access a common memory
+        region. Synchronization is required to
+        prevent conflicting updates.
+    </p>
+<h3>Message Passing</h3>
+<p>
+        Processes exchange information through
+        send and receive operations.
+    </p>
+<h3>Pipes and FIFOs</h3>
+<ul>
+<li><strong>Anonymous Pipes:</strong> Commonly used between related processes.</li>
+<li><strong>Named Pipes:</strong> Allow communication between unrelated processes.</li>
+</ul>
+<h3>Network Sockets</h3>
+<p>
+        Sockets support communication between
+        processes on the same computer or
+        across network-connected systems.
+    </p>
+</section>
+<section class="chapter" id="process-synchronization">
+<h2>Section 11: Process Synchronization and Critical Sections</h2>
+<p>
+        Concurrent processes may access shared
+        resources simultaneously, creating race
+        conditions and inconsistent results.
+    </p>
+<h3>Critical Section Requirements</h3>
+<ol>
+<li><strong>Mutual Exclusion:</strong> Prevent conflicting simultaneous access.</li>
+<li><strong>Progress:</strong> Ensure eligible processes can enter a critical section.</li>
+<li><strong>Bounded Waiting:</strong> Prevent indefinite postponement.</li>
+</ol>
+<h3>Mutex Locks</h3>
+<p>
+        A mutex allows one thread to own
+        a protected resource at a time.
+    </p>
+<h3>Semaphores</h3>
+<p>
+        A semaphore uses atomic wait and signal
+        operations to coordinate resource access.
+    </p>
+<ul>
+<li><strong>Binary Semaphore:</strong> Represents two logical states.</li>
+<li><strong>Counting Semaphore:</strong> Manages multiple resource instances.</li>
+</ul>
+<h3>Producer-Consumer Synchronization</h3>
+<div class="code-example">
+<pre><code>semaphore mutex = 1;
+semaphore empty = BUFFER_SIZE;
+semaphore full = 0;
+
+Producer:
+    produce_item()
+    wait(empty)
+    wait(mutex)
+    insert_item()
+    signal(mutex)
+    signal(full)</code></pre>
+</div>
+</section>
+<section class="chapter" id="deadlocks-resource-management">
+<h2>Section 12: Deadlocks, Starvation, and Resource Allocation</h2>
+<p>
+        A deadlock occurs when processes cannot
+        continue because each is waiting for
+        resources held by another.
+    </p>
+<h3>Four Coffman Conditions</h3>
+<ol>
+<li><strong>Mutual Exclusion:</strong> A resource is non-shareable.</li>
+<li><strong>Hold and Wait:</strong> A process holds resources while requesting more.</li>
+<li><strong>No Preemption:</strong> Resources cannot be forcibly removed.</li>
+<li><strong>Circular Wait:</strong> Processes form a circular resource dependency.</li>
+</ol>
+<h3>Deadlock Handling</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prevention</td>
+<td>Break at least one necessary condition.</td>
+</tr>
+<tr>
+<td>Avoidance</td>
+<td>Keep resource allocation in a safe state.</td>
+</tr>
+<tr>
+<td>Detection and Recovery</td>
+<td>Detect deadlocks and reclaim resources.</td>
+</tr>
+<tr>
+<td>Ostrich Algorithm</td>
+<td>Ignore rare deadlocks under an accepted risk assumption.</td>
+</tr>
+</tbody>
+</table>
+<h3>Banker's Algorithm</h3>
+<p>
+        The Banker's Algorithm evaluates resource
+        requests to avoid unsafe allocation states.
+    </p>
+</section>
+<section class="chapter" id="virtual-memory-paging">
+<h2>Section 13: Virtual Memory and Paging Mechanics</h2>
+<p>
+        Virtual memory provides each process with
+        an isolated address space, while the Memory
+        Management Unit (MMU) translates virtual
+        addresses into physical addresses.
+    </p>
+<h3>Paging</h3>
+<p>
+        Virtual memory is divided into fixed-size pages.
+        Physical memory is divided into corresponding frames.
+    </p>
+<h3>Page Tables</h3>
+<p>
+        Page tables record the mappings between
+        virtual pages and physical frames.
+    </p>
+<h3>Translation Lookaside Buffer (TLB)</h3>
+<p>
+        The TLB caches recently used address
+        translations to reduce lookup overhead.
+    </p>
+<h3>Demand Paging</h3>
+<p>
+        Under demand paging, a memory page is loaded
+        into RAM only when required.
+    </p>
+<h3>Page Fault Handling</h3>
+<ol>
+<li>The process accesses a page not currently in RAM.</li>
+<li>The MMU generates a page fault.</li>
+<li>The kernel locates the missing page.</li>
+<li>The page is loaded into a physical frame.</li>
+<li>The page table is updated.</li>
+<li>The process resumes execution.</li>
+</ol>
+</section>
+<section class="chapter" id="context-switching">
+<h2>Section 14: Context Switch Dynamics and Kernel Overhead</h2>
+<p>
+        A context switch occurs when the operating
+        system saves the state of one process
+        and restores another process's state.
+    </p>
+<h3>Context Switch Sequence</h3>
+<ol>
+<li>An interrupt or scheduling event occurs.</li>
+<li>The kernel saves the current process registers.</li>
+<li>Execution information is stored in the PCB.</li>
+<li>The scheduler selects another ready process.</li>
+<li>The kernel restores the selected process state.</li>
+<li>Execution resumes.</li>
+</ol>
+<h3>Performance Overhead</h3>
+<ul>
+<li>Saving and restoring CPU registers.</li>
+<li>Changes to cached memory translations.</li>
+<li>Additional CPU cache misses.</li>
+<li>Time spent executing scheduler operations.</li>
+</ul>
+</section>
+<section class="chapter" id="process-security">
+<h2>Section 15: Security Architecture and Process Isolation</h2>
+<p>
+        Operating systems use hardware privilege levels
+        and memory protections to prevent applications
+        from accessing unauthorized resources.
+    </p>
+<h3>Hardware Protection Rings</h3>
+<ul>
+<li><strong>Ring 0:</strong> Highly privileged kernel execution.</li>
+<li><strong>Ring 3:</strong> Restricted user application execution.</li>
+<li><strong>Rings 1 and 2:</strong> Intermediate privilege levels available in some architectures.</li>
+</ul>
+<h3>Address Space Layout Randomization (ASLR)</h3>
+<p>
+        ASLR randomizes memory locations such as
+        the stack, heap, and shared libraries to
+        make certain memory attacks more difficult.
+    </p>
+<h3>User IDs and Access Permissions</h3>
+<p>
+        The operating system checks process credentials,
+        user identities, and resource permissions
+        before allowing protected operations.
+    </p>
+</section>
+<section class="chapter" id="signals-events">
+<h2>Section 16: Asynchronous Signals and Event-Driven Architecture</h2>
+<p>
+        Signals are asynchronous notifications
+        sent to processes to report events,
+        requests, or exceptional conditions.
+    </p>
+<h3>Common POSIX Signals</h3>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIGINT</td>
+<td>Interrupt request, commonly Ctrl+C.</td>
+</tr>
+<tr>
+<td>SIGKILL</td>
+<td>Forced termination; cannot be caught or ignored.</td>
+</tr>
+<tr>
+<td>SIGSEGV</td>
+<td>Invalid memory access notification.</td>
+</tr>
+<tr>
+<td>SIGCHLD</td>
+<td>Notification of child process state changes.</td>
+</tr>
+</tbody>
+</table>
+<h3>Event-Driven Execution</h3>
+<p>
+        Event-driven systems respond to notifications
+        or incoming events rather than repeatedly
+        waiting for every operation to finish.
+    </p>
+</section>
+<section class="chapter" id="containers-diagnostics">
+<h2>Section 17: Containers and System Diagnostics</h2>
+<h3>Operating System Containers</h3>
+<p>
+        Containers provide isolated execution environments
+        while sharing the host operating system kernel.
+        Examples include Docker and LXC.
+    </p>
+<h3>Linux Namespaces</h3>
+<p>
+        Namespaces isolate resources visible to processes,
+        including process IDs, networking, mounts,
+        and user contexts.
+    </p>
+<h3>Control Groups (cgroups)</h3>
+<p>
+        Control groups limit and monitor CPU, memory,
+        and I/O resource usage.
+    </p>
+<h3>System Diagnostics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU Saturation</td>
+<td>top, htop, mpstat</td>
+</tr>
+<tr>
+<td>Memory Usage</td>
+<td>ps aux, valgrind</td>
+</tr>
+<tr>
+<td>Disk I/O Wait</td>
+<td>iostat, iotop</td>
+</tr>
+<tr>
+<td>System Call Latency</td>
+<td>strace, eBPF, perf</td>
+</tr>
+</tbody>
+</table>
+<h3>Conclusion</h3>
+<p>
+        Programs provide the instructions that computers execute,
+        while processes represent their active execution.
+        Operating systems coordinate CPU scheduling, memory,
+        inter-process communication, synchronization,
+        security, and resource management to support
+        stable multitasking environments.
+    </p>
+</section>
+</div>
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>Test your understanding of Programs and Processes of Computer. Answer all 30 questions before submitting.</p>
+<p aria-live="polite" id="quizProgress">
+        0 of 34 answered
+    </p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Programs and Processes of Computer · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+
+/* ==========================================
+   CODEVERSE - PROGRAMS AND PROCESSES
+   30-QUESTION QUIZ
+========================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const quizProgress = document.getElementById("quizProgress");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+
+    if (!quizQuestions || !quizProgress ||
+        !submitQuiz || !retryQuiz || !quizResult) {
+        console.error("Quiz elements were not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What is a computer program?",
+            options: [
+                "An active CPU execution instance",
+                "A passive collection of instructions stored on secondary storage",
+                "A process scheduling algorithm",
+                "A temporary CPU register"
+            ],
+            answer: 1
+        },
+        {
+            question: "What distinguishes a process from a program?",
+            options: [
+                "A process exists only on disk",
+                "A process cannot use memory",
+                "A process is an active execution instance of a program",
+                "A process is always permanent"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which computer component performs arithmetic and logical operations?",
+            options: [
+                "Arithmetic Logic Unit",
+                "Output Unit",
+                "Secondary Storage",
+                "Input Unit"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which stage converts assembly instructions into machine-code object files?",
+            options: [
+                "Preprocessing",
+                "Linking",
+                "Loading",
+                "Assembly"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is the main characteristic of dynamic linking?",
+            options: [
+                "It prevents library sharing",
+                "It uses shared libraries loaded or resolved at runtime",
+                "It removes all executable headers",
+                "It converts machine code into source code"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which executable format is commonly used by Windows?",
+            options: [
+                "ELF",
+                "Mach-O",
+                "PE",
+                "TAR"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which process memory segment stores executable machine instructions?",
+            options: [
+                "Text Segment",
+                "Heap",
+                "Stack",
+                "BSS"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which memory segment stores uninitialized global and static variables?",
+            options: [
+                "Stack",
+                "Text",
+                "Heap",
+                "BSS"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which memory area is commonly used for dynamic allocations such as malloc()?",
+            options: [
+                "Text Segment",
+                "Heap",
+                "Program Counter",
+                "CPU Cache"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the main purpose of the Process Control Block (PCB)?",
+            options: [
+                "To store only executable files",
+                "To convert source code into machine code",
+                "To store process state and management information",
+                "To connect computers through a network"
+            ],
+            answer: 2
+        },
+        {
+            question: "What does the Program Counter contain?",
+            options: [
+                "The address of the next instruction",
+                "The number of installed applications",
+                "The total disk capacity",
+                "The process owner's password"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which process state indicates that a process is waiting for CPU assignment?",
+            options: [
+                "Running",
+                "Terminated",
+                "Blocked",
+                "Ready"
+            ],
+            answer: 3
+        },
+        {
+            question: "What happens in preemptive CPU scheduling?",
+            options: [
+                "A process always runs until termination",
+                "The OS can interrupt a running process and reassign the CPU",
+                "Only one program can be installed",
+                "The scheduler cannot use timer interrupts"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which metric measures completed processes per unit time?",
+            options: [
+                "Response Time",
+                "Waiting Time",
+                "Throughput",
+                "Turnaround Time"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which scheduling algorithm is susceptible to the convoy effect?",
+            options: [
+                "First-Come, First-Served",
+                "Round Robin",
+                "Priority Aging",
+                "Shortest Remaining Time First"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is the purpose of a time quantum in Round-Robin scheduling?",
+            options: [
+                "To specify the maximum file size",
+                "To allocate permanent RAM",
+                "To determine the number of CPU cores",
+                "To limit how long a process runs before possible preemption"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which UNIX system call creates a child process?",
+            options: [
+                "wait()",
+                "fork()",
+                "exit()",
+                "execve()"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does execve() do?",
+            options: [
+                "Creates a second CPU",
+                "Deletes the process's PID",
+                "Replaces the current process image with a new executable",
+                "Collects the exit status of a child"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is a zombie process?",
+            options: [
+                "A terminated process whose exit status has not been collected",
+                "A process that is waiting for keyboard input",
+                "A process without any executable instructions",
+                "A process running at maximum priority"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which resources are generally shared by threads within the same process?",
+            options: [
+                "Separate program counters",
+                "Separate register sets",
+                "Separate execution stacks",
+                "Code, global data, heap, and open files"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which threading model maps each user thread to its own kernel thread?",
+            options: [
+                "Many-to-One",
+                "One-to-One",
+                "Single-Process",
+                "Many-to-Zero"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which IPC method allows processes to communicate through a common memory region?",
+            options: [
+                "Priority Scheduling",
+                "Page Replacement",
+                "Shared Memory",
+                "Context Switching"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is a race condition?",
+            options: [
+                "An incorrect result caused by unsynchronized concurrent operations",
+                "A CPU executing instructions faster than its clock speed",
+                "A program being stored on an SSD",
+                "A process that has already terminated"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which synchronization primitive uses atomic wait() and signal() operations?",
+            options: [
+                "Program Counter",
+                "Page Table",
+                "Executable Header",
+                "Semaphore"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which of the following is a necessary Coffman condition for deadlock?",
+            options: [
+                "Dynamic Linking",
+                "Circular Wait",
+                "Demand Paging",
+                "CPU Utilization"
+            ],
+            answer: 1
+        },
+        {
+            question: "What does the Banker's Algorithm help an operating system avoid?",
+            options: [
+                "Source code compilation",
+                "File fragmentation",
+                "Unsafe resource allocation states",
+                "Executable loading"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is the purpose of the Translation Lookaside Buffer (TLB)?",
+            options: [
+                "To cache recent virtual-to-physical address translations",
+                "To store user passwords",
+                "To schedule process termination",
+                "To allocate network ports"
+            ],
+            answer: 0
+        },
+        {
+            question: "What occurs during a context switch?",
+            options: [
+                "The operating system permanently deletes RAM",
+                "Every process is terminated",
+                "The executable is recompiled",
+                "The kernel saves one execution context and restores another"
+            ],
+            answer: 3
+        },
+        {
+            question: "What does Address Space Layout Randomization (ASLR) do?",
+            options: [
+                "Disables virtual memory",
+                "Randomizes memory locations to make certain attacks harder",
+                "Increases process priority",
+                "Eliminates the need for authentication"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which statement about Linux containers is correct?",
+            options: [
+                "Each container must emulate a complete physical CPU",
+                "Containers cannot restrict resource usage",
+                "Containers share the host kernel and can use namespaces and cgroups",
+                "Containers are always identical to full virtual machines"
+            ],
+            answer: 2
+        }
+    ];
+
+    let submitted = false;
+
+    // ==========================================
+    // DISPLAY QUESTIONS
+    // ==========================================
+
+    function loadQuiz() {
+
+        submitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const questionBox = document.createElement("div");
+            questionBox.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            questionBox.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `programQuestion${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener("change", updateProgress);
+
+                const answerText = document.createElement("span");
+                answerText.textContent = option;
+
+                label.appendChild(radio);
+                label.appendChild(answerText);
+
+                questionBox.appendChild(label);
+            });
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+            feedback.hidden = true;
+
+            questionBox.appendChild(feedback);
+            quizQuestions.appendChild(questionBox);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+        retryQuiz.hidden = true;
+
+        updateProgress();
+    }
+
+    // ==========================================
+    // ANSWER PROGRESS
+    // ==========================================
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="programQuestion${index}"]:checked`
+            );
+
+            if (selected) answered++;
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    // ==========================================
+    // SUBMIT AND CHECK ANSWERS
+    // ==========================================
+
+    submitQuiz.addEventListener("click", function () {
+
+        if (submitted) return;
+
+        const selectedAnswers = questions.map((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="programQuestion${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+        });
+
+        const answered = selectedAnswers.filter(
+            answer => answer !== null
+        ).length;
+
+        if (answered !== questions.length) {
+
+            alert(
+                `Please answer all questions first. ` +
+                `You answered ${answered} of ${questions.length}.`
+            );
+
+            return;
+        }
+
+        submitted = true;
+        let score = 0;
+
+        questions.forEach((item, index) => {
+
+            const questionBox = quizQuestions.children[index];
+            const selectedAnswer = selectedAnswers[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            const labels = questionBox.querySelectorAll(".quiz-option");
+
+            labels.forEach((label, optionIndex) => {
+
+                const radio = label.querySelector("input");
+                radio.disabled = true;
+
+                label.classList.remove("correct", "incorrect");
+
+                if (optionIndex === item.answer) {
+                    label.classList.add("correct");
+                } else if (optionIndex === selectedAnswer) {
+                    label.classList.add("incorrect");
+                }
+            });
+
+            const feedback = questionBox.querySelector(".quiz-feedback");
+
+            feedback.hidden = false;
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+        });
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent! You have mastered Programs and Processes.";
+        } else if (percentage >= 75) {
+            message = "Great job! You understand most of the concepts.";
+        } else if (percentage >= 60) {
+            message = "Good effort! Review the topics you missed.";
+        } else {
+            message = "Keep studying and try again!";
+        }
+
+        const resultHeading = document.createElement("h3");
+        resultHeading.textContent = "Quiz Completed!";
+
+        const scoreHeading = document.createElement("h2");
+        scoreHeading.textContent = `${score} / ${questions.length}`;
+
+        const percentageText = document.createElement("p");
+        percentageText.textContent = `${percentage}%`;
+
+        const feedbackText = document.createElement("p");
+        feedbackText.textContent = message;
+
+        quizResult.replaceChildren(
+            resultHeading,
+            scoreHeading,
+            percentageText,
+            feedbackText
+        );
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    });
+
+    // ==========================================
+    // RETRY QUIZ
+    // ==========================================
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    loadQuiz();
+
+});
+
+</script>
+<script>document.addEventListener('DOMContentLoaded',()=>{const toggle=document.getElementById('themeToggle'),icon=document.getElementById('themeIcon'),size=document.getElementById('fontSize'),family=document.getElementById('fontFamily'),menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');const applyTheme=()=>{const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);if(icon)icon.textContent=dark?'☀':'☾';};applyTheme();toggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');applyTheme();});const savedSize=localStorage.getItem('readerFontSize')||'16px',savedFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";if(size&&[...size.options].some(o=>o.value===savedSize))size.value=savedSize;if(family&&[...family.options].some(o=>o.value===savedFont))family.value=savedFont;const applyReader=()=>{document.documentElement.style.setProperty('--reader-size',size?.value||'16px');document.documentElement.style.setProperty('--reader-font',family?.value||"'DM Sans', sans-serif");};applyReader();size?.addEventListener('change',()=>{localStorage.setItem('readerFontSize',size.value);applyReader();});family?.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',family.value);applyReader();});menu?.addEventListener('click',()=>links?.classList.toggle('open'));});</script>    <script src="/js/navbar-loader.js" defer></script>
+</body></html>

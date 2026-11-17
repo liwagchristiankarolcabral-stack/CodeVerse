@@ -1,0 +1,4808 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Computer System Platforms and Architecture | CodeVerse</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="/books/css/Authentication.css" rel="stylesheet"/>
+<!-- Favicon -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+        /* ==========================================
+           CODEVERSE - COMPUTER SYSTEM PLATFORMS
+           READER STYLES
+        ========================================== */
+
+        :root {
+            --primary: #3157a4;
+            --primary-dark: #24427f;
+            --background: #f7f9fd;
+            --surface: #ffffff;
+            --surface-alt: #edf2fa;
+            --text: #202b40;
+            --muted: #758096;
+            --border: #e6eaf1;
+            --shadow: 0 8px 30px rgba(30, 50, 90, .07);
+            --reader-size: 16px;
+            --reader-family: 'DM Sans', sans-serif;
+        }
+
+        body.dark-mode {
+            --primary: #8cafff;
+            --primary-dark: #aac4ff;
+            --background: #101827;
+            --surface: #1c293b;
+            --surface-alt: #273854;
+            --text: #edf2fa;
+            --muted: #a9b7ca;
+            --border: #34465e;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .18);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 110px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            transition: background .25s, color .25s;
+        }
+
+        body,
+        body * {
+            box-sizing: border-box;
+        }
+
+        button,
+        select {
+            font: inherit;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        /* ==========================================
+           NAVIGATION BAR
+        ========================================== */
+
+        .navbar {
+            min-height: 76px;
+            padding: 12px 5%;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 23px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .site-logo {
+            width: 43px;
+            height: 43px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .nav-links,
+        .nav-actions,
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .icon-btn,
+        .menu-toggle {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            border-radius: 9px;
+            padding: 9px 13px;
+            cursor: pointer;
+            font-size: 19px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .signup-btn {
+            background: #3157a4;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 9px;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* ==========================================
+           TOPBAR
+        ========================================== */
+
+        .topbar {
+            padding: 18px 5%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .back-link {
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* ==========================================
+           READING CONTROLS
+        ========================================== */
+
+        .reading-controls {
+            max-width: 1400px;
+            margin: 0 auto 20px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .control-group select {
+            padding: 10px 13px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           MAIN LAYOUT
+        ========================================== */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 290px minmax(0, 1fr);
+            gap: 28px;
+            max-width: 1400px;
+            margin: auto;
+            padding: 0 5% 60px;
+            align-items: start;
+        }
+
+        .toc {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            position: sticky;
+            top: 95px;
+            scrollbar-width: thin;
+            box-shadow: var(--shadow);
+        }
+
+        .toc h2 {
+            font-size: 18px;
+            margin: 0 0 18px;
+        }
+
+        .toc nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .toc nav a {
+            padding: 10px 12px;
+            border-radius: 7px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .toc nav a:hover,
+        .toc nav a.active {
+            background: var(--background);
+            color: var(--primary);
+        }
+
+        .toc-section-title {
+            display: block;
+            margin: 18px 12px 6px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+        }
+
+        main.reader {
+            min-width: 0;
+        }
+
+        /* ==========================================
+           BOOK HEADER
+        ========================================== */
+
+        .book-hero {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 38px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .book-category {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .book-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.25;
+            margin: 15px 0;
+        }
+
+        .book-hero p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .book-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .book-meta span {
+            background: var(--surface-alt);
+            color: var(--text);
+            padding: 9px 13px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* ==========================================
+           CHAPTERS
+        ========================================== */
+
+        .reader {
+            font-size: var(--reader-size);
+            font-family: var(--reader-family);
+        }
+
+        .chapter {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 34px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 110px;
+        }
+
+        .chapter-number {
+            color: var(--primary);
+            font-size: .75em;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .chapter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65em;
+            line-height: 1.35;
+            margin: 12px 0 22px;
+            color: var(--text);
+        }
+
+        .chapter h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            color: var(--text);
+        }
+
+        .chapter p,
+        .chapter li {
+            font-size: 1em;
+            line-height: 1.85;
+            color: var(--text);
+        }
+
+        .chapter p {
+            margin: 12px 0;
+        }
+
+        .chapter ul,
+        .chapter ol {
+            padding-left: 25px;
+        }
+
+        .chapter li {
+            margin-bottom: 7px;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .chapter th,
+        .chapter td {
+            padding: 12px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .chapter th {
+            background: var(--background);
+            color: var(--text);
+        }
+
+        .example-box {
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+            background: var(--background);
+            border-radius: 8px;
+        }
+
+        .note {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            background: var(--surface-alt);
+        }
+
+        .chapter pre {
+            background: #14233b;
+            color: #e8f1ff;
+            padding: 18px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        /* ==========================================
+           QUIZ STYLING
+        ========================================== */
+
+        .quiz-question {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 18px 0;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+        }
+
+        .quiz-option input {
+            margin-top: 5px;
+            accent-color: #3157a4;
+        }
+
+        .quiz-option.correct {
+            border-color: #29996a;
+            background: rgba(41, 153, 106, .13);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #dc5965;
+            background: rgba(220, 89, 101, .13);
+        }
+
+        .quiz-feedback {
+            margin-top: 14px;
+            font-weight: 700;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-actions button {
+            background: #3157a4;
+            color: white;
+            padding: 13px 24px;
+            border: none;
+            border-radius: 9px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #quizResult {
+            margin-top: 25px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 1050px) {
+            .layout {
+                grid-template-columns: 230px minmax(0, 1fr);
+                gap: 18px;
+            }
+
+            .nav-links,
+            .nav-actions {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 12px 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+                margin-left: auto;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                order: 4;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 12px 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px;
+            }
+
+            .layout {
+                display: block;
+                padding: 0 18px 40px;
+            }
+
+            .toc {
+                position: static;
+                max-height: 300px;
+                margin-bottom: 20px;
+            }
+
+            .book-hero,
+            .chapter {
+                padding: 24px;
+            }
+
+            .chapter table {
+                display: block;
+                overflow-x: auto;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 19px;
+            }
+
+            .site-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .reading-controls {
+                padding: 0 18px;
+            }
+
+            .control-group {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<!-- =========================
+         BACK TO BOOKS
+    ========================== -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
+            ← Back to Books
+        </a>
+</header>
+<!-- =========================
+         READING CONTROLS
+    ========================== -->
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<!-- =========================
+         MAIN LAYOUT
+    ========================== -->
+<div class="layout">
+<!-- =========================
+             TABLE OF CONTENTS
+        ========================== -->
+<aside class="toc" id="sidebar">
+<h2>Table of Contents</h2>
+<nav id="tocNav">
+<span class="toc-section-title">
+                    Computer System Fundamentals
+                </span>
+<a href="#page-1">
+                    1. Introduction to Computer Systems
+                </a>
+<a href="#page-2">
+                    2. Meaning of Computer System Platforms
+                </a>
+<a href="#page-3">
+                    3. Meaning of Computer Architecture
+                </a>
+<a href="#page-4">
+                    4. History and Development of Computer Systems
+                </a>
+<a href="#page-5">
+                    5. Basic Components of a Computer System
+                </a>
+<a href="#page-6">
+                    6. Central Processing Unit (CPU)
+                </a>
+<a href="#page-7">
+                    7. Arithmetic Logic Unit (ALU)
+                </a>
+<a href="#page-8">
+                    8. Control Unit (CU) and Registers
+                </a>
+<a href="#page-9">
+                    9. Memory Systems
+                </a>
+<a href="#page-10">
+                    10. Primary Memory: RAM and ROM
+                </a>
+<a href="#page-11">
+                    11. Secondary Storage Devices
+                </a>
+<a href="#page-12">
+                    12. Input Devices
+                </a>
+<a href="#page-13">
+                    13. Output Devices
+                </a>
+<a href="#page-14">
+                    14. Motherboard and System Bus
+                </a>
+<a href="#page-15">
+                    15. Types of Computer Architecture
+                </a>
+<span class="toc-section-title">
+                    Computer Architecture
+                </span>
+<a href="#page-16">
+                    16. Von Neumann Architecture
+                </a>
+<a href="#page-17">
+                    17. Harvard Architecture
+                </a>
+<a href="#page-18">
+                    18. Instruction Cycle
+                </a>
+<a href="#page-19">
+                    19. Data Processing and Information Flow
+                </a>
+<span class="toc-section-title">
+                    Computer Platforms
+                </span>
+<a href="#page-20">
+                    20. Operating Systems and Computer Platforms
+                </a>
+<a href="#page-21">
+                    21. Types of Computer Platforms
+                </a>
+<a href="#page-22">
+                    22. 32-bit and 64-bit Systems
+                </a>
+<a href="#page-23">
+                    23. Computer Hardware and Software
+                </a>
+<a href="#page-24">
+                    24. Computer Networks and Connectivity
+                </a>
+<a href="#page-25">
+                    25. Virtualization and Cloud Computing
+                </a>
+<a href="#page-26">
+                    26. Performance and System Specifications
+                </a>
+<span class="toc-section-title">
+                    Applications and Assessment
+                </span>
+<a href="#page-27">
+                    27. Computer Security and Reliability
+                </a>
+<a href="#page-28">
+                    28. Importance and Applications
+                </a>
+<a href="#page-29">
+                    29. Practical Examples and Real-World Applications
+                </a>
+<a href="#page-30">
+                    30. Summary and Conclusion
+                </a>
+<a href="#quiz">
+                    Final Knowledge Assessment
+                </a>
+</nav>
+</aside>
+<!-- =========================
+             MAIN READER CONTENT
+        ========================== -->
+<main class="reader">
+<!-- =========================
+                 BOOK INTRODUCTION
+            ========================== -->
+<section class="book-hero" id="book-intro">
+<span class="book-category">
+                    ITE-201 · Platform Technologies
+                </span>
+<h1>
+                    Computer System Platforms and Architecture
+                </h1>
+<p>
+                    Explore the fundamental concepts of computer
+                    systems, including hardware components,
+                    processor architecture, memory organization,
+                    computer platforms, and modern computing
+                    technologies.
+                </p>
+<div class="book-meta">
+<span>30 Lessons</span>
+<span>Information Technology</span>
+<span>Interactive Assessment</span>
+</div>
+</section>
+<!-- =====================================
+                 LESSON 1
+            ====================================== -->
+<section class="chapter" id="page-1">
+<span class="chapter-number">
+                    LESSON 01
+                </span>
+<h2>Introduction to Computer Systems</h2>
+<h3>What Is a Computer System?</h3>
+<p>
+                    A computer system is an electronic system
+                    that receives data, processes information,
+                    stores files, and produces useful results.
+                </p>
+<p>
+                    It is made up of different components that
+                    work together to perform tasks. These
+                    components include hardware, software,
+                    memory, storage devices, and other
+                    important parts.
+                </p>
+<p>
+                    Computers are widely used in schools,
+                    offices, businesses, hospitals, government
+                    agencies, and homes. They help people
+                    complete tasks faster, communicate with
+                    others, organize information, and solve
+                    different problems.
+                </p>
+<h3>Four Basic Operations of a Computer System</h3>
+<ol>
+<li>
+<strong>Input:</strong>
+                        The computer receives data from the user
+                        through devices such as a keyboard,
+                        mouse, or microphone.
+                    </li>
+<li>
+<strong>Processing:</strong>
+                        The processor works on information
+                        based on the instructions given.
+                    </li>
+<li>
+<strong>Output:</strong>
+                        The computer presents processed
+                        information through a monitor,
+                        printer, or speaker.
+                    </li>
+<li>
+<strong>Storage:</strong>
+                        The computer saves information so
+                        it can be accessed again in the future.
+                    </li>
+</ol>
+<div class="example-box">
+<h3>Example: Creating a Document</h3>
+<ul>
+<li>
+                            The student types information
+                            using a keyboard.
+                        </li>
+<li>
+                            The CPU processes the instructions.
+                        </li>
+<li>
+                            The monitor displays the document.
+                        </li>
+<li>
+                            The storage device saves the file
+                            for future use.
+                        </li>
+</ul>
+</div>
+<h3>Importance of Computer Systems</h3>
+<p>
+                    Computer systems make everyday activities
+                    more convenient and efficient. They allow
+                    users to perform calculations, create
+                    documents, manage records, communicate
+                    online, and access information.
+                </p>
+<p>
+                    They also support modern technologies
+                    such as artificial intelligence, online
+                    education, digital banking, and
+                    scientific research.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 2
+            ====================================== -->
+<section class="chapter" id="page-2">
+<span class="chapter-number">
+                    LESSON 02
+                </span>
+<h2>Meaning of Computer System Platforms</h2>
+<h3>What Is a Computer System Platform?</h3>
+<p>
+                    A computer system platform refers to the
+                    combination of hardware and software that
+                    allows a computer or digital device to
+                    operate and run applications.
+                </p>
+<p>
+                    A platform provides the environment where
+                    programs are installed and executed. It
+                    includes the processor, memory, operating
+                    system, and other technologies needed
+                    to support computer operations.
+                </p>
+<div class="example-box">
+<h3>Examples</h3>
+<p>
+                        A desktop computer with an Intel
+                        processor and Windows operating
+                        system is one type of computer platform.
+                    </p>
+<p>
+                        A smartphone using an ARM-based
+                        processor and Android is another
+                        type of computer platform.
+                    </p>
+</div>
+<h3>Main Elements of a Computer Platform</h3>
+<h3>1. Hardware</h3>
+<p>
+                    Hardware refers to the physical components
+                    of a computer. These are the parts that
+                    users can physically see and touch.
+                </p>
+<ul>
+<li>Monitor</li>
+<li>Keyboard</li>
+<li>Mouse</li>
+<li>CPU</li>
+<li>RAM</li>
+<li>Hard drive</li>
+</ul>
+<h3>2. Software</h3>
+<p>
+                    Software refers to the programs and
+                    instructions that tell the computer
+                    what to do.
+                </p>
+<ul>
+<li>Windows</li>
+<li>Linux</li>
+<li>Android</li>
+<li>Microsoft Word</li>
+<li>Google Chrome</li>
+</ul>
+<h3>3. Operating System</h3>
+<p>
+                    The operating system manages the computer's
+                    hardware and software resources. It allows
+                    users to interact with the computer and
+                    run different applications.
+                </p>
+<h3>4. Processor Architecture</h3>
+<p>
+                    Processor architecture describes how a
+                    processor is designed and how it handles
+                    instructions and data.
+                </p>
+<div class="example-box">
+<h3>Example: Laptop Platform</h3>
+<ul>
+<li>Intel Core processor</li>
+<li>8 GB RAM</li>
+<li>512 GB SSD</li>
+<li>Windows operating system</li>
+</ul>
+<p>
+                        These components work together to
+                        create a computer platform that
+                        supports web browsers, programming
+                        tools, and office software.
+                    </p>
+</div>
+<h3>Why Are Platforms Important?</h3>
+<p>
+                    Computer platforms provide the foundation
+                    for applications to function. Without a
+                    compatible platform, certain programs
+                    may not work properly or may not run at all.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 3
+            ====================================== -->
+<section class="chapter" id="page-3">
+<span class="chapter-number">
+                    LESSON 03
+                </span>
+<h2>Meaning of Computer Architecture</h2>
+<h3>What Is Computer Architecture?</h3>
+<p>
+                    Computer architecture refers to the design
+                    and organization of a computer system.
+                    It explains how the different parts of a
+                    computer are arranged and how they
+                    communicate with each other to perform tasks.
+                </p>
+<p>
+                    It focuses on how the processor works,
+                    how memory stores information, how
+                    instructions are executed, and how data
+                    moves between components.
+                </p>
+<p>
+                    Computer architecture serves as a guide
+                    for understanding how a computer
+                    operates internally.
+                </p>
+<h3>Main Elements of Computer Architecture</h3>
+<ol>
+<li>
+<strong>Instruction Set Architecture (ISA)</strong>
+<p>
+                            Defines the instructions that a
+                            processor can understand and execute.
+                            It acts as a connection between
+                            software and hardware.
+                        </p>
+<p>
+                            Examples include x86-64 and ARM.
+                        </p>
+</li>
+<li>
+<strong>Processor Design</strong>
+<p>
+                            Explains how the CPU is organized
+                            and how it performs operations.
+                        </p>
+</li>
+<li>
+<strong>Memory Organization</strong>
+<p>
+                            Describes how data and instructions
+                            are stored and accessed by
+                            the computer.
+                        </p>
+</li>
+<li>
+<strong>Input and Output Organization</strong>
+<p>
+                            Explains how a computer receives
+                            information and sends results
+                            to external devices.
+                        </p>
+</li>
+<li>
+<strong>Data Communication</strong>
+<p>
+                            Describes how different computer
+                            components exchange information
+                            through buses and other connections.
+                        </p>
+</li>
+</ol>
+<div class="example-box">
+<h3>Example: Opening a Web Browser</h3>
+<p>
+                        When a user opens a web browser,
+                        the operating system sends instructions
+                        to the processor.
+                    </p>
+<p>
+                        The CPU processes those instructions,
+                        memory holds the information currently
+                        being used, and the display presents
+                        the browser window.
+                    </p>
+</div>
+<h3>Importance of Computer Architecture</h3>
+<p>
+                    Understanding computer architecture helps
+                    IT students learn how computers work
+                    internally. It is also useful when
+                    studying programming, computer hardware,
+                    operating systems, and troubleshooting.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 4
+            ====================================== -->
+<section class="chapter" id="page-4">
+<span class="chapter-number">
+                    LESSON 04
+                </span>
+<h2>History and Development of Computer Systems</h2>
+<h3>Early Development of Computers</h3>
+<p>
+                    Computers have developed through many
+                    generations. Early computing devices
+                    were simple tools designed to help
+                    people perform calculations.
+                </p>
+<p>
+                    Over time, new inventions made computers
+                    faster, smaller, more powerful, and
+                    easier to use.
+                </p>
+<h3>First Generation (1940–1956)</h3>
+<p>
+                    The first generation of computers used
+                    vacuum tubes to process information.
+                    These computers were very large,
+                    consumed a lot of electricity,
+                    and produced significant heat.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    ENIAC, one of the early general-purpose
+                    electronic computers.
+                </div>
+<h3>Second Generation (1956–1963)</h3>
+<p>
+                    The second generation used transistors
+                    instead of vacuum tubes. Transistors
+                    made computers smaller, more reliable,
+                    and more energy-efficient.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    IBM 1401.
+                </div>
+<h3>Third Generation (1964–1971)</h3>
+<p>
+                    Integrated circuits became important
+                    during this generation. Several electronic
+                    components could be placed on a single
+                    chip, improving performance and
+                    reducing computer size.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    IBM System/360.
+                </div>
+</section>
+<!-- =====================================
+                 LESSON 5
+            ====================================== -->
+<section class="chapter" id="page-5">
+<span class="chapter-number">LESSON 05</span>
+<h2>Basic Components of a Computer System</h2>
+<p>
+                    A computer system contains different components
+                    that work together to process information.
+                    Each component has a specific function,
+                    and the computer needs these parts to
+                    perform its operations correctly.
+                </p>
+<h3>Major Components</h3>
+<h3>1. Central Processing Unit (CPU)</h3>
+<p>
+                    The CPU executes instructions and processes
+                    information. It is commonly called the brain
+                    of the computer because it controls many
+                    important operations.
+                </p>
+<h3>2. Memory (RAM)</h3>
+<p>
+                    RAM temporarily stores data and programs
+                    that are currently being used by the computer.
+                </p>
+<h3>3. Storage Device</h3>
+<p>
+                    Storage devices keep files, applications,
+                    and the operating system even when the
+                    computer is turned off.
+                </p>
+<p>
+                    Examples include Solid State Drives (SSD)
+                    and Hard Disk Drives (HDD).
+                </p>
+<h3>4. Motherboard</h3>
+<p>
+                    The motherboard is the main circuit board
+                    that connects the CPU, memory, storage,
+                    and other hardware components.
+                </p>
+<h3>5. Power Supply Unit (PSU)</h3>
+<p>
+                    The power supply provides electrical power
+                    to the computer's internal components.
+                </p>
+<h3>6. Graphics Processing Unit (GPU)</h3>
+<p>
+                    The GPU handles graphics-related tasks,
+                    including displaying images, rendering
+                    videos, and supporting certain scientific
+                    calculations.
+                </p>
+<div class="example-box">
+<h3>Example: Playing a Computer Game</h3>
+<ul>
+<li>The CPU processes the game's instructions.</li>
+<li>RAM holds the game data currently needed.</li>
+<li>The GPU renders the graphics.</li>
+<li>The storage device contains the installed game.</li>
+<li>The monitor displays the result.</li>
+</ul>
+</div>
+<h3>Importance</h3>
+<p>
+                    Each component contributes to the overall
+                    performance of a computer. If one important
+                    component fails, the computer may become
+                    slow or stop working properly.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 6
+            ====================================== -->
+<section class="chapter" id="page-6">
+<span class="chapter-number">LESSON 06</span>
+<h2>Central Processing Unit (CPU)</h2>
+<h3>What Is a CPU?</h3>
+<p>
+                    The Central Processing Unit, commonly known
+                    as the CPU, is the main processing component
+                    of a computer. It executes instructions from
+                    programs and performs calculations and
+                    logical operations.
+                </p>
+<p>
+                    The CPU communicates with memory and other
+                    computer components to complete different
+                    tasks. Its performance affects how quickly
+                    a computer can process instructions.
+                </p>
+<h3>Main Functions of the CPU</h3>
+<ol>
+<li>
+<strong>Instruction Processing:</strong>
+                        Executes instructions provided by
+                        computer programs.
+                    </li>
+<li>
+<strong>Data Calculation:</strong>
+                        Performs mathematical operations.
+                    </li>
+<li>
+<strong>Logical Operations:</strong>
+                        Compares values and makes logical decisions.
+                    </li>
+<li>
+<strong>System Control:</strong>
+                        Coordinates different activities
+                        inside the computer.
+                    </li>
+<li>
+<strong>Data Movement:</strong>
+                        Transfers information between registers,
+                        memory, and other components.
+                    </li>
+</ol>
+<h3>Important CPU Features</h3>
+<h3>CPU Cores</h3>
+<p>
+                    A core is an individual processing unit
+                    inside a CPU. Multiple cores allow a
+                    processor to work on different tasks
+                    at the same time.
+                </p>
+<h3>Clock Speed</h3>
+<p>
+                    Clock speed describes the rate at which
+                    a processor operates, commonly measured
+                    in gigahertz (GHz).
+                </p>
+<p>
+                    It is one performance factor but does not
+                    determine overall performance by itself.
+                </p>
+<h3>Cache Memory</h3>
+<p>
+                    Cache is a small and very fast memory
+                    that keeps frequently needed information
+                    close to the processor.
+                </p>
+<h3>Threads</h3>
+<p>
+                    Threads are sequences of instructions
+                    that can be scheduled for execution.
+                    Some CPUs support simultaneous
+                    multithreading to handle multiple
+                    threads efficiently.
+                </p>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        When a user opens a calculator and
+                        enters 25 + 15, the CPU processes
+                        the instructions and calculates
+                        the answer, which is 40.
+                    </p>
+</div>
+<h3>Importance of the CPU</h3>
+<p>
+                    Without a processor, a general-purpose
+                    computer cannot execute its programs.
+                    It plays a central role in running
+                    applications, managing instructions,
+                    and processing information.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 7
+            ====================================== -->
+<section class="chapter" id="page-7">
+<span class="chapter-number">LESSON 07</span>
+<h2>Arithmetic Logic Unit (ALU)</h2>
+<h3>What Is an ALU?</h3>
+<p>
+                    The Arithmetic Logic Unit is a major
+                    part of the CPU responsible for performing
+                    mathematical and logical operations.
+                </p>
+<p>
+                    It processes data based on instructions
+                    received from the control unit.
+                    The ALU works with values stored in
+                    registers and sends the results back
+                    to the processor's internal storage
+                    or memory.
+                </p>
+<h3>Main Functions of the ALU</h3>
+<h3>1. Arithmetic Operations</h3>
+<p>
+                    The ALU performs mathematical calculations
+                    such as:
+                </p>
+<ul>
+<li>Addition</li>
+<li>Subtraction</li>
+<li>Multiplication</li>
+<li>Division</li>
+</ul>
+<h3>2. Logical Operations</h3>
+<p>
+                    The ALU performs logical operations
+                    used when comparing or evaluating information.
+                </p>
+<ul>
+<li>AND</li>
+<li>OR</li>
+<li>NOT</li>
+<li>XOR</li>
+</ul>
+<h3>3. Comparison Operations</h3>
+<p>
+                    The ALU can compare two values to
+                    determine whether one is greater than,
+                    less than, or equal to another.
+                </p>
+<div class="example-box">
+<h3>Example: Addition</h3>
+<p>
+                        Suppose a computer needs to calculate:
+                    </p>
+<pre><code>25 + 15 = 40</code></pre>
+<p>
+                        The CPU receives the instruction,
+                        and the ALU performs the addition.
+                        The result is then stored temporarily
+                        or sent to memory for further use.
+                    </p>
+</div>
+<h3>Importance of the ALU</h3>
+<p>
+                    The ALU allows computers to perform
+                    calculations and make logical comparisons.
+                    These functions are necessary for calculators,
+                    spreadsheets, games, business applications,
+                    and programming operations.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 8
+            ====================================== -->
+<section class="chapter" id="page-8">
+<span class="chapter-number">LESSON 08</span>
+<h2>Control Unit (CU) and Registers</h2>
+<h3>Control Unit</h3>
+<p>
+                    The Control Unit is a component of the
+                    CPU that manages and coordinates
+                    instruction execution.
+                </p>
+<p>
+                    It directs the activities of other
+                    processor components and controls
+                    the movement of information.
+                </p>
+<p>
+                    It does not perform most mathematical
+                    calculations itself. Instead, it determines
+                    what operation should happen and coordinates
+                    the components responsible for carrying it out.
+                </p>
+<h3>Functions of the Control Unit</h3>
+<ul>
+<li>Retrieves instructions from memory.</li>
+<li>Decodes instructions to understand their meaning.</li>
+<li>Sends control signals to other components.</li>
+<li>Coordinates the execution of instructions.</li>
+<li>Manages the movement of data within the processor.</li>
+</ul>
+<h3>Registers</h3>
+<p>
+                    Registers are small, high-speed storage
+                    locations inside the CPU.
+                </p>
+<p>
+                    They temporarily hold information needed
+                    during instruction execution.
+                </p>
+<h3>Common Types of Registers</h3>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Program Counter (PC)</td>
+<td>
+                                Stores the address of the next
+                                instruction that the CPU should execute.
+                            </td>
+</tr>
+<tr>
+<td>Instruction Register (IR)</td>
+<td>
+                                Holds the instruction currently
+                                being processed.
+                            </td>
+</tr>
+<tr>
+<td>Memory Address Register (MAR)</td>
+<td>
+                                Holds the address of the memory
+                                location being accessed.
+                            </td>
+</tr>
+<tr>
+<td>Memory Data Register (MDR)</td>
+<td>
+                                Temporarily holds data being
+                                transferred to or from memory.
+                            </td>
+</tr>
+<tr>
+<td>Accumulator (ACC)</td>
+<td>
+                                Stores intermediate results of
+                                arithmetic and logical operations
+                                in processor designs that use
+                                an accumulator.
+                            </td>
+</tr>
+</tbody>
+</table>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        When a computer adds two numbers,
+                        registers temporarily hold the values.
+                        The control unit directs the operation,
+                        and the ALU performs the addition.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    The Control Unit and registers help the
+                    CPU execute instructions in an organized
+                    and efficient manner.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 9
+            ====================================== -->
+<section class="chapter" id="page-9">
+<span class="chapter-number">LESSON 09</span>
+<h2>Memory Systems</h2>
+<h3>What Is Computer Memory?</h3>
+<p>
+                    Computer memory is the part of a computer
+                    system that stores data and instructions
+                    needed during processing.
+                </p>
+<p>
+                    It allows the CPU to access information
+                    required by programs.
+                </p>
+<p>
+                    Memory systems are organized into
+                    different levels based on their speed,
+                    capacity, and purpose.
+                </p>
+<h3>Types of Computer Memory</h3>
+<h3>1. Registers</h3>
+<p>
+                    Registers are located inside the CPU.
+                    They provide very fast temporary storage
+                    for the processor.
+                </p>
+<h3>2. Cache Memory</h3>
+<p>
+                    Cache stores frequently used data and
+                    instructions so the CPU can access
+                    them quickly.
+                </p>
+<h3>3. RAM</h3>
+<p>
+                    Random Access Memory temporarily holds
+                    programs and data currently in use.
+                </p>
+<h3>4. ROM</h3>
+<p>
+                    Read-Only Memory is non-volatile memory
+                    used to store firmware and other
+                    essential instructions.
+                </p>
+<h3>Memory Hierarchy</h3>
+<p>
+                    The memory hierarchy organizes storage
+                    based on speed and closeness to the CPU.
+                </p>
+<table>
+<thead>
+<tr>
+<th>Memory Type</th>
+<th>General Speed</th>
+<th>Main Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registers</td>
+<td>Fastest</td>
+<td>Immediate CPU operations</td>
+</tr>
+<tr>
+<td>Cache</td>
+<td>Very fast</td>
+<td>Frequently used data</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>Fast</td>
+<td>Active programs and data</td>
+</tr>
+<tr>
+<td>SSD/HDD</td>
+<td>Slower</td>
+<td>Long-term storage</td>
+</tr>
+</tbody>
+</table>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        When a student opens a presentation
+                        program, its files are stored on an SSD.
+                    </p>
+<p>
+                        When the program runs, necessary data
+                        is loaded into RAM. The CPU then uses
+                        cache and registers while processing
+                        instructions.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Memory allows the computer to access
+                    information when needed.
+                </p>
+<p>
+                    Proper memory management helps improve
+                    system performance and application
+                    responsiveness.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 10
+            ====================================== -->
+<section class="chapter" id="page-10">
+<span class="chapter-number">LESSON 10</span>
+<h2>Primary Memory: RAM and ROM</h2>
+<h3>Random Access Memory (RAM)</h3>
+<p>
+                    RAM is the main temporary memory used
+                    by a computer while programs are running.
+                </p>
+<p>
+                    It stores the information that the CPU
+                    needs to access during active tasks.
+                </p>
+<p>
+                    RAM is volatile memory, meaning its
+                    stored contents are normally lost
+                    when the computer loses power.
+                </p>
+<h3>Functions of RAM</h3>
+<ul>
+<li>Holds currently running applications.</li>
+<li>Stores temporary working data.</li>
+<li>Supports multitasking.</li>
+<li>
+                        Provides the CPU with quick access
+                        to active information.
+                    </li>
+</ul>
+<h3>Types of RAM</h3>
+<h3>1. DRAM (Dynamic Random Access Memory)</h3>
+<p>
+                    DRAM is commonly used as the main
+                    memory in computers.
+                </p>
+<p>
+                    It requires regular refreshing to
+                    maintain stored information.
+                </p>
+<h3>2. SRAM (Static Random Access Memory)</h3>
+<p>
+                    SRAM is faster and commonly used
+                    for CPU cache.
+                </p>
+<p>
+                    It does not require the same refreshing
+                    process as DRAM while powered.
+                </p>
+<h3>Read-Only Memory (ROM)</h3>
+<p>
+                    ROM refers to non-volatile memory that
+                    retains stored information without
+                    continuous power.
+                </p>
+<p>
+                    It is commonly used for firmware
+                    and startup-related instructions.
+                </p>
+<h3>RAM vs. ROM</h3>
+<table>
+<thead>
+<tr>
+<th>RAM</th>
+<th>ROM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usually temporary</td>
+<td>Retains information</td>
+</tr>
+<tr>
+<td>Volatile</td>
+<td>Non-volatile</td>
+</tr>
+<tr>
+<td>Used for active programs</td>
+<td>Often used for firmware</td>
+</tr>
+<tr>
+<td>Supports reading and writing</td>
+<td>
+                                Writing depends on ROM technology
+                            </td>
+</tr>
+</tbody>
+</table>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        When a computer starts, firmware
+                        helps initialize the hardware.
+                    </p>
+<p>
+                        After startup, the operating system
+                        loads into RAM so the user can
+                        work with applications.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    RAM supports active tasks, while ROM
+                    and other non-volatile firmware storage
+                    help provide essential startup instructions.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 11
+            ====================================== -->
+<section class="chapter" id="page-11">
+<span class="chapter-number">LESSON 11</span>
+<h2>Secondary Storage Devices</h2>
+<h3>What Is Secondary Storage?</h3>
+<p>
+                    Secondary storage refers to devices used
+                    to keep information for long periods.
+                </p>
+<p>
+                    Unlike RAM, secondary storage can retain
+                    files even when the computer is turned off.
+                </p>
+<p>
+                    It is used to save documents, photos,
+                    videos, applications, operating systems,
+                    and other important information.
+                </p>
+<h3>Types of Secondary Storage</h3>
+<h3>1. Hard Disk Drive (HDD)</h3>
+<p>
+                    An HDD stores information on magnetic
+                    rotating disks. It is commonly used
+                    for storing large amounts of data.
+                </p>
+<h3>2. Solid State Drive (SSD)</h3>
+<p>
+                    An SSD uses flash memory to store
+                    information. It has no moving mechanical
+                    parts and generally provides faster
+                    access than traditional HDDs.
+                </p>
+<h3>3. USB Flash Drive</h3>
+<p>
+                    A USB flash drive is a small portable
+                    storage device that connects through
+                    a USB port.
+                </p>
+<h3>4. Memory Card</h3>
+<p>
+                    Memory cards are small storage devices
+                    commonly used in cameras, smartphones,
+                    and other portable electronics.
+                </p>
+<h3>5. Optical Discs</h3>
+<p>
+                    CDs, DVDs, and Blu-ray discs store
+                    information using optical technology.
+                </p>
+<h3>HDD vs. SSD</h3>
+<table>
+<thead>
+<tr>
+<th>HDD</th>
+<th>SSD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uses moving mechanical parts</td>
+<td>Uses flash memory</td>
+</tr>
+<tr>
+<td>Generally slower</td>
+<td>Generally faster</td>
+</tr>
+<tr>
+<td>
+                                Often lower cost per storage capacity
+                            </td>
+<td>
+                                Often higher cost per capacity
+                            </td>
+</tr>
+<tr>
+<td>
+                                Can be more sensitive to
+                                physical movement
+                            </td>
+<td>
+                                Has no moving disk parts
+                            </td>
+</tr>
+</tbody>
+</table>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        A student saves a research paper
+                        on an SSD.
+                    </p>
+<p>
+                        Later, the student can reopen
+                        the file even after shutting
+                        down the computer.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Secondary storage protects information
+                    from being lost when the computer
+                    is turned off.
+                </p>
+<p>
+                    It also provides space for applications
+                    and large files.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 12
+            ====================================== -->
+<section class="chapter" id="page-12">
+<span class="chapter-number">LESSON 12</span>
+<h2>Input Devices</h2>
+<h3>What Are Input Devices?</h3>
+<p>
+                    Input devices are hardware components
+                    used to enter data and instructions
+                    into a computer system.
+                </p>
+<p>
+                    They allow users to communicate with
+                    computers and control different applications.
+                </p>
+<h3>Common Input Devices</h3>
+<h3>1. Keyboard</h3>
+<p>
+                    A keyboard is used to enter letters,
+                    numbers, symbols, and commands.
+                </p>
+<h3>2. Mouse</h3>
+<p>
+                    A mouse controls the pointer on the screen.
+                    It allows users to click, select, drag,
+                    and open items.
+                </p>
+<h3>3. Scanner</h3>
+<p>
+                    A scanner converts printed documents
+                    and images into digital files.
+                </p>
+<h3>4. Microphone</h3>
+<p>
+                    A microphone captures sound and
+                    sends it to the computer.
+                </p>
+<h3>5. Webcam</h3>
+<p>
+                    A webcam captures images and videos
+                    for video calls, recording,
+                    and online meetings.
+                </p>
+<h3>6. Touchscreen</h3>
+<p>
+                    A touchscreen allows users to interact
+                    with a computer by touching the display.
+                </p>
+<h3>7. Barcode Reader</h3>
+<p>
+                    A barcode reader scans product codes
+                    and sends the information to a
+                    computer system.
+                </p>
+<div class="example-box">
+<h3>Example: Online Class</h3>
+<p>
+                        In an online class, a student uses
+                        a keyboard to type messages,
+                        a microphone to speak, and a
+                        webcam to share video.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Input devices make it possible for people
+                    to provide information and commands
+                    to computers.
+                </p>
+<p>
+                    Without input methods, users would
+                    have limited ways to interact
+                    with a system.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 13
+            ====================================== -->
+<section class="chapter" id="page-13">
+<span class="chapter-number">LESSON 13</span>
+<h2>Output Devices</h2>
+<h3>What Are Output Devices?</h3>
+<p>
+                    Output devices are hardware components
+                    that present processed information to users.
+                </p>
+<p>
+                    They receive information from the computer
+                    and convert it into a form that people
+                    can understand.
+                </p>
+<h3>Common Output Devices</h3>
+<h3>1. Monitor</h3>
+<p>
+                    A monitor displays text, images,
+                    videos, and other visual information.
+                </p>
+<h3>2. Printer</h3>
+<p>
+                    A printer produces physical copies
+                    of digital documents and images.
+                </p>
+<h3>3. Speakers</h3>
+<p>
+                    Speakers produce sound from audio
+                    signals generated by a computer.
+                </p>
+<h3>4. Headphones</h3>
+<p>
+                    Headphones allow users to listen
+                    to audio privately.
+                </p>
+<h3>5. Projector</h3>
+<p>
+                    A projector displays computer
+                    content on a larger screen or wall.
+                </p>
+<h3>Types of Output</h3>
+<ul>
+<li>
+<strong>Visual Output:</strong>
+                        Information displayed through
+                        monitors and projectors.
+                    </li>
+<li>
+<strong>Audio Output:</strong>
+                        Sounds produced through
+                        speakers and headphones.
+                    </li>
+<li>
+<strong>Printed Output:</strong>
+                        Physical documents produced
+                        by printers.
+                    </li>
+</ul>
+<div class="example-box">
+<h3>Example: Classroom Presentation</h3>
+<p>
+                        A teacher prepares a presentation
+                        and displays it using a projector.
+                    </p>
+<p>
+                        The computer processes the presentation,
+                        while the projector shows the slides
+                        to the students.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Output devices help users understand
+                    the results of computer processing.
+                </p>
+<p>
+                    They make information accessible through
+                    images, sounds, and printed materials.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 14
+            ====================================== -->
+<section class="chapter" id="page-14">
+<span class="chapter-number">LESSON 14</span>
+<h2>Motherboard and System Bus</h2>
+<h3>What Is a Motherboard?</h3>
+<p>
+                    The motherboard is the main circuit
+                    board of a computer.
+                </p>
+<p>
+                    It provides the connections that allow
+                    different hardware components to
+                    communicate and work together.
+                </p>
+<p>
+                    It contains slots, connectors, circuits,
+                    and other features that support
+                    computer operations.
+                </p>
+<h3>Main Parts of a Motherboard</h3>
+<h3>1. CPU Socket</h3>
+<p>
+                    The CPU socket is the location
+                    where the processor is installed.
+                </p>
+<h3>2. RAM Slots</h3>
+<p>
+                    These slots hold the computer's
+                    memory modules.
+                </p>
+<h3>3. Expansion Slots</h3>
+<p>
+                    Expansion slots allow users to install
+                    additional hardware, such as graphics
+                    and network cards.
+                </p>
+<h3>4. Storage Connectors</h3>
+<p>
+                    These connect storage devices such
+                    as SATA drives and compatible
+                    M.2 storage devices.
+                </p>
+<h3>5. Power Connectors</h3>
+<p>
+                    These provide electrical power
+                    to the motherboard and processor.
+                </p>
+<h3>6. Input/Output Ports</h3>
+<p>
+                    These allow external devices
+                    to connect to the computer.
+                </p>
+<h3>What Is a System Bus?</h3>
+<p>
+                    A system bus is a communication pathway
+                    that transfers information between
+                    computer components.
+                </p>
+<h3>Types of Buses</h3>
+<table>
+<thead>
+<tr>
+<th>Bus</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Bus</td>
+<td>
+                                Carries data between components.
+                            </td>
+</tr>
+<tr>
+<td>Address Bus</td>
+<td>
+                                Carries information identifying
+                                memory locations or device addresses.
+                            </td>
+</tr>
+<tr>
+<td>Control Bus</td>
+<td>
+                                Carries signals that coordinate operations.
+                            </td>
+</tr>
+</tbody>
+</table>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        When the CPU requests information
+                        from RAM, communication pathways
+                        carry the necessary address,
+                        data, and control signals.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    The motherboard and system bus provide
+                    the connections needed for the computer's
+                    components to communicate efficiently.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 15
+            ====================================== -->
+<section class="chapter" id="page-15">
+<span class="chapter-number">LESSON 15</span>
+<h2>Types of Computer Architecture</h2>
+<p>
+                    Computer architecture has different
+                    designs and approaches.
+                </p>
+<p>
+                    Each type has specific characteristics
+                    that affect how instructions are
+                    processed and how hardware interacts
+                    with software.
+                </p>
+<h3>1. Von Neumann Architecture</h3>
+<p>
+                    This architecture uses a shared
+                    memory space for instructions and data.
+                </p>
+<h3>2. Harvard Architecture</h3>
+<p>
+                    This architecture uses separate storage
+                    and pathways for instructions and data.
+                </p>
+<h3>3. RISC Architecture</h3>
+<p>
+                    RISC stands for Reduced Instruction
+                    Set Computer.
+                </p>
+<p>
+                    It uses a simplified instruction set
+                    designed to support efficient
+                    instruction execution.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    Arm architecture.
+                </div>
+<h3>4. CISC Architecture</h3>
+<p>
+                    CISC stands for Complex Instruction
+                    Set Computer.
+                </p>
+<p>
+                    It provides a larger and more
+                    complex instruction set.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    The x86 architecture is commonly
+                    associated with CISC design.
+                </div>
+</section>
+<!-- =====================================
+                 LESSON 16
+            ====================================== -->
+<section class="chapter" id="page-16">
+<span class="chapter-number">LESSON 16</span>
+<h2>Von Neumann Architecture</h2>
+<h3>What Is Von Neumann Architecture?</h3>
+<p>
+                    Von Neumann Architecture is a computer
+                    design in which program instructions
+                    and data are stored in the same
+                    memory system.
+                </p>
+<p>
+                    It is based on the stored-program
+                    concept, which allows computers to
+                    store instructions in memory and
+                    execute them automatically.
+                </p>
+<p>
+                    The architecture is named after
+                    mathematician John von Neumann,
+                    whose work helped establish the
+                    stored-program computer model.
+                </p>
+<h3>Main Components</h3>
+<ol>
+<li>
+<strong>Input Unit:</strong>
+                        Receives data and instructions
+                        from users or external devices.
+                    </li>
+<li>
+<strong>Memory Unit:</strong>
+                        Stores both program instructions
+                        and data.
+                    </li>
+<li>
+<strong>Control Unit:</strong>
+                        Directs the execution of instructions.
+                    </li>
+<li>
+<strong>Arithmetic Logic Unit:</strong>
+                        Performs calculations and logical
+                        operations.
+                    </li>
+<li>
+<strong>Output Unit:</strong>
+                        Presents processed information
+                        to the user.
+                    </li>
+</ol>
+<h3>How It Works</h3>
+<ol>
+<li>The computer receives input.</li>
+<li>
+                        Instructions and data are stored
+                        in memory.
+                    </li>
+<li>
+                        The CPU fetches an instruction.
+                    </li>
+<li>
+                        The Control Unit decodes the instruction.
+                    </li>
+<li>
+                        The ALU or another CPU component
+                        performs the required operation.
+                    </li>
+<li>
+                        The result is stored or sent to
+                        an output device.
+                    </li>
+</ol>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        A desktop computer running a calculator
+                        application can follow the stored-program
+                        model. The program instructions and data
+                        are held in memory and processed
+                        by the CPU.
+                    </p>
+</div>
+<h3>Advantages</h3>
+<ul>
+<li>Simple and organized design.</li>
+<li>
+                        Shared memory can be used for
+                        both instructions and data.
+                    </li>
+<li>
+                        Flexible for general-purpose computing.
+                    </li>
+</ul>
+<h3>Limitation</h3>
+<p>
+                    Instructions and data may compete for
+                    access to shared memory pathways.
+                    This limitation is commonly called
+                    the Von Neumann bottleneck.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 17
+            ====================================== -->
+<section class="chapter" id="page-17">
+<span class="chapter-number">LESSON 17</span>
+<h2>Harvard Architecture</h2>
+<h3>What Is Harvard Architecture?</h3>
+<p>
+                    Harvard Architecture is a computer design
+                    that uses separate memory systems for
+                    program instructions and data.
+                </p>
+<p>
+                    Unlike Von Neumann Architecture, it provides
+                    separate pathways for accessing instructions
+                    and data. This can allow both to be accessed
+                    at the same time.
+                </p>
+<h3>Main Components</h3>
+<ol>
+<li>
+<strong>Program Memory:</strong>
+                        Stores the instructions that the
+                        processor needs to execute.
+                    </li>
+<li>
+<strong>Data Memory:</strong>
+                        Stores the information used
+                        by the program.
+                    </li>
+<li>
+<strong>Processor:</strong>
+                        Executes instructions and
+                        processes data.
+                    </li>
+<li>
+<strong>Separate Buses:</strong>
+                        Provide different communication
+                        pathways for instructions and data.
+                    </li>
+</ol>
+<h3>How It Works</h3>
+<ol>
+<li>
+                        The processor retrieves an instruction
+                        from program memory.
+                    </li>
+<li>
+                        At the same time, it can access
+                        information from data memory.
+                    </li>
+<li>
+                        The processor executes the instruction.
+                    </li>
+<li>
+                        The result is stored in the
+                        appropriate location.
+                    </li>
+</ol>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        Some microcontrollers use Harvard-style
+                        designs to efficiently process
+                        instructions and data.
+                    </p>
+<p>
+                        Digital signal processing systems
+                        may also use separate instruction
+                        and data pathways.
+                    </p>
+</div>
+<h3>Advantages</h3>
+<ul>
+<li>
+                        Allows simultaneous instruction
+                        and data access.
+                    </li>
+<li>
+                        Can improve performance in
+                        suitable applications.
+                    </li>
+<li>
+                        Provides separate memory organization.
+                    </li>
+</ul>
+<h3>Limitations</h3>
+<ul>
+<li>
+                        Hardware design can be more complex.
+                    </li>
+<li>
+                        Separate memory spaces may require
+                        additional design considerations.
+                    </li>
+<li>
+                        Memory capacity may be less flexible
+                        between instructions and data.
+                    </li>
+</ul>
+<h3>Von Neumann vs. Harvard Architecture</h3>
+<table>
+<thead>
+<tr>
+<th>Von Neumann</th>
+<th>Harvard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared memory</td>
+<td>
+                                Separate instruction and
+                                data memory
+                            </td>
+</tr>
+<tr>
+<td>Common pathways</td>
+<td>Separate pathways</td>
+</tr>
+<tr>
+<td>Simpler organization</td>
+<td>More specialized organization</td>
+</tr>
+<tr>
+<td>General-purpose model</td>
+<td>
+                                Common in specialized
+                                and embedded designs
+                            </td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- =====================================
+                 LESSON 18
+            ====================================== -->
+<section class="chapter" id="page-18">
+<span class="chapter-number">LESSON 18</span>
+<h2>Instruction Cycle</h2>
+<h3>What Is the Instruction Cycle?</h3>
+<p>
+                    The instruction cycle is the process
+                    followed by a CPU when executing
+                    program instructions.
+                </p>
+<p>
+                    It explains how the processor retrieves,
+                    understands, and performs commands.
+                </p>
+<p>
+                    The process repeats continuously while
+                    the computer runs programs.
+                </p>
+<h3>Four Main Stages</h3>
+<h3>1. Fetch</h3>
+<p>
+                    The CPU retrieves the next instruction
+                    from memory. The Program Counter helps
+                    identify the instruction's address.
+                </p>
+<h3>2. Decode</h3>
+<p>
+                    The Control Unit interprets the instruction
+                    to determine what operation is required.
+                </p>
+<h3>3. Execute</h3>
+<p>
+                    The CPU performs the required task.
+                    It may involve the ALU, memory,
+                    or other processor components.
+                </p>
+<h3>4. Store</h3>
+<p>
+                    The result is saved in a register
+                    or memory when necessary.
+                </p>
+<div class="example-box">
+<h3>Example: Addition</h3>
+<pre><code>10 + 5 = 15</code></pre>
+<ul>
+<li>
+<strong>Fetch:</strong>
+                            The CPU retrieves the addition instruction.
+                        </li>
+<li>
+<strong>Decode:</strong>
+                            The Control Unit recognizes the operation.
+                        </li>
+<li>
+<strong>Execute:</strong>
+                            The ALU calculates the answer.
+                        </li>
+<li>
+<strong>Store:</strong>
+                            The result, 15, is saved in
+                            a register or memory.
+                        </li>
+</ul>
+</div>
+<h3>Importance</h3>
+<p>
+                    The instruction cycle is the foundation
+                    of CPU operation. It allows the processor
+                    to execute program instructions
+                    in an organized manner.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 19
+            ====================================== -->
+<section class="chapter" id="page-19">
+<span class="chapter-number">LESSON 19</span>
+<h2>Data Processing and Information Flow</h2>
+<h3>What Is Data Processing?</h3>
+<p>
+                    Data processing refers to the process
+                    of collecting raw data and transforming
+                    it into meaningful information.
+                </p>
+<p>
+                    Computers perform data processing
+                    through a series of operations that
+                    involve input, processing, output,
+                    and storage.
+                </p>
+<h3>Main Stages of Data Processing</h3>
+<ol>
+<li>
+<strong>Data Collection:</strong>
+                        The computer receives raw data
+                        from users or other sources.
+                    </li>
+<li>
+<strong>Data Input:</strong>
+                        Information is entered through
+                        input devices or imported from files.
+                    </li>
+<li>
+<strong>Data Processing:</strong>
+                        The CPU executes instructions
+                        to organize, calculate, compare,
+                        or modify the data.
+                    </li>
+<li>
+<strong>Information Output:</strong>
+                        The computer displays or produces
+                        the processed results.
+                    </li>
+<li>
+<strong>Data Storage:</strong>
+                        Results can be saved for future use.
+                    </li>
+</ol>
+<div class="example-box">
+<h3>Example: Student Grading System</h3>
+<p>
+                        A teacher enters the scores
+                        of students into a computer.
+                    </p>
+<ul>
+<li>
+<strong>Input:</strong>
+                            Student examination scores.
+                        </li>
+<li>
+<strong>Processing:</strong>
+                            The computer calculates the average.
+                        </li>
+<li>
+<strong>Output:</strong>
+                            Final grades are displayed.
+                        </li>
+<li>
+<strong>Storage:</strong>
+                            Results are saved in a file or database.
+                        </li>
+</ul>
+</div>
+<h3>Importance</h3>
+<p>
+                    Data processing helps organizations
+                    manage information accurately and efficiently.
+                    It is widely used in schools, hospitals,
+                    businesses, and government offices.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 20
+            ====================================== -->
+<section class="chapter" id="page-20">
+<span class="chapter-number">LESSON 20</span>
+<h2>Operating Systems and Computer Platforms</h2>
+<h3>What Is an Operating System?</h3>
+<p>
+                    An operating system (OS) is system software
+                    that manages computer hardware and software
+                    resources. It provides the environment
+                    where applications can run.
+                </p>
+<p>
+                    The operating system acts as an intermediary
+                    between users, applications, and
+                    computer hardware.
+                </p>
+<h3>Main Functions of an Operating System</h3>
+<ol>
+<li>
+<strong>Process Management:</strong>
+                        Manages running programs and distributes
+                        CPU time among processes.
+                    </li>
+<li>
+<strong>Memory Management:</strong>
+                        Controls how memory is allocated
+                        and used by applications.
+                    </li>
+<li>
+<strong>File Management:</strong>
+                        Organizes files and folders and
+                        manages access to stored information.
+                    </li>
+<li>
+<strong>Device Management:</strong>
+                        Coordinates communication between
+                        the operating system and hardware devices.
+                    </li>
+<li>
+<strong>User Interface:</strong>
+                        Provides a way for users to interact
+                        with the computer.
+                    </li>
+<li>
+<strong>Security Management:</strong>
+                        Helps protect files, accounts,
+                        and system resources through access
+                        controls and other security features.
+                    </li>
+</ol>
+<h3>Examples of Operating Systems</h3>
+<ul>
+<li>Windows</li>
+<li>Linux</li>
+<li>macOS</li>
+<li>Android</li>
+<li>iOS</li>
+</ul>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        When a student opens a Java programming
+                        application, the operating system
+                        manages the memory needed by the
+                        application, allows it to use the
+                        processor, and displays its interface.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    An operating system makes computer hardware
+                    usable and provides the basic services
+                    required by applications.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 21
+            ====================================== -->
+<section class="chapter" id="page-21">
+<span class="chapter-number">LESSON 21</span>
+<h2>Types of Computer Platforms</h2>
+<p>
+                    Computer platforms are available in
+                    different forms depending on their purpose,
+                    size, and performance requirements.
+                </p>
+<h3>1. Desktop Platforms</h3>
+<p>
+                    Desktop computers are designed for stationary
+                    use. They are commonly used in offices,
+                    schools, laboratories, and homes.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    A desktop computer running Windows or Linux.
+                </div>
+<h3>2. Laptop Platforms</h3>
+<p>
+                    Laptops are portable computers that combine
+                    a screen, keyboard, processor, memory,
+                    and battery in one device.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    A laptop used for programming
+                    and school assignments.
+                </div>
+<h3>3. Mobile Platforms</h3>
+<p>
+                    Mobile platforms are designed for portable
+                    devices such as smartphones and tablets.
+                </p>
+<p>
+                    Examples include Android and iOS.
+                </p>
+<h3>4. Server Platforms</h3>
+<p>
+                    Servers provide services and resources
+                    to other computers over a network.
+                </p>
+<p>
+                    Examples include web servers,
+                    database servers, and file servers.
+                </p>
+<h3>5. Embedded Platforms</h3>
+<p>
+                    Embedded platforms are designed to perform
+                    specific functions within larger devices.
+                </p>
+<p>
+                    Examples include smart televisions,
+                    digital cameras, and automated
+                    control systems.
+                </p>
+<h3>6. High-Performance Computing Platforms</h3>
+<p>
+                    These platforms are designed to perform
+                    complex calculations and process
+                    large amounts of data.
+                </p>
+<p>
+                    Examples include scientific computing
+                    clusters and supercomputers.
+                </p>
+<h3>Importance</h3>
+<p>
+                    Different computer platforms allow technology
+                    to support a wide range of activities,
+                    from simple personal tasks to complex
+                    scientific operations.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 22
+            ====================================== -->
+<section class="chapter" id="page-22">
+<span class="chapter-number">LESSON 22</span>
+<h2>32-Bit and 64-Bit Systems</h2>
+<h3>What Are 32-Bit and 64-Bit Systems?</h3>
+<p>
+                    A bit is a binary digit that can have
+                    a value of either 0 or 1.
+                </p>
+<p>
+                    In computer architecture, 32-bit and
+                    64-bit describe certain processor and
+                    system characteristics, including the
+                    width of registers and the architecture's
+                    addressing capabilities.
+                </p>
+<h3>32-Bit Systems</h3>
+<p>
+                    A 32-bit system uses a 32-bit architecture
+                    for important processor operations.
+                </p>
+<h3>Characteristics</h3>
+<ul>
+<li>
+                        Uses 32-bit general-purpose registers
+                        in its 32-bit execution mode.
+                    </li>
+<li>
+                        Has more limited address space
+                        than a typical 64-bit system.
+                    </li>
+<li>
+                        Supports software designed for
+                        compatible 32-bit environments.
+                    </li>
+</ul>
+<h3>64-Bit Systems</h3>
+<p>
+                    A 64-bit system supports wider registers
+                    and a much larger potential address space.
+                </p>
+<h3>Characteristics</h3>
+<ul>
+<li>
+                        Uses 64-bit general-purpose registers
+                        in its 64-bit execution mode.
+                    </li>
+<li>
+                        Can support much larger amounts
+                        of memory, depending on the processor
+                        and operating system.
+                    </li>
+<li>
+                        Can handle many modern computing
+                        requirements more effectively.
+                    </li>
+</ul>
+<h3>Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>32-Bit</th>
+<th>64-Bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>32-bit architecture</td>
+<td>64-bit architecture</td>
+</tr>
+<tr>
+<td>More limited address space</td>
+<td>Much larger address space</td>
+</tr>
+<tr>
+<td>Supports compatible 32-bit software</td>
+<td>Supports compatible 64-bit software</td>
+</tr>
+<tr>
+<td>
+                                Limited memory capacity
+                                in common configurations
+                            </td>
+<td>
+                                Supports larger memory capacities
+                            </td>
+</tr>
+</tbody>
+</table>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        A modern computer with a 64-bit processor
+                        and operating system can support
+                        applications designed for
+                        64-bit environments.
+                    </p>
+<p>
+                        Some systems also provide compatibility
+                        for older 32-bit applications.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Understanding these architectures helps
+                    users choose compatible software,
+                    operating systems, and hardware.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 23
+            ====================================== -->
+<section class="chapter" id="page-23">
+<span class="chapter-number">LESSON 23</span>
+<h2>Computer Hardware and Software</h2>
+<h3>What Is Hardware?</h3>
+<p>
+                    Hardware refers to the physical parts
+                    of a computer system. These components
+                    can be seen and touched.
+                </p>
+<h3>Examples of Hardware</h3>
+<ul>
+<li>CPU</li>
+<li>RAM</li>
+<li>Motherboard</li>
+<li>Keyboard</li>
+<li>Mouse</li>
+<li>Monitor</li>
+<li>Storage devices</li>
+</ul>
+<h3>What Is Software?</h3>
+<p>
+                    Software refers to the programs,
+                    applications, and instructions that
+                    tell a computer how to perform tasks.
+                </p>
+<p>
+                    Software cannot be physically touched
+                    like hardware, but it can be installed,
+                    executed, and used.
+                </p>
+<h3>Types of Software</h3>
+<h3>1. System Software</h3>
+<p>
+                    System software manages computer hardware
+                    and provides services for applications.
+                </p>
+<ul>
+<li>Windows</li>
+<li>Linux</li>
+<li>Device drivers</li>
+<li>Utility programs</li>
+</ul>
+<h3>2. Application Software</h3>
+<p>
+                    Application software helps users
+                    complete specific tasks.
+                </p>
+<ul>
+<li>Microsoft Word</li>
+<li>Google Chrome</li>
+<li>Adobe Photoshop</li>
+<li>Java development tools</li>
+</ul>
+<h3>3. Programming Software</h3>
+<p>
+                    Programming software helps developers
+                    write, test, and maintain computer programs.
+                </p>
+<ul>
+<li>Visual Studio Code</li>
+<li>Java Development Kit</li>
+<li>Compilers</li>
+<li>Debuggers</li>
+</ul>
+<h3>Hardware vs. Software</h3>
+<table>
+<thead>
+<tr>
+<th>Hardware</th>
+<th>Software</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Physical components</td>
+<td>Programs and instructions</td>
+</tr>
+<tr>
+<td>Can be touched</td>
+<td>Cannot be physically touched</td>
+</tr>
+<tr>
+<td>
+                                Requires software to
+                                perform useful tasks
+                            </td>
+<td>
+                                Requires hardware to execute
+                            </td>
+</tr>
+<tr>
+<td>Example: Keyboard</td>
+<td>Example: Microsoft Word</td>
+</tr>
+</tbody>
+</table>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        When a user types a document,
+                        the keyboard serves as hardware,
+                        while the word-processing application
+                        is software.
+                    </p>
+<p>
+                        Both work together to complete the task.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Hardware and software depend on each other.
+                    Hardware provides the physical resources,
+                    while software provides instructions
+                    that make those resources useful.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 24
+            ====================================== -->
+<section class="chapter" id="page-24">
+<span class="chapter-number">LESSON 24</span>
+<h2>Computer Networks and Connectivity</h2>
+<h3>What Is a Computer Network?</h3>
+<p>
+                    A computer network is a group of computers
+                    and other devices connected so they can
+                    exchange information and share resources.
+                </p>
+<p>
+                    Networks allow users to communicate,
+                    transfer files, access online services,
+                    and use shared devices.
+                </p>
+<h3>Types of Computer Networks</h3>
+<h3>1. Personal Area Network (PAN)</h3>
+<p>
+                    A small network that connects personal
+                    devices over a short distance.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    A smartphone connected to wireless headphones.
+                </div>
+<h3>2. Local Area Network (LAN)</h3>
+<p>
+                    A network that connects devices within
+                    a limited area, such as a home,
+                    school, or office.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    Computers connected in a school laboratory.
+                </div>
+<h3>3. Metropolitan Area Network (MAN)</h3>
+<p>
+                    A network that covers a larger geographical
+                    area, such as a city.
+                </p>
+<h3>4. Wide Area Network (WAN)</h3>
+<p>
+                    A network that covers large geographical
+                    areas and connects multiple smaller networks.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    The Internet is a large global network
+                    of interconnected networks.
+                </div>
+<h3>Network Devices</h3>
+<ul>
+<li>
+<strong>Router:</strong>
+                        Directs network traffic between networks.
+                    </li>
+<li>
+<strong>Switch:</strong>
+                        Connects devices within a local network.
+                    </li>
+<li>
+<strong>Modem:</strong>
+                        Connects a network to an internet service
+                        through the provider's access technology.
+                    </li>
+<li>
+<strong>Network Interface Card:</strong>
+                        Allows a device to connect to a network.
+                    </li>
+</ul>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        In a school computer laboratory,
+                        several computers may connect
+                        to one local network.
+                    </p>
+<p>
+                        Students can access shared files
+                        and internet services through the network.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Computer networks support communication,
+                    collaboration, online learning,
+                    file sharing, and access to digital services.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 25
+            ====================================== -->
+<section class="chapter" id="page-25">
+<span class="chapter-number">LESSON 25</span>
+<h2>Virtualization and Cloud Computing</h2>
+<h3>What Is Virtualization?</h3>
+<p>
+                    Virtualization is a technology that allows
+                    one physical computer to operate multiple
+                    virtual computing environments.
+                </p>
+<p>
+                    A virtual machine (VM) behaves like a
+                    separate computer with its own operating
+                    system and allocated resources.
+                </p>
+<h3>Main Components of Virtualization</h3>
+<ol>
+<li>
+<strong>Host Machine:</strong>
+                        The physical computer where
+                        virtualization software operates.
+                    </li>
+<li>
+<strong>Hypervisor:</strong>
+                        Software or firmware that creates
+                        and manages virtual machines.
+                    </li>
+<li>
+<strong>Virtual Machine:</strong>
+                        A software-based computer environment
+                        with virtual hardware resources.
+                    </li>
+<li>
+<strong>Guest Operating System:</strong>
+                        The operating system installed
+                        inside a virtual machine.
+                    </li>
+</ol>
+<h3>Types of Hypervisors</h3>
+<ul>
+<li>
+<strong>Type 1:</strong>
+                        Runs directly on the physical hardware.
+                    </li>
+<li>
+<strong>Type 2:</strong>
+                        Runs as an application on top of
+                        an existing operating system.
+                    </li>
+</ul>
+<h3>What Is Cloud Computing?</h3>
+<p>
+                    Cloud computing provides computing services
+                    through a network, commonly the Internet.
+                </p>
+<p>
+                    These services may include storage,
+                    servers, databases, networking,
+                    and software.
+                </p>
+<h3>Main Cloud Service Models</h3>
+<h3>1. Infrastructure as a Service (IaaS)</h3>
+<p>
+                    Provides virtual computing resources
+                    such as servers, storage, and networking.
+                </p>
+<h3>2. Platform as a Service (PaaS)</h3>
+<p>
+                    Provides an environment for developing
+                    and deploying applications.
+                </p>
+<h3>3. Software as a Service (SaaS)</h3>
+<p>
+                    Provides software applications
+                    through the Internet.
+                </p>
+<p>
+                    Examples include online document editors
+                    and web-based email services.
+                </p>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        A company may use cloud computing
+                        to store files and run applications
+                        without purchasing and maintaining
+                        every physical server itself.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Virtualization and cloud computing help
+                    organizations use computing resources
+                    more flexibly and efficiently.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 26
+            ====================================== -->
+<section class="chapter" id="page-26">
+<span class="chapter-number">LESSON 26</span>
+<h2>Performance and System Specifications</h2>
+<h3>What Is Computer Performance?</h3>
+<p>
+                    Computer performance refers to how
+                    efficiently a computer system completes tasks.
+                </p>
+<p>
+                    It depends on several hardware
+                    and software factors.
+                </p>
+<p>
+                    A computer with suitable specifications
+                    can run applications more smoothly
+                    and handle demanding workloads.
+                </p>
+<h3>Important Performance Factors</h3>
+<h3>1. Processor Speed</h3>
+<p>
+                    The CPU's clock speed is measured in hertz,
+                    commonly gigahertz.
+                </p>
+<p>
+                    It indicates the frequency at which
+                    the processor operates.
+                </p>
+<h3>2. Number of CPU Cores</h3>
+<p>
+                    More cores can help a computer handle
+                    multiple processing tasks, depending
+                    on the application and workload.
+                </p>
+<h3>3. RAM Capacity</h3>
+<p>
+                    More RAM allows a system to keep more
+                    active programs and data in memory.
+                </p>
+<h3>4. Storage Performance</h3>
+<p>
+                    SSDs generally provide faster file
+                    access and system startup than
+                    traditional HDDs.
+                </p>
+<h3>5. Graphics Processing</h3>
+<p>
+                    A GPU improves graphics performance
+                    and supports workloads such as
+                    video editing, 3D rendering,
+                    and certain scientific tasks.
+                </p>
+<h3>6. Cooling System</h3>
+<p>
+                    Cooling systems help maintain suitable
+                    operating temperatures and reduce
+                    the risk of performance problems
+                    caused by overheating.
+                </p>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        A computer with a modern processor,
+                        sufficient RAM, and an SSD may
+                        load applications faster and handle
+                        multiple tasks more smoothly than
+                        an older system with limited memory
+                        and a slower hard drive.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Understanding specifications helps users
+                    select computers based on their needs,
+                    such as schoolwork, programming,
+                    graphic design, gaming, and
+                    business operations.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 27
+            ====================================== -->
+<section class="chapter" id="page-27">
+<span class="chapter-number">LESSON 27</span>
+<h2>Computer Security and Reliability</h2>
+<h3>What Is Computer Security?</h3>
+<p>
+                    Computer security refers to the methods
+                    and technologies used to protect computer
+                    systems, information, and networks from
+                    unauthorized access, damage, and other
+                    digital threats.
+                </p>
+<p>
+                    Security is important because computers
+                    often store personal information, school
+                    records, business documents, and other
+                    valuable data.
+                </p>
+<h3>Common Security Practices</h3>
+<h3>1. Strong Passwords</h3>
+<p>
+                    Users should create unique passwords
+                    that are difficult to guess.
+                </p>
+<h3>2. Software Updates</h3>
+<p>
+                    Installing updates helps maintain system
+                    stability and addresses known security
+                    weaknesses.
+                </p>
+<h3>3. Antivirus Protection</h3>
+<p>
+                    Security software can help detect and
+                    respond to malicious programs.
+                </p>
+<h3>4. Data Backup</h3>
+<p>
+                    Backing up files helps users recover
+                    information if the original files
+                    are lost or damaged.
+                </p>
+<h3>5. Access Control</h3>
+<p>
+                    Access control limits system resources
+                    to authorized users.
+                </p>
+<h3>6. Network Security</h3>
+<p>
+                    Security measures help protect information
+                    exchanged through computer networks.
+                </p>
+<h3>What Is Computer Reliability?</h3>
+<p>
+                    Reliability refers to the ability of
+                    a computer system to operate correctly
+                    and consistently over time.
+                </p>
+<h3>Factors That Affect Reliability</h3>
+<ul>
+<li>Quality of hardware components.</li>
+<li>Proper cooling and ventilation.</li>
+<li>Regular system maintenance.</li>
+<li>Stable power supply.</li>
+<li>Correct software installation.</li>
+<li>Data protection and backup procedures.</li>
+</ul>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                        A school computer laboratory can
+                        improve reliability by maintaining
+                        computers, updating software,
+                        checking hardware, and keeping
+                        backup copies of important school files.
+                    </p>
+</div>
+<h3>Importance</h3>
+<p>
+                    Computer security protects information,
+                    while reliability helps ensure that
+                    systems remain available and perform
+                    their intended tasks.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 28
+            ====================================== -->
+<section class="chapter" id="page-28">
+<span class="chapter-number">LESSON 28</span>
+<h2>Importance and Applications of Computer Systems</h2>
+<p>
+                    Computer systems are important in modern
+                    society because they support many activities
+                    and make information easier to process,
+                    store, and share.
+                </p>
+<h3>1. Education</h3>
+<p>
+                    Computers help students research topics,
+                    prepare assignments, attend online classes,
+                    and develop programming skills.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    Students use computers to create presentations
+                    and digital learning materials.
+                </div>
+<h3>2. Healthcare</h3>
+<p>
+                    Hospitals use computer systems to organize
+                    patient records, manage appointments,
+                    and support medical equipment.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    A hospital information system helps
+                    authorized staff access patient records.
+                </div>
+<h3>3. Business</h3>
+<p>
+                    Businesses use computers to manage
+                    transactions, inventory, employee records,
+                    and financial information.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    A supermarket uses a computerized system
+                    to record purchases and update inventory.
+                </div>
+<h3>4. Communication</h3>
+<p>
+                    Computer systems support email,
+                    video conferencing, messaging,
+                    and social communication.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    Employees attend online meetings through
+                    video-conferencing applications.
+                </div>
+<h3>5. Banking</h3>
+<p>
+                    Banks use computer systems to manage
+                    accounts, process transactions,
+                    and provide digital banking services.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    Customers use online banking to review
+                    account information and complete
+                    permitted transactions.
+                </div>
+<h3>6. Science and Research</h3>
+<p>
+                    Scientists use computers to analyze
+                    information, perform simulations,
+                    and process research data.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    Researchers use computer systems
+                    to study weather patterns.
+                </div>
+<h3>7. Engineering and Design</h3>
+<p>
+                    Engineers use computer software to
+                    create designs, test models,
+                    and calculate measurements.
+                </p>
+<div class="example-box">
+<strong>Example:</strong>
+                    Architects use computer-aided design
+                    software to prepare building plans.
+                </div>
+<h3>Overall Importance</h3>
+<p>
+                    Computer systems improve productivity,
+                    support innovation, and provide tools
+                    that help individuals and organizations
+                    solve problems.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 29
+            ====================================== -->
+<section class="chapter" id="page-29">
+<span class="chapter-number">LESSON 29</span>
+<h2>Practical Examples and Real-World Applications</h2>
+<p>
+                    This section explains how computer system
+                    platforms and architecture are applied
+                    in common situations.
+                </p>
+<h3>Example 1: Student Computer System</h3>
+<p>
+                    A student uses a laptop to complete
+                    school assignments.
+                </p>
+<div class="example-box">
+<h3>Components Involved</h3>
+<ul>
+<li>CPU processes instructions.</li>
+<li>RAM holds active applications.</li>
+<li>SSD stores documents and programs.</li>
+<li>Keyboard receives input.</li>
+<li>Monitor displays information.</li>
+<li>
+                            Operating system manages the
+                            hardware and software.
+                        </li>
+</ul>
+<p>
+<strong>Result:</strong>
+                        The student can write, edit, save,
+                        and submit school assignments.
+                    </p>
+</div>
+<h3>Example 2: Supermarket Computer System</h3>
+<p>
+                    A supermarket uses a computerized
+                    point-of-sale system.
+                </p>
+<div class="example-box">
+<h3>Components Involved</h3>
+<ul>
+<li>Barcode scanner reads product information.</li>
+<li>CPU processes transaction details.</li>
+<li>
+                            Database stores product and
+                            inventory records.
+                        </li>
+<li>Monitor displays purchase information.</li>
+<li>Printer produces the receipt.</li>
+</ul>
+<p>
+<strong>Result:</strong>
+                        Purchases can be recorded and inventory
+                        information can be updated.
+                    </p>
+</div>
+<h3>Example 3: Hospital Computer System</h3>
+<p>
+                    Hospitals use computers to organize
+                    patient information and administrative records.
+                </p>
+<div class="example-box">
+<h3>Components Involved</h3>
+<ul>
+<li>Input devices collect information.</li>
+<li>CPU processes requests.</li>
+<li>Memory supports running applications.</li>
+<li>Storage maintains records.</li>
+<li>
+                            Network systems allow authorized access.
+                        </li>
+</ul>
+<p>
+<strong>Result:</strong>
+                        Hospital staff can manage information
+                        more efficiently.
+                    </p>
+</div>
+<h3>Example 4: Online Learning Platform</h3>
+<p>
+                    Students use computers or smartphones
+                    to access digital learning materials.
+                </p>
+<div class="example-box">
+<h3>Components Involved</h3>
+<ul>
+<li>Mobile or desktop platform.</li>
+<li>Operating system.</li>
+<li>Internet connection.</li>
+<li>Web browser or learning application.</li>
+<li>Remote servers and databases.</li>
+</ul>
+<p>
+<strong>Result:</strong>
+                        Students can access lessons, submit
+                        assignments, and communicate with teachers.
+                    </p>
+</div>
+<h3>Example 5: E-Commerce System</h3>
+<p>
+                    An online shopping platform allows
+                    customers to view products and place orders.
+                </p>
+<div class="example-box">
+<h3>Components Involved</h3>
+<ul>
+<li>User devices display the website.</li>
+<li>Servers process requests.</li>
+<li>
+                            Databases store product and order information.
+                        </li>
+<li>Network connections transfer information.</li>
+<li>
+                            Security systems protect accounts
+                            and transactions.
+                        </li>
+</ul>
+<p>
+<strong>Result:</strong>
+                        Customers and businesses can complete
+                        online shopping activities.
+                    </p>
+</div>
+<h3>Lesson from These Examples</h3>
+<p>
+                    Different computer components and platforms
+                    work together to complete specific tasks.
+                    Understanding their functions helps IT
+                    students learn how real-world computer
+                    systems are designed and maintained.
+                </p>
+</section>
+<!-- =====================================
+                 LESSON 30
+            ====================================== -->
+<section class="chapter" id="page-30">
+<span class="chapter-number">LESSON 30</span>
+<h2>Summary and Conclusion</h2>
+<h3>Summary</h3>
+<p>
+                    Computer System Platforms and Architecture
+                    is an important topic in Information Technology
+                    because it explains how computer systems
+                    are designed, organized, and operated.
+                </p>
+<p>
+                    A computer system is made up of hardware
+                    and software components that work together
+                    to process information.
+                </p>
+<p>
+                    The CPU executes instructions, the ALU
+                    performs calculations, the Control Unit
+                    manages instruction execution, and registers
+                    temporarily hold important data.
+                </p>
+<p>
+                    Memory and storage devices provide different
+                    ways to keep information. RAM supports
+                    active programs, while secondary storage
+                    keeps files for long-term use.
+                </p>
+<p>
+                    Input and output devices allow users
+                    to communicate with computers.
+                </p>
+<p>
+                    Computer architecture explains how these
+                    components are organized and how they
+                    communicate.
+                </p>
+<p>
+                    Von Neumann and Harvard architectures
+                    demonstrate different ways of organizing
+                    instructions and data.
+                </p>
+<p>
+                    Other processor designs, such as RISC
+                    and CISC, provide different approaches
+                    to instruction execution.
+                </p>
+<p>
+                    Operating systems, computer networks,
+                    virtualization, and cloud computing
+                    also contribute to modern computer platforms.
+                </p>
+<p>
+                    These technologies allow users to run
+                    applications, share information,
+                    and access computing resources.
+                </p>
+<h3>Key Lessons Learned</h3>
+<ol>
+<li>
+                        Computer systems require hardware
+                        and software to perform useful tasks.
+                    </li>
+<li>
+                        The CPU is responsible for executing
+                        program instructions.
+                    </li>
+<li>
+                        Memory and storage have different purposes.
+                    </li>
+<li>
+                        Computer architecture determines how
+                        components communicate and process information.
+                    </li>
+<li>
+                        Operating systems manage hardware
+                        and software resources.
+                    </li>
+<li>
+                        Computer networks allow devices
+                        to communicate and share resources.
+                    </li>
+<li>
+                        Virtualization and cloud computing
+                        provide flexible computing environments.
+                    </li>
+<li>
+                        Computer systems are important in
+                        education, healthcare, business,
+                        communication, and research.
+                    </li>
+</ol>
+<h3>Conclusion</h3>
+<p>
+                    Computer System Platforms and Architecture
+                    provides the basic knowledge needed
+                    to understand how modern computers work.
+                </p>
+<p>
+                    Every component has its own function,
+                    but all parts must work together
+                    to complete different operations.
+                </p>
+<p>
+                    Learning about computer architecture
+                    helps students understand the relationship
+                    between hardware, software, memory,
+                    and processing.
+                </p>
+<p>
+                    It also provides useful knowledge
+                    for future studies in programming,
+                    networking, operating systems,
+                    and computer engineering.
+                </p>
+<p>
+                    As technology continues to develop,
+                    understanding computer systems will
+                    remain an important skill for
+                    Information Technology students.
+                </p>
+</section>
+<!-- =====================================
+                 FINAL KNOWLEDGE ASSESSMENT
+            ====================================== -->
+<section class="chapter" id="quiz">
+<span class="chapter-number">
+                    FINAL ASSESSMENT
+                </span>
+<h2>Computer System Platforms and Architecture Quiz</h2>
+<p>
+                    Test your understanding of the 30 lessons
+                    covered in this e-book.
+                </p>
+<div class="note">
+<strong>Assessment Instructions</strong>
+<p>
+                        Answer all 30 multiple-choice questions.
+                        Select only one answer for each question.
+                    </p>
+<p>
+                        Each correct answer is worth one point.
+                        You must obtain at least 75% to pass.
+                    </p>
+<p>
+<strong>Passing score:</strong>
+                        23 out of 30 questions.
+                    </p>
+<p>
+                        After submitting, you will see your
+                        score, the correct answers, and
+                        explanations for each question.
+                    </p>
+</div>
+<form id="quizForm">
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="submit">
+                            Submit Quiz
+                        </button>
+<button id="resetQuiz" type="button">
+                            Retake Quiz
+                        </button>
+</div>
+</form>
+<div aria-live="polite" hidden="" id="quizResult">
+<h3 id="resultHeading"></h3>
+<p id="resultScore"></p>
+<p id="resultPercentage"></p>
+<p id="resultMessage"></p>
+</div>
+</section>
+</main>
+</div>
+<!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+<script>
+        "use strict";
+
+        /* =====================================
+           DARK MODE
+        ====================================== */
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+        const themeIcon =
+            document.getElementById("themeIcon");
+
+        function applyTheme(theme) {
+
+            const dark = theme === "dark";
+
+            document.body.classList.toggle(
+                "dark-mode",
+                dark
+            );
+
+            themeIcon.textContent = dark ? "☀" : "☾";
+
+            themeToggle.setAttribute(
+                "aria-label",
+                dark ? "Switch to light mode" : "Switch to dark mode"
+            );
+        }
+
+        const savedTheme =
+            localStorage.getItem("readerTheme") || "light";
+
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener("click", function () {
+
+            const nextTheme =
+                document.body.classList.contains("dark-mode")
+                    ? "light"
+                    : "dark";
+
+            applyTheme(nextTheme);
+
+            localStorage.setItem(
+                "readerTheme",
+                nextTheme
+            );
+
+        });
+
+        /* =====================================
+           FONT SIZE CONTROL
+        ====================================== */
+
+        const fontSizeSelect =
+            document.getElementById("fontSize");
+
+        const availableFontSizes = [
+            "14px",
+            "16px",
+            "18px",
+            "20px",
+            "22px"
+        ];
+
+        const savedFontSize =
+            localStorage.getItem("readerFontSize");
+
+        if (availableFontSizes.includes(savedFontSize)) {
+
+            fontSizeSelect.value = savedFontSize;
+
+        }
+
+        function applyFontSize(size) {
+
+            document.documentElement.style.setProperty(
+                "--reader-size",
+                size
+            );
+
+        }
+
+        applyFontSize(fontSizeSelect.value);
+
+        fontSizeSelect.addEventListener("change", function () {
+
+            applyFontSize(fontSizeSelect.value);
+
+            localStorage.setItem(
+                "readerFontSize",
+                fontSizeSelect.value
+            );
+
+        });
+
+        /* =====================================
+           FONT FAMILY CONTROL
+        ====================================== */
+
+        const fontFamilySelect =
+            document.getElementById("fontFamily");
+
+        const savedFontFamily =
+            localStorage.getItem("readerFontFamily");
+
+        const availableFontFamilies = Array.from(
+            fontFamilySelect.options
+        ).map(option => option.value);
+
+        if (availableFontFamilies.includes(savedFontFamily)) {
+
+            fontFamilySelect.value = savedFontFamily;
+
+        }
+
+        function applyFontFamily(fontFamily) {
+
+            document.documentElement.style.setProperty(
+                "--reader-family",
+                fontFamily
+            );
+
+        }
+
+        applyFontFamily(fontFamilySelect.value);
+
+        fontFamilySelect.addEventListener("change", function () {
+
+            applyFontFamily(fontFamilySelect.value);
+
+            localStorage.setItem(
+                "readerFontFamily",
+                fontFamilySelect.value
+            );
+
+        });
+
+        /* =====================================
+           MOBILE NAVIGATION
+        ====================================== */
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen =
+                navLinks.classList.toggle("show");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            menuToggle.textContent =
+                isOpen ? "✕" : "☰";
+
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("show");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuToggle.textContent = "☰";
+
+            });
+
+        });
+
+        /* =====================================
+           TABLE OF CONTENTS
+        ====================================== */
+
+        const tocLinks = Array.from(
+            document.querySelectorAll(
+                "#tocNav a[href^='#']"
+            )
+        );
+
+        const tocSections = tocLinks
+            .map(link => {
+                return document.getElementById(
+                    link.getAttribute("href").slice(1)
+                );
+            })
+            .filter(Boolean);
+
+        function setActiveTOC(sectionId) {
+
+            tocLinks.forEach(link => {
+
+                const isActive =
+                    link.getAttribute("href") ===
+                    "#" + sectionId;
+
+                link.classList.toggle(
+                    "active",
+                    isActive
+                );
+
+                if (isActive) {
+                    link.setAttribute(
+                        "aria-current",
+                        "location"
+                    );
+                } else {
+                    link.removeAttribute(
+                        "aria-current"
+                    );
+                }
+
+            });
+
+        }
+
+        if ("IntersectionObserver" in window) {
+
+            const sectionObserver =
+                new IntersectionObserver(
+
+                    entries => {
+
+                        const visibleEntries = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort(
+                                (a, b) =>
+                                    a.boundingClientRect.top -
+                                    b.boundingClientRect.top
+                            );
+
+                        if (visibleEntries.length > 0) {
+
+                            setActiveTOC(
+                                visibleEntries[0].target.id
+                            );
+
+                        }
+
+                    },
+
+                    {
+                        rootMargin: "-110px 0px -65% 0px",
+                        threshold: 0
+                    }
+
+                );
+
+            tocSections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+        }
+
+        tocLinks.forEach(link => {
+
+            link.addEventListener("click", function () {
+
+                setActiveTOC(
+                    link.getAttribute("href").slice(1)
+                );
+
+            });
+
+        });
+
+        /* =====================================
+           30-QUESTION QUIZ DATA
+
+           correct:
+           0 = A
+           1 = B
+           2 = C
+           3 = D
+        ====================================== */
+
+        const quizData = [
+
+            {
+                question:
+                    "What is the primary purpose of a computer system?",
+
+                options: [
+                    "To receive, process, store, and output information",
+                    "To produce electrical power",
+                    "To connect cables without processing data",
+                    "To replace all human decision-making"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "A computer system performs input, processing, output, and storage operations."
+            },
+
+            {
+                question:
+                    "Which combination best describes a computer system platform?",
+
+                options: [
+                    "Only the computer monitor and keyboard",
+                    "Hardware and software that support applications",
+                    "Only the computer's storage device",
+                    "A collection of printed documents"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "A computer platform combines hardware and software to provide an environment for running applications."
+            },
+
+            {
+                question:
+                    "What does computer architecture describe?",
+
+                options: [
+                    "The physical appearance of computer desks",
+                    "The design of office buildings",
+                    "The organization and operation of computer components",
+                    "The arrangement of icons on a desktop"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Computer architecture describes how components are organized and how they communicate and process instructions."
+            },
+
+            {
+                question:
+                    "Which technology was used by first-generation electronic computers?",
+
+                options: [
+                    "Microprocessors",
+                    "Integrated circuits",
+                    "Transistors",
+                    "Vacuum tubes"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "First-generation electronic computers commonly used vacuum tubes."
+            },
+
+            {
+                question:
+                    "Which component provides electrical power to internal computer hardware?",
+
+                options: [
+                    "Power Supply Unit",
+                    "Random Access Memory",
+                    "Graphics Processing Unit",
+                    "Solid State Drive"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "The Power Supply Unit converts and supplies electrical power to computer components."
+            },
+
+            {
+                question:
+                    "What is the main function of the CPU?",
+
+                options: [
+                    "Printing documents",
+                    "Executing program instructions",
+                    "Displaying images on a monitor",
+                    "Storing files permanently"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "The CPU executes instructions and coordinates processing operations."
+            },
+
+            {
+                question:
+                    "Which CPU component performs arithmetic and logical operations?",
+
+                options: [
+                    "Power Supply Unit",
+                    "Storage Controller",
+                    "Arithmetic Logic Unit",
+                    "Network Interface Card"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "The ALU performs arithmetic calculations, logical operations, and comparisons."
+            },
+
+            {
+                question:
+                    "What does the Program Counter normally hold?",
+
+                options: [
+                    "The current screen resolution",
+                    "The computer's total storage capacity",
+                    "The user's account password",
+                    "The address of the next instruction"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "The Program Counter identifies the next instruction that the CPU should execute."
+            },
+
+            {
+                question:
+                    "Which memory location is generally fastest for immediate CPU operations?",
+
+                options: [
+                    "Registers",
+                    "Hard Disk Drive",
+                    "USB Flash Drive",
+                    "Optical Disc"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Registers are high-speed storage locations inside the processor."
+            },
+
+            {
+                question:
+                    "Which statement correctly describes RAM?",
+
+                options: [
+                    "It is used only for printed output",
+                    "It temporarily holds active programs and data",
+                    "It is always permanent storage",
+                    "It cannot be accessed by the processor"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "RAM is volatile primary memory used to hold programs and data while they are active."
+            },
+
+            {
+                question:
+                    "Which storage device uses flash memory and has no moving disk parts?",
+
+                options: [
+                    "Hard Disk Drive",
+                    "DVD Drive",
+                    "Solid State Drive",
+                    "Magnetic Tape Drive"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "An SSD stores data using flash memory and has no moving mechanical disk."
+            },
+
+            {
+                question:
+                    "Which of the following is an input device?",
+
+                options: [
+                    "Monitor",
+                    "Projector",
+                    "Speaker",
+                    "Keyboard"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "A keyboard allows users to enter data and instructions into a computer."
+            },
+
+            {
+                question:
+                    "Which device produces a physical copy of a digital document?",
+
+                options: [
+                    "Printer",
+                    "Scanner",
+                    "Microphone",
+                    "Webcam"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "A printer converts digital documents into physical printed output."
+            },
+
+            {
+                question:
+                    "What is the main function of a motherboard?",
+
+                options: [
+                    "To store files permanently",
+                    "To connect and support communication between hardware components",
+                    "To display graphics without other components",
+                    "To provide internet access independently"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "The motherboard connects major hardware components through sockets, slots, and communication pathways."
+            },
+
+            {
+                question:
+                    "Which architecture is commonly associated with a simplified instruction set?",
+
+                options: [
+                    "CISC",
+                    "Von Neumann",
+                    "RISC",
+                    "Harvard"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "RISC stands for Reduced Instruction Set Computer and emphasizes a simplified instruction set."
+            },
+
+            {
+                question:
+                    "What is a key characteristic of Von Neumann Architecture?",
+
+                options: [
+                    "Separate memory for every output device",
+                    "No processor is required",
+                    "Instructions cannot be stored in memory",
+                    "Instructions and data share a memory system"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "Von Neumann Architecture stores instructions and data in a shared memory system."
+            },
+
+            {
+                question:
+                    "What is a key characteristic of Harvard Architecture?",
+
+                options: [
+                    "Separate instruction and data memory pathways",
+                    "A single shared instruction and data pathway",
+                    "No program memory",
+                    "No processor registers"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Harvard Architecture uses separate instruction and data memory systems or pathways."
+            },
+
+            {
+                question:
+                    "Which stage of the instruction cycle interprets an instruction?",
+
+                options: [
+                    "Fetch",
+                    "Decode",
+                    "Store",
+                    "Output"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "During decoding, the Control Unit determines what operation the instruction requires."
+            },
+
+            {
+                question:
+                    "In a student grading system, calculating the average score is an example of which stage?",
+
+                options: [
+                    "Input",
+                    "Storage",
+                    "Processing",
+                    "Output"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Calculating an average transforms raw scores into useful information, which is processing."
+            },
+
+            {
+                question:
+                    "Which operating system function allocates memory to running applications?",
+
+                options: [
+                    "File Printing",
+                    "Display Calibration",
+                    "Network Cabling",
+                    "Memory Management"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "Memory management controls how system memory is allocated and used by applications."
+            },
+
+            {
+                question:
+                    "Which platform is designed to provide resources to other computers over a network?",
+
+                options: [
+                    "Server Platform",
+                    "Desktop Platform",
+                    "Mobile Platform",
+                    "Embedded Camera Platform"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Servers provide services such as file access, web hosting, and databases to other devices."
+            },
+
+            {
+                question:
+                    "Which statement best describes a typical 64-bit system compared with a 32-bit system?",
+
+                options: [
+                    "It cannot run operating systems",
+                    "It supports a much larger potential address space",
+                    "It always has a faster internet connection",
+                    "It does not require RAM"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "A 64-bit architecture generally supports a much larger address space than a 32-bit architecture."
+            },
+
+            {
+                question:
+                    "Which of the following is application software?",
+
+                options: [
+                    "Motherboard",
+                    "RAM Module",
+                    "Microsoft Word",
+                    "CPU Socket"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Microsoft Word is application software used for creating and editing documents."
+            },
+
+            {
+                question:
+                    "Which network commonly connects computers within a school laboratory?",
+
+                options: [
+                    "Wide Area Network",
+                    "Metropolitan Area Network",
+                    "Personal Area Network",
+                    "Local Area Network"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "A LAN connects devices within a limited geographical area such as a school or office."
+            },
+
+            {
+                question:
+                    "What software component creates and manages virtual machines?",
+
+                options: [
+                    "Hypervisor",
+                    "Web Browser",
+                    "Text Editor",
+                    "Spreadsheet"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "A hypervisor manages virtual machines and their allocated computing resources."
+            },
+
+            {
+                question:
+                    "Which upgrade generally improves file access speed when replacing a traditional HDD?",
+
+                options: [
+                    "Adding a second keyboard",
+                    "Installing an SSD",
+                    "Changing the monitor wallpaper",
+                    "Replacing the mouse pad"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "SSDs generally provide faster storage access and startup times than traditional HDDs."
+            },
+
+            {
+                question:
+                    "Which practice helps recover important files after data loss?",
+
+                options: [
+                    "Disabling system updates",
+                    "Sharing account passwords",
+                    "Maintaining regular backups",
+                    "Removing access controls"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Backups provide recoverable copies of information if original files are lost or damaged."
+            },
+
+            {
+                question:
+                    "Which field uses computer systems to manage patient records and appointments?",
+
+                options: [
+                    "Agriculture only",
+                    "Entertainment only",
+                    "Graphic design only",
+                    "Healthcare"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "Healthcare organizations use computer systems for patient records, appointments, and administrative processes."
+            },
+
+            {
+                question:
+                    "Which device reads product codes in a supermarket point-of-sale system?",
+
+                options: [
+                    "Barcode Scanner",
+                    "Projector",
+                    "Speaker",
+                    "Graphics Card"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "A barcode scanner captures product codes so the point-of-sale system can identify products."
+            },
+
+            {
+                question:
+                    "Which statement best summarizes how computer systems operate?",
+
+                options: [
+                    "Software works without hardware",
+                    "Hardware and software components cooperate to process information",
+                    "Storage devices perform all CPU calculations",
+                    "Computer networks replace operating systems"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "Computer systems depend on hardware and software working together to execute instructions and process information."
+            }
+
+        ];
+
+        /* =====================================
+           QUIZ ELEMENTS
+        ====================================== */
+
+        const quizForm =
+            document.getElementById("quizForm");
+
+        const quizQuestions =
+            document.getElementById("quizQuestions");
+
+        const quizResult =
+            document.getElementById("quizResult");
+
+        const resultHeading =
+            document.getElementById("resultHeading");
+
+        const resultScore =
+            document.getElementById("resultScore");
+
+        const resultPercentage =
+            document.getElementById("resultPercentage");
+
+        const resultMessage =
+            document.getElementById("resultMessage");
+
+        const submitQuiz =
+            document.getElementById("submitQuiz");
+
+        const resetQuiz =
+            document.getElementById("resetQuiz");
+
+        let quizSubmitted = false;
+
+        /* =====================================
+           RENDER QUIZ QUESTIONS
+        ====================================== */
+
+        function renderQuiz() {
+
+            quizQuestions.innerHTML = "";
+
+            quizData.forEach((item, index) => {
+
+                const questionNumber = index + 1;
+
+                const questionBox =
+                    document.createElement("div");
+
+                questionBox.className = "quiz-question";
+
+                questionBox.id =
+                    "quiz-question-" + questionNumber;
+
+                const heading =
+                    document.createElement("h3");
+
+                heading.textContent =
+                    questionNumber + ". " + item.question;
+
+                questionBox.appendChild(heading);
+
+                item.options.forEach((option, optionIndex) => {
+
+                    const label =
+                        document.createElement("label");
+
+                    label.className = "quiz-option";
+
+                    const input =
+                        document.createElement("input");
+
+                    input.type = "radio";
+
+                    input.name =
+                        "question-" + index;
+
+                    input.value =
+                        String(optionIndex);
+
+                    input.required = true;
+
+                    const optionText =
+                        document.createElement("span");
+
+                    optionText.textContent =
+                        String.fromCharCode(65 + optionIndex) +
+                        ". " + option;
+
+                    label.appendChild(input);
+
+                    label.appendChild(optionText);
+
+                    questionBox.appendChild(label);
+
+                });
+
+                const feedback =
+                    document.createElement("p");
+
+                feedback.className = "quiz-feedback";
+
+                feedback.hidden = true;
+
+                feedback.id =
+                    "feedback-" + index;
+
+                questionBox.appendChild(feedback);
+
+                quizQuestions.appendChild(questionBox);
+
+            });
+
+            quizSubmitted = false;
+
+            submitQuiz.disabled = false;
+
+            submitQuiz.textContent = "Submit Quiz";
+
+            quizResult.hidden = true;
+
+        }
+
+        /* =====================================
+           SUBMIT AND GRADE QUIZ
+        ====================================== */
+
+        quizForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            if (quizSubmitted) {
+                return;
+            }
+
+            let score = 0;
+
+            let firstUnanswered = null;
+
+            const selectedAnswers = [];
+
+            quizData.forEach((item, index) => {
+
+                const selected =
+                    quizForm.querySelector(
+                        'input[name="question-' +
+                        index +
+                        '"]:checked'
+                    );
+
+                if (!selected) {
+
+                    if (!firstUnanswered) {
+
+                        firstUnanswered =
+                            document.getElementById(
+                                "quiz-question-" + (index + 1)
+                            );
+
+                    }
+
+                    selectedAnswers.push(null);
+
+                } else {
+
+                    selectedAnswers.push(
+                        Number(selected.value)
+                    );
+
+                }
+
+            });
+
+            if (firstUnanswered) {
+
+                alert(
+                    "Please answer all 30 questions before submitting."
+                );
+
+                firstUnanswered.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+                const firstInput =
+                    firstUnanswered.querySelector(
+                        'input[type="radio"]'
+                    );
+
+                if (firstInput) {
+                    firstInput.focus({
+                        preventScroll: true
+                    });
+                }
+
+                return;
+            }
+
+            quizData.forEach((item, index) => {
+
+                const selectedIndex =
+                    selectedAnswers[index];
+
+                const questionBox =
+                    document.getElementById(
+                        "quiz-question-" + (index + 1)
+                    );
+
+                const labels =
+                    questionBox.querySelectorAll(
+                        ".quiz-option"
+                    );
+
+                const feedback =
+                    document.getElementById(
+                        "feedback-" + index
+                    );
+
+                if (selectedIndex === item.correct) {
+
+                    score++;
+
+                }
+
+                labels.forEach((label, optionIndex) => {
+
+                    if (optionIndex === item.correct) {
+
+                        label.classList.add("correct");
+
+                    }
+
+                    if (
+                        optionIndex === selectedIndex &&
+                        selectedIndex !== item.correct
+                    ) {
+
+                        label.classList.add("incorrect");
+
+                    }
+
+                });
+
+                const correctLetter =
+                    String.fromCharCode(
+                        65 + item.correct
+                    );
+
+                feedback.textContent =
+                    "Correct Answer: " +
+                    correctLetter +
+                    ". " +
+                    item.options[item.correct] +
+                    " — " +
+                    item.explanation;
+
+                feedback.hidden = false;
+
+            });
+
+            const total = quizData.length;
+
+            const percentage =
+                (score / total) * 100;
+
+            const passed =
+                percentage >= 75;
+
+            resultHeading.textContent =
+                passed
+                    ? "Congratulations! You Passed!"
+                    : "Assessment Not Passed";
+
+            resultScore.textContent =
+                "Your Score: " +
+                score +
+                " / " +
+                total;
+
+            resultPercentage.textContent =
+                "Percentage: " +
+                percentage.toFixed(2) +
+                "%";
+
+            resultMessage.textContent =
+                passed
+                    ? "You have successfully passed the Computer System Platforms and Architecture assessment."
+                    : "You need at least 75% (23 correct answers) to pass. Review the lessons and try again.";
+
+            quizResult.hidden = false;
+
+            quizSubmitted = true;
+
+            submitQuiz.disabled = true;
+
+            submitQuiz.textContent =
+                "Assessment Submitted";
+
+            quizForm.querySelectorAll(
+                'input[type="radio"]'
+            ).forEach(input => {
+
+                input.disabled = true;
+
+            });
+
+            quizResult.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        });
+
+        /* =====================================
+           RESET QUIZ
+        ====================================== */
+
+        resetQuiz.addEventListener("click", function () {
+
+            quizForm.reset();
+
+            renderQuiz();
+
+            document.getElementById("quiz").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        });
+
+        /* =====================================
+           INITIALIZE QUIZ
+        ====================================== */
+
+        renderQuiz();
+
+    </script>
+    <script src="/js/navbar-loader.js" defer></script>
+</body>
+</html>

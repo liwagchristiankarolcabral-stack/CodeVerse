@@ -1,0 +1,4074 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+        Device and Input/Output Management | CodeVerse
+    </title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+
+        /* ==========================================
+           CODEVERSE DIGITAL E-BOOK READER
+           DEVICE AND INPUT/OUTPUT MANAGEMENT
+        ========================================== */
+
+        :root {
+            --primary: #3157a4;
+            --primary-dark: #24427f;
+            --background: #f7f9fd;
+            --surface: #ffffff;
+            --surface-alt: #edf2fa;
+            --text: #202b40;
+            --muted: #758096;
+            --border: #e6eaf1;
+            --shadow: 0 8px 30px rgba(30, 50, 90, .07);
+            --reader-size: 16px;
+            --reader-family: 'DM Sans', sans-serif;
+        }
+
+        /* ==========================================
+           DARK MODE VARIABLES
+        ========================================== */
+
+        body.dark-mode {
+            --primary: #91b5ff;
+            --primary-dark: #b8ceff;
+            --background: #111827;
+            --surface: #1e293b;
+            --surface-alt: #29384d;
+            --text: #f1f5f9;
+            --muted: #b0bed0;
+            --border: #39485d;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .2);
+        }
+
+        /* ==========================================
+           GENERAL
+        ========================================== */
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'DM Sans', Arial, sans-serif;
+            transition: background .3s, color .3s;
+        }
+
+        body,
+        body *,
+        body *::before,
+        body *::after {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+
+/* ==========================================
+   CODEVERSE LOGIN AND SIGN UP BUTTONS
+========================================== */
+
+.btn-login,
+.btn-signup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all .2s ease;
+}
+
+.btn-login {
+    color: var(--primary);
+    background: transparent;
+    border: 1px solid var(--primary);
+}
+
+.btn-login:hover {
+    background: var(--surface-alt);
+}
+
+.btn-signup {
+    background: #3157a4;
+    color: #ffffff;
+    border: 1px solid #3157a4;
+}
+
+.btn-signup:hover {
+    background: #24427f;
+    border-color: #24427f;
+}
+
+@media (max-width: 540px) {
+    .nav-actions {
+        gap: 6px;
+    }
+
+    .btn-login,
+    .btn-signup {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+}
+
+
+        /* ==========================================
+           NAVIGATION BAR
+        ========================================== */
+
+        .navbar {
+            min-height: 82px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 5%;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 24px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .site-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn,
+        .menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            border-radius: 9px;
+            font-size: 21px;
+            cursor: pointer;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* ==========================================
+           TOP BAR
+        ========================================== */
+
+        .topbar {
+            padding: 18px 5%;
+        }
+
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ==========================================
+           READING CONTROLS
+        ========================================== */
+
+        .reading-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 22px;
+            padding: 16px 5%;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .control-group select {
+            min-width: 130px;
+            padding: 9px 12px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           MAIN READER LAYOUT
+        ========================================== */
+
+        .layout {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        .layout main {
+            min-width: 0;
+        }
+
+        /* ==========================================
+           TABLE OF CONTENTS
+        ========================================== */
+
+        .toc {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: var(--surface);
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--background);
+        }
+
+        .toc::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .toc::-webkit-scrollbar-track {
+            background: var(--background);
+            border-radius: 10px;
+        }
+
+        .toc::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-size: 18px;
+            color: var(--text);
+        }
+
+        .toc nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .toc a {
+            display: block;
+            padding: 9px 10px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--muted);
+            transition: background .2s, color .2s;
+        }
+
+        .toc a:hover {
+            background: var(--background);
+            color: var(--primary);
+        }
+
+        .toc a.active {
+            background: var(--surface-alt);
+            color: var(--primary);
+            font-weight: 800;
+            border-left: 3px solid var(--primary);
+        }
+
+        .toc .toc-part {
+            margin-top: 12px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* ==========================================
+           BOOK HEADER
+        ========================================== */
+
+        .book-header {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .book-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1.25;
+            margin: 12px 0 18px;
+            color: var(--text);
+        }
+
+        .book-header p {
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--primary);
+        }
+
+        /* ==========================================
+           CHAPTER CONTENT
+        ========================================== */
+
+        .chapter {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 105px;
+            font-size: var(--reader-size);
+            font-family: var(--reader-family);
+            line-height: 1.85;
+        }
+
+        .chapter h2 {
+            font-size: 1.6em;
+            line-height: 1.35;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .chapter h3 {
+            margin-top: 26px;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            color: var(--text);
+        }
+
+        .chapter p {
+            color: var(--text);
+            line-height: 1.85;
+            margin: 12px 0 18px;
+        }
+
+        .chapter li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .chapter ul,
+        .chapter ol {
+            padding-left: 25px;
+            margin: 15px 0 22px;
+        }
+
+        .part-heading {
+            color: var(--primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-size: 12px;
+        }
+
+        /* ==========================================
+           EXAMPLE BOX
+        ========================================== */
+
+        .example-box {
+            margin: 20px 0;
+            padding: 18px 20px;
+            background: var(--background);
+            border-left: 4px solid var(--primary);
+            border-radius: 9px;
+        }
+
+        .example-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================
+           TABLES
+        ========================================== */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 18px 0;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .92em;
+        }
+
+        .chapter th,
+        .chapter td {
+            padding: 12px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .chapter th {
+            background: var(--background);
+            font-weight: 800;
+        }
+
+        /* ==========================================
+           QUIZ STYLES
+           FUNCTIONALITY ADDED IN PART 4
+        ========================================== */
+
+        .quiz-question {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+
+        .quiz-question h3 {
+            margin-top: 0;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .quiz-option:hover {
+            background: var(--background);
+        }
+
+        .quiz-option input {
+            margin-top: 7px;
+            accent-color: #3157a4;
+        }
+
+        .quiz-option.correct {
+            border-color: #26a269;
+            background: rgba(38, 162, 105, .12);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #dc5360;
+            background: rgba(220, 83, 96, .12);
+        }
+
+        .quiz-feedback {
+            font-weight: 700;
+            line-height: 1.7;
+            margin-top: 12px;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .quiz-actions button {
+            padding: 13px 24px;
+            border: none;
+            border-radius: 9px;
+            background: #3157a4;
+            color: white;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-actions button:hover {
+            background: #24427f;
+        }
+
+        .quiz-actions button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        #quizResult {
+            margin-top: 22px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        #quizResult.passed {
+            border-color: #26a269;
+        }
+
+        #quizResult.failed {
+            border-color: #dc5360;
+        }
+
+        #quizProgress {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ==========================================
+           ACCESSIBILITY
+        ========================================== */
+
+        .toc a:focus-visible,
+        .icon-btn:focus-visible,
+        .menu-toggle:focus-visible,
+        .quiz-actions button:focus-visible,
+        .control-group select:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        .page-footer {
+            padding: 25px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN
+        ========================================== */
+
+        @media (max-width: 1000px) {
+
+            .layout {
+                grid-template-columns: 240px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+        }
+
+        @media (max-width: 900px) {
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: relative;
+                top: 0;
+                max-height: 300px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.show {
+                position: absolute;
+                top: 100%;
+                left: 5%;
+                right: 5%;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 5px;
+                padding: 18px;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 10px;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.show a {
+                padding: 10px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .chapter,
+            .book-header {
+                padding: 24px;
+            }
+
+        }
+
+        @media (max-width: 540px) {
+
+            .navbar {
+                min-height: 72px;
+                padding: 12px 4%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .site-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .layout {
+                margin-top: 20px;
+                padding: 0 14px;
+            }
+
+            .reading-controls {
+                gap: 14px;
+            }
+
+            .control-group {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .control-group select {
+                min-width: 150px;
+            }
+
+            .chapter,
+            .book-header {
+                padding: 20px;
+            }
+
+            .chapter h2 {
+                font-size: 1.4em;
+            }
+
+        }
+
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =====================================
+         CODEVERSE NAVIGATION
+    ====================================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<!-- =====================================
+         BACK TO BOOKS
+    ====================================== -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
+            ← Back to Books
+        </a>
+</header>
+<!-- =====================================
+         READING CONTROLS
+    ====================================== -->
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">
+                Font Size
+            </label>
+<select id="fontSize">
+<option value="14px">
+                    Small
+                </option>
+<option selected="" value="16px">
+                    Medium
+                </option>
+<option value="18px">
+                    Large
+                </option>
+<option value="20px">
+                    Extra Large
+                </option>
+<option value="22px">
+                    Largest
+                </option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">
+                Font Style
+            </label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">
+                    DM Sans
+                </option>
+<option value="Arial, sans-serif">
+                    Arial
+                </option>
+<option value="Georgia, serif">
+                    Georgia
+                </option>
+<option value="'Times New Roman', serif">
+                    Times New Roman
+                </option>
+<option value="Verdana, sans-serif">
+                    Verdana
+                </option>
+</select>
+</div>
+</div>
+<!-- =====================================
+         MAIN READER LAYOUT
+    ====================================== -->
+<div class="layout">
+<!-- =====================================
+             TABLE OF CONTENTS
+        ====================================== -->
+<aside class="toc" id="sidebar">
+<h2>Table of Contents</h2>
+<nav id="tocNav">
+<a href="#introduction">
+                    Introduction
+                </a>
+<!-- PART 1 -->
+<a class="toc-part" href="#part1">
+                    Part 1 – Fundamentals
+                </a>
+<a href="#section1-1">
+                    1.1 Device Management
+                </a>
+<a href="#section1-2">
+                    1.2 Input/Output Management
+                </a>
+<a href="#section1-3">
+                    1.3 Importance
+                </a>
+<a href="#section1-4">
+                    1.4 Objectives
+                </a>
+<!-- PART 2 -->
+<a class="toc-part" href="#part2">
+                    Part 2 – Types of Devices
+                </a>
+<a href="#section2-1">
+                    2.1 Input Devices
+                </a>
+<a href="#section2-2">
+                    2.2 Output Devices
+                </a>
+<a href="#section2-3">
+                    2.3 Input/Output Devices
+                </a>
+<a href="#section2-4">
+                    2.4 Comparison
+                </a>
+<!-- PART 3 -->
+<a class="toc-part" href="#part3">
+                    Part 3 – OS Device Management
+                </a>
+<a href="#section3-1">
+                    3.1 Role of the OS
+                </a>
+<a href="#section3-2">
+                    3.2 Device Drivers
+                </a>
+<a href="#section3-3">
+                    3.3 Types of Drivers
+                </a>
+<a href="#section3-4">
+                    3.4 Device Controllers
+                </a>
+<a href="#section3-5">
+                    3.5 Device Registers
+                </a>
+<!-- PART 4 -->
+<a class="toc-part" href="#part4">
+                    Part 4 – I/O Techniques
+                </a>
+<a href="#section4-1">
+                    4.1 Programmed I/O
+                </a>
+<a href="#section4-2">
+                    4.2 Interrupt-Driven I/O
+                </a>
+<a href="#section4-3">
+                    4.3 Direct Memory Access
+                </a>
+<a href="#section4-4">
+                    4.4 Comparison
+                </a>
+<a href="#section4-5">
+                    4.5 Synchronous and Asynchronous I/O
+                </a>
+<!-- PART 5 -->
+<a class="toc-part" href="#part5">
+                    Part 5 – I/O Operations
+                </a>
+<a href="#section5-1">
+                    5.1 Buffering
+                </a>
+<a href="#section5-2">
+                    5.2 Caching
+                </a>
+<a href="#section5-3">
+                    5.3 Spooling
+                </a>
+<a href="#section5-4">
+                    5.4 Device Scheduling
+                </a>
+<a href="#section5-5">
+                    5.5 Error Handling
+                </a>
+<!-- PART 6 -->
+<a class="toc-part" href="#part6">
+                    Part 6 – Hardware Interfaces
+                </a>
+<a href="#section6-1">
+                    6.1 Device Communication
+                </a>
+<a href="#section6-2">
+                    6.2 System Bus
+                </a>
+<a href="#section6-3">
+                    6.3 USB
+                </a>
+<a href="#section6-4">
+                    6.4 HDMI
+                </a>
+<a href="#section6-5">
+                    6.5 Bluetooth
+                </a>
+<a href="#section6-6">
+                    6.6 Network Interfaces
+                </a>
+<!-- PART 7 -->
+<a class="toc-part" href="#part7">
+                    Part 7 – Interrupts and Resources
+                </a>
+<a href="#section7-1">
+                    7.1 Interrupts
+                </a>
+<a href="#section7-2">
+                    7.2 Types of Interrupts
+                </a>
+<a href="#section7-3">
+                    7.3 ISR
+                </a>
+<a href="#section7-4">
+                    7.4 Interrupt Priority
+                </a>
+<a href="#section7-5">
+                    7.5 Resource Allocation
+                </a>
+<!-- PART 8 -->
+<a class="toc-part" href="#part8">
+                    Part 8 – Modern Operating Systems
+                </a>
+<a href="#section8-1">
+                    8.1 Windows
+                </a>
+<a href="#section8-2">
+                    8.2 Linux
+                </a>
+<a href="#section8-3">
+                    8.3 macOS
+                </a>
+<a href="#section8-4">
+                    8.4 Plug and Play
+                </a>
+<a href="#section8-5">
+                    8.5 Hot Plugging
+                </a>
+<!-- PART 9 -->
+<a class="toc-part" href="#part9">
+                    Part 9 – Security and Performance
+                </a>
+<a href="#section9-1">
+                    9.1 Device Security
+                </a>
+<a href="#section9-2">
+                    9.2 Driver Updates
+                </a>
+<a href="#section9-3">
+                    9.3 Power Management
+                </a>
+<a href="#section9-4">
+                    9.4 I/O Performance
+                </a>
+<a href="#section9-5">
+                    9.5 Troubleshooting
+                </a>
+<!-- PART 10 -->
+<a class="toc-part" href="#part10">
+                    Part 10 – Practical Examples
+                </a>
+<a href="#section10-1">
+                    10.1 Typing a Document
+                </a>
+<a href="#section10-2">
+                    10.2 Printing
+                </a>
+<a href="#section10-3">
+                    10.3 USB File Transfer
+                </a>
+<a href="#section10-4">
+                    10.4 Online Class
+                </a>
+<a href="#section10-5">
+                    10.5 Playing Music
+                </a>
+<a href="#section10-6">
+                    10.6 Scanning
+                </a>
+<a href="#section10-7">
+                    10.7 Touchscreen
+                </a>
+<!-- PART 11 -->
+<a class="toc-part" href="#part11">
+                    Part 11 – Advantages and Limitations
+                </a>
+<a href="#section11-1">
+                    11.1 Advantages
+                </a>
+<a href="#section11-2">
+                    11.2 Limitations
+                </a>
+<!-- PART 12 -->
+<a class="toc-part" href="#part12">
+                    Part 12 – Summary and Conclusion
+                </a>
+<a href="#section12-1">
+                    12.1 Summary
+                </a>
+<a href="#section12-2">
+                    12.2 Conclusion
+                </a>
+<!-- QUIZ -->
+<a class="toc-part" href="#quiz">
+                    Knowledge Assessment Quiz
+                </a>
+</nav>
+</aside>
+<!-- =====================================
+             MAIN CONTENT
+        ====================================== -->
+<main>
+<!-- =====================================
+                 BOOK HEADER
+            ====================================== -->
+<header class="book-header">
+<span class="eyebrow">
+                    OPERATING SYSTEMS | CODEVERSE E-BOOK
+                </span>
+<h1>
+                    Device and Input/Output Management
+                </h1>
+<p>
+                    Learn how operating systems control
+                    hardware devices, manage input and
+                    output operations, coordinate data
+                    transfers, and improve computer
+                    performance.
+                </p>
+</header>
+<!-- =====================================
+                 BOOK CONTENT
+            ====================================== -->
+<div class="book-content">
+<!-- =====================================
+                     INTRODUCTION
+                ====================================== -->
+<section class="chapter" id="introduction">
+<h2>Introduction</h2>
+<p>
+                        Device and Input/Output Management
+                        is an important function of an
+                        operating system. It focuses on
+                        controlling and coordinating
+                        communication between the computer
+                        and its connected hardware devices.
+                    </p>
+<p>
+                        These devices include keyboards,
+                        mice, monitors, printers, scanners,
+                        speakers, microphones, storage drives,
+                        and network adapters.
+                    </p>
+<p>
+                        The operating system manages these
+                        devices so users and applications
+                        can interact with hardware without
+                        needing to understand its internal
+                        technical operations.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            When a student types using a
+                            keyboard, the operating system
+                            receives and processes the input.
+                            When the student prints a document,
+                            the operating system coordinates
+                            with the printer to complete
+                            the task.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     PART 1
+                ====================================== -->
+<section class="chapter" id="part1">
+<span class="part-heading">
+                        Part 1
+                    </span>
+<h2>
+                        Fundamentals of Device and
+                        Input/Output Management
+                    </h2>
+<p>
+                        This part explains the basic concepts,
+                        responsibilities, importance, and
+                        objectives of device and I/O management.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 1.1
+                ====================================== -->
+<section class="chapter" id="section1-1">
+<h2>
+                        1.1 What Is Device Management?
+                    </h2>
+<p>
+                        Device management is the process by
+                        which an operating system controls,
+                        monitors, and coordinates hardware
+                        devices connected to a computer.
+                    </p>
+<h3>Main Responsibilities</h3>
+<ol>
+<li>
+<strong>Device Control:</strong>
+                            Controls hardware operations.
+                        </li>
+<li>
+<strong>Device Communication:</strong>
+                            Connects software with hardware.
+                        </li>
+<li>
+<strong>Resource Allocation:</strong>
+                            Assigns resources to devices.
+                        </li>
+<li>
+<strong>Device Monitoring:</strong>
+                            Checks device conditions.
+                        </li>
+<li>
+<strong>Error Handling:</strong>
+                            Detects and manages problems.
+                        </li>
+<li>
+<strong>Device Coordination:</strong>
+                            Organizes multiple devices.
+                        </li>
+</ol>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            When a USB flash drive is connected,
+                            the operating system detects it,
+                            identifies the device, loads a
+                            suitable driver, and makes its
+                            storage available.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 1.2
+                ====================================== -->
+<section class="chapter" id="section1-2">
+<h2>
+                        1.2 What Is Input/Output Management?
+                    </h2>
+<p>
+                        Input/Output Management, or I/O
+                        Management, is an operating system
+                        function responsible for handling
+                        information transfers between
+                        computers and hardware devices.
+                    </p>
+<h3>Input Operations</h3>
+<ul>
+<li>
+                            Typing with a keyboard
+                        </li>
+<li>
+                            Moving a mouse
+                        </li>
+<li>
+                            Scanning documents
+                        </li>
+<li>
+                            Recording audio through a microphone
+                        </li>
+<li>
+                            Capturing images with a webcam
+                        </li>
+</ul>
+<h3>Output Operations</h3>
+<ul>
+<li>
+                            Displaying information on a monitor
+                        </li>
+<li>
+                            Printing documents
+                        </li>
+<li>
+                            Playing sound through speakers
+                        </li>
+<li>
+                            Displaying images with a projector
+                        </li>
+<li>
+                            Sending information through
+                            a network connection
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 1.3
+                ====================================== -->
+<section class="chapter" id="section1-3">
+<h2>
+                        1.3 Importance of Device and
+                        I/O Management
+                    </h2>
+<ol>
+<li>
+<strong>
+                                Efficient Communication:
+                            </strong>
+                            Allows hardware and software
+                            to interact.
+                        </li>
+<li>
+<strong>
+                                Better Performance:
+                            </strong>
+                            Reduces unnecessary delays.
+                        </li>
+<li>
+<strong>
+                                Resource Sharing:
+                            </strong>
+                            Supports multiple applications
+                            using devices.
+                        </li>
+<li>
+<strong>
+                                Error Detection:
+                            </strong>
+                            Identifies hardware and
+                            transfer problems.
+                        </li>
+<li>
+<strong>
+                                User Convenience:
+                            </strong>
+                            Simplifies device operation.
+                        </li>
+<li>
+<strong>
+                                System Stability:
+                            </strong>
+                            Helps prevent hardware and
+                            software conflicts.
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     SECTION 1.4
+                ====================================== -->
+<section class="chapter" id="section1-4">
+<h2>
+                        1.4 Main Objectives of I/O Management
+                    </h2>
+<ul>
+<li>
+                            Provide a standard method
+                            for accessing hardware.
+                        </li>
+<li>
+                            Manage CPU and peripheral
+                            communication.
+                        </li>
+<li>
+                            Improve data transfer efficiency.
+                        </li>
+<li>
+                            Control access to shared devices.
+                        </li>
+<li>
+                            Detect and handle I/O errors.
+                        </li>
+<li>
+                            Provide security for hardware
+                            resources.
+                        </li>
+<li>
+                            Make devices easier for
+                            applications to use.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     PART 2
+                ====================================== -->
+<section class="chapter" id="part2">
+<span class="part-heading">
+                        Part 2
+                    </span>
+<h2>
+                        Types of Input and Output Devices
+                    </h2>
+<p>
+                        Hardware devices can be classified
+                        according to whether they provide
+                        input, produce output, or perform
+                        both functions.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 2.1
+                ====================================== -->
+<section class="chapter" id="section2-1">
+<h2>
+                        2.1 Input Devices
+                    </h2>
+<p>
+                        Input devices are hardware components
+                        used to enter data and instructions
+                        into a computer.
+                    </p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard</td>
+<td>
+                                        Enters letters, numbers,
+                                        and commands.
+                                    </td>
+</tr>
+<tr>
+<td>Mouse</td>
+<td>
+                                        Moves the pointer
+                                        and selects items.
+                                    </td>
+</tr>
+<tr>
+<td>Scanner</td>
+<td>
+                                        Converts printed materials
+                                        into digital files.
+                                    </td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>
+                                        Captures sound.
+                                    </td>
+</tr>
+<tr>
+<td>Webcam</td>
+<td>
+                                        Captures images and video.
+                                    </td>
+</tr>
+<tr>
+<td>Touchscreen</td>
+<td>
+                                        Receives touch input.
+                                    </td>
+</tr>
+<tr>
+<td>Barcode Reader</td>
+<td>
+                                        Reads printed barcodes.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 2.2
+                ====================================== -->
+<section class="chapter" id="section2-2">
+<h2>
+                        2.2 Output Devices
+                    </h2>
+<p>
+                        Output devices present information
+                        after it has been processed
+                        by a computer.
+                    </p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monitor</td>
+<td>
+                                        Displays text, images,
+                                        and video.
+                                    </td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>
+                                        Produces physical documents.
+                                    </td>
+</tr>
+<tr>
+<td>Speakers</td>
+<td>
+                                        Produce sound.
+                                    </td>
+</tr>
+<tr>
+<td>Headphones</td>
+<td>
+                                        Provide private audio output.
+                                    </td>
+</tr>
+<tr>
+<td>Projector</td>
+<td>
+                                        Displays content on
+                                        a larger surface.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 2.3
+                ====================================== -->
+<section class="chapter" id="section2-3">
+<h2>
+                        2.3 Input/Output Devices
+                    </h2>
+<p>
+                        Some devices can both receive
+                        and provide information.
+                        These are called input/output devices.
+                    </p>
+<ul>
+<li>
+<strong>Touchscreen:</strong>
+                            Receives touch and displays
+                            information.
+                        </li>
+<li>
+<strong>Multifunction Printer:</strong>
+                            Prints and scans documents.
+                        </li>
+<li>
+<strong>Storage Devices:</strong>
+                            Read and write files.
+                        </li>
+<li>
+<strong>Network Interface Card:</strong>
+                            Sends and receives network data.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 2.4
+                ====================================== -->
+<section class="chapter" id="section2-4">
+<h2>
+                        2.4 Comparison of Input,
+                        Output, and I/O Devices
+                    </h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Main Function</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>
+                                        Sends data to the computer
+                                    </td>
+<td>
+                                        Keyboard, mouse, scanner
+                                    </td>
+</tr>
+<tr>
+<td>Output</td>
+<td>
+                                        Presents processed information
+                                    </td>
+<td>
+                                        Monitor, printer, speakers
+                                    </td>
+</tr>
+<tr>
+<td>Input/Output</td>
+<td>
+                                        Sends and receives data
+                                    </td>
+<td>
+                                        Touchscreen, storage drive,
+                                        network adapter
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     PART 3
+                ====================================== -->
+<section class="chapter" id="part3">
+<span class="part-heading">
+                        Part 3
+                    </span>
+<h2>
+                        How the Operating System
+                        Manages Devices
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 3.1
+                ====================================== -->
+<section class="chapter" id="section3-1">
+<h2>
+                        3.1 Role of the Operating System
+                    </h2>
+<p>
+                        The operating system serves
+                        as a communication link
+                        between applications and hardware.
+                    </p>
+<p>
+                        Applications normally request
+                        services from the operating system
+                        rather than directly controlling
+                        hardware. The operating system
+                        coordinates with device drivers
+                        to complete those requests.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A word processor sends a
+                            print request to the operating
+                            system. The operating system
+                            coordinates with the printer
+                            driver and printer.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 3.2
+                ====================================== -->
+<section class="chapter" id="section3-2">
+<h2>
+                        3.2 Device Drivers
+                    </h2>
+<p>
+                        A device driver is specialized
+                        software that allows the operating
+                        system to communicate with a
+                        particular hardware device.
+                    </p>
+<h3>Functions</h3>
+<ol>
+<li>
+                            Hardware communication
+                        </li>
+<li>
+                            Command translation
+                        </li>
+<li>
+                            Device initialization
+                        </li>
+<li>
+                            Data transfer coordination
+                        </li>
+<li>
+                            Error reporting
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     SECTION 3.3
+                ====================================== -->
+<section class="chapter" id="section3-3">
+<h2>
+                        3.3 Types of Device Drivers
+                    </h2>
+<h3>
+                        Character Device Drivers
+                    </h3>
+<p>
+                        Manage devices that transfer
+                        data as streams of characters
+                        or small units.
+                    </p>
+<p>
+                        Examples: keyboards and serial ports.
+                    </p>
+<h3>
+                        Block Device Drivers
+                    </h3>
+<p>
+                        Manage devices that transfer
+                        data in fixed-size blocks.
+                    </p>
+<p>
+                        Examples: HDDs, SSDs, and
+                        USB storage devices.
+                    </p>
+<h3>
+                        Network Device Drivers
+                    </h3>
+<p>
+                        Manage wired and wireless
+                        network communication devices.
+                    </p>
+<h3>
+                        Graphics Device Drivers
+                    </h3>
+<p>
+                        Support communication between
+                        the operating system and
+                        graphics hardware.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 3.4
+                ====================================== -->
+<section class="chapter" id="section3-4">
+<h2>
+                        3.4 Device Controllers
+                    </h2>
+<p>
+                        A device controller is a hardware
+                        component that manages the operation
+                        of a specific device or group
+                        of devices.
+                    </p>
+<p>
+                        The operating system communicates
+                        with controllers through suitable
+                        device drivers.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A storage controller coordinates
+                            communication with storage devices
+                            during read and write operations.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 3.5
+                ====================================== -->
+<section class="chapter" id="section3-5">
+<h2>
+                        3.5 Device Registers
+                    </h2>
+<p>
+                        Device registers are small storage
+                        locations in hardware controllers
+                        that receive commands, report status,
+                        and exchange information.
+                    </p>
+<ul>
+<li>
+<strong>Data Register:</strong>
+                            Holds transferred data.
+                        </li>
+<li>
+<strong>Status Register:</strong>
+                            Reports device conditions.
+                        </li>
+<li>
+<strong>Control Register:</strong>
+                            Receives device commands.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     PART 4
+                     INPUT/OUTPUT TECHNIQUES
+                ====================================== -->
+<section class="chapter" id="part4">
+<span class="part-heading">
+                        Part 4
+                    </span>
+<h2>
+                        Input/Output Techniques
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 4.1
+                ====================================== -->
+<section class="chapter" id="section4-1">
+<h2>4.1 Programmed I/O</h2>
+<p>
+                        Programmed I/O is a technique in which the CPU
+                        repeatedly checks a device's status and controls
+                        the data transfer.
+                    </p>
+<p>
+                        This repeated checking is called polling.
+                    </p>
+<h3>Process</h3>
+<ol>
+<li>The CPU sends a command.</li>
+<li>The CPU checks device status.</li>
+<li>The CPU waits for the device.</li>
+<li>Data is transferred.</li>
+<li>The operation completes.</li>
+</ol>
+<h3>Advantages</h3>
+<ul>
+<li>Simple to understand</li>
+<li>Easy to implement for basic devices</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>May waste CPU time</li>
+<li>Less efficient for slow devices</li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 4.2
+                ====================================== -->
+<section class="chapter" id="section4-2">
+<h2>4.2 Interrupt-Driven I/O</h2>
+<p>
+                        Interrupt-driven I/O allows a device to notify the
+                        CPU when attention is required or an operation
+                        has been completed.
+                    </p>
+<h3>Process</h3>
+<ol>
+<li>The CPU sends a request.</li>
+<li>The device performs the operation.</li>
+<li>The CPU continues other work.</li>
+<li>The device sends an interrupt.</li>
+<li>The CPU handles the interrupt.</li>
+<li>Normal execution continues.</li>
+</ol>
+<h3>Advantages</h3>
+<ul>
+<li>Reduces unnecessary CPU waiting</li>
+<li>Supports efficient device communication</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>
+                            Interrupt handling uses system resources.
+                        </li>
+<li>
+                            Excessive interrupts can affect performance.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 4.3
+                ====================================== -->
+<section class="chapter" id="section4-3">
+<h2>4.3 Direct Memory Access (DMA)</h2>
+<p>
+                        Direct Memory Access allows certain devices to
+                        transfer information directly to or from main
+                        memory with limited continuous CPU involvement.
+                    </p>
+<h3>How DMA Works</h3>
+<ol>
+<li>The CPU prepares transfer information.</li>
+<li>
+                            The CPU specifies memory locations and details.
+                        </li>
+<li>
+                            The DMA controller manages the transfer.
+                        </li>
+<li>
+                            Data moves between the device and memory.
+                        </li>
+<li>
+                            The CPU is notified when necessary.
+                        </li>
+</ol>
+<h3>Advantages</h3>
+<ul>
+<li>Reduces CPU involvement</li>
+<li>Improves efficiency</li>
+<li>Supports high-speed transfers</li>
+</ul>
+<h3>Limitations</h3>
+<ul>
+<li>Requires compatible hardware.</li>
+<li>
+                            Needs proper resource and memory management.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 4.4
+                ====================================== -->
+<section class="chapter" id="section4-4">
+<h2>4.4 Comparison of I/O Techniques</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>How It Works</th>
+<th>CPU Involvement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Programmed I/O</td>
+<td>
+                                        CPU repeatedly checks device status
+                                    </td>
+<td>High</td>
+</tr>
+<tr>
+<td>Interrupt-Driven I/O</td>
+<td>Device notifies CPU</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>DMA</td>
+<td>
+                                        Controller manages much of the transfer
+                                    </td>
+<td>Lower during transfer</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 4.5
+                ====================================== -->
+<section class="chapter" id="section4-5">
+<h2>4.5 Synchronous and Asynchronous I/O</h2>
+<h3>Synchronous I/O</h3>
+<p>
+                        The requesting process waits until the I/O operation
+                        is completed before continuing past that operation.
+                    </p>
+<h3>Asynchronous I/O</h3>
+<p>
+                        The application can continue performing other work
+                        while the I/O operation is being processed.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            An application that downloads data while remaining
+                            responsive to the user demonstrates asynchronous I/O.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     PART 5
+                     I/O MANAGEMENT OPERATIONS
+                ====================================== -->
+<section class="chapter" id="part5">
+<span class="part-heading">
+                        Part 5
+                    </span>
+<h2>
+                        I/O Management Techniques and Operations
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 5.1
+                ====================================== -->
+<section class="chapter" id="section5-1">
+<h2>5.1 Buffering</h2>
+<p>
+                        Buffering temporarily stores data in a memory area
+                        called a buffer during transfer between devices
+                        or applications.
+                    </p>
+<h3>Types of Buffering</h3>
+<ul>
+<li>
+<strong>Single Buffering:</strong>
+                            Uses one buffer.
+                        </li>
+<li>
+<strong>Double Buffering:</strong>
+                            Uses two buffers.
+                        </li>
+<li>
+<strong>Circular Buffering:</strong>
+                            Reuses a fixed-size buffer continuously.
+                        </li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            Online video players temporarily store data
+                            in a buffer to help maintain smooth playback.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 5.2
+                ====================================== -->
+<section class="chapter" id="section5-2">
+<h2>5.2 Caching</h2>
+<p>
+                        Caching stores frequently accessed information
+                        in a faster storage area so it can be retrieved
+                        more quickly later.
+                    </p>
+<h3>Advantages</h3>
+<ul>
+<li>Improves access speed</li>
+<li>Reduces repeated device operations</li>
+<li>Improves application responsiveness</li>
+<li>Reduces unnecessary storage activity</li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 5.3
+                ====================================== -->
+<section class="chapter" id="section5-3">
+<h2>5.3 Spooling</h2>
+<p>
+                        Spooling stands for Simultaneous Peripheral
+                        Operations On-Line.
+                    </p>
+<p>
+                        It places I/O tasks into a temporary queue
+                        so devices can process them in an organized manner.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            When five students send documents to one printer,
+                            the operating system places the print jobs
+                            in a queue.
+                        </p>
+</div>
+<h3>Advantages</h3>
+<ul>
+<li>Organizes multiple requests</li>
+<li>
+                            Allows applications to continue working
+                        </li>
+<li>
+                            Reduces conflicts over shared devices
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 5.4
+                ====================================== -->
+<section class="chapter" id="section5-4">
+<h2>5.4 Device Scheduling</h2>
+<p>
+                        Device scheduling determines the order in which
+                        multiple I/O requests are processed.
+                    </p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCFS</td>
+<td>
+                                        Processes requests in arrival order.
+                                    </td>
+</tr>
+<tr>
+<td>Priority Scheduling</td>
+<td>
+                                        Processes requests according to priority.
+                                    </td>
+</tr>
+<tr>
+<td>SSTF</td>
+<td>
+                                        Chooses the shortest disk-head movement.
+                                    </td>
+</tr>
+<tr>
+<td>SCAN</td>
+<td>
+                                        Services disk requests while moving
+                                        in one direction, then reverses.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+                        SSTF and SCAN are especially relevant to
+                        traditional hard disk drives.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 5.5
+                ====================================== -->
+<section class="chapter" id="section5-5">
+<h2>5.5 Error Handling in I/O Management</h2>
+<p>
+                        Error handling identifies and responds to problems
+                        during communication between devices and the
+                        operating system.
+                    </p>
+<ul>
+<li>Device Not Found</li>
+<li>Device Not Ready</li>
+<li>Read Error</li>
+<li>Write Error</li>
+<li>Driver Error</li>
+<li>Connection Error</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            Disconnecting a USB drive while saving a file
+                            may cause a write error because the transfer
+                            cannot finish successfully.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     PART 6
+                     HARDWARE INTERFACES
+                ====================================== -->
+<section class="chapter" id="part6">
+<span class="part-heading">
+                        Part 6
+                    </span>
+<h2>
+                        Device Communication and Hardware Interfaces
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 6.1
+                ====================================== -->
+<section class="chapter" id="section6-1">
+<h2>6.1 Device Communication</h2>
+<p>
+                        Device communication refers to the exchange of
+                        information between a computer and its hardware.
+                    </p>
+<p>
+                        Operating systems coordinate this communication
+                        using drivers, controllers, system buses,
+                        and hardware interfaces.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 6.2
+                ====================================== -->
+<section class="chapter" id="section6-2">
+<h2>6.2 System Bus</h2>
+<p>
+                        A system bus is a communication pathway connecting
+                        components such as the CPU, memory, and I/O controllers.
+                    </p>
+<ul>
+<li>
+<strong>Data Bus:</strong>
+                            Transfers data.
+                        </li>
+<li>
+<strong>Address Bus:</strong>
+                            Identifies read and write locations.
+                        </li>
+<li>
+<strong>Control Bus:</strong>
+                            Carries control signals.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 6.3
+                ====================================== -->
+<section class="chapter" id="section6-3">
+<h2>6.3 USB Interface</h2>
+<p>
+                        Universal Serial Bus is an interface used to connect
+                        external hardware devices to computers.
+                    </p>
+<p>
+                        USB supports data transfer and, depending on the
+                        connection, electrical power delivery.
+                    </p>
+<h3>Common USB Devices</h3>
+<ul>
+<li>Keyboards</li>
+<li>Mice</li>
+<li>Flash drives</li>
+<li>Printers</li>
+<li>External storage</li>
+<li>Webcams</li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 6.4
+                ====================================== -->
+<section class="chapter" id="section6-4">
+<h2>6.4 HDMI Interface</h2>
+<p>
+                        High-Definition Multimedia Interface is a digital
+                        connection used to transmit audio and video
+                        between compatible devices.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A laptop connects to a classroom projector
+                            through HDMI to display a presentation.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 6.5
+                ====================================== -->
+<section class="chapter" id="section6-5">
+<h2>6.5 Bluetooth Interface</h2>
+<p>
+                        Bluetooth is a short-range wireless technology
+                        that allows compatible devices to exchange information.
+                    </p>
+<h3>Examples</h3>
+<ul>
+<li>Wireless headphones</li>
+<li>Bluetooth keyboards</li>
+<li>Wireless mice</li>
+<li>Speakers</li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 6.6
+                ====================================== -->
+<section class="chapter" id="section6-6">
+<h2>6.6 Network Interface</h2>
+<p>
+                        A network interface allows a computer to communicate
+                        with other devices through wired or wireless networks.
+                    </p>
+<ul>
+<li>
+<strong>Ethernet:</strong>
+                            Wired network connection.
+                        </li>
+<li>
+<strong>Wi-Fi:</strong>
+                            Wireless local networking.
+                        </li>
+<li>
+<strong>Cellular:</strong>
+                            Mobile network communication.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     PART 7
+                     INTERRUPTS AND RESOURCE MANAGEMENT
+                ====================================== -->
+<section class="chapter" id="part7">
+<span class="part-heading">
+                        Part 7
+                    </span>
+<h2>
+                        Interrupts and Resource Management
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 7.1
+                ====================================== -->
+<section class="chapter" id="section7-1">
+<h2>7.1 What Is an Interrupt?</h2>
+<p>
+                        An interrupt is a signal or event that causes
+                        the CPU to temporarily change its execution flow
+                        so an important event can be handled.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A keyboard may generate an interrupt when
+                            a key is pressed.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 7.2
+                ====================================== -->
+<section class="chapter" id="section7-2">
+<h2>7.2 Types of Interrupts</h2>
+<ol>
+<li>
+<strong>Hardware Interrupt:</strong>
+                            Generated by hardware devices.
+                        </li>
+<li>
+<strong>Software Interrupt:</strong>
+                            Generated by software or processor instructions.
+                        </li>
+<li>
+<strong>Timer Interrupt:</strong>
+                            Supports time-related operating system activities.
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     SECTION 7.3
+                ====================================== -->
+<section class="chapter" id="section7-3">
+<h2>7.3 Interrupt Service Routine (ISR)</h2>
+<p>
+                        An Interrupt Service Routine is a special function
+                        executed in response to an interrupt.
+                    </p>
+<p>
+                        It handles or acknowledges the event and performs
+                        necessary immediate processing.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 7.4
+                ====================================== -->
+<section class="chapter" id="section7-4">
+<h2>7.4 Interrupt Priority</h2>
+<p>
+                        Interrupt priority determines which interrupt
+                        should receive attention first when several
+                        interrupt requests occur.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 7.5
+                ====================================== -->
+<section class="chapter" id="section7-5">
+<h2>7.5 Device Resource Allocation</h2>
+<p>
+                        Device resource allocation assigns hardware
+                        resources required by connected devices.
+                    </p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I/O Ports</td>
+<td>
+                                        Provide communication access to hardware.
+                                    </td>
+</tr>
+<tr>
+<td>IRQs</td>
+<td>
+                                        Allow devices to notify the processor.
+                                    </td>
+</tr>
+<tr>
+<td>DMA Channels</td>
+<td>
+                                        Support direct data transfers.
+                                    </td>
+</tr>
+<tr>
+<td>Memory Addresses</td>
+<td>
+                                        Identify hardware or memory locations.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     PART 8
+                     DEVICE MANAGEMENT IN MODERN
+                     OPERATING SYSTEMS
+                ====================================== -->
+<section class="chapter" id="part8">
+<span class="part-heading">
+                        Part 8
+                    </span>
+<h2>
+                        Device Management in Modern Operating Systems
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 8.1
+                ====================================== -->
+<section class="chapter" id="section8-1">
+<h2>8.1 Device Management in Windows</h2>
+<p>
+                        Microsoft Windows provides tools to detect,
+                        configure, update, and troubleshoot hardware.
+                    </p>
+<h3>Windows Device Manager</h3>
+<ul>
+<li>Displays connected hardware.</li>
+<li>Shows device status.</li>
+<li>Manages device drivers.</li>
+<li>Allows driver updates and uninstallation.</li>
+<li>Helps troubleshoot device problems.</li>
+<li>Supports Plug and Play devices.</li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 8.2
+                ====================================== -->
+<section class="chapter" id="section8-2">
+<h2>8.2 Device Management in Linux</h2>
+<p>
+                        Linux uses kernel components and device drivers
+                        to communicate with hardware.
+                    </p>
+<p>
+                        Many devices are represented by special files
+                        in the /dev directory.
+                    </p>
+<ul>
+<li>
+<code>/dev/sda</code> –
+                            Possible storage device name
+                        </li>
+<li>
+<code>/dev/tty</code> –
+                            Terminal-related device
+                        </li>
+<li>
+<code>/dev/null</code> –
+                            Discards written data
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 8.3
+                ====================================== -->
+<section class="chapter" id="section8-3">
+<h2>8.3 Device Management in macOS</h2>
+<p>
+                        macOS manages devices through operating system
+                        components and driver frameworks.
+                    </p>
+<p>
+                        Apple's I/O Kit provides an object-oriented
+                        framework for hardware communication and
+                        device driver management.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 8.4
+                ====================================== -->
+<section class="chapter" id="section8-4">
+<h2>8.4 Plug and Play (PnP)</h2>
+<p>
+                        Plug and Play allows an operating system to
+                        automatically detect and configure supported
+                        hardware devices.
+                    </p>
+<h3>Process</h3>
+<ol>
+<li>A device is connected.</li>
+<li>The operating system detects it.</li>
+<li>The device is identified.</li>
+<li>A suitable driver is located or installed.</li>
+<li>Required resources are assigned.</li>
+<li>The device becomes available.</li>
+</ol>
+</section>
+<!-- =====================================
+                     SECTION 8.5
+                ====================================== -->
+<section class="chapter" id="section8-5">
+<h2>8.5 Hot Plugging</h2>
+<p>
+                        Hot plugging allows supported devices to be
+                        connected or removed while a computer is running.
+                    </p>
+<h3>Examples</h3>
+<ul>
+<li>Connecting a USB keyboard</li>
+<li>Connecting an external monitor</li>
+<li>Attaching external storage</li>
+</ul>
+<p>
+                        Storage devices should be safely ejected when
+                        required to avoid interrupted data operations.
+                    </p>
+</section>
+<!-- =====================================
+                     PART 9
+                     SECURITY AND PERFORMANCE
+                ====================================== -->
+<section class="chapter" id="part9">
+<span class="part-heading">
+                        Part 9
+                    </span>
+<h2>
+                        Security and Performance in I/O Management
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 9.1
+                ====================================== -->
+<section class="chapter" id="section9-1">
+<h2>9.1 Device Security</h2>
+<p>
+                        Device security protects hardware and transferred
+                        information from unauthorized access, misuse,
+                        and damage.
+                    </p>
+<h3>Security Practices</h3>
+<ol>
+<li>Use trusted drivers.</li>
+<li>Update operating systems and drivers.</li>
+<li>Control device access.</li>
+<li>Scan removable storage when appropriate.</li>
+<li>Avoid unknown hardware.</li>
+<li>Use suitable device permissions.</li>
+</ol>
+</section>
+<!-- =====================================
+                     SECTION 9.2
+                ====================================== -->
+<section class="chapter" id="section9-2">
+<h2>9.2 Device Driver Updates</h2>
+<p>
+                        Driver updates may improve compatibility,
+                        fix known problems, and improve hardware
+                        performance.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            Updating a graphics driver may correct
+                            display problems or improve compatibility
+                            with certain applications.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     SECTION 9.3
+                ====================================== -->
+<section class="chapter" id="section9-3">
+<h2>9.3 Power Management</h2>
+<p>
+                        Power management controls the electrical
+                        energy consumed by hardware devices.
+                    </p>
+<h3>Examples</h3>
+<ul>
+<li>Turning off an inactive display</li>
+<li>Entering sleep mode</li>
+<li>Reducing unused device activity</li>
+<li>Managing wireless adapter power usage</li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 9.4
+                ====================================== -->
+<section class="chapter" id="section9-4">
+<h2>9.4 Improving I/O Performance</h2>
+<ul>
+<li>Buffering</li>
+<li>Caching</li>
+<li>Direct Memory Access</li>
+<li>Interrupt-driven I/O</li>
+<li>Device scheduling</li>
+<li>Asynchronous I/O</li>
+<li>Efficient driver management</li>
+</ul>
+</section>
+<!-- =====================================
+                     SECTION 9.5
+                ====================================== -->
+<section class="chapter" id="section9-5">
+<h2>9.5 Common Device Problems and Solutions</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Possible Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard not working</td>
+<td>Connection or driver issue</td>
+<td>Check connection and driver</td>
+</tr>
+<tr>
+<td>Printer not responding</td>
+<td>Offline or queue problem</td>
+<td>Check printer status and queue</td>
+</tr>
+<tr>
+<td>No sound</td>
+<td>Incorrect audio settings</td>
+<td>Check volume and output device</td>
+</tr>
+<tr>
+<td>USB not detected</td>
+<td>Port or device problem</td>
+<td>Try another compatible port</td>
+</tr>
+<tr>
+<td>No monitor display</td>
+<td>Cable or configuration issue</td>
+<td>Check connections and settings</td>
+</tr>
+<tr>
+<td>Wi-Fi unavailable</td>
+<td>Adapter or connection issue</td>
+<td>Check adapter and network settings</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     PART 10
+                     PRACTICAL EXAMPLES
+                ====================================== -->
+<section class="chapter" id="part10">
+<span class="part-heading">
+                        Part 10
+                    </span>
+<h2>
+                        Practical Examples and Real-World Applications
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 10.1
+                ====================================== -->
+<section class="chapter" id="section10-1">
+<h2>10.1 Typing a Document Using a Keyboard</h2>
+<ol>
+<li>The student presses a key.</li>
+<li>The keyboard sends input.</li>
+<li>The operating system processes it.</li>
+<li>The keyboard driver supports communication.</li>
+<li>The application receives the input.</li>
+<li>The text appears on the monitor.</li>
+</ol>
+<p>
+<strong>Concept:</strong>
+                        Input handling and device drivers.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 10.2
+                ====================================== -->
+<section class="chapter" id="section10-2">
+<h2>10.2 Printing a School Assignment</h2>
+<ol>
+<li>The student selects Print.</li>
+<li>The application sends a request.</li>
+<li>The operating system processes it.</li>
+<li>The print system queues the job if needed.</li>
+<li>The printer driver communicates with the printer.</li>
+<li>The printer produces the document.</li>
+</ol>
+<p>
+<strong>Concept:</strong>
+                        Output management, spooling, and drivers.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 10.3
+                ====================================== -->
+<section class="chapter" id="section10-3">
+<h2>10.3 Copying Files to a USB Flash Drive</h2>
+<ol>
+<li>The user selects files.</li>
+<li>The operating system receives the request.</li>
+<li>The storage driver communicates with the USB device.</li>
+<li>Data is transferred.</li>
+<li>The operating system reports completion.</li>
+</ol>
+<p>
+<strong>Concept:</strong>
+                        Storage communication and data transfer.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 10.4
+                ====================================== -->
+<section class="chapter" id="section10-4">
+<h2>10.4 Attending an Online Class</h2>
+<ol>
+<li>The webcam captures video.</li>
+<li>The microphone captures sound.</li>
+<li>The operating system manages the input devices.</li>
+<li>The network adapter sends information.</li>
+<li>Incoming audio and video are received.</li>
+<li>The monitor and speakers present the results.</li>
+</ol>
+<p>
+<strong>Concept:</strong>
+                        Input, output, networking, and drivers.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 10.5
+                ====================================== -->
+<section class="chapter" id="section10-5">
+<h2>10.5 Playing Music on a Computer</h2>
+<ol>
+<li>The user selects an audio file.</li>
+<li>The application requests the file.</li>
+<li>The operating system retrieves the data.</li>
+<li>The audio system processes the information.</li>
+<li>Speakers or headphones produce the sound.</li>
+</ol>
+<p>
+<strong>Concept:</strong>
+                        Storage input and audio output.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 10.6
+                ====================================== -->
+<section class="chapter" id="section10-6">
+<h2>10.6 Scanning a Document</h2>
+<ol>
+<li>The user places a document on the scanner.</li>
+<li>The scanner captures the document.</li>
+<li>Image data is sent to the computer.</li>
+<li>The operating system receives it through the driver.</li>
+<li>The application processes the image.</li>
+<li>The digital file is saved.</li>
+</ol>
+<p>
+<strong>Concept:</strong>
+                        Input management and device communication.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 10.7
+                ====================================== -->
+<section class="chapter" id="section10-7">
+<h2>10.7 Using a Touchscreen Laptop</h2>
+<ol>
+<li>The user touches the screen.</li>
+<li>The hardware detects the touch.</li>
+<li>The operating system receives the event.</li>
+<li>The application responds.</li>
+<li>The display shows the result.</li>
+</ol>
+<p>
+<strong>Concept:</strong>
+                        Combined input and output management.
+                    </p>
+</section>
+<!-- =====================================
+                     PART 11
+                     ADVANTAGES AND LIMITATIONS
+                ====================================== -->
+<section class="chapter" id="part11">
+<span class="part-heading">
+                        Part 11
+                    </span>
+<h2>
+                        Advantages and Limitations of Device and I/O Management
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 11.1
+                ====================================== -->
+<section class="chapter" id="section11-1">
+<h2>11.1 Advantages</h2>
+<ol>
+<li>
+<strong>Improved Communication:</strong>
+                            Connects software and hardware.
+                        </li>
+<li>
+<strong>Efficient Resource Usage:</strong>
+                            Coordinates available resources.
+                        </li>
+<li>
+<strong>Better User Experience:</strong>
+                            Simplifies device use.
+                        </li>
+<li>
+<strong>Improved Performance:</strong>
+                            Uses techniques such as caching and DMA.
+                        </li>
+<li>
+<strong>Hardware Compatibility:</strong>
+                            Supports devices through drivers.
+                        </li>
+<li>
+<strong>Error Detection:</strong>
+                            Identifies device and transfer problems.
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     SECTION 11.2
+                ====================================== -->
+<section class="chapter" id="section11-2">
+<h2>11.2 Limitations</h2>
+<ol>
+<li>
+<strong>Driver Compatibility:</strong>
+                            Outdated drivers may cause problems.
+                        </li>
+<li>
+<strong>Hardware Limitations:</strong>
+                            Older devices may be slower.
+                        </li>
+<li>
+<strong>Resource Conflicts:</strong>
+                            Devices may compete for resources.
+                        </li>
+<li>
+<strong>Data Transfer Delays:</strong>
+                            Slow devices can cause waiting.
+                        </li>
+<li>
+<strong>Security Risks:</strong>
+                            External hardware may introduce threats.
+                        </li>
+<li>
+<strong>Hardware Failure:</strong>
+                            Damaged devices may become unavailable.
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     PART 12
+                     SUMMARY AND CONCLUSION
+                ====================================== -->
+<section class="chapter" id="part12">
+<span class="part-heading">
+                        Part 12
+                    </span>
+<h2>
+                        Summary and Conclusion
+                    </h2>
+</section>
+<!-- =====================================
+                     SECTION 12.1
+                ====================================== -->
+<section class="chapter" id="section12-1">
+<h2>12.1 Summary</h2>
+<p>
+                        Device and Input/Output Management allows an operating
+                        system to communicate with hardware and control
+                        information transfers.
+                    </p>
+<p>
+                        Input devices provide data, output devices present
+                        results, and some devices perform both functions.
+                    </p>
+<p>
+                        Drivers and controllers support hardware communication.
+                        Techniques such as programmed I/O, interrupt-driven I/O,
+                        DMA, buffering, caching, spooling, and scheduling
+                        help manage transfers efficiently.
+                    </p>
+<p>
+                        Windows, Linux, and macOS provide device management
+                        features that support detection, configuration,
+                        security, and power management.
+                    </p>
+</section>
+<!-- =====================================
+                     SECTION 12.2
+                ====================================== -->
+<section class="chapter" id="section12-2">
+<h2>12.2 Conclusion</h2>
+<p>
+                        Device and Input/Output Management connects software
+                        applications with physical hardware.
+                    </p>
+<p>
+                        Proper device management improves communication,
+                        system performance, reliability, compatibility,
+                        and user experience.
+                    </p>
+<p>
+                        Understanding these concepts helps IT students
+                        explain how computer hardware and operating
+                        systems work together.
+                    </p>
+</section>
+<!-- =====================================
+                     PART 4
+                     KNOWLEDGE ASSESSMENT QUIZ
+                ====================================== -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+                        Answer all 30 multiple-choice questions based on
+                        Device and Input/Output Management.
+                    </p>
+<p>
+<strong>Total Questions:</strong> 30
+                    </p>
+<p>
+<strong>Passing Score:</strong>
+                        75% (23 out of 30)
+                    </p>
+<p aria-live="polite" id="quizProgress">
+                        0 of 30 answered
+                    </p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+                            Submit Quiz
+                        </button>
+<button hidden="" id="retryQuiz" type="button">
+                            Try Again
+                        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult" role="status">
+</div>
+</section>
+<!-- =====================================
+                     END OF BOOK CONTENT
+                ====================================== -->
+</div>
+</main>
+</div>
+<!-- =====================================
+         FOOTER
+    ====================================== -->
+<footer class="page-footer">
+        © 2026 CodeVerse | Digital E-Book Library
+    </footer>
+<!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+<script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =====================================
+               MOBILE NAVIGATION
+            ====================================== */
+
+            const menuToggle =
+                document.getElementById("menuToggle");
+
+            const navLinks =
+                document.getElementById("navLinks");
+
+            if (menuToggle && navLinks) {
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuToggle.addEventListener("click", function () {
+
+                    const isOpen =
+                        navLinks.classList.toggle("show");
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        String(isOpen)
+                    );
+
+                });
+
+                navLinks.querySelectorAll("a").forEach(function (link) {
+
+                    link.addEventListener("click", function () {
+
+                        navLinks.classList.remove("show");
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    });
+
+                });
+
+            }
+
+
+            /* =====================================
+               DARK MODE
+            ====================================== */
+
+            const themeToggle =
+                document.getElementById("themeToggle");
+
+            const themeIcon =
+                document.getElementById("themeIcon");
+
+            function applyTheme(theme) {
+
+                const isDark = theme === "dark";
+
+                document.body.classList.toggle(
+                    "dark-mode",
+                    isDark
+                );
+
+                if (themeIcon) {
+
+                    themeIcon.textContent =
+                        isDark ? "☀" : "☾";
+
+                }
+
+                if (themeToggle) {
+
+                    themeToggle.setAttribute(
+                        "aria-label",
+                        isDark
+                            ? "Switch to light mode"
+                            : "Switch to dark mode"
+                    );
+
+                    themeToggle.setAttribute(
+                        "aria-pressed",
+                        String(isDark)
+                    );
+
+                }
+
+            }
+
+            applyTheme(
+                localStorage.getItem("readerTheme") || "light"
+            );
+
+            if (themeToggle) {
+
+                themeToggle.addEventListener("click", function () {
+
+                    const nextTheme =
+                        document.body.classList.contains("dark-mode")
+                            ? "light"
+                            : "dark";
+
+                    localStorage.setItem(
+                        "readerTheme",
+                        nextTheme
+                    );
+
+                    applyTheme(nextTheme);
+
+                });
+
+            }
+
+
+            /* =====================================
+               READING CONTROLS
+            ====================================== */
+
+            const fontSize =
+                document.getElementById("fontSize");
+
+            const fontFamily =
+                document.getElementById("fontFamily");
+
+            const bookContent =
+                document.querySelector(".book-content");
+
+            const savedSize =
+                localStorage.getItem("readerFontSize");
+
+            const savedFamily =
+                localStorage.getItem("readerFontFamily");
+
+            if (fontSize && savedSize) {
+
+                const sizeExists =
+                    Array.from(fontSize.options).some(function (option) {
+                        return option.value === savedSize;
+                    });
+
+                if (sizeExists) {
+                    fontSize.value = savedSize;
+                }
+
+            }
+
+            if (fontFamily && savedFamily) {
+
+                const familyExists =
+                    Array.from(fontFamily.options).some(function (option) {
+                        return option.value === savedFamily;
+                    });
+
+                if (familyExists) {
+                    fontFamily.value = savedFamily;
+                }
+
+            }
+
+            function updateReadingFont() {
+
+                if (!bookContent) {
+                    return;
+                }
+
+                if (fontSize) {
+
+                    bookContent.style.setProperty(
+                        "--reader-size",
+                        fontSize.value
+                    );
+
+                    bookContent.style.fontSize =
+                        fontSize.value;
+
+                }
+
+                if (fontFamily) {
+
+                    bookContent.style.setProperty(
+                        "--reader-family",
+                        fontFamily.value
+                    );
+
+                    bookContent.style.fontFamily =
+                        fontFamily.value;
+
+                }
+
+            }
+
+            if (fontSize) {
+
+                fontSize.addEventListener("change", function () {
+
+                    localStorage.setItem(
+                        "readerFontSize",
+                        fontSize.value
+                    );
+
+                    updateReadingFont();
+
+                });
+
+            }
+
+            if (fontFamily) {
+
+                fontFamily.addEventListener("change", function () {
+
+                    localStorage.setItem(
+                        "readerFontFamily",
+                        fontFamily.value
+                    );
+
+                    updateReadingFont();
+
+                });
+
+            }
+
+            updateReadingFont();
+
+
+            /* =====================================
+               TABLE OF CONTENTS
+            ====================================== */
+
+            const tocNav =
+                document.getElementById("tocNav");
+
+            if (tocNav) {
+
+                const tocLinks =
+                    Array.from(
+                        tocNav.querySelectorAll('a[href^="#"]')
+                    );
+
+                const tocTargets =
+                    tocLinks.map(function (link) {
+
+                        const targetId =
+                            link.getAttribute("href").substring(1);
+
+                        return {
+                            link: link,
+                            target: document.getElementById(targetId)
+                        };
+
+                    }).filter(function (item) {
+
+                        return item.target !== null;
+
+                    });
+
+                function updateActiveTOC() {
+
+                    let activeItem = null;
+
+                    const offset = 150;
+
+                    tocTargets.forEach(function (item) {
+
+                        const position =
+                            item.target.getBoundingClientRect().top;
+
+                        if (position <= offset) {
+                            activeItem = item;
+                        }
+
+                    });
+
+                    if (!activeItem && tocTargets.length > 0) {
+                        activeItem = tocTargets[0];
+                    }
+
+                    tocTargets.forEach(function (item) {
+
+                        const isActive =
+                            item === activeItem;
+
+                        item.link.classList.toggle(
+                            "active",
+                            isActive
+                        );
+
+                        if (isActive) {
+
+                            item.link.setAttribute(
+                                "aria-current",
+                                "location"
+                            );
+
+                        } else {
+
+                            item.link.removeAttribute(
+                                "aria-current"
+                            );
+
+                        }
+
+                    });
+
+                }
+
+                let scrollScheduled = false;
+
+                window.addEventListener(
+                    "scroll",
+                    function () {
+
+                        if (scrollScheduled) {
+                            return;
+                        }
+
+                        scrollScheduled = true;
+
+                        requestAnimationFrame(function () {
+
+                            updateActiveTOC();
+
+                            scrollScheduled = false;
+
+                        });
+
+                    },
+                    { passive: true }
+                );
+
+                window.addEventListener(
+                    "resize",
+                    updateActiveTOC
+                );
+
+                tocLinks.forEach(function (link) {
+
+                    link.addEventListener("click", function () {
+
+                        setTimeout(updateActiveTOC, 350);
+
+                    });
+
+                });
+
+                updateActiveTOC();
+
+            }
+
+
+            /* =====================================
+               ORIGINAL 30 QUIZ QUESTIONS
+            ====================================== */
+
+            const questions = [
+
+                {
+                    question: "What is device management?",
+                    options: [
+                        "Controlling and coordinating hardware devices",
+                        "Creating website designs",
+                        "Writing documents",
+                        "Installing games only"
+                    ],
+                    answer: 0
+                },
+
+                {
+                    question: "What does I/O stand for?",
+                    options: [
+                        "Internet Operations",
+                        "Input/Output",
+                        "Internal Organization",
+                        "Information Ordering"
+                    ],
+                    answer: 1
+                },
+
+                {
+                    question: "Which is an input device?",
+                    options: [
+                        "Monitor",
+                        "Printer",
+                        "Keyboard",
+                        "Speaker"
+                    ],
+                    answer: 2
+                },
+
+                {
+                    question: "Which device produces physical copies of documents?",
+                    options: [
+                        "Mouse",
+                        "Scanner",
+                        "Microphone",
+                        "Printer"
+                    ],
+                    answer: 3
+                },
+
+                {
+                    question: "Which device performs both input and output?",
+                    options: [
+                        "Touchscreen",
+                        "Traditional keyboard",
+                        "Basic speaker",
+                        "Standalone microphone"
+                    ],
+                    answer: 0
+                },
+
+                {
+                    question: "What is the main role of a device driver?",
+                    options: [
+                        "Design application icons",
+                        "Allow the OS to communicate with hardware",
+                        "Increase monitor size",
+                        "Replace the CPU"
+                    ],
+                    answer: 1
+                },
+
+                {
+                    question: "Which driver type manages storage devices that transfer fixed-size blocks?",
+                    options: [
+                        "Graphics driver",
+                        "Network driver",
+                        "Block device driver",
+                        "Audio editor"
+                    ],
+                    answer: 2
+                },
+
+                {
+                    question: "What is a device controller?",
+                    options: [
+                        "A computer game",
+                        "A document editor",
+                        "A website",
+                        "Hardware that manages a device or group of devices"
+                    ],
+                    answer: 3
+                },
+
+                {
+                    question: "Which register indicates a device's current condition?",
+                    options: [
+                        "Status Register",
+                        "Data Register",
+                        "Control Register",
+                        "File Register"
+                    ],
+                    answer: 0
+                },
+
+                {
+                    question: "Which I/O technique repeatedly checks device status?",
+                    options: [
+                        "DMA",
+                        "Programmed I/O",
+                        "Spooling",
+                        "Caching"
+                    ],
+                    answer: 1
+                },
+
+                {
+                    question: "What is another term associated with repeated device status checking?",
+                    options: [
+                        "Encryption",
+                        "Formatting",
+                        "Polling",
+                        "Compression"
+                    ],
+                    answer: 2
+                },
+
+                {
+                    question: "Which technique uses device notifications to alert the CPU?",
+                    options: [
+                        "Caching",
+                        "Buffering",
+                        "Spooling",
+                        "Interrupt-driven I/O"
+                    ],
+                    answer: 3
+                },
+
+                {
+                    question: "What does DMA stand for?",
+                    options: [
+                        "Direct Memory Access",
+                        "Digital Memory Allocation",
+                        "Device Monitoring Application",
+                        "Data Management Adapter"
+                    ],
+                    answer: 0
+                },
+
+                {
+                    question: "What is a key advantage of DMA?",
+                    options: [
+                        "Eliminates all memory",
+                        "Reduces continuous CPU involvement in transfers",
+                        "Prevents device communication",
+                        "Requires constant CPU polling"
+                    ],
+                    answer: 1
+                },
+
+                {
+                    question: "What happens in synchronous I/O?",
+                    options: [
+                        "The process never requests data",
+                        "The device shuts down",
+                        "The requesting process waits for completion",
+                        "All transfers use Bluetooth"
+                    ],
+                    answer: 2
+                },
+
+                {
+                    question: "What is buffering?",
+                    options: [
+                        "Deleting unused applications",
+                        "Changing screen brightness",
+                        "Printing documents",
+                        "Temporarily storing data during transfers"
+                    ],
+                    answer: 3
+                },
+
+                {
+                    question: "Which technique stores frequently accessed data for faster retrieval?",
+                    options: [
+                        "Caching",
+                        "Spooling",
+                        "Polling",
+                        "Hot plugging"
+                    ],
+                    answer: 0
+                },
+
+                {
+                    question: "Which technique is commonly used to queue printer jobs?",
+                    options: [
+                        "DMA",
+                        "Spooling",
+                        "Polling",
+                        "Interrupt priority"
+                    ],
+                    answer: 1
+                },
+
+                {
+                    question: "What does FCFS mean?",
+                    options: [
+                        "Fast Computer File System",
+                        "File Control and Format Service",
+                        "First-Come, First-Served",
+                        "Fixed CPU Function Scheduling"
+                    ],
+                    answer: 2
+                },
+
+                {
+                    question: "Which error occurs when information cannot be saved successfully?",
+                    options: [
+                        "Read Error",
+                        "Device Not Found",
+                        "Driver Initialization",
+                        "Write Error"
+                    ],
+                    answer: 3
+                },
+
+                {
+                    question: "Which bus transfers actual data between computer components?",
+                    options: [
+                        "Data Bus",
+                        "Address Bus",
+                        "Control Bus",
+                        "Power Button"
+                    ],
+                    answer: 0
+                },
+
+                {
+                    question: "What does USB stand for?",
+                    options: [
+                        "Universal Storage Board",
+                        "Universal Serial Bus",
+                        "User System Bridge",
+                        "Unified Software Bus"
+                    ],
+                    answer: 1
+                },
+
+                {
+                    question: "Which interface commonly transmits digital audio and video?",
+                    options: [
+                        "USB keyboard",
+                        "Bluetooth mouse",
+                        "HDMI",
+                        "Ethernet only"
+                    ],
+                    answer: 2
+                },
+
+                {
+                    question: "Which technology supports short-range wireless device communication?",
+                    options: [
+                        "HDMI",
+                        "SATA",
+                        "VGA",
+                        "Bluetooth"
+                    ],
+                    answer: 3
+                },
+
+                {
+                    question: "What is an Interrupt Service Routine?",
+                    options: [
+                        "A function that responds to an interrupt",
+                        "A storage drive",
+                        "A printer queue",
+                        "A network cable"
+                    ],
+                    answer: 0
+                },
+
+                {
+                    question: "Which resource allows devices to notify the processor?",
+                    options: [
+                        "Display resolution",
+                        "Interrupt Requests (IRQs)",
+                        "Document format",
+                        "Screen brightness"
+                    ],
+                    answer: 1
+                },
+
+                {
+                    question: "Which Windows utility helps manage device drivers?",
+                    options: [
+                        "Notepad",
+                        "Paint",
+                        "Device Manager",
+                        "Calculator"
+                    ],
+                    answer: 2
+                },
+
+                {
+                    question: "Where are many Linux device files commonly located?",
+                    options: [
+                        "/home",
+                        "/images",
+                        "/downloads",
+                        "/dev"
+                    ],
+                    answer: 3
+                },
+
+                {
+                    question: "What does Plug and Play allow an operating system to do?",
+                    options: [
+                        "Automatically detect and configure supported devices",
+                        "Remove all hardware",
+                        "Disable device drivers",
+                        "Prevent USB connections"
+                    ],
+                    answer: 0
+                },
+
+                {
+                    question: "Which is an advantage of proper I/O management?",
+                    options: [
+                        "More hardware conflicts",
+                        "Improved performance and communication",
+                        "Permanent data transfer delays",
+                        "Reduced hardware compatibility"
+                    ],
+                    answer: 1
+                }
+
+            ];
+
+
+            /* =====================================
+               QUIZ SETTINGS
+            ====================================== */
+
+            const PASSING_PERCENTAGE = 75;
+
+            const PASSING_SCORE = Math.ceil(
+                questions.length * PASSING_PERCENTAGE / 100
+            );
+
+            const quizQuestions =
+                document.getElementById("quizQuestions");
+
+            const quizProgress =
+                document.getElementById("quizProgress");
+
+            const submitQuiz =
+                document.getElementById("submitQuiz");
+
+            const retryQuiz =
+                document.getElementById("retryQuiz");
+
+            const quizResult =
+                document.getElementById("quizResult");
+
+            let quizSubmitted = false;
+
+
+            /* =====================================
+               LOAD QUIZ
+            ====================================== */
+
+            function loadQuiz() {
+
+                quizSubmitted = false;
+
+                quizQuestions.innerHTML = "";
+
+                questions.forEach(function (item, index) {
+
+                    const box =
+                        document.createElement("div");
+
+                    box.className = "quiz-question";
+
+                    const heading =
+                        document.createElement("h3");
+
+                    heading.textContent =
+                        (index + 1) + ". " + item.question;
+
+                    box.appendChild(heading);
+
+
+                    /* ANSWER OPTIONS */
+
+                    item.options.forEach(function (
+                        option,
+                        optionIndex
+                    ) {
+
+                        const label =
+                            document.createElement("label");
+
+                        label.className = "quiz-option";
+
+                        const radio =
+                            document.createElement("input");
+
+                        radio.type = "radio";
+
+                        radio.name = "question" + index;
+
+                        radio.value = optionIndex;
+
+                        radio.addEventListener(
+                            "change",
+                            updateProgress
+                        );
+
+                        const text =
+                            document.createElement("span");
+
+                        text.textContent = option;
+
+                        label.appendChild(radio);
+
+                        label.appendChild(text);
+
+                        box.appendChild(label);
+
+                    });
+
+
+                    /* ANSWER FEEDBACK */
+
+                    const feedback =
+                        document.createElement("p");
+
+                    feedback.className = "quiz-feedback";
+
+                    feedback.hidden = true;
+
+                    box.appendChild(feedback);
+
+                    quizQuestions.appendChild(box);
+
+                });
+
+
+                /* RESET QUIZ */
+
+                quizResult.hidden = true;
+
+                quizResult.innerHTML = "";
+
+                submitQuiz.hidden = false;
+
+                retryQuiz.hidden = true;
+
+                updateProgress();
+
+            }
+
+
+            /* =====================================
+               UPDATE QUIZ PROGRESS
+            ====================================== */
+
+            function updateProgress() {
+
+                let answered = 0;
+
+                questions.forEach(function (item, index) {
+
+                    const selected =
+                        quizQuestions.querySelector(
+                            'input[name="question' +
+                            index +
+                            '"]:checked'
+                        );
+
+                    if (selected) {
+                        answered++;
+                    }
+
+                });
+
+                quizProgress.textContent =
+                    answered +
+                    " of " +
+                    questions.length +
+                    " answered";
+
+            }
+
+
+            /* =====================================
+               SUBMIT QUIZ
+            ====================================== */
+
+            submitQuiz.addEventListener("click", function () {
+
+                if (quizSubmitted) {
+                    return;
+                }
+
+
+                /* COLLECT ANSWERS */
+
+                const answers = questions.map(function (
+                    item,
+                    index
+                ) {
+
+                    const selected =
+                        quizQuestions.querySelector(
+                            'input[name="question' +
+                            index +
+                            '"]:checked'
+                        );
+
+                    return selected
+                        ? Number(selected.value)
+                        : null;
+
+                });
+
+
+                /* CHECK UNANSWERED QUESTIONS */
+
+                const answered = answers.filter(function (
+                    answer
+                ) {
+
+                    return answer !== null;
+
+                }).length;
+
+                if (answered !== questions.length) {
+
+                    alert(
+                        "Please answer all questions.\n\n" +
+                        "You answered " +
+                        answered +
+                        " out of " +
+                        questions.length +
+                        " questions."
+                    );
+
+                    return;
+
+                }
+
+
+                /* CALCULATE SCORE */
+
+                quizSubmitted = true;
+
+                let score = 0;
+
+                questions.forEach(function (item, index) {
+
+                    const box =
+                        quizQuestions.children[index];
+
+                    const selectedAnswer =
+                        answers[index];
+
+                    const isCorrect =
+                        selectedAnswer === item.answer;
+
+                    if (isCorrect) {
+                        score++;
+                    }
+
+
+                    /* MARK ANSWERS */
+
+                    const options =
+                        box.querySelectorAll(".quiz-option");
+
+                    options.forEach(function (
+                        label,
+                        optionIndex
+                    ) {
+
+                        const radio =
+                            label.querySelector("input");
+
+                        radio.disabled = true;
+
+                        if (optionIndex === item.answer) {
+
+                            label.classList.add("correct");
+
+                        } else if (
+                            optionIndex === selectedAnswer
+                        ) {
+
+                            label.classList.add("incorrect");
+
+                        }
+
+                    });
+
+
+                    /* SHOW QUESTION FEEDBACK */
+
+                    const feedback =
+                        box.querySelector(".quiz-feedback");
+
+                    feedback.hidden = false;
+
+                    if (isCorrect) {
+
+                        feedback.textContent =
+                            "Correct answer!";
+
+                        feedback.classList.add("correct");
+
+                    } else {
+
+                        feedback.textContent =
+                            "Incorrect. Correct answer: " +
+                            item.options[item.answer];
+
+                        feedback.classList.add("incorrect");
+
+                    }
+
+                });
+
+
+                /* CALCULATE PERCENTAGE */
+
+                const exactPercentage =
+                    (score / questions.length) * 100;
+
+                const displayedPercentage =
+                    Math.round(exactPercentage);
+
+                const passed =
+                    score >= PASSING_SCORE;
+
+
+                /* RESULT MESSAGE */
+
+                let message;
+
+                if (passed && exactPercentage >= 90) {
+
+                    message =
+                        "Excellent! You have mastered the lesson.";
+
+                } else if (passed) {
+
+                    message =
+                        "Great job! You have a strong understanding.";
+
+                } else if (exactPercentage >= 60) {
+
+                    message =
+                        "Good effort! Review the topics you missed.";
+
+                } else {
+
+                    message =
+                        "Keep studying and try again!";
+
+                }
+
+
+                /* DISPLAY RESULTS */
+
+                quizResult.innerHTML = "";
+
+                quizResult.classList.remove(
+                    "passed",
+                    "failed"
+                );
+
+                quizResult.classList.add(
+                    passed ? "passed" : "failed"
+                );
+
+
+                const heading =
+                    document.createElement("h3");
+
+                heading.textContent =
+                    passed
+                        ? "Congratulations! You Passed!"
+                        : "Quiz Completed — Not Passed";
+
+
+                const scoreText =
+                    document.createElement("h2");
+
+                scoreText.textContent =
+                    score +
+                    " / " +
+                    questions.length;
+
+
+                const percentText =
+                    document.createElement("p");
+
+                percentText.textContent =
+                    "Your Score: " +
+                    displayedPercentage +
+                    "%";
+
+
+                const passingText =
+                    document.createElement("p");
+
+                passingText.textContent =
+                    "Passing Score: " +
+                    PASSING_PERCENTAGE +
+                    "% (" +
+                    PASSING_SCORE +
+                    " out of " +
+                    questions.length +
+                    ")";
+
+
+                const statusText =
+                    document.createElement("p");
+
+                statusText.textContent =
+                    "Status: " +
+                    (passed ? "PASSED" : "FAILED");
+
+
+                const messageText =
+                    document.createElement("p");
+
+                messageText.textContent = message;
+
+
+                quizResult.appendChild(heading);
+
+                quizResult.appendChild(scoreText);
+
+                quizResult.appendChild(percentText);
+
+                quizResult.appendChild(passingText);
+
+                quizResult.appendChild(statusText);
+
+                quizResult.appendChild(messageText);
+
+
+                /* DISPLAY BUTTONS */
+
+                quizResult.hidden = false;
+
+                submitQuiz.hidden = true;
+
+                retryQuiz.hidden = false;
+
+
+                /* SCROLL TO RESULT */
+
+                quizResult.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "center"
+
+                });
+
+            });
+
+
+            /* =====================================
+               RETRY QUIZ
+            ====================================== */
+
+            retryQuiz.addEventListener("click", function () {
+
+                loadQuiz();
+
+                const quizSection =
+                    document.getElementById("quiz");
+
+                quizSection.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "start"
+
+                });
+
+            });
+
+
+            /* =====================================
+               INITIALIZE QUIZ
+            ====================================== */
+
+            loadQuiz();
+
+        });
+
+    </script>
+    <script src="/js/navbar-loader.js" defer></script>
+</body>
+</html>

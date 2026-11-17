@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Computer Generations and System Classifications | CodeVerse</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#f4f7fc;--surface:#fff;--text:#26344d;--muted:#65748b;--line:#dfe6f0;--primary:#3157a4;--primary-strong:#24427f;--soft:#eaf0fc;--shadow:0 10px 35px rgba(35,59,108,.07);--reader-size:16px;--reader-font:'DM Sans',Arial,sans-serif}
+body.dark-mode{--bg:#101827;--surface:#1b283b;--text:#edf3ff;--muted:#b6c4d7;--line:#354760;--primary:#91b5ff;--primary-strong:#bed3ff;--soft:#263956;--shadow:0 12px 32px rgba(0,0,0,.18)}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;line-height:1.7;transition:background .2s,color .2s}a{color:var(--primary)}button,select{font:inherit}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #7da8fa;outline-offset:3px}
+.navbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:22px;min-height:78px;padding:12px max(20px,calc((100vw - 1440px)/2));background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 3px 15px rgba(0,0,0,.035)}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:800;font-size:23px;white-space:nowrap}.site-logo{width:40px;height:40px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:20px;margin-left:auto}.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:700}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions,#accountActions{display:flex;align-items:center;gap:10px}.icon-btn,.menu-toggle{background:var(--soft);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer}.menu-toggle{display:none}.login-btn,.signup-btn,.logout-btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap}.login-btn{border:1px solid var(--line);color:var(--text)}.signup-btn,.logout-btn{background:#3157a4;color:#fff;border:0;cursor:pointer}.account-username{font-weight:700;font-size:13px;color:var(--text);max-width:210px;overflow-wrap:anywhere}
+.topbar{max-width:1440px;margin:0 auto;padding:18px 25px 0}.back-link{text-decoration:none;font-weight:700;font-size:14px}.reading-controls{max-width:1440px;margin:14px auto 0;padding:15px 25px;display:flex;flex-wrap:wrap;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:13px}.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-size:13px;font-weight:700}.control-group select{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:8px;padding:7px 11px}
+.layout{max-width:1440px;margin:24px auto 60px;padding:0 25px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:25px;align-items:start}.toc{position:sticky;top:100px;max-height:calc(100vh - 120px);overflow-y:auto;scrollbar-width:thin;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.toc h2{font-size:17px;margin:0 0 14px}.toc h3{font-size:14px;margin:20px 0 8px}.toc nav{display:flex;flex-direction:column;gap:2px}.toc a{display:block;text-decoration:none;font-size:12px;color:var(--muted);padding:8px 9px;border-radius:7px;line-height:1.4}.toc a:hover,.toc a:focus-visible{background:var(--soft);color:var(--primary)}.layout>main{min-width:0}.book-header{padding:35px 38px;background:linear-gradient(120deg,#24427f,#416cbb);color:#fff;border-radius:17px;box-shadow:var(--shadow);margin-bottom:20px}.book-header .eyebrow{font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#c7d9ff}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3.5vw,44px);line-height:1.2;margin:12px 0}.book-header p{max-width:780px;margin:0;color:#e8efff;font-size:15px}.book-content{font-family:var(--reader-font);font-size:var(--reader-size)}.chapter{background:var(--surface);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);padding:32px 38px;margin-bottom:20px;min-width:0;scroll-margin-top:105px}.chapter h2{font-size:1.55em;color:var(--primary);line-height:1.35;margin:0 0 22px}.chapter h3{font-size:1.15em;margin:25px 0 12px;color:var(--text)}.chapter p,.chapter li{line-height:1.85;color:var(--text)}.chapter p{margin:12px 0}.chapter li{margin:6px 0}.chapter img{display:block;max-width:100%;height:auto;max-height:400px;object-fit:contain;margin:18px auto;border-radius:10px}.chapter ul,.chapter ol{padding-left:26px}.table-responsive{max-width:100%;overflow-x:auto}.lesson-table{width:100%;border-collapse:collapse;min-width:520px;font-size:.88em;margin:16px 0}.lesson-table th,.lesson-table td{padding:12px 14px;text-align:left;border:1px solid var(--line);vertical-align:top}.lesson-table th{background:var(--soft);color:var(--text)}.lesson-table tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 30%,var(--surface))}.code-example{overflow:auto;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:18px}.code-example pre{margin:0;white-space:pre;overflow-x:auto}.page-footer{text-align:center;color:var(--muted);font-size:13px;padding:18px}
+#quizProgress{font-weight:700;color:var(--muted);margin-bottom:16px}.quiz-question{padding:20px;border:1px solid var(--line);background:var(--bg);border-radius:12px;margin:16px 0}.quiz-question h3{margin:0 0 14px;font-size:1em}.quiz-option{display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:11px 13px;margin:8px 0;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--text)}.quiz-option:hover{border-color:var(--primary)}.quiz-option input{margin-top:6px;accent-color:#3157a4}.quiz-option.correct{background:#d9f5e5;color:#165e37;border-color:#7fcca1}.quiz-option.incorrect{background:#fce2e5;color:#8b2636;border-color:#e9a1ac}.quiz-feedback{font-weight:700;font-size:.9em}.quiz-actions{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.quiz-actions button{background:#3157a4;color:#fff;border:0;border-radius:9px;padding:12px 20px;font-weight:700;cursor:pointer}.quiz-actions button:disabled{opacity:.65;cursor:wait}#quizResult{border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:24px;text-align:center}#quizResult h2{font-size:2.2em;margin:8px 0} [hidden]{display:none!important}
+@media(max-width:1020px){.layout{grid-template-columns:225px minmax(0,1fr)}.navbar{gap:12px}.nav-links{gap:12px}.chapter{padding:26px}}
+@media(max-width:760px){.navbar{flex-wrap:wrap;min-height:68px;padding:12px 16px}.logo{font-size:19px}.site-logo{width:33px;height:33px}.menu-toggle{display:block;margin-left:auto}.nav-actions{margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;align-items:stretch;padding:10px 0}.nav-links.show{display:flex}.nav-links a{padding:8px}.layout{display:block;padding:0 14px}.toc{position:static;max-height:260px;margin-bottom:20px}.book-header{padding:27px 22px}.chapter{padding:22px 18px}.reading-controls{margin:12px 14px 0;padding:12px}.topbar{padding:15px 14px 0}.account-username{max-width:115px;font-size:12px}}
+@media(max-width:450px){.navbar{gap:8px}.nav-actions{width:100%;justify-content:flex-end}.control-group{width:100%;justify-content:space-between}.control-group select{max-width:62%}.book-header h1{font-size:27px}.quiz-actions button{width:100%}}
+</style>
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a class="active" href="/index.html">Home</a>
+<a href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- Account buttons will be displayed by JavaScript -->
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav><a href="#section-1">1. Computer Generations</a><a href="#section-2">2. First-Generation Hardware</a><a href="#section-3">3. First-Generation Memory</a><a href="#section-4">4. Second-Generation Hardware</a><a href="#section-5">5. Second-Generation Storage and Software</a><a href="#section-6">6. Third-Generation Hardware</a><a href="#section-7">7. Third-Generation Architecture</a><a href="#section-8">8. Fourth-Generation Hardware</a><a href="#section-9">9. Microcomputers and Personal Computing</a><a href="#section-10">10. Fifth-Generation Computing and AI</a><a href="#section-11">11. Comparison of Computer Generations</a><a href="#section-12">12. Computer System Classifications</a><a href="#section-13">13. Analog Computers</a><a href="#section-14">14. Digital Computers</a><a href="#section-15">15. Hybrid Computers</a><a href="#section-16">16. Microcomputers</a><a href="#section-17">17. Minicomputers</a><a href="#section-18">18. Mainframe Computers</a><a href="#section-19">19. Supercomputers</a><a href="#section-20">20. General and Special-Purpose Computers</a><a href="#section-21">21. Workstations</a><a href="#section-22">22. Embedded Systems and IoT</a><a href="#section-23">23. Servers and Data Centers</a><a href="#section-24">24. Mobile Computing</a><a href="#section-25">25. Flynn's Taxonomy</a><a href="#section-26">26. CISC vs. RISC</a><a href="#section-27">27. Vector and Parallel Processors</a><a href="#section-28">28. Cloud, Edge, and Fog Computing</a><a href="#section-29">29. Quantum Computing</a><a href="#section-30">30. Neuromorphic Computing</a></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- QUIZ -->
+<h3>Assessment</h3>
+<a href="#quiz">Knowledge Assessment Quiz</a>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Computer Generations and System Classifications</h1>
+<p>Explores the different generations of computers and their classifications based on technology, size, performance, and purpose.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - COMPUTER HISTORY
+     TABLE OF CONTENTS
+========================================== -->
+<div class="book-content">
+<!-- INTRODUCTION -->
+
+<!-- SECTION 1 -->
+<section class="chapter" id="section-1">
+<h2>Section 1: Foundational Concepts of Computer Generations</h2>
+<h3>1.1 Defining Hardware Generations</h3>
+<img alt="Evolution of computer generations" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            The history of digital computing is classified into
+            distinct <strong>generations</strong> based on fundamental
+            changes in physical switching component technology.
+        </p>
+<p>
+            Each technological transition brought improvements
+            in computational speed, component density, memory
+            capacity, system reliability, and miniaturization,
+            while generally reducing power consumption and heat.
+        </p>
+<h3>1.2 Key Drivers of Technological Shifts</h3>
+<ul>
+<li>
+<strong>Active Logic Switch Component:</strong>
+                Transition from vacuum tubes to discrete transistors,
+                integrated circuits, microprocessors, and ultra-large
+                scale integrated silicon chips.
+            </li>
+<li>
+<strong>Primary Memory Architecture:</strong>
+                Evolution from acoustic delay lines and magnetic
+                drums to magnetic core memory, DRAM, and
+                multi-level cache hierarchies.
+            </li>
+<li>
+<strong>Programming Abstraction Layer:</strong>
+                Progression from binary machine code to assembly,
+                compiled high-level languages, object-oriented
+                programming, and declarative frameworks.
+            </li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 2
+    ========================================== -->
+<section class="chapter" id="section-2">
+<h2>Section 2: First-Generation Hardware Architecture (1940–1956)</h2>
+<h3>2.1 Vacuum Tube Switching Mechanics</h3>
+<img alt="Vacuum tube showing cathode, control grid and anode" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            First-generation computers relied on
+            <strong>thermionic vacuum tubes</strong> as their primary
+            electronic switching elements.
+        </p>
+<p>
+            A vacuum tube controls electrical current between
+            electrodes inside an evacuated glass envelope.
+            A heated cathode emits electrons, while a control
+            grid regulates current flow to represent conducting
+            and non-conducting states.
+        </p>
+<h3>2.2 Hardware Constraints and Limitations</h3>
+<ul>
+<li>High electrical power consumption.</li>
+<li>Large amounts of heat production.</li>
+<li>Frequent filament failures.</li>
+<li>Large physical installations.</li>
+<li>Expensive cooling and maintenance requirements.</li>
+</ul>
+<p>
+            Large installations required specialized air
+            conditioning and substantial electrical infrastructure
+            to maintain continuous operation.
+        </p>
+</section>
+<!-- ==========================================
+         SECTION 3
+    ========================================== -->
+<section class="chapter" id="section-3">
+<h2>Section 3: First-Generation Memory Systems and Iconic Implementations</h2>
+<h3>3.1 Early Memory Technologies</h3>
+<img alt="Early computer memory and mainframe equipment" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            First-generation computers used early storage
+            technologies that were physically large and
+            technically complex.
+        </p>
+<ul>
+<li>
+<strong>Mercury Acoustic Delay Line Memory:</strong>
+                Stored binary information as ultrasonic waves
+                traveling through liquid mercury, with signals
+                continuously recirculated.
+            </li>
+<li>
+<strong>Magnetic Drums:</strong>
+                Rotating metal cylinders coated with magnetic
+                material, using read/write heads positioned
+                along tracks.
+            </li>
+</ul>
+<h3>3.2 Representative First-Generation Systems</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Computer</th>
+<th>Year</th>
+<th>Historical Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ENIAC</td>
+<td>1945</td>
+<td>Used 17,468 vacuum tubes and performed thousands of additions per second.</td>
+</tr>
+<tr>
+<td>EDVAC</td>
+<td>1949</td>
+<td>Designed around stored-program architecture and mercury delay-line memory.</td>
+</tr>
+<tr>
+<td>UNIVAC I</td>
+<td>1951</td>
+<td>Early commercial computer using magnetic tape for data input and output.</td>
+</tr>
+<tr>
+<td>IBM 701</td>
+<td>1952</td>
+<td>IBM scientific computer using Williams CRT storage tubes.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ==========================================
+         SECTION 4
+    ========================================== -->
+<section class="chapter" id="section-4">
+<h2>Section 4: Second-Generation Hardware Architecture (1956–1963)</h2>
+<h3>4.1 The Transistor Revolution</h3>
+<img alt="Early transistor-based computing hardware" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            The transistor was developed at Bell Labs in 1947
+            by John Bardeen, Walter Brattain, and William Shockley.
+        </p>
+<p>
+            Transistors replaced vacuum tubes in many computing
+            circuits during the 1950s. They use semiconductor
+            materials such as silicon or germanium to control
+            electrical current without heated filaments.
+        </p>
+<h3>4.2 Operational Impact of Transistorization</h3>
+<ul>
+<li>Reduced physical computer size.</li>
+<li>Lowered electrical power consumption.</li>
+<li>Reduced heat generation.</li>
+<li>Improved component reliability.</li>
+<li>Reduced maintenance requirements.</li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 5
+    ========================================== -->
+<section class="chapter" id="section-5">
+<h2>Section 5: Second-Generation Storage Media and Software Stack</h2>
+<h3>5.1 Magnetic Core Memory Architecture</h3>
+<img alt="Magnetic core memory made of ferrite rings" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            Second-generation computers used
+            <strong>magnetic core memory</strong> as a major
+            form of primary random-access memory.
+        </p>
+<p>
+            Tiny ferrite rings woven into wire grids stored
+            binary values through different magnetic
+            polarization states, providing microsecond-scale
+            memory access.
+        </p>
+<h3>5.2 Software and Language Evolution</h3>
+<p>
+            High-level programming languages made computers
+            easier to program for scientific, business, and
+            artificial intelligence applications.
+        </p>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Language</th>
+<th>Year</th>
+<th>Primary Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FORTRAN</td>
+<td>1957</td>
+<td>Scientific and mathematical computing.</td>
+</tr>
+<tr>
+<td>LISP</td>
+<td>1958</td>
+<td>Artificial intelligence and symbolic processing.</td>
+</tr>
+<tr>
+<td>COBOL</td>
+<td>1959</td>
+<td>Business and enterprise data processing.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ==========================================
+         SECTION 6
+    ========================================== -->
+<section class="chapter" id="section-6">
+<h2>Section 6: Third-Generation Hardware Architecture (1964–1971)</h2>
+<h3>6.1 Integrated Circuit Fabrication</h3>
+<img alt="Integrated circuit fabrication diagram" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            Integrated circuits, associated with the pioneering
+            work of Jack Kilby and Robert Noyce, placed
+            transistors and other electronic components onto
+            compact semiconductor chips.
+        </p>
+<p>
+            Photolithographic manufacturing made it possible
+            to build increasingly complex electronic circuits
+            on a single silicon substrate.
+        </p>
+<h3>6.2 Small-Scale and Medium-Scale Integration</h3>
+<ul>
+<li>
+<strong>Small-Scale Integration (SSI):</strong>
+                Typically integrated a small number of logic
+                gates for functions such as flip-flops.
+            </li>
+<li>
+<strong>Medium-Scale Integration (MSI):</strong>
+                Integrated more logic gates to support functions
+                such as adders, counters, and multiplexers.
+            </li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 7
+    ========================================== -->
+<section class="chapter" id="section-7">
+<h2>Section 7: Third-Generation Architectural Shifts and Operating Systems</h2>
+<h3>7.1 The IBM System/360 Standard</h3>
+<img alt="IBM System 360 mainframe computer" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            Introduced in 1964, the IBM System/360 established
+            a compatible family of computers that supported
+            common software across different hardware models.
+        </p>
+<p>
+            Its architecture included byte-addressable memory,
+            standardized instruction structures, and
+            cross-model software compatibility.
+        </p>
+<h3>7.2 Multiprogramming and Time-Sharing Operating Systems</h3>
+<p>
+            Multiprogramming allowed several programs to
+            reside in memory while the operating system
+            scheduled processor execution between them.
+        </p>
+<p>
+            Time-sharing systems enabled multiple terminal
+            users to interact with a computer by sharing
+            processor time.
+        </p>
+<p>
+            Examples discussed in the reference include
+            CTSS, MULTICS, and early UNIX.
+        </p>
+</section>
+<!-- ==========================================
+         SECTION 8
+    ========================================== -->
+<section class="chapter" id="section-8">
+<h2>Section 8: Fourth-Generation Hardware Architecture (1971–Present)</h2>
+<h3>8.1 LSI, VLSI, and the Microprocessor</h3>
+<img alt="Evolution of microprocessor integration" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            Large-Scale Integration (LSI) and Very Large-Scale
+            Integration (VLSI) enabled increasingly large
+            numbers of transistors to be fabricated on
+            semiconductor chips.
+        </p>
+<p>
+            This led to the single-chip microprocessor,
+            integrating CPU components such as the control
+            unit, arithmetic logic unit, and registers.
+        </p>
+<h3>8.2 Intel 4004 and Intel 8080</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Processor</th>
+<th>Year</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intel 4004</td>
+<td>1971</td>
+<td>4-bit commercial microprocessor with approximately 2,300 transistors.</td>
+</tr>
+<tr>
+<td>Intel 8080</td>
+<td>1974</td>
+<td>8-bit microprocessor with approximately 4,500 transistors.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ==========================================
+         SECTION 9
+    ========================================== -->
+<section class="chapter" id="section-9">
+<h2>Section 9: Fourth-Generation Ecosystem and Microcomputers</h2>
+<h3>9.1 Personal Computing Revolution</h3>
+<p>
+            Single-chip microprocessors made consumer
+            microcomputers more affordable and helped
+            establish personal computing.
+        </p>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Computer</th>
+<th>Year</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>MITS Altair 8800</td><td>1975</td></tr>
+<tr><td>Apple II</td><td>1977</td></tr>
+<tr><td>IBM PC 5150</td><td>1981</td></tr>
+</tbody>
+</table>
+<h3>9.2 Memory and Storage Evolution</h3>
+<img alt="Evolution of computer storage devices" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            Semiconductor memory technologies such as
+            Dynamic RAM (DRAM), Static RAM (SRAM), and
+            non-volatile flash memory replaced many
+            earlier storage approaches.
+        </p>
+<p>
+            Flash memory enabled compact storage devices,
+            including USB flash drives and solid-state drives.
+        </p>
+</section>
+<!-- ==========================================
+         SECTION 10
+    ========================================== -->
+<section class="chapter" id="section-10">
+<h2>Section 10: Fifth-Generation Computing and AI Architectures</h2>
+<h3>10.1 ULSI and Ultra-Parallel Execution</h3>
+<img alt="Modern artificial intelligence processing chip" loading="lazy" src="/images/illustration-unavailable.svg"/>
+<p>
+            Fifth-generation computing, as described in the
+            reference, emphasizes Ultra Large-Scale Integration
+            (ULSI), multi-core processors, system-on-chip
+            designs, and highly parallel computation.
+        </p>
+<p>
+            Modern processors may integrate billions of
+            transistors and use specialized accelerators
+            for computationally intensive workloads.
+        </p>
+<h3>10.2 Artificial Intelligence and Neural Hardware</h3>
+<ul>
+<li>
+<strong>GPU:</strong>
+                Graphics Processing Unit used for parallel
+                graphics and numerical computations.
+            </li>
+<li>
+<strong>TPU:</strong>
+                Tensor Processing Unit designed to accelerate
+                machine learning operations.
+            </li>
+<li>
+<strong>NPU:</strong>
+                Neural Processing Unit optimized for
+                artificial intelligence workloads.
+            </li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 11
+    ========================================== -->
+<section class="chapter" id="section-11">
+<h2>Section 11: Comprehensive Comparative Matrix of Computer Generations</h2>
+<p>
+            The five generations can be compared through
+            their dominant hardware technologies, memory
+            systems, programming languages, and representative
+            computers.
+        </p>
+<div class="table-responsive">
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Generation</th>
+<th>Hardware</th>
+<th>Memory</th>
+<th>Languages</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First</td>
+<td>Vacuum tubes</td>
+<td>Delay lines, magnetic drums</td>
+<td>Machine code, assembly</td>
+<td>ENIAC, UNIVAC I</td>
+</tr>
+<tr>
+<td>Second</td>
+<td>Transistors</td>
+<td>Magnetic core RAM</td>
+<td>FORTRAN, COBOL, LISP</td>
+<td>IBM 7094, CDC 1604</td>
+</tr>
+<tr>
+<td>Third</td>
+<td>Integrated circuits</td>
+<td>Core and early semiconductor memory</td>
+<td>C, Pascal, BASIC</td>
+<td>IBM System/360, PDP-8</td>
+</tr>
+<tr>
+<td>Fourth</td>
+<td>Microprocessors, VLSI</td>
+<td>DRAM, SRAM, SSD</td>
+<td>C++, Java, Python, SQL</td>
+<td>IBM PC, Apple Macintosh</td>
+</tr>
+<tr>
+<td>Fifth</td>
+<td>ULSI, AI accelerators</td>
+<td>HBM, 3D NAND and advanced memory</td>
+<td>AI and quantum programming</td>
+<td>AI systems and quantum processors</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- ==========================================
+         SECTION 12
+    ========================================== -->
+<section class="chapter" id="section-12">
+<h2>Section 12: Taxonomy of Computer System Classifications</h2>
+<h3>12.1 Multi-Dimensional Classification Framework</h3>
+<p>
+            Computer systems can be categorized according
+            to their data representation, processing capacity,
+            intended purpose, and execution architecture.
+        </p>
+<ol>
+<li>
+<strong>Data Signals:</strong>
+                Analog, digital, and hybrid computers.
+            </li>
+<li>
+<strong>Physical Scale and Processing Capacity:</strong>
+                Microcomputers, minicomputers, mainframes,
+                and supercomputers.
+            </li>
+<li>
+<strong>Architectural Purpose:</strong>
+                General-purpose and special-purpose systems.
+            </li>
+<li>
+<strong>Instruction and Data Streams:</strong>
+                SISD, SIMD, MISD, and MIMD architectures.
+            </li>
+</ol>
+</section>
+<!-- ==========================================
+         SECTION 13
+    ========================================== -->
+<section class="chapter" id="section-13">
+<h2>Section 13: Classification by Data Type — Analog Computers</h2>
+<h3>13.1 Principles of Analog Computation</h3>
+<p>
+            Analog computers process continuous physical
+            quantities such as electrical voltage, fluid
+            pressure, mechanical rotation, and temperature.
+        </p>
+<p>
+            These systems represent mathematical variables
+            through continuously changing physical signals,
+            using components such as operational amplifiers,
+            resistors, and capacitors.
+        </p>
+<h3>13.2 Operational Characteristics</h3>
+<ul>
+<li>
+<strong>Real-Time Parallel Operations:</strong>
+                Analog circuits can perform operations such
+                as integration and differentiation continuously.
+            </li>
+<li>
+<strong>Precision Limitations:</strong>
+                Results are affected by electrical noise,
+                calibration drift, and component tolerances.
+            </li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 14
+    ========================================== -->
+<section class="chapter" id="section-14">
+<h2>Section 14: Classification by Data Type — Digital Computers</h2>
+<h3>14.1 Discrete Binary Computation</h3>
+<p>
+            Digital computers process information using
+            discrete binary values represented by
+            <strong>0 and 1</strong>.
+        </p>
+<p>
+            Boolean logic gates built using transistors
+            perform arithmetic and logical operations
+            on binary information.
+        </p>
+<h3>14.2 Technical Advantages of Digital Systems</h3>
+<ul>
+<li>
+<strong>Controlled Numerical Precision:</strong>
+                Numerical precision depends on the number
+                of bits and data representation used.
+            </li>
+<li>
+<strong>Noise Resistance:</strong>
+                Binary voltage thresholds help distinguish
+                valid logical states despite small disturbances.
+            </li>
+<li>
+<strong>Universal Programmability:</strong>
+                Stored-program computers can execute many
+                different software applications.
+            </li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 15
+    ========================================== -->
+<section class="chapter" id="section-15">
+<h2>Section 15: Classification by Data Type — Hybrid Computers</h2>
+<h3>15.1 Integration of Analog and Digital Processing</h3>
+<p>
+            Hybrid computers combine continuous analog
+            signal processing with digital calculation,
+            logical control, and information storage.
+        </p>
+<p>
+<strong>Analog-to-Digital Converters (ADCs)</strong>
+            convert analog signals into digital data, while
+            <strong>Digital-to-Analog Converters (DACs)</strong>
+            convert digital values into analog signals.
+        </p>
+<h3>15.2 Industry Applications</h3>
+<ul>
+<li>Flight simulation systems.</li>
+<li>Patient monitoring equipment.</li>
+<li>Aerospace and defense control systems.</li>
+<li>Industrial chemical process controllers.</li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 16
+    ========================================== -->
+<section class="chapter" id="section-16">
+<h2>Section 16: Classification by Physical Scale — Microcomputers</h2>
+<h3>16.1 System Architecture of Microcomputers</h3>
+<p>
+            Microcomputers are computing systems built
+            around microprocessors. They include personal
+            computers, laptops, tablets, and workstations.
+        </p>
+<h3>16.2 Sub-Classifications</h3>
+<ul>
+<li>
+<strong>Desktop Computers:</strong>
+                Stationary general-purpose computers for
+                homes, schools, and offices.
+            </li>
+<li>
+<strong>Laptops and Notebooks:</strong>
+                Portable battery-powered systems with
+                integrated displays and keyboards.
+            </li>
+<li>
+<strong>Workstations:</strong>
+                High-performance computers for CAD,
+                engineering, 3D rendering, and scientific work.
+            </li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 17
+    ========================================== -->
+<section class="chapter" id="section-17">
+<h2>Section 17: Classification by Physical Scale — Minicomputers</h2>
+<h3>17.1 Mid-Range Multi-User Systems</h3>
+<p>
+            Minicomputers became popular during the 1960s
+            as smaller and more affordable alternatives
+            to large mainframe computers.
+        </p>
+<p>
+            Systems such as the DEC PDP-8 and PDP-11
+            supported departmental computing, scientific
+            research, and multiple terminal users.
+        </p>
+<h3>17.2 Evolution into Modern Enterprise Servers</h3>
+<p>
+            As microprocessors became more powerful,
+            traditional minicomputer roles increasingly
+            shifted toward enterprise servers, departmental
+            database systems, and networked computing.
+        </p>
+</section>
+<!-- ==========================================
+         SECTION 18
+    ========================================== -->
+<section class="chapter" id="section-18">
+<h2>Section 18: Classification by Physical Scale — Mainframe Computers</h2>
+<h3>18.1 High-Throughput Enterprise Architecture</h3>
+<p>
+            Mainframes are enterprise computers designed
+            for high-volume transaction processing,
+            extensive input/output operations, and
+            reliable continuous service.
+        </p>
+<p>
+            Mainframes such as IBM zSystems are commonly
+            associated with large-scale business and
+            database processing.
+        </p>
+<h3>18.2 Core Mainframe Architectural Features</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Capability</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAS</td>
+<td>Reliability, availability, and serviceability through redundant and recoverable hardware.</td>
+</tr>
+<tr>
+<td>Dedicated Channel I/O</td>
+<td>Offloads peripheral input/output operations from main processors.</td>
+</tr>
+<tr>
+<td>LPAR Virtualization</td>
+<td>Creates isolated logical computing environments on shared hardware.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ==========================================
+         SECTION 19
+    ========================================== -->
+<section class="chapter" id="section-19">
+<h2>Section 19: Classification by Physical Scale — Supercomputers</h2>
+<h3>19.1 High-Performance Computing Architecture</h3>
+<p>
+            Supercomputers are designed for extremely
+            demanding numerical calculations and
+            scientific simulations.
+        </p>
+<p>
+            They combine many interconnected processors,
+            accelerators, and high-speed communication
+            systems to perform large parallel workloads.
+        </p>
+<h3>19.2 Exascale Performance Milestones</h3>
+<p>
+            Floating-point performance is commonly measured
+            in <strong>FLOPS</strong>, or floating-point
+            operations per second.
+        </p>
+<p>
+            Exascale systems can exceed 10<sup>18</sup>
+            floating-point operations per second on
+            specified benchmarks. The reference identifies
+            the Frontier supercomputer as an example.
+        </p>
+<h3>Applications</h3>
+<ul>
+<li>Climate and weather modeling.</li>
+<li>Molecular dynamics.</li>
+<li>Nuclear physics simulations.</li>
+<li>Large-scale scientific research.</li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 20
+    ========================================== -->
+<section class="chapter" id="section-20">
+<h2>Section 20: Classification by Purpose — General vs. Special Purpose</h2>
+<h3>20.1 General-Purpose Computers</h3>
+<p>
+            General-purpose computers can execute many
+            different applications by loading different
+            programs into memory.
+        </p>
+<p>
+            Examples of workloads include document editing,
+            spreadsheets, web hosting, graphics processing,
+            and software development.
+        </p>
+<h3>20.2 Special-Purpose and ASIC Systems</h3>
+<p>
+            Special-purpose computers are designed for
+            specific functions and may use specialized
+            processors or fixed-function circuitry.
+        </p>
+<ul>
+<li>Application-Specific Integrated Circuits (ASICs).</li>
+<li>Medical imaging controllers.</li>
+<li>Digital signal processors.</li>
+<li>Automotive anti-lock braking controllers.</li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 21
+    ========================================== -->
+<section class="chapter" id="section-21">
+<h2>Section 21: Workstations and High-Performance Client Systems</h2>
+<h3>21.1 Professional Workstation Specifications</h3>
+<p>
+            Workstations are high-performance computers
+            intended for professional workloads such as
+            engineering, 3D design, scientific computing,
+            and software development.
+        </p>
+<ul>
+<li>
+<strong>ECC RAM:</strong>
+                Detects and corrects certain memory errors,
+                improving reliability during long computations.
+            </li>
+<li>
+<strong>Multi-Channel Hardware Interfaces:</strong>
+                Support high-throughput GPUs and fast storage
+                through technologies such as PCI Express.
+            </li>
+<li>
+<strong>Professional Processors:</strong>
+                Multi-core CPUs and dedicated accelerators
+                handle computationally intensive applications.
+            </li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 22
+    ========================================== -->
+<section class="chapter" id="section-22">
+<h2>Section 22: Embedded Systems and Internet of Things (IoT)</h2>
+<h3>22.1 Microcontroller Unit Architecture</h3>
+<p>
+            Embedded systems place computing capabilities
+            inside devices such as appliances, medical
+            equipment, vehicles, and industrial sensors.
+        </p>
+<p>
+            A <strong>Microcontroller Unit (MCU)</strong>
+            commonly combines a CPU, SRAM, flash memory,
+            and general-purpose input/output interfaces
+            on a single chip.
+        </p>
+<h3>22.2 Real-Time Operating Systems</h3>
+<p>
+            Real-Time Operating Systems (RTOS) support
+            predictable response timing for tasks and
+            interrupts with timing requirements.
+        </p>
+<p>
+            Examples in the reference include FreeRTOS
+            and VxWorks.
+        </p>
+</section>
+<!-- ==========================================
+         SECTION 23
+    ========================================== -->
+<section class="chapter" id="section-23">
+<h2>Section 23: Server Architectures and Data Center Infrastructure</h2>
+<h3>23.1 Form Factor Configurations</h3>
+<p>
+            Enterprise servers are designed for scalable
+            operation in data centers, with emphasis
+            on reliability, efficient space usage,
+            and continuous service.
+        </p>
+<ul>
+<li>
+<strong>Rack-Mounted Servers:</strong>
+                Installed in standardized 19-inch racks,
+                commonly using 1U, 2U, or 4U chassis.
+            </li>
+<li>
+<strong>Blade Servers:</strong>
+                Modular server boards installed into shared
+                chassis providing common power, cooling,
+                and networking infrastructure.
+            </li>
+</ul>
+<p>
+            Data center infrastructure may also use
+            redundant networking, load balancing,
+            and fault-tolerant hardware configurations.
+        </p>
+</section>
+<!-- ==========================================
+         SECTION 24
+    ========================================== -->
+<section class="chapter" id="section-24">
+<h2>Section 24: Mobile and Handheld Computing Architectures</h2>
+<h3>24.1 System-on-Chip Architectures</h3>
+<p>
+            Mobile devices use integrated
+            <strong>System-on-Chip (SoC)</strong>
+            architectures that combine multiple
+            computing functions into a compact chip.
+        </p>
+<p>
+            These functions may include CPU cores,
+            GPUs, cellular modems, image signal
+            processors, and neural accelerators.
+        </p>
+<p>
+            Examples include Apple Silicon,
+            Qualcomm Snapdragon, and MediaTek Dimensity.
+        </p>
+<h3>24.2 Power and Thermal Budget Management</h3>
+<p>
+            Mobile devices balance computing performance
+            with battery consumption and heat limitations.
+        </p>
+<ul>
+<li>Dynamic Voltage and Frequency Scaling (DVFS).</li>
+<li>High-performance and energy-efficient CPU cores.</li>
+<li>Thermal management and power optimization.</li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 25
+    ========================================== -->
+<section class="chapter" id="section-25">
+<h2>Section 25: Flynn's Architectural Taxonomy</h2>
+<h3>25.1 Classification by Instruction and Data Streams</h3>
+<p>
+            Flynn's Taxonomy, formulated by Michael J.
+            Flynn in 1966, classifies computer architectures
+            according to the number of instruction streams
+            and data streams they process.
+        </p>
+<h3>25.2 The Four Architectural Categories</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Category</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SISD</td>
+<td>Single Instruction, Single Data</td>
+<td>Traditional sequential single-core processing.</td>
+</tr>
+<tr>
+<td>SIMD</td>
+<td>Single Instruction, Multiple Data</td>
+<td>GPU-style parallel data operations and CPU vector instructions.</td>
+</tr>
+<tr>
+<td>MISD</td>
+<td>Multiple Instruction, Single Data</td>
+<td>Specialized fault-tolerant processing arrangements.</td>
+</tr>
+<tr>
+<td>MIMD</td>
+<td>Multiple Instruction, Multiple Data</td>
+<td>Multi-core processors and computing clusters.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ==========================================
+         SECTION 26
+    ========================================== -->
+<section class="chapter" id="section-26">
+<h2>Section 26: Instruction Set Classifications — CISC vs. RISC</h2>
+<h3>26.1 CISC vs. RISC Processor Paradigms</h3>
+<p>
+            Instruction Set Architectures (ISAs) define
+            the machine instructions available to software
+            and the way processors execute them.
+        </p>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>CISC</th>
+<th>RISC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meaning</td>
+<td>Complex Instruction Set Computer</td>
+<td>Reduced Instruction Set Computer</td>
+</tr>
+<tr>
+<td>Design Approach</td>
+<td>Rich instruction set with complex operations.</td>
+<td>Simpler instructions emphasizing efficient execution.</td>
+</tr>
+<tr>
+<td>Memory Operations</td>
+<td>May support complex memory operands.</td>
+<td>Typically uses load/store architecture.</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>x86 and x86-64</td>
+<td>ARM and RISC-V</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ==========================================
+         SECTION 27
+    ========================================== -->
+<section class="chapter" id="section-27">
+<h2>Section 27: Vector and Parallel Processor Classifications</h2>
+<h3>27.1 Vector Processing Architecture</h3>
+<p>
+            Vector processors perform operations on
+            multiple data elements using specialized
+            vector registers and instructions.
+        </p>
+<p>
+            Unlike scalar operations that handle
+            individual values, vector operations can
+            apply the same mathematical instruction
+            across a collection of data.
+        </p>
+<h3>27.2 Massively Parallel Processing</h3>
+<p>
+            Massively Parallel Processing (MPP) systems
+            connect large numbers of processor nodes
+            through high-speed communication networks.
+        </p>
+<p>
+            These systems support large-scale scientific
+            workloads by distributing calculations
+            across many processors.
+        </p>
+</section>
+<!-- ==========================================
+         SECTION 28
+    ========================================== -->
+<section class="chapter" id="section-28">
+<h2>Section 28: Cloud, Edge, and Fog Computing Classifications</h2>
+<h3>28.1 Spatial and Operational Infrastructure Tiering</h3>
+<p>
+            Computing resources can be organized according
+            to their distance from the devices that generate
+            and consume data.
+        </p>
+<div class="code-example">
+<pre><code>CENTRALIZED CLOUD DATA CENTERS
+            |
+            v
+      FOG COMPUTING NODES
+            |
+            v
+      EDGE COMPUTING DEVICES</code></pre>
+</div>
+<h3>28.2 Architectural Distinction</h3>
+<ul>
+<li>
+<strong>Cloud Computing:</strong>
+                Centralized data centers provide scalable
+                computing, storage, and networking resources.
+            </li>
+<li>
+<strong>Fog Computing:</strong>
+                Intermediate computing nodes provide
+                processing and coordination between cloud
+                infrastructure and edge devices.
+            </li>
+<li>
+<strong>Edge Computing:</strong>
+                Processing occurs close to sensors,
+                devices, or other data sources to reduce
+                latency and network usage.
+            </li>
+</ul>
+</section>
+<!-- ==========================================
+         SECTION 29
+    ========================================== -->
+<section class="chapter" id="section-29">
+<h2>Section 29: Quantum Computing System Classifications</h2>
+<h3>29.1 Quantum System Classifications</h3>
+<p>
+            Quantum computers use
+            <strong>quantum bits (qubits)</strong>
+            instead of conventional binary bits.
+        </p>
+<p>
+            Qubits exhibit quantum properties such as
+            superposition and entanglement, which can
+            support specialized quantum algorithms.
+        </p>
+<h3>Quantum Hardware Platforms</h3>
+<ul>
+<li>
+<strong>Superconducting Qubits:</strong>
+                Use superconducting electrical circuits
+                and Josephson junctions operating at
+                extremely low temperatures.
+            </li>
+<li>
+<strong>Trapped Ion Qubits:</strong>
+                Use electrically charged atoms confined
+                by electromagnetic fields and manipulated
+                using laser-based techniques.
+            </li>
+</ul>
+<p>
+            Examples referenced in the document include
+            IBM Quantum, Google Sycamore, and IonQ.
+        </p>
+</section>
+<!-- ==========================================
+         SECTION 30
+    ========================================== -->
+<section class="chapter" id="section-30">
+<h2>Section 30: Neuromorphic and Future Hardware Classifications</h2>
+<h3>30.1 Neuromorphic Computing Systems</h3>
+<p>
+            Neuromorphic computing uses hardware designs
+            inspired by the structure and information
+            processing behavior of biological neural systems.
+        </p>
+<p>
+            These architectures may use
+            <strong>Spiking Neural Networks (SNNs)</strong>
+            to communicate through discrete events
+            resembling neural spikes.
+        </p>
+<p>
+            Neuromorphic designs aim to bring computation
+            and memory closer together, reducing some of
+            the data-transfer overhead found in conventional
+            computing architectures.
+        </p>
+<h3>Representative Neuromorphic Systems</h3>
+<ul>
+<li>
+<strong>Intel Loihi:</strong>
+                A neuromorphic research processor designed
+                for spiking neural network experiments.
+            </li>
+<li>
+<strong>IBM TrueNorth:</strong>
+                A brain-inspired processor designed around
+                networks of artificial neurons and synapses.
+            </li>
+</ul>
+<h3>Conclusion</h3>
+<p>
+            Computer generations and system classifications
+            show how computing evolved from vacuum-tube
+            machines to transistor-based computers,
+            integrated circuits, microprocessors,
+            advanced parallel systems, and emerging
+            quantum and neuromorphic hardware.
+        </p>
+<p>
+            Understanding these technologies helps
+            computer professionals identify appropriate
+            architectures for different applications,
+            performance requirements, and operating
+            environments.
+        </p>
+</section>
+<!-- ==========================================
+     CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
+========================================== -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>Test your understanding of computer generations, hardware evolution, computer classifications, processor architectures, and emerging computing technologies.</p>
+<div id="quizProgress">0 of 10 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Computer Generations and System Classifications · CodeVerse Digital Library</footer>
+</div>
+</main></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ==========================================
+       CODEVERSE - COMPUTER GENERATIONS QUIZ
+    ========================================== */
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz || !retryQuiz ||
+        !quizResult || !quizProgress) {
+        console.error("Quiz elements are missing.");
+        return;
+    }
+
+    /* ==========================================
+       BOOK CONFIGURATION
+       CHANGE TO YOUR ACTUAL BOOK ID
+    ========================================== */
+
+    const bookId = 12;
+
+    /* ==========================================
+       QUIZ QUESTIONS - 30 SECTIONS
+    ========================================== */
+
+    const questions = [
+
+        {
+            question: "What primarily defines the different generations of computers?",
+            options: [
+                "The color of computer monitors",
+                "Fundamental changes in switching component technology",
+                "The number of computer users",
+                "The size of computer keyboards"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which electronic component was primarily used in first-generation computers?",
+            options: [
+                "Integrated Circuits",
+                "Transistors",
+                "Vacuum Tubes",
+                "Microprocessors"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which memory technology stored binary information as ultrasonic waves traveling through liquid mercury?",
+            options: [
+                "Mercury Acoustic Delay Line Memory",
+                "Dynamic RAM",
+                "Flash Memory",
+                "Magnetic Core Memory"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which component replaced vacuum tubes during the second generation of computers?",
+            options: [
+                "Quantum Processors",
+                "Optical Fibers",
+                "Magnetic Drums",
+                "Transistors"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which programming language was developed by John Backus for mathematical and scientific computing?",
+            options: [
+                "COBOL",
+                "FORTRAN",
+                "LISP",
+                "Java"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which technology characterized third-generation computer hardware?",
+            options: [
+                "Vacuum Tubes",
+                "Mechanical Relays",
+                "Integrated Circuits",
+                "Quantum Bits"
+            ],
+            answer: 2
+        },
+        {
+            question: "What was a major architectural achievement of the IBM System/360?",
+            options: [
+                "Cross-model software compatibility",
+                "Replacing all computers with analog circuits",
+                "Introducing quantum processors",
+                "Eliminating operating systems"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which Intel microprocessor was introduced in 1971?",
+            options: [
+                "Intel 8080",
+                "Intel 8086",
+                "Intel 80386",
+                "Intel 4004"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which personal computer was introduced in 1981?",
+            options: [
+                "Apple II",
+                "IBM PC 5150",
+                "MITS Altair 8800",
+                "PDP-8"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which specialized processor is designed to accelerate artificial intelligence operations?",
+            options: [
+                "Magnetic Drum",
+                "Vacuum Tube",
+                "Neural Processing Unit",
+                "Floppy Disk Controller"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which component technology is associated with fourth-generation computers?",
+            options: [
+                "VLSI and Microprocessors",
+                "Vacuum Tubes",
+                "Mechanical Gears",
+                "Mercury Delay Lines"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which of the following is a classification based on the type of data signals processed?",
+            options: [
+                "Mainframe and Supercomputer",
+                "General-Purpose and Special-Purpose",
+                "Desktop and Laptop",
+                "Analog, Digital, and Hybrid"
+            ],
+            answer: 3
+        },
+        {
+            question: "What type of data do analog computers process?",
+            options: [
+                "Only binary digits",
+                "Continuous physical quantities",
+                "Only text files",
+                "Only hexadecimal instructions"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which number system is fundamental to digital computers?",
+            options: [
+                "Decimal",
+                "Roman Numerals",
+                "Binary",
+                "Octal Only"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which components allow hybrid computers to convert between analog and digital signals?",
+            options: [
+                "ADCs and DACs",
+                "Keyboards and Monitors",
+                "Hard Drives and SSDs",
+                "Printers and Scanners"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which of the following is an example of a microcomputer?",
+            options: [
+                "IBM zSystems Mainframe",
+                "Frontier Supercomputer",
+                "Cray-1 Supercomputer",
+                "Desktop Personal Computer"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which computer family is associated with the development of minicomputers?",
+            options: [
+                "Intel Core",
+                "DEC PDP-8 and PDP-11",
+                "IBM PC 5150",
+                "Apple Macintosh"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the primary design priority of mainframe computers?",
+            options: [
+                "Gaming graphics performance",
+                "Personal entertainment",
+                "High-throughput transactions and reliability",
+                "Portable battery operation"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which measurement is commonly used to evaluate supercomputer floating-point performance?",
+            options: [
+                "FLOPS",
+                "Pixels",
+                "Decibels",
+                "Volts"
+            ],
+            answer: 0
+        },
+        {
+            question: "What distinguishes a special-purpose computer from a general-purpose computer?",
+            options: [
+                "It always uses a larger monitor",
+                "It cannot process electrical signals",
+                "It must use a mechanical processor",
+                "It is designed to perform a dedicated task"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is the purpose of Error-Correcting Code (ECC) RAM in professional workstations?",
+            options: [
+                "To increase screen brightness",
+                "To detect and correct certain memory errors",
+                "To replace the CPU",
+                "To improve internet signal strength"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which component commonly combines CPU cores, SRAM, Flash memory, and GPIO interfaces in embedded systems?",
+            options: [
+                "Mechanical Relay",
+                "Magnetic Tape Drive",
+                "Microcontroller Unit",
+                "Optical Disc"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which server configuration uses modular computing blades installed in a shared chassis?",
+            options: [
+                "Blade Server",
+                "Desktop Computer",
+                "Analog Computer",
+                "Personal Laptop"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which architecture integrates CPU cores, GPUs, modems, and other components onto one chip in mobile devices?",
+            options: [
+                "Magnetic Core Array",
+                "Vacuum Tube Circuit",
+                "Mechanical Processor",
+                "System-on-Chip"
+            ],
+            answer: 3
+        },
+        {
+            question: "In Flynn's Taxonomy, what does SIMD stand for?",
+            options: [
+                "Single Instruction, Single Data",
+                "Single Instruction, Multiple Data",
+                "Multiple Instruction, Single Data",
+                "Multiple Instruction, Multiple Data"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which processor architecture uses a reduced instruction set and a load/store memory model?",
+            options: [
+                "CISC",
+                "Analog Computing",
+                "RISC",
+                "Vacuum Tube Architecture"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is the main characteristic of vector processors?",
+            options: [
+                "Performing operations across multiple data elements",
+                "Processing only one character at a time",
+                "Using mechanical gears for arithmetic",
+                "Operating without registers"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which computing approach processes data close to where it is generated to reduce latency?",
+            options: [
+                "Centralized Batch Processing",
+                "Mechanical Computing",
+                "Magnetic Drum Computing",
+                "Edge Computing"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is the basic information unit used in quantum computers?",
+            options: [
+                "Byte",
+                "Qubit",
+                "Transistor",
+                "Logic Gate"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which computing architecture uses brain-inspired spiking neural networks?",
+            options: [
+                "Traditional Batch Computing",
+                "Mechanical Computing",
+                "Neuromorphic Computing",
+                "Magnetic Drum Computing"
+            ],
+            answer: 2
+        }
+
+    ];
+
+    /* ==========================================
+       LOAD QUIZ
+    ========================================== */
+
+    function loadQuiz() {
+
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener(
+                    "change",
+                    updateProgress
+                );
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+            });
+
+            quizQuestions.appendChild(box);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    /* ==========================================
+       UPDATE QUIZ PROGRESS
+    ========================================== */
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    /* ==========================================
+       SUBMIT QUIZ
+    ========================================== */
+
+    submitQuiz.addEventListener("click", async function () {
+
+        let score = 0;
+
+        const answered = quizQuestions.querySelectorAll(
+            'input[type="radio"]:checked'
+        ).length;
+
+        if (answered !== questions.length) {
+
+            alert(
+                `Please answer all ${questions.length} questions.`
+            );
+
+            return;
+        }
+
+        submitQuiz.disabled = true;
+
+        /* ==========================================
+           CHECK ANSWERS
+        ========================================== */
+
+        questions.forEach((item, index) => {
+
+            const box = quizQuestions.children[index];
+
+            const selected = box.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            const selectedAnswer = Number(selected.value);
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+
+                    const radio = label.querySelector("input");
+
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+
+                        label.classList.add("correct");
+
+                    } else if (optionIndex === selectedAnswer) {
+
+                        label.classList.add("incorrect");
+                    }
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+        });
+
+        /* ==========================================
+           CALCULATE RESULT
+        ========================================== */
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+
+            <p>Your Score</p>
+
+            <h2>${score} / ${questions.length}</h2>
+
+            <p>${percentage}%</p>
+
+            <strong>${
+                percentage >= 90 ? "Excellent work!" :
+                percentage >= 75 ? "Great job!" :
+                percentage >= 60 ? "Good effort! Keep reviewing." :
+                "Review the chapters and try again."
+            }</strong>
+
+            <p id="quizSaveStatus" aria-live="polite">
+                Saving quiz result...
+            </p>
+        `;
+
+        quizResult.hidden = false;
+
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        /* ==========================================
+           SAVE SCORE TO CODEVERSE BACKEND
+        ========================================== */
+
+        const saveStatus = document.getElementById(
+            "quizSaveStatus"
+        );
+
+        try {
+
+            const response = await fetch("/api/quiz-results", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                credentials: "same-origin",
+
+                body: JSON.stringify({
+                    bookId: bookId,
+                    score: score,
+                    totalQuestions: questions.length
+                })
+            });
+
+            const data = await response.json();
+
+            saveStatus.textContent =
+                response.ok && data.success
+                    ? "Your quiz score has been saved!"
+                    : (
+                        data.message ||
+                        "Quiz score could not be saved."
+                    );
+
+        } catch (error) {
+
+            console.error("Quiz save error:", error);
+
+            saveStatus.textContent =
+                "Quiz completed, but the score could not be saved.";
+        }
+    });
+
+    /* ==========================================
+       RETRY QUIZ
+    ========================================== */
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    /* ==========================================
+       INITIALIZE QUIZ
+    ========================================== */
+
+    loadQuiz();
+
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const themeButton=document.getElementById('themeToggle'),themeIcon=document.getElementById('themeIcon');
+ const fontSize=document.getElementById('fontSize'),fontFamily=document.getElementById('fontFamily');
+ const menu=document.getElementById('menuToggle'),links=document.getElementById('navLinks');
+ const savedTheme=localStorage.getItem('readerTheme');
+ function setTheme(dark){document.body.classList.toggle('dark-mode',dark);themeIcon.textContent=dark?'☀':'☾';localStorage.setItem('readerTheme',dark?'dark':'light')}
+ setTheme(savedTheme==='dark');themeButton?.addEventListener('click',()=>setTheme(!document.body.classList.contains('dark-mode')));
+ const size=localStorage.getItem('readerFontSize')||'16px',family=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";
+ fontSize.value=size;fontFamily.value=family;document.documentElement.style.setProperty('--reader-size',size);document.documentElement.style.setProperty('--reader-font',family);
+ fontSize.addEventListener('change',()=>{document.documentElement.style.setProperty('--reader-size',fontSize.value);localStorage.setItem('readerFontSize',fontSize.value)});
+ fontFamily.addEventListener('change',()=>{document.documentElement.style.setProperty('--reader-font',fontFamily.value);localStorage.setItem('readerFontFamily',fontFamily.value)});
+ menu?.addEventListener('click',()=>{const open=links.classList.toggle('show');menu.setAttribute('aria-expanded',String(open))});
+ links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('show')));
+ document.querySelectorAll('.lesson-table').forEach(table=>{if(table.parentElement.classList.contains('table-responsive'))return;const wrapper=document.createElement('div');wrapper.className='table-responsive';table.parentNode.insertBefore(wrapper,table);wrapper.appendChild(table)});
+});
+</script><script defer="True" src="/js/auth-nav.js"></script></body></html>

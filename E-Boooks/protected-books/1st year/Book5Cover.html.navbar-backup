@@ -1,0 +1,1174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeVerse | Data, Information, Number Systems, and Computer Architecture</title>
+
+    <link rel="icon" type="image/png" href="/images/CodeVerseLogo.png">
+
+    <!-- ==========================================
+         BUILT-IN STANDALONE CSS
+    ========================================== -->
+
+    <style>
+        :root {
+            --bg: #f4f7fc;
+            --surface: #ffffff;
+            --text: #1c2a42;
+            --muted: #64748b;
+            --line: #e1e8f2;
+            --blue: #3157a4;
+            --blue-dark: #244581;
+            --shadow: 0 18px 50px rgba(22, 48, 91, .09);
+        }
+
+        body.dark-mode {
+            --bg: #101827;
+            --surface: #1d293c;
+            --text: #eef3fc;
+            --muted: #b2c0d5;
+            --line: #38475c;
+            --blue: #94b5ff;
+            --blue-dark: #bed0ff;
+            --shadow: 0 18px 50px rgba(0, 0, 0, .24);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+            transition: background .25s, color .25s;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* NAVIGATION BAR */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            min-height: 78px;
+            padding: 14px 5%;
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            box-shadow: 0 3px 14px rgba(0, 0, 0, .025);
+            box-sizing: border-box;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -.7px;
+            white-space: nowrap;
+        }
+
+        .site-logo {
+            height: 43px;
+            width: 43px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--blue);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-btn,
+        .menu-toggle {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 11px;
+            min-width: 42px;
+            height: 42px;
+            font-size: 21px;
+        }
+
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 11px 17px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .login-btn {
+            border: 1px solid var(--line);
+            color: var(--text);
+        }
+
+        .signup-btn {
+            background: #3157a4;
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* BACK NAVIGATION */
+
+        .topbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 24px 0;
+        }
+
+        .back-link {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* BOOK COVER */
+
+        .book-container {
+            max-width: 1120px;
+            margin: 34px auto 80px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: minmax(250px, 380px) minmax(0, 1fr);
+            gap: 60px;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            box-sizing: border-box;
+        }
+
+        .book-cover-container {
+            background: linear-gradient(145deg, #e3edff, #f4f7ff);
+            padding: 24px;
+            min-height: 410px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .book-cover-image {
+            display: block;
+            max-width: 100%;
+            max-height: 470px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 12px 15px rgba(0, 0, 0, .15));
+        }
+
+        .book-details {
+            min-width: 0;
+        }
+
+        .featured-label {
+            display: inline-block;
+            background: rgba(49, 87, 164, .11);
+            color: var(--blue);
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: .08em;
+            padding: 9px 13px;
+            border-radius: 999px;
+        }
+
+        .book-title {
+            font-family: Georgia, serif;
+            font-weight: 700;
+            line-height: 1.15;
+            font-size: clamp(30px, 4vw, 49px);
+            margin: 22px 0;
+        }
+
+        /* BOOK STATISTICS */
+
+        .book-stats {
+            display: flex;
+            gap: 20px;
+            margin: 0 0 22px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding: 12px 22px;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        .stat strong {
+            font-size: 23px;
+            color: var(--blue);
+        }
+
+        .stat span {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--muted);
+        }
+
+        .book-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 590px;
+        }
+
+        /* BOOK BUTTONS */
+
+        .book-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .book-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 49px;
+            padding: 12px 24px;
+            border-radius: 11px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 800;
+            border: 1px solid var(--line);
+            color: var(--text);
+            background: var(--surface);
+            transition: transform .2s, background .2s;
+            box-sizing: border-box;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-2px);
+            background: var(--bg);
+        }
+
+        .book-btn.primary {
+            background: #3157a4;
+            color: white;
+            border-color: #3157a4;
+        }
+
+        .book-btn.primary:hover {
+            background: #244581;
+        }
+
+        /* CONTENTS POPUP */
+
+        .contents-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(8, 18, 35, .75);
+            padding: 18px;
+            box-sizing: border-box;
+        }
+
+        .contents-overlay.show {
+            display: flex;
+        }
+
+        .contents-modal {
+            width: min(720px, 100%);
+            max-height: min(86vh, 850px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: 0 25px 90px rgba(0, 0, 0, .28);
+        }
+
+        .contents-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 24px 26px 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .contents-header h2 {
+            margin: 7px 0 0;
+            font-size: 25px;
+        }
+
+        .contents-subtitle {
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .09em;
+        }
+
+        .close-contents {
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+            color: var(--text);
+            font-size: 27px;
+            width: 42px;
+            height: 42px;
+        }
+
+        /* SCROLLABLE TABLE OF CONTENTS */
+
+        .contents-list {
+            padding: 10px 20px 22px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+        }
+
+        .contents-list a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 12px;
+            border-bottom: 1px solid var(--line);
+            border-radius: 7px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .contents-list a:hover,
+        .contents-list a:focus-visible {
+            background: var(--bg);
+            color: var(--blue);
+        }
+
+        .contents-number {
+            min-width: 29px;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .contents-name {
+            flex: 1;
+        }
+
+        .contents-arrow {
+            font-size: 24px;
+            color: var(--muted);
+        }
+
+        .contents-section-title {
+            margin: 20px 10px 8px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .06em;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 1000px) {
+            .navbar {
+                gap: 18px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .book-container {
+                margin: 25px 20px 65px;
+                gap: 32px;
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 13px 18px;
+            }
+
+            .nav-links {
+                order: 4;
+                display: none;
+                width: 100%;
+                margin: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 12px 0;
+                border-top: 1px solid var(--line);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 11px;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .book-container {
+                grid-template-columns: 1fr;
+                gap: 26px;
+                max-width: 560px;
+            }
+
+            .book-cover-container {
+                min-height: 260px;
+            }
+
+            .book-cover-image {
+                max-height: 340px;
+            }
+
+            .book-title {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+
+            .site-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .navbar {
+                gap: 8px;
+            }
+
+            .nav-actions {
+                gap: 6px;
+            }
+
+            .login-btn,
+            .signup-btn {
+                font-size: 11px;
+                padding: 9px 10px;
+            }
+
+            .icon-btn,
+            .menu-toggle {
+                width: 36px;
+                min-width: 36px;
+                height: 36px;
+            }
+
+            .book-container {
+                padding: 20px;
+                margin: 20px 12px 50px;
+            }
+
+            .book-title {
+                font-size: 29px;
+            }
+
+            .contents-header {
+                padding: 17px;
+            }
+
+            .contents-list {
+                padding: 8px;
+            }
+
+            .contents-list a {
+                font-size: 13px;
+            }
+
+            .contents-modal {
+                max-height: 90vh;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .book-btn,
+            body {
+                transition: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body id="top">
+
+    <!-- NAVIGATION BAR -->
+
+    <header class="navbar">
+
+        <a class="logo" href="/index.html">
+
+            <img
+                src="/images/CodeVerseLogo.png"
+                alt="CodeVerse Logo"
+                class="site-logo"
+            >
+
+            <span>
+                Code<span class="logo-highlight">Verse</span>
+            </span>
+
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a class="active" href="/index.html">Home</a>
+            <a href="/library.html">Explore Books</a>
+            <a href="/index.html#about">About</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <button
+                type="button"
+                class="icon-btn"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+            >
+                <span id="themeIcon">☾</span>
+            </button>
+
+            <div id="accountActions">
+                <a class="login-btn" href="/LogIn.html">
+                    Log In
+                </a>
+                <a class="signup-btn" href="/register.html">
+                    Sign Up
+                </a>
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
+
+    </header>
+
+    <!-- BACK NAVIGATION -->
+
+    <header class="topbar">
+        <a class="back-link" href="/index.html">
+            ← Back to Books
+        </a>
+    </header>
+
+    <!-- BOOK COVER AND DETAILS -->
+
+    <main class="book-container">
+
+        <div class="book-cover-container">
+            <img
+                src="/images/book-covers/book-15.jpg"
+                alt="The History of Computers and Computing Systems"
+                class="book-cover-image"
+                loading="lazy"
+            >
+        </div>
+
+        <section class="book-details">
+
+            <span class="featured-label">
+                ★ FEATURED E-BOOK
+            </span>
+
+            <h1 class="book-title">
+                Data, Information, Number Systems, and Computer Architecture
+            </h1>
+
+            <div class="book-stats">
+
+                <div class="stat">
+                    <strong>34</strong>
+                    <span>Chapters</span>
+                </div>
+
+                <div class="stat">
+                    <strong>2</strong>
+                    <span>Main Parts</span>
+                </div>
+
+            </div>
+
+            <p class="book-description">
+                Explains how raw data becomes meaningful information
+                and how number systems represent values in computing.
+                Explore binary arithmetic, digital representation,
+                computer architecture, processors, memory, and
+                hardware performance.
+            </p>
+
+            <div class="book-actions">
+
+                <a class="book-btn primary" href="/read/15">
+                    Start Reading
+                </a>
+
+                <a
+                    class="book-btn"
+                    href="#contentsPopup"
+                    id="contentsBtn"
+                    aria-haspopup="dialog"
+                >
+                    ☰ Contents
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- TABLE OF CONTENTS POPUP -->
+
+    <div class="contents-overlay" id="contentsPopup">
+
+        <div
+            class="contents-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contentsTitle"
+        >
+
+            <div class="contents-header">
+
+                <div>
+                    <span class="contents-subtitle">
+                        DATA, INFORMATION, NUMBER SYSTEMS, AND COMPUTER ARCHITECTURE
+                    </span>
+
+                    <h2 id="contentsTitle">
+                        Table of Contents
+                    </h2>
+                </div>
+
+                <button
+                    type="button"
+                    class="close-contents"
+                    id="closeContents"
+                    aria-label="Close contents"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div class="contents-list">
+
+                <!-- INTRODUCTION -->
+
+                <a href="/read/15#data-info-introduction">
+                    <span class="contents-number">00</span>
+                    <span class="contents-name">Introduction</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <!-- PART I -->
+
+                <div class="contents-section-title">
+                    PART I — DATA AND NUMBER SYSTEMS
+                </div>
+
+                <a href="/read/15#dikw-pyramid">
+                    <span class="contents-number">01</span>
+                    <span class="contents-name">DIKW Pyramid Architecture</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#data-types">
+                    <span class="contents-number">02</span>
+                    <span class="contents-name">Data Types and Representation</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#positional-systems">
+                    <span class="contents-number">03</span>
+                    <span class="contents-name">Positional Number Systems</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#decimal-system">
+                    <span class="contents-number">04</span>
+                    <span class="contents-name">Decimal Number System</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#binary-system">
+                    <span class="contents-number">05</span>
+                    <span class="contents-name">Binary Number System</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#octal-system">
+                    <span class="contents-number">06</span>
+                    <span class="contents-name">Octal Number System</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#hexadecimal-system">
+                    <span class="contents-number">07</span>
+                    <span class="contents-name">Hexadecimal Number System</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#base-conversion">
+                    <span class="contents-number">08</span>
+                    <span class="contents-name">Base Conversion Procedures</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#direct-base-mapping">
+                    <span class="contents-number">09</span>
+                    <span class="contents-name">Direct Base Mapping</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#signed-binary">
+                    <span class="contents-number">10</span>
+                    <span class="contents-name">Signed Binary Encodings</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#binary-arithmetic">
+                    <span class="contents-number">11</span>
+                    <span class="contents-name">Binary Arithmetic</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#ieee-floating-point">
+                    <span class="contents-number">12</span>
+                    <span class="contents-name">IEEE 754 Floating-Point</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#character-encoding">
+                    <span class="contents-number">13</span>
+                    <span class="contents-name">Character Encoding</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#multimedia-representation">
+                    <span class="contents-number">14</span>
+                    <span class="contents-name">Multimedia Representation</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#boolean-logic">
+                    <span class="contents-number">15</span>
+                    <span class="contents-name">Boolean Algebra and Logic Gates</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#error-detection">
+                    <span class="contents-number">16</span>
+                    <span class="contents-name">Error Detection and Correction</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#memory-endianness">
+                    <span class="contents-number">17</span>
+                    <span class="contents-name">Data Storage and Endianness</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <!-- PART II -->
+
+                <div class="contents-section-title">
+                    PART II — COMPUTER ARCHITECTURE
+                </div>
+
+                <a href="/read/15#architecture-introduction">
+                    <span class="contents-number">—</span>
+                    <span class="contents-name">Computer Architecture Introduction</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#computer-architecture">
+                    <span class="contents-number">18</span>
+                    <span class="contents-name">Architecture Foundations</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#cpu-components">
+                    <span class="contents-number">19</span>
+                    <span class="contents-name">Central Processing Unit</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#instruction-set">
+                    <span class="contents-number">20</span>
+                    <span class="contents-name">Instruction Set Architecture</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#instruction-execution">
+                    <span class="contents-number">21</span>
+                    <span class="contents-name">Instruction Execution Cycle</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#alu-design">
+                    <span class="contents-number">22</span>
+                    <span class="contents-name">ALU Design</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#control-unit">
+                    <span class="contents-number">23</span>
+                    <span class="contents-name">Control Unit</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#cpu-registers">
+                    <span class="contents-number">24</span>
+                    <span class="contents-name">Processor Registers</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#cpu-pipelining">
+                    <span class="contents-number">25</span>
+                    <span class="contents-name">CPU Pipelining</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#memory-hierarchy">
+                    <span class="contents-number">26</span>
+                    <span class="contents-name">Memory Hierarchy</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#cache-memory">
+                    <span class="contents-number">27</span>
+                    <span class="contents-name">Cache Memory</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#main-memory">
+                    <span class="contents-number">28</span>
+                    <span class="contents-name">Main Memory</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#io-architecture">
+                    <span class="contents-number">29</span>
+                    <span class="contents-name">I/O Architecture</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#system-bus">
+                    <span class="contents-number">30</span>
+                    <span class="contents-name">System Bus Architecture</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#parallel-processing">
+                    <span class="contents-number">31</span>
+                    <span class="contents-name">Parallel Processing</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#gpu-accelerators">
+                    <span class="contents-number">32</span>
+                    <span class="contents-name">GPUs and Accelerators</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#power-thermal">
+                    <span class="contents-number">33</span>
+                    <span class="contents-name">Power and Thermal Dynamics</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <a href="/read/15#hardware-performance">
+                    <span class="contents-number">34</span>
+                    <span class="contents-name">Hardware Performance</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+                <!-- ASSESSMENT -->
+
+                <div class="contents-section-title">
+                    KNOWLEDGE ASSESSMENT
+                </div>
+
+                <a href="/read/15#quiz">
+                    <span class="contents-number">✓</span>
+                    <span class="contents-name">Knowledge Assessment Quiz</span>
+                    <span class="contents-arrow">›</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         BUILT-IN JAVASCRIPT
+    ========================================== -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* MOBILE NAVIGATION */
+
+            const menuToggle =
+                document.getElementById("menuToggle");
+
+            const navLinks =
+                document.getElementById("navLinks");
+
+            menuToggle.addEventListener("click", function () {
+
+                const visible = navLinks.classList.toggle("show");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(visible)
+                );
+
+            });
+
+
+            /* DARK MODE */
+
+            const themeToggle =
+                document.getElementById("themeToggle");
+
+            const themeIcon =
+                document.getElementById("themeIcon");
+
+            function applyTheme() {
+
+                const isDark =
+                    localStorage.getItem("theme") === "dark";
+
+                document.body.classList.toggle(
+                    "dark-mode",
+                    isDark
+                );
+
+                themeIcon.textContent = isDark ? "☀" : "☾";
+
+            }
+
+            applyTheme();
+
+            themeToggle.addEventListener("click", function () {
+
+                const isDark =
+                    document.body.classList.contains("dark-mode");
+
+                localStorage.setItem(
+                    "theme",
+                    isDark ? "light" : "dark"
+                );
+
+                applyTheme();
+
+            });
+
+
+            /* CONTENTS POPUP */
+
+            const contentsBtn =
+                document.getElementById("contentsBtn");
+
+            const contentsPopup =
+                document.getElementById("contentsPopup");
+
+            const closeContents =
+                document.getElementById("closeContents");
+
+            let lastFocus = null;
+
+            function hideContents() {
+
+                contentsPopup.classList.remove("show");
+
+                document.body.style.overflow = "";
+
+                if (lastFocus) {
+                    lastFocus.focus();
+                }
+
+            }
+
+            contentsBtn.addEventListener("click", function (event) {
+
+                event.preventDefault();
+
+                lastFocus = document.activeElement;
+
+                contentsPopup.classList.add("show");
+
+                document.body.style.overflow = "hidden";
+
+                closeContents.focus();
+
+            });
+
+            closeContents.addEventListener(
+                "click",
+                hideContents
+            );
+
+            contentsPopup.addEventListener("click", function (event) {
+
+                if (event.target === contentsPopup) {
+                    hideContents();
+                }
+
+            });
+
+
+            /* KEYBOARD ACCESSIBILITY */
+
+            document.addEventListener("keydown", function (event) {
+
+                if (!contentsPopup.classList.contains("show")) {
+                    return;
+                }
+
+                if (event.key === "Escape") {
+                    hideContents();
+                    return;
+                }
+
+                if (event.key === "Tab") {
+
+                    const links = [
+                        closeContents,
+                        ...contentsPopup.querySelectorAll(
+                            ".contents-list a"
+                        )
+                    ];
+
+                    const first = links[0];
+                    const last = links[links.length - 1];
+
+                    if (
+                        event.shiftKey &&
+                        document.activeElement === first
+                    ) {
+                        event.preventDefault();
+                        last.focus();
+                    } else if (
+                        !event.shiftKey &&
+                        document.activeElement === last
+                    ) {
+                        event.preventDefault();
+                        first.focus();
+                    }
+
+                }
+
+            });
+
+        });
+    </script>
+
+    <!-- EXISTING CODEVERSE ACCOUNT NAVIGATION -->
+    <script src="/js/auth-nav.js" defer></script>
+
+</body>
+</html>

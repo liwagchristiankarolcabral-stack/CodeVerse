@@ -587,6 +587,7 @@
 
     </style>
     <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="manifest" href="/manifest.json">
 </head>
 
 <body id="top">
@@ -692,7 +693,13 @@
                     ☰ Contents
                 </a>
 
-            </div>
+            
+    <!-- CODEVERSE OFFLINE READING -->
+    <button type="button" class="book-btn offline-download-btn"
+            data-offline-book="27">
+        ↓ Download for Offline Reading
+    </button>
+</div>
 
         </section>
 
@@ -1122,5 +1129,6 @@
     
 
     <script src="/js/navbar-loader.js" defer></script>
+    <script src="/js/offline.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,2096 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Virtualization and Virtual Machines | CodeVerse</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="/books/css/Authentication.css" rel="stylesheet"/>
+<!-- Favicon -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+        :root {
+            --background: #f6f8fc;
+            --surface: #ffffff;
+            --text: #26344d;
+            --muted: #65748c;
+            --primary: #3157a4;
+            --border: #dce3ee;
+        }
+
+        body.dark-mode {
+            --background: #111827;
+            --surface: #1c2738;
+            --text: #edf2fc;
+            --muted: #b3bfd2;
+            --primary: #91b5ff;
+            --border: #3a4b63;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'DM Sans', Arial, sans-serif;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 16px 5%;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-size: 24px;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .site-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            padding: 9px 13px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* ACCOUNT BUTTONS */
+
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s ease;
+        }
+
+        .login-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .login-btn:hover {
+            background: var(--background);
+        }
+
+        .signup-btn {
+            background: #3157a4;
+            color: #ffffff;
+            border: 1px solid #3157a4;
+        }
+
+        .signup-btn:hover {
+            background: #24427f;
+        }
+
+        .menu-toggle {
+            display: none;
+            padding: 9px 13px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .topbar {
+            padding: 15px 5%;
+        }
+
+        .back-link {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .reading-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 15px 5%;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .control-group select {
+            padding: 8px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 270px minmax(0, 1fr);
+            gap: 30px;
+            max-width: 1350px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .toc {
+            position: sticky;
+            top: 95px;
+            align-self: start;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            background: var(--surface);
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .toc h2 {
+            font-size: 18px;
+        }
+
+        .toc nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .toc a {
+            padding: 7px;
+            color: var(--primary);
+            border-radius: 6px;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            background: var(--background);
+        }
+
+        .book-header,
+        .chapter {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 30px;
+            margin-bottom: 22px;
+        }
+
+        .book-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 42px);
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .chapter {
+            scroll-margin-top: 100px;
+            line-height: 1.85;
+        }
+
+        .chapter h2 {
+            font-size: 24px;
+            line-height: 1.3;
+        }
+
+        .chapter h3 {
+            font-size: 18px;
+            margin-top: 25px;
+        }
+
+        .chapter li {
+            margin-bottom: 8px;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .chapter th,
+        .chapter td {
+            border: 1px solid var(--border);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .chapter th {
+            background: var(--background);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .example-box {
+            padding: 18px;
+            margin: 20px 0;
+            background: var(--background);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+        }
+
+        .quiz-question {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .quiz-option.correct {
+            border-color: #22a06b;
+            background: rgba(34, 160, 107, 0.12);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #e05252;
+            background: rgba(224, 82, 82, 0.12);
+        }
+
+        .quiz-feedback {
+            font-weight: 700;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-actions button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #3157a4;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #quizResult {
+            margin-top: 20px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--surface);
+            text-align: center;
+        }
+
+        .page-footer {
+            padding: 25px;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 1050px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                order: 4;
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 4%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .site-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .nav-actions {
+                margin-left: auto;
+            }
+
+            .login-btn,
+            .signup-btn {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: static;
+                max-height: 300px;
+            }
+
+            .book-header,
+            .chapter {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                gap: 10px;
+            }
+
+            .nav-actions {
+                order: 3;
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .menu-toggle {
+                margin-left: auto;
+            }
+        }
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<!-- BACK TO BOOKS -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
+            ← Back to Books
+        </a>
+</header>
+<!-- =========================
+         READING CONTROLS
+    ========================== -->
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">
+                Font Size
+            </label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">
+                Font Style
+            </label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">
+                    DM Sans
+                </option>
+<option value="Arial, sans-serif">
+                    Arial
+                </option>
+<option value="Georgia, serif">
+                    Georgia
+                </option>
+<option value="'Times New Roman', serif">
+                    Times New Roman
+                </option>
+<option value="Verdana, sans-serif">
+                    Verdana
+                </option>
+</select>
+</div>
+</div>
+<!-- =========================
+         MAIN LAYOUT
+    ========================== -->
+<div class="layout">
+<!-- TABLE OF CONTENTS -->
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav id="tocLinks">
+<a href="#introduction">Introduction</a>
+<a href="#objectives">Learning Objectives</a>
+<a href="#chapter-1">1. Meaning of Virtualization</a>
+<a href="#chapter-2">2. History and Development</a>
+<a href="#chapter-3">3. How Virtualization Works</a>
+<a href="#chapter-4">4. Virtual Machines</a>
+<a href="#chapter-5">5. VM Components</a>
+<a href="#chapter-6">6. Hypervisors</a>
+<a href="#chapter-7">7. Type 1 Hypervisor</a>
+<a href="#chapter-8">8. Type 2 Hypervisor</a>
+<a href="#chapter-9">9. Type 1 vs. Type 2</a>
+<a href="#chapter-10">10. Host and Guest OS</a>
+<a href="#chapter-11">11. Types of Virtualization</a>
+<a href="#chapter-12">12. Hardware Virtualization</a>
+<a href="#chapter-13">13. Server Virtualization</a>
+<a href="#chapter-14">14. Desktop Virtualization</a>
+<a href="#chapter-15">15. Storage Virtualization</a>
+<a href="#chapter-16">16. Network Virtualization</a>
+<a href="#chapter-17">17. Application Virtualization</a>
+<a href="#chapter-18">18. OS Virtualization and Containers</a>
+<a href="#chapter-19">19. VM Creation</a>
+<a href="#chapter-20">20. VM Resources</a>
+<a href="#chapter-21">21. Virtualization Software</a>
+<a href="#chapter-22">22. Advantages</a>
+<a href="#chapter-23">23. Disadvantages</a>
+<a href="#chapter-24">24. Security and Management</a>
+<a href="#chapter-25">25. Real-World Applications</a>
+<a href="#chapter-26">26. Summary and Conclusion</a>
+<a href="#quiz">Knowledge Assessment Quiz</a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">
+                    PLATFORM TECHNOLOGIES | ITE-201
+                </span>
+<h1>Virtualization and Virtual Machines</h1>
+<p>
+                    A study of virtualization technologies,
+                    virtual machines, hypervisors, resource
+                    management, and their applications in
+                    modern computing.
+                </p>
+</header>
+<div class="book-content">
+<!-- INTRODUCTION -->
+<section class="chapter" id="introduction">
+<h2>Introduction</h2>
+<p>
+        Virtualization is an important technology
+        in modern computing. It allows one physical
+        computer to operate as if it were several
+        separate computers.
+    </p>
+<p>
+        Instead of using a different physical
+        machine for every task, virtualization
+        makes it possible to create multiple
+        virtual environments on one computer.
+    </p>
+<p>
+        These environments can run their own
+        operating systems and applications.
+        For example, a computer running Windows
+        can also run a virtual machine with
+        Linux installed.
+    </p>
+<p>
+        Virtualization is widely used in businesses,
+        schools, data centers, software development,
+        and cloud computing. It helps organizations
+        use hardware efficiently, reduce equipment
+        costs, and simplify system management.
+    </p>
+</section>
+<!-- LEARNING OBJECTIVES -->
+<section class="chapter" id="objectives">
+<h2>Learning Objectives</h2>
+<ol>
+<li>Define virtualization and explain its purpose.</li>
+<li>Explain the meaning and function of virtual machines.</li>
+<li>Identify the major components of virtualization.</li>
+<li>Describe how a hypervisor works.</li>
+<li>Differentiate Type 1 and Type 2 hypervisors.</li>
+<li>Identify the different types of virtualization.</li>
+<li>Explain virtualization's advantages and limitations.</li>
+<li>Describe its uses in schools, businesses, and data centers.</li>
+<li>Explain its relationship with cloud computing.</li>
+<li>Identify basic security practices for virtual environments.</li>
+</ol>
+</section>
+<!-- CHAPTER 1 -->
+<section class="chapter" id="chapter-1">
+<h2>1. Meaning of Virtualization</h2>
+<p>
+        Virtualization is the process of creating
+        a virtual version of a computer resource.
+        It allows physical hardware, including
+        processors, memory, storage, and network
+        devices, to be shared among multiple
+        virtual environments.
+    </p>
+<p>
+        In a traditional computer setup, one
+        physical machine usually runs one main
+        operating system. With virtualization,
+        several virtual machines can operate
+        on the same physical computer.
+    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            A school computer laboratory uses
+            virtualization software to provide
+            different operating systems for
+            student activities without requiring
+            a separate computer for each system.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 2 -->
+<section class="chapter" id="chapter-2">
+<h2>2. History and Development of Virtualization</h2>
+<p>
+        Virtualization developed when computer
+        systems were large and expensive.
+        Organizations needed ways to share
+        computing resources among multiple
+        users and programs.
+    </p>
+<h3>Important Developments</h3>
+<ul>
+<li>
+<strong>1960s:</strong>
+            Early virtualization systems were
+            developed for mainframe computers.
+        </li>
+<li>
+<strong>1990s:</strong>
+            Improvements in computer hardware
+            and software made virtualization
+            more accessible.
+        </li>
+<li>
+<strong>2000s:</strong>
+            Virtualization became widely adopted
+            in business servers and data centers.
+        </li>
+<li>
+<strong>Present:</strong>
+            Virtualization supports cloud platforms,
+            software testing, development, and
+            modern IT infrastructure.
+        </li>
+</ul>
+</section>
+<!-- CHAPTER 3 -->
+<section class="chapter" id="chapter-3">
+<h2>3. How Virtualization Works</h2>
+<p>
+        Virtualization uses a software layer
+        that manages physical computer resources.
+        This layer allows multiple virtual machines
+        to share processors, memory, storage,
+        and other hardware.
+    </p>
+<p>
+        A hypervisor creates and manages virtual
+        machines, assigns resources, and helps
+        keep virtual environments separate.
+    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            A computer with 16 GB of RAM may
+            assign 4 GB to one VM and 6 GB
+            to another. The remaining memory
+            is available for the host and
+            other activities, depending on
+            the configuration.
+        </p>
+</div>
+<p>
+        Each VM receives virtual hardware,
+        such as a virtual CPU, virtual memory,
+        virtual disk, and virtual network adapter.
+    </p>
+</section>
+<!-- CHAPTER 4 -->
+<section class="chapter" id="chapter-4">
+<h2>4. Meaning of Virtual Machines</h2>
+<p>
+        A Virtual Machine (VM) is a software-based
+        computer that operates like a physical
+        computer. It has virtual hardware,
+        an operating system, and applications.
+    </p>
+<p>
+        A VM can open programs, save files,
+        connect to networks, and perform
+        computing tasks.
+    </p>
+<p>
+        Virtual machines are generally isolated
+        from one another. However, problems
+        affecting the physical host or shared
+        resources can still affect multiple VMs.
+    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            A laptop runs Windows 11 while an
+            Ubuntu Linux virtual machine operates
+            inside it. Both systems use the same
+            physical computer.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 5 -->
+<section class="chapter" id="chapter-5">
+<h2>5. Components of a Virtual Machine</h2>
+<p>
+        Virtual machines contain components
+        that allow them to function similarly
+        to physical computers.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Component</th>
+<th>Function</th>
+</tr>
+<tr>
+<td>Virtual CPU</td>
+<td>Provides processing power.</td>
+</tr>
+<tr>
+<td>Virtual Memory</td>
+<td>Provides RAM for running programs.</td>
+</tr>
+<tr>
+<td>Virtual Storage</td>
+<td>Stores the OS, files, and applications.</td>
+</tr>
+<tr>
+<td>Virtual Network Adapter</td>
+<td>Allows network communication.</td>
+</tr>
+<tr>
+<td>Guest Operating System</td>
+<td>Controls activities inside the VM.</td>
+</tr>
+<tr>
+<td>Virtual Devices</td>
+<td>Represent devices and hardware controllers.</td>
+</tr>
+</table>
+</div>
+</section>
+<!-- CHAPTER 6 -->
+<section class="chapter" id="chapter-6">
+<h2>6. Hypervisors</h2>
+<p>
+        A hypervisor is software or firmware
+        that creates, runs, and manages virtual
+        machines.
+    </p>
+<p>
+        It controls the assignment of physical
+        resources and helps maintain separation
+        between virtual machines.
+    </p>
+<h3>Two Main Types</h3>
+<ol>
+<li>
+<strong>Type 1:</strong>
+            Runs directly on physical hardware.
+        </li>
+<li>
+<strong>Type 2:</strong>
+            Runs as an application on a host
+            operating system.
+        </li>
+</ol>
+</section>
+<!-- CHAPTER 7 -->
+<section class="chapter" id="chapter-7">
+<h2>7. Type 1 Hypervisor</h2>
+<p>
+        A Type 1 hypervisor, also called a
+        bare-metal hypervisor, runs directly
+        on physical computer hardware.
+    </p>
+<p>
+        It does not require a general-purpose
+        host operating system underneath it.
+    </p>
+<h3>Common Uses</h3>
+<ul>
+<li>Enterprise servers</li>
+<li>Data centers</li>
+<li>Centralized virtual server management</li>
+<li>Large virtualization environments</li>
+</ul>
+<h3>Examples</h3>
+<ul>
+<li>VMware ESXi</li>
+<li>Microsoft Hyper-V deployments</li>
+<li>Xen</li>
+</ul>
+</section>
+<!-- CHAPTER 8 -->
+<section class="chapter" id="chapter-8">
+<h2>8. Type 2 Hypervisor</h2>
+<p>
+        A Type 2 hypervisor runs as an application
+        inside an existing operating system.
+    </p>
+<p>
+        This type is commonly used by students,
+        developers, and individuals who need
+        another operating system on a personal
+        computer.
+    </p>
+<h3>Examples</h3>
+<ul>
+<li>Oracle VirtualBox</li>
+<li>VMware Workstation</li>
+<li>VMware Fusion</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            A student installs VirtualBox on
+            a Windows laptop and creates a
+            Linux VM for programming activities.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 9 -->
+<section class="chapter" id="chapter-9">
+<h2>9. Type 1 vs. Type 2 Hypervisors</h2>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Feature</th>
+<th>Type 1</th>
+<th>Type 2</th>
+</tr>
+<tr>
+<td>Installation</td>
+<td>Directly on hardware</td>
+<td>Inside a host OS</td>
+</tr>
+<tr>
+<td>Common Use</td>
+<td>Servers and data centers</td>
+<td>Personal computers and testing</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Generally more direct hardware access</td>
+<td>Depends partly on the host OS</td>
+</tr>
+<tr>
+<td>Management</td>
+<td>Often centralized</td>
+<td>Usually desktop-based</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>ESXi, Xen</td>
+<td>VirtualBox, VMware Workstation</td>
+</tr>
+</table>
+</div>
+<p>
+        Neither type is automatically best for
+        every situation. The appropriate choice
+        depends on the purpose, hardware, and
+        management requirements.
+    </p>
+</section>
+<!-- CHAPTER 10 -->
+<section class="chapter" id="chapter-10">
+<h2>10. Host and Guest Operating Systems</h2>
+<h3>Host Operating System</h3>
+<p>
+        The host OS is the main operating system
+        installed on a physical computer.
+        In Type 2 virtualization, it runs
+        the virtualization software.
+    </p>
+<h3>Guest Operating System</h3>
+<p>
+        The guest OS is installed inside a VM
+        and operates using virtual hardware.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>Host OS</td>
+<td>Main OS of the physical computer</td>
+<td>Windows 11</td>
+</tr>
+<tr>
+<td>Guest OS</td>
+<td>OS installed inside a VM</td>
+<td>Ubuntu Linux</td>
+</tr>
+<tr>
+<td>Host Machine</td>
+<td>Physical computer</td>
+<td>Laptop or server</td>
+</tr>
+<tr>
+<td>Guest Machine</td>
+<td>Virtual computer</td>
+<td>Linux VM</td>
+</tr>
+</table>
+</div>
+</section>
+<!-- CHAPTER 11 -->
+<section class="chapter" id="chapter-11">
+<h2>11. Types of Virtualization</h2>
+<p>
+        Virtualization can be applied to
+        different parts of a computer system.
+    </p>
+<ol>
+<li>Hardware virtualization</li>
+<li>Server virtualization</li>
+<li>Desktop virtualization</li>
+<li>Storage virtualization</li>
+<li>Network virtualization</li>
+<li>Application virtualization</li>
+<li>Operating system-level virtualization</li>
+</ol>
+<p>
+        These approaches help make computing
+        resources more flexible and easier
+        to manage.
+    </p>
+</section>
+<!-- CHAPTER 12 -->
+<section class="chapter" id="chapter-12">
+<h2>12. Hardware Virtualization</h2>
+<p>
+        Hardware virtualization creates virtual
+        versions of physical computer hardware.
+    </p>
+<p>
+        A hypervisor provides virtual processors,
+        memory, storage, and other devices
+        to virtual machines.
+    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            A school computer runs one VM
+            for Linux lessons and another
+            for Windows software testing.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 13 -->
+<section class="chapter" id="chapter-13">
+<h2>13. Server Virtualization</h2>
+<p>
+        Server virtualization allows one physical
+        server to operate as multiple virtual
+        servers.
+    </p>
+<p>
+        Each virtual server can run its own
+        operating system and provide different
+        services.
+    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<ul>
+<li>VM 1 – Website hosting</li>
+<li>VM 2 – Database management</li>
+<li>VM 3 – File storage services</li>
+</ul>
+<p>
+            All three VMs share the same
+            physical server.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 14 -->
+<section class="chapter" id="chapter-14">
+<h2>14. Desktop Virtualization</h2>
+<p>
+        Desktop virtualization separates a user's
+        desktop environment from the physical
+        computer used to access it.
+    </p>
+<p>
+        Virtual desktops can run on centralized
+        servers, allowing administrators to
+        manage desktop environments more easily.
+    </p>
+<h3>Virtual Desktop Infrastructure (VDI)</h3>
+<p>
+        VDI is a common form of desktop
+        virtualization in which desktop
+        environments are hosted on
+        centralized servers.
+    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            Students log in to a school computer
+            laboratory and access their own
+            virtual desktop environments.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 15 -->
+<section class="chapter" id="chapter-15">
+<h2>15. Storage Virtualization</h2>
+<p>
+        Storage virtualization combines storage
+        resources from different physical devices
+        and presents them as a unified storage
+        system.
+    </p>
+<h3>Benefits</h3>
+<ul>
+<li>Easier storage management</li>
+<li>Flexible storage allocation</li>
+<li>Better organization</li>
+<li>Support for backup and recovery</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            A company combines several storage
+            devices into one centrally managed
+            storage environment.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 16 -->
+<section class="chapter" id="chapter-16">
+<h2>16. Network Virtualization</h2>
+<p>
+        Network virtualization creates virtual
+        network resources that operate separately
+        from physical network hardware.
+    </p>
+<h3>Common Uses</h3>
+<ul>
+<li>Virtual switches</li>
+<li>Virtual networks</li>
+<li>Network segmentation</li>
+<li>Software-defined networking</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            A company creates separate virtual
+            networks for its accounting and
+            guest services systems.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 17 -->
+<section class="chapter" id="chapter-17">
+<h2>17. Application Virtualization</h2>
+<p>
+        Application virtualization allows
+        applications to operate in an environment
+        separated from the main operating system
+        or to be delivered without a traditional
+        full installation on every device.
+    </p>
+<p>
+        It can reduce software compatibility
+        problems and simplify application
+        management.
+    </p>
+<p>
+        Unlike a complete VM, application
+        virtualization focuses mainly on
+        the application environment.
+    </p>
+</section>
+<!-- CHAPTER 18 -->
+<section class="chapter" id="chapter-18">
+<h2>18. Operating System Virtualization and Containers</h2>
+<p>
+        Operating system-level virtualization
+        creates isolated environments that
+        share one operating system kernel.
+    </p>
+<p>
+        These environments are commonly
+        called containers.
+    </p>
+<p>
+        Unlike traditional VMs, containers
+        usually do not require a separate
+        full guest OS.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Feature</th>
+<th>Virtual Machine</th>
+<th>Container</th>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>Usually has its own guest OS</td>
+<td>Shares the host kernel</td>
+</tr>
+<tr>
+<td>Resource Use</td>
+<td>Often requires more resources</td>
+<td>Often uses fewer resources</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Virtual hardware-level environment</td>
+<td>Process and OS-level isolation</td>
+</tr>
+<tr>
+<td>Common Use</td>
+<td>Running different operating systems</td>
+<td>Packaging and deploying applications</td>
+</tr>
+</table>
+</div>
+</section>
+<!-- CHAPTER 19 -->
+<section class="chapter" id="chapter-19">
+<h2>19. Virtual Machine Creation</h2>
+<p>
+        Creating a VM involves preparing a
+        virtual computer and installing an
+        operating system inside it.
+    </p>
+<h3>General Steps</h3>
+<ol>
+<li>Install a virtualization platform.</li>
+<li>Open the virtualization software.</li>
+<li>Select Create New Virtual Machine.</li>
+<li>Enter the VM name.</li>
+<li>Choose the operating system type and version.</li>
+<li>Assign memory and CPU resources.</li>
+<li>Create or select a virtual disk.</li>
+<li>Select an OS installation file.</li>
+<li>Start the virtual machine.</li>
+<li>Complete the operating system installation.</li>
+</ol>
+</section>
+<!-- CHAPTER 20 -->
+<section class="chapter" id="chapter-20">
+<h2>20. Virtual Machine Resources</h2>
+<p>
+        Virtual machines use resources provided
+        by the physical computer.
+    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>CPU</td>
+<td>Handles calculations and instructions.</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>Holds active programs and data.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Saves the guest OS, applications, and files.</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>Connects the VM to other systems.</td>
+</tr>
+<tr>
+<td>Graphics</td>
+<td>Supports display and graphical activities.</td>
+</tr>
+</table>
+</div>
+<p>
+        Resource allocation must be planned
+        carefully. Assigning too many resources
+        to VMs can leave insufficient capacity
+        for the host operating system.
+    </p>
+</section>
+<!-- CHAPTER 21 -->
+<section class="chapter" id="chapter-21">
+<h2>21. Virtualization Software</h2>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Software</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>Oracle VirtualBox</td>
+<td>Desktop virtualization for learning and testing.</td>
+</tr>
+<tr>
+<td>VMware Workstation</td>
+<td>Desktop virtualization software.</td>
+</tr>
+<tr>
+<td>VMware ESXi</td>
+<td>Type 1 hypervisor for server virtualization.</td>
+</tr>
+<tr>
+<td>Microsoft Hyper-V</td>
+<td>Microsoft virtualization technology.</td>
+</tr>
+<tr>
+<td>KVM</td>
+<td>Linux kernel-based virtualization technology.</td>
+</tr>
+<tr>
+<td>Xen</td>
+<td>Open-source hypervisor.</td>
+</tr>
+</table>
+</div>
+</section>
+<!-- CHAPTER 22 -->
+<section class="chapter" id="chapter-22">
+<h2>22. Advantages of Virtualization</h2>
+<ol>
+<li>
+<strong>Reduced hardware costs:</strong>
+            Multiple VMs can operate on fewer
+            physical computers.
+        </li>
+<li>
+<strong>Better resource utilization:</strong>
+            CPU, memory, and storage can be shared.
+        </li>
+<li>
+<strong>Easy testing:</strong>
+            Applications can be tested in
+            separate environments.
+        </li>
+<li>
+<strong>Flexibility:</strong>
+            Different operating systems can run
+            on one physical computer.
+        </li>
+<li>
+<strong>Simplified management:</strong>
+            Administrators can use centralized tools.
+        </li>
+<li>
+<strong>Backup and recovery:</strong>
+            Snapshots and backups can help
+            restore previous system states.
+        </li>
+<li>
+<strong>Scalability:</strong>
+            Virtual resources can be adjusted
+            as requirements change.
+        </li>
+</ol>
+</section>
+<!-- CHAPTER 23 -->
+<section class="chapter" id="chapter-23">
+<h2>23. Disadvantages and Challenges</h2>
+<ul>
+<li>
+<strong>High resource demand:</strong>
+            Multiple VMs require sufficient
+            CPU, RAM, and storage.
+        </li>
+<li>
+<strong>Performance limitations:</strong>
+            Performance depends on workloads
+            and configurations.
+        </li>
+<li>
+<strong>Management complexity:</strong>
+            Large virtual environments can be
+            difficult to monitor.
+        </li>
+<li>
+<strong>Hardware dependency:</strong>
+            A host failure can affect multiple VMs.
+        </li>
+<li>
+<strong>Security risks:</strong>
+            Poor configurations can create
+            vulnerabilities.
+        </li>
+<li>
+<strong>Licensing costs:</strong>
+            Some platforms and guest operating
+            systems require paid licenses.
+        </li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+            If five VMs operate on one physical
+            server and that server fails,
+            all five may become unavailable
+            until service is restored.
+        </p>
+</div>
+</section>
+<!-- CHAPTER 24 -->
+<section class="chapter" id="chapter-24">
+<h2>24. Security and Management of Virtual Machines</h2>
+<p>
+        Virtual machines require security
+        measures just like physical computers.
+    </p>
+<h3>Important Security Practices</h3>
+<ol>
+<li>Keep host and guest operating systems updated.</li>
+<li>Use strong passwords and access controls.</li>
+<li>Install suitable security software.</li>
+<li>Configure firewalls and secure networks.</li>
+<li>Back up important VM files.</li>
+<li>Monitor resource usage and activity.</li>
+<li>Remove unused VMs and accounts.</li>
+<li>Protect virtualization management tools.</li>
+</ol>
+</section>
+<!-- CHAPTER 25 -->
+<section class="chapter" id="chapter-25">
+<h2>25. Real-World Applications</h2>
+<h3>Education</h3>
+<p>
+        Schools use VMs to teach operating systems
+        and software tools without changing
+        the main computer setup.
+    </p>
+<h3>Business</h3>
+<p>
+        Companies use virtual servers to host
+        websites, databases, and applications.
+    </p>
+<h3>Software Development</h3>
+<p>
+        Developers test programs across different
+        operating systems and configurations.
+    </p>
+<h3>Cloud Computing</h3>
+<p>
+        Cloud providers use virtualization to
+        deliver computing resources through
+        the internet.
+    </p>
+<h3>Data Centers</h3>
+<p>
+        Virtualization supports resource
+        management and improved hardware
+        utilization.
+    </p>
+<h3>Cybersecurity Training</h3>
+<p>
+        Controlled virtual environments support
+        security education, testing, and
+        defensive analysis.
+    </p>
+</section>
+<!-- CHAPTER 26 -->
+<section class="chapter" id="chapter-26">
+<h2>26. Summary and Conclusion</h2>
+<p>
+        Virtualization allows multiple virtual
+        environments to operate on shared
+        physical hardware.
+    </p>
+<p>
+        Virtual machines behave like independent
+        computers and use virtual hardware
+        provided by a hypervisor.
+    </p>
+<p>
+        Type 1 hypervisors run directly on
+        physical hardware, while Type 2
+        hypervisors operate within a host OS.
+    </p>
+<p>
+        Virtualization supports servers,
+        desktops, storage, networks,
+        applications, and containers.
+    </p>
+<p>
+        Although virtualization offers
+        flexibility, cost savings, and
+        efficient resource use, it requires
+        careful resource planning, security,
+        monitoring, and recovery procedures.
+    </p>
+</section>
+<!-- QUIZ -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+        Test your understanding of Virtualization
+        and Virtual Machines.
+    </p>
+<p>
+<strong>Total Questions:</strong> 30
+    </p>
+<p id="quizProgress">0 of 30 answered</p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div hidden="" id="quizResult"></div>
+</section>
+</div>
+</main>
+</div>
+<footer class="page-footer">
+    © 2026 CodeVerse | Digital E-Book Library
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // MOBILE NAVIGATION
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("show");
+        });
+
+
+        // DARK MODE
+
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = document.getElementById("themeIcon");
+
+        function applyTheme(theme) {
+            const isDark = theme === "dark";
+
+            document.body.classList.toggle("dark-mode", isDark);
+            themeIcon.textContent = isDark ? "☀" : "☾";
+        }
+
+        applyTheme(localStorage.getItem("readerTheme") || "light");
+
+        themeToggle.addEventListener("click", function () {
+
+            const nextTheme =
+                document.body.classList.contains("dark-mode")
+                    ? "light"
+                    : "dark";
+
+            localStorage.setItem("readerTheme", nextTheme);
+            applyTheme(nextTheme);
+
+        });
+
+
+        // FONT CONTROLS
+
+        const fontSize = document.getElementById("fontSize");
+        const fontFamily = document.getElementById("fontFamily");
+        const readingContent = document.querySelector(".book-content");
+
+        const savedSize = localStorage.getItem("readerFontSize");
+        const savedFamily = localStorage.getItem("readerFontFamily");
+
+        if (savedSize) {
+            fontSize.value = savedSize;
+        }
+
+        if (savedFamily) {
+            fontFamily.value = savedFamily;
+        }
+
+        function updateReadingFont() {
+            readingContent.style.fontSize = fontSize.value;
+            readingContent.style.fontFamily = fontFamily.value;
+        }
+
+        fontSize.addEventListener("change", function () {
+            localStorage.setItem("readerFontSize", fontSize.value);
+            updateReadingFont();
+        });
+
+        fontFamily.addEventListener("change", function () {
+            localStorage.setItem("readerFontFamily", fontFamily.value);
+            updateReadingFont();
+        });
+
+        updateReadingFont();
+
+
+        // 30 QUESTIONS
+
+        const questions = [
+            {
+                question: "What is virtualization?",
+                options: [
+                    "Creating virtual versions of computing resources",
+                    "Replacing every physical computer",
+                    "Removing operating systems",
+                    "Disconnecting a computer from a network"
+                ],
+                answer: 0
+            },
+            {
+                question: "What is a major purpose of virtualization?",
+                options: [
+                    "Increasing the number of physical machines required",
+                    "Sharing physical resources among virtual environments",
+                    "Preventing all software installation",
+                    "Removing the need for computer memory"
+                ],
+                answer: 1
+            },
+            {
+                question: "During which decade did early mainframe virtualization systems develop?",
+                options: [
+                    "1980s",
+                    "2000s",
+                    "1960s",
+                    "2020s"
+                ],
+                answer: 2
+            },
+            {
+                question: "What commonly manages physical resources for virtual machines?",
+                options: [
+                    "Web browser",
+                    "Word processor",
+                    "Printer driver",
+                    "Hypervisor"
+                ],
+                answer: 3
+            },
+            {
+                question: "What is a virtual machine?",
+                options: [
+                    "A software-based computer",
+                    "A physical printer",
+                    "A network cable",
+                    "A storage folder only"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which VM component provides processing power?",
+                options: [
+                    "Virtual storage",
+                    "Virtual CPU",
+                    "Virtual network adapter",
+                    "Guest wallpaper"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which VM component enables network communication?",
+                options: [
+                    "Virtual memory",
+                    "Virtual disk",
+                    "Virtual network adapter",
+                    "Virtual display"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is the primary function of a hypervisor?",
+                options: [
+                    "Edit documents",
+                    "Print files",
+                    "Create passwords",
+                    "Create and manage virtual machines"
+                ],
+                answer: 3
+            },
+            {
+                question: "Where does a Type 1 hypervisor run?",
+                options: [
+                    "Directly on physical hardware",
+                    "Inside a web browser",
+                    "Only inside a guest application",
+                    "Inside a word processor"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which is an example of a Type 1 hypervisor?",
+                options: [
+                    "Microsoft Word",
+                    "VMware ESXi",
+                    "Google Chrome",
+                    "Adobe Photoshop"
+                ],
+                answer: 1
+            },
+            {
+                question: "Where does a Type 2 hypervisor run?",
+                options: [
+                    "Inside the CPU firmware only",
+                    "Without any host system",
+                    "As an application on a host OS",
+                    "Only on network switches"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which software is commonly used as a Type 2 hypervisor?",
+                options: [
+                    "Microsoft Excel",
+                    "Notepad",
+                    "Windows Explorer",
+                    "Oracle VirtualBox"
+                ],
+                answer: 3
+            },
+            {
+                question: "Which environment commonly uses Type 1 hypervisors?",
+                options: [
+                    "Enterprise servers and data centers",
+                    "Text editing only",
+                    "Basic image viewing",
+                    "Standalone calculators"
+                ],
+                answer: 0
+            },
+            {
+                question: "What is a guest operating system?",
+                options: [
+                    "The physical computer",
+                    "An OS installed inside a virtual machine",
+                    "A network cable",
+                    "The computer's BIOS only"
+                ],
+                answer: 1
+            },
+            {
+                question: "Windows runs VirtualBox with Ubuntu inside a VM. Which is the guest OS?",
+                options: [
+                    "Windows",
+                    "VirtualBox",
+                    "Ubuntu",
+                    "The physical laptop"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which type of virtualization creates virtual versions of hardware?",
+                options: [
+                    "Application virtualization",
+                    "Storage virtualization",
+                    "Network virtualization",
+                    "Hardware virtualization"
+                ],
+                answer: 3
+            },
+            {
+                question: "What does server virtualization allow?",
+                options: [
+                    "One physical server to operate as multiple virtual servers",
+                    "A server to function without hardware",
+                    "All servers to become physical desktops",
+                    "A computer to stop using memory"
+                ],
+                answer: 0
+            },
+            {
+                question: "What does VDI stand for?",
+                options: [
+                    "Virtual Disk Interface",
+                    "Virtual Desktop Infrastructure",
+                    "Visual Data Installation",
+                    "Virtual Device Internet"
+                ],
+                answer: 1
+            },
+            {
+                question: "What is storage virtualization?",
+                options: [
+                    "Deleting unused storage",
+                    "Installing more physical keyboards",
+                    "Combining physical storage resources into a unified system",
+                    "Converting storage into CPU power"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which is an example of network virtualization?",
+                options: [
+                    "Installing a monitor",
+                    "Replacing a CPU fan",
+                    "Changing the desktop wallpaper",
+                    "Creating virtual switches and networks"
+                ],
+                answer: 3
+            },
+            {
+                question: "What does application virtualization mainly focus on?",
+                options: [
+                    "The application environment",
+                    "Replacing physical processors",
+                    "Creating new hardware",
+                    "Removing network access"
+                ],
+                answer: 0
+            },
+            {
+                question: "What do containers commonly share?",
+                options: [
+                    "A separate physical CPU for each container",
+                    "The host operating system kernel",
+                    "A full guest OS for every container",
+                    "A dedicated physical computer"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which statement correctly compares VMs and containers?",
+                options: [
+                    "Containers always require a complete guest OS",
+                    "VMs cannot run operating systems",
+                    "VMs usually have a guest OS, while containers share the host kernel",
+                    "VMs and containers are always identical"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which step is normally required when creating a VM?",
+                options: [
+                    "Removing the host operating system",
+                    "Disconnecting all storage",
+                    "Disabling all memory",
+                    "Assigning CPU, memory, and virtual storage"
+                ],
+                answer: 3
+            },
+            {
+                question: "Why should VM resource allocation be planned carefully?",
+                options: [
+                    "The host must retain enough resources to operate",
+                    "Every VM needs all available RAM",
+                    "VMs never use physical resources",
+                    "Storage allocation is unnecessary"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which virtualization technology is integrated with the Linux kernel?",
+                options: [
+                    "VirtualBox",
+                    "KVM",
+                    "VMware Fusion",
+                    "Microsoft Word"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which is an advantage of virtualization?",
+                options: [
+                    "Guaranteed elimination of hardware failures",
+                    "Unlimited physical resources",
+                    "Better resource utilization",
+                    "No need for security controls"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which is a potential disadvantage of virtualization?",
+                options: [
+                    "Improved testing flexibility",
+                    "Centralized management",
+                    "Support for multiple operating systems",
+                    "Host hardware failure affecting multiple VMs"
+                ],
+                answer: 3
+            },
+            {
+                question: "Which is a recommended VM security practice?",
+                options: [
+                    "Keep host and guest systems updated",
+                    "Use weak passwords",
+                    "Disable backups permanently",
+                    "Allow unauthorized management access"
+                ],
+                answer: 0
+            },
+            {
+                question: "How is virtualization used in cloud computing?",
+                options: [
+                    "It eliminates all physical servers",
+                    "It helps provide computing resources to customers over the internet",
+                    "It prevents remote computing",
+                    "It removes the need for networks"
+                ],
+                answer: 1
+            }
+        ];
+
+
+        // QUIZ ELEMENTS
+
+        const quizQuestions = document.getElementById("quizQuestions");
+        const quizProgress = document.getElementById("quizProgress");
+        const submitQuiz = document.getElementById("submitQuiz");
+        const retryQuiz = document.getElementById("retryQuiz");
+        const quizResult = document.getElementById("quizResult");
+
+        let quizSubmitted = false;
+
+
+        // DISPLAY QUESTIONS
+
+        function loadQuiz() {
+
+            quizSubmitted = false;
+            quizQuestions.innerHTML = "";
+
+            questions.forEach(function (item, index) {
+
+                const questionBox = document.createElement("div");
+                questionBox.className = "quiz-question";
+
+                const heading = document.createElement("h3");
+                heading.textContent = (index + 1) + ". " + item.question;
+
+                questionBox.appendChild(heading);
+
+                item.options.forEach(function (option, optionIndex) {
+
+                    const label = document.createElement("label");
+                    label.className = "quiz-option";
+
+                    const radio = document.createElement("input");
+                    radio.type = "radio";
+                    radio.name = "question" + index;
+                    radio.value = optionIndex;
+
+                    radio.addEventListener("change", updateProgress);
+
+                    const text = document.createElement("span");
+                    text.textContent = option;
+
+                    label.appendChild(radio);
+                    label.appendChild(text);
+                    questionBox.appendChild(label);
+                });
+
+                const feedback = document.createElement("p");
+                feedback.className = "quiz-feedback";
+                feedback.hidden = true;
+
+                questionBox.appendChild(feedback);
+                quizQuestions.appendChild(questionBox);
+            });
+
+            quizResult.hidden = true;
+            quizResult.innerHTML = "";
+
+            submitQuiz.hidden = false;
+            retryQuiz.hidden = true;
+
+            updateProgress();
+        }
+
+
+        // QUIZ PROGRESS
+
+        function updateProgress() {
+
+            let answered = 0;
+
+            questions.forEach(function (item, index) {
+
+                const selected = quizQuestions.querySelector(
+                    'input[name="question' + index + '"]:checked'
+                );
+
+                if (selected) {
+                    answered++;
+                }
+            });
+
+            quizProgress.textContent =
+                answered + " of " + questions.length + " answered";
+        }
+
+
+        // SUBMIT QUIZ
+
+        submitQuiz.addEventListener("click", function () {
+
+            if (quizSubmitted) {
+                return;
+            }
+
+            const answers = questions.map(function (item, index) {
+
+                const selected = quizQuestions.querySelector(
+                    'input[name="question' + index + '"]:checked'
+                );
+
+                return selected ? Number(selected.value) : null;
+            });
+
+            const answered = answers.filter(function (answer) {
+                return answer !== null;
+            }).length;
+
+            if (answered !== questions.length) {
+
+                alert(
+                    "Please answer all questions. You answered " +
+                    answered + " of " + questions.length + "."
+                );
+
+                return;
+            }
+
+            quizSubmitted = true;
+
+            let score = 0;
+
+            questions.forEach(function (item, index) {
+
+                const questionBox = quizQuestions.children[index];
+                const selectedAnswer = answers[index];
+
+                if (selectedAnswer === item.answer) {
+                    score++;
+                }
+
+                const options = questionBox.querySelectorAll(".quiz-option");
+
+                options.forEach(function (label, optionIndex) {
+
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+                });
+
+                const feedback = questionBox.querySelector(".quiz-feedback");
+                feedback.hidden = false;
+
+                if (selectedAnswer === item.answer) {
+                    feedback.textContent = "Correct answer!";
+                } else {
+                    feedback.textContent =
+                        "Correct answer: " + item.options[item.answer];
+                }
+            });
+
+            const percentage = Math.round(
+                (score / questions.length) * 100
+            );
+
+            let message = "";
+
+            if (percentage >= 90) {
+                message = "Excellent! You have mastered the lesson.";
+            } else if (percentage >= 75) {
+                message = "Great job! You have a strong understanding.";
+            } else if (percentage >= 60) {
+                message = "Good effort! Review the topics you missed.";
+            } else {
+                message = "Keep studying and try again!";
+            }
+
+            quizResult.innerHTML = "";
+
+            const resultHeading = document.createElement("h3");
+            resultHeading.textContent = "Quiz Completed!";
+
+            const scoreHeading = document.createElement("h2");
+            scoreHeading.textContent = score + " / " + questions.length;
+
+            const percentageText = document.createElement("p");
+            percentageText.textContent = percentage + "%";
+
+            const messageText = document.createElement("p");
+            messageText.textContent = message;
+
+            quizResult.appendChild(resultHeading);
+            quizResult.appendChild(scoreHeading);
+            quizResult.appendChild(percentageText);
+            quizResult.appendChild(messageText);
+
+            quizResult.hidden = false;
+            submitQuiz.hidden = true;
+            retryQuiz.hidden = false;
+
+            quizResult.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+
+
+        // RETRY QUIZ
+
+        retryQuiz.addEventListener("click", function () {
+
+            loadQuiz();
+
+            document.getElementById("quiz").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+
+
+        // INITIALIZE QUIZ
+
+        loadQuiz();
+
+    });
+</script>
+    <script src="/js/navbar-loader.js" defer></script>
+</body>
+</html>

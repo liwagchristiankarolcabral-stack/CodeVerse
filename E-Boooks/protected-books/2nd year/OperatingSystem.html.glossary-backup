@@ -1,0 +1,4546 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Operating System Concepts and Functions | CodeVerse</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- CODEVERSE FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+
+        /* ==========================================
+           CODEVERSE - OPERATING SYSTEM CONCEPTS
+           COMPLETE READER STYLESHEET
+        ========================================== */
+
+        :root {
+            --primary: #3157a4;
+            --primary-dark: #24427f;
+            --background: #f7f9fd;
+            --surface: #ffffff;
+            --text: #202b40;
+            --muted: #758096;
+            --border: #e6eaf1;
+            --shadow: 0 8px 30px rgba(30, 50, 90, .07);
+            --reader-size: 16px;
+            --reader-family: 'DM Sans', sans-serif;
+        }
+
+        /* ==========================================
+           DARK MODE
+        ========================================== */
+
+        body.dark-mode {
+            --primary: #91b4ff;
+            --primary-dark: #6e9bff;
+            --background: #101827;
+            --surface: #1b273a;
+            --text: #eaf0fb;
+            --muted: #a4b2c9;
+            --border: #34435a;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .2);
+        }
+
+        /* ==========================================
+           GENERAL
+        ========================================== */
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 105px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            transition: background .3s ease, color .3s ease;
+        }
+
+        body,
+        body *,
+        body *::before,
+        body *::after {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* ==========================================
+           TOP NAVIGATION BAR
+        ========================================== */
+
+        .navbar {
+            min-height: 75px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text);
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .site-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        /* NAVIGATION LINKS */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* NAVIGATION ACTIONS */
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            padding: 10px 13px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 700;
+            transition: background .2s ease;
+        }
+
+        .icon-btn:hover {
+            color: var(--primary);
+            background: var(--background);
+        }
+
+        /* ACCOUNT ACTIONS */
+
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 17px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background .2s ease;
+        }
+
+        .login-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .login-btn:hover {
+            background: var(--background);
+        }
+
+        .signup-btn {
+            background: #3157a4;
+            color: #ffffff;
+            border: 1px solid #3157a4;
+        }
+
+        .signup-btn:hover {
+            background: #24427f;
+        }
+
+        /* MOBILE MENU */
+
+        .menu-toggle {
+            display: none;
+            padding: 10px 13px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 17px;
+        }
+
+        /* ==========================================
+           BACK TO BOOKS
+        ========================================== */
+
+        .topbar {
+            padding: 15px 5%;
+            background: var(--background);
+        }
+
+        .back-link {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ==========================================
+           READING CONTROLS
+        ========================================== */
+
+        .reading-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 5%;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .control-group select {
+            padding: 9px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .control-group select:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* ==========================================
+           READER LAYOUT
+        ========================================== */
+
+        .reader-layout {
+            display: grid;
+            grid-template-columns: 290px minmax(0, 1fr);
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        /* ==========================================
+           TABLE OF CONTENTS SIDEBAR
+        ========================================== */
+
+        .sidebar {
+            height: calc(100vh - 75px);
+            position: sticky;
+            top: 75px;
+            overflow-y: auto;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 25px 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--muted) transparent;
+        }
+
+        .sidebar h3 {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .sidebar h3:first-child {
+            margin-top: 0;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 12px;
+            margin-bottom: 3px;
+            border-radius: 9px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.5;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        .sidebar a:hover {
+            background: var(--background);
+            color: var(--primary);
+        }
+
+        .sidebar a.active {
+            background: var(--background);
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* ==========================================
+           MAIN READER
+        ========================================== */
+
+        .reader {
+            padding: 35px;
+            max-width: 1100px;
+            width: 100%;
+            min-width: 0;
+            margin: auto;
+        }
+
+        /* ==========================================
+           BOOK HERO
+        ========================================== */
+
+        .hero {
+            background: linear-gradient(
+                135deg,
+                #254783,
+                #547ed0
+            );
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 55px 40px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1.2;
+            margin: 20px 0;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.9;
+            max-width: 750px;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        /* ==========================================
+           CHAPTER CARDS
+        ========================================== */
+
+        .chapter {
+            background: var(--surface);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+            scroll-margin-top: 105px;
+        }
+
+        .chapter-number {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .chapter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            margin: 12px 0 20px;
+            line-height: 1.35;
+        }
+
+        .chapter h3 {
+            color: var(--primary);
+            font-size: 19px;
+            margin-top: 28px;
+        }
+
+        .chapter p,
+        .chapter li {
+            font-size: var(--reader-size);
+            font-family: var(--reader-family);
+            line-height: 1.9;
+        }
+
+        .chapter li {
+            margin-bottom: 8px;
+        }
+
+        .chapter ul,
+        .chapter ol {
+            padding-left: 25px;
+        }
+
+        .chapter strong {
+            color: var(--text);
+        }
+
+        /* ==========================================
+           NOTES AND EXAMPLES
+        ========================================== */
+
+        .note {
+            border-left: 4px solid var(--primary);
+            background: var(--background);
+            padding: 18px 20px;
+            border-radius: 8px;
+            margin: 22px 0;
+            line-height: 1.9;
+            font-family: var(--reader-family);
+            font-size: var(--reader-size);
+        }
+
+        /* ==========================================
+           TABLES
+        ========================================== */
+
+        .table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .chapter th,
+        .chapter td {
+            padding: 13px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .chapter th {
+            background: var(--background);
+            font-weight: 800;
+        }
+
+        /* ==========================================
+           CODE AND DIAGRAMS
+        ========================================== */
+
+        .chapter pre {
+            background: var(--background);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            line-height: 1.7;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        /* ==========================================
+           QUIZ DESIGN
+        ========================================== */
+
+        .quiz-question {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+
+        .quiz-question h3 {
+            font-size: 16px;
+            color: var(--text);
+            margin-top: 0;
+        }
+
+        .quiz-question label,
+        .quiz-option {
+            display: block;
+            padding: 11px;
+            margin: 7px 0;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .quiz-question label:hover,
+        .quiz-option:hover {
+            background: var(--background);
+        }
+
+        .quiz-question input {
+            margin-right: 10px;
+            accent-color: #3157a4;
+        }
+
+        .quiz-button,
+        .quiz-actions button {
+            padding: 14px 25px;
+            background: #3157a4;
+            border: none;
+            color: #ffffff;
+            border-radius: 9px;
+            font-weight: 700;
+            margin: 10px 8px 10px 0;
+            cursor: pointer;
+        }
+
+        .quiz-button:hover,
+        .quiz-actions button:hover {
+            background: #24427f;
+        }
+
+        .quiz-result,
+        #quizResult {
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--background);
+            margin-top: 15px;
+        }
+
+        .quiz-result {
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        .quiz-option.correct,
+        .quiz-question label.correct {
+            border-color: #26a269;
+            background: rgba(38, 162, 105, .12);
+        }
+
+        .quiz-option.incorrect,
+        .quiz-question label.incorrect {
+            border-color: #d35b5b;
+            background: rgba(211, 91, 91, .12);
+        }
+
+        .quiz-feedback {
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        .quiz-progress {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .progress-track {
+            height: 8px;
+            background: var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: #3157a4;
+            transition: width .2s;
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 30px;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN
+        ========================================== */
+
+        @media (max-width: 1150px) {
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .navbar {
+                padding-left: 3%;
+                padding-right: 3%;
+            }
+        }
+
+        @media (max-width: 950px) {
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.show {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                padding: 20px;
+                background: var(--surface);
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .reader-layout {
+                display: block;
+            }
+
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 75px;
+                left: 0;
+                width: min(320px, 90vw);
+                height: calc(100vh - 75px);
+                z-index: 99;
+                box-shadow: var(--shadow);
+            }
+
+            .sidebar.show {
+                display: block;
+            }
+
+            .reader {
+                padding: 20px;
+            }
+
+            .chapter {
+                padding: 25px;
+            }
+
+            .hero {
+                padding: 35px 25px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                gap: 10px;
+                padding: 12px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .site-logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            .nav-actions {
+                gap: 5px;
+            }
+
+            #accountActions {
+                gap: 5px;
+            }
+
+            .login-btn,
+            .signup-btn {
+                padding: 8px 9px;
+                font-size: 11px;
+            }
+
+            .icon-btn {
+                padding: 9px;
+                font-size: 12px;
+            }
+
+            .reading-controls {
+                gap: 12px;
+            }
+
+            .reader {
+                padding: 15px;
+            }
+
+            .chapter {
+                padding: 20px;
+            }
+
+            .chapter h2 {
+                font-size: 24px;
+            }
+
+            .hero {
+                padding: 30px 20px;
+            }
+        }
+
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- ========================================
+         CODEVERSE NAVIGATION BAR
+    ======================================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<!-- ========================================
+         BACK TO BOOKS
+    ======================================== -->
+<header class="topbar">
+<a class="back-link" href="/index.html#books">
+            ← Back to Books
+        </a>
+</header>
+<!-- ========================================
+         READING CONTROLS
+    ======================================== -->
+<div class="reading-controls">
+<!-- FONT SIZE -->
+<div class="control-group">
+<label for="fontSize">
+                Font Size
+            </label>
+<select id="fontSize">
+<option value="14px">
+                    Small
+                </option>
+<option selected="" value="16px">
+                    Medium
+                </option>
+<option value="18px">
+                    Large
+                </option>
+<option value="20px">
+                    Extra Large
+                </option>
+<option value="22px">
+                    Largest
+                </option>
+</select>
+</div>
+<!-- FONT STYLE -->
+<div class="control-group">
+<label for="fontFamily">
+                Font Style
+            </label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">
+                    DM Sans
+                </option>
+<option value="Arial, sans-serif">
+                    Arial
+                </option>
+<option value="Georgia, serif">
+                    Georgia
+                </option>
+<option value="'Times New Roman', serif">
+                    Times New Roman
+                </option>
+<option value="Verdana, sans-serif">
+                    Verdana
+                </option>
+</select>
+</div>
+</div>
+<!-- ========================================
+         READER LAYOUT
+    ======================================== -->
+<div class="reader-layout">
+<!-- ========================================
+             TABLE OF CONTENTS
+        ======================================== -->
+<aside class="sidebar" id="sidebar">
+<h3>TABLE OF CONTENTS</h3>
+<nav id="chapterNavigation">
+<a href="#introduction">
+                    Introduction
+                </a>
+<a href="#learning-objectives">
+                    Learning Objectives
+                </a>
+<!-- PART 1 -->
+<h3>
+                    PART 1 – INTRODUCTION TO OPERATING SYSTEMS
+                </h3>
+<a href="#page-1">
+                    1. What Is an Operating System?
+                </a>
+<a href="#page-2">
+                    2. Purpose of an Operating System
+                </a>
+<a href="#page-3">
+                    3. How an Operating System Works
+                </a>
+<a href="#page-4">
+                    4. Basic Concepts of Operating Systems
+                </a>
+<a href="#page-5">
+                    5. Main Components of an Operating System
+                </a>
+<!-- PART 2 -->
+<h3>
+                    PART 2 – MAJOR FUNCTIONS
+                </h3>
+<a href="#page-6">
+                    6. Process Management
+                </a>
+<a href="#page-7">
+                    7. CPU Scheduling
+                </a>
+<a href="#page-8">
+                    8. Memory Management
+                </a>
+<a href="#page-9">
+                    9. Virtual Memory
+                </a>
+<a href="#page-10">
+                    10. File Management
+                </a>
+<a href="#page-11">
+                    11. File Systems
+                </a>
+<a href="#page-12">
+                    12. Device Management
+                </a>
+<a href="#page-13">
+                    13. Input and Output Management
+                </a>
+<a href="#page-14">
+                    14. Security and Protection
+                </a>
+<a href="#page-15">
+                    15. Networking Management
+                </a>
+<a href="#page-16">
+                    16. User Interface Management
+                </a>
+<a href="#page-17">
+                    17. Error Detection and System Monitoring
+                </a>
+<a href="#page-18">
+                    18. Power Management
+                </a>
+<!-- PART 3 -->
+<h3>
+                    PART 3 – TYPES OF OPERATING SYSTEMS
+                </h3>
+<a href="#page-19">
+                    19. Batch Operating System
+                </a>
+<a href="#page-20">
+                    20. Time-Sharing Operating System
+                </a>
+<a href="#page-21">
+                    21. Multitasking Operating System
+                </a>
+<a href="#page-22">
+                    22. Multiprocessing Operating System
+                </a>
+<a href="#page-23">
+                    23. Real-Time Operating System
+                </a>
+<a href="#page-24">
+                    24. Distributed Operating System
+                </a>
+<a href="#page-25">
+                    25. Network Operating System
+                </a>
+<a href="#page-26">
+                    26. Embedded and Mobile Operating Systems
+                </a>
+<!-- PART 4 -->
+<h3>
+                    PART 4 – ADDITIONAL CONCEPTS
+                </h3>
+<a href="#page-27">
+                    27. System Calls and Their Functions
+                </a>
+<a href="#page-28">
+                    28. Booting Process and System Startup
+                </a>
+<a href="#page-29">
+                    29. Importance in Modern Technology
+                </a>
+<a href="#page-30">
+                    30. Examples, Comparison, and Summary
+                </a>
+<!-- ASSESSMENT -->
+<h3>
+                    ASSESSMENT
+                </h3>
+<a href="#quiz">
+                    30-Question Quiz
+                </a>
+</nav>
+</aside>
+<!-- ========================================
+             MAIN CONTENT
+        ======================================== -->
+<main class="reader">
+<section class="hero" id="introduction">
+<span class="hero-label">
+        CODEVERSE DIGITAL E-BOOK LIBRARY
+    </span>
+<h1>Operating System Concepts and Functions</h1>
+<p>
+        An operating system is one of the most
+        important components of a computer system.
+        It manages hardware and software resources,
+        provides an environment for applications,
+        and allows users to perform everyday
+        computing activities.
+    </p>
+<p>
+        Platform Technologies • ITE-201
+    </p>
+<p>
+        4 Parts • 30 Lessons • Interactive Assessment
+    </p>
+</section>
+<!-- ========================================
+     LEARNING OBJECTIVES
+======================================== -->
+<section class="chapter" id="learning-objectives">
+<span class="chapter-number">LEARNING OBJECTIVES</span>
+<h2>What You Will Learn</h2>
+<p>
+        After studying this e-book, students
+        should be able to:
+    </p>
+<ol>
+<li>Define an operating system and explain its purpose.</li>
+<li>Understand the basic concepts of operating systems.</li>
+<li>Identify the major functions and responsibilities of an OS.</li>
+<li>Explain how an operating system manages computer resources.</li>
+<li>Differentiate the various types of operating systems.</li>
+<li>Identify common operating system components.</li>
+<li>Explain the importance of operating systems in modern technology.</li>
+<li>Give real-life examples of operating systems and their applications.</li>
+</ol>
+</section>
+<!-- ========================================
+     PART 1
+======================================== -->
+<section class="chapter">
+<span class="chapter-number">PART 01</span>
+<h2>Introduction to Operating Systems</h2>
+<p>
+        This part introduces the meaning,
+        purpose, operation, basic concepts,
+        and components of an operating system.
+    </p>
+</section>
+<!-- ========================================
+     LESSON 1
+======================================== -->
+<section class="chapter" id="page-1">
+<span class="chapter-number">LESSON 01</span>
+<h2>What Is an Operating System?</h2>
+<p>
+        An Operating System, commonly known as OS,
+        is system software that controls and manages
+        the overall operation of a computer.
+    </p>
+<p>
+        It allows users to interact with the device
+        and provides the necessary services for
+        application programs to work properly.
+    </p>
+<p>
+        The operating system manages different
+        computer resources, such as the processor,
+        memory, storage devices, and input/output
+        devices.
+    </p>
+<p>
+        It makes sure that these resources are
+        used properly while different programs
+        are running.
+    </p>
+<h3>Example</h3>
+<p>
+        When a student opens a web browser,
+        the operating system helps load the
+        application into memory, provides
+        access to the internet through
+        available network services, and
+        allows the user to interact with
+        the browser using a keyboard and mouse.
+    </p>
+<h3>Examples of Operating Systems</h3>
+<ul>
+<li><strong>Microsoft Windows:</strong> Commonly used on desktop and laptop computers.</li>
+<li><strong>macOS:</strong> Designed for Apple Mac computers.</li>
+<li><strong>Linux:</strong> Widely used in servers, computers, and other devices.</li>
+<li><strong>Android:</strong> Commonly used on smartphones and tablets.</li>
+<li><strong>iOS:</strong> Used on Apple's iPhone devices.</li>
+</ul>
+<div class="note">
+<strong>Remember:</strong>
+        The operating system acts as a connection
+        between users, application programs,
+        and computer hardware.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 2
+======================================== -->
+<section class="chapter" id="page-2">
+<span class="chapter-number">LESSON 02</span>
+<h2>Purpose of an Operating System</h2>
+<p>
+        The main purpose of an operating system
+        is to make a computer easier to use
+        while managing its resources efficiently.
+    </p>
+<h3>1. Makes Computers Easier to Use</h3>
+<p>
+        It provides an interface that allows
+        users to open applications, manage files,
+        and perform different activities without
+        directly controlling hardware.
+    </p>
+<h3>2. Manages Computer Resources</h3>
+<p>
+        It controls how the processor, memory,
+        storage, and other hardware components
+        are used.
+    </p>
+<h3>3. Runs Application Programs</h3>
+<p>
+        It provides the environment and services
+        required by software applications.
+    </p>
+<h3>4. Maintains System Security</h3>
+<p>
+        It helps protect files, user accounts,
+        and system resources from unauthorized access.
+    </p>
+<h3>5. Coordinates Computer Activities</h3>
+<p>
+        It manages different tasks and allows
+        multiple applications to operate efficiently.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        When a user listens to music while
+        browsing the internet, the operating
+        system coordinates the resources needed
+        by both applications so they can work
+        at the same time.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 3
+======================================== -->
+<section class="chapter" id="page-3">
+<span class="chapter-number">LESSON 03</span>
+<h2>How an Operating System Works</h2>
+<p>
+        An operating system works as a connection
+        between the user, application software,
+        and computer hardware.
+    </p>
+<p>
+        When a user performs an action,
+        such as opening a program,
+        the operating system receives the request
+        and coordinates the necessary resources.
+    </p>
+<h3>General Process</h3>
+<ol>
+<li>The user performs an action through an input device.</li>
+<li>The application sends a request to the operating system.</li>
+<li>The operating system processes the request.</li>
+<li>The operating system communicates with the appropriate hardware through system components and device drivers.</li>
+<li>The hardware performs the requested operation.</li>
+<li>The result is presented to the user through the application.</li>
+</ol>
+<h3>Example: Opening a Picture</h3>
+<ul>
+<li>The user clicks the image file.</li>
+<li>The operating system identifies the file type.</li>
+<li>It opens the appropriate image application.</li>
+<li>It loads the necessary data from storage into memory.</li>
+<li>The image appears on the screen.</li>
+</ul>
+<h3>Operating System Interaction Diagram</h3>
+<pre>
++-----------------------+
+|         USER          |
++-----------------------+
+            |
+            v
++-----------------------+
+| APPLICATION SOFTWARE  |
++-----------------------+
+            |
+            v
++-----------------------+
+|   OPERATING SYSTEM    |
++-----------------------+
+            |
+            v
++-----------------------+
+|   COMPUTER HARDWARE   |
++-----------------------+
+    </pre>
+<div class="note">
+<strong>Key Concept:</strong>
+        The operating system coordinates
+        communication between applications
+        and hardware resources.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 4
+======================================== -->
+<section class="chapter" id="page-4">
+<span class="chapter-number">LESSON 04</span>
+<h2>Basic Concepts of Operating Systems</h2>
+<p>
+        Understanding the basic concepts of
+        an operating system helps explain
+        how computers perform different tasks.
+    </p>
+<h3>1. Process</h3>
+<p>
+        A process is a program that is currently
+        being executed by the computer.
+    </p>
+<p>
+        When an application is opened,
+        the operating system creates
+        and manages its process.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        Opening Google Chrome creates
+        one or more browser processes.
+    </div>
+<h3>2. Memory Management</h3>
+<p>
+        Memory management refers to how
+        the operating system allocates
+        and controls the computer's memory.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        When a user opens a video editor,
+        the operating system provides
+        memory for the application to work.
+    </div>
+<h3>3. File Management</h3>
+<p>
+        File management involves organizing,
+        storing, retrieving, and deleting files.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        Creating a folder and saving
+        a school document inside it.
+    </div>
+<h3>4. Device Management</h3>
+<p>
+        Device management controls
+        the communication between the computer
+        and connected hardware devices.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        Using a printer to print a document.
+    </div>
+<h3>5. Security Management</h3>
+<p>
+        Security management protects
+        the system and its information
+        through user accounts, permissions,
+        and other security features.
+    </p>
+</section>
+<!-- ========================================
+     LESSON 5
+======================================== -->
+<section class="chapter" id="page-5">
+<span class="chapter-number">LESSON 05</span>
+<h2>Main Components of an Operating System</h2>
+<p>
+        An operating system is made up
+        of different components that
+        work together to manage
+        computer activities.
+    </p>
+<h3>1. Kernel</h3>
+<p>
+        The kernel is the central part
+        of an operating system.
+    </p>
+<p>
+        It manages important resources
+        such as the CPU, memory, and devices.
+    </p>
+<h3>2. Shell</h3>
+<p>
+        The shell provides a way for users
+        to communicate with the operating system.
+    </p>
+<p>
+        It can be graphical or command-based.
+    </p>
+<h3>3. File System</h3>
+<p>
+        The file system organizes how information
+        is stored and retrieved from storage devices.
+    </p>
+<h3>4. Device Drivers</h3>
+<p>
+        Device drivers help the operating system
+        communicate with hardware devices
+        such as printers, keyboards,
+        and graphics cards.
+    </p>
+<h3>5. System Utilities</h3>
+<p>
+        System utilities are tools that help
+        maintain, manage, and protect the computer.
+    </p>
+<div class="note">
+<strong>Summary:</strong>
+        These components work together
+        to make the computer function properly.
+    </div>
+</section>
+<!-- ========================================
+     PART 2
+     MAJOR FUNCTIONS OF AN OPERATING SYSTEM
+======================================== -->
+<section class="chapter">
+<span class="chapter-number">PART 02</span>
+<h2>Major Functions of an Operating System</h2>
+<p>
+        An operating system performs several
+        important functions that allow computer
+        hardware and software to work together.
+    </p>
+<p>
+        These functions include process management,
+        CPU scheduling, memory management,
+        file management, device management,
+        security, networking, and other
+        essential system operations.
+    </p>
+</section>
+<!-- ========================================
+     LESSON 6
+     PROCESS MANAGEMENT
+======================================== -->
+<section class="chapter" id="page-6">
+<span class="chapter-number">LESSON 06</span>
+<h2>Process Management</h2>
+<p>
+        Process management is one of the main
+        responsibilities of an operating system.
+    </p>
+<p>
+        A process is a program that is currently
+        running. The operating system manages
+        these processes to make sure that the
+        CPU is shared properly among different
+        applications.
+    </p>
+<p>
+        When several applications are open,
+        the operating system keeps track of
+        their activities and determines which
+        process should use the CPU.
+    </p>
+<h3>Main Responsibilities of Process Management</h3>
+<ul>
+<li>Creating and ending processes.</li>
+<li>Assigning CPU time to processes.</li>
+<li>Managing communication between processes.</li>
+<li>Coordinating processes that share resources.</li>
+<li>Handling processes that are waiting or currently running.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        A student opens Google Chrome,
+        Microsoft Word, and a music application
+        at the same time.
+    </p>
+<p>
+        The operating system manages their
+        processes so the student can switch
+        between applications without manually
+        controlling the CPU.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        Process management allows multiple
+        applications to operate efficiently
+        while sharing processor resources.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 7
+     CPU SCHEDULING
+======================================== -->
+<section class="chapter" id="page-7">
+<span class="chapter-number">LESSON 07</span>
+<h2>CPU Scheduling</h2>
+<p>
+        CPU scheduling is the process of
+        deciding which process should use
+        the CPU and for how long.
+    </p>
+<p>
+        Since multiple programs may need
+        the processor, the operating system
+        uses scheduling methods to organize
+        their execution.
+    </p>
+<p>
+        The goal of CPU scheduling is to
+        use the processor efficiently and
+        reduce unnecessary waiting time.
+    </p>
+<h3>Common CPU Scheduling Algorithms</h3>
+<h3>1. First Come, First Served (FCFS)</h3>
+<p>
+        The process that arrives first
+        gets the CPU first.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        If Process A arrives before Process B,
+        Process A is scheduled first.
+    </div>
+<h3>2. Shortest Job First (SJF)</h3>
+<p>
+        The process with the shortest
+        estimated execution time
+        is selected first.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A process that needs 2 milliseconds
+        may be scheduled before one that
+        needs 8 milliseconds.
+    </div>
+<h3>3. Round Robin (RR)</h3>
+<p>
+        Each process receives a small amount
+        of CPU time called a time quantum.
+    </p>
+<p>
+        After its time expires, the next
+        process gets a turn.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        Three processes take turns using
+        the CPU for a fixed time period.
+    </div>
+<h3>4. Priority Scheduling</h3>
+<p>
+        The operating system selects
+        processes based on their
+        assigned priority.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A high-priority system task may
+        be scheduled before a low-priority
+        background task.
+    </div>
+<h3>Comparison of CPU Scheduling Algorithms</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Selection Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCFS</td>
+<td>Arrival order</td>
+</tr>
+<tr>
+<td>SJF</td>
+<td>Shortest estimated CPU burst</td>
+</tr>
+<tr>
+<td>Round Robin</td>
+<td>Fixed CPU time quantum</td>
+</tr>
+<tr>
+<td>Priority Scheduling</td>
+<td>Assigned process priority</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<strong>Remember:</strong>
+        CPU scheduling determines which
+        process receives processor time.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 8
+     MEMORY MANAGEMENT
+======================================== -->
+<section class="chapter" id="page-8">
+<span class="chapter-number">LESSON 08</span>
+<h2>Memory Management</h2>
+<p>
+        Memory management is the function
+        of an operating system that controls
+        and organizes the computer's main
+        memory, also known as Random Access
+        Memory (RAM).
+    </p>
+<p>
+        When an application is opened,
+        the operating system allocates
+        memory for its instructions and data.
+    </p>
+<p>
+        When the application is closed,
+        the memory it no longer needs
+        can be released for other programs.
+    </p>
+<h3>Main Responsibilities of Memory Management</h3>
+<ul>
+<li>Allocating memory to running programs.</li>
+<li>Releasing memory when it is no longer needed.</li>
+<li>Keeping track of memory usage.</li>
+<li>Preventing programs from interfering with each other's memory.</li>
+<li>Managing virtual memory when necessary.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        When a user opens a video editing
+        application, the operating system
+        assigns available memory to help
+        the program load and process
+        video files.
+    </p>
+<p>
+        If the user opens more applications,
+        the operating system manages memory
+        among them.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        Memory management ensures that
+        applications receive the memory
+        resources needed to operate.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 9
+     VIRTUAL MEMORY
+======================================== -->
+<section class="chapter" id="page-9">
+<span class="chapter-number">LESSON 09</span>
+<h2>Virtual Memory</h2>
+<p>
+        Virtual memory is a memory management
+        technique that allows a computer
+        to use storage space as an extension
+        of its physical RAM.
+    </p>
+<p>
+        It gives running programs their own
+        virtual address spaces and allows
+        the operating system to keep only
+        the currently needed portions
+        of memory in RAM.
+    </p>
+<p>
+        Other portions may be stored
+        temporarily on a storage device.
+    </p>
+<p>
+        Virtual memory helps computers
+        manage applications even when
+        physical memory is limited.
+    </p>
+<p>
+        However, using storage as a
+        substitute for RAM is usually
+        slower than accessing actual RAM.
+    </p>
+<h3>Importance of Virtual Memory</h3>
+<ul>
+<li>Supports programs that need more memory than is currently available in RAM.</li>
+<li>Helps isolate the memory spaces of different processes.</li>
+<li>Allows the operating system to manage memory more flexibly.</li>
+<li>Helps improve the use of available physical memory.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        A computer has several applications
+        open, but its RAM is becoming full.
+    </p>
+<p>
+        The operating system may move
+        some less-used memory pages to
+        a storage area so that RAM
+        can be used by other active tasks.
+    </p>
+<h3>Basic Virtual Memory Illustration</h3>
+<pre>
++---------------------------+
+|     RUNNING PROGRAMS      |
++---------------------------+
+              |
+              v
++---------------------------+
+|      VIRTUAL MEMORY       |
++---------------------------+
+              |
+        +------+------+
+        |             |
+        v             v
++-------------+ +-------------+
+| PHYSICAL RAM| | STORAGE     |
+|             | | PAGE FILE   |
++-------------+ +-------------+
+    </pre>
+<div class="note">
+<strong>Remember:</strong>
+        Virtual memory provides an
+        abstraction of memory that allows
+        the operating system to manage
+        RAM and storage more flexibly.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 10
+     FILE MANAGEMENT
+======================================== -->
+<section class="chapter" id="page-10">
+<span class="chapter-number">LESSON 10</span>
+<h2>File Management</h2>
+<p>
+        File management is the function
+        of an operating system that
+        organizes, stores, retrieves,
+        renames, and deletes files.
+    </p>
+<p>
+        The operating system provides
+        a way for users to organize
+        their information through
+        folders and directories.
+    </p>
+<p>
+        It also keeps track of where
+        files are stored and controls
+        access to them.
+    </p>
+<h3>Main Functions of File Management</h3>
+<ul>
+<li>Creating and deleting files.</li>
+<li>Creating and organizing folders.</li>
+<li>Renaming and moving files.</li>
+<li>Saving and retrieving information.</li>
+<li>Managing file permissions.</li>
+<li>Tracking file locations on storage devices.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        A student creates a folder
+        named "School Projects" and
+        saves documents, presentations,
+        and images inside it.
+    </p>
+<p>
+        The operating system organizes
+        these files and allows the student
+        to access them whenever needed.
+    </p>
+<h3>Example Folder Structure</h3>
+<pre>
+School Projects/
+|
++-- Documents/
+|   +-- Research.docx
+|   +-- Assignment.pdf
+|
++-- Presentations/
+|   +-- Report.pptx
+|
++-- Images/
+    +-- Diagram.png
+    </pre>
+</section>
+<!-- ========================================
+     LESSON 11
+     FILE SYSTEMS
+======================================== -->
+<section class="chapter" id="page-11">
+<span class="chapter-number">LESSON 11</span>
+<h2>File Systems</h2>
+<p>
+        A file system is the method used
+        by an operating system to organize
+        and manage data on storage devices.
+    </p>
+<p>
+        It determines how files and folders
+        are named, stored, accessed,
+        and maintained.
+    </p>
+<p>
+        Different operating systems support
+        different file systems.
+    </p>
+<h3>1. NTFS (New Technology File System)</h3>
+<p>
+        NTFS is commonly used by
+        Microsoft Windows.
+    </p>
+<p>
+        It supports file permissions,
+        large storage volumes, and
+        other management features.
+    </p>
+<h3>2. FAT32 (File Allocation Table 32)</h3>
+<p>
+        FAT32 is an older file system
+        that is still supported
+        by many devices.
+    </p>
+<p>
+        It is often used for removable
+        storage, although it has limitations
+        on individual file size.
+    </p>
+<h3>3. exFAT (Extended File Allocation Table)</h3>
+<p>
+        exFAT is designed for flash
+        storage devices and supports
+        larger files than FAT32.
+    </p>
+<h3>4. ext4 (Fourth Extended Filesystem)</h3>
+<p>
+        ext4 is widely used by
+        Linux distributions.
+    </p>
+<p>
+        It supports features designed
+        to help organize and manage
+        files reliably.
+    </p>
+<h3>Comparison of File Systems</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>File System</th>
+<th>Common Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NTFS</td>
+<td>Windows computers</td>
+</tr>
+<tr>
+<td>FAT32</td>
+<td>Removable storage</td>
+</tr>
+<tr>
+<td>exFAT</td>
+<td>Flash storage and large files</td>
+</tr>
+<tr>
+<td>ext4</td>
+<td>Linux systems</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<strong>Example:</strong>
+        When a user saves a document
+        on a USB flash drive, the file
+        system helps organize the information
+        so the document can be located
+        and opened later.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 12
+     DEVICE MANAGEMENT
+======================================== -->
+<section class="chapter" id="page-12">
+<span class="chapter-number">LESSON 12</span>
+<h2>Device Management</h2>
+<p>
+        Device management is the operating
+        system function responsible for
+        controlling and coordinating
+        hardware devices connected
+        to a computer.
+    </p>
+<p>
+        These devices include keyboards,
+        mice, printers, monitors, speakers,
+        scanners, and storage devices.
+    </p>
+<p>
+        The operating system uses device
+        drivers and other system services
+        to communicate with hardware.
+    </p>
+<h3>Main Responsibilities</h3>
+<ul>
+<li>Recognizing connected devices.</li>
+<li>Managing communication between hardware and software.</li>
+<li>Assigning system resources to devices.</li>
+<li>Handling device requests.</li>
+<li>Monitoring device operations.</li>
+<li>Reporting device-related errors.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        When a user connects a printer
+        to a computer, the operating
+        system identifies the device
+        and uses the appropriate driver
+        to communicate with it.
+    </p>
+<p>
+        The user can then send a document
+        for printing.
+    </p>
+<h3>Device Communication Diagram</h3>
+<pre>
++----------------------+
+|     APPLICATION      |
++----------------------+
+           |
+           v
++----------------------+
+|   OPERATING SYSTEM   |
++----------------------+
+           |
+           v
++----------------------+
+|     DEVICE DRIVER    |
++----------------------+
+           |
+           v
++----------------------+
+|   HARDWARE DEVICE    |
++----------------------+
+    </pre>
+</section>
+<!-- ========================================
+     LESSON 13
+     INPUT AND OUTPUT MANAGEMENT
+======================================== -->
+<section class="chapter" id="page-13">
+<span class="chapter-number">LESSON 13</span>
+<h2>Input and Output Management</h2>
+<p>
+        Input and output management,
+        also called I/O management,
+        controls how information enters
+        and leaves a computer system.
+    </p>
+<p>
+        Input devices allow users
+        to provide information to
+        the computer.
+    </p>
+<p>
+        Output devices present the
+        results of computer operations.
+    </p>
+<h3>Examples of Input Devices</h3>
+<ul>
+<li>Keyboard</li>
+<li>Mouse</li>
+<li>Microphone</li>
+<li>Scanner</li>
+<li>Webcam</li>
+</ul>
+<h3>Examples of Output Devices</h3>
+<ul>
+<li>Monitor</li>
+<li>Printer</li>
+<li>Speakers</li>
+<li>Projector</li>
+</ul>
+<p>
+        The operating system manages
+        communication with these devices
+        and coordinates the transfer
+        of information.
+    </p>
+<h3>Real-Life Example</h3>
+<p>
+        When a student types a sentence
+        using a keyboard, the operating
+        system receives the input
+        and makes it available
+        to the active application.
+    </p>
+<p>
+        The application displays
+        the text on the monitor.
+    </p>
+<h3>Basic Input and Output Process</h3>
+<pre>
++-------------------+
+|   INPUT DEVICE    |
+|     Keyboard      |
++-------------------+
+          |
+          v
++-------------------+
+| OPERATING SYSTEM  |
++-------------------+
+          |
+          v
++-------------------+
+|    APPLICATION    |
++-------------------+
+          |
+          v
++-------------------+
+|   OUTPUT DEVICE   |
+|      Monitor      |
++-------------------+
+    </pre>
+</section>
+<!-- ========================================
+     LESSON 14
+     SECURITY AND PROTECTION
+======================================== -->
+<section class="chapter" id="page-14">
+<span class="chapter-number">LESSON 14</span>
+<h2>Security and Protection</h2>
+<p>
+        Security and protection are
+        important functions of an
+        operating system because
+        they help keep the computer
+        and its information safe.
+    </p>
+<p>
+        The operating system provides
+        features that control who can
+        access files, applications,
+        and other system resources.
+    </p>
+<h3>1. User Authentication</h3>
+<p>
+        This verifies the identity
+        of a user through methods
+        such as passwords or
+        biometric authentication.
+    </p>
+<h3>2. Access Control</h3>
+<p>
+        This determines which users
+        are allowed to access certain
+        files or system resources.
+    </p>
+<h3>3. User Permissions</h3>
+<p>
+        Permissions specify whether
+        a user can read, modify,
+        execute, or delete a file.
+    </p>
+<h3>4. System Updates</h3>
+<p>
+        Updates can provide security
+        improvements, bug fixes,
+        and additional features.
+    </p>
+<h3>5. Security Monitoring</h3>
+<p>
+        The operating system may record
+        system activities and identify
+        unusual or unauthorized actions.
+    </p>
+<h3>Real-Life Example</h3>
+<p>
+        A computer has separate accounts
+        for different family members.
+    </p>
+<p>
+        Each user can have their own
+        files and settings, while
+        administrator permissions
+        control important system changes.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        Operating system security helps
+        protect users, applications,
+        files, and computer resources.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 15
+     NETWORKING MANAGEMENT
+======================================== -->
+<section class="chapter" id="page-15">
+<span class="chapter-number">LESSON 15</span>
+<h2>Networking Management</h2>
+<p>
+        Networking management allows
+        a computer to communicate
+        with other devices through
+        wired or wireless connections.
+    </p>
+<p>
+        The operating system provides
+        networking services that help
+        applications connect to local
+        networks and the internet.
+    </p>
+<h3>Main Functions of Networking Management</h3>
+<ul>
+<li>Managing Wi-Fi and Ethernet connections.</li>
+<li>Supporting network communication protocols.</li>
+<li>Allowing applications to exchange information.</li>
+<li>Managing network settings.</li>
+<li>Monitoring network connections.</li>
+<li>Supporting communication with other devices.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        When a student opens a web browser
+        and visits an educational website,
+        the operating system provides
+        networking services that allow
+        the computer to communicate
+        with the website's server.
+    </p>
+<h3>Basic Network Communication</h3>
+<pre>
++-------------------+
+|     WEB BROWSER   |
++-------------------+
+          |
+          v
++-------------------+
+| OPERATING SYSTEM  |
+| NETWORK SERVICES  |
++-------------------+
+          |
+          v
++-------------------+
+| INTERNET / NETWORK|
++-------------------+
+          |
+          v
++-------------------+
+|    WEB SERVER     |
++-------------------+
+    </pre>
+</section>
+<!-- ========================================
+     LESSON 16
+     USER INTERFACE MANAGEMENT
+======================================== -->
+<section class="chapter" id="page-16">
+<span class="chapter-number">LESSON 16</span>
+<h2>User Interface Management</h2>
+<p>
+        The user interface is the part
+        of an operating system that
+        allows people to interact
+        with a computer.
+    </p>
+<p>
+        It provides different ways
+        to give commands, open programs,
+        access settings, and manage files.
+    </p>
+<p>
+        There are two common types
+        of user interfaces.
+    </p>
+<h3>1. Graphical User Interface (GUI)</h3>
+<p>
+        A GUI allows users to interact
+        with the computer through
+        visual elements such as icons,
+        menus, windows, and buttons.
+    </p>
+<h3>Examples</h3>
+<ul>
+<li>Windows desktop</li>
+<li>macOS desktop</li>
+<li>Android home screen</li>
+</ul>
+<h3>2. Command-Line Interface (CLI)</h3>
+<p>
+        A CLI allows users to communicate
+        with the operating system
+        by typing text-based commands.
+    </p>
+<h3>Examples</h3>
+<ul>
+<li>Windows Command Prompt</li>
+<li>Linux Terminal</li>
+<li>macOS Terminal</li>
+</ul>
+<h3>GUI vs. CLI</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>GUI</th>
+<th>CLI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uses visual elements</td>
+<td>Uses text commands</td>
+</tr>
+<tr>
+<td>Icons, menus, windows</td>
+<td>Terminal commands</td>
+</tr>
+<tr>
+<td>Interaction through graphical controls</td>
+<td>Interaction through typed instructions</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Real-Life Example</h3>
+<p>
+        A user can create a folder
+        by clicking the New Folder
+        option in a graphical interface
+        or by entering an appropriate
+        command in a terminal.
+    </p>
+</section>
+<!-- ========================================
+     LESSON 17
+     ERROR DETECTION AND SYSTEM MONITORING
+======================================== -->
+<section class="chapter" id="page-17">
+<span class="chapter-number">LESSON 17</span>
+<h2>Error Detection and System Monitoring</h2>
+<p>
+        An operating system monitors
+        different computer activities
+        and helps identify problems
+        that may affect system performance.
+    </p>
+<p>
+        Errors can happen because
+        of software problems,
+        hardware failures,
+        incorrect settings,
+        or unavailable resources.
+    </p>
+<p>
+        The operating system may display
+        warning messages, record errors,
+        or attempt recovery when possible.
+    </p>
+<h3>Main Responsibilities</h3>
+<ul>
+<li>Detecting application errors.</li>
+<li>Monitoring CPU and memory usage.</li>
+<li>Recording system events.</li>
+<li>Reporting hardware problems.</li>
+<li>Managing unexpected program behavior.</li>
+<li>Supporting recovery after certain errors.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        If an application stops responding,
+        the operating system may display
+        a message and allow the user
+        to close the application without
+        restarting the entire computer.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        Error detection and system monitoring
+        help maintain computer stability
+        and identify potential problems.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 18
+     POWER MANAGEMENT
+======================================== -->
+<section class="chapter" id="page-18">
+<span class="chapter-number">LESSON 18</span>
+<h2>Power Management</h2>
+<p>
+        Power management controls how
+        a computer uses electrical energy.
+    </p>
+<p>
+        It helps reduce unnecessary
+        power consumption while maintaining
+        system performance.
+    </p>
+<p>
+        This function is especially
+        important for laptops, tablets,
+        and smartphones because
+        they operate using batteries.
+    </p>
+<h3>Common Power Management Features</h3>
+<ul>
+<li>Sleep mode</li>
+<li>Hibernate mode</li>
+<li>Screen timeout</li>
+<li>Battery monitoring</li>
+<li>Power-saving settings</li>
+<li>Automatic shutdown or restart options</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        When a laptop is not being used
+        for a certain period, the operating
+        system may automatically turn off
+        the display or enter sleep mode
+        to conserve energy.
+    </p>
+<div class="note">
+<strong>Remember:</strong>
+        Power management helps reduce
+        energy consumption while keeping
+        the computer available for use.
+    </div>
+</section>
+<!-- ========================================
+     PART 3
+     TYPES OF OPERATING SYSTEMS
+======================================== -->
+<section class="chapter">
+<span class="chapter-number">PART 03</span>
+<h2>Types of Operating Systems</h2>
+<p>
+        Operating systems are classified into
+        different types according to their
+        design, functions, and intended use.
+    </p>
+<p>
+        Some operating systems are designed
+        to manage multiple users, while others
+        are developed for specific devices,
+        real-time applications, or
+        network environments.
+    </p>
+</section>
+<!-- ========================================
+     LESSON 19
+     BATCH OPERATING SYSTEM
+======================================== -->
+<section class="chapter" id="page-19">
+<span class="chapter-number">LESSON 19</span>
+<h2>Batch Operating System</h2>
+<p>
+        A Batch Operating System is a type
+        of operating system that processes
+        groups of jobs automatically
+        without requiring continuous
+        interaction from the user.
+    </p>
+<p>
+        Jobs with similar requirements
+        are collected into batches
+        and executed according to
+        a predefined sequence.
+    </p>
+<p>
+        This type of operating system
+        was commonly used in early
+        computer systems that processed
+        large amounts of information.
+    </p>
+<h3>How a Batch Operating System Works</h3>
+<ol>
+<li>Users submit jobs to the computer system.</li>
+<li>The operating system collects and organizes the jobs.</li>
+<li>Jobs are grouped into batches.</li>
+<li>The operating system executes the jobs automatically.</li>
+<li>The results are produced after processing.</li>
+</ol>
+<h3>Characteristics</h3>
+<ul>
+<li>Processes groups of jobs automatically.</li>
+<li>Requires little or no interaction during execution.</li>
+<li>Suitable for repetitive tasks.</li>
+<li>Can process large amounts of information.</li>
+<li>Jobs are executed according to the system's scheduling method.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Reduces the need for continuous user interaction.</li>
+<li>Suitable for repetitive operations.</li>
+<li>Can efficiently process large workloads.</li>
+<li>Allows automated job execution.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Users may wait a long time for results.</li>
+<li>Errors can be difficult to identify during processing.</li>
+<li>Not suitable for interactive applications.</li>
+<li>Individual jobs may experience delays.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        A company processes employee
+        payroll information at the
+        end of every month.
+    </p>
+<p>
+        The system collects employee
+        attendance, salary information,
+        and deductions before processing
+        the payroll as a batch.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        A Batch Operating System processes
+        jobs automatically with minimal
+        interaction during execution.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 20
+     TIME-SHARING OPERATING SYSTEM
+======================================== -->
+<section class="chapter" id="page-20">
+<span class="chapter-number">LESSON 20</span>
+<h2>Time-Sharing Operating System</h2>
+<p>
+        A Time-Sharing Operating System
+        allows multiple users or tasks
+        to share the computer's
+        processing resources.
+    </p>
+<p>
+        The operating system divides
+        CPU time into small intervals
+        and distributes these intervals
+        among different processes.
+    </p>
+<p>
+        Because the CPU switches between
+        tasks quickly, users experience
+        responsive computer operation.
+    </p>
+<h3>How Time-Sharing Works</h3>
+<ol>
+<li>Multiple processes are ready for execution.</li>
+<li>The CPU scheduler selects a process.</li>
+<li>The selected process receives a limited amount of CPU time.</li>
+<li>When its time expires, another process may execute.</li>
+<li>The process continues until the tasks are completed.</li>
+</ol>
+<h3>Time-Sharing Illustration</h3>
+<pre>
++-----------------------------------+
+|               CPU                 |
++-----------------------------------+
+                 |
+                 v
++--------+--------+--------+--------+
+|   P1   |   P2   |   P3   |   P1   |
++--------+--------+--------+--------+
+
+Each process receives CPU time.
+    </pre>
+<h3>Characteristics</h3>
+<ul>
+<li>Supports multiple users or tasks.</li>
+<li>Distributes CPU time among processes.</li>
+<li>Uses frequent context switching.</li>
+<li>Provides interactive responses.</li>
+<li>Allows processes to make progress concurrently.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Supports interactive computing.</li>
+<li>Allows multiple users to access a system.</li>
+<li>Improves resource sharing.</li>
+<li>Provides relatively quick response times.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Requires careful CPU scheduling.</li>
+<li>Context switching introduces overhead.</li>
+<li>Performance may decrease under heavy workloads.</li>
+<li>Shared environments require security controls.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        Multiple students access
+        a shared university computer
+        server through separate terminals.
+    </p>
+<p>
+        The operating system distributes
+        CPU time among their active
+        programs so they can interact
+        with the system.
+    </p>
+<div class="note">
+<strong>Remember:</strong>
+        Time-sharing systems divide CPU
+        time among tasks to support
+        interactive operation.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 21
+     MULTITASKING OPERATING SYSTEM
+======================================== -->
+<section class="chapter" id="page-21">
+<span class="chapter-number">LESSON 21</span>
+<h2>Multitasking Operating System</h2>
+<p>
+        A Multitasking Operating System
+        allows a computer to run multiple
+        applications or tasks during
+        overlapping periods.
+    </p>
+<p>
+        It manages the execution of
+        different processes so users
+        can switch between programs
+        without closing them.
+    </p>
+<p>
+        Multitasking is an important
+        feature of modern desktop
+        and mobile operating systems.
+    </p>
+<h3>How Multitasking Works</h3>
+<p>
+        The operating system schedules
+        different tasks and distributes
+        CPU time among them.
+    </p>
+<p>
+        On a single CPU core, the system
+        may rapidly alternate between
+        tasks. On multicore processors,
+        some tasks can execute
+        simultaneously.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Allows multiple applications to remain active.</li>
+<li>Uses process scheduling.</li>
+<li>Supports foreground and background tasks.</li>
+<li>Allows users to switch between applications.</li>
+<li>Manages CPU and memory resources.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Improves user productivity.</li>
+<li>Allows several applications to operate.</li>
+<li>Supports background activities.</li>
+<li>Helps make efficient use of system resources.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Requires additional memory and processing resources.</li>
+<li>Too many applications can reduce performance.</li>
+<li>Resource contention may occur.</li>
+<li>Requires efficient scheduling.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        A student uses Microsoft Word
+        to write a research paper while
+        listening to music and downloading
+        reference materials through
+        a web browser.
+    </p>
+<p>
+        The operating system manages
+        these applications so they can
+        continue operating during
+        overlapping periods.
+    </p>
+<h3>Examples of Multitasking Operating Systems</h3>
+<ul>
+<li>Microsoft Windows</li>
+<li>macOS</li>
+<li>Linux</li>
+<li>Android</li>
+<li>iOS</li>
+</ul>
+</section>
+<!-- ========================================
+     LESSON 22
+     MULTIPROCESSING OPERATING SYSTEM
+======================================== -->
+<section class="chapter" id="page-22">
+<span class="chapter-number">LESSON 22</span>
+<h2>Multiprocessing Operating System</h2>
+<p>
+        A Multiprocessing Operating System
+        supports the use of multiple
+        processors or CPU cores to
+        execute tasks.
+    </p>
+<p>
+        Instead of relying on only
+        one processing unit, the system
+        can distribute workloads across
+        available processors.
+    </p>
+<p>
+        Multiprocessing can improve
+        system performance and support
+        simultaneous execution of tasks.
+    </p>
+<h3>How Multiprocessing Works</h3>
+<ol>
+<li>The operating system identifies available processors or CPU cores.</li>
+<li>Multiple processes or threads become ready for execution.</li>
+<li>The scheduler assigns eligible tasks to available processing resources.</li>
+<li>Tasks can execute simultaneously on different cores.</li>
+<li>The operating system coordinates resource sharing and task completion.</li>
+</ol>
+<h3>Multiprocessing Illustration</h3>
+<pre>
++----------------------------+
+|      OPERATING SYSTEM      |
++----------------------------+
+              |
+      +-------+-------+
+      |       |       |
+      v       v       v
++---------+---------+---------+
+|  CPU 1  |  CPU 2  |  CPU 3  |
++---------+---------+---------+
+      |       |       |
+      v       v       v
+    Task A  Task B  Task C
+    </pre>
+<h3>Characteristics</h3>
+<ul>
+<li>Supports multiple processors or CPU cores.</li>
+<li>Allows simultaneous task execution.</li>
+<li>Distributes workloads among processing resources.</li>
+<li>Requires coordination between processors.</li>
+<li>Can improve overall system throughput.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Improves performance for suitable workloads.</li>
+<li>Supports parallel execution.</li>
+<li>Can increase system throughput.</li>
+<li>Helps manage computationally intensive applications.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Requires suitable hardware.</li>
+<li>Can increase system complexity.</li>
+<li>Some tasks do not benefit significantly from parallel execution.</li>
+<li>Shared resources require synchronization.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        A computer with a multicore
+        processor runs a video editing
+        application.
+    </p>
+<p>
+        Different processing tasks
+        can execute on separate CPU
+        cores to help complete
+        rendering operations.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        Multiprocessing uses multiple
+        processing resources to support
+        simultaneous execution.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 23
+     REAL-TIME OPERATING SYSTEM
+======================================== -->
+<section class="chapter" id="page-23">
+<span class="chapter-number">LESSON 23</span>
+<h2>Real-Time Operating System</h2>
+<p>
+        A Real-Time Operating System,
+        also called RTOS, is designed
+        to respond to events within
+        specific time requirements.
+    </p>
+<p>
+        In real-time systems, producing
+        the correct result is important,
+        but completing the task within
+        the required time is also essential.
+    </p>
+<p>
+        Real-time operating systems
+        are commonly used in devices
+        that require predictable
+        responses.
+    </p>
+<h3>Types of Real-Time Operating Systems</h3>
+<h3>1. Hard Real-Time Operating System</h3>
+<p>
+        A hard real-time system must
+        meet strict deadlines.
+    </p>
+<p>
+        Missing a deadline may result
+        in serious system failure.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        Certain industrial safety
+        controllers must respond
+        within a guaranteed time.
+    </div>
+<h3>2. Soft Real-Time Operating System</h3>
+<p>
+        A soft real-time system aims
+        to meet timing requirements,
+        but occasional delays may
+        be tolerated.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A multimedia application
+        may experience a brief delay
+        without causing complete
+        system failure.
+    </div>
+<h3>Characteristics</h3>
+<ul>
+<li>Designed for predictable timing.</li>
+<li>Supports time-sensitive operations.</li>
+<li>Uses scheduling policies suited to deadlines.</li>
+<li>Commonly used in specialized devices.</li>
+<li>Focuses on reliability and responsiveness.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Provides predictable response times.</li>
+<li>Suitable for time-critical applications.</li>
+<li>Supports precise task coordination.</li>
+<li>Can improve reliability in specialized systems.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Can be complex to design.</li>
+<li>Requires careful scheduling and testing.</li>
+<li>May prioritize timing over general-purpose flexibility.</li>
+<li>Strict timing requirements can limit design choices.</li>
+</ul>
+<h3>Real-Life Applications</h3>
+<ul>
+<li>Industrial automation</li>
+<li>Robotics</li>
+<li>Automotive control systems</li>
+<li>Medical equipment</li>
+<li>Embedded control devices</li>
+</ul>
+<div class="note">
+<strong>Remember:</strong>
+        Real-time systems focus on
+        meeting timing requirements,
+        not simply completing tasks
+        as quickly as possible.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 24
+     DISTRIBUTED OPERATING SYSTEM
+======================================== -->
+<section class="chapter" id="page-24">
+<span class="chapter-number">LESSON 24</span>
+<h2>Distributed Operating System</h2>
+<p>
+        A Distributed Operating System
+        coordinates multiple connected
+        computers and allows them to
+        work together as a system.
+    </p>
+<p>
+        These computers communicate
+        through a network and may
+        share processing tasks,
+        information, and resources.
+    </p>
+<p>
+        The goal is to coordinate
+        distributed resources and
+        make them easier to use.
+    </p>
+<h3>How a Distributed Operating System Works</h3>
+<ol>
+<li>Multiple computers are connected through a network.</li>
+<li>The system coordinates their resources.</li>
+<li>Tasks may be distributed among different computers.</li>
+<li>Computers communicate and exchange information.</li>
+<li>The results are combined or delivered to users.</li>
+</ol>
+<h3>Distributed System Illustration</h3>
+<pre>
++----------------------------+
+|     DISTRIBUTED SYSTEM     |
++----------------------------+
+              |
+      +-------+-------+
+      |       |       |
+      v       v       v
++---------+---------+---------+
+| NODE A  | NODE B  | NODE C  |
++---------+---------+---------+
+      |       |       |
+      +-------+-------+
+              |
+              v
+       SHARED SERVICES
+    </pre>
+<h3>Characteristics</h3>
+<ul>
+<li>Uses multiple connected computers.</li>
+<li>Supports resource sharing.</li>
+<li>Coordinates distributed tasks.</li>
+<li>Uses network communication.</li>
+<li>May provide a unified view of resources.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Supports resource sharing.</li>
+<li>Can distribute workloads.</li>
+<li>May improve scalability.</li>
+<li>Can support fault tolerance when designed appropriately.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Requires reliable network communication.</li>
+<li>Can be complex to manage.</li>
+<li>Network failures can affect operations.</li>
+<li>Requires careful security and synchronization.</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        A research organization uses
+        several interconnected computers
+        to process large amounts
+        of scientific information.
+    </p>
+<p>
+        The workload is distributed
+        across available machines
+        to support computation.
+    </p>
+<div class="note">
+<strong>Important:</strong>
+        A distributed operating system
+        is a specific type of system
+        that coordinates multiple computers.
+        Not every networked or cloud
+        application uses a distributed OS.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 25
+     NETWORK OPERATING SYSTEM
+======================================== -->
+<section class="chapter" id="page-25">
+<span class="chapter-number">LESSON 25</span>
+<h2>Network Operating System</h2>
+<p>
+        A Network Operating System,
+        commonly called NOS, provides
+        services that allow computers
+        and users to share resources
+        through a network.
+    </p>
+<p>
+        It supports functions such
+        as file sharing, printer
+        sharing, user account management,
+        and network administration.
+    </p>
+<p>
+        Network operating systems
+        are commonly used in organizations
+        where multiple computers
+        need access to shared resources.
+    </p>
+<h3>Main Functions</h3>
+<ul>
+<li>Managing network user accounts.</li>
+<li>Providing shared file access.</li>
+<li>Supporting printer sharing.</li>
+<li>Managing network permissions.</li>
+<li>Providing network services.</li>
+<li>Supporting centralized administration.</li>
+</ul>
+<h3>Characteristics</h3>
+<ul>
+<li>Designed to support network services.</li>
+<li>Allows connected computers to share resources.</li>
+<li>Provides user and permission management.</li>
+<li>Supports network communication.</li>
+<li>Often used on servers.</li>
+</ul>
+<h3>Advantages</h3>
+<ul>
+<li>Supports centralized resource management.</li>
+<li>Allows users to share files and devices.</li>
+<li>Can simplify network administration.</li>
+<li>Supports organization-wide services.</li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>Requires network infrastructure.</li>
+<li>May require specialized administration.</li>
+<li>Network or server failures may interrupt services.</li>
+<li>Requires proper security management.</li>
+</ul>
+<h3>Examples</h3>
+<ul>
+<li>Windows Server</li>
+<li>Linux server distributions</li>
+<li>Other server operating systems providing network services</li>
+</ul>
+<h3>Real-Life Example</h3>
+<p>
+        A school uses a central
+        server to store documents
+        and manage shared printers.
+    </p>
+<p>
+        Teachers and authorized
+        staff members can access
+        shared resources from
+        computers connected
+        to the school network.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        A Network Operating System
+        provides services for managing
+        and sharing resources
+        across a computer network.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 26
+     EMBEDDED AND MOBILE OPERATING SYSTEMS
+======================================== -->
+<section class="chapter" id="page-26">
+<span class="chapter-number">LESSON 26</span>
+<h2>Embedded and Mobile Operating Systems</h2>
+<p>
+        Embedded and mobile operating
+        systems are designed for devices
+        with specific functions,
+        hardware configurations,
+        or resource limitations.
+    </p>
+<p>
+        These operating systems
+        are commonly used in
+        smartphones, tablets,
+        appliances, and
+        specialized electronic devices.
+    </p>
+<h3>1. Embedded Operating System</h3>
+<p>
+        An Embedded Operating System
+        is designed to manage the
+        operations of a specialized
+        electronic device.
+    </p>
+<p>
+        It is often optimized for
+        specific hardware and
+        a limited set of functions.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Designed for specific devices.</li>
+<li>Often uses limited hardware resources.</li>
+<li>May require low power consumption.</li>
+<li>Can support dedicated control tasks.</li>
+<li>May include real-time features.</li>
+</ul>
+<h3>Examples of Embedded Devices</h3>
+<ul>
+<li>Smart televisions</li>
+<li>Home routers</li>
+<li>Industrial controllers</li>
+<li>Digital cameras</li>
+<li>Smart appliances</li>
+<li>Automotive electronic systems</li>
+</ul>
+<h3>2. Mobile Operating System</h3>
+<p>
+        A Mobile Operating System
+        is designed for portable
+        devices such as smartphones
+        and tablets.
+    </p>
+<p>
+        It provides an interface
+        for mobile applications
+        and manages features
+        such as touchscreens,
+        wireless connections,
+        sensors, and battery usage.
+    </p>
+<h3>Characteristics</h3>
+<ul>
+<li>Designed for portable devices.</li>
+<li>Supports touchscreen interaction.</li>
+<li>Manages mobile applications.</li>
+<li>Supports wireless connectivity.</li>
+<li>Includes power management features.</li>
+<li>Manages sensors and mobile hardware.</li>
+</ul>
+<h3>Examples of Mobile Operating Systems</h3>
+<ul>
+<li>Android</li>
+<li>iOS</li>
+</ul>
+<h3>Embedded OS vs. Mobile OS</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Embedded OS</th>
+<th>Mobile OS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main Purpose</td>
+<td>Manage specialized devices</td>
+<td>Manage smartphones and tablets</td>
+</tr>
+<tr>
+<td>Device Examples</td>
+<td>Routers, appliances, controllers</td>
+<td>Smartphones and tablets</td>
+</tr>
+<tr>
+<td>User Interface</td>
+<td>May be limited or absent</td>
+<td>Usually touch-based</td>
+</tr>
+<tr>
+<td>Applications</td>
+<td>Often dedicated functions</td>
+<td>General mobile applications</td>
+</tr>
+<tr>
+<td>Resource Management</td>
+<td>Optimized for device requirements</td>
+<td>Optimized for mobile performance and battery life</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Real-Life Example</h3>
+<p>
+        A smartphone uses a mobile
+        operating system to manage
+        applications, phone calls,
+        internet connections,
+        and touchscreen interaction.
+    </p>
+<p>
+        A home router may use an
+        embedded operating system
+        to manage network connections
+        and device communication.
+    </p>
+<div class="note">
+<strong>Remember:</strong>
+        Embedded operating systems
+        are usually designed for
+        specialized devices, while
+        mobile operating systems
+        support portable computing
+        and mobile applications.
+    </div>
+</section>
+<!-- ========================================
+     PART 4
+     ADDITIONAL OPERATING SYSTEM CONCEPTS
+======================================== -->
+<section class="chapter">
+<span class="chapter-number">PART 04</span>
+<h2>Additional Operating System Concepts</h2>
+<p>
+        This final part explores additional
+        concepts that help explain how
+        operating systems communicate with
+        applications, start computer systems,
+        and support modern technology.
+    </p>
+<p>
+        It also reviews the major concepts
+        and functions discussed throughout
+        this e-book.
+    </p>
+</section>
+<!-- ========================================
+     LESSON 27
+     SYSTEM CALLS AND THEIR FUNCTIONS
+======================================== -->
+<section class="chapter" id="page-27">
+<span class="chapter-number">LESSON 27</span>
+<h2>System Calls and Their Functions</h2>
+<p>
+        A system call is a mechanism that
+        allows a program to request
+        services from the operating
+        system kernel.
+    </p>
+<p>
+        Application programs often
+        need to perform operations
+        that require access to
+        protected system resources.
+    </p>
+<p>
+        Instead of accessing these
+        resources directly, applications
+        use system calls to request
+        operating system services.
+    </p>
+<h3>Purpose of System Calls</h3>
+<ul>
+<li>Provide access to operating system services.</li>
+<li>Support process creation and management.</li>
+<li>Allow programs to work with files.</li>
+<li>Support input and output operations.</li>
+<li>Enable communication between processes.</li>
+<li>Help control access to protected resources.</li>
+</ul>
+<h3>Common Categories of System Calls</h3>
+<h3>1. Process Control</h3>
+<p>
+        Process control system calls
+        allow programs to create,
+        execute, and terminate processes.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A program requests the
+        operating system to create
+        a new process.
+    </div>
+<h3>2. File Management</h3>
+<p>
+        File management system calls
+        allow applications to open,
+        read, write, and close files.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A text editor requests
+        access to a document
+        stored on the computer.
+    </div>
+<h3>3. Device Management</h3>
+<p>
+        Device-related system calls
+        allow programs to request
+        input and output operations
+        involving hardware devices.
+    </p>
+<h3>4. Information Maintenance</h3>
+<p>
+        These system calls allow
+        programs to obtain or modify
+        certain system information.
+    </p>
+<h3>5. Communication</h3>
+<p>
+        Communication system calls
+        support the exchange of
+        information between processes.
+    </p>
+<h3>6. Protection</h3>
+<p>
+        Protection-related system calls
+        support access control and
+        resource permissions.
+    </p>
+<h3>System Call Communication Diagram</h3>
+<pre>
++----------------------------+
+|     APPLICATION PROGRAM    |
++----------------------------+
+              |
+              v
++----------------------------+
+|      SYSTEM CALL API       |
++----------------------------+
+              |
+              v
++----------------------------+
+|    SYSTEM CALL INTERFACE   |
++----------------------------+
+              |
+              v
++----------------------------+
+|     OPERATING SYSTEM       |
+|           KERNEL           |
++----------------------------+
+              |
+              v
++----------------------------+
+|     SYSTEM RESOURCES       |
++----------------------------+
+    </pre>
+<h3>Real-Life Example</h3>
+<p>
+        When a student clicks
+        the Save button in a
+        word-processing application,
+        the application requests
+        operating system services
+        to write the document
+        to a storage device.
+    </p>
+<div class="note">
+<strong>Key Concept:</strong>
+        System calls provide a
+        controlled way for
+        applications to request
+        services from the
+        operating system kernel.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 28
+     BOOTING PROCESS AND SYSTEM STARTUP
+======================================== -->
+<section class="chapter" id="page-28">
+<span class="chapter-number">LESSON 28</span>
+<h2>Booting Process and System Startup</h2>
+<p>
+        Booting is the process of
+        starting a computer and
+        loading the operating system
+        into memory.
+    </p>
+<p>
+        When a computer is turned on,
+        several operations take place
+        before the user can access
+        the operating system.
+    </p>
+<h3>Steps in the Booting Process</h3>
+<h3>Step 1: Power On</h3>
+<p>
+        The user presses the
+        computer's power button.
+    </p>
+<p>
+        The hardware receives power
+        and begins its initialization.
+    </p>
+<h3>Step 2: Firmware Initialization</h3>
+<p>
+        The computer's BIOS or UEFI
+        firmware initializes important
+        hardware components.
+    </p>
+<p>
+        It also performs checks
+        needed to prepare the
+        computer for startup.
+    </p>
+<h3>Step 3: Boot Device Selection</h3>
+<p>
+        The firmware identifies
+        a suitable boot device
+        according to the computer's
+        startup configuration.
+    </p>
+<h3>Step 4: Bootloader Execution</h3>
+<p>
+        The bootloader begins
+        loading the operating
+        system kernel.
+    </p>
+<h3>Step 5: Kernel Initialization</h3>
+<p>
+        The operating system kernel
+        initializes essential
+        components and prepares
+        system resources.
+    </p>
+<h3>Step 6: System Services</h3>
+<p>
+        Important operating system
+        services and background
+        processes are started.
+    </p>
+<h3>Step 7: Login or Desktop</h3>
+<p>
+        The operating system
+        displays a login screen,
+        desktop, or another
+        user interface.
+    </p>
+<h3>Booting Process Diagram</h3>
+<pre>
++-----------------------+
+|       POWER ON        |
++-----------------------+
+            |
+            v
++-----------------------+
+|    BIOS / UEFI        |
++-----------------------+
+            |
+            v
++-----------------------+
+|   BOOT DEVICE        |
+|     SELECTION        |
++-----------------------+
+            |
+            v
++-----------------------+
+|     BOOTLOADER        |
++-----------------------+
+            |
+            v
++-----------------------+
+|    OS KERNEL          |
++-----------------------+
+            |
+            v
++-----------------------+
+|   SYSTEM SERVICES     |
++-----------------------+
+            |
+            v
++-----------------------+
+|  LOGIN / DESKTOP      |
++-----------------------+
+    </pre>
+<h3>Types of Booting</h3>
+<h3>1. Cold Boot</h3>
+<p>
+        A cold boot occurs when
+        a computer starts from
+        a powered-off state.
+    </p>
+<h3>2. Warm Boot</h3>
+<p>
+        A warm boot occurs when
+        a computer restarts
+        without a complete
+        power-off cycle.
+    </p>
+<h3>Real-Life Example</h3>
+<p>
+        When a student turns on
+        a laptop, the system
+        initializes its hardware,
+        loads the operating system,
+        starts required services,
+        and displays the login screen.
+    </p>
+<div class="note">
+<strong>Remember:</strong>
+        Booting prepares the computer
+        and loads the operating system
+        so that users can begin
+        performing tasks.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 29
+     IMPORTANCE IN MODERN TECHNOLOGY
+======================================== -->
+<section class="chapter" id="page-29">
+<span class="chapter-number">LESSON 29</span>
+<h2>Importance of Operating Systems in Modern Technology</h2>
+<p>
+        Operating systems play an
+        important role in modern
+        technology because they
+        provide the foundation
+        for computer operations.
+    </p>
+<p>
+        They allow different
+        electronic devices to
+        execute applications,
+        manage resources,
+        and communicate
+        with users.
+    </p>
+<h3>1. Personal Computing</h3>
+<p>
+        Operating systems allow
+        desktop and laptop computers
+        to run applications for
+        education, communication,
+        entertainment, and work.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        Students use Windows,
+        macOS, or Linux to
+        prepare school projects
+        and access learning materials.
+    </div>
+<h3>2. Mobile Technology</h3>
+<p>
+        Mobile operating systems
+        manage smartphones and
+        tablets, including their
+        applications, sensors,
+        and wireless connections.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        Android and iOS support
+        mobile communication,
+        navigation, and
+        educational applications.
+    </div>
+<h3>3. Business Operations</h3>
+<p>
+        Organizations use operating
+        systems to manage computers,
+        servers, databases,
+        and business applications.
+    </p>
+<div class="note">
+<strong>Example:</strong>
+        A business uses server
+        operating systems to
+        support its internal
+        information systems.
+    </div>
+<h3>4. Education</h3>
+<p>
+        Operating systems support
+        online learning platforms,
+        computer laboratories,
+        and educational software.
+    </p>
+<h3>5. Healthcare</h3>
+<p>
+        Hospitals and medical
+        organizations use computers
+        and specialized devices
+        that depend on operating
+        systems to perform
+        important functions.
+    </p>
+<h3>6. Industrial Automation</h3>
+<p>
+        Specialized operating
+        systems help control
+        machines and equipment
+        used in manufacturing
+        and automation.
+    </p>
+<h3>7. Networking and Servers</h3>
+<p>
+        Server operating systems
+        support websites,
+        network services,
+        file sharing,
+        and other connected
+        applications.
+    </p>
+<h3>8. Smart Devices</h3>
+<p>
+        Embedded operating systems
+        help manage devices such
+        as smart televisions,
+        routers, and
+        home appliances.
+    </p>
+<h3>Why Operating Systems Matter</h3>
+<ul>
+<li>They make computer systems usable.</li>
+<li>They manage hardware resources.</li>
+<li>They provide services for applications.</li>
+<li>They support communication and networking.</li>
+<li>They help protect information and resources.</li>
+<li>They support multitasking and multiprocessing.</li>
+<li>They are essential to many modern electronic devices.</li>
+</ul>
+<div class="note">
+<strong>Key Concept:</strong>
+        Operating systems are
+        essential because they
+        connect software, hardware,
+        and users in modern
+        computing environments.
+    </div>
+</section>
+<!-- ========================================
+     LESSON 30
+     EXAMPLES, COMPARISON, AND SUMMARY
+======================================== -->
+<section class="chapter" id="page-30">
+<span class="chapter-number">LESSON 30</span>
+<h2>Examples, Comparison, and Summary</h2>
+<p>
+        Operating systems differ
+        in their design, features,
+        and intended applications.
+    </p>
+<p>
+        Some are developed for
+        general-purpose computers,
+        while others are designed
+        for mobile devices,
+        servers, and specialized
+        electronic systems.
+    </p>
+<h3>Examples of Operating Systems</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Operating System</th>
+<th>Common Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td>Desktop and laptop computers</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>Apple Mac computers</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Servers, desktops, and embedded systems</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>Smartphones and tablets</td>
+</tr>
+<tr>
+<td>iOS</td>
+<td>Apple iPhones</td>
+</tr>
+<tr>
+<td>Windows Server</td>
+<td>Business servers and network services</td>
+</tr>
+<tr>
+<td>FreeRTOS</td>
+<td>Embedded and real-time applications</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Comparison of Operating System Types</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Main Characteristic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch OS</td>
+<td>Processes groups of jobs automatically</td>
+</tr>
+<tr>
+<td>Time-Sharing OS</td>
+<td>Distributes CPU time among tasks or users</td>
+</tr>
+<tr>
+<td>Multitasking OS</td>
+<td>Supports multiple active applications</td>
+</tr>
+<tr>
+<td>Multiprocessing OS</td>
+<td>Uses multiple processors or CPU cores</td>
+</tr>
+<tr>
+<td>Real-Time OS</td>
+<td>Focuses on meeting timing requirements</td>
+</tr>
+<tr>
+<td>Distributed OS</td>
+<td>Coordinates multiple connected computers</td>
+</tr>
+<tr>
+<td>Network OS</td>
+<td>Provides network resource-sharing services</td>
+</tr>
+<tr>
+<td>Embedded OS</td>
+<td>Manages specialized electronic devices</td>
+</tr>
+<tr>
+<td>Mobile OS</td>
+<td>Supports smartphones and tablets</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Summary of Major Operating System Functions</h3>
+<ul>
+<li><strong>Process Management:</strong> Controls running programs.</li>
+<li><strong>CPU Scheduling:</strong> Determines which task receives CPU time.</li>
+<li><strong>Memory Management:</strong> Allocates and manages memory resources.</li>
+<li><strong>Virtual Memory:</strong> Provides virtual address spaces and manages memory pages.</li>
+<li><strong>File Management:</strong> Organizes files and directories.</li>
+<li><strong>Device Management:</strong> Controls communication with hardware devices.</li>
+<li><strong>I/O Management:</strong> Coordinates input and output operations.</li>
+<li><strong>Security:</strong> Protects users and system resources.</li>
+<li><strong>Networking:</strong> Supports communication between connected devices.</li>
+<li><strong>User Interface:</strong> Provides ways for users to interact with computers.</li>
+<li><strong>System Monitoring:</strong> Detects errors and monitors resource usage.</li>
+<li><strong>Power Management:</strong> Controls energy consumption.</li>
+</ul>
+<h3>Final Conclusion</h3>
+<p>
+        An operating system is
+        an essential component
+        of a computer system.
+    </p>
+<p>
+        It manages hardware
+        and software resources,
+        provides services for
+        applications, and allows
+        users to interact with
+        electronic devices.
+    </p>
+<p>
+        Different types of
+        operating systems are
+        designed to meet
+        different computing needs.
+    </p>
+<p>
+        Understanding operating
+        system concepts and functions
+        provides a foundation for
+        studying computer architecture,
+        system administration,
+        networking, programming,
+        and information technology.
+    </p>
+</section>
+<!-- ========================================
+     INTERACTIVE QUIZ
+======================================== -->
+<!-- ========================================
+     INTERACTIVE QUIZ
+======================================== -->
+<section class="chapter" id="quiz">
+<span class="chapter-number">
+        KNOWLEDGE ASSESSMENT
+    </span>
+<h2>Operating System Concepts and Functions Quiz</h2>
+<p>
+        Test your knowledge of
+        the concepts discussed
+        throughout this e-book.
+    </p>
+<div class="note">
+<strong>Instructions:</strong>
+        Answer all 30 multiple-choice
+        questions. Each correct answer
+        is worth one point.
+        A score of at least 75%
+        is required to pass.
+    </div>
+<p class="quiz-progress" id="quizProgress">
+        Answered 0 of 30 questions
+    </p>
+<div class="progress-track">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+<form id="quizForm">
+<div id="quizContainer"></div>
+<button class="quiz-button" id="submitQuiz" type="submit">
+            Submit Answers
+        </button>
+<button class="quiz-button" id="retryQuiz" style="display:none;" type="button">
+            Try Again
+        </button>
+</form>
+<div aria-live="polite" class="quiz-result" id="quizResult" role="status">
+</div>
+</section>
+<!-- ========================================
+     FOOTER
+======================================== -->
+<footer class="footer">
+<p>CodeVerse Digital E-Book Library</p>
+<p>Operating System Concepts and Functions</p>
+</footer>
+</main>
+</div>
+<!-- ========================================
+     JAVASCRIPT
+======================================== -->
+<script>
+"use strict";
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+function applyTheme(theme) {
+
+    const dark = theme === "dark";
+
+    document.body.classList.toggle("dark-mode", dark);
+
+    themeIcon.textContent = dark ? "☀" : "☾";
+
+    themeToggle.setAttribute(
+        "aria-label",
+        dark ? "Switch to light mode" : "Switch to dark mode"
+    );
+
+}
+
+const savedTheme = localStorage.getItem("readerTheme");
+
+applyTheme(savedTheme === "dark" ? "dark" : "light");
+
+themeToggle.addEventListener("click", function () {
+
+    const newTheme = document.body.classList.contains("dark-mode")
+        ? "light"
+        : "dark";
+
+    localStorage.setItem("readerTheme", newTheme);
+    applyTheme(newTheme);
+
+});
+
+/* ==========================================
+   FONT SIZE
+========================================== */
+
+const fontSizeSelect = document.getElementById("fontSize");
+
+const allowedFontSizes = ["14px", "16px", "18px", "20px", "22px"];
+
+let savedFontSize = localStorage.getItem("readerFontSize") || "16px";
+
+if (/^\d+$/.test(savedFontSize)) {
+    savedFontSize += "px";
+}
+
+if (!allowedFontSizes.includes(savedFontSize)) {
+    savedFontSize = "16px";
+}
+
+function applyFontSize(size) {
+
+    document.documentElement.style.setProperty(
+        "--reader-size",
+        size
+    );
+
+    fontSizeSelect.value = size;
+
+    localStorage.setItem("readerFontSize", size);
+
+}
+
+applyFontSize(savedFontSize);
+
+fontSizeSelect.addEventListener("change", function () {
+    applyFontSize(fontSizeSelect.value);
+});
+
+/* ==========================================
+   FONT FAMILY
+========================================== */
+
+const fontFamilySelect = document.getElementById("fontFamily");
+
+const allowedFontFamilies = [
+    "'DM Sans', sans-serif",
+    "Arial, sans-serif",
+    "Georgia, serif",
+    "'Times New Roman', serif",
+    "Verdana, sans-serif"
+];
+
+let savedFontFamily = localStorage.getItem("readerFontFamily");
+
+if (!allowedFontFamilies.includes(savedFontFamily)) {
+    savedFontFamily = "'DM Sans', sans-serif";
+}
+
+function applyFontFamily(fontFamily) {
+
+    document.documentElement.style.setProperty(
+        "--reader-family",
+        fontFamily
+    );
+
+    fontFamilySelect.value = fontFamily;
+
+    localStorage.setItem("readerFontFamily", fontFamily);
+
+}
+
+applyFontFamily(savedFontFamily);
+
+fontFamilySelect.addEventListener("change", function () {
+    applyFontFamily(fontFamilySelect.value);
+});
+
+/* ==========================================
+   TABLE OF CONTENTS
+========================================== */
+
+const tocToggle = document.getElementById("tocToggle");
+const sidebar = document.getElementById("sidebar");
+
+function setSidebarOpen(open) {
+
+    sidebar.classList.toggle("show", open);
+
+    tocToggle.setAttribute(
+        "aria-expanded",
+        String(open)
+    );
+
+}
+
+tocToggle.addEventListener("click", function () {
+
+    if (window.innerWidth <= 950) {
+        setSidebarOpen(!sidebar.classList.contains("show"));
+    } else {
+        sidebar.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
+
+});
+
+sidebar.querySelectorAll("a").forEach(function (link) {
+
+    link.addEventListener("click", function () {
+
+        if (window.innerWidth <= 950) {
+            setSidebarOpen(false);
+        }
+
+    });
+
+});
+
+/* ==========================================
+   MOBILE NAVIGATION
+========================================== */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function setMobileMenuOpen(open) {
+
+    navLinks.classList.toggle("show", open);
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        String(open)
+    );
+
+    menuToggle.textContent = open ? "✕" : "☰";
+
+}
+
+menuToggle.addEventListener("click", function () {
+
+    setMobileMenuOpen(!navLinks.classList.contains("show"));
+
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+
+    link.addEventListener("click", function () {
+        setMobileMenuOpen(false);
+    });
+
+});
+
+window.addEventListener("resize", function () {
+
+    if (window.innerWidth > 950) {
+        setMobileMenuOpen(false);
+        setSidebarOpen(false);
+    }
+
+});
+
+/* ==========================================
+   ACTIVE TABLE OF CONTENTS LINK
+========================================== */
+
+const tocLinks = Array.from(
+    sidebar.querySelectorAll('a[href^="#"]')
+);
+
+const observedSections = tocLinks
+    .map(function (link) {
+        return document.getElementById(
+            link.getAttribute("href").substring(1)
+        );
+    })
+    .filter(Boolean);
+
+if ("IntersectionObserver" in window) {
+
+    const sectionObserver = new IntersectionObserver(
+        function (entries) {
+
+            const visibleEntries = entries
+                .filter(function (entry) {
+                    return entry.isIntersecting;
+                })
+                .sort(function (a, b) {
+                    return a.boundingClientRect.top -
+                           b.boundingClientRect.top;
+                });
+
+            if (visibleEntries.length === 0) {
+                return;
+            }
+
+            const activeId = visibleEntries[0].target.id;
+
+            tocLinks.forEach(function (link) {
+
+                const isActive =
+                    link.getAttribute("href") === "#" + activeId;
+
+                link.classList.toggle("active", isActive);
+
+                if (isActive) {
+                    link.setAttribute("aria-current", "location");
+                } else {
+                    link.removeAttribute("aria-current");
+                }
+
+            });
+
+        },
+        {
+            rootMargin: "-100px 0px -65% 0px",
+            threshold: 0
+        }
+    );
+
+    observedSections.forEach(function (section) {
+        sectionObserver.observe(section);
+    });
+
+}
+
+/* ==========================================
+   QUIZ QUESTIONS
+   ORIGINAL 30 QUESTIONS AND ANSWERS
+========================================== */
+
+const quizQuestions = [
+
+    {
+        question: "What is an operating system?",
+        options: [
+            "A physical computer component",
+            "Software that manages hardware and software resources",
+            "A type of programming language",
+            "A computer storage device"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is the main purpose of an operating system?",
+        options: [
+            "To replace computer hardware",
+            "To create websites automatically",
+            "To manage resources and provide services for applications",
+            "To increase internet speed"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which component is the central part of an operating system?",
+        options: [
+            "Shell",
+            "Kernel",
+            "Desktop",
+            "File Explorer"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is a process?",
+        options: [
+            "A program currently being executed",
+            "A file stored on a hard drive",
+            "A type of computer monitor",
+            "A network connection"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which operating system function manages running programs?",
+        options: [
+            "File Management",
+            "Power Management",
+            "Process Management",
+            "Device Management"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "What does CPU scheduling determine?",
+        options: [
+            "The size of a storage device",
+            "Which process receives CPU time",
+            "The color of the desktop",
+            "The type of computer keyboard"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which scheduling algorithm follows arrival order?",
+        options: [
+            "Shortest Job First",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come, First Served"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Which CPU scheduling algorithm uses a time quantum?",
+        options: [
+            "Round Robin",
+            "First Come, First Served",
+            "Non-Preemptive SJF",
+            "Non-Preemptive Priority"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What does memory management control?",
+        options: [
+            "Network passwords",
+            "RAM allocation and usage",
+            "Printer paper size",
+            "Monitor brightness"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is virtual memory?",
+        options: [
+            "A technique for managing virtual address spaces and memory pages",
+            "A type of computer monitor",
+            "A replacement for the CPU",
+            "A permanent backup of all computer files"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which operating system function organizes files and folders?",
+        options: [
+            "CPU Scheduling",
+            "Power Management",
+            "File Management",
+            "Process Synchronization"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which file system is commonly used by Windows?",
+        options: [
+            "ext4",
+            "NTFS",
+            "HFS",
+            "ISO 9660"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is the main purpose of a device driver?",
+        options: [
+            "To create new user accounts",
+            "To communicate with hardware devices",
+            "To increase disk capacity",
+            "To manage browser bookmarks"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which device is an input device?",
+        options: [
+            "Monitor",
+            "Speaker",
+            "Projector",
+            "Keyboard"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Which operating system feature controls user access to files?",
+        options: [
+            "File permissions",
+            "Screen resolution",
+            "CPU clock speed",
+            "Disk formatting"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which function supports communication between computers?",
+        options: [
+            "Memory Allocation",
+            "Networking Management",
+            "Power Management",
+            "File Compression"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What does GUI stand for?",
+        options: [
+            "General User Information",
+            "Graphical User Interface",
+            "Global Utility Instruction",
+            "Graphics Unit Integration"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which interface uses typed commands?",
+        options: [
+            "Graphical User Interface",
+            "Touchscreen Interface",
+            "Command-Line Interface",
+            "Gesture Interface"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which operating system function monitors errors and resource usage?",
+        options: [
+            "System Monitoring",
+            "File Compression",
+            "Application Installation",
+            "Screen Management"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which feature helps conserve laptop battery power?",
+        options: [
+            "Increasing screen brightness",
+            "Disabling sleep mode",
+            "Power-saving mode",
+            "Running more background applications"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which operating system processes groups of jobs automatically?",
+        options: [
+            "Batch Operating System",
+            "Real-Time Operating System",
+            "Mobile Operating System",
+            "Network Operating System"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which operating system distributes CPU time among users or tasks?",
+        options: [
+            "Embedded Operating System",
+            "Time-Sharing Operating System",
+            "Batch Operating System",
+            "Single-Purpose Firmware"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is multitasking?",
+        options: [
+            "Using only one application",
+            "Deleting multiple files",
+            "Running multiple tasks during overlapping periods",
+            "Connecting multiple keyboards"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "What is multiprocessing?",
+        options: [
+            "Using multiple processors or CPU cores",
+            "Running a single task without interruption",
+            "Using multiple storage folders",
+            "Connecting multiple monitors"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which operating system focuses on meeting timing requirements?",
+        options: [
+            "Batch Operating System",
+            "Network Operating System",
+            "Real-Time Operating System",
+            "Time-Sharing Operating System"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "What is a distributed operating system?",
+        options: [
+            "An OS that coordinates multiple connected computers",
+            "An OS that manages only one application",
+            "An OS used exclusively on smartphones",
+            "An OS that does not use a network"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is a main function of a network operating system?",
+        options: [
+            "Managing shared network resources",
+            "Changing processor architecture",
+            "Replacing hardware components",
+            "Designing application interfaces"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which operating system is commonly used on smartphones?",
+        options: [
+            "Windows Server",
+            "Android",
+            "FreeDOS",
+            "VMware ESXi"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "What is a system call?",
+        options: [
+            "A method for applications to request kernel services",
+            "A telephone call made by a computer",
+            "A type of computer virus",
+            "A hardware replacement procedure"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What is booting?",
+        options: [
+            "Deleting temporary files",
+            "Installing a printer",
+            "Starting a computer and loading its operating system",
+            "Closing a running application"
+        ],
+        answer: 2
+    }
+
+];
+
+/* ==========================================
+   QUIZ ELEMENTS
+========================================== */
+
+const quizForm = document.getElementById("quizForm");
+const quizContainer = document.getElementById("quizContainer");
+const quizResult = document.getElementById("quizResult");
+const quizProgress = document.getElementById("quizProgress");
+const progressFill = document.getElementById("progressFill");
+const submitQuiz = document.getElementById("submitQuiz");
+const retryQuiz = document.getElementById("retryQuiz");
+
+let quizSubmitted = false;
+
+/* ==========================================
+   RENDER QUIZ
+========================================== */
+
+function renderQuiz() {
+
+    quizContainer.innerHTML = "";
+    quizSubmitted = false;
+
+    quizQuestions.forEach(function (item, index) {
+
+        const questionBox = document.createElement("div");
+
+        questionBox.className = "quiz-question";
+        questionBox.id = "question-" + index;
+
+        const questionTitle = document.createElement("h3");
+
+        questionTitle.textContent =
+            (index + 1) + ". " + item.question;
+
+        questionBox.appendChild(questionTitle);
+
+        item.options.forEach(function (option, optionIndex) {
+
+            const label = document.createElement("label");
+            const radio = document.createElement("input");
+
+            radio.type = "radio";
+            radio.name = "question" + index;
+            radio.value = String(optionIndex);
+
+            radio.addEventListener("change", updateProgress);
+
+            label.appendChild(radio);
+
+            label.appendChild(
+                document.createTextNode(option)
+            );
+
+            questionBox.appendChild(label);
+
+        });
+
+        quizContainer.appendChild(questionBox);
+
+    });
+
+    quizResult.style.display = "none";
+    quizResult.innerHTML = "";
+
+    submitQuiz.style.display = "inline-block";
+    retryQuiz.style.display = "none";
+
+    updateProgress();
+
+}
+
+/* ==========================================
+   UPDATE QUIZ PROGRESS
+========================================== */
+
+function updateProgress() {
+
+    let answered = 0;
+
+    quizQuestions.forEach(function (item, index) {
+
+        const selected = quizForm.querySelector(
+            'input[name="question' + index + '"]:checked'
+        );
+
+        if (selected) {
+            answered++;
+        }
+
+    });
+
+    quizProgress.textContent =
+        "Answered " + answered +
+        " of " + quizQuestions.length + " questions";
+
+    const percentage =
+        (answered / quizQuestions.length) * 100;
+
+    progressFill.style.width = percentage + "%";
+
+}
+
+/* ==========================================
+   SUBMIT QUIZ
+========================================== */
+
+quizForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    if (quizSubmitted) {
+        return;
+    }
+
+    let score = 0;
+    let answered = 0;
+    let firstUnanswered = null;
+
+    quizQuestions.forEach(function (item, index) {
+
+        const selected = quizForm.querySelector(
+            'input[name="question' + index + '"]:checked'
+        );
+
+        if (selected) {
+            answered++;
+        } else if (firstUnanswered === null) {
+            firstUnanswered = index;
+        }
+
+    });
+
+    if (answered !== quizQuestions.length) {
+
+        quizResult.style.display = "block";
+
+        quizResult.textContent =
+            "Please answer all questions before submitting. " +
+            "You have answered " + answered +
+            " out of " + quizQuestions.length + ".";
+
+        if (firstUnanswered !== null) {
+
+            document.getElementById(
+                "question-" + firstUnanswered
+            ).scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+        return;
+    }
+
+    quizSubmitted = true;
+
+    quizQuestions.forEach(function (item, index) {
+
+        const questionBox = document.getElementById(
+            "question-" + index
+        );
+
+        const selected = quizForm.querySelector(
+            'input[name="question' + index + '"]:checked'
+        );
+
+        const selectedAnswer = Number(selected.value);
+
+        questionBox.classList.remove(
+            "correct",
+            "incorrect"
+        );
+
+        if (selectedAnswer === item.answer) {
+
+            score++;
+
+            questionBox.classList.add("correct");
+
+        } else {
+
+            questionBox.classList.add("incorrect");
+
+        }
+
+        const labels = questionBox.querySelectorAll("label");
+
+        labels.forEach(function (label, optionIndex) {
+
+            if (optionIndex === item.answer) {
+                label.classList.add("correct");
+            }
+
+            if (
+                optionIndex === selectedAnswer &&
+                selectedAnswer !== item.answer
+            ) {
+                label.classList.add("incorrect");
+            }
+
+        });
+
+        const correctAnswer = document.createElement("p");
+
+        correctAnswer.className = "quiz-feedback";
+
+        correctAnswer.textContent =
+            "Correct Answer: " +
+            item.options[item.answer];
+
+        questionBox.appendChild(correctAnswer);
+
+        questionBox.querySelectorAll(
+            'input[type="radio"]'
+        ).forEach(function (radio) {
+            radio.disabled = true;
+        });
+
+    });
+
+    const percentage =
+        (score / quizQuestions.length) * 100;
+
+    const passed = percentage >= 75;
+
+    quizResult.style.display = "block";
+    quizResult.innerHTML = "";
+
+    const heading = document.createElement("h3");
+
+    heading.textContent = passed
+        ? "Congratulations! You Passed!"
+        : "Keep Learning!";
+
+    const scoreText = document.createElement("p");
+
+    scoreText.textContent =
+        "Your Score: " + score +
+        " / " + quizQuestions.length;
+
+    const percentageText = document.createElement("p");
+
+    percentageText.textContent =
+        "Percentage: " + percentage.toFixed(2) + "%";
+
+    const statusText = document.createElement("p");
+
+    statusText.textContent =
+        "Result: " + (passed ? "PASSED" : "FAILED");
+
+    statusText.style.fontWeight = "800";
+
+    statusText.style.color = passed
+        ? "#26a269"
+        : "#d35b5b";
+
+    quizResult.appendChild(heading);
+    quizResult.appendChild(scoreText);
+    quizResult.appendChild(percentageText);
+    quizResult.appendChild(statusText);
+
+    submitQuiz.style.display = "none";
+    retryQuiz.style.display = "inline-block";
+
+    quizResult.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+});
+
+/* ==========================================
+   RETRY QUIZ
+========================================== */
+
+retryQuiz.addEventListener("click", function () {
+
+    renderQuiz();
+
+    document.getElementById("quiz").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+});
+
+/* ==========================================
+   INITIALIZE QUIZ
+========================================== */
+
+renderQuiz();
+
+</script>
+    <script src="/js/navbar-loader.js" defer></script>
+</body>
+</html>

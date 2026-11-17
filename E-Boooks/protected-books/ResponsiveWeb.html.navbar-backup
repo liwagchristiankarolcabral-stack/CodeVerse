@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head><title>Responsive Web Design | CodeVerse</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+
+
+
+
+<style>
+</style>
+<style>
+:root{--bg:#f4f7fc;--surface:#fff;--text:#1d2b43;--muted:#65748a;--border:#dfe6f1;--primary:#3157a4;--primary2:#24427f;--code:#eff4fb;--shadow:0 10px 28px rgba(22,46,91,.07)}
+body.dark-mode{--bg:#0c1525;--surface:#17253a;--text:#e8effb;--muted:#b1bfd3;--border:#34465e;--primary:#94b6ff;--primary2:#b5ceff;--code:#101d30;--shadow:0 10px 28px rgba(0,0,0,.22)}
+html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;transition:background .2s,color .2s}body,button,input,select{box-sizing:border-box}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #76a3ff;outline-offset:3px}
+.navbar{height:72px;position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;padding:0 max(20px,calc((100vw - 1380px)/2));box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text);font-size:21px;font-weight:800;white-space:nowrap}.site-logo{height:39px;width:39px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:22px;margin-left:auto}.nav-links a{font-size:14px;text-decoration:none;font-weight:700;color:var(--muted)}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:10px}.icon-btn,.menu-toggle{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;padding:9px 13px}.menu-toggle{display:none}.login-btn,.signup-btn{font-size:13px;font-weight:700;text-decoration:none;padding:10px 13px;border-radius:9px;display:inline-block}.login-btn{border:1px solid var(--border)}.signup-btn{background:#3157a4;color:white!important}#accountActions{display:flex;gap:7px}.topbar{max-width:1380px;margin:auto;padding:20px 24px 0}.back-link{text-decoration:none;font-weight:700;font-size:14px}.reading-controls{max-width:1380px;margin:14px auto 0;padding:0 24px;display:flex;gap:14px;flex-wrap:wrap}.control-group{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700}.control-group select{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px;border-radius:9px;max-width:200px}.layout{max-width:1380px;margin:20px auto 50px;padding:0 24px;display:grid;grid-template-columns:265px minmax(0,1fr);gap:25px;align-items:start}.toc{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;position:sticky;top:94px;max-height:calc(100vh - 116px);overflow:auto}.toc h2{font-size:15px;margin:0 0 14px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{text-decoration:none;padding:9px 10px;border-radius:8px;color:var(--muted);font-size:13px;line-height:1.45}.toc nav a:hover,.toc nav a.active{background:var(--code);color:var(--primary)}main{min-width:0}.book-header{padding:32px 36px;border-radius:18px;background:linear-gradient(125deg,#25477f,#3971bc);color:white;margin-bottom:22px}.book-header .eyebrow{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#d5e6ff}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(29px,3.5vw,42px);margin:12px 0}.book-header p{max-width:680px;line-height:1.7;color:#e5efff;margin:0}.chapter{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px 35px;margin:0 0 22px;box-shadow:var(--shadow);line-height:1.8;overflow-wrap:anywhere;scroll-margin-top:92px}.chapter h1,.chapter h2,.chapter h3{line-height:1.35;color:var(--text)}.chapter h2{font-size:1.55em;margin:0 0 17px}.chapter h3{font-size:1.15em;margin:25px 0 10px}.chapter p{margin:13px 0;color:var(--text)}.chapter li{margin:6px 0}.chapter pre{max-width:100%;overflow:auto;background:var(--code);color:var(--text);padding:18px;border-radius:11px;border:1px solid var(--border);font-size:.88em;line-height:1.6;white-space:pre}.chapter code{font-family:Consolas,'Courier New',monospace}.chapter :not(pre)>code{background:var(--code);padding:2px 5px;border-radius:4px}.code-example{max-width:100%}.page-footer{text-align:center;color:var(--muted);padding:22px 0 40px;font-size:13px}
+#quizProgress{font-weight:700;color:var(--primary);margin:12px 0 20px}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px;background:var(--surface)}.quiz-question h3{margin:0 0 14px;font-size:1em}.quiz-option{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--border);border-radius:9px;padding:11px 13px;margin:8px 0;cursor:pointer;line-height:1.5}.quiz-option input{margin-top:5px;accent-color:#3157a4}.quiz-option:hover{background:var(--code)}.quiz-option.correct{border-color:#28a36a;background:rgba(40,163,106,.13)}.quiz-option.incorrect{border-color:#dc5656;background:rgba(220,86,86,.12)}.quiz-feedback{font-weight:700;font-size:.88em}.quiz-actions{display:flex;gap:10px;flex-wrap:wrap}.quiz-actions button{border:0;border-radius:9px;background:#3157a4;color:white;padding:12px 19px;font-weight:700}.quiz-actions button:hover{background:#24427f}#quizResult{margin-top:22px;padding:20px;border-radius:12px;background:var(--code);text-align:center}#quizResult h2{font-size:2.4em;margin:6px 0;color:var(--primary)}[hidden]{display:none!important}
+@media(max-width:1000px){.layout{grid-template-columns:215px minmax(0,1fr);gap:16px}.chapter{padding:25px}.navbar{gap:12px}.nav-links{gap:12px}}
+@media(max-width:760px){.navbar{height:66px;padding:0 15px;gap:10px}.logo{font-size:18px}.site-logo{height:34px;width:34px}.nav-links{display:none;position:absolute;top:65px;left:0;right:0;background:var(--surface);padding:16px;border-bottom:1px solid var(--border);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;margin:0}.nav-links.show{display:flex}.menu-toggle{display:block}.nav-actions{margin-left:auto}#accountActions{display:none}.layout{display:block;padding:0 13px}.toc{position:static;max-height:235px;margin-bottom:18px}.reading-controls,.topbar{padding-left:14px;padding-right:14px}.chapter{padding:22px 18px}.book-header{padding:25px 20px}.chapter pre{font-size:.79em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a class="active" href="/index.html">Home</a>
+<a href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- Account buttons will be displayed by JavaScript -->
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav>
+<!-- HTML INTRODUCTION -->
+<a href="#responsive-web-design">Responsive web design</a>
+<a href="#precursor-responsive-design">
+        Precursor to responsive design: mobile web design
+    </a>
+<a href="#introducing-responsive-design">
+        Introducing responsive web design
+    </a>
+<a href="#media-queries">Media Queries</a>
+<a href="#responsive-breakpoints">Breakpoints</a>
+<a href="#mobile-first-design">Mobile-first design</a>
+<a href="#responsive-layout-technologies">
+        Responsive layout technologies
+    </a>
+<a href="#responsive-flexbox">Flexbox</a>
+<a href="#responsive-css-grid">CSS grid</a>
+<a href="#responsive-images-media">
+        Responsive images/media
+    </a>
+<a href="#responsive-typography">
+        Responsive typography
+    </a>
+<a href="#media-queries-typography">
+        Using media queries for responsive typography
+    </a>
+<a href="#viewport-units-typography">
+        Using viewport units for responsive typography
+    </a>
+<a href="#viewport-meta-tag">
+        The viewport meta tag
+    </a>
+<a href="#responsive-design-summary">Summary</a>
+<a href="#quiz">Knowledge Assessment Quiz</a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Responsive web design</h1>
+<p>Responsive Web Design (RWD) is an approach to creating websites that display and 
+                function effectively on different screen sizes and resolutions.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - CSS INTRODUCTION
+========================================== -->
+<!-- ==========================================
+     CODEVERSE - RESPONSIVE WEB DESIGN
+========================================== -->
+<section class="chapter" id="responsive-web-design">
+<h2>Responsive web design</h2>
+<p>
+        Responsive Web Design (RWD) is an approach to creating
+        websites that display and function effectively on
+        different screen sizes and resolutions.
+    </p>
+<p>
+        A responsive website automatically adjusts its layout,
+        text, images, and other elements to provide a suitable
+        experience on mobile phones, tablets, laptops,
+        and desktop computers.
+    </p>
+<h3>Learning Objectives</h3>
+<ul>
+<li>Understand responsive web design and its importance.</li>
+<li>Learn how CSS media queries control responsive styles.</li>
+<li>Understand mobile-first design and breakpoints.</li>
+<li>Use Flexbox and CSS Grid for flexible layouts.</li>
+<li>Make images, videos, and typography responsive.</li>
+<li>Understand the purpose of the viewport meta tag.</li>
+</ul>
+</section>
+<!-- ==========================================
+     PRECURSOR TO RESPONSIVE DESIGN
+========================================== -->
+<section class="chapter" id="precursor-responsive-design">
+<h2>Precursor to responsive design: mobile web design</h2>
+<p>
+        Before responsive web design became widely adopted,
+        developers often created separate website experiences
+        for desktop and mobile users.
+    </p>
+<p>
+        These approaches were commonly called mobile web design,
+        mobile web development, or mobile-friendly design.
+        Their goal was to make websites usable on devices
+        with different screen sizes, resolutions,
+        and performance capabilities.
+    </p>
+<h3>Early Mobile Web Development</h3>
+<p>
+        Earlier mobile devices had limited processing power,
+        memory, bandwidth, and browser capabilities.
+        Some devices supported only simplified web content.
+    </p>
+<p>
+        Developers sometimes used browser detection on the
+        server to deliver different website versions
+        depending on the device being used.
+    </p>
+<h3>Modern Mobile Web Development</h3>
+<p>
+        Modern smartphones and tablets can support many
+        of the same web technologies as desktop computers.
+        As a result, developers can create one flexible
+        website that works across multiple devices.
+    </p>
+<h3>Important Considerations</h3>
+<ul>
+<li>Screen size and resolution</li>
+<li>Device processing capabilities</li>
+<li>Internet connection and bandwidth</li>
+<li>Battery consumption</li>
+<li>Content accessibility and usability</li>
+<li>Touchscreen interaction</li>
+</ul>
+<p>
+        Responsive design considers not only the size of
+        the screen but also the needs and experience
+        of the people using the website.
+    </p>
+</section>
+<!-- ==========================================
+     INTRODUCING RESPONSIVE WEB DESIGN
+========================================== -->
+<section class="chapter" id="introducing-responsive-design">
+<h2>Introducing responsive web design</h2>
+<p>
+        HTML content naturally adjusts to the available
+        width of the browser when no restrictive CSS
+        layout rules are applied.
+    </p>
+<p>
+        However, adding fixed-width containers, large images,
+        or rigid multi-column layouts can create problems
+        when a webpage is displayed on smaller screens.
+    </p>
+<h3>Problems with Fixed-Width Layouts</h3>
+<ul>
+<li>Content may extend beyond the screen.</li>
+<li>Horizontal scrolling may become necessary.</li>
+<li>Text columns may become too narrow to read.</li>
+<li>Large screens may display excessive empty space.</li>
+<li>Images and other media may overflow their containers.</li>
+</ul>
+<h3>Fixed-Width Layout Example</h3>
+<div class="code-example">
+<pre><code>.fixed-container {
+    width: 1000px;
+    margin: 0 auto;
+}</code></pre>
+</div>
+<p>
+        This container always attempts to occupy
+        1000 pixels of width. On a narrow screen,
+        it can cause horizontal overflow.
+    </p>
+<h3>Responsive Layout Example</h3>
+<div class="code-example">
+<pre><code>.responsive-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}</code></pre>
+</div>
+<p>
+        The responsive container can shrink with the
+        available space while limiting its maximum width.
+    </p>
+<h3>History of Responsive Web Design</h3>
+<p>
+        The term responsive web design was introduced
+        by Ethan Marcotte in 2010.
+    </p>
+<p>
+        The original approach emphasized three important
+        techniques:
+    </p>
+<ul>
+<li><strong>Fluid Grids:</strong> Layouts that adjust to available space.</li>
+<li><strong>Flexible Images:</strong> Images that fit within their containers.</li>
+<li><strong>Media Queries:</strong> CSS rules applied under selected conditions.</li>
+</ul>
+<h3>Flexible Image Example</h3>
+<div class="code-example">
+<pre><code>.responsive-image {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+</div>
+<p>
+        This allows an image to shrink when necessary
+        without stretching it beyond its original
+        dimensions through the max-width rule.
+    </p>
+<p>
+        Responsive web design is not a separate programming
+        language. It is a collection of techniques and
+        practices used to make websites adapt to different
+        viewing environments.
+    </p>
+</section>
+<!-- ==========================================
+     MEDIA QUERIES
+========================================== -->
+<section class="chapter" id="media-queries">
+<h2>Media Queries</h2>
+<p>
+        CSS media queries allow developers to apply
+        specific styles when certain conditions are met.
+    </p>
+<p>
+        These conditions can include viewport width,
+        screen characteristics, and the type of media
+        displaying the document.
+    </p>
+<h3>Basic Media Query Syntax</h3>
+<div class="code-example">
+<pre><code>@media screen and (min-width: 800px) {
+    .example-container {
+        padding: 30px;
+    }
+}</code></pre>
+</div>
+<p>
+        In this example, the padding rule is applied
+        when the document is displayed on a screen
+        with a viewport width of at least 800 pixels.
+    </p>
+<h3>Responsive Background Example</h3>
+<div class="code-example">
+<pre><code>.example-box {
+    background-color: lightblue;
+    padding: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .example-box {
+        background-color: lightgreen;
+    }
+}</code></pre>
+</div>
+<p>
+        The background becomes light green when the
+        viewport width is 600 pixels or less.
+    </p>
+</section>
+<!-- BREAKPOINTS -->
+<section class="chapter" id="responsive-breakpoints">
+<h2>Breakpoints</h2>
+<p>
+        A breakpoint is a point at which a responsive
+        layout changes because a media query condition
+        becomes true or false.
+    </p>
+<p>
+        Breakpoints are commonly used to change column
+        arrangements, navigation menus, spacing,
+        and typography.
+    </p>
+<h3>Breakpoint Example</h3>
+<div class="code-example">
+<pre><code>.demo-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .demo-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1200px) {
+    .demo-layout {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}</code></pre>
+</div>
+<p>
+        This example uses one column by default,
+        two columns on wider screens, and three
+        columns when more space becomes available.
+    </p>
+<p>
+        Breakpoints should be chosen according to
+        when the content needs a layout adjustment,
+        rather than only targeting specific devices.
+        Relative units can also be useful for breakpoints.
+    </p>
+</section>
+<!-- MOBILE FIRST DESIGN -->
+<section class="chapter" id="mobile-first-design">
+<h2>Mobile-first design</h2>
+<p>
+        Mobile-first design is a responsive development
+        approach that begins with a simple layout
+        suitable for smaller screens.
+    </p>
+<p>
+        Additional styles are then introduced for
+        larger viewports using media queries.
+    </p>
+<h3>Mobile-First CSS Example</h3>
+<div class="code-example">
+<pre><code>.demo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .demo-content {
+        flex-direction: row;
+    }
+}</code></pre>
+</div>
+<h3>Example Explained</h3>
+<ul>
+<li>Small screens use a vertical arrangement.</li>
+<li>Larger screens use a horizontal arrangement.</li>
+<li>The basic layout works without a media query.</li>
+<li>Additional screen space is used when available.</li>
+</ul>
+<p>
+        Media queries are useful for responsive design,
+        but not every responsive layout requires them.
+        Flexible sizing and modern layout methods can
+        adapt automatically in many situations.
+    </p>
+</section>
+<!-- ==========================================
+     RESPONSIVE LAYOUT TECHNOLOGIES
+========================================== -->
+<section class="chapter" id="responsive-layout-technologies">
+<h2>Responsive layout technologies</h2>
+<p>
+        Modern CSS provides several layout systems
+        that make responsive website development easier.
+    </p>
+<p>
+        Instead of creating a separate layout for every
+        possible screen size, developers can use
+        flexible containers that adjust to the
+        available space.
+    </p>
+<h3>Common Responsive Layout Technologies</h3>
+<ul>
+<li>CSS Flexbox</li>
+<li>CSS Grid</li>
+<li>Flexible sizing units</li>
+<li>Media queries</li>
+<li>Minimum and maximum sizing constraints</li>
+</ul>
+<p>
+        Flexbox and Grid are particularly useful
+        because they provide built-in mechanisms
+        for distributing available space.
+    </p>
+</section>
+<!-- ==========================================
+     FLEXBOX
+========================================== -->
+<section class="chapter" id="responsive-flexbox">
+<h2>Flexbox</h2>
+<p>
+        CSS Flexbox is a one-dimensional layout system
+        used to arrange elements along a row or column.
+    </p>
+<p>
+        Flex items can grow or shrink depending on
+        the space available inside their container.
+    </p>
+<h3>Basic Flexbox Example</h3>
+<div class="code-example">
+<pre><code>.demo-flex-container {
+    display: flex;
+    gap: 15px;
+}
+
+.demo-flex-item {
+    flex: 1;
+}</code></pre>
+</div>
+<p>
+        The <code>flex: 1</code> shorthand allows
+        the items to share the available space
+        in the flex container.
+    </p>
+<h3>Responsive Flexbox with Media Queries</h3>
+<div class="code-example">
+<pre><code>.demo-flex-wrapper {
+    display: block;
+}
+
+.demo-flex-col1,
+.demo-flex-col2 {
+    padding: 20px;
+}
+
+@media screen and (min-width: 600px) {
+    .demo-flex-wrapper {
+        display: flex;
+        gap: 5%;
+    }
+
+    .demo-flex-col1 {
+        flex: 1;
+    }
+
+    .demo-flex-col2 {
+        flex: 2;
+    }
+}</code></pre>
+</div>
+<h3>HTML Example</h3>
+<div class="code-example">
+<pre><code>&lt;div class="demo-flex-wrapper"&gt;
+
+    &lt;div class="demo-flex-col1"&gt;
+        &lt;h3&gt;Column One&lt;/h3&gt;
+        &lt;p&gt;First column content.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="demo-flex-col2"&gt;
+        &lt;h3&gt;Column Two&lt;/h3&gt;
+        &lt;p&gt;Second column content.&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+</div>
+<h3>Example Explained</h3>
+<p>
+        Below 600 pixels, the two content sections
+        follow the normal vertical document flow.
+    </p>
+<p>
+        At 600 pixels and above, Flexbox places them
+        side by side. The second column receives
+        approximately twice the flexible space
+        of the first column.
+    </p>
+</section>
+<!-- ==========================================
+     CSS GRID
+========================================== -->
+<section class="chapter" id="responsive-css-grid">
+<h2>CSS grid</h2>
+<p>
+        CSS Grid is a two-dimensional layout system
+        that organizes elements into rows and columns.
+    </p>
+<p>
+        Grid provides flexible track sizing and
+        precise control over the placement
+        of webpage elements.
+    </p>
+<h3>The fr Unit</h3>
+<p>
+        The <code>fr</code> unit represents a fraction
+        of the available space in a grid container.
+    </p>
+<div class="code-example">
+<pre><code>.demo-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}</code></pre>
+</div>
+<p>
+        This creates three equally sized grid columns.
+    </p>
+<h3>Responsive Grid Example</h3>
+<div class="code-example">
+<pre><code>.demo-grid-wrapper {
+    display: block;
+}
+
+@media screen and (min-width: 600px) {
+    .demo-grid-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 5%;
+    }
+}</code></pre>
+</div>
+<h3>HTML Example</h3>
+<div class="code-example">
+<pre><code>&lt;div class="demo-grid-wrapper"&gt;
+
+    &lt;div&gt;
+        &lt;h3&gt;Sidebar&lt;/h3&gt;
+        &lt;p&gt;Related information.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+        &lt;h3&gt;Main Content&lt;/h3&gt;
+        &lt;p&gt;Primary webpage content.&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+</div>
+<h3>Example Explained</h3>
+<p>
+        On narrow screens, the content is arranged
+        vertically.
+    </p>
+<p>
+        When the viewport reaches 600 pixels,
+        CSS Grid creates two columns with
+        a 1:2 fractional track ratio.
+    </p>
+<p>
+        Grid is useful when developers need
+        coordinated row and column layouts,
+        while Flexbox is often convenient
+        for arranging items along one axis.
+    </p>
+</section>
+<!-- ==========================================
+     RESPONSIVE IMAGES AND MEDIA
+========================================== -->
+<section class="chapter" id="responsive-images-media">
+<h2>Responsive images/media</h2>
+<p>
+        Images and other media should adapt to the
+        available space without extending beyond
+        their containing elements.
+    </p>
+<h3>Responsive Media Example</h3>
+<div class="code-example">
+<pre><code>.demo-media img,
+.demo-media picture,
+.demo-media video {
+    max-width: 100%;
+}</code></pre>
+</div>
+<p>
+        The <code>max-width: 100%</code> declaration
+        helps prevent media elements from becoming
+        wider than their containers.
+    </p>
+<h3>Responsive Image Example</h3>
+<div class="code-example">
+<pre><code>&lt;img
+    src="images/website.jpg"
+    alt="Website design example"
+    class="demo-responsive-image"
+&gt;</code></pre>
+</div>
+<div class="code-example">
+<pre><code>.demo-responsive-image {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+</div>
+<h3>Why Image Optimization Matters</h3>
+<p>
+        Downloading an unnecessarily large image
+        on a mobile device can waste bandwidth
+        and slow down page loading.
+    </p>
+<p>
+        Images should be optimized for their intended
+        display sizes and formats.
+    </p>
+<h3>Responsive Image Techniques</h3>
+<ul>
+<li>
+<strong>max-width:</strong>
+            Prevents images from exceeding container width.
+        </li>
+<li>
+<strong>srcset:</strong>
+            Provides alternative image resources.
+        </li>
+<li>
+<strong>sizes:</strong>
+            Describes expected image display sizes.
+        </li>
+<li>
+<strong>picture:</strong>
+            Allows different image sources under
+            selected conditions.
+        </li>
+</ul>
+<h3>Example Using srcset</h3>
+<div class="code-example">
+<pre><code>&lt;img
+    src="images/photo-800.jpg"
+    srcset="
+        images/photo-400.jpg 400w,
+        images/photo-800.jpg 800w,
+        images/photo-1200.jpg 1200w
+    "
+    sizes="
+        (max-width: 600px) 100vw,
+        50vw
+    "
+    alt="Responsive example image"
+&gt;</code></pre>
+</div>
+<p>
+        The browser can select an appropriate image
+        resource based on the available information,
+        including the viewport and display density.
+    </p>
+<h3>Additional Media Considerations</h3>
+<ul>
+<li>Choose appropriate image formats such as JPG or PNG.</li>
+<li>Compress images to reduce download sizes.</li>
+<li>Use CSS gradients and shadows when suitable.</li>
+<li>Provide appropriate video or audio sources for different devices.</li>
+</ul>
+</section>
+<!-- ==========================================
+     RESPONSIVE TYPOGRAPHY
+========================================== -->
+<section class="chapter" id="responsive-typography">
+<h2>Responsive typography</h2>
+<p>
+        Responsive typography adjusts text presentation
+        to make content readable across different
+        screen sizes.
+    </p>
+<p>
+        Headings that appear suitable on a large
+        desktop monitor may be too large on a
+        small mobile screen.
+    </p>
+<p>
+        Developers can use media queries, relative
+        units, and CSS calculations to create
+        flexible typography.
+    </p>
+</section>
+<!-- MEDIA QUERIES FOR TYPOGRAPHY -->
+<section class="chapter" id="media-queries-typography">
+<h2>Using media queries for responsive typography</h2>
+<p>
+        Media queries can change font sizes according
+        to the width of the viewport.
+    </p>
+<h3>Responsive Heading Example</h3>
+<div class="code-example">
+<pre><code>.demo-responsive-heading {
+    font-size: 2rem;
+}
+
+@media (min-width: 1200px) {
+    .demo-responsive-heading {
+        font-size: 4rem;
+    }
+}</code></pre>
+</div>
+<h3>Example Explained</h3>
+<ul>
+<li>Smaller screens use a heading size of 2rem.</li>
+<li>At 1200 pixels and above, the heading uses 4rem.</li>
+<li>The rem unit is relative to the root element's font size.</li>
+</ul>
+<p>
+        Media queries can also adjust spacing,
+        alignment, line lengths, and other
+        presentation properties.
+    </p>
+</section>
+<!-- VIEWPORT UNITS FOR TYPOGRAPHY -->
+<section class="chapter" id="viewport-units-typography">
+<h2>Using viewport units for responsive typography</h2>
+<p>
+        Viewport units allow CSS values to respond
+        directly to the dimensions of the browser viewport.
+    </p>
+<p>
+        The <code>vw</code> unit represents one percent
+        of the viewport width.
+    </p>
+<h3>Viewport Unit Example</h3>
+<div class="code-example">
+<pre><code>.demo-viewport-heading {
+    font-size: 6vw;
+}</code></pre>
+</div>
+<p>
+        This heading size changes continuously
+        as the viewport width changes.
+    </p>
+<h3>Accessibility Consideration</h3>
+<p>
+        Using viewport units alone for text can
+        interfere with text-only zoom behavior.
+        Combining relative font units with viewport
+        units is a better approach.
+    </p>
+<h3>Using calc()</h3>
+<div class="code-example">
+<pre><code>.demo-fluid-heading {
+    font-size: calc(1.5rem + 4vw);
+}</code></pre>
+</div>
+<p>
+        The <code>calc()</code> function combines
+        a relative font size with a viewport-based
+        value to create fluid typography.
+    </p>
+<h3>Benefits of Fluid Typography</h3>
+<ul>
+<li>Font sizes can change gradually with the viewport.</li>
+<li>Fewer typography-specific breakpoints may be needed.</li>
+<li>Relative font sizing helps preserve text scalability.</li>
+</ul>
+</section>
+<!-- ==========================================
+     VIEWPORT META TAG
+========================================== -->
+<section class="chapter" id="viewport-meta-tag">
+<h2>The viewport meta tag</h2>
+<p>
+        The viewport meta tag tells mobile browsers
+        how to size the viewport when displaying
+        a webpage.
+    </p>
+<p>
+        It is usually placed inside the
+        <code>&lt;head&gt;</code> section
+        of an HTML document.
+    </p>
+<h3>Viewport Meta Tag Example</h3>
+<div class="code-example">
+<pre><code>&lt;meta
+    name="viewport"
+    content="width=device-width"
+&gt;</code></pre>
+</div>
+<h3>Common Modern Example</h3>
+<div class="code-example">
+<pre><code>&lt;meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+&gt;</code></pre>
+</div>
+<h3>Example Explained</h3>
+<ul>
+<li>
+<strong>name="viewport":</strong>
+            Identifies viewport configuration metadata.
+        </li>
+<li>
+<strong>width=device-width:</strong>
+            Sets the viewport width to the device width.
+        </li>
+<li>
+<strong>initial-scale=1.0:</strong>
+            Specifies the initial zoom scale.
+        </li>
+</ul>
+<h3>Why Is the Viewport Meta Tag Important?</h3>
+<p>
+        Some mobile browsers historically used a
+        wider virtual viewport to display websites
+        originally designed for desktop computers.
+    </p>
+<p>
+        Without the viewport meta tag, a browser
+        might render a desktop-sized layout and
+        shrink it to fit a mobile screen.
+    </p>
+<p>
+        This can prevent responsive media queries
+        from behaving as intended.
+    </p>
+<p>
+        Setting the viewport width to the device
+        width helps the browser apply the intended
+        mobile layout.
+    </p>
+</section>
+<!-- ==========================================
+     SUMMARY
+========================================== -->
+<section class="chapter" id="responsive-design-summary">
+<h2>Summary</h2>
+<p>
+        Responsive web design is a modern approach
+        to developing websites that work effectively
+        across different devices, screen sizes,
+        and resolutions.
+    </p>
+<p>
+        It combines flexible layouts, responsive
+        media, adaptable typography, and appropriate
+        viewport settings to improve usability.
+    </p>
+<h3>Key Concepts Learned</h3>
+<ul>
+<li>
+<strong>Responsive Web Design:</strong>
+            Creates flexible websites for different devices.
+        </li>
+<li>
+<strong>Media Queries:</strong>
+            Apply styles when selected conditions are met.
+        </li>
+<li>
+<strong>Breakpoints:</strong>
+            Identify points where a layout should change.
+        </li>
+<li>
+<strong>Mobile-First Design:</strong>
+            Begins with smaller screens and progressively
+            enhances the layout for larger screens.
+        </li>
+<li>
+<strong>Flexbox:</strong>
+            Provides flexible one-dimensional layouts.
+        </li>
+<li>
+<strong>CSS Grid:</strong>
+            Provides flexible two-dimensional layouts.
+        </li>
+<li>
+<strong>Responsive Media:</strong>
+            Prevents images and videos from overflowing
+            their containers and supports suitable resources.
+        </li>
+<li>
+<strong>Responsive Typography:</strong>
+            Makes text sizes adaptable across viewports.
+        </li>
+<li>
+<strong>Viewport Meta Tag:</strong>
+            Helps mobile browsers use the intended
+            viewport width.
+        </li>
+</ul>
+<h3>Final Reminder</h3>
+<p>
+        Responsive design is not about creating
+        a separate website for every device.
+        It is about building flexible layouts
+        that respond to available space
+        and user needs.
+    </p>
+<p>
+        Modern CSS tools make it easier to create
+        websites that remain readable, accessible,
+        and usable across a wide range of devices.
+    </p>
+</section>
+<!-- ==========================================
+     CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
+========================================== -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+        Test your understanding of Responsive Web Design,
+        Media Queries, Flexbox, CSS Grid, Responsive Images,
+        Typography, and the Viewport Meta Tag.
+    </p>
+<div id="quizProgress">0 of 10 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Responsive Web Design · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const fontSize = document.getElementById("fontSize");
+    const fontFamily = document.getElementById("fontFamily");
+
+    // Restore saved settings
+    const savedTheme = localStorage.getItem("readerTheme");
+    const savedSize = localStorage.getItem("readerFontSize");
+    const savedFont = localStorage.getItem("readerFontFamily");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (savedSize) {
+        fontSize.value = savedSize;
+    }
+
+    if (savedFont) {
+        fontFamily.value = savedFont;
+    }
+
+    function updateThemeIcon() {
+        themeIcon.textContent =
+            document.body.classList.contains("dark-mode") ? "☀" : "☾";
+    }
+
+    function applyFontSize() {
+        document.querySelectorAll("main .chapter").forEach(chapter => {
+            chapter.style.fontSize = fontSize.value;
+        });
+
+        localStorage.setItem("readerFontSize", fontSize.value);
+    }
+
+    function applyFontFamily() {
+        document.querySelector("main").style.fontFamily = fontFamily.value;
+        localStorage.setItem("readerFontFamily", fontFamily.value);
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "readerTheme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+    });
+
+    fontSize.addEventListener("change", applyFontSize);
+    fontFamily.addEventListener("change", applyFontFamily);
+
+    applyFontSize();
+    applyFontFamily();
+    updateThemeIcon();
+});
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ==========================================
+       CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
+    ========================================== */
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz || !retryQuiz ||
+        !quizResult || !quizProgress) {
+        console.error("Responsive quiz elements not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What is the main purpose of responsive web design?",
+            options: [
+                "To create separate websites for every device",
+                "To make webpages adapt to different screen sizes",
+                "To prevent websites from using CSS",
+                "To make every webpage a fixed width"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which CSS feature applies styles based on viewport conditions?",
+            options: [
+                "CSS animations",
+                "CSS transitions",
+                "Media queries",
+                "Pseudo-elements"
+            ],
+            answer: 2
+        },
+        {
+            question: "What is a breakpoint in responsive web design?",
+            options: [
+                "A point where responsive layout rules change",
+                "A JavaScript error that stops the webpage",
+                "A fixed height assigned to every image",
+                "A limit on the number of HTML elements"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is the main principle of mobile-first design?",
+            options: [
+                "Design desktop layouts before mobile layouts",
+                "Use fixed widths for all devices",
+                "Disable media queries on small screens",
+                "Start with smaller screens and enhance for larger ones"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which CSS declaration creates a flex container?",
+            options: [
+                "display: grid",
+                "display: flex",
+                "position: flex",
+                "flex-direction: grid"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which CSS layout system is designed for rows and columns together?",
+            options: [
+                "CSS Float",
+                "CSS Positioning",
+                "CSS Grid",
+                "CSS Transitions"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which CSS rules help an image shrink without losing its aspect ratio?",
+            options: [
+                "max-width: 100%; height: auto;",
+                "width: 1000px; height: 500px;",
+                "position: fixed; top: 0;",
+                "display: none; visibility: hidden;"
+            ],
+            answer: 0
+        },
+        {
+            question: "What does the CSS unit vw represent?",
+            options: [
+                "The height of the viewport",
+                "The width of the parent element",
+                "The width of the webpage in pixels",
+                "One percent of the viewport width"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which CSS function can combine rem and vw values for fluid typography?",
+            options: [
+                "repeat()",
+                "calc()",
+                "url()",
+                "attr()"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the purpose of width=device-width in the viewport meta tag?",
+            options: [
+                "To disable browser zoom permanently",
+                "To set all images to the same width",
+                "To match the layout viewport width to the device width",
+                "To force every webpage into desktop mode"
+            ],
+            answer: 2
+        }
+    ];
+
+    let quizSubmitted = false;
+
+    /* ==========================================
+       LOAD QUIZ
+    ========================================== */
+
+    function loadQuiz() {
+
+        quizSubmitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = String(optionIndex);
+
+                radio.addEventListener("change", updateProgress);
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+            });
+
+            quizQuestions.appendChild(box);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    /* ==========================================
+       UPDATE PROGRESS
+    ========================================== */
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    /* ==========================================
+       SUBMIT QUIZ
+    ========================================== */
+
+    submitQuiz.addEventListener("click", async function () {
+
+        if (quizSubmitted) return;
+
+        const selections = questions.map((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+        });
+
+        if (selections.includes(null)) {
+
+            alert("Please answer all questions before submitting.");
+
+            return;
+        }
+
+        quizSubmitted = true;
+        submitQuiz.disabled = true;
+
+        let score = 0;
+
+        /* ==========================================
+           CHECK ANSWERS
+        ========================================== */
+
+        questions.forEach((item, index) => {
+
+            const box = quizQuestions.children[index];
+            const selectedAnswer = selections[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+        });
+
+        /* ==========================================
+           CALCULATE SCORE
+        ========================================== */
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent work!";
+        } else if (percentage >= 75) {
+            message = "Great job!";
+        } else if (percentage >= 60) {
+            message = "Good effort! Keep reviewing.";
+        } else {
+            message = "Review the chapters and try again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+            <p id="quizSaveStatus" aria-live="polite">
+                Saving quiz result...
+            </p>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        /* ==========================================
+           SAVE RESULT TO CODEVERSE DATABASE
+        ========================================== */
+
+        const saveStatus = document.getElementById("quizSaveStatus");
+
+        try {
+
+            const response = await fetch("/api/quiz-results", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    bookId: 5,
+                    score: score,
+                    totalQuestions: questions.length
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            saveStatus.textContent = data.success
+                ? "Your quiz score has been saved!"
+                : (data.message || "Quiz score could not be saved.");
+
+        } catch (error) {
+
+            console.error("Quiz save error:", error);
+
+            saveStatus.textContent =
+                "Quiz completed, but the score could not be saved.";
+        }
+    });
+
+    /* ==========================================
+       RETRY QUIZ
+    ========================================== */
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    /* ==========================================
+       INITIALIZE
+    ========================================== */
+
+    loadQuiz();
+
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const menu = document.getElementById('menuToggle');
+ const links = document.getElementById('navLinks');
+ menu?.setAttribute('aria-expanded','false');
+ menu?.addEventListener('click', () => {const open=links.classList.toggle('show');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');});
+ links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('show');menu?.setAttribute('aria-expanded','false');}));
+ const entries=[...document.querySelectorAll('.toc a[href^="#"]')];
+ const sections=entries.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
+ if('IntersectionObserver' in window){const obs=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){entries.forEach(a=>a.classList.toggle('active',a.hash==='#'+item.target.id));}})},{rootMargin:'-95px 0px -65% 0px'});sections.forEach(section=>obs.observe(section));}
+});
+</script></body></html>

@@ -1,24 +1,22 @@
+
 {
   "name": "CodeVerse Digital Library",
   "short_name": "CodeVerse",
-  "description": "An interactive digital library for Information Technology students.",
   "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f5f7fc",
+  "background_color": "#f7f9fd",
   "theme_color": "#3157a4",
   "icons": [
     {
       "src": "/images/CodeVerseLogo.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "/images/CodeVerseLogo.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }

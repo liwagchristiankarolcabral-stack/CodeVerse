@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Styling, Layout, Flexbox, and Grid | CodeVerse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/images/CodeVerseLogo.png">
+<style>
+:root{--bg:#f4f7fc;--surface:#fff;--surface2:#edf3fb;--ink:#1a2943;--muted:#61728c;--line:#dce5f1;--blue:#2458b6;--blue2:#173e83;--shadow:0 10px 35px rgba(20,50,95,.08);--reader-size:16px;--reader-font:'DM Sans',sans-serif;color-scheme:light}
+body.dark-mode{--bg:#0d1423;--surface:#172236;--surface2:#1e304a;--ink:#ecf3ff;--muted:#b4c2d7;--line:#32435d;--blue:#8eb8ff;--blue2:#a9caff;--shadow:0 12px 35px rgba(0,0,0,.2);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;transition:background .2s,color .2s}*,*:before,*:after{box-sizing:border-box}a{color:var(--blue)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.navbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:22px;min-height:76px;padding:12px max(22px,calc((100vw - 1440px)/2));background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:24px;font-weight:800;color:var(--ink);white-space:nowrap}.site-logo{width:42px;height:42px;object-fit:contain}.logo-highlight{color:var(--blue)}.nav-links{display:flex;gap:23px;margin-left:auto}.nav-links a{text-decoration:none;color:var(--muted);font-weight:700;font-size:14px}.nav-links a:hover,.nav-links a.active{color:var(--blue)}.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{border:1px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--ink);padding:9px 13px}.icon-btn{font-size:22px}.menu-toggle{display:none}.login-btn,.signup-btn{display:inline-block;text-decoration:none;padding:10px 13px;border-radius:10px;font-size:13px;font-weight:700}.login-btn{color:var(--ink)}.signup-btn{background:#285db9;color:#fff}#accountActions{display:flex;align-items:center;gap:5px}
+.topbar{max-width:1440px;margin:auto;padding:19px 26px 6px}.back-link{font-size:14px;font-weight:700;text-decoration:none}.reading-controls{max-width:1440px;margin:12px auto 0;padding:14px 22px;display:flex;gap:18px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-size:13px;font-weight:700;color:var(--muted)}.control-group select{min-width:130px;border:1px solid var(--line);border-radius:9px;background:var(--surface2);color:var(--ink);padding:9px}
+.layout{max-width:1440px;margin:22px auto 50px;padding:0 22px;display:grid;grid-template-columns:290px minmax(0,1fr);align-items:start;gap:24px}.toc{position:sticky;top:98px;max-height:calc(100vh - 120px);overflow:auto;overscroll-behavior:contain;padding:23px 17px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);scrollbar-width:thin}.toc h2{font-size:18px;margin:0 8px 17px}.toc h3{font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin:24px 8px 9px;color:var(--blue)}.toc nav a{display:block;padding:9px 11px;text-decoration:none;border-radius:9px;font-size:13px;line-height:1.45;color:var(--muted)}.toc nav a:hover,.toc nav a.current{background:var(--surface2);color:var(--blue);font-weight:700}.layout>main{min-width:0}.book-header{background:linear-gradient(135deg,#1a3d80,#3672c7);color:white;padding:40px 44px;border-radius:22px;margin-bottom:24px;box-shadow:var(--shadow)}.book-header .eyebrow{display:inline-block;color:#dbeaff;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,4vw,43px);line-height:1.2;margin:14px 0}.book-header p{max-width:730px;color:#e6f0ff;line-height:1.7;font-size:16px}
+.chapter{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:32px 40px;margin-bottom:20px;box-shadow:var(--shadow);font-family:var(--reader-font);font-size:var(--reader-size);line-height:1.85;overflow-wrap:anywhere;scroll-margin-top:105px}.chapter h2{font-family:'DM Sans',sans-serif;font-size:clamp(22px,2.8vw,29px);line-height:1.35;color:var(--ink);margin:0 0 18px}.chapter h3{font-size:1.1em;line-height:1.5;margin:24px 0 10px;color:var(--blue)}.chapter p{margin:12px 0;color:var(--ink)}.chapter ul,.chapter ol{padding-left:25px}.chapter li{margin:6px 0}.chapter strong{color:var(--ink)}.chapter pre{margin:0;white-space:pre;overflow:auto;padding:19px;background:#111d32;color:#e6f2ff;border-radius:12px;font-size:14px;line-height:1.65}.code-example{margin:16px 0}.lesson-table{border-collapse:collapse;width:100%;margin:20px 0;font-size:.94em;display:block;overflow-x:auto}.lesson-table th,.lesson-table td{border:1px solid var(--line);padding:12px 16px;text-align:left;min-width:130px}.lesson-table th{background:var(--surface2)}.lesson-table tr:nth-child(even){background:var(--surface2)}.page-footer{text-align:center;color:var(--muted);padding:26px 0;font-size:13px}
+#quizProgress{display:inline-block;background:var(--surface2);padding:8px 14px;border-radius:20px;font-weight:700;font-size:14px;margin-bottom:18px}.quiz-question{background:var(--surface2);border:1px solid var(--line);padding:20px;border-radius:14px;margin:0 0 15px}.quiz-question h3{margin:0 0 14px;color:var(--ink);font-size:1em}.quiz-option{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:9px 0;background:var(--surface);cursor:pointer;line-height:1.4}.quiz-option:hover{border-color:var(--blue)}.quiz-option input{accent-color:#3672c7;flex:none}.quiz-option:has(input:checked){border-color:var(--blue);background:var(--surface2)}.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.quiz-actions button{background:#285db9;color:white;border:0;padding:13px 22px;border-radius:11px;font-weight:700}.quiz-actions button:disabled{opacity:.55;cursor:not-allowed}#quizResult{background:var(--surface2);border-radius:14px;padding:22px;text-align:center}#quizResult h2{font-size:32px;color:var(--blue)}.quiz-feedback{margin:8px 0;font-size:14px}.quiz-question.correct{border-color:#399d70}.quiz-question.incorrect{border-color:#d57474}[hidden]{display:none!important}
+@media(max-width:1050px){.layout{grid-template-columns:235px minmax(0,1fr);gap:16px}.chapter{padding:27px}.book-header{padding:30px}.navbar{gap:12px}.nav-links{gap:12px}}
+@media(max-width:780px){.navbar{flex-wrap:wrap;padding:12px 18px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;flex:0 0 100%;margin:0;padding:12px 0;flex-direction:column}.nav-links.show{display:flex}.nav-actions{margin-left:auto}#accountActions{display:none}.layout{display:flex;flex-direction:column;padding:0 14px}.toc{position:static;width:100%;max-height:240px}.layout>main{width:100%}.reading-controls{margin:12px 14px}.book-header{padding:26px}.chapter{padding:22px}.topbar{padding-left:18px}.site-logo{width:35px;height:35px}.logo{font-size:20px}}
+@media print{.navbar,.topbar,.reading-controls,.toc,.quiz-actions{display:none!important}.layout{display:block}.chapter{box-shadow:none;break-inside:avoid}.book-header{color:#000;background:#fff}}
+
+/* Correct-answer feedback, mobile controls and accessibility */
+.quiz-option.correct{border:2px solid #23865a;background:rgba(35,134,90,.12)}
+.quiz-option.incorrect{border:2px solid #c34d55;background:rgba(195,77,85,.12)}
+.quiz-option.correct span,.quiz-option.incorrect span{font-weight:700}
+.quiz-option input:disabled{opacity:1}
+.quiz-question .quiz-feedback{font-weight:700}
+@media(max-width:780px){#accountActions{display:flex}.nav-actions{margin-left:0}.menu-toggle{margin-left:auto}}
+@media(max-width:480px){.navbar{gap:8px}.nav-actions{order:3;width:100%;justify-content:flex-start}.menu-toggle{order:2}.reading-controls{padding:14px}.control-group{flex-wrap:wrap}}
+</style>
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<header class="topbar">
+<a class="back-link" href="/library.html">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav>
+<!-- CSS LESSONS -->
+<a href="#css-introduction">CSS Introduction</a>
+<a href="#what-is-css">What is CSS?</a>
+<a href="#why-use-css">Why Use CSS?</a>
+<a href="#css-website-layout">CSS Website Layout</a>
+<a href="#css-header">CSS Header</a>
+<a href="#css-navigation-bar">CSS Navigation Bar</a>
+<a href="#css-layout-content">CSS Layout Content</a>
+<a href="#css-basic-fixed-footer">CSS Basic and Fixed Footer</a>
+<a href="#css-flexbox">CSS Flexbox</a>
+<a href="#css-flexible-box-layout">CSS Flexbox (Flexible Box Layout)</a>
+<a href="#css-flexbox-components">CSS Flexbox Components</a>
+<a href="#css-three-flex-items">Three Flex Items</a>
+<a href="#css-grid-layout">CSS Grid Layout</a>
+<a href="#css-grid-layout-module">CSS Grid Layout Module</a>
+<a href="#css-grid-components">CSS Grid Components</a>
+<a href="#css-five-grid-items">Five Grid Items</a>
+<a href="#all-css-grid-properties">All CSS Grid Properties</a>
+<!-- KNOWLEDGE ASSESSMENT -->
+<a href="#quiz">
+            Knowledge Assessment Quiz
+        </a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>CSS Styling, Layout, Flexbox, and Grid</h1>
+<p>Learn the fundamentals of CSS styling, website layouts, Flexbox, 
+                and Grid to create visually appealing, responsive, and well-structured web pages.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - CSS INTRODUCTION
+========================================== -->
+<section class="chapter" id="css-introduction">
+<h2>CSS Introduction</h2>
+<p>
+        CSS is an important technology in web development.
+        While HTML defines the structure of a webpage,
+        CSS controls how that webpage looks and how its
+        elements are arranged.
+    </p>
+<p>
+        CSS allows developers to create visually appealing
+        websites using colors, fonts, spacing, backgrounds,
+        borders, and different layout techniques.
+    </p>
+</section>
+<!-- WHAT IS CSS? -->
+<section class="chapter" id="what-is-css">
+<h2>What is CSS?</h2>
+<p>
+        CSS stands for <strong>Cascading Style Sheets</strong>.
+        It is a stylesheet language used to control the
+        presentation and appearance of HTML documents.
+    </p>
+<ul>
+<li>CSS controls the appearance of HTML elements.</li>
+<li>CSS defines colors, fonts, spacing, and layouts.</li>
+<li>CSS supports different screen sizes and devices.</li>
+<li>CSS can style multiple webpages using one stylesheet.</li>
+<li>External stylesheets are stored in files ending with .css.</li>
+</ul>
+<h3>Example of CSS</h3>
+<div class="code-example">
+<pre><code>h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    color: gray;
+}</code></pre>
+</div>
+<h3>Example Explained</h3>
+<p>
+        The <code>h1</code> selector targets first-level headings.
+        The <code>color</code> property changes their text color,
+        while <code>text-align</code> controls text alignment.
+    </p>
+<p>
+        The <code>p</code> selector targets paragraphs.
+        The <code>font-size</code> property changes text size,
+        while <code>color</code> changes the text color.
+    </p>
+</section>
+<!-- WHY USE CSS? -->
+<section class="chapter" id="why-use-css">
+<h2>Why Use CSS?</h2>
+<p>
+        CSS is used to define the visual design of webpages.
+        It separates presentation rules from HTML content,
+        making websites easier to design, update, and maintain.
+    </p>
+<h3>Advantages of CSS</h3>
+<ul>
+<li>
+<strong>Consistent Design:</strong>
+            Multiple webpages can share the same appearance.
+        </li>
+<li>
+<strong>Easy Maintenance:</strong>
+            Updating one external stylesheet can change
+            the design of many webpages.
+        </li>
+<li>
+<strong>Responsive Design:</strong>
+            Websites can adapt to different screen sizes.
+        </li>
+<li>
+<strong>Better Organization:</strong>
+            HTML handles content while CSS handles presentation.
+        </li>
+<li>
+<strong>Design Flexibility:</strong>
+            The same HTML content can be presented using
+            different visual styles.
+        </li>
+</ul>
+<h3>CSS Styling Example</h3>
+<div class="code-example">
+<pre><code>body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: Verdana, sans-serif;
+    font-size: 20px;
+}</code></pre>
+</div>
+<h3>CSS Saves Time</h3>
+<p>
+        CSS rules are often stored in an external stylesheet.
+        This makes it possible to update the appearance of
+        an entire website without editing every HTML page.
+    </p>
+<h3>Connecting External CSS</h3>
+<div class="code-example">
+<pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+</div>
+<p>
+        The link element is placed inside the HTML
+        <code>&lt;head&gt;</code> element and connects
+        the webpage to an external CSS file.
+    </p>
+</section>
+<!-- ==========================================
+     CODEVERSE - CSS WEBSITE LAYOUT
+========================================== -->
+<section class="chapter" id="css-website-layout">
+<h2>CSS Website Layout</h2>
+<p>
+        A website layout describes how different parts of
+        a webpage are organized and displayed.
+    </p>
+<p>
+        A common website structure includes a header,
+        navigation menu, content area, and footer.
+    </p>
+<h3>Common Website Sections</h3>
+<ul>
+<li><strong>Header:</strong> The top section of a website.</li>
+<li><strong>Navigation:</strong> Links for moving between pages.</li>
+<li><strong>Main Content:</strong> The primary information on a page.</li>
+<li><strong>Side Content:</strong> Additional information or related links.</li>
+<li><strong>Footer:</strong> Information displayed at the bottom.</li>
+</ul>
+<h3>Example Website Structure</h3>
+<div class="code-example">
+<pre><code>&lt;header&gt;
+    &lt;h1&gt;My Website&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+    &lt;h2&gt;Main Content&lt;/h2&gt;
+    &lt;p&gt;Welcome to my website.&lt;/p&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;Copyright 2026&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+</div>
+</section>
+<!-- CSS HEADER -->
+<section class="chapter" id="css-header">
+<h2>CSS Header</h2>
+<p>
+        A header is usually positioned at the top of a webpage.
+        It commonly contains a website name, logo, heading,
+        or introductory information.
+    </p>
+<h3>Header Styling Example</h3>
+<div class="code-example">
+<pre><code>.demo-header {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+}</code></pre>
+</div>
+<h3>HTML Example</h3>
+<div class="code-example">
+<pre><code>&lt;header class="demo-header"&gt;
+    &lt;h1&gt;My Header&lt;/h1&gt;
+&lt;/header&gt;</code></pre>
+</div>
+<h3>Example Explained</h3>
+<ul>
+<li><code>background-color</code> defines the header background.</li>
+<li><code>text-align</code> controls horizontal text alignment.</li>
+<li><code>padding</code> adds space inside the header.</li>
+</ul>
+</section>
+<!-- CSS NAVIGATION BAR -->
+<section class="chapter" id="css-navigation-bar">
+<h2>CSS Navigation Bar</h2>
+<p>
+        A navigation bar contains links that help visitors
+        move between different pages or sections of a website.
+    </p>
+<h3>HTML Example</h3>
+<div class="code-example">
+<pre><code>&lt;ul class="demo-topnav"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Services&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+<h3>CSS Example</h3>
+<div class="code-example">
+<pre><code>ul.demo-topnav {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333333;
+}
+
+ul.demo-topnav li a {
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.demo-topnav li a:hover {
+    background-color: #dddddd;
+    color: black;
+}</code></pre>
+</div>
+<h3>Example Explained</h3>
+<ul>
+<li><code>display: flex</code> arranges links horizontally.</li>
+<li><code>list-style-type: none</code> removes list markers.</li>
+<li><code>padding</code> creates spacing around links.</li>
+<li><code>:hover</code> changes the appearance when a pointer moves over a link.</li>
+</ul>
+</section>
+<!-- CSS LAYOUT CONTENT -->
+<section class="chapter" id="css-layout-content">
+<h2>CSS Layout Content</h2>
+<p>
+        Website content can be arranged into one or more
+        columns depending on the available screen space.
+    </p>
+<h3>Common Content Layouts</h3>
+<ul>
+<li>
+<strong>One-Column Layout:</strong>
+            Often used for mobile screens.
+        </li>
+<li>
+<strong>Two-Column Layout:</strong>
+            Commonly used for tablets and laptops.
+        </li>
+<li>
+<strong>Three-Column Layout:</strong>
+            Useful for wider desktop screens.
+        </li>
+</ul>
+<h3>Responsive Three-Column Example</h3>
+<div class="code-example">
+<pre><code>.demo-columns {
+    display: flex;
+    flex-direction: row;
+}
+
+.demo-columns &gt; div {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: #e8eef9;
+}
+
+@media screen and (max-width: 600px) {
+    .demo-columns {
+        flex-direction: column;
+    }
+}</code></pre>
+</div>
+<h3>HTML Example</h3>
+<div class="code-example">
+<pre><code>&lt;div class="demo-columns"&gt;
+    &lt;div&gt;Column 1&lt;/div&gt;
+    &lt;div&gt;Column 2&lt;/div&gt;
+    &lt;div&gt;Column 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<p>
+        On wider screens, the columns appear next to each
+        other. When the viewport is 600 pixels wide or less,
+        the media query changes the layout to a vertical arrangement.
+    </p>
+</section>
+<!-- CSS BASIC AND FIXED FOOTER -->
+<section class="chapter" id="css-basic-fixed-footer">
+<h2>CSS Basic and Fixed Footer</h2>
+<p>
+        A footer is generally placed at the bottom of a webpage.
+        It often contains copyright notices, contact details,
+        legal information, and additional navigation links.
+    </p>
+<h3>Basic Footer</h3>
+<p>
+        A basic footer follows the normal document layout.
+        It appears after the content preceding it.
+    </p>
+<div class="code-example">
+<pre><code>.demo-footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 15px;
+}</code></pre>
+</div>
+<h3>Fixed Footer</h3>
+<p>
+        A fixed footer remains attached to the bottom of
+        the browser viewport even while the user scrolls.
+    </p>
+<div class="code-example">
+<pre><code>.demo-fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+}</code></pre>
+</div>
+<h3>Basic Footer vs. Fixed Footer</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Basic Footer</th>
+<th>Fixed Footer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Follows normal document flow</td>
+<td>Positioned relative to the viewport</td>
+</tr>
+<tr>
+<td>Moves as the user scrolls</td>
+<td>Remains visible while scrolling</td>
+</tr>
+<tr>
+<td>Appears after preceding content</td>
+<td>Can overlap content without additional spacing</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ==========================================
+     CODEVERSE - CSS FLEXBOX
+========================================== -->
+<section class="chapter" id="css-flexbox">
+<h2>CSS Flexbox</h2>
+<p>
+        CSS Flexbox is a layout system that makes it easier
+        to arrange elements inside a container.
+    </p>
+<p>
+        It is particularly useful when building responsive
+        navigation bars, rows of cards, button groups,
+        and other flexible webpage components.
+    </p>
+</section>
+<!-- FLEXIBLE BOX LAYOUT -->
+<section class="chapter" id="css-flexible-box-layout">
+<h2>CSS Flexbox (Flexible Box Layout)</h2>
+<p>
+        Flexbox stands for the CSS Flexible Box Layout module.
+        It provides a flexible way to arrange items horizontally
+        or vertically inside a container.
+    </p>
+<p>
+        Flexbox simplifies responsive layouts without requiring
+        traditional float-based positioning techniques.
+    </p>
+<h3>Flexbox Features</h3>
+<ul>
+<li>Arranges elements in rows or columns.</li>
+<li>Distributes available space between items.</li>
+<li>Supports horizontal and vertical alignment.</li>
+<li>Allows items to grow or shrink.</li>
+<li>Can wrap items onto additional lines.</li>
+</ul>
+<h3>Flexbox vs. Grid</h3>
+<p>
+        Flexbox is primarily designed for one-dimensional layouts,
+        working along a row or a column.
+    </p>
+<p>
+        CSS Grid is designed for two-dimensional layouts,
+        where rows and columns can be controlled together.
+    </p>
+</section>
+<!-- FLEXBOX COMPONENTS -->
+<section class="chapter" id="css-flexbox-components">
+<h2>CSS Flexbox Components</h2>
+<p>
+        A Flexbox layout consists of a flex container
+        and one or more flex items.
+    </p>
+<h3>Flex Container</h3>
+<p>
+        The flex container is the parent element.
+        It becomes a flex container when its display
+        property is set to <code>flex</code> or
+        <code>inline-flex</code>.
+    </p>
+<div class="code-example">
+<pre><code>.flex-container {
+    display: flex;
+}</code></pre>
+</div>
+<h3>Flex Items</h3>
+<p>
+        Flex items are the direct children of a flex container.
+        The browser automatically arranges them according
+        to the container's flex properties.
+    </p>
+<h3>Important Flexbox Properties</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>display</td>
+<td>Enables flex layout</td>
+</tr>
+<tr>
+<td>flex-direction</td>
+<td>Defines the main direction of items</td>
+</tr>
+<tr>
+<td>justify-content</td>
+<td>Aligns and distributes items along the main axis</td>
+</tr>
+<tr>
+<td>align-items</td>
+<td>Aligns items along the cross axis</td>
+</tr>
+<tr>
+<td>flex-wrap</td>
+<td>Controls whether items can move to another line</td>
+</tr>
+<tr>
+<td>gap</td>
+<td>Sets spacing between flex items</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- THREE FLEX ITEMS -->
+<section class="chapter" id="css-three-flex-items">
+<h2>A Flex Container with Three Flex Items</h2>
+<p>
+        The following example demonstrates a flex container
+        with three child elements.
+    </p>
+<h3>HTML Example</h3>
+<div class="code-example">
+<pre><code>&lt;div class="demo-flex"&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+    &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<h3>CSS Example</h3>
+<div class="code-example">
+<pre><code>.demo-flex {
+    display: flex;
+    background-color: DodgerBlue;
+}
+
+.demo-flex div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 24px;
+    color: #202b40;
+}</code></pre>
+</div>
+<h3>Example Output</h3>
+<div style="display:flex; background:#1e90ff;
+                padding:10px; gap:10px; overflow-x:auto;">
+<div style="background:#f1f1f1; color:#202b40;
+                    padding:20px; text-align:center; flex:1;
+                    min-width:85px;">
+            Item 1
+        </div>
+<div style="background:#f1f1f1; color:#202b40;
+                    padding:20px; text-align:center; flex:1;
+                    min-width:85px;">
+            Item 2
+        </div>
+<div style="background:#f1f1f1; color:#202b40;
+                    padding:20px; text-align:center; flex:1;
+                    min-width:85px;">
+            Item 3
+        </div>
+</div>
+<p>
+        The blue area represents the flex container.
+        The three light-colored boxes are flex items.
+    </p>
+</section>
+<!-- ==========================================
+     CODEVERSE - CSS GRID LAYOUT
+========================================== -->
+<section class="chapter" id="css-grid-layout">
+<h2>CSS Grid Layout</h2>
+<p>
+        CSS Grid is a layout system for arranging webpage
+        elements into rows and columns.
+    </p>
+<p>
+        It is useful for building complex website structures,
+        image galleries, dashboards, and responsive content areas.
+    </p>
+</section>
+<!-- GRID LAYOUT MODULE -->
+<section class="chapter" id="css-grid-layout-module">
+<h2>CSS Grid Layout Module</h2>
+<p>
+        The CSS Grid Layout Module provides a two-dimensional
+        system for positioning elements in rows and columns.
+    </p>
+<p>
+        Grid allows developers to control both dimensions
+        of a layout without relying on floats or traditional
+        positioning techniques.
+    </p>
+<h3>Advantages of CSS Grid</h3>
+<ul>
+<li>Creates layouts using rows and columns.</li>
+<li>Supports complex webpage structures.</li>
+<li>Controls spacing between grid items.</li>
+<li>Allows flexible column and row sizes.</li>
+<li>Supports responsive website layouts.</li>
+</ul>
+<h3>Grid vs. Flexbox</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>CSS Grid</th>
+<th>CSS Flexbox</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Two-dimensional layout</td>
+<td>One-dimensional layout</td>
+</tr>
+<tr>
+<td>Controls rows and columns together</td>
+<td>Arranges items along a main axis</td>
+</tr>
+<tr>
+<td>Useful for page structures and dashboards</td>
+<td>Useful for navigation and component alignment</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- GRID COMPONENTS -->
+<section class="chapter" id="css-grid-components">
+<h2>CSS Grid Components</h2>
+<p>
+        A CSS Grid layout consists of a grid container
+        and one or more grid items.
+    </p>
+<h3>Grid Container</h3>
+<p>
+        The grid container is the parent element.
+        It is created by setting the display property
+        to <code>grid</code> or <code>inline-grid</code>.
+    </p>
+<div class="code-example">
+<pre><code>.grid-container {
+    display: grid;
+}</code></pre>
+</div>
+<h3>Grid Items</h3>
+<p>
+        Grid items are the direct children of the grid container.
+        They are automatically placed into the grid according
+        to its defined rows, columns, and placement rules.
+    </p>
+<h3>Grid Columns</h3>
+<p>
+        Columns are vertical tracks within the grid.
+        Their sizes can be defined using
+        <code>grid-template-columns</code>.
+    </p>
+<div class="code-example">
+<pre><code>.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}</code></pre>
+</div>
+<h3>Grid Rows</h3>
+<p>
+        Rows are horizontal tracks within the grid.
+        Their sizes can be controlled using
+        <code>grid-template-rows</code>.
+    </p>
+<h3>Grid Gaps</h3>
+<p>
+        The <code>gap</code> property controls the spacing
+        between rows and columns.
+    </p>
+<div class="code-example">
+<pre><code>.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}</code></pre>
+</div>
+</section>
+<!-- FIVE GRID ITEMS -->
+<section class="chapter" id="css-five-grid-items">
+<h2>A Grid Container with Five Grid Items</h2>
+<p>
+        The following example creates a grid container
+        with five items arranged into three columns.
+    </p>
+<h3>HTML Example</h3>
+<div class="code-example">
+<pre><code>&lt;div class="demo-grid"&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+    &lt;div&gt;4&lt;/div&gt;
+    &lt;div&gt;5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<h3>CSS Example</h3>
+<div class="code-example">
+<pre><code>.demo-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: DodgerBlue;
+    padding: 10px;
+}
+
+.demo-grid div {
+    background-color: #f1f1f1;
+    border: 1px solid black;
+    padding: 15px;
+    font-size: 24px;
+    text-align: center;
+    color: #202b40;
+}</code></pre>
+</div>
+<h3>Example Output</h3>
+<div style="display:grid;
+                grid-template-columns:repeat(3,minmax(0,1fr));
+                gap:10px;
+                padding:10px;
+                background:#1e90ff;">
+<div style="background:#f1f1f1;color:#202b40;
+                    padding:20px;text-align:center;">1</div>
+<div style="background:#f1f1f1;color:#202b40;
+                    padding:20px;text-align:center;">2</div>
+<div style="background:#f1f1f1;color:#202b40;
+                    padding:20px;text-align:center;">3</div>
+<div style="background:#f1f1f1;color:#202b40;
+                    padding:20px;text-align:center;">4</div>
+<div style="background:#f1f1f1;color:#202b40;
+                    padding:20px;text-align:center;">5</div>
+</div>
+<p>
+        The first three items occupy the first row.
+        The remaining two items appear in the second row.
+    </p>
+</section>
+<!-- ALL CSS GRID PROPERTIES -->
+<section class="chapter" id="all-css-grid-properties">
+<h2>All CSS Grid Properties</h2>
+<p>
+        CSS Grid provides properties for defining grid tracks,
+        controlling item placement, adjusting alignment,
+        and managing spacing.
+    </p>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>CSS Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>align-content</code></td>
+<td>Aligns the grid tracks along the block axis when extra space is available.</td>
+</tr>
+<tr>
+<td><code>align-items</code></td>
+<td>Sets the default block-axis alignment of grid items.</td>
+</tr>
+<tr>
+<td><code>align-self</code></td>
+<td>Controls the block-axis alignment of an individual grid item.</td>
+</tr>
+<tr>
+<td><code>display</code></td>
+<td>Defines the element's display type, including grid and inline-grid.</td>
+</tr>
+<tr>
+<td><code>column-gap</code></td>
+<td>Specifies the spacing between grid columns.</td>
+</tr>
+<tr>
+<td><code>gap</code></td>
+<td>Sets both row and column spacing.</td>
+</tr>
+<tr>
+<td><code>grid</code></td>
+<td>Shorthand for several explicit and implicit grid properties.</td>
+</tr>
+<tr>
+<td><code>grid-area</code></td>
+<td>Assigns a grid area name or specifies item placement boundaries.</td>
+</tr>
+<tr>
+<td><code>grid-auto-columns</code></td>
+<td>Defines the size of implicitly created columns.</td>
+</tr>
+<tr>
+<td><code>grid-auto-flow</code></td>
+<td>Controls how automatically placed grid items are inserted.</td>
+</tr>
+<tr>
+<td><code>grid-auto-rows</code></td>
+<td>Defines the size of implicitly created rows.</td>
+</tr>
+<tr>
+<td><code>grid-column</code></td>
+<td>Shorthand for grid-column-start and grid-column-end.</td>
+</tr>
+<tr>
+<td><code>grid-column-end</code></td>
+<td>Specifies the ending grid line for a column placement.</td>
+</tr>
+<tr>
+<td><code>grid-column-start</code></td>
+<td>Specifies the starting grid line for a column placement.</td>
+</tr>
+<tr>
+<td><code>grid-row</code></td>
+<td>Shorthand for grid-row-start and grid-row-end.</td>
+</tr>
+<tr>
+<td><code>grid-row-end</code></td>
+<td>Specifies the ending grid line for a row placement.</td>
+</tr>
+<tr>
+<td><code>grid-row-start</code></td>
+<td>Specifies the starting grid line for a row placement.</td>
+</tr>
+<tr>
+<td><code>grid-template</code></td>
+<td>Shorthand for defining explicit grid rows, columns, and areas.</td>
+</tr>
+<tr>
+<td><code>grid-template-areas</code></td>
+<td>Defines a layout using named grid areas.</td>
+</tr>
+<tr>
+<td><code>grid-template-columns</code></td>
+<td>Defines the number and sizes of explicit grid columns.</td>
+</tr>
+<tr>
+<td><code>grid-template-rows</code></td>
+<td>Defines the sizes of explicit grid rows.</td>
+</tr>
+<tr>
+<td><code>justify-content</code></td>
+<td>Aligns grid tracks along the inline axis when extra space is available.</td>
+</tr>
+<tr>
+<td><code>justify-self</code></td>
+<td>Controls the inline-axis alignment of an individual grid item.</td>
+</tr>
+<tr>
+<td><code>place-self</code></td>
+<td>Shorthand for align-self and justify-self.</td>
+</tr>
+<tr>
+<td><code>place-content</code></td>
+<td>Shorthand for align-content and justify-content.</td>
+</tr>
+<tr>
+<td><code>row-gap</code></td>
+<td>Specifies the spacing between grid rows.</td>
+</tr>
+</tbody>
+</table>
+<h3>Example: Using Grid Properties</h3>
+<div class="code-example">
+<pre><code>.demo-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 20px;
+    padding: 20px;
+}
+
+.demo-dashboard .featured {
+    grid-column: 1 / 3;
+}
+
+.demo-dashboard .sidebar {
+    grid-column: 3;
+}</code></pre>
+</div>
+<p>
+        In this example, the grid contains three columns.
+        The featured element spans the first two columns,
+        while the sidebar occupies the third column.
+    </p>
+</section>
+<!-- ==========================================
+     CODEVERSE - CSS KNOWLEDGE ASSESSMENT QUIZ
+========================================== -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+        Test your understanding of CSS Introduction,
+        Website Layout, Flexbox, and Grid Layout.
+    </p>
+<div id="quizProgress">0 of 10 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of CSS Styling, Layout, Flexbox, and Grid · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const fontSize = document.getElementById("fontSize");
+    const fontFamily = document.getElementById("fontFamily");
+
+    // Restore saved settings
+    const savedTheme = localStorage.getItem("readerTheme");
+    const savedSize = localStorage.getItem("readerFontSize");
+    const savedFont = localStorage.getItem("readerFontFamily");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (savedSize) {
+        fontSize.value = savedSize;
+    }
+
+    if (savedFont) {
+        fontFamily.value = savedFont;
+    }
+
+    function updateThemeIcon() {
+        themeIcon.textContent =
+            document.body.classList.contains("dark-mode") ? "☀" : "☾";
+    }
+
+    function applyFontSize() {
+        document.querySelectorAll("main .chapter").forEach(chapter => {
+            chapter.style.fontSize = fontSize.value;
+        });
+
+        localStorage.setItem("readerFontSize", fontSize.value);
+    }
+
+    function applyFontFamily() {
+        document.querySelector("main").style.fontFamily = fontFamily.value;
+        localStorage.setItem("readerFontFamily", fontFamily.value);
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "readerTheme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+    });
+
+    fontSize.addEventListener("change", applyFontSize);
+    fontFamily.addEventListener("change", applyFontFamily);
+
+    applyFontSize();
+    applyFontFamily();
+    updateThemeIcon();
+});
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ==========================================
+       CODEVERSE - CSS KNOWLEDGE ASSESSMENT
+    ========================================== */
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz || !retryQuiz ||
+        !quizResult || !quizProgress) {
+        console.error("Quiz elements not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What does CSS stand for?",
+            options: [
+                "Computer Style Sheets",
+                "Cascading Style Sheets",
+                "Creative Styling System",
+                "Cascading Structure Syntax"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the main purpose of CSS?",
+            options: [
+                "To create databases",
+                "To define HTML document structure",
+                "To control the appearance and layout of webpages",
+                "To process server requests"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which HTML element is used to connect an external CSS stylesheet?",
+            options: [
+                "<style>",
+                "<script>",
+                "<css>",
+                "<link>"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which CSS property changes the background color of an element?",
+            options: [
+                "background-color",
+                "font-color",
+                "text-align",
+                "border-style"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which CSS property is commonly used to create a flex container?",
+            options: [
+                "position: flex",
+                "display: flex",
+                "flex-direction: auto",
+                "layout: flex"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the main purpose of the CSS flex-direction property?",
+            options: [
+                "To change the text color",
+                "To define the spacing between items",
+                "To define the direction of flex items",
+                "To change the border size"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which CSS property controls the spacing between flex or grid items?",
+            options: [
+                "padding",
+                "margin",
+                "spacing",
+                "gap"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which CSS declaration creates a grid container?",
+            options: [
+                "display: grid",
+                "position: grid",
+                "grid-layout: true",
+                "layout: columns"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which CSS property defines the number and sizes of grid columns?",
+            options: [
+                "grid-template-rows",
+                "grid-template-columns",
+                "grid-auto-flow",
+                "grid-column-start"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the main difference between Flexbox and CSS Grid?",
+            options: [
+                "Flexbox is for colors, while Grid is for fonts",
+                "Grid only works on mobile devices",
+                "Flexbox is primarily one-dimensional, while Grid is two-dimensional",
+                "Flexbox requires JavaScript, while Grid does not"
+            ],
+            answer: 2
+        }
+    ];
+
+    /* ==========================================
+       LOAD QUIZ
+    ========================================== */
+
+    function loadQuiz() {
+
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener("change", updateProgress);
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+
+            });
+
+            quizQuestions.appendChild(box);
+
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    /* ==========================================
+       UPDATE QUIZ PROGRESS
+    ========================================== */
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) answered++;
+
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    /* ==========================================
+       SUBMIT QUIZ
+    ========================================== */
+
+    submitQuiz.addEventListener("click", async function () {
+
+        const selections = questions.map((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+
+        });
+
+        if (selections.includes(null)) {
+            alert("Please answer all 10 questions before submitting.");
+            return;
+        }
+
+        let score = 0;
+
+        questions.forEach((item, index) => {
+
+            const box = quizQuestions.children[index];
+            const selectedAnswer = selections[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+
+        });
+
+        /* ==========================================
+           CALCULATE RESULT
+        ========================================== */
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent work!";
+        } else if (percentage >= 75) {
+            message = "Great job!";
+        } else if (percentage >= 60) {
+            message = "Good effort! Keep reviewing.";
+        } else {
+            message = "Review the chapters and try again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+            <p id="quizSaveStatus" aria-live="polite">
+                Saving quiz result...
+            </p>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        /* ==========================================
+           SAVE RESULT TO CODEVERSE DATABASE
+        ========================================== */
+
+        const saveStatus = document.getElementById("quizSaveStatus");
+
+        try {
+
+            const response = await fetch("/api/quiz-results", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    bookId: 4,
+                    score: score,
+                    totalQuestions: questions.length
+                })
+            });
+
+            const data = await response.json().catch(() => ({}));
+
+            saveStatus.textContent =
+                response.ok && data.success
+                    ? "Your quiz score has been saved!"
+                    : (data.message || "Quiz score could not be saved.");
+
+        } catch (error) {
+
+            console.error("Quiz save error:", error);
+
+            saveStatus.textContent =
+                "Quiz completed, but the score could not be saved.";
+        }
+
+    });
+
+    /* ==========================================
+       RETRY QUIZ
+    ========================================== */
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
+
+    loadQuiz();
+
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+            const expanded = navLinks.classList.toggle("show");
+            menuToggle.setAttribute("aria-expanded", String(expanded));
+        });
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("show");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
+    const tocLinks = [...document.querySelectorAll('.toc a[href^="#"]')];
+    const chapters = [...document.querySelectorAll('main .chapter[id]')];
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+            for (const entry of entries) {
+                if (!entry.isIntersecting) continue;
+                tocLinks.forEach(link => link.classList.toggle(
+                    "current", link.getAttribute("href") === "#" + entry.target.id
+                ));
+            }
+        }, {rootMargin: "-105px 0px -65% 0px"});
+        chapters.forEach(chapter => observer.observe(chapter));
+    }
+});
+</script>
+    <script src="/js/navbar-loader.js" defer></script>
+</body></html>

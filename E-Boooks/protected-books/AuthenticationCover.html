@@ -598,6 +598,7 @@
 
     </style>
 <link href="/css/navbar.css" rel="stylesheet"/>
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body id="top">
 <!-- NAVIGATION BAR -->
@@ -652,6 +653,12 @@
 <a aria-haspopup="dialog" class="book-btn" href="#contentsPopup" id="contentsBtn">
                     ☰ Contents
                 </a>
+
+    <!-- CODEVERSE OFFLINE READING -->
+    <button type="button" class="book-btn offline-download-btn"
+            data-offline-book="9">
+        ↓ Download for Offline Reading
+    </button>
 </div>
 </section>
 </main>
@@ -863,5 +870,6 @@
     </script>
 <!-- ACCOUNT NAVIGATION -->
 <script defer="" src="/js/navbar-loader.js"></script>
+    <script src="/js/offline.js" defer></script>
 </body>
 </html>

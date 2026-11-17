@@ -1,0 +1,4719 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deadlocks and Resource Allocation | CodeVerse</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- FAVICON -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+
+        /* ==========================================
+           CODEVERSE E-BOOK READER
+           DEADLOCKS AND RESOURCE ALLOCATION
+        ========================================== */
+
+        :root {
+            --background: #f6f8fc;
+            --surface: #ffffff;
+            --text: #26344d;
+            --muted: #65748c;
+            --primary: #3157a4;
+            --primary-dark: #24427f;
+            --border: #dce3ee;
+            --shadow: 0 8px 30px rgba(30, 50, 90, .07);
+            --reader-size: 16px;
+            --reader-family: 'DM Sans', sans-serif;
+        }
+
+        body.dark-mode {
+            --background: #111827;
+            --surface: #1c2738;
+            --text: #edf2fc;
+            --muted: #b3bfd2;
+            --primary: #91b5ff;
+            --primary-dark: #6c9cff;
+            --border: #3a4b63;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            transition: background .3s ease, color .3s ease;
+        }
+
+        body,
+        body *,
+        body *::before,
+        body *::after {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+        /* ==========================================
+           NAVIGATION BAR
+        ========================================== */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            min-height: 82px;
+            padding: 14px 5%;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .site-logo {
+            width: 43px;
+            height: 43px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            font-size: 21px;
+            cursor: pointer;
+        }
+
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .login-btn {
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .signup-btn {
+            background: #3157a4;
+            color: #ffffff;
+        }
+
+        .menu-toggle {
+            display: none;
+            padding: 8px 12px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           BACK TO BOOKS
+        ========================================== */
+
+        .topbar {
+            padding: 18px 5%;
+        }
+
+        .back-link {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ==========================================
+           READING CONTROLS
+        ========================================== */
+
+        .reading-controls {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 22px;
+            padding: 16px 5%;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .control-group select {
+            min-width: 130px;
+            padding: 9px 12px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           READER LAYOUT
+        ========================================== */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 28px;
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 25px;
+            align-items: start;
+        }
+
+        .layout main {
+            min-width: 0;
+        }
+
+        /* ==========================================
+           TABLE OF CONTENTS
+        ========================================== */
+
+        .toc {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 22px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--background);
+        }
+
+        .toc::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .toc::-webkit-scrollbar-track {
+            background: var(--background);
+            border-radius: 10px;
+        }
+
+        .toc::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .toc h2 {
+            margin: 0 0 18px;
+            padding: 0 8px;
+            color: var(--text);
+            font-size: 18px;
+        }
+
+        .toc nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .toc nav a {
+            display: block;
+            padding: 10px 12px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.5;
+            border-radius: 8px;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        .toc nav a:hover,
+        .toc nav a.active {
+            background: var(--background);
+            color: var(--primary);
+        }
+
+        /* ==========================================
+           BOOK HEADER
+        ========================================== */
+
+        .book-header {
+            padding: 38px;
+            margin-bottom: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.1px;
+        }
+
+        .book-header h1 {
+            margin: 8px 0 15px;
+            color: var(--text);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 43px);
+            line-height: 1.25;
+        }
+
+        .book-header p {
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* ==========================================
+           CHAPTER CONTENT
+        ========================================== */
+
+        .chapter {
+            padding: 35px;
+            margin-bottom: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 105px;
+            font-family: var(--reader-family);
+            font-size: var(--reader-size);
+            line-height: 1.85;
+        }
+
+        .chapter h2 {
+            margin-top: 5px;
+            margin-bottom: 20px;
+            color: var(--text);
+            font-size: 1.6em;
+            line-height: 1.35;
+        }
+
+        .chapter h3 {
+            margin-top: 28px;
+            margin-bottom: 12px;
+            color: var(--text);
+            font-size: 1.18em;
+        }
+
+        .chapter p {
+            margin: 12px 0 18px;
+            color: var(--text);
+            line-height: 1.85;
+        }
+
+        .chapter ul,
+        .chapter ol {
+            padding-left: 25px;
+            margin: 15px 0 22px;
+        }
+
+        .chapter li {
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .chapter strong {
+            color: var(--text);
+        }
+
+        /* ==========================================
+           TABLES
+        ========================================== */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 22px 0;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .9em;
+        }
+
+        .chapter th,
+        .chapter td {
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .chapter th {
+            background: var(--background);
+            font-weight: 800;
+        }
+
+        /* ==========================================
+           EXAMPLE BOX
+        ========================================== */
+
+        .example-box {
+            margin: 22px 0;
+            padding: 20px 22px;
+            background: var(--background);
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+        }
+
+        .example-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================
+           QUIZ STYLES
+           USED IN PART 4
+        ========================================== */
+
+        .quiz-question {
+            padding: 22px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .quiz-question h3 {
+            margin-top: 0;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 13px;
+            margin: 9px 0;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .quiz-option input {
+            margin-top: 6px;
+            accent-color: #3157a4;
+        }
+
+        .quiz-option:hover {
+            background: var(--background);
+        }
+
+        .quiz-option.correct {
+            border-color: #2eaa76;
+            background: rgba(46, 170, 118, .13);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #d65764;
+            background: rgba(214, 87, 100, .13);
+        }
+
+        .quiz-feedback {
+            padding: 12px;
+            margin-top: 12px;
+            background: var(--background);
+            border-radius: 8px;
+            font-size: .9em;
+        }
+
+        .quiz-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .quiz-actions button {
+            padding: 13px 22px;
+            background: #3157a4;
+            color: #ffffff;
+            border: none;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-actions button:hover {
+            background: #24427f;
+        }
+
+        .quiz-actions button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        #quizProgress {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        #quizResult {
+            margin-top: 25px;
+            padding: 25px;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        .page-footer {
+            padding: 30px 20px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN
+        ========================================== */
+
+        @media (max-width: 1000px) {
+
+            .navbar {
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .layout {
+                grid-template-columns: 240px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+        }
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                min-height: 72px;
+                padding: 12px 4%;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .site-logo {
+                width: 37px;
+                height: 37px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 4%;
+                right: 4%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 5px;
+                padding: 16px;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+                margin-top: 20px;
+                padding: 0 15px;
+            }
+
+            .toc {
+                position: relative;
+                top: auto;
+                max-height: 260px;
+            }
+
+            .book-header,
+            .chapter {
+                padding: 24px;
+            }
+
+        }
+
+        @media (max-width: 540px) {
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .site-logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            #accountActions {
+                gap: 5px;
+            }
+
+            .login-btn,
+            .signup-btn {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+
+            .reading-controls {
+                align-items: stretch;
+                gap: 14px;
+            }
+
+            .control-group {
+                flex: 1 1 100%;
+                justify-content: space-between;
+            }
+
+            .control-group select {
+                min-width: 160px;
+            }
+
+            .book-header,
+            .chapter {
+                padding: 20px;
+            }
+
+            .chapter h2 {
+                font-size: 1.4em;
+            }
+
+        }
+
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/></head>
+<body id="top">
+<!-- =====================================
+         CODEVERSE NAVIGATION BAR
+    ====================================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>
+                Code<span class="logo-highlight">Verse</span>
+</span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a href="/index.html">Home</a>
+<a class="active" href="/library.html">
+                Explore Books
+            </a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">
+                    Log In
+                </a>
+<a class="signup-btn" href="/register.html">
+                    Sign Up
+                </a>
+</div>
+</div>
+<button aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button">
+
+            ☰
+
+        </button>
+</header>
+<!-- =====================================
+         BACK TO BOOKS
+    ====================================== -->
+<header class="topbar">
+<a class="back-link" href="/library.html">
+            ← Back to Books
+        </a>
+</header>
+<!-- =====================================
+         READING CONTROLS
+    ====================================== -->
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">
+                Font Size
+            </label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">
+                    Medium
+                </option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">
+                Font Style
+            </label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">
+                    DM Sans
+                </option>
+<option value="Arial, sans-serif">
+                    Arial
+                </option>
+<option value="Georgia, serif">
+                    Georgia
+                </option>
+<option value="'Times New Roman', serif">
+                    Times New Roman
+                </option>
+<option value="Verdana, sans-serif">
+                    Verdana
+                </option>
+</select>
+</div>
+</div>
+<!-- =====================================
+         MAIN READER LAYOUT
+    ====================================== -->
+<div class="layout">
+<!-- =====================================
+             TABLE OF CONTENTS
+        ====================================== -->
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav id="tocNav">
+<a href="#introduction">
+                    Introduction
+                </a>
+<a href="#objectives">
+                    Learning Objectives
+                </a>
+<a href="#chapter-1">
+                    1. Operating System Resources
+                </a>
+<a href="#chapter-2">
+                    2. Introduction to Processes
+                </a>
+<a href="#chapter-3">
+                    3. Definition of Deadlock
+                </a>
+<a href="#chapter-4">
+                    4. Resource Allocation
+                </a>
+<a href="#chapter-5">
+                    5. Allocation Methods
+                </a>
+<a href="#chapter-6">
+                    6. Types of Resources
+                </a>
+<a href="#chapter-7">
+                    7. How Deadlocks Occur
+                </a>
+<a href="#chapter-8">
+                    8. Four Deadlock Conditions
+                </a>
+<a href="#chapter-9">
+                    9. Mutual Exclusion and Hold and Wait
+                </a>
+<a href="#chapter-10">
+                    10. No Preemption and Circular Wait
+                </a>
+<a href="#chapter-11">
+                    11. Resource Allocation Graph
+                </a>
+<a href="#chapter-12">
+                    12. Graph Examples
+                </a>
+<a href="#chapter-13">
+                    13. Deadlock vs. Starvation vs. Livelock
+                </a>
+<a href="#chapter-14">
+                    14. Handling Deadlocks
+                </a>
+<a href="#chapter-15">
+                    15. Deadlock Prevention
+                </a>
+<a href="#chapter-16">
+                    16. Deadlock Avoidance
+                </a>
+<a href="#chapter-17">
+                    17. Safe and Unsafe States
+                </a>
+<a href="#chapter-18">
+                    18. Banker's Algorithm
+                </a>
+<a href="#chapter-19">
+                    19. Banker's Algorithm Example
+                </a>
+<a href="#chapter-20">
+                    20. Deadlock Detection
+                </a>
+<a href="#chapter-21">
+                    21. Deadlock Recovery
+                </a>
+<a href="#chapter-22">
+                    22. Preemption and Termination
+                </a>
+<a href="#chapter-23">
+                    23. Database Deadlocks
+                </a>
+<a href="#chapter-24">
+                    24. Real-Life Applications
+                </a>
+<a href="#chapter-25">
+                    25. Best Practices
+                </a>
+<a href="#chapter-26">
+                    26. Summary and Conclusion
+                </a>
+<a href="#quiz">
+                    Knowledge Assessment Quiz
+                </a>
+</nav>
+</aside>
+<!-- =====================================
+             MAIN CONTENT
+        ====================================== -->
+<main>
+<!-- =====================================
+                 BOOK HEADER
+            ====================================== -->
+<header class="book-header">
+<span class="eyebrow">
+                    PLATFORM TECHNOLOGIES | ITE-201
+                </span>
+<h1>
+                    Deadlocks and Resource Allocation
+                </h1>
+<p>
+                    A comprehensive study of operating system
+                    resource management, process synchronization,
+                    deadlock prevention, avoidance, detection,
+                    and recovery.
+                </p>
+</header>
+<!-- =====================================
+                 BOOK CONTENT
+            ====================================== -->
+<div class="book-content">
+<!-- =====================================
+                     INTRODUCTION
+                ====================================== -->
+<section class="chapter" id="introduction">
+<h2>Introduction</h2>
+<p>
+                        An operating system manages the resources
+                        required by computer programs, including
+                        the CPU, memory, storage, files, and
+                        hardware devices.
+                    </p>
+<p>
+                        Modern computers execute multiple processes
+                        simultaneously. This multitasking capability
+                        allows programs to share resources, but it
+                        can also produce conflicts.
+                    </p>
+<p>
+                        A deadlock occurs when processes cannot
+                        continue because each is waiting for
+                        resources held by another process.
+                    </p>
+<p>
+                        Proper resource allocation and deadlock
+                        management help maintain computer
+                        performance, reliability, and stability.
+                    </p>
+</section>
+<!-- =====================================
+                     LEARNING OBJECTIVES
+                ====================================== -->
+<section class="chapter" id="objectives">
+<h2>Learning Objectives</h2>
+<ol>
+<li>
+                            Define deadlocks and resource allocation.
+                        </li>
+<li>
+                            Explain how processes use resources.
+                        </li>
+<li>
+                            Identify the four necessary deadlock conditions.
+                        </li>
+<li>
+                            Interpret resource allocation graphs.
+                        </li>
+<li>
+                            Differentiate deadlock, starvation, and livelock.
+                        </li>
+<li>
+                            Explain prevention, avoidance, detection,
+                            and recovery.
+                        </li>
+<li>
+                            Understand safe and unsafe states.
+                        </li>
+<li>
+                            Apply the Banker's Algorithm.
+                        </li>
+<li>
+                            Recognize database deadlocks.
+                        </li>
+<li>
+                            Describe effective resource management practices.
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     CHAPTER 1
+                ====================================== -->
+<section class="chapter" id="chapter-1">
+<h2>
+                        1. Understanding Operating System Resources
+                    </h2>
+<p>
+                        An operating system resource is any
+                        hardware or software component required
+                        by a process to perform its operations.
+                    </p>
+<h3>Hardware Resources</h3>
+<ul>
+<li>Central Processing Unit (CPU)</li>
+<li>Random Access Memory (RAM)</li>
+<li>Hard Disk Drive (HDD)</li>
+<li>Solid State Drive (SSD)</li>
+<li>Printers and scanners</li>
+<li>Network adapters</li>
+</ul>
+<h3>Software Resources</h3>
+<ul>
+<li>Files</li>
+<li>Database records</li>
+<li>Software locks</li>
+<li>Application permissions</li>
+<li>Communication channels</li>
+</ul>
+<h3>Shared Resources</h3>
+<p>
+                        Shared resources can be accessed by multiple
+                        processes according to established access
+                        rules. For example, several programs may
+                        read a file, but writing may require
+                        exclusive access.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 2
+                ====================================== -->
+<section class="chapter" id="chapter-2">
+<h2>
+                        2. Introduction to Processes
+                    </h2>
+<p>
+                        A process is a program currently being
+                        executed. Unlike a stored program, a
+                        process actively uses system resources.
+                    </p>
+<h3>Components of a Process</h3>
+<ul>
+<li>Process ID</li>
+<li>Program counter</li>
+<li>CPU registers</li>
+<li>Memory space</li>
+<li>Process state</li>
+<li>Open files</li>
+</ul>
+<h3>Process States</h3>
+<ol>
+<li>
+<strong>New:</strong>
+                            Being created.
+                        </li>
+<li>
+<strong>Ready:</strong>
+                            Waiting for CPU time.
+                        </li>
+<li>
+<strong>Running:</strong>
+                            Executing instructions.
+                        </li>
+<li>
+<strong>Waiting:</strong>
+                            Waiting for a resource or event.
+                        </li>
+<li>
+<strong>Terminated:</strong>
+                            Finished execution.
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     CHAPTER 3
+                ====================================== -->
+<section class="chapter" id="chapter-3">
+<h2>
+                        3. Definition and Characteristics of Deadlock
+                    </h2>
+<p>
+                        A deadlock is a condition where two or
+                        more processes remain blocked because
+                        each process is waiting for a resource
+                        held by another process.
+                    </p>
+<h3>Main Characteristics</h3>
+<ul>
+<li>Processes are blocked.</li>
+<li>Resources remain allocated.</li>
+<li>Processes wait for one another.</li>
+<li>No affected process can continue.</li>
+<li>System productivity is reduced.</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            Computer A holds a printer and needs
+                            a scanner. Computer B holds the scanner
+                            and needs the printer.
+                        </p>
+<p>
+                            Neither can proceed while both continue
+                            holding their resources.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     CHAPTER 4
+                ====================================== -->
+<section class="chapter" id="chapter-4">
+<h2>
+                        4. Understanding Resource Allocation
+                    </h2>
+<p>
+                        Resource allocation is the process of
+                        assigning available computing resources
+                        to processes that require them.
+                    </p>
+<h3>Five Stages</h3>
+<ol>
+<li>
+<strong>Request:</strong>
+                            A process requests a resource.
+                        </li>
+<li>
+<strong>Evaluation:</strong>
+                            The operating system checks availability.
+                        </li>
+<li>
+<strong>Assignment:</strong>
+                            The resource is allocated.
+                        </li>
+<li>
+<strong>Usage:</strong>
+                            The process uses the resource.
+                        </li>
+<li>
+<strong>Release:</strong>
+                            The resource becomes available again.
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     CHAPTER 5
+                ====================================== -->
+<section class="chapter" id="chapter-5">
+<h2>
+                        5. Resource Allocation Methods
+                    </h2>
+<h3>Static Resource Allocation</h3>
+<p>
+                        Resources are assigned before process
+                        execution. This makes allocation simpler,
+                        but may leave resources unused.
+                    </p>
+<h3>Dynamic Resource Allocation</h3>
+<p>
+                        Resources are allocated while processes
+                        are running. This provides greater
+                        flexibility but requires more complex
+                        resource management.
+                    </p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Static</th>
+<th>Dynamic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allocation Time</td>
+<td>Before execution</td>
+<td>During execution</td>
+</tr>
+<tr>
+<td>Flexibility</td>
+<td>Lower</td>
+<td>Higher</td>
+</tr>
+<tr>
+<td>Management</td>
+<td>Simpler</td>
+<td>More complex</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     CHAPTER 6
+                ====================================== -->
+<section class="chapter" id="chapter-6">
+<h2>
+                        6. Types of Computer Resources
+                    </h2>
+<ul>
+<li>
+<strong>CPU:</strong>
+                            Executes program instructions.
+                        </li>
+<li>
+<strong>Memory:</strong>
+                            Stores active program data.
+                        </li>
+<li>
+<strong>Storage:</strong>
+                            Saves files and information.
+                        </li>
+<li>
+<strong>Input/Output:</strong>
+                            Supports interaction with devices.
+                        </li>
+<li>
+<strong>Network:</strong>
+                            Enables communication between systems.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     CHAPTER 7
+                ====================================== -->
+<section class="chapter" id="chapter-7">
+<h2>
+                        7. How Deadlocks Occur
+                    </h2>
+<p>
+                        Deadlocks develop when processes request
+                        resources in an order that creates
+                        circular dependencies.
+                    </p>
+<ol>
+<li>
+                            Process A receives Resource 1.
+                        </li>
+<li>
+                            Process B receives Resource 2.
+                        </li>
+<li>
+                            Process A requests Resource 2.
+                        </li>
+<li>
+                            Process B requests Resource 1.
+                        </li>
+<li>
+                            Both processes continue waiting.
+                        </li>
+</ol>
+<div class="example-box">
+<strong>Important:</strong>
+<p>
+                            Not every waiting process is deadlocked.
+                            Normal waiting may end when another
+                            process releases a resource.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     CHAPTER 8
+                ====================================== -->
+<section class="chapter" id="chapter-8">
+<h2>
+                        8. Four Necessary Conditions of Deadlock
+                    </h2>
+<p>
+                        The four Coffman conditions must exist
+                        simultaneously for deadlock in the
+                        traditional resource-deadlock model.
+                    </p>
+<ol>
+<li>
+<strong>Mutual Exclusion:</strong>
+                            At least one resource cannot be shared.
+                        </li>
+<li>
+<strong>Hold and Wait:</strong>
+                            A process holds a resource while
+                            requesting another.
+                        </li>
+<li>
+<strong>No Preemption:</strong>
+                            Resources cannot be forcibly removed.
+                        </li>
+<li>
+<strong>Circular Wait:</strong>
+                            Processes form a cycle of dependencies.
+                        </li>
+</ol>
+</section>
+<!-- =====================================
+                     CHAPTER 9
+                ====================================== -->
+<section class="chapter" id="chapter-9">
+<h2>
+                        9. Mutual Exclusion and Hold and Wait
+                    </h2>
+<h3>Mutual Exclusion</h3>
+<p>
+                        Mutual exclusion is a condition in which
+                        a resource can be used by only one
+                        process at a time.
+                    </p>
+<p>
+                        When a process is using an exclusive
+                        resource, other processes requesting
+                        that resource must wait until it
+                        becomes available.
+                    </p>
+<h3>Examples of Mutual Exclusion</h3>
+<ul>
+<li>
+                            A printer handling one print job
+                            at a time.
+                        </li>
+<li>
+                            A process holding an exclusive
+                            file lock.
+                        </li>
+<li>
+                            A thread holding a mutex while
+                            modifying shared information.
+                        </li>
+</ul>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            Process A is using a printer.
+                            Process B also needs the printer,
+                            but it must wait until Process A
+                            releases the resource.
+                        </p>
+</div>
+<h3>Hold and Wait</h3>
+<p>
+                        Hold and wait occurs when a process
+                        holds at least one resource while
+                        waiting to acquire another resource.
+                    </p>
+<p>
+                        This can create a deadlock when
+                        multiple processes hold resources
+                        that other processes need.
+                    </p>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            Process A holds Resource 1
+                            and requests Resource 2.
+                        </p>
+<p>
+                            Process B holds Resource 2
+                            and requests Resource 1.
+                        </p>
+<p>
+                            Neither process can continue
+                            because both are waiting for
+                            resources held by the other.
+                        </p>
+</div>
+<h3>Difference Between the Two Conditions</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mutual Exclusion</td>
+<td>
+                                        A resource can be used
+                                        by only one process at a time.
+                                    </td>
+</tr>
+<tr>
+<td>Hold and Wait</td>
+<td>
+                                        A process holds resources
+                                        while requesting additional ones.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Importance</h3>
+<p>
+                        Understanding these conditions helps
+                        operating system designers identify
+                        resource conflicts and develop methods
+                        for preventing deadlocks.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 10
+                ====================================== -->
+<section class="chapter" id="chapter-10">
+<h2>
+                        10. No Preemption and Circular Wait
+                    </h2>
+<h3>No Preemption</h3>
+<p>
+                        No preemption means that a resource
+                        cannot be forcibly taken away from
+                        a process while it is using it.
+                    </p>
+<p>
+                        The process must release the resource
+                        voluntarily after completing its task.
+                    </p>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            Process A holds an exclusive
+                            resource that Process B needs.
+                        </p>
+<p>
+                            If the operating system cannot
+                            safely remove that resource
+                            from Process A, Process B
+                            must wait.
+                        </p>
+</div>
+<h3>Circular Wait</h3>
+<p>
+                        Circular wait occurs when a group
+                        of processes forms a circular chain,
+                        with each process waiting for
+                        a resource held by the next process.
+                    </p>
+<h3>Example of Circular Wait</h3>
+<div class="example-box">
+<p>
+                            Consider three processes:
+                        </p>
+<ul>
+<li>
+                                Process A waits for a resource
+                                held by Process B.
+                            </li>
+<li>
+                                Process B waits for a resource
+                                held by Process C.
+                            </li>
+<li>
+                                Process C waits for a resource
+                                held by Process A.
+                            </li>
+</ul>
+<p>
+                            This creates a circular dependency
+                            that prevents the processes
+                            from continuing.
+                        </p>
+</div>
+<h3>Comparison</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No Preemption</td>
+<td>
+                                        A resource cannot be
+                                        forcibly removed from
+                                        its current holder.
+                                    </td>
+</tr>
+<tr>
+<td>Circular Wait</td>
+<td>
+                                        Processes form a cycle
+                                        of resource dependencies.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Importance</h3>
+<p>
+                        Breaking either of these conditions
+                        can help prevent deadlocks.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 11
+                ====================================== -->
+<section class="chapter" id="chapter-11">
+<h2>
+                        11. Resource Allocation Graph
+                    </h2>
+<h3>What Is a Resource Allocation Graph?</h3>
+<p>
+                        A Resource Allocation Graph (RAG)
+                        is a graphical representation
+                        of the relationships between
+                        processes and resources.
+                    </p>
+<p>
+                        It helps identify which resources
+                        are allocated to processes
+                        and which resources are being requested.
+                    </p>
+<h3>Main Components</h3>
+<h3>1. Process Nodes</h3>
+<p>
+                        A process is represented by a circle.
+                    </p>
+<div class="example-box">
+<p>
+                            Example: P1, P2, and P3
+                            represent different processes.
+                        </p>
+</div>
+<h3>2. Resource Nodes</h3>
+<p>
+                        A resource type is represented
+                        by a rectangle.
+                    </p>
+<div class="example-box">
+<p>
+                            Example: R1 and R2 represent
+                            different resource types.
+                        </p>
+</div>
+<h3>3. Request Edge</h3>
+<p>
+                        A request edge points from
+                        a process to a resource.
+                    </p>
+<p>
+                        It indicates that the process
+                        is requesting the resource.
+                    </p>
+<div class="example-box">
+<pre><code>P1 → R1</code></pre>
+<p>
+                            Process P1 is requesting
+                            Resource R1.
+                        </p>
+</div>
+<h3>4. Assignment Edge</h3>
+<p>
+                        An assignment edge points from
+                        a resource instance to a process.
+                    </p>
+<p>
+                        It indicates that the resource
+                        has been allocated to the process.
+                    </p>
+<div class="example-box">
+<pre><code>R1 → P1</code></pre>
+<p>
+                            Resource R1 is assigned
+                            to Process P1.
+                        </p>
+</div>
+<h3>Interpreting the Graph</h3>
+<ul>
+<li>
+                            A request edge indicates
+                            a process is waiting for a resource.
+                        </li>
+<li>
+                            An assignment edge indicates
+                            that a process holds a resource.
+                        </li>
+<li>
+                            A cycle may indicate
+                            a possible deadlock.
+                        </li>
+<li>
+                            If every resource type has
+                            only one instance, a cycle
+                            indicates deadlock.
+                        </li>
+<li>
+                            If resource types have multiple
+                            instances, a cycle alone
+                            does not prove deadlock.
+                        </li>
+</ul>
+<h3>Importance</h3>
+<p>
+                        Resource Allocation Graphs help
+                        visualize resource dependencies
+                        and understand how deadlocks
+                        can develop.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 12
+                ====================================== -->
+<section class="chapter" id="chapter-12">
+<h2>
+                        12. Resource Allocation Graph Examples
+                    </h2>
+<h3>Example 1: No Deadlock</h3>
+<p>
+                        Consider two processes and
+                        one resource.
+                    </p>
+<div class="example-box">
+<pre><code>R1 → P1
+
+P2 → R1</code></pre>
+<p>
+                            Resource R1 is assigned to P1.
+                            Process P2 is requesting R1.
+                        </p>
+<p>
+                            If P1 finishes and releases R1,
+                            P2 can obtain the resource.
+                        </p>
+<p>
+                            Therefore, this situation
+                            does not necessarily represent
+                            a deadlock.
+                        </p>
+</div>
+<h3>Example 2: Deadlock</h3>
+<p>
+                        Consider two processes and
+                        two single-instance resources.
+                    </p>
+<div class="example-box">
+<pre><code>R1 → P1
+P1 → R2
+
+R2 → P2
+P2 → R1</code></pre>
+<p>
+                            Process P1 holds R1
+                            and requests R2.
+                        </p>
+<p>
+                            Process P2 holds R2
+                            and requests R1.
+                        </p>
+<p>
+                            Because each resource has
+                            only one instance and neither
+                            process can continue,
+                            a deadlock exists.
+                        </p>
+</div>
+<h3>Example 3: Multiple Resource Instances</h3>
+<p>
+                        When a resource type contains
+                        multiple instances, the presence
+                        of a cycle does not always
+                        indicate a deadlock.
+                    </p>
+<div class="example-box">
+<p>
+                            Suppose R1 has two instances.
+                            One instance is held by P1,
+                            while another is held by P3.
+                        </p>
+<p>
+                            If P3 can complete its task
+                            and release its instance,
+                            another waiting process
+                            may continue.
+                        </p>
+<p>
+                            The cycle may therefore
+                            be resolved without deadlock.
+                        </p>
+</div>
+<h3>Important Reminder</h3>
+<p>
+                        A cycle in a Resource Allocation Graph
+                        is a necessary condition for deadlock,
+                        but with multiple resource instances,
+                        it is not always sufficient
+                        to confirm deadlock.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 13
+                ====================================== -->
+<section class="chapter" id="chapter-13">
+<h2>
+                        13. Deadlock vs. Starvation vs. Livelock
+                    </h2>
+<p>
+                        Deadlock, starvation, and livelock
+                        are different problems that can
+                        affect process execution.
+                    </p>
+<h3>1. Deadlock</h3>
+<p>
+                        Deadlock occurs when processes
+                        are permanently blocked while
+                        waiting for resources held
+                        by one another.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            Process A waits for a resource
+                            held by Process B, while
+                            Process B waits for a resource
+                            held by Process A.
+                        </p>
+</div>
+<h3>2. Starvation</h3>
+<p>
+                        Starvation occurs when a process
+                        waits indefinitely because
+                        other processes repeatedly
+                        receive the resources it needs.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A low-priority process may
+                            continuously wait because
+                            higher-priority processes
+                            are repeatedly scheduled first.
+                        </p>
+</div>
+<h3>3. Livelock</h3>
+<p>
+                        Livelock occurs when processes
+                        continue changing their states
+                        or responding to one another
+                        without making useful progress.
+                    </p>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            Two processes repeatedly
+                            release and request resources
+                            to avoid conflict, but
+                            neither completes its task.
+                        </p>
+</div>
+<h3>Comparison</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Behavior</th>
+<th>Progress</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deadlock</td>
+<td>
+                                        Processes remain blocked.
+                                    </td>
+<td>
+                                        No progress.
+                                    </td>
+</tr>
+<tr>
+<td>Starvation</td>
+<td>
+                                        A process waits indefinitely.
+                                    </td>
+<td>
+                                        Other processes may progress.
+                                    </td>
+</tr>
+<tr>
+<td>Livelock</td>
+<td>
+                                        Processes remain active.
+                                    </td>
+<td>
+                                        No useful progress.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Importance</h3>
+<p>
+                        Understanding these differences
+                        helps developers select suitable
+                        synchronization and scheduling
+                        strategies.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 14
+                ====================================== -->
+<section class="chapter" id="chapter-14">
+<h2>
+                        14. Methods for Handling Deadlocks
+                    </h2>
+<p>
+                        Operating systems can use different
+                        strategies to manage deadlocks
+                        and reduce their effects.
+                    </p>
+<h3>1. Deadlock Prevention</h3>
+<p>
+                        Deadlock prevention ensures that
+                        at least one of the four necessary
+                        deadlock conditions cannot occur.
+                    </p>
+<h3>2. Deadlock Avoidance</h3>
+<p>
+                        Deadlock avoidance evaluates
+                        resource requests before granting
+                        them to help maintain a safe state.
+                    </p>
+<h3>3. Deadlock Detection</h3>
+<p>
+                        Deadlock detection allows resource
+                        allocation to proceed and checks
+                        whether deadlocks have occurred.
+                    </p>
+<h3>4. Deadlock Recovery</h3>
+<p>
+                        Recovery methods attempt to
+                        resolve a detected deadlock
+                        by terminating processes,
+                        rolling back operations,
+                        or reclaiming resources.
+                    </p>
+<h3>5. Ignoring Deadlocks</h3>
+<p>
+                        Some systems do not actively
+                        prevent or detect every
+                        possible deadlock.
+                    </p>
+<p>
+                        This approach may be selected
+                        when deadlocks are uncommon
+                        and the cost of prevention
+                        is considered too high.
+                    </p>
+<h3>Comparison of Strategies</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Main Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prevention</td>
+<td>
+                                        Eliminate a necessary
+                                        deadlock condition.
+                                    </td>
+</tr>
+<tr>
+<td>Avoidance</td>
+<td>
+                                        Keep the system
+                                        in a safe state.
+                                    </td>
+</tr>
+<tr>
+<td>Detection</td>
+<td>
+                                        Identify existing deadlocks.
+                                    </td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>
+                                        Resolve detected deadlocks.
+                                    </td>
+</tr>
+<tr>
+<td>Ignore</td>
+<td>
+                                        Accept the possibility
+                                        of deadlock.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     CHAPTER 15
+                ====================================== -->
+<section class="chapter" id="chapter-15">
+<h2>
+                        15. Deadlock Prevention Techniques
+                    </h2>
+<p>
+                        Deadlock prevention uses resource
+                        management rules to ensure that
+                        at least one of the four necessary
+                        deadlock conditions cannot occur.
+                    </p>
+<h3>1. Preventing Mutual Exclusion</h3>
+<p>
+                        When possible, resources can
+                        be designed for sharing.
+                    </p>
+<p>
+                        For example, multiple processes
+                        may read the same file without
+                        requiring exclusive access.
+                    </p>
+<p>
+                        However, some resources cannot
+                        be safely shared.
+                    </p>
+<h3>2. Preventing Hold and Wait</h3>
+<p>
+                        Processes may be required
+                        to request all necessary
+                        resources before execution.
+                    </p>
+<p>
+                        Another approach requires
+                        processes to release currently
+                        held resources before requesting
+                        additional resources.
+                    </p>
+<h3>3. Preventing No Preemption</h3>
+<p>
+                        Some resources may be reclaimed
+                        from processes when they cannot
+                        obtain additional resources.
+                    </p>
+<p>
+                        This approach is suitable only
+                        when resources can be safely
+                        preempted or their state restored.
+                    </p>
+<h3>4. Preventing Circular Wait</h3>
+<p>
+                        Resources can be assigned
+                        a fixed ordering.
+                    </p>
+<p>
+                        Processes must request resources
+                        according to that order.
+                    </p>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            Suppose resources are ordered:
+                        </p>
+<pre><code>R1 → R2 → R3</code></pre>
+<p>
+                            A process must request resources
+                            in increasing order.
+                        </p>
+<p>
+                            This prevents processes from
+                            creating circular resource
+                            dependencies.
+                        </p>
+</div>
+<h3>Advantages</h3>
+<ul>
+<li>
+                            Prevents deadlocks before they occur.
+                        </li>
+<li>
+                            Provides predictable resource
+                            management rules.
+                        </li>
+<li>
+                            Reduces the need for deadlock recovery.
+                        </li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>
+                            May reduce resource utilization.
+                        </li>
+<li>
+                            Can limit process flexibility.
+                        </li>
+<li>
+                            May increase waiting times.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     CHAPTER 16
+                ====================================== -->
+<section class="chapter" id="chapter-16">
+<h2>
+                        16. Deadlock Avoidance Techniques
+                    </h2>
+<h3>What Is Deadlock Avoidance?</h3>
+<p>
+                        Deadlock avoidance is a resource
+                        allocation strategy that evaluates
+                        requests before granting them.
+                    </p>
+<p>
+                        The operating system grants
+                        a request only when doing so
+                        allows the system to remain
+                        in a safe state.
+                    </p>
+<h3>Safe State</h3>
+<p>
+                        A safe state is a condition
+                        where there is at least one
+                        sequence in which all processes
+                        can finish successfully.
+                    </p>
+<h3>Unsafe State</h3>
+<p>
+                        An unsafe state is a condition
+                        where the system cannot guarantee
+                        that all processes will finish.
+                    </p>
+<p>
+                        An unsafe state does not always
+                        mean that deadlock has already occurred.
+                    </p>
+<h3>Common Avoidance Methods</h3>
+<h3>1. Resource Allocation Graph Algorithm</h3>
+<p>
+                        This method can be used when
+                        each resource type has
+                        a single instance.
+                    </p>
+<p>
+                        It examines potential allocations
+                        to avoid creating unsafe
+                        resource dependencies.
+                    </p>
+<h3>2. Banker's Algorithm</h3>
+<p>
+                        The Banker's Algorithm evaluates
+                        available resources, allocated
+                        resources, and maximum process demands.
+                    </p>
+<p>
+                        It determines whether granting
+                        a request would leave the
+                        system in a safe state.
+                    </p>
+<h3>Advantages</h3>
+<ul>
+<li>
+                            Helps prevent the system
+                            from entering unsafe states.
+                        </li>
+<li>
+                            Allows more flexible allocation
+                            than some prevention methods.
+                        </li>
+<li>
+                            Supports systematic resource
+                            request evaluation.
+                        </li>
+</ul>
+<h3>Limitations</h3>
+<ul>
+<li>
+                            Often requires advance knowledge
+                            of maximum resource demands.
+                        </li>
+<li>
+                            Adds computational overhead.
+                        </li>
+<li>
+                            May delay requests that could
+                            otherwise be granted immediately.
+                        </li>
+</ul>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            A process requests an additional
+                            memory-related resource.
+                        </p>
+<p>
+                            Before granting the request,
+                            the system checks whether
+                            the remaining resources
+                            would still allow all
+                            processes to complete.
+                        </p>
+<p>
+                            If the resulting state is unsafe,
+                            the request is delayed.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     CHAPTER 17
+                ====================================== -->
+<section class="chapter" id="chapter-17">
+<h2>
+                        17. Safe and Unsafe States
+                    </h2>
+<h3>What Is a Safe State?</h3>
+<p>
+                        A safe state is a condition in which
+                        the operating system can allocate
+                        resources to processes in an order
+                        that allows all processes to complete
+                        their execution successfully.
+                    </p>
+<p>
+                        In a safe state, there is at least
+                        one sequence of processes that
+                        guarantees successful completion
+                        under their declared maximum
+                        resource requirements.
+                    </p>
+<h3>Safe Sequence</h3>
+<p>
+                        A safe sequence is an ordering of
+                        processes in which each process
+                        can obtain the resources it still
+                        needs, finish execution, and release
+                        its allocated resources for
+                        other processes.
+                    </p>
+<div class="example-box">
+<h3>Example of a Safe Sequence</h3>
+<p>
+                            Consider three processes:
+                        </p>
+<pre><code>P1 → P2 → P3</code></pre>
+<p>
+                            If P1 can finish using the
+                            currently available resources,
+                            it releases its allocated resources.
+                        </p>
+<p>
+                            P2 can then use the newly available
+                            resources and finish.
+                        </p>
+<p>
+                            Finally, P3 can complete
+                            its execution.
+                        </p>
+<p>
+                            Because all processes can finish,
+                            the system is in a safe state.
+                        </p>
+</div>
+<h3>What Is an Unsafe State?</h3>
+<p>
+                        An unsafe state occurs when the system
+                        cannot identify a safe sequence
+                        that guarantees completion of
+                        all processes.
+                    </p>
+<p>
+                        An unsafe state does not necessarily
+                        mean that a deadlock already exists.
+                        However, deadlock may occur depending
+                        on future resource requests.
+                    </p>
+<h3>Comparison of Safe and Unsafe States</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Safe State</th>
+<th>Unsafe State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+                                        At least one safe
+                                        sequence exists.
+                                    </td>
+<td>
+                                        No safe sequence
+                                        can be identified.
+                                    </td>
+</tr>
+<tr>
+<td>
+                                        All processes can
+                                        complete under the
+                                        safety assumptions.
+                                    </td>
+<td>
+                                        Completion of every
+                                        process cannot
+                                        be guaranteed.
+                                    </td>
+</tr>
+<tr>
+<td>
+                                        The system can avoid
+                                        deadlock by following
+                                        a safe allocation order.
+                                    </td>
+<td>
+                                        Deadlock is possible
+                                        but not inevitable.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Importance</h3>
+<p>
+                        Understanding safe and unsafe states
+                        helps operating systems determine
+                        whether granting resource requests
+                        could create dangerous allocation
+                        conditions.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 18
+                ====================================== -->
+<section class="chapter" id="chapter-18">
+<h2>
+                        18. Banker's Algorithm
+                    </h2>
+<h3>What Is the Banker's Algorithm?</h3>
+<p>
+                        The Banker's Algorithm is a deadlock
+                        avoidance algorithm used to determine
+                        whether allocating resources to
+                        processes will leave the system
+                        in a safe state.
+                    </p>
+<p>
+                        It was developed by Edsger W. Dijkstra
+                        and is named after the way a bank
+                        manages its available funds while
+                        considering customers' maximum
+                        possible demands.
+                    </p>
+<h3>Purpose of the Algorithm</h3>
+<p>
+                        The algorithm evaluates resource
+                        requests before granting them.
+                        It attempts to ensure that enough
+                        resources remain available for
+                        all processes to eventually finish.
+                    </p>
+<h3>Important Data Structures</h3>
+<h3>1. Available</h3>
+<p>
+                        Available represents the number
+                        of currently available instances
+                        of each resource type.
+                    </p>
+<h3>2. Maximum</h3>
+<p>
+                        Maximum represents the greatest
+                        number of resource instances
+                        each process may request.
+                    </p>
+<h3>3. Allocation</h3>
+<p>
+                        Allocation represents the number
+                        of resource instances currently
+                        assigned to each process.
+                    </p>
+<h3>4. Need</h3>
+<p>
+                        Need represents the additional
+                        resources a process may still
+                        require to finish.
+                    </p>
+<div class="example-box">
+<h3>Formula</h3>
+<pre><code>Need = Maximum - Allocation</code></pre>
+<p>
+                            The calculation is performed
+                            separately for every resource type
+                            and process.
+                        </p>
+</div>
+<h3>Steps of the Safety Algorithm</h3>
+<ol>
+<li>
+                            Initialize Work with the
+                            currently Available resources.
+                        </li>
+<li>
+                            Set Finish to false for
+                            all unfinished processes.
+                        </li>
+<li>
+                            Find a process whose remaining
+                            Need is less than or equal
+                            to Work for every resource type.
+                        </li>
+<li>
+                            Assume that process finishes
+                            and releases its Allocation.
+                        </li>
+<li>
+                            Add its Allocation to Work
+                            and mark Finish as true.
+                        </li>
+<li>
+                            Repeat until every process
+                            finishes or no eligible
+                            process can be found.
+                        </li>
+</ol>
+<h3>Determining the Result</h3>
+<p>
+                        If all processes can be marked
+                        as finished, the system is safe.
+                    </p>
+<p>
+                        If some processes cannot finish,
+                        the system is unsafe.
+                    </p>
+<h3>Resource Request Algorithm</h3>
+<ol>
+<li>
+                            Check whether the requested
+                            resources are within the
+                            process's remaining Need.
+                        </li>
+<li>
+                            Check whether the requested
+                            resources are currently Available.
+                        </li>
+<li>
+                            Temporarily allocate the resources.
+                        </li>
+<li>
+                            Run the safety algorithm.
+                        </li>
+<li>
+                            Grant the request only if
+                            the resulting state is safe.
+                        </li>
+<li>
+                            Otherwise, restore the previous
+                            allocation and make the process wait.
+                        </li>
+</ol>
+<h3>Advantages</h3>
+<ul>
+<li>
+                            Helps avoid unsafe resource allocations.
+                        </li>
+<li>
+                            Supports multiple resource types.
+                        </li>
+<li>
+                            Provides a systematic method
+                            for evaluating requests.
+                        </li>
+</ul>
+<h3>Limitations</h3>
+<ul>
+<li>
+                            Maximum resource requirements
+                            must be known in advance.
+                        </li>
+<li>
+                            Resource availability must
+                            be tracked accurately.
+                        </li>
+<li>
+                            Repeated safety checks create
+                            computational overhead.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     CHAPTER 19
+                ====================================== -->
+<section class="chapter" id="chapter-19">
+<h2>
+                        19. Banker's Algorithm Example
+                    </h2>
+<p>
+                        Consider a system containing
+                        three processes and three
+                        resource types:
+                    </p>
+<ul>
+<li>Resource A</li>
+<li>Resource B</li>
+<li>Resource C</li>
+</ul>
+<h3>Step 1: Available Resources</h3>
+<div class="example-box">
+<pre><code>Available = [3, 3, 2]</code></pre>
+</div>
+<h3>Step 2: Allocation Matrix</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Process</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Step 3: Maximum Matrix</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Process</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>9</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Step 4: Calculate the Need Matrix</h3>
+<p>
+                        Use the formula:
+                    </p>
+<div class="example-box">
+<pre><code>Need = Maximum - Allocation</code></pre>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Process</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Step 5: Check for a Safe Sequence</h3>
+<p>
+                        Initially, the available resources are:
+                    </p>
+<div class="example-box">
+<pre><code>Work = [3, 3, 2]</code></pre>
+</div>
+<h3>Check Process P0</h3>
+<p>
+                        P0 needs [7, 4, 3].
+                        The available resources are
+                        insufficient, so P0 cannot
+                        finish first.
+                    </p>
+<h3>Check Process P1</h3>
+<p>
+                        P1 needs [1, 2, 2].
+                        These resources are available.
+                    </p>
+<p>
+                        After P1 finishes, it releases
+                        its allocated resources [2, 0, 0].
+                    </p>
+<div class="example-box">
+<pre><code>Work = [3, 3, 2] + [2, 0, 0]
+
+Work = [5, 3, 2]</code></pre>
+</div>
+<h3>Check Remaining Processes</h3>
+<p>
+                        P0 still needs [7, 4, 3],
+                        which exceeds Work.
+                    </p>
+<p>
+                        P2 needs [6, 0, 0],
+                        but only five instances
+                        of Resource A are available.
+                    </p>
+<p>
+                        Neither process can finish
+                        under the current resource
+                        availability.
+                    </p>
+<h3>Final Result</h3>
+<div class="example-box">
+<h3>Unsafe State</h3>
+<p>
+                            The system cannot identify
+                            a safe sequence that allows
+                            all three processes to finish.
+                        </p>
+<p>
+                            Therefore, the system is
+                            in an unsafe state.
+                        </p>
+</div>
+<h3>Important Reminder</h3>
+<p>
+                        An unsafe state does not automatically
+                        mean that a deadlock has occurred.
+                    </p>
+<p>
+                        It means that the operating system
+                        cannot guarantee successful completion
+                        for all processes under their
+                        maximum declared demands.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 20
+                ====================================== -->
+<section class="chapter" id="chapter-20">
+<h2>
+                        20. Deadlock Detection
+                    </h2>
+<h3>What Is Deadlock Detection?</h3>
+<p>
+                        Deadlock detection is the process
+                        of examining resource allocation
+                        and process dependencies to determine
+                        whether a deadlock already exists.
+                    </p>
+<p>
+                        Unlike prevention and avoidance,
+                        detection allows the system to
+                        enter a deadlocked state before
+                        attempting to resolve it.
+                    </p>
+<h3>Detection Using a Wait-For Graph</h3>
+<p>
+                        A Wait-For Graph represents processes
+                        as nodes and waiting relationships
+                        as directed edges.
+                    </p>
+<p>
+                        An edge from P1 to P2 means that
+                        P1 is waiting for a resource
+                        held by P2.
+                    </p>
+<div class="example-box">
+<h3>Example</h3>
+<pre><code>P1 → P2
+P2 → P3
+P3 → P1</code></pre>
+<p>
+                            The graph contains a cycle.
+                        </p>
+<p>
+                            In a system with single-instance
+                            resources, this cycle indicates
+                            a deadlock.
+                        </p>
+</div>
+<h3>Detection with Multiple Resource Instances</h3>
+<p>
+                        When resources have multiple instances,
+                        a more detailed detection algorithm
+                        is required.
+                    </p>
+<h3>Important Data Structures</h3>
+<ul>
+<li>
+<strong>Available:</strong>
+                            Currently available resource instances.
+                        </li>
+<li>
+<strong>Allocation:</strong>
+                            Resources assigned to each process.
+                        </li>
+<li>
+<strong>Request:</strong>
+                            Additional resources each
+                            process is currently waiting for.
+                        </li>
+</ul>
+<h3>Basic Detection Procedure</h3>
+<ol>
+<li>
+                            Record the currently available resources.
+                        </li>
+<li>
+                            Identify the resources allocated
+                            to each process.
+                        </li>
+<li>
+                            Examine outstanding resource requests.
+                        </li>
+<li>
+                            Determine which processes
+                            can complete.
+                        </li>
+<li>
+                            Simulate the release of resources
+                            from completed processes.
+                        </li>
+<li>
+                            Repeat until no additional
+                            process can finish.
+                        </li>
+<li>
+                            Identify unfinished processes
+                            that remain deadlocked.
+                        </li>
+</ol>
+<h3>Advantages</h3>
+<ul>
+<li>
+                            Allows flexible resource allocation.
+                        </li>
+<li>
+                            Can identify existing deadlocks.
+                        </li>
+<li>
+                            Supports targeted recovery actions.
+                        </li>
+</ul>
+<h3>Disadvantages</h3>
+<ul>
+<li>
+                            Detection requires computational resources.
+                        </li>
+<li>
+                            Processes may remain blocked
+                            before detection occurs.
+                        </li>
+<li>
+                            Recovery may interrupt
+                            running applications.
+                        </li>
+</ul>
+</section>
+<!-- =====================================
+                     CHAPTER 21
+                ====================================== -->
+<section class="chapter" id="chapter-21">
+<h2>
+                        21. Deadlock Recovery
+                    </h2>
+<h3>What Is Deadlock Recovery?</h3>
+<p>
+                        Deadlock recovery refers to the
+                        methods used to restore system
+                        progress after a deadlock
+                        has been detected.
+                    </p>
+<p>
+                        The operating system must break
+                        the resource dependency cycle
+                        so that blocked processes
+                        can continue.
+                    </p>
+<h3>Common Recovery Methods</h3>
+<h3>1. Process Termination</h3>
+<p>
+                        One or more deadlocked processes
+                        are terminated to release
+                        their allocated resources.
+                    </p>
+<h3>2. Resource Preemption</h3>
+<p>
+                        Resources are taken from
+                        selected processes when
+                        safe preemption is possible.
+                    </p>
+<h3>3. Process Rollback</h3>
+<p>
+                        A process is returned to
+                        a previously saved state.
+                    </p>
+<p>
+                        This method requires appropriate
+                        checkpointing or transaction
+                        recovery support.
+                    </p>
+<h3>4. Restarting Processes</h3>
+<p>
+                        Processes may be restarted
+                        after resources have
+                        been released.
+                    </p>
+<h3>Factors to Consider During Recovery</h3>
+<ul>
+<li>Process priority</li>
+<li>Resources currently allocated</li>
+<li>Amount of completed work</li>
+<li>Estimated remaining execution time</li>
+<li>Cost of restarting the process</li>
+<li>Impact on users and applications</li>
+</ul>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            Two processes are deadlocked
+                            because each holds a resource
+                            needed by the other.
+                        </p>
+<p>
+                            The operating system terminates
+                            one process, releasing its resources.
+                        </p>
+<p>
+                            The remaining process can
+                            then obtain the resources
+                            it needs and continue.
+                        </p>
+</div>
+<h3>Importance</h3>
+<p>
+                        Deadlock recovery helps restore
+                        normal system operations and
+                        reduces the duration of
+                        resource-related interruptions.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 22
+                ====================================== -->
+<section class="chapter" id="chapter-22">
+<h2>
+                        22. Resource Preemption and Process Termination
+                    </h2>
+<h3>Resource Preemption</h3>
+<p>
+                        Resource preemption is a recovery
+                        technique in which a resource
+                        is removed from a process
+                        and reassigned when this
+                        can be performed safely.
+                    </p>
+<h3>Important Considerations</h3>
+<ol>
+<li>
+<strong>Victim Selection:</strong>
+                            Choose the process or resource
+                            whose preemption causes
+                            the lowest recovery cost.
+                        </li>
+<li>
+<strong>Rollback:</strong>
+                            Restore the affected process
+                            to a valid previous state
+                            when necessary.
+                        </li>
+<li>
+<strong>Starvation Prevention:</strong>
+                            Avoid repeatedly selecting
+                            the same process as the victim.
+                        </li>
+</ol>
+<h3>Process Termination</h3>
+<p>
+                        Process termination resolves
+                        a deadlock by stopping
+                        one or more processes.
+                    </p>
+<h3>Termination Strategies</h3>
+<h3>1. Terminate All Deadlocked Processes</h3>
+<p>
+                        Every process involved in the
+                        deadlock is terminated.
+                    </p>
+<p>
+                        This approach can resolve
+                        the deadlock quickly but
+                        may result in significant
+                        loss of completed work.
+                    </p>
+<h3>2. Terminate One Process at a Time</h3>
+<p>
+                        The operating system terminates
+                        selected processes individually
+                        until the deadlock is removed.
+                    </p>
+<p>
+                        This approach may reduce
+                        unnecessary termination but
+                        requires repeated detection checks.
+                    </p>
+<h3>Comparison</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Action</th>
+<th>Possible Disadvantage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resource Preemption</td>
+<td>
+                                        Reclaims selected resources.
+                                    </td>
+<td>
+                                        May require rollback
+                                        and careful state management.
+                                    </td>
+</tr>
+<tr>
+<td>Process Termination</td>
+<td>
+                                        Stops selected processes.
+                                    </td>
+<td>
+                                        May cause loss
+                                        of completed work.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            A process holds a resource
+                            required by another process.
+                        </p>
+<p>
+                            If the resource can be safely
+                            reclaimed, the operating system
+                            may use preemption.
+                        </p>
+<p>
+                            Otherwise, terminating
+                            a selected process may
+                            be necessary to restore progress.
+                        </p>
+</div>
+</section>
+<!-- =====================================
+                     CHAPTER 23
+                ====================================== -->
+<section class="chapter" id="chapter-23">
+<h2>
+                        23. Deadlocks in Database Systems
+                    </h2>
+<h3>What Is a Database Deadlock?</h3>
+<p>
+                        A database deadlock occurs when
+                        two or more transactions are
+                        waiting for locks held by
+                        one another, preventing
+                        the transactions from continuing.
+                    </p>
+<p>
+                        Database management systems
+                        use locks to maintain
+                        data consistency when
+                        multiple transactions
+                        access shared records.
+                    </p>
+<h3>Example of a Database Deadlock</h3>
+<div class="example-box">
+<h3>Transaction A</h3>
+<ol>
+<li>Locks Record 1.</li>
+<li>Requests Record 2.</li>
+<li>Waits for Transaction B.</li>
+</ol>
+<h3>Transaction B</h3>
+<ol>
+<li>Locks Record 2.</li>
+<li>Requests Record 1.</li>
+<li>Waits for Transaction A.</li>
+</ol>
+<p>
+                            Both transactions remain
+                            blocked because each holds
+                            a lock required by the other.
+                        </p>
+</div>
+<h3>Common Causes</h3>
+<ul>
+<li>
+                            Transactions acquire locks
+                            in different orders.
+                        </li>
+<li>
+                            Transactions hold locks
+                            for long periods.
+                        </li>
+<li>
+                            Multiple transactions update
+                            shared records concurrently.
+                        </li>
+<li>
+                            Poorly organized transaction
+                            operations create circular waits.
+                        </li>
+</ul>
+<h3>Database Deadlock Prevention</h3>
+<h3>1. Consistent Lock Ordering</h3>
+<p>
+                        Transactions should acquire
+                        shared resources in a
+                        consistent order.
+                    </p>
+<h3>2. Short Transactions</h3>
+<p>
+                        Transactions should avoid
+                        holding locks longer
+                        than necessary.
+                    </p>
+<h3>3. Appropriate Indexing</h3>
+<p>
+                        Suitable database indexes
+                        can reduce unnecessary
+                        scanning and may decrease
+                        lock contention.
+                    </p>
+<h3>4. Deadlock Detection</h3>
+<p>
+                        Some database systems automatically
+                        detect deadlocks and select
+                        a transaction to roll back.
+                    </p>
+<h3>5. Transaction Retry</h3>
+<p>
+                        Applications can retry
+                        transactions that were
+                        rolled back because
+                        of a deadlock.
+                    </p>
+<p>
+                        Retry operations should be
+                        designed carefully to avoid
+                        duplicate effects.
+                    </p>
+<h3>Example: Banking Database</h3>
+<div class="example-box">
+<p>
+                            Two transactions attempt
+                            to transfer money between
+                            the same bank accounts.
+                        </p>
+<p>
+                            If the transactions lock
+                            account records in different
+                            orders, a deadlock may occur.
+                        </p>
+<p>
+                            Using a consistent locking
+                            order helps reduce the
+                            risk of deadlock.
+                        </p>
+</div>
+<h3>Importance</h3>
+<p>
+                        Understanding database deadlocks
+                        is important for developers
+                        building applications that
+                        manage shared records,
+                        financial transactions,
+                        inventory systems,
+                        and online services.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 24
+                ====================================== -->
+<section class="chapter" id="chapter-24">
+<h2>
+                        24. Real-Life Applications of Deadlock Management
+                    </h2>
+<p>
+                        Deadlock management is important in
+                        real-world computer systems where
+                        multiple processes or users compete
+                        for shared resources.
+                    </p>
+<h3>1. Banking Systems</h3>
+<p>
+                        Banking applications process many
+                        transactions simultaneously.
+                        Transactions may need exclusive
+                        access to account records to
+                        maintain consistency.
+                    </p>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            Transaction A locks Account 1
+                            and requests Account 2.
+                        </p>
+<p>
+                            Transaction B locks Account 2
+                            and requests Account 1.
+                        </p>
+<p>
+                            A deadlock occurs when both
+                            transactions wait for each
+                            other to release their locks.
+                        </p>
+</div>
+<h3>2. Database Management Systems</h3>
+<p>
+                        Database systems use locking
+                        mechanisms to control concurrent
+                        access to shared records.
+                    </p>
+<p>
+                        Deadlock detection and transaction
+                        rollback can help restore progress
+                        when conflicting transactions
+                        become blocked.
+                    </p>
+<h3>3. Operating Systems</h3>
+<p>
+                        Operating systems manage resources
+                        such as memory, files, devices,
+                        and synchronization locks.
+                    </p>
+<p>
+                        Proper resource allocation reduces
+                        the risk of processes waiting
+                        indefinitely for one another.
+                    </p>
+<h3>4. Web Servers</h3>
+<p>
+                        Web servers handle requests from
+                        multiple users and may access
+                        shared files, databases,
+                        and application resources.
+                    </p>
+<p>
+                        Consistent locking practices and
+                        resource timeouts can help reduce
+                        concurrency problems.
+                    </p>
+<h3>5. Cloud Computing</h3>
+<p>
+                        Cloud platforms distribute
+                        computing resources among
+                        applications and virtual machines.
+                    </p>
+<p>
+                        Resource management helps prevent
+                        conflicts and supports reliable
+                        service delivery.
+                    </p>
+<h3>6. Printing Systems</h3>
+<p>
+                        Multiple applications may submit
+                        documents to the same printer.
+                    </p>
+<p>
+                        A print spooler manages print
+                        requests so that applications
+                        do not need to hold exclusive
+                        access to the printer while
+                        waiting for other resources.
+                    </p>
+<h3>7. Multithreaded Applications</h3>
+<p>
+                        Applications may contain several
+                        threads that access shared
+                        data structures.
+                    </p>
+<p>
+                        If threads acquire multiple
+                        locks in inconsistent orders,
+                        deadlocks can occur.
+                    </p>
+<div class="example-box">
+<h3>Example</h3>
+<p>
+                            Thread A holds Lock 1 and
+                            waits for Lock 2.
+                        </p>
+<p>
+                            Thread B holds Lock 2 and
+                            waits for Lock 1.
+                        </p>
+<p>
+                            Neither thread can continue
+                            until the circular dependency
+                            is broken.
+                        </p>
+</div>
+<h3>Importance</h3>
+<p>
+                        Deadlock management helps maintain
+                        system responsiveness, protects
+                        shared data, and improves the
+                        reliability of applications
+                        that operate concurrently.
+                    </p>
+</section>
+<!-- =====================================
+                     CHAPTER 25
+                ====================================== -->
+<section class="chapter" id="chapter-25">
+<h2>
+                        25. Best Practices for Resource Allocation
+                    </h2>
+<p>
+                        Effective resource allocation
+                        helps operating systems and
+                        applications use available
+                        resources efficiently while
+                        reducing the possibility
+                        of deadlocks.
+                    </p>
+<h3>1. Use Consistent Resource Ordering</h3>
+<p>
+                        Processes should acquire
+                        multiple resources in a
+                        consistent predefined order.
+                    </p>
+<p>
+                        This prevents circular
+                        waiting relationships.
+                    </p>
+<h3>2. Release Resources Promptly</h3>
+<p>
+                        Processes should release
+                        resources as soon as they
+                        are no longer needed.
+                    </p>
+<p>
+                        Holding resources unnecessarily
+                        increases contention and
+                        waiting time.
+                    </p>
+<h3>3. Minimize Lock Duration</h3>
+<p>
+                        Critical sections should be
+                        kept as short as practical.
+                    </p>
+<p>
+                        Shorter lock durations reduce
+                        the time other processes
+                        must wait.
+                    </p>
+<h3>4. Avoid Unnecessary Nested Locks</h3>
+<p>
+                        Acquiring several locks
+                        simultaneously can increase
+                        the complexity of resource
+                        dependencies.
+                    </p>
+<p>
+                        Applications should minimize
+                        nested locking where possible.
+                    </p>
+<h3>5. Use Appropriate Timeouts</h3>
+<p>
+                        Timeouts can prevent applications
+                        from waiting indefinitely for
+                        certain resources.
+                    </p>
+<p>
+                        However, a timeout alone does
+                        not eliminate every possible
+                        deadlock.
+                    </p>
+<h3>6. Monitor Resource Usage</h3>
+<p>
+                        System monitoring tools can
+                        help identify excessive
+                        waiting times, lock contention,
+                        and resource bottlenecks.
+                    </p>
+<h3>7. Apply Deadlock Detection</h3>
+<p>
+                        Systems that permit deadlocks
+                        should use appropriate detection
+                        and recovery mechanisms.
+                    </p>
+<h3>8. Design Safe Recovery Procedures</h3>
+<p>
+                        Applications should handle
+                        transaction rollback,
+                        resource cleanup, and
+                        process termination carefully.
+                    </p>
+<h3>9. Test Concurrent Operations</h3>
+<p>
+                        Developers should test
+                        applications under concurrent
+                        workloads to identify
+                        synchronization problems.
+                    </p>
+<h3>10. Use Suitable Synchronization Tools</h3>
+<p>
+                        Mutexes, semaphores, condition
+                        variables, and other
+                        synchronization mechanisms
+                        should be used according
+                        to their intended purposes.
+                    </p>
+<h3>Best Practices Summary</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resource Ordering</td>
+<td>
+                                        Prevent circular wait.
+                                    </td>
+</tr>
+<tr>
+<td>Prompt Release</td>
+<td>
+                                        Reduce resource contention.
+                                    </td>
+</tr>
+<tr>
+<td>Short Critical Sections</td>
+<td>
+                                        Minimize waiting time.
+                                    </td>
+</tr>
+<tr>
+<td>Timeouts</td>
+<td>
+                                        Limit certain waiting periods.
+                                    </td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>
+                                        Identify resource conflicts.
+                                    </td>
+</tr>
+<tr>
+<td>Recovery Procedures</td>
+<td>
+                                        Restore system progress.
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- =====================================
+                     CHAPTER 26
+                ====================================== -->
+<section class="chapter" id="chapter-26">
+<h2>
+                        26. Summary and Conclusion
+                    </h2>
+<h3>Summary</h3>
+<p>
+                        Deadlocks and resource allocation
+                        are important concepts in
+                        operating system management.
+                    </p>
+<p>
+                        A deadlock occurs when processes
+                        cannot continue because they
+                        are waiting for resources
+                        held by one another.
+                    </p>
+<p>
+                        Four necessary conditions
+                        contribute to deadlock:
+                    </p>
+<ol>
+<li>Mutual Exclusion</li>
+<li>Hold and Wait</li>
+<li>No Preemption</li>
+<li>Circular Wait</li>
+</ol>
+<p>
+                        Resource Allocation Graphs
+                        help illustrate relationships
+                        between processes and resources.
+                    </p>
+<p>
+                        Deadlock, starvation, and
+                        livelock represent different
+                        problems affecting process
+                        execution.
+                    </p>
+<p>
+                        Operating systems can manage
+                        deadlocks using prevention,
+                        avoidance, detection,
+                        and recovery.
+                    </p>
+<p>
+                        Deadlock prevention removes
+                        at least one necessary
+                        deadlock condition.
+                    </p>
+<p>
+                        Deadlock avoidance evaluates
+                        resource requests to keep
+                        the system in a safe state.
+                    </p>
+<p>
+                        The Banker's Algorithm is
+                        an example of a deadlock
+                        avoidance technique.
+                    </p>
+<p>
+                        Deadlock detection identifies
+                        existing deadlocks, while
+                        recovery methods attempt
+                        to restore system progress.
+                    </p>
+<h3>Key Lessons Learned</h3>
+<ol>
+<li>
+                            Processes require resources
+                            to perform their operations.
+                        </li>
+<li>
+                            Improper resource allocation
+                            can create deadlocks.
+                        </li>
+<li>
+                            The four Coffman conditions
+                            are necessary for traditional
+                            resource deadlocks.
+                        </li>
+<li>
+                            Resource Allocation Graphs
+                            help visualize dependencies.
+                        </li>
+<li>
+                            A safe state has at least
+                            one safe process sequence.
+                        </li>
+<li>
+                            The Banker's Algorithm
+                            evaluates resource allocation
+                            safety.
+                        </li>
+<li>
+                            Detection and recovery
+                            can resolve existing deadlocks.
+                        </li>
+<li>
+                            Consistent resource ordering
+                            helps prevent circular waits.
+                        </li>
+</ol>
+<h3>Conclusion</h3>
+<p>
+                        Understanding deadlocks and
+                        resource allocation helps
+                        Information Technology students
+                        recognize how operating systems
+                        coordinate shared resources.
+                    </p>
+<p>
+                        Proper synchronization,
+                        resource management,
+                        and recovery strategies
+                        support reliable and
+                        efficient computer systems.
+                    </p>
+<p>
+                        These concepts are especially
+                        important in operating systems,
+                        database management,
+                        multithreaded programming,
+                        and distributed applications.
+                    </p>
+</section>
+<!-- =====================================
+                     FINAL KNOWLEDGE ASSESSMENT
+                ====================================== -->
+<section class="chapter" id="quiz">
+<span class="eyebrow">
+                        FINAL ASSESSMENT
+                    </span>
+<h2>
+                        Deadlocks and Resource Allocation Quiz
+                    </h2>
+<p>
+                        Test your knowledge of the
+                        26 chapters covered in
+                        this CodeVerse e-book.
+                    </p>
+<div class="example-box">
+<h3>Assessment Instructions</h3>
+<p>
+                            Answer all 30 multiple-choice
+                            questions.
+                        </p>
+<p>
+                            Each correct answer is
+                            worth one point.
+                        </p>
+<p>
+                            You must obtain at least
+                            75% to pass.
+                        </p>
+<p>
+<strong>
+                                Passing Score: 23 out of 30
+                            </strong>
+</p>
+<p>
+                            After submitting, your score,
+                            correct answers, and explanations
+                            will be displayed.
+                        </p>
+</div>
+<p aria-live="polite" id="quizProgress">
+                        Questions Answered: 0 / 30
+                    </p>
+<form id="quizForm" novalidate="">
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="submit">
+                                Submit Quiz
+                            </button>
+<button id="resetQuiz" type="button">
+                                Retake Quiz
+                            </button>
+</div>
+</form>
+<div aria-live="polite" hidden="" id="quizResult">
+<h3 id="resultHeading"></h3>
+<p id="resultScore"></p>
+<p id="resultPercentage"></p>
+<p id="resultMessage"></p>
+</div>
+</section>
+</div>
+<!-- END .book-content -->
+</main>
+</div>
+<!-- END .layout -->
+<!-- =====================================
+         FOOTER
+    ====================================== -->
+<footer class="page-footer">
+<p>
+            © CodeVerse Digital E-Book Library.
+            All rights reserved.
+        </p>
+</footer>
+<!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+<script>
+        "use strict";
+
+        /* =====================================
+           DARK MODE
+        ====================================== */
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+        const themeIcon =
+            document.getElementById("themeIcon");
+
+        function applyTheme(theme) {
+
+            const isDark = theme === "dark";
+
+            document.body.classList.toggle(
+                "dark-mode",
+                isDark
+            );
+
+            themeIcon.textContent =
+                isDark ? "☀" : "☾";
+
+            themeToggle.setAttribute(
+                "aria-label",
+                isDark
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+            );
+
+        }
+
+        const savedTheme =
+            localStorage.getItem("readerTheme") || "light";
+
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener("click", function () {
+
+            const nextTheme =
+                document.body.classList.contains("dark-mode")
+                    ? "light"
+                    : "dark";
+
+            applyTheme(nextTheme);
+
+            localStorage.setItem(
+                "readerTheme",
+                nextTheme
+            );
+
+        });
+
+        /* =====================================
+           FONT SIZE CONTROL
+        ====================================== */
+
+        const fontSizeSelect =
+            document.getElementById("fontSize");
+
+        const availableFontSizes = [
+            "14px",
+            "16px",
+            "18px",
+            "20px",
+            "22px"
+        ];
+
+        const savedFontSize =
+            localStorage.getItem("readerFontSize");
+
+        if (availableFontSizes.includes(savedFontSize)) {
+
+            fontSizeSelect.value = savedFontSize;
+
+        }
+
+        function applyFontSize(size) {
+
+            document.documentElement.style.setProperty(
+                "--reader-size",
+                size
+            );
+
+        }
+
+        applyFontSize(fontSizeSelect.value);
+
+        fontSizeSelect.addEventListener("change", function () {
+
+            applyFontSize(fontSizeSelect.value);
+
+            localStorage.setItem(
+                "readerFontSize",
+                fontSizeSelect.value
+            );
+
+        });
+
+        /* =====================================
+           FONT FAMILY CONTROL
+        ====================================== */
+
+        const fontFamilySelect =
+            document.getElementById("fontFamily");
+
+        const savedFontFamily =
+            localStorage.getItem("readerFontFamily");
+
+        const availableFontFamilies =
+            Array.from(fontFamilySelect.options)
+                .map(option => option.value);
+
+        if (availableFontFamilies.includes(savedFontFamily)) {
+
+            fontFamilySelect.value = savedFontFamily;
+
+        }
+
+        function applyFontFamily(fontFamily) {
+
+            document.documentElement.style.setProperty(
+                "--reader-family",
+                fontFamily
+            );
+
+        }
+
+        applyFontFamily(fontFamilySelect.value);
+
+        fontFamilySelect.addEventListener("change", function () {
+
+            applyFontFamily(fontFamilySelect.value);
+
+            localStorage.setItem(
+                "readerFontFamily",
+                fontFamilySelect.value
+            );
+
+        });
+
+        /* =====================================
+           MOBILE NAVIGATION
+        ====================================== */
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen =
+                navLinks.classList.toggle("show");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close menu" : "Open menu"
+            );
+
+            menuToggle.textContent =
+                isOpen ? "✕" : "☰";
+
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("show");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open menu"
+                );
+
+                menuToggle.textContent = "☰";
+
+            });
+
+        });
+
+        /* =====================================
+           TABLE OF CONTENTS
+        ====================================== */
+
+        const tocLinks = Array.from(
+            document.querySelectorAll(
+                "#tocNav a[href^='#']"
+            )
+        );
+
+        const tocSections = tocLinks
+            .map(link => {
+                return document.getElementById(
+                    link.getAttribute("href").slice(1)
+                );
+            })
+            .filter(Boolean);
+
+        function setActiveTOC(sectionId) {
+
+            tocLinks.forEach(link => {
+
+                const isActive =
+                    link.getAttribute("href") ===
+                    "#" + sectionId;
+
+                link.classList.toggle(
+                    "active",
+                    isActive
+                );
+
+                if (isActive) {
+
+                    link.setAttribute(
+                        "aria-current",
+                        "location"
+                    );
+
+                } else {
+
+                    link.removeAttribute(
+                        "aria-current"
+                    );
+
+                }
+
+            });
+
+        }
+
+        if ("IntersectionObserver" in window) {
+
+            const sectionObserver =
+                new IntersectionObserver(
+
+                    entries => {
+
+                        const visibleEntries = entries
+                            .filter(entry => entry.isIntersecting)
+                            .sort(
+                                (a, b) =>
+                                    a.boundingClientRect.top -
+                                    b.boundingClientRect.top
+                            );
+
+                        if (visibleEntries.length > 0) {
+
+                            setActiveTOC(
+                                visibleEntries[0].target.id
+                            );
+
+                        }
+
+                    },
+
+                    {
+                        rootMargin: "-110px 0px -65% 0px",
+                        threshold: 0
+                    }
+
+                );
+
+            tocSections.forEach(section => {
+
+                sectionObserver.observe(section);
+
+            });
+
+        }
+
+        tocLinks.forEach(link => {
+
+            link.addEventListener("click", function () {
+
+                setActiveTOC(
+                    link.getAttribute("href").slice(1)
+                );
+
+            });
+
+        });
+
+        /* =====================================
+           30-QUESTION QUIZ DATA
+
+           correct:
+           0 = A
+           1 = B
+           2 = C
+           3 = D
+        ====================================== */
+
+        const quizData = [
+
+            {
+                question:
+                    "What is the primary purpose of resource allocation in an operating system?",
+
+                options: [
+                    "Assigning computing resources to processes",
+                    "Removing every process from memory",
+                    "Preventing programs from accessing files",
+                    "Replacing the operating system scheduler"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Resource allocation assigns available computing resources to processes that need them."
+            },
+
+            {
+                question:
+                    "What is a process in an operating system?",
+
+                options: [
+                    "A program stored only on a disk",
+                    "A program currently being executed",
+                    "A hardware component that stores data",
+                    "A device used for network communication"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "A process is an executing program that uses system resources."
+            },
+
+            {
+                question:
+                    "What is a deadlock?",
+
+                options: [
+                    "A process completing its execution",
+                    "A resource becoming available",
+                    "Processes blocked while waiting for resources held by one another",
+                    "A processor switching between applications"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Deadlock occurs when processes cannot proceed because of circular resource dependencies."
+            },
+
+            {
+                question:
+                    "Which stage normally occurs after a process finishes using an allocated resource?",
+
+                options: [
+                    "Request",
+                    "Evaluation",
+                    "Assignment",
+                    "Release"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "The process releases the resource so that it can become available to other processes."
+            },
+
+            {
+                question:
+                    "Which allocation method assigns resources before process execution?",
+
+                options: [
+                    "Static allocation",
+                    "Dynamic allocation",
+                    "Demand paging",
+                    "Round-robin scheduling"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Static allocation assigns resources before execution, while dynamic allocation occurs during execution."
+            },
+
+            {
+                question:
+                    "Which of the following is an example of a software resource?",
+
+                options: [
+                    "CPU socket",
+                    "File lock",
+                    "Power supply",
+                    "Cooling fan"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "A file lock is a software-managed resource used to coordinate access to shared files."
+            },
+
+            {
+                question:
+                    "What commonly causes deadlock between two processes?",
+
+                options: [
+                    "Both processes completing successfully",
+                    "Both processes using separate resources without waiting",
+                    "Each process holding a resource needed by the other",
+                    "Both processes releasing resources before requesting new ones"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Deadlock can occur when each process holds a resource while waiting for one held by the other."
+            },
+
+            {
+                question:
+                    "How many Coffman conditions are necessary for traditional resource deadlock?",
+
+                options: [
+                    "One",
+                    "Two",
+                    "Three",
+                    "Four"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "The four necessary conditions are mutual exclusion, hold and wait, no preemption, and circular wait."
+            },
+
+            {
+                question:
+                    "Which deadlock condition requires exclusive access to at least one resource?",
+
+                options: [
+                    "Mutual exclusion",
+                    "Hold and wait",
+                    "Circular wait",
+                    "No preemption"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Mutual exclusion means that at least one resource can be used by only one process at a time."
+            },
+
+            {
+                question:
+                    "Which condition prevents a resource from being forcibly taken from a process?",
+
+                options: [
+                    "Circular wait",
+                    "No preemption",
+                    "Mutual exclusion",
+                    "Hold and wait"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "No preemption means a resource must normally be released voluntarily by its holder."
+            },
+
+            {
+                question:
+                    "In a Resource Allocation Graph, what does an edge from a process to a resource represent?",
+
+                options: [
+                    "Resource release",
+                    "Process termination",
+                    "Resource request",
+                    "Completed execution"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "A process-to-resource edge indicates that the process is requesting that resource."
+            },
+
+            {
+                question:
+                    "When does a cycle in a Resource Allocation Graph guarantee deadlock?",
+
+                options: [
+                    "When every process is ready",
+                    "When no resources are allocated",
+                    "When all resources have unlimited instances",
+                    "When each resource type has one instance"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "For single-instance resource types, a cycle in the Resource Allocation Graph indicates deadlock."
+            },
+
+            {
+                question:
+                    "Which problem occurs when a process waits indefinitely while other processes continue receiving resources?",
+
+                options: [
+                    "Starvation",
+                    "Deadlock",
+                    "Livelock",
+                    "Context switching"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Starvation occurs when a process is repeatedly denied the resources or scheduling opportunities it needs."
+            },
+
+            {
+                question:
+                    "Which strategy evaluates resource requests to keep the system in a safe state?",
+
+                options: [
+                    "Deadlock detection",
+                    "Deadlock avoidance",
+                    "Deadlock recovery",
+                    "Process termination"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "Deadlock avoidance evaluates requests before granting them to maintain a safe allocation state."
+            },
+
+            {
+                question:
+                    "Which prevention technique eliminates circular wait?",
+
+                options: [
+                    "Increasing process priorities",
+                    "Allowing arbitrary lock acquisition",
+                    "Requiring a consistent resource ordering",
+                    "Holding resources for longer periods"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "A consistent resource ordering prevents processes from forming circular resource dependencies."
+            },
+
+            {
+                question:
+                    "What is the main goal of deadlock avoidance?",
+
+                options: [
+                    "To terminate all running processes",
+                    "To eliminate all shared resources",
+                    "To prevent every process from waiting",
+                    "To avoid entering unsafe resource allocation states"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "Deadlock avoidance checks whether resource requests would leave the system in a safe state."
+            },
+
+            {
+                question:
+                    "What defines a safe state?",
+
+                options: [
+                    "At least one safe sequence exists",
+                    "Every resource is currently free",
+                    "No process may request resources",
+                    "Every process has already terminated"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "A safe state has at least one sequence in which every process can complete under its declared maximum demands."
+            },
+
+            {
+                question:
+                    "Which formula is used to calculate Need in the Banker's Algorithm?",
+
+                options: [
+                    "Need = Allocation + Available",
+                    "Need = Maximum - Allocation",
+                    "Need = Available - Maximum",
+                    "Need = Allocation - Maximum"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "The Need matrix is calculated by subtracting Allocation from Maximum for each process and resource type."
+            },
+
+            {
+                question:
+                    "A process has Maximum [5, 4, 3] and Allocation [2, 1, 1]. What is its Need?",
+
+                options: [
+                    "[7, 5, 4]",
+                    "[2, 3, 2]",
+                    "[3, 3, 2]",
+                    "[3, 4, 3]"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Need = Maximum - Allocation = [5-2, 4-1, 3-1] = [3, 3, 2]."
+            },
+
+            {
+                question:
+                    "What is the purpose of deadlock detection?",
+
+                options: [
+                    "To guarantee that every allocation is safe",
+                    "To remove all exclusive resources",
+                    "To prevent processes from requesting resources",
+                    "To identify deadlocks that have already occurred"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "Deadlock detection examines process dependencies and resource allocations to identify existing deadlocks."
+            },
+
+            {
+                question:
+                    "Which of the following is a deadlock recovery method?",
+
+                options: [
+                    "Process termination",
+                    "Increasing lock duration",
+                    "Creating additional circular waits",
+                    "Disabling resource release"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Terminating selected deadlocked processes can release resources and restore progress."
+            },
+
+            {
+                question:
+                    "What does resource preemption involve?",
+
+                options: [
+                    "Creating additional resource requests",
+                    "Reclaiming a resource from a process when safe",
+                    "Preventing all process execution",
+                    "Permanently disabling resource allocation"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "Resource preemption reclaims selected resources from processes when doing so is safe."
+            },
+
+            {
+                question:
+                    "What commonly causes a database deadlock?",
+
+                options: [
+                    "Transactions reading unrelated records",
+                    "Transactions completing without locks",
+                    "Transactions waiting for locks held by one another",
+                    "Transactions accessing independent databases"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Database deadlocks occur when transactions form circular waiting relationships involving locks."
+            },
+
+            {
+                question:
+                    "Which practice helps prevent deadlocks in banking transactions?",
+
+                options: [
+                    "Holding locks indefinitely",
+                    "Acquiring account locks in random orders",
+                    "Disabling transaction rollback",
+                    "Acquiring account locks in a consistent order"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "Consistent lock ordering helps prevent circular waiting relationships between transactions."
+            },
+
+            {
+                question:
+                    "Why should applications release resources promptly?",
+
+                options: [
+                    "To reduce resource contention and waiting time",
+                    "To increase the number of blocked processes",
+                    "To prevent other applications from running",
+                    "To increase the duration of critical sections"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Promptly releasing resources reduces contention and allows waiting processes to continue."
+            },
+
+            {
+                question:
+                    "Which statement best describes an unsafe state?",
+
+                options: [
+                    "A deadlock must already exist",
+                    "The system cannot guarantee a safe completion sequence",
+                    "Every process has completed",
+                    "All resources are permanently unavailable"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "An unsafe state means that no safe sequence can be identified; it does not necessarily mean deadlock has occurred."
+            },
+
+            {
+                question:
+                    "Which synchronization problem involves active processes repeatedly reacting without useful progress?",
+
+                options: [
+                    "Starvation",
+                    "Deadlock",
+                    "Livelock",
+                    "Normal scheduling"
+                ],
+
+                correct: 2,
+
+                explanation:
+                    "Livelock occurs when processes remain active but fail to make useful progress."
+            },
+
+            {
+                question:
+                    "Which strategy allows deadlocks to occur and then identifies them?",
+
+                options: [
+                    "Deadlock prevention",
+                    "Deadlock avoidance",
+                    "Static allocation",
+                    "Deadlock detection"
+                ],
+
+                correct: 3,
+
+                explanation:
+                    "Deadlock detection allows allocations to proceed and examines the system for existing deadlocks."
+            },
+
+            {
+                question:
+                    "Which data structure in the Banker's Algorithm stores currently allocated resource instances?",
+
+                options: [
+                    "Allocation",
+                    "Maximum",
+                    "Need",
+                    "Available"
+                ],
+
+                correct: 0,
+
+                explanation:
+                    "Allocation records the resource instances currently assigned to each process."
+            },
+
+            {
+                question:
+                    "Which statement best summarizes effective deadlock management?",
+
+                options: [
+                    "Every process should hold resources indefinitely",
+                    "Systems should use suitable allocation, prevention, detection, and recovery strategies",
+                    "Deadlocks can be solved only by restarting the entire computer",
+                    "Resource sharing should never be allowed"
+                ],
+
+                correct: 1,
+
+                explanation:
+                    "Effective deadlock management combines appropriate resource allocation and synchronization with prevention, avoidance, detection, or recovery strategies."
+            }
+
+        ];
+
+        /* =====================================
+           QUIZ ELEMENTS
+        ====================================== */
+
+        const quizForm =
+            document.getElementById("quizForm");
+
+        const quizQuestions =
+            document.getElementById("quizQuestions");
+
+        const quizProgress =
+            document.getElementById("quizProgress");
+
+        const quizResult =
+            document.getElementById("quizResult");
+
+        const resultHeading =
+            document.getElementById("resultHeading");
+
+        const resultScore =
+            document.getElementById("resultScore");
+
+        const resultPercentage =
+            document.getElementById("resultPercentage");
+
+        const resultMessage =
+            document.getElementById("resultMessage");
+
+        const submitQuiz =
+            document.getElementById("submitQuiz");
+
+        const resetQuiz =
+            document.getElementById("resetQuiz");
+
+        let quizSubmitted = false;
+
+        /* =====================================
+           RENDER QUIZ QUESTIONS
+        ====================================== */
+
+        function renderQuiz() {
+
+            quizQuestions.innerHTML = "";
+
+            quizData.forEach((item, index) => {
+
+                const questionNumber = index + 1;
+
+                const questionBox =
+                    document.createElement("div");
+
+                questionBox.className = "quiz-question";
+
+                questionBox.id =
+                    "quiz-question-" + questionNumber;
+
+                const heading =
+                    document.createElement("h3");
+
+                heading.textContent =
+                    questionNumber + ". " + item.question;
+
+                questionBox.appendChild(heading);
+
+                item.options.forEach((option, optionIndex) => {
+
+                    const label =
+                        document.createElement("label");
+
+                    label.className = "quiz-option";
+
+                    const input =
+                        document.createElement("input");
+
+                    input.type = "radio";
+
+                    input.name =
+                        "question-" + index;
+
+                    input.value =
+                        String(optionIndex);
+
+                    const optionText =
+                        document.createElement("span");
+
+                    optionText.textContent =
+                        String.fromCharCode(65 + optionIndex) +
+                        ". " + option;
+
+                    label.appendChild(input);
+
+                    label.appendChild(optionText);
+
+                    questionBox.appendChild(label);
+
+                });
+
+                const feedback =
+                    document.createElement("p");
+
+                feedback.className = "quiz-feedback";
+
+                feedback.hidden = true;
+
+                feedback.id =
+                    "feedback-" + index;
+
+                questionBox.appendChild(feedback);
+
+                quizQuestions.appendChild(questionBox);
+
+            });
+
+            quizSubmitted = false;
+
+            submitQuiz.disabled = false;
+
+            submitQuiz.textContent = "Submit Quiz";
+
+            quizResult.hidden = true;
+
+            updateQuizProgress();
+
+        }
+
+        /* =====================================
+           QUIZ PROGRESS TRACKING
+        ====================================== */
+
+        function updateQuizProgress() {
+
+            let answered = 0;
+
+            quizData.forEach((item, index) => {
+
+                const selected =
+                    quizForm.querySelector(
+                        'input[name="question-' +
+                        index +
+                        '"]:checked'
+                    );
+
+                if (selected) {
+                    answered++;
+                }
+
+            });
+
+            quizProgress.textContent =
+                "Questions Answered: " +
+                answered +
+                " / " +
+                quizData.length;
+
+        }
+
+        quizForm.addEventListener("change", function () {
+
+            if (!quizSubmitted) {
+                updateQuizProgress();
+            }
+
+        });
+
+        /* =====================================
+           SUBMIT AND GRADE QUIZ
+        ====================================== */
+
+        quizForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            if (quizSubmitted) {
+                return;
+            }
+
+            let score = 0;
+
+            let firstUnanswered = null;
+
+            const selectedAnswers = [];
+
+            quizData.forEach((item, index) => {
+
+                const selected =
+                    quizForm.querySelector(
+                        'input[name="question-' +
+                        index +
+                        '"]:checked'
+                    );
+
+                if (!selected) {
+
+                    if (!firstUnanswered) {
+
+                        firstUnanswered =
+                            document.getElementById(
+                                "quiz-question-" + (index + 1)
+                            );
+
+                    }
+
+                    selectedAnswers.push(null);
+
+                } else {
+
+                    selectedAnswers.push(
+                        Number(selected.value)
+                    );
+
+                }
+
+            });
+
+            if (firstUnanswered) {
+
+                alert(
+                    "Please answer all 30 questions before submitting."
+                );
+
+                firstUnanswered.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+                const firstInput =
+                    firstUnanswered.querySelector(
+                        'input[type="radio"]'
+                    );
+
+                if (firstInput) {
+
+                    firstInput.focus({
+                        preventScroll: true
+                    });
+
+                }
+
+                return;
+            }
+
+            quizData.forEach((item, index) => {
+
+                const selectedIndex =
+                    selectedAnswers[index];
+
+                const questionBox =
+                    document.getElementById(
+                        "quiz-question-" + (index + 1)
+                    );
+
+                const labels =
+                    questionBox.querySelectorAll(
+                        ".quiz-option"
+                    );
+
+                const feedback =
+                    document.getElementById(
+                        "feedback-" + index
+                    );
+
+                if (selectedIndex === item.correct) {
+
+                    score++;
+
+                }
+
+                labels.forEach((label, optionIndex) => {
+
+                    if (optionIndex === item.correct) {
+
+                        label.classList.add("correct");
+
+                    }
+
+                    if (
+                        optionIndex === selectedIndex &&
+                        selectedIndex !== item.correct
+                    ) {
+
+                        label.classList.add("incorrect");
+
+                    }
+
+                });
+
+                const correctLetter =
+                    String.fromCharCode(
+                        65 + item.correct
+                    );
+
+                feedback.textContent =
+                    "Correct Answer: " +
+                    correctLetter +
+                    ". " +
+                    item.options[item.correct] +
+                    " — " +
+                    item.explanation;
+
+                feedback.hidden = false;
+
+            });
+
+            const total = quizData.length;
+
+            const percentage =
+                (score / total) * 100;
+
+            const passed =
+                percentage >= 75;
+
+            resultHeading.textContent =
+                passed
+                    ? "Congratulations! You Passed!"
+                    : "Assessment Not Passed";
+
+            resultScore.textContent =
+                "Your Score: " +
+                score +
+                " / " +
+                total;
+
+            resultPercentage.textContent =
+                "Percentage: " +
+                percentage.toFixed(2) +
+                "%";
+
+            resultMessage.textContent =
+                passed
+                    ? "You have successfully passed the Deadlocks and Resource Allocation assessment."
+                    : "You need at least 75% (23 correct answers) to pass. Review the chapters and try again.";
+
+            quizResult.hidden = false;
+
+            quizSubmitted = true;
+
+            submitQuiz.disabled = true;
+
+            submitQuiz.textContent =
+                "Assessment Submitted";
+
+            quizForm.querySelectorAll(
+                'input[type="radio"]'
+            ).forEach(input => {
+
+                input.disabled = true;
+
+            });
+
+            quizResult.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        });
+
+        /* =====================================
+           RESET QUIZ
+        ====================================== */
+
+        resetQuiz.addEventListener("click", function () {
+
+            quizForm.reset();
+
+            renderQuiz();
+
+            document.getElementById("quiz").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        });
+
+        /* =====================================
+           INITIALIZE QUIZ
+        ====================================== */
+
+        renderQuiz();
+
+    </script>
+</body>
+</html>

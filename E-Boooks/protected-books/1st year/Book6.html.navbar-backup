@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeVerse | Operating System Fundamentals</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="/books/css/Authentication.css" rel="stylesheet"/>
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+
+<style>
+:root{--primary:#3157a4;--primary-dark:#24427f;--bg:#f5f7fc;--surface:#fff;--text:#24314a;--muted:#65738b;--line:#e1e7f0;--shadow:0 8px 30px #1e325a12}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;font-family:'DM Sans',Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .25s,color .25s}
+body.dark-mode{--primary:#92b4ff;--primary-dark:#7297e5;--bg:#111827;--surface:#1c2739;--text:#eaf0fc;--muted:#b3c0d3;--line:#344257;--shadow:0 8px 30px #0003}
+a{color:var(--primary);text-decoration:none}button,select{font:inherit}
+.navbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;padding:13px clamp(16px,4vw,54px);background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;color:var(--text);white-space:nowrap}
+.site-logo{width:38px;height:38px;object-fit:contain}.logo-highlight{color:var(--primary)}
+.nav-links{display:flex;gap:22px;margin-left:auto}.nav-links a{color:var(--text);font-size:14px;font-weight:700}.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:12px}.icon-btn,.menu-toggle{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 12px;cursor:pointer}
+#accountActions{display:flex;align-items:center;gap:10px}.login-btn,.signup-btn,.logout-btn{padding:9px 13px;border-radius:9px;font-size:13px;font-weight:700;white-space:nowrap}
+.login-btn{border:1px solid var(--line)}.signup-btn,.logout-btn{border:0;background:#3157a4;color:#fff;cursor:pointer}.account-username{font-size:13px;font-weight:700;color:var(--text);overflow-wrap:anywhere}
+.menu-toggle{display:none}.topbar{padding:16px clamp(18px,5vw,70px);border-bottom:1px solid var(--line)}
+.reading-controls{display:flex;flex-wrap:wrap;gap:18px;padding:15px clamp(18px,5vw,70px);background:var(--surface);border-bottom:1px solid var(--line)}
+.control-group{display:flex;align-items:center;gap:10px}.control-group label{font-size:13px;font-weight:700}.control-group select{max-width:190px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+.layout{display:grid;grid-template-columns:minmax(210px,270px) minmax(0,1fr);gap:26px;max-width:1450px;margin:28px auto;padding:0 22px;align-items:start}
+.toc{position:sticky;top:93px;max-height:calc(100vh - 112px);overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow);scrollbar-width:thin}
+.toc h2{margin:0 0 14px;font-size:17px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{display:block;padding:9px 10px;border-radius:8px;color:var(--muted);font-size:12px;line-height:1.45}.toc nav a:hover{background:var(--bg);color:var(--primary)}
+main{min-width:0}.book-header,.chapter{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:clamp(20px,3vw,36px);margin-bottom:22px;box-shadow:var(--shadow)}
+.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(27px,3vw,42px);margin:12px 0}.book-header p{color:var(--muted);line-height:1.8}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary)}
+.chapter{font-size:var(--reader-size,16px);font-family:var(--reader-font,'DM Sans',sans-serif);line-height:1.85}
+.chapter h1,.chapter h2,.chapter h3{line-height:1.35;color:var(--text)}.chapter h1{font-size:1.9em}.chapter h2{font-size:1.5em}.chapter h3{font-size:1.16em;margin-top:25px}
+.chapter p,.chapter li{color:var(--text)}.chapter li{margin-bottom:7px}
+.chapter table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:20px 0}.chapter th,.chapter td{border:1px solid var(--line);padding:11px 13px;text-align:left;min-width:110px}.chapter th{background:var(--bg)}
+.code-example{overflow-x:auto;border:1px solid var(--line);background:var(--bg);padding:16px;border-radius:10px;margin:18px 0}
+.code-example pre{margin:0;white-space:pre;line-height:1.5;font-size:13px;color:var(--text)}
+.quiz-question{padding:18px 0;border-bottom:1px solid var(--line)}.quiz-question h3{margin:0 0 12px;font-size:1em}
+.quiz-option{display:flex;align-items:flex-start;gap:12px;padding:11px 13px;margin:7px 0;border:1px solid var(--line);border-radius:9px;cursor:pointer}
+.quiz-option:has(input:checked){border-color:var(--primary);background:var(--bg)}
+.quiz-option.correct{border-color:#24a36a;background:#24a36a19}.quiz-option.incorrect{border-color:#d95363;background:#d9536319}
+.quiz-feedback{font-size:.88em;font-weight:700}.quiz-actions{display:flex;gap:12px;margin-top:24px}
+.quiz-actions button{background:#3157a4;color:white;border:0;border-radius:9px;padding:12px 20px;cursor:pointer;font-weight:700}
+#quizProgress{color:var(--muted);font-weight:700}#quizResult{padding:22px;background:var(--bg);border-radius:12px;margin-top:18px;text-align:center}
+[hidden]{display:none!important}.page-footer{text-align:center;color:var(--muted);padding:20px 0 40px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:static;max-height:250px}.navbar{flex-wrap:wrap}.nav-links{margin-left:auto}}
+@media(max-width:600px){.navbar{gap:10px}.logo{font-size:17px}.site-logo{width:31px;height:31px}.menu-toggle{display:block;margin-left:auto}.nav-links{display:none;order:5;width:100%;flex-direction:column;gap:12px}.nav-links.open{display:flex}.nav-actions{margin-left:auto}#accountActions{gap:6px}.account-username{max-width:110px;font-size:11px}.login-btn,.signup-btn,.logout-btn{padding:8px;font-size:11px}.layout{padding:0 12px;gap:14px}.reading-controls{gap:12px}.control-group{flex-wrap:wrap}}
+</style></head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<header class="navbar">
+<a class="logo" href="/index.html">
+<img alt="CodeVerse Logo" class="site-logo" src="/images/CodeVerseLogo.png"/>
+<span>Code<span class="logo-highlight">Verse</span></span>
+</a>
+<nav class="nav-links" id="navLinks">
+<a class="active" href="/index.html">Home</a>
+<a href="/library.html">Explore Books</a>
+<a href="/index.html#about">About</a>
+</nav>
+<div class="nav-actions">
+<button aria-label="Toggle dark mode" class="icon-btn" id="themeToggle" type="button">
+<span id="themeIcon">☾</span>
+</button>
+<!-- Account buttons will be displayed by JavaScript -->
+<div id="accountActions">
+<a class="login-btn" href="/LogIn.html">Log In</a>
+<a class="signup-btn" href="/register.html">Sign Up</a>
+</div>
+</div>
+<button aria-label="Open menu" class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+</header>
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav><a href="#os-introduction">
+        Introduction to Operating Systems
+    </a><a href="#os-architecture">
+        Operating System Architecture and Kernel Structures
+    </a><a href="#os-execution-modes">
+        Hardware Abstraction and Execution Modes
+    </a><a href="#os-system-calls">
+        System Calls and OS APIs
+    </a><a href="#os-process-management">
+        Process Management
+    </a><a href="#os-process-scheduling">
+        Process Scheduling and Lifecycle
+    </a><a href="#os-cpu-scheduling">
+        CPU Scheduling Algorithms
+    </a><a href="#os-threads">
+        Threads and Concurrency
+    </a><a href="#os-race-conditions">
+        Process Synchronization and Race Conditions
+    </a><a href="#os-synchronization">
+        Synchronization Primitives
+    </a><a href="#os-deadlocks">
+        Deadlocks: Characterization and Handling
+    </a><a href="#os-deadlock-prevention">
+        Deadlock Prevention, Avoidance, and Recovery
+    </a><a href="#os-memory-management">
+        Memory Management: Contiguous Allocation
+    </a><a href="#os-paging">
+        Non-Contiguous Memory: Paging
+    </a><a href="#os-advanced-paging">
+        Advanced Paging Architectures
+    </a><a href="#os-segmentation">
+        Memory Segmentation
+    </a><a href="#os-virtual-memory">
+        Virtual Memory Foundations
+    </a><a href="#os-page-replacement">
+        Page Replacement Algorithms
+    </a><a href="#os-file-system">
+        Storage and File System Abstraction
+    </a><a href="#os-file-allocation">
+        File Allocation Methods
+    </a><a href="#os-free-space">
+        Free Space Management
+    </a><a href="#os-disk-scheduling">
+        Disk Infrastructure and Scheduling
+    </a><a href="#os-io-subsystem">
+        I/O Subsystem Architecture
+    </a><a href="#os-buffering">
+        I/O Buffering, Caching, and Spooling
+    </a><a href="#os-access-control">
+        Protection and Access Control
+    </a><a href="#os-security">
+        System Security and Threat Mitigation
+    </a><a href="#os-virtualization">
+        Virtualization and Hypervisors
+    </a><a href="#os-multiprocessing">
+        Distributed and Multiprocessor OS
+    </a><a href="#os-real-time">
+        Real-Time Operating Systems
+    </a><a href="#os-modern-frontiers">
+        Modern Operating System Frontiers
+    </a><a href="#quiz">
+        Knowledge Assessment Quiz
+    </a></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>Operating System Fundamentals</h1>
+<p>Explore operating system architecture, processes, CPU scheduling, memory management, storage, security, and modern operating systems.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - OPERATING SYSTEM FUNDAMENTALS
+     LESSON BODY
+========================================== -->
+<section class="chapter" id="os-introduction">
+<h1>Operating System Fundamentals</h1>
+<p>
+        An Operating System (OS) is foundational system software
+        that manages computer hardware resources, provides services
+        to application programs, and controls execution privileges
+        in multi-user and multitasking environments.
+    </p>
+<p>
+        The operating system acts as an intermediary between
+        application software and computer hardware. It manages
+        processes, memory, file systems, storage devices,
+        input/output operations, and security.
+    </p>
+<h3>Operating System Structure</h3>
+<div class="code-example">
+<pre><code>+------------------------------------+
+|          USER APPLICATIONS         |
+|   Browsers, Games, Editors, IDEs   |
++------------------------------------+
+|       OPERATING SYSTEM API         |
+|     System Calls, Shell, GUI       |
++------------------------------------+
+|          OPERATING SYSTEM          |
+| Process, Memory, Files, I/O, etc.  |
++------------------------------------+
+|          COMPUTER HARDWARE         |
+|    CPU, RAM, Storage, Devices      |
++------------------------------------+</code></pre>
+</div>
+<h3>Core Objectives</h3>
+<ul>
+<li>Manage hardware resources efficiently.</li>
+<li>Provide a convenient environment for applications.</li>
+<li>Support multiple programs and users.</li>
+<li>Enforce system protection and security.</li>
+<li>Coordinate hardware and software operations.</li>
+</ul>
+</section>
+<section class="chapter" id="os-architecture">
+<h2>1. Operating System Architecture and Kernel Structures</h2>
+<p>
+        Operating systems use different kernel architectures
+        to organize essential services such as process
+        management, memory allocation, device drivers,
+        and file systems.
+    </p>
+<h3>Monolithic Kernel</h3>
+<p>
+        A monolithic kernel places core operating system
+        services inside one privileged kernel address space.
+        This design provides fast communication between
+        services but a faulty kernel component can affect
+        the entire system.
+    </p>
+<h3>Microkernel</h3>
+<p>
+        A microkernel keeps only essential functions,
+        including low-level memory management,
+        interprocess communication, and scheduling,
+        inside the kernel.
+    </p>
+<p>
+        Other services such as device drivers and file
+        systems can run in user space, improving modularity
+        and fault isolation.
+    </p>
+<h3>Hybrid Kernel</h3>
+<p>
+        A hybrid kernel combines elements of monolithic
+        and microkernel architectures to balance
+        performance and modularity.
+    </p>
+<h3>Exokernel</h3>
+<p>
+        An exokernel exposes hardware resources more directly
+        to application-level library operating systems,
+        enabling specialized resource management.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Kernel Type</th>
+<th>Advantage</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monolithic</td>
+<td>Fast internal service communication</td>
+<td>Limited fault isolation</td>
+</tr>
+<tr>
+<td>Microkernel</td>
+<td>Modularity and isolation</td>
+<td>IPC overhead</td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td>Performance and flexibility</td>
+<td>Architectural complexity</td>
+</tr>
+<tr>
+<td>Exokernel</td>
+<td>Application-specific optimization</td>
+<td>Complex application development</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="os-execution-modes">
+<h2>2. Hardware Abstraction and Execution Modes</h2>
+<p>
+        Computer hardware uses privilege levels to prevent
+        applications from directly accessing protected
+        system resources.
+    </p>
+<h3>User Mode</h3>
+<p>
+        User mode is the restricted execution environment
+        used by ordinary applications. Programs cannot
+        directly execute privileged instructions or
+        access protected kernel memory.
+    </p>
+<h3>Kernel Mode</h3>
+<p>
+        Kernel mode allows the operating system to perform
+        privileged operations, configure hardware controllers,
+        and manage protected memory.
+    </p>
+<h3>Protection Rings</h3>
+<ul>
+<li><strong>Ring 0:</strong> Kernel-level privilege.</li>
+<li><strong>Ring 3:</strong> User-level privilege.</li>
+</ul>
+<h3>Traps and Privilege Transitions</h3>
+<p>
+        A system call can trigger a controlled transition
+        from user mode to kernel mode through a CPU trap
+        or dedicated system-call instruction.
+    </p>
+<div class="code-example">
+<pre><code>USER APPLICATION
+       |
+       | System Call / Trap
+       v
+KERNEL MODE
+       |
+       | Execute Protected Service
+       v
+RETURN TO USER MODE</code></pre>
+</div>
+</section>
+<section class="chapter" id="os-system-calls">
+<h2>3. System Calls and Operating System APIs</h2>
+<p>
+        A system call is the interface through which
+        applications request operating system services.
+    </p>
+<p>
+        Applications commonly use API libraries such as
+        POSIX and Win32 to access system functionality.
+    </p>
+<h3>System Call Execution</h3>
+<ol>
+<li>An application requests an operating system service.</li>
+<li>A library wrapper prepares the request.</li>
+<li>A system-call instruction enters kernel mode.</li>
+<li>The kernel identifies and executes the service.</li>
+<li>The result is returned to the application.</li>
+</ol>
+<div class="code-example">
+<pre><code>Application
+    |
+    v
+read(fd, buffer, size)
+    |
+    v
+System Call Interface
+    |
+    v
+Kernel Trap Handler
+    |
+    v
+File System / Device Driver
+    |
+    v
+Return Result</code></pre>
+</div>
+<h3>Examples of System Services</h3>
+<ul>
+<li>Creating and terminating processes.</li>
+<li>Reading and writing files.</li>
+<li>Allocating memory.</li>
+<li>Communicating with devices.</li>
+</ul>
+</section>
+<section class="chapter" id="os-process-management">
+<h2>4. Process Management: Concepts and Abstraction</h2>
+<h3>What Is a Process?</h3>
+<p>
+        A process is a program currently in execution.
+        Unlike a program stored on disk, a process
+        has an active execution context, memory,
+        and CPU state.
+    </p>
+<h3>Process Memory Layout</h3>
+<table>
+<thead>
+<tr>
+<th>Memory Region</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text</td>
+<td>Executable instructions</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Initialized global and static variables</td>
+</tr>
+<tr>
+<td>BSS</td>
+<td>Uninitialized global and static variables</td>
+</tr>
+<tr>
+<td>Heap</td>
+<td>Dynamic memory allocation</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Function calls and local variables</td>
+</tr>
+</tbody>
+</table>
+<h3>Process Control Block (PCB)</h3>
+<p>
+        The PCB stores information needed by the
+        operating system to manage a process.
+    </p>
+<ul>
+<li>Process ID (PID)</li>
+<li>Current process state</li>
+<li>Program counter</li>
+<li>CPU registers</li>
+<li>Memory management information</li>
+<li>Open files and I/O information</li>
+</ul>
+</section>
+<section class="chapter" id="os-process-scheduling">
+<h2>5. Process Scheduling and Lifecycle</h2>
+<p>
+        Process scheduling determines when processes
+        receive CPU time and how they move through
+        their execution states.
+    </p>
+<h3>Process States</h3>
+<ul>
+<li><strong>New:</strong> Process is being created.</li>
+<li><strong>Ready:</strong> Waiting for CPU allocation.</li>
+<li><strong>Running:</strong> Currently executing.</li>
+<li><strong>Waiting:</strong> Waiting for an event or I/O operation.</li>
+<li><strong>Terminated:</strong> Execution has finished.</li>
+</ul>
+<div class="code-example">
+<pre><code>NEW --&gt; READY --&gt; RUNNING --&gt; TERMINATED
+          ^          |
+          |          v
+          +------- WAITING
+             I/O Complete</code></pre>
+</div>
+<h3>Context Switching</h3>
+<p>
+        A context switch occurs when the operating system
+        saves the execution state of one process and
+        restores the state of another.
+    </p>
+<h3>Types of Schedulers</h3>
+<ul>
+<li><strong>Long-Term:</strong> Controls admission of jobs.</li>
+<li><strong>Medium-Term:</strong> Manages suspension and swapping.</li>
+<li><strong>Short-Term:</strong> Selects the next ready process.</li>
+</ul>
+</section>
+<section class="chapter" id="os-cpu-scheduling">
+<h2>6. CPU Scheduling Algorithms</h2>
+<p>
+        CPU scheduling algorithms determine which
+        ready process should execute next.
+    </p>
+<h3>Scheduling Criteria</h3>
+<ul>
+<li>CPU Utilization</li>
+<li>Throughput</li>
+<li>Turnaround Time</li>
+<li>Waiting Time</li>
+<li>Response Time</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Mechanism</th>
+<th>Characteristic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCFS</td>
+<td>Arrival order</td>
+<td>Simple; convoy effect possible</td>
+</tr>
+<tr>
+<td>SJF</td>
+<td>Shortest CPU burst first</td>
+<td>Low average waiting time</td>
+</tr>
+<tr>
+<td>SRTF</td>
+<td>Shortest remaining time</td>
+<td>Preemptive scheduling</td>
+</tr>
+<tr>
+<td>Round Robin</td>
+<td>Fixed time quantum</td>
+<td>Suitable for time-sharing</td>
+</tr>
+<tr>
+<td>MLFQ</td>
+<td>Multiple priority queues</td>
+<td>Adapts to process behavior</td>
+</tr>
+</tbody>
+</table>
+<h3>Round-Robin Example</h3>
+<div class="code-example">
+<pre><code>Time Quantum: 2 ms
+
+P1: 5 ms
+P2: 3 ms
+P3: 2 ms
+
+Execution:
+P1(2) -&gt; P2(2) -&gt; P3(2)
+      -&gt; P1(2) -&gt; P2(1)
+      -&gt; P1(1)</code></pre>
+</div>
+</section>
+<section class="chapter" id="os-threads">
+<h2>7. Threads and Concurrency Foundations</h2>
+<p>
+        A thread is a basic unit of CPU execution
+        within a process. Multiple threads in the
+        same process share memory and resources
+        while maintaining separate execution contexts.
+    </p>
+<h3>Thread Components</h3>
+<ul>
+<li>Thread identifier</li>
+<li>Program counter</li>
+<li>Register set</li>
+<li>Execution stack</li>
+</ul>
+<h3>Multithreading Models</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Many-to-One</td>
+<td>Many user threads map to one kernel thread.</td>
+</tr>
+<tr>
+<td>One-to-One</td>
+<td>Each user thread maps to a kernel thread.</td>
+</tr>
+<tr>
+<td>Many-to-Many</td>
+<td>User threads are multiplexed over kernel threads.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="os-race-conditions">
+<h2>8. Process Synchronization and Race Conditions</h2>
+<p>
+        When multiple threads access shared data
+        concurrently, the final result may depend
+        on the order of execution.
+    </p>
+<h3>Race Condition</h3>
+<p>
+        A race condition occurs when concurrent
+        operations access shared resources without
+        adequate synchronization.
+    </p>
+<h3>Critical Section</h3>
+<p>
+        A critical section is the portion of code
+        that accesses shared resources and must
+        be protected from conflicting execution.
+    </p>
+<h3>Requirements for Correct Synchronization</h3>
+<ol>
+<li><strong>Mutual Exclusion:</strong> Only one process enters the protected section at a time.</li>
+<li><strong>Progress:</strong> Eligible waiting processes can make progress.</li>
+<li><strong>Bounded Waiting:</strong> A waiting process cannot be postponed indefinitely.</li>
+</ol>
+</section>
+<section class="chapter" id="os-synchronization">
+<h2>9. Synchronization Primitives</h2>
+<h3>Mutex Locks</h3>
+<p>
+        A mutex provides exclusive access to
+        a shared resource using lock and unlock
+        operations.
+    </p>
+<h3>Semaphores</h3>
+<p>
+        A semaphore is a synchronization primitive
+        controlled by atomic wait and signal operations.
+    </p>
+<ul>
+<li><strong>Binary Semaphore:</strong> Represents two logical states.</li>
+<li><strong>Counting Semaphore:</strong> Manages multiple resource instances.</li>
+</ul>
+<h3>Semaphore Example</h3>
+<div class="code-example">
+<pre><code>wait(S):
+    S.value = S.value - 1
+
+    if S.value &lt; 0:
+        block current process
+
+
+signal(S):
+    S.value = S.value + 1
+
+    if S.value &lt;= 0:
+        wake a waiting process</code></pre>
+</div>
+<p>
+        The wait and signal operations must execute
+        atomically to preserve synchronization.
+    </p>
+</section>
+<section class="chapter" id="os-deadlocks">
+<h2>10. Deadlocks: Characterization and Handling</h2>
+<p>
+        A deadlock occurs when two or more processes
+        remain blocked indefinitely because each
+        is waiting for a resource held by another.
+    </p>
+<h3>The Four Coffman Conditions</h3>
+<ol>
+<li>
+<strong>Mutual Exclusion:</strong>
+            A resource cannot be shared simultaneously.
+        </li>
+<li>
+<strong>Hold and Wait:</strong>
+            A process holds resources while requesting others.
+        </li>
+<li>
+<strong>No Preemption:</strong>
+            Resources cannot be forcibly taken away.
+        </li>
+<li>
+<strong>Circular Wait:</strong>
+            Processes form a circular chain of resource dependencies.
+        </li>
+</ol>
+<h3>Deadlock Example</h3>
+<div class="code-example">
+<pre><code>Process P1:
+Holds Resource A
+Waiting for Resource B
+
+Process P2:
+Holds Resource B
+Waiting for Resource A
+
+P1 --&gt; B --&gt; P2 --&gt; A --&gt; P1
+
+Result: DEADLOCK</code></pre>
+</div>
+</section>
+<section class="chapter" id="os-deadlock-prevention">
+<h2>11. Deadlock Prevention, Avoidance, and Recovery</h2>
+<h3>Deadlock Prevention</h3>
+<p>
+        Deadlock prevention ensures that at least
+        one necessary deadlock condition cannot occur.
+    </p>
+<h3>Deadlock Avoidance</h3>
+<p>
+        Deadlock avoidance evaluates resource requests
+        to ensure the system remains in a safe state.
+    </p>
+<h3>Banker's Algorithm</h3>
+<p>
+        The Banker's Algorithm checks whether resource
+        allocation can allow all processes to complete
+        in some safe execution sequence.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Available</td>
+<td>Currently available resources</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum process resource demands</td>
+</tr>
+<tr>
+<td>Allocation</td>
+<td>Currently allocated resources</td>
+</tr>
+<tr>
+<td>Need</td>
+<td>Remaining resources required</td>
+</tr>
+</tbody>
+</table>
+<div class="code-example">
+<pre><code>Need = Max - Allocation</code></pre>
+</div>
+<h3>Deadlock Recovery</h3>
+<p>
+        Recovery may involve terminating processes
+        or reclaiming resources after detecting
+        a deadlock.
+    </p>
+</section>
+<section class="chapter" id="os-memory-management">
+<h2>12. Memory Management: Contiguous Allocation</h2>
+<p>
+        Memory management controls the allocation,
+        translation, and protection of memory
+        used by executing processes.
+    </p>
+<h3>Logical and Physical Addresses</h3>
+<ul>
+<li><strong>Logical Address:</strong> Address generated by the CPU.</li>
+<li><strong>Physical Address:</strong> Actual location in RAM.</li>
+</ul>
+<p>
+        The Memory Management Unit (MMU) translates
+        logical addresses into physical addresses.
+    </p>
+<h3>Memory Fragmentation</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internal Fragmentation</td>
+<td>Unused space inside allocated blocks.</td>
+</tr>
+<tr>
+<td>External Fragmentation</td>
+<td>Free memory scattered into separate holes.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="os-paging">
+<h2>13. Non-Contiguous Memory: Paging Systems</h2>
+<p>
+        Paging divides logical memory into
+        fixed-size pages and physical memory
+        into equally sized frames.
+    </p>
+<p>
+        A page table maps logical page numbers
+        to physical frame numbers.
+    </p>
+<h3>Address Translation</h3>
+<div class="code-example">
+<pre><code>Logical Address
++-------------+----------+
+| Page Number | Offset   |
++-------------+----------+
+       |
+       v
+    Page Table
+       |
+       v
+Physical Address
++-------------+----------+
+| Frame Number| Offset   |
++-------------+----------+</code></pre>
+</div>
+<h3>Translation Lookaside Buffer</h3>
+<p>
+        The TLB is a small hardware cache
+        containing recently used page-to-frame
+        translations.
+    </p>
+<p>
+        It reduces the number of memory accesses
+        required for address translation.
+    </p>
+</section>
+<section class="chapter" id="os-advanced-paging">
+<h2>14. Advanced Paging Architectures</h2>
+<h3>Multi-Level Paging</h3>
+<p>
+        Multi-level paging divides page tables
+        into smaller hierarchical structures
+        to reduce memory overhead.
+    </p>
+<h3>Hashed Page Tables</h3>
+<p>
+        Hashed page tables use hash functions
+        to locate page mappings efficiently
+        in large address spaces.
+    </p>
+<h3>Inverted Page Tables</h3>
+<p>
+        An inverted page table stores an entry
+        for each physical memory frame rather
+        than a separate entry for every
+        virtual page.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Key Idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multi-Level</td>
+<td>Hierarchical page tables</td>
+</tr>
+<tr>
+<td>Hashed</td>
+<td>Hash-based address lookup</td>
+</tr>
+<tr>
+<td>Inverted</td>
+<td>One entry per physical frame</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="os-segmentation">
+<h2>15. Memory Segmentation</h2>
+<p>
+        Segmentation divides a program's logical
+        memory into variable-length segments.
+    </p>
+<h3>Examples of Segments</h3>
+<ul>
+<li>Main program</li>
+<li>Subroutines</li>
+<li>Stack</li>
+<li>Global data</li>
+<li>Symbol table</li>
+</ul>
+<h3>Segment Address Translation</h3>
+<div class="code-example">
+<pre><code>Logical Address:
+(Segment Number, Offset)
+
+Segment Table:
+Segment Number --&gt; Base + Limit
+
+Physical Address:
+Base + Offset</code></pre>
+</div>
+<p>
+        The MMU checks whether an offset is within
+        the permitted segment boundary before
+        performing memory access.
+    </p>
+</section>
+<section class="chapter" id="os-virtual-memory">
+<h2>16. Virtual Memory Foundations</h2>
+<p>
+        Virtual memory allows processes to use
+        logical address spaces larger than
+        available physical RAM.
+    </p>
+<h3>Demand Paging</h3>
+<p>
+        Demand paging loads a memory page into RAM
+        only when that page is needed.
+    </p>
+<h3>Page Fault Handling</h3>
+<ol>
+<li>The CPU references a virtual address.</li>
+<li>The MMU detects that the required page is absent.</li>
+<li>A page fault trap transfers control to the kernel.</li>
+<li>The OS locates the missing page in secondary storage.</li>
+<li>The page is loaded into a physical frame.</li>
+<li>The page table is updated and execution resumes.</li>
+</ol>
+<h3>Thrashing</h3>
+<p>
+        Thrashing occurs when excessive paging activity
+        consumes system resources and significantly
+        reduces useful processing time.
+    </p>
+</section>
+<section class="chapter" id="os-page-replacement">
+<h2>17. Page Replacement Algorithms</h2>
+<p>
+        When no free physical memory frame is
+        available, the operating system selects
+        a page to replace.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Replacement Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FIFO</td>
+<td>Replace the oldest loaded page.</td>
+</tr>
+<tr>
+<td>Optimal</td>
+<td>Replace the page used farthest in the future.</td>
+</tr>
+<tr>
+<td>LRU</td>
+<td>Replace the least recently used page.</td>
+</tr>
+<tr>
+<td>Clock</td>
+<td>Use reference bits to grant second chances.</td>
+</tr>
+</tbody>
+</table>
+<h3>Belady's Anomaly</h3>
+<p>
+        Under FIFO replacement, increasing the number
+        of allocated memory frames can sometimes
+        increase the number of page faults.
+    </p>
+</section>
+<section class="chapter" id="os-file-system">
+<h2>18. Storage and File System Abstraction</h2>
+<p>
+        A file system organizes persistent data
+        into files and directories.
+    </p>
+<h3>Common File Attributes</h3>
+<ul>
+<li>File name and type</li>
+<li>File size</li>
+<li>Storage location</li>
+<li>Access permissions</li>
+<li>Creation and modification timestamps</li>
+</ul>
+<h3>Directory Structures</h3>
+<ul>
+<li><strong>Single-Level:</strong> All files share one directory.</li>
+<li><strong>Two-Level:</strong> Each user has a separate directory.</li>
+<li><strong>Tree-Structured:</strong> Hierarchical folders.</li>
+<li><strong>Acyclic Graph:</strong> Supports shared files or directories.</li>
+</ul>
+</section>
+<section class="chapter" id="os-file-allocation">
+<h2>19. File Allocation Methods</h2>
+<p>
+        File allocation determines how file
+        data blocks are stored on a disk.
+    </p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contiguous</td>
+<td>Stores file blocks consecutively.</td>
+</tr>
+<tr>
+<td>Linked</td>
+<td>Connects file blocks through pointers.</td>
+</tr>
+<tr>
+<td>Indexed</td>
+<td>Uses an index containing block addresses.</td>
+</tr>
+</tbody>
+</table>
+<h3>Indexed Allocation</h3>
+<p>
+        UNIX-like file systems commonly use
+        inode-based structures to manage
+        file metadata and block references.
+    </p>
+</section>
+<section class="chapter" id="os-free-space">
+<h2>20. Free Space Management</h2>
+<p>
+        A file system tracks available storage
+        blocks so new files can be allocated
+        efficiently.
+    </p>
+<h3>Free Space Tracking Methods</h3>
+<ul>
+<li><strong>Bit Vector:</strong> One bit represents each disk block.</li>
+<li><strong>Linked List:</strong> Free blocks are connected through pointers.</li>
+<li><strong>Grouping:</strong> Free block addresses are stored in groups.</li>
+<li><strong>Counting:</strong> Tracks runs of consecutive free blocks.</li>
+</ul>
+</section>
+<section class="chapter" id="os-disk-scheduling">
+<h2>21. Disk Infrastructure and Scheduling</h2>
+<h3>Hard Disk Geometry</h3>
+<p>
+        Traditional hard disks contain rotating
+        platters divided into tracks and sectors.
+    </p>
+<ul>
+<li><strong>Seek Time:</strong> Time to move the head to a track.</li>
+<li><strong>Rotational Latency:</strong> Time waiting for the target sector.</li>
+</ul>
+<h3>Disk Scheduling Algorithms</h3>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCFS</td>
+<td>Serves requests in arrival order.</td>
+</tr>
+<tr>
+<td>SSTF</td>
+<td>Chooses the closest pending request.</td>
+</tr>
+<tr>
+<td>SCAN</td>
+<td>Moves back and forth across tracks.</td>
+</tr>
+<tr>
+<td>C-SCAN</td>
+<td>Services requests in one sweep direction.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" id="os-io-subsystem">
+<h2>22. Input/Output Subsystem Architecture</h2>
+<p>
+        The I/O subsystem manages communication
+        between the processor, memory,
+        and peripheral devices.
+    </p>
+<h3>Polling</h3>
+<p>
+        The CPU repeatedly checks device status
+        until an operation completes.
+    </p>
+<h3>Interrupt-Driven I/O</h3>
+<p>
+        A device sends an interrupt request
+        when it needs processor attention.
+    </p>
+<h3>Memory-Mapped I/O</h3>
+<p>
+        Device registers are mapped into the
+        processor's address space and accessed
+        using memory instructions.
+    </p>
+</section>
+<section class="chapter" id="os-buffering">
+<h2>23. I/O Buffering, Caching, and Spooling</h2>
+<h3>Buffering</h3>
+<p>
+        Buffering temporarily stores data
+        during transfers between devices
+        operating at different speeds.
+    </p>
+<h3>Caching</h3>
+<p>
+        Caching keeps recently accessed data
+        in faster memory to improve access speed.
+    </p>
+<h3>Spooling</h3>
+<p>
+        Spooling queues operations for devices
+        that cannot process multiple requests
+        simultaneously.
+    </p>
+<h3>Printer Spooling Example</h3>
+<div class="code-example">
+<pre><code>User A Print Request ---+
+                        |
+User B Print Request ---+--&gt; Print Queue
+                        |        |
+User C Print Request ---+        v
+                             Printer</code></pre>
+</div>
+</section>
+<section class="chapter" id="os-access-control">
+<h2>24. Protection and Access Control</h2>
+<p>
+        Operating systems enforce access restrictions
+        to protect files, devices, memory,
+        and other resources.
+    </p>
+<h3>Access Matrix</h3>
+<p>
+        An access matrix describes which users
+        or processes can perform operations
+        on particular objects.
+    </p>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>File A</th>
+<th>File B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User 1</td>
+<td>Read / Write</td>
+<td>Read</td>
+</tr>
+<tr>
+<td>User 2</td>
+<td>Read</td>
+<td>No Access</td>
+</tr>
+</tbody>
+</table>
+<h3>Access Control Lists</h3>
+<p>
+        ACLs associate permission entries
+        with individual protected objects.
+    </p>
+<h3>Capability Lists</h3>
+<p>
+        Capability lists associate access
+        rights with a user or process domain.
+    </p>
+</section>
+<section class="chapter" id="os-security">
+<h2>25. System Security and Threat Mitigation</h2>
+<p>
+        Operating system security protects
+        system resources from unauthorized
+        access, malicious software,
+        and other security threats.
+    </p>
+<h3>Authentication</h3>
+<p>
+        Authentication verifies the identity
+        of a user or system entity.
+    </p>
+<h3>Authorization</h3>
+<p>
+        Authorization determines what an
+        authenticated entity is permitted to do.
+    </p>
+<h3>Principle of Least Privilege</h3>
+<p>
+        Users and processes should receive
+        only the permissions necessary
+        to perform their assigned tasks.
+    </p>
+<h3>Access Control Models</h3>
+<ul>
+<li>Discretionary Access Control (DAC)</li>
+<li>Role-Based Access Control (RBAC)</li>
+</ul>
+</section>
+<section class="chapter" id="os-virtualization">
+<h2>26. Virtualization and Hypervisors</h2>
+<p>
+        Virtualization allows multiple
+        isolated virtual machines to
+        share the hardware of one computer.
+    </p>
+<h3>Hypervisors</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type 1</td>
+<td>Runs directly on physical hardware.</td>
+</tr>
+<tr>
+<td>Type 2</td>
+<td>Runs as software on a host operating system.</td>
+</tr>
+</tbody>
+</table>
+<h3>Examples</h3>
+<ul>
+<li>VMware ESXi</li>
+<li>Xen</li>
+<li>VirtualBox</li>
+<li>VMware Workstation</li>
+</ul>
+<h3>Containers</h3>
+<p>
+        Containers isolate application environments
+        while sharing the host operating system kernel.
+    </p>
+</section>
+<section class="chapter" id="os-multiprocessing">
+<h2>27. Distributed and Multiprocessor Operating Systems</h2>
+<h3>Symmetric Multiprocessing (SMP)</h3>
+<p>
+        SMP allows multiple processors or
+        CPU cores to share memory and
+        operate under one operating system.
+    </p>
+<h3>Non-Uniform Memory Access (NUMA)</h3>
+<p>
+        NUMA architectures have memory
+        access times that depend on
+        the location of memory relative
+        to the processor.
+    </p>
+<h3>Distributed File Systems</h3>
+<p>
+        Distributed file systems allow
+        data to be accessed across
+        multiple network-connected computers.
+    </p>
+</section>
+<section class="chapter" id="os-real-time">
+<h2>28. Real-Time Operating Systems</h2>
+<p>
+        A real-time operating system is
+        designed to execute important
+        tasks within predictable timing
+        constraints.
+    </p>
+<h3>Hard Real-Time Systems</h3>
+<p>
+        Missing a critical deadline is
+        considered a system failure.
+    </p>
+<h3>Soft Real-Time Systems</h3>
+<p>
+        Missing a deadline reduces
+        service quality but does not
+        necessarily cause complete failure.
+    </p>
+<h3>Real-Time Scheduling</h3>
+<ul>
+<li><strong>Rate-Monotonic:</strong> Fixed priorities based on task periods.</li>
+<li><strong>Earliest Deadline First:</strong> Prioritizes the nearest deadline.</li>
+</ul>
+</section>
+<section class="chapter" id="os-modern-frontiers">
+<h2>29. Modern Operating System Frontiers and Mobile Kernels</h2>
+<p>
+        Modern operating systems support
+        mobile devices, cloud environments,
+        hardware virtualization, and
+        advanced security mechanisms.
+    </p>
+<h3>Android Binder</h3>
+<p>
+        Binder is an interprocess
+        communication mechanism used
+        in Android systems.
+    </p>
+<h3>Apple Darwin</h3>
+<p>
+        Darwin provides the core operating
+        system foundation used by Apple's
+        operating systems.
+    </p>
+<h3>Extended Berkeley Packet Filter (eBPF)</h3>
+<p>
+        eBPF enables verified programs to
+        execute in the Linux kernel for
+        networking, monitoring, and
+        other supported tasks.
+    </p>
+<h3>Conclusion</h3>
+<p>
+        Operating systems coordinate
+        processing, memory, storage,
+        input/output, and security
+        to provide stable environments
+        for application software.
+    </p>
+</section>
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>Test your understanding of Operating System Fundamentals. Answer all 30 questions before submitting.</p>
+<p aria-live="polite" id="quizProgress">0 of 30 answered</p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of Operating System Fundamentals · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+/* ==========================================
+   CODEVERSE - OPERATING SYSTEM FUNDAMENTALS
+   30-QUESTION KNOWLEDGE ASSESSMENT
+========================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const quizProgress = document.getElementById("quizProgress");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+
+    if (!quizQuestions || !quizProgress ||
+        !submitQuiz || !retryQuiz || !quizResult) {
+        console.error("Operating System quiz elements not found.");
+        return;
+    }
+
+    const questions = [
+        {
+            question: "What is the primary purpose of an operating system?",
+            options: [
+                "To compile every application automatically",
+                "To manage hardware resources and provide services to programs",
+                "To replace all hardware controllers",
+                "To store only user-created files"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which kernel architecture keeps essential functions in the kernel while moving many services into user space?",
+            options: [
+                "Monolithic Kernel",
+                "Hybrid Kernel",
+                "Microkernel",
+                "Exokernel"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which CPU privilege level is typically used by ordinary applications?",
+            options: [
+                "Ring 0",
+                "Kernel Mode",
+                "Supervisor Mode",
+                "User Mode"
+            ],
+            answer: 3
+        },
+        {
+            question: "What mechanism allows an application to request a protected operating system service?",
+            options: [
+                "System Call",
+                "Cache Replacement",
+                "Memory Defragmentation",
+                "Disk Partitioning"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which data structure stores the execution context and management information of a process?",
+            options: [
+                "Page Frame",
+                "Process Control Block",
+                "File Allocation Table",
+                "Disk Sector"
+            ],
+            answer: 1
+        },
+        {
+            question: "What happens during a process context switch?",
+            options: [
+                "The process executable is permanently deleted",
+                "All physical memory is cleared",
+                "The current execution state is saved and another is restored",
+                "The CPU changes its instruction set"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which CPU scheduling algorithm assigns processes a fixed time quantum?",
+            options: [
+                "First-Come, First-Served",
+                "Shortest Job First",
+                "Shortest Remaining Time First",
+                "Round Robin"
+            ],
+            answer: 3
+        },
+        {
+            question: "In a one-to-one threading model, how are user threads mapped?",
+            options: [
+                "Each user thread maps to a kernel thread",
+                "All user threads map to one kernel thread",
+                "Each process maps to one hardware interrupt",
+                "All kernel threads map to one user thread"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is a race condition?",
+            options: [
+                "A CPU running above its rated clock speed",
+                "An outcome that depends on unsynchronized concurrent access",
+                "A process waiting for disk capacity",
+                "A page table containing duplicate addresses"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which synchronization primitive commonly provides exclusive ownership of a critical section?",
+            options: [
+                "Page Table",
+                "Disk Scheduler",
+                "Mutex Lock",
+                "File Descriptor"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which of the following is one of the four Coffman deadlock conditions?",
+            options: [
+                "Memory Compaction",
+                "Time Sharing",
+                "Priority Aging",
+                "Circular Wait"
+            ],
+            answer: 3
+        },
+        {
+            question: "What does the Banker's Algorithm evaluate before granting a resource request?",
+            options: [
+                "Whether the system remains in a safe state",
+                "Whether the disk has been formatted",
+                "Whether the CPU clock is increasing",
+                "Whether all processes have equal priority"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is external memory fragmentation?",
+            options: [
+                "Unused space inside an allocated fixed-size block",
+                "Free memory divided into separate non-contiguous regions",
+                "Corrupted data in CPU registers",
+                "A missing entry in a file directory"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the purpose of the Translation Lookaside Buffer (TLB)?",
+            options: [
+                "To schedule disk requests",
+                "To store user authentication credentials",
+                "To cache recent virtual-to-physical address translations",
+                "To maintain the process ready queue"
+            ],
+            answer: 2
+        },
+        {
+            question: "How does an inverted page table organize entries?",
+            options: [
+                "One entry for every CPU instruction",
+                "One entry for every open file",
+                "One entry for every disk sector",
+                "One entry for each physical memory frame"
+            ],
+            answer: 3
+        },
+        {
+            question: "What two values form a logical address in segmentation?",
+            options: [
+                "Segment Number and Offset",
+                "Track Number and Sector Number",
+                "Process ID and Thread ID",
+                "File Name and Extension"
+            ],
+            answer: 0
+        },
+        {
+            question: "What is demand paging?",
+            options: [
+                "Loading every process page before execution begins",
+                "Loading memory pages only when they are needed",
+                "Disabling virtual memory when RAM is full",
+                "Writing every page directly to a hard disk"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which page replacement algorithm removes the page that has not been referenced for the longest time?",
+            options: [
+                "FIFO",
+                "Optimal",
+                "Least Recently Used",
+                "Clock"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which directory structure organizes folders into a hierarchy?",
+            options: [
+                "Single-Level Directory",
+                "Flat Directory",
+                "Two-Level Directory",
+                "Tree-Structured Directory"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which file allocation method stores file block addresses in an index structure?",
+            options: [
+                "Indexed Allocation",
+                "Linked Allocation",
+                "Contiguous Allocation",
+                "Sequential Allocation"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which free-space management technique represents disk blocks using individual bits?",
+            options: [
+                "Linked Allocation",
+                "Bit Vector",
+                "Disk Scheduling",
+                "Indexed Allocation"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which disk scheduling algorithm selects the request closest to the current head position?",
+            options: [
+                "FCFS",
+                "C-SCAN",
+                "SSTF",
+                "SCAN"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which I/O technique allows a device to notify the CPU when an operation requires attention?",
+            options: [
+                "Polling",
+                "Memory Compaction",
+                "Busy Waiting",
+                "Interrupt-Driven I/O"
+            ],
+            answer: 3
+        },
+        {
+            question: "What is the main purpose of spooling?",
+            options: [
+                "To queue operations for shared use of a device such as a printer",
+                "To translate virtual memory addresses",
+                "To prevent process creation",
+                "To assign priorities to CPU instructions"
+            ],
+            answer: 0
+        },
+        {
+            question: "What does an Access Control List (ACL) specify?",
+            options: [
+                "The order of CPU execution",
+                "Which users or domains may perform operations on an object",
+                "The physical locations of memory pages",
+                "The rotation speed of a hard disk"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the Principle of Least Privilege?",
+            options: [
+                "Giving all users administrative access",
+                "Allowing applications to bypass authentication",
+                "Granting only the permissions necessary for assigned tasks",
+                "Disabling all security restrictions"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which hypervisor type runs directly on physical hardware?",
+            options: [
+                "Type-2 Hypervisor",
+                "Hosted Hypervisor",
+                "Application-Level Hypervisor",
+                "Type-1 Hypervisor"
+            ],
+            answer: 3
+        },
+        {
+            question: "What does NUMA stand for?",
+            options: [
+                "Non-Uniform Memory Access",
+                "Network Unified Memory Allocation",
+                "Non-User Memory Architecture",
+                "Network Utility Management Access"
+            ],
+            answer: 0
+        },
+        {
+            question: "What characterizes a hard real-time operating system?",
+            options: [
+                "It allows every task to miss its deadline",
+                "Missing a critical deadline constitutes system failure",
+                "It schedules tasks only by arrival time",
+                "It never uses interrupts"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which mechanism is used for interprocess communication in Android?",
+            options: [
+                "Banker's Algorithm",
+                "Page Replacement",
+                "Binder",
+                "Disk SCAN"
+            ],
+            answer: 2
+        }
+    ];
+
+    // ==========================================
+    // RENDER QUIZ QUESTIONS
+    // ==========================================
+
+    function loadQuiz() {
+
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const questionBox = document.createElement("div");
+            questionBox.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            questionBox.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `osQuestion${index}`;
+                radio.value = optionIndex;
+
+                radio.addEventListener("change", updateProgress);
+
+                const answerText = document.createElement("span");
+                answerText.textContent = option;
+
+                label.appendChild(radio);
+                label.appendChild(answerText);
+
+                questionBox.appendChild(label);
+            });
+
+            quizQuestions.appendChild(questionBox);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+        retryQuiz.hidden = true;
+
+        updateProgress();
+    }
+
+    // ==========================================
+    // UPDATE ANSWER PROGRESS
+    // ==========================================
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="osQuestion${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    // ==========================================
+    // SUBMIT QUIZ
+    // ==========================================
+
+    submitQuiz.addEventListener("click", function () {
+
+        let score = 0;
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="osQuestion${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        if (answered !== questions.length) {
+
+            alert(
+                `Please answer all questions first. ` +
+                `You answered ${answered} of ${questions.length}.`
+            );
+
+            return;
+        }
+
+        questions.forEach((item, index) => {
+
+            const questionBox = quizQuestions.children[index];
+
+            const selected = questionBox.querySelector(
+                `input[name="osQuestion${index}"]:checked`
+            );
+
+            const selectedAnswer = Number(selected.value);
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            const labels = questionBox.querySelectorAll(".quiz-option");
+
+            labels.forEach((label, optionIndex) => {
+
+                const radio = label.querySelector("input");
+                radio.disabled = true;
+
+                label.classList.remove("correct", "incorrect");
+
+                if (optionIndex === item.answer) {
+                    label.classList.add("correct");
+                } else if (optionIndex === selectedAnswer) {
+                    label.classList.add("incorrect");
+                }
+            });
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            if (selectedAnswer === item.answer) {
+                feedback.textContent = "Correct answer!";
+            } else {
+                feedback.textContent =
+                    `Correct answer: ${item.options[item.answer]}`;
+            }
+
+            questionBox.appendChild(feedback);
+        });
+
+        // ==========================================
+        // CALCULATE RESULTS
+        // ==========================================
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message = "";
+
+        if (percentage >= 90) {
+            message = "Excellent! You have mastered Operating System Fundamentals.";
+        } else if (percentage >= 75) {
+            message = "Great job! You understand most operating system concepts.";
+        } else if (percentage >= 60) {
+            message = "Good effort! Review the topics you missed.";
+        } else {
+            message = "Keep studying and try the quiz again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    });
+
+    // ==========================================
+    // RETRY QUIZ
+    // ==========================================
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    loadQuiz();
+
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const themeToggle=document.getElementById('themeToggle'),themeIcon=document.getElementById('themeIcon');
+ const fontSize=document.getElementById('fontSize'),fontFamily=document.getElementById('fontFamily');
+ const menuToggle=document.getElementById('menuToggle'),navLinks=document.getElementById('navLinks');
+ const applyTheme=()=>{const dark=localStorage.getItem('readerTheme')==='dark';document.body.classList.toggle('dark-mode',dark);themeIcon.textContent=dark?'☀':'☾';};
+ applyTheme();
+ themeToggle?.addEventListener('click',()=>{localStorage.setItem('readerTheme',document.body.classList.contains('dark-mode')?'light':'dark');applyTheme();});
+ const savedSize=localStorage.getItem('readerFontSize')||'16px';
+ const savedFont=localStorage.getItem('readerFontFamily')||"'DM Sans', sans-serif";
+ if([...fontSize.options].some(x=>x.value===savedSize))fontSize.value=savedSize;
+ if([...fontFamily.options].some(x=>x.value===savedFont))fontFamily.value=savedFont;
+ const applyReader=()=>{document.documentElement.style.setProperty('--reader-size',fontSize.value);document.documentElement.style.setProperty('--reader-font',fontFamily.value);};
+ applyReader();
+ fontSize.addEventListener('change',()=>{localStorage.setItem('readerFontSize',fontSize.value);applyReader();});
+ fontFamily.addEventListener('change',()=>{localStorage.setItem('readerFontFamily',fontFamily.value);applyReader();});
+ menuToggle?.addEventListener('click',()=>navLinks?.classList.toggle('open'));
+});
+</script><script defer="True" src="/js/auth-nav.js"></script></body></html>

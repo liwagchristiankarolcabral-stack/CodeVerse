@@ -6,3 +6,22 @@ pre {max-width:100%;overflow-x:auto;}
 table {display:block;max-width:100%;overflow-x:auto;}
 body {overflow-wrap:break-word;}
 :target {scroll-margin-top:110px;}
+
+/* CODEVERSE BULK OFFLINE DOWNLOAD BUTTON */
+.offline-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    cursor: pointer;
+    background: #3157a4;
+    color: #fff;
+    border: 1px solid #3157a4;
+    border-radius: 11px;
+    padding: 12px 20px;
+    font: 700 14px 'DM Sans', sans-serif;
+    transition: background .2s ease, transform .2s ease;
+}
+.offline-download-btn:hover { background: #24427f; color: #fff; transform: translateY(-2px); }
+.offline-download-btn:disabled { opacity: .65; cursor: wait; transform: none; }
+body.dark-mode .offline-download-btn { background: #4269bb; color: #fff; border-color: #4269bb; }

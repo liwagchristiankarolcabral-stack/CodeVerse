@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Interface Design and Accessibility | CodeVerse</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+
+<!--FavIcon-->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+
+
+
+
+<style>
+:root{--bg:#f4f7fc;--surface:#fff;--text:#1d2b43;--muted:#65748a;--border:#dfe6f1;--primary:#3157a4;--primary2:#24427f;--code:#eff4fb;--shadow:0 10px 28px rgba(22,46,91,.07)}
+body.dark-mode{--bg:#0c1525;--surface:#17253a;--text:#e8effb;--muted:#b1bfd3;--border:#34465e;--primary:#94b6ff;--primary2:#b5ceff;--code:#101d30;--shadow:0 10px 28px rgba(0,0,0,.22)}
+html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;transition:background .2s,color .2s}body,button,input,select{box-sizing:border-box}a{color:var(--primary)}button,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #76a3ff;outline-offset:3px}
+.navbar{height:72px;position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;padding:0 max(20px,calc((100vw - 1380px)/2));box-shadow:var(--shadow)}.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text);font-size:21px;font-weight:800;white-space:nowrap}.site-logo{height:39px;width:39px;object-fit:contain}.logo-highlight{color:var(--primary)}.nav-links{display:flex;align-items:center;gap:22px;margin-left:auto}.nav-links a{font-size:14px;text-decoration:none;font-weight:700;color:var(--muted)}.nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-actions{display:flex;align-items:center;gap:10px}.icon-btn,.menu-toggle{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;padding:9px 13px}.menu-toggle{display:none}.login-btn,.signup-btn{font-size:13px;font-weight:700;text-decoration:none;padding:10px 13px;border-radius:9px;display:inline-block}.login-btn{border:1px solid var(--border)}.signup-btn{background:#3157a4;color:white!important}#accountActions{display:flex;gap:7px}.topbar{max-width:1380px;margin:auto;padding:20px 24px 0}.back-link{text-decoration:none;font-weight:700;font-size:14px}.reading-controls{max-width:1380px;margin:14px auto 0;padding:0 24px;display:flex;gap:14px;flex-wrap:wrap}.control-group{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700}.control-group select{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px;border-radius:9px;max-width:200px}.layout{max-width:1380px;margin:20px auto 50px;padding:0 24px;display:grid;grid-template-columns:265px minmax(0,1fr);gap:25px;align-items:start}.toc{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;position:sticky;top:94px;max-height:calc(100vh - 116px);overflow:auto}.toc h2{font-size:15px;margin:0 0 14px}.toc nav{display:flex;flex-direction:column;gap:3px}.toc nav a{text-decoration:none;padding:9px 10px;border-radius:8px;color:var(--muted);font-size:13px;line-height:1.45}.toc nav a:hover,.toc nav a.active{background:var(--code);color:var(--primary)}main{min-width:0}.book-header{padding:32px 36px;border-radius:18px;background:linear-gradient(125deg,#25477f,#3971bc);color:white;margin-bottom:22px}.book-header .eyebrow{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#d5e6ff}.book-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(29px,3.5vw,42px);margin:12px 0}.book-header p{max-width:680px;line-height:1.7;color:#e5efff;margin:0}.chapter{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px 35px;margin:0 0 22px;box-shadow:var(--shadow);line-height:1.8;overflow-wrap:anywhere;scroll-margin-top:92px}.chapter h1,.chapter h2,.chapter h3{line-height:1.35;color:var(--text)}.chapter h2{font-size:1.55em;margin:0 0 17px}.chapter h3{font-size:1.15em;margin:25px 0 10px}.chapter p{margin:13px 0;color:var(--text)}.chapter li{margin:6px 0}.chapter pre{max-width:100%;overflow:auto;background:var(--code);color:var(--text);padding:18px;border-radius:11px;border:1px solid var(--border);font-size:.88em;line-height:1.6;white-space:pre}.chapter code{font-family:Consolas,'Courier New',monospace}.chapter :not(pre)>code{background:var(--code);padding:2px 5px;border-radius:4px}.code-example{max-width:100%}.page-footer{text-align:center;color:var(--muted);padding:22px 0 40px;font-size:13px}
+#quizProgress{font-weight:700;color:var(--primary);margin:12px 0 20px}.quiz-question{border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px;background:var(--surface)}.quiz-question h3{margin:0 0 14px;font-size:1em}.quiz-option{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--border);border-radius:9px;padding:11px 13px;margin:8px 0;cursor:pointer;line-height:1.5}.quiz-option input{margin-top:5px;accent-color:#3157a4}.quiz-option:hover{background:var(--code)}.quiz-option.correct{border-color:#28a36a;background:rgba(40,163,106,.13)}.quiz-option.incorrect{border-color:#dc5656;background:rgba(220,86,86,.12)}.quiz-feedback{font-weight:700;font-size:.88em}.quiz-actions{display:flex;gap:10px;flex-wrap:wrap}.quiz-actions button{border:0;border-radius:9px;background:#3157a4;color:white;padding:12px 19px;font-weight:700}.quiz-actions button:hover{background:#24427f}#quizResult{margin-top:22px;padding:20px;border-radius:12px;background:var(--code);text-align:center}#quizResult h2{font-size:2.4em;margin:6px 0;color:var(--primary)}[hidden]{display:none!important}
+@media(max-width:1000px){.layout{grid-template-columns:215px minmax(0,1fr);gap:16px}.chapter{padding:25px}.navbar{gap:12px}.nav-links{gap:12px}}
+@media(max-width:760px){.navbar{height:66px;padding:0 15px;gap:10px}.logo{font-size:18px}.site-logo{height:34px;width:34px}.nav-links{display:none;position:absolute;top:65px;left:0;right:0;background:var(--surface);padding:16px;border-bottom:1px solid var(--border);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;margin:0}.nav-links.show{display:flex}.menu-toggle{display:block}.nav-actions{margin-left:auto}#accountActions{display:none}.layout{display:block;padding:0 13px}.toc{position:static;max-height:235px;margin-bottom:18px}.reading-controls,.topbar{padding-left:14px;padding-right:14px}.chapter{padding:22px 18px}.book-header{padding:25px 20px}.chapter pre{font-size:.79em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<header class="topbar">
+<a class="back-link" href="/index.html#books">← Back to Books</a>
+</header>
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">Font Size</label>
+<select id="fontSize">
+<option value="14px">Small</option>
+<option selected="" value="16px">Medium</option>
+<option value="18px">Large</option>
+<option value="20px">Extra Large</option>
+<option value="22px">Largest</option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">Font Style</label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">DM Sans</option>
+<option value="Arial, sans-serif">Arial</option>
+<option value="Georgia, serif">Georgia</option>
+<option value="'Times New Roman', serif">Times New Roman</option>
+<option value="Verdana, sans-serif">Verdana</option>
+</select>
+</div>
+</div>
+<div class="layout">
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav>
+<a href="#designing-web-accessibility">
+        Designing for Web Accessibility
+    </a>
+<a href="#sufficient-color-contrast">
+        Provide sufficient contrast between foreground and background
+    </a>
+<a href="#dont-use-color-alone">
+        Don't use color alone to convey information
+    </a>
+<a href="#identifiable-interactive-elements">
+        Ensure that interactive elements are easy to identify
+    </a>
+<a href="#consistent-navigation">
+        Provide clear and consistent navigation options
+    </a>
+<a href="#accessible-form-labels">
+        Ensure that form elements include clearly associated labels
+    </a>
+<a href="#identifiable-feedback">
+        Provide easily identifiable feedback
+    </a>
+<a href="#headings-and-spacing">
+        Use headings and spacing to group related content
+    </a>
+<a href="#different-viewport-sizes">
+        Create designs for different viewport sizes
+    </a>
+<a href="#image-media-alternatives">
+        Include image and media alternatives in your design
+    </a>
+<a href="#automatic-content-controls">
+        Provide controls for content that starts automatically
+    </a>
+<a href="#quiz">
+        Knowledge Assessment Quiz
+    </a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">Digital Book · Technology</span>
+<h1>User Interface Design and Accessibility</h1>
+<p>Learn the fundamentals of user interface design and web accessibility to create attractive, user-friendly, and inclusive websites.</p>
+</header>
+<!-- ==========================================
+     CODEVERSE - DESIGNING FOR WEB ACCESSIBILITY
+========================================== -->
+<section class="chapter" id="designing-web-accessibility">
+<h2>Designing for Web Accessibility</h2>
+<p>
+        Web accessibility means designing websites and
+        applications so that people with disabilities
+        can perceive, understand, navigate, and interact
+        with digital content.
+    </p>
+<p>
+        Accessible web design considers the needs of
+        people with visual, hearing, physical, and
+        cognitive disabilities.
+    </p>
+<p>
+        The World Wide Web Consortium (W3C), through
+        its Web Accessibility Initiative (WAI),
+        provides guidance for creating websites
+        that are easier for everyone to use.
+    </p>
+<h3>Why Web Accessibility Matters</h3>
+<ul>
+<li>Improves usability for people with disabilities.</li>
+<li>Supports users who rely on assistive technologies.</li>
+<li>Makes website navigation easier to understand.</li>
+<li>Improves readability across different devices.</li>
+<li>Helps developers follow accessibility guidelines.</li>
+</ul>
+<h3>Learning Objectives</h3>
+<ul>
+<li>Understand the importance of accessible web design.</li>
+<li>Apply appropriate color contrast.</li>
+<li>Communicate information without relying on color alone.</li>
+<li>Design recognizable interactive elements.</li>
+<li>Create consistent website navigation.</li>
+<li>Use accessible labels and feedback messages.</li>
+<li>Organize content using headings and spacing.</li>
+<li>Design layouts for different viewport sizes.</li>
+<li>Provide alternatives for images and media.</li>
+<li>Provide controls for automatically playing content.</li>
+</ul>
+<p>
+        These recommendations help developers work toward
+        the Web Content Accessibility Guidelines (WCAG),
+        but they do not represent every accessibility
+        requirement.
+    </p>
+</section>
+<!-- ==========================================
+     SUFFICIENT COLOR CONTRAST
+========================================== -->
+<section class="chapter" id="sufficient-color-contrast">
+<h2>Provide sufficient contrast between foreground and background</h2>
+<p>
+        Text must have enough contrast against its
+        background so that users can read it comfortably.
+    </p>
+<p>
+        This applies to text displayed on solid backgrounds,
+        images, gradients, buttons, and other interface
+        elements.
+    </p>
+<p>
+        Insufficient contrast can make content difficult
+        to read, especially for people with low vision
+        or difficulties distinguishing colors.
+    </p>
+<h3>What Is Contrast Ratio?</h3>
+<p>
+        Contrast ratio measures the difference in
+        relative luminance between two colors.
+        A higher contrast ratio generally indicates
+        a greater difference between the colors.
+    </p>
+<h3>WCAG Contrast Requirements</h3>
+<table class="lesson-table">
+<thead>
+<tr>
+<th>Text Type</th>
+<th>WCAG AA Minimum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal text</td>
+<td>4.5:1</td>
+</tr>
+<tr>
+<td>Large text</td>
+<td>3:1</td>
+</tr>
+</tbody>
+</table>
+<p>
+        These are WCAG minimum contrast requirements
+        for applicable text. Large text generally means
+        at least 18-point regular text or 14-point bold text.
+        Logos and incidental text have exceptions.
+    </p>
+<h3>Example: Poor Contrast</h3>
+<div class="code-example">
+<pre><code>.poor-contrast {
+    color: #cccccc;
+    background-color: #ffffff;
+}</code></pre>
+</div>
+<p>
+        Light gray text on a white background may
+        be difficult for many users to read.
+    </p>
+<h3>Example: Improved Contrast</h3>
+<div class="code-example">
+<pre><code>.good-contrast {
+    color: #202b40;
+    background-color: #ffffff;
+}</code></pre>
+</div>
+<p>
+        Dark text on a light background provides
+        stronger visual separation.
+    </p>
+<h3>Important Design Practices</h3>
+<ul>
+<li>Check text contrast against background colors.</li>
+<li>Check text placed over images and gradients.</li>
+<li>Test button labels and other interface text.</li>
+<li>Consider users who need different brightness levels.</li>
+<li>Use contrast-checking tools when evaluating colors.</li>
+</ul>
+</section>
+<!-- ==========================================
+     DO NOT USE COLOR ALONE
+========================================== -->
+<section class="chapter" id="dont-use-color-alone">
+<h2>Don't use color alone to convey information</h2>
+<p>
+        Color can help communicate meaning, but it
+        should not be the only way users receive
+        important information.
+    </p>
+<p>
+        Some users cannot distinguish certain colors.
+        Others may use grayscale displays or assistive
+        technologies that do not communicate visual
+        color differences.
+    </p>
+<h3>Example: Required Form Fields</h3>
+<p>
+        A form that identifies required fields only
+        by displaying their labels in red may be
+        difficult for some users to understand.
+    </p>
+<h3>Better Approach</h3>
+<p>
+        Use text or symbols together with color
+        to communicate the requirement.
+    </p>
+<div class="code-example">
+<pre><code>&lt;label for="email"&gt;
+    Email (required)
+&lt;/label&gt;
+
+&lt;input
+    type="email"
+    id="email"
+    name="email"
+    required
+&gt;</code></pre>
+</div>
+<h3>Example: Error Messages</h3>
+<div class="code-example">
+<pre><code>&lt;p class="error-message"&gt;
+    Error: Please enter a valid email address.
+&lt;/p&gt;</code></pre>
+</div>
+<p>
+        The word "Error" communicates the message
+        even when the user cannot distinguish
+        the text color.
+    </p>
+<h3>Charts and Graphs</h3>
+<p>
+        Charts should use labels, patterns, numbers,
+        or other identifiers in addition to color.
+    </p>
+<h3>Recommended Practices</h3>
+<ul>
+<li>Use text labels alongside color indicators.</li>
+<li>Use symbols to identify required fields.</li>
+<li>Add labels or patterns to charts.</li>
+<li>Provide descriptive error messages.</li>
+<li>Do not describe an option only by its color.</li>
+</ul>
+</section>
+<!-- ==========================================
+     IDENTIFIABLE INTERACTIVE ELEMENTS
+========================================== -->
+<section class="chapter" id="identifiable-interactive-elements">
+<h2>Ensure that interactive elements are easy to identify</h2>
+<p>
+        Interactive elements such as links,
+        buttons, and form controls should
+        be visually distinguishable from
+        ordinary content.
+    </p>
+<p>
+        Users should be able to recognize
+        which elements can be selected,
+        clicked, or activated.
+    </p>
+<h3>Different Interaction States</h3>
+<ul>
+<li><strong>Default:</strong> The normal appearance.</li>
+<li><strong>Hover:</strong> When a pointer is positioned over an element.</li>
+<li><strong>Focus:</strong> When an element receives keyboard focus.</li>
+<li><strong>Active:</strong> When an element is being activated.</li>
+</ul>
+<h3>Accessible Link Styling</h3>
+<div class="code-example">
+<pre><code>.accessible-link {
+    color: #24427f;
+    text-decoration: underline;
+}
+
+.accessible-link:hover {
+    text-decoration-thickness: 2px;
+}
+
+.accessible-link:focus-visible {
+    outline: 3px solid #3157a4;
+    outline-offset: 3px;
+}
+
+.accessible-link:active {
+    color: #17315f;
+}</code></pre>
+</div>
+<h3>Why Keyboard Focus Matters</h3>
+<p>
+        Some people navigate websites using
+        a keyboard rather than a mouse.
+    </p>
+<p>
+        When users press the Tab key, the
+        currently focused element should
+        have a visible indication.
+    </p>
+<h3>Example: Focus Indicator</h3>
+<div class="code-example">
+<pre><code>button:focus-visible {
+    outline: 3px solid #3157a4;
+    outline-offset: 3px;
+}</code></pre>
+</div>
+<p>
+        A visible outline helps keyboard users
+        identify which control is currently active.
+    </p>
+<h3>Important Practices</h3>
+<ul>
+<li>Make links visually distinct from ordinary text.</li>
+<li>Provide visible keyboard focus indicators.</li>
+<li>Use consistent button and link styles.</li>
+<li>Support mouse, keyboard, and touch interactions.</li>
+<li>Use descriptive names for interactive controls.</li>
+</ul>
+</section>
+<!-- ==========================================
+     CONSISTENT NAVIGATION
+========================================== -->
+<section class="chapter" id="consistent-navigation">
+<h2>Provide clear and consistent navigation options</h2>
+<p>
+        Website navigation should be predictable
+        and easy to understand.
+    </p>
+<p>
+        Navigation menus should use consistent
+        names, styles, and positions across
+        related webpages.
+    </p>
+<h3>Why Consistent Navigation Matters</h3>
+<p>
+        Consistent navigation helps users
+        understand where they are and how
+        to move between different pages.
+    </p>
+<h3>Common Navigation Methods</h3>
+<ul>
+<li>Main navigation menus</li>
+<li>Website search</li>
+<li>Site maps</li>
+<li>Breadcrumb navigation</li>
+<li>Clear page headings</li>
+</ul>
+<h3>Example: Navigation Menu</h3>
+<div class="code-example">
+<pre><code>&lt;nav aria-label="Main navigation"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="books.html"&gt;Books&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+<h3>Breadcrumb Navigation</h3>
+<p>
+        Breadcrumbs show the user's location
+        within the website structure.
+    </p>
+<div class="code-example">
+<pre><code>&lt;nav aria-label="Breadcrumb"&gt;
+    &lt;ol&gt;
+        &lt;li&gt;
+            &lt;a href="index.html"&gt;Home&lt;/a&gt;
+        &lt;/li&gt;
+
+        &lt;li&gt;
+            &lt;a href="books.html"&gt;Books&lt;/a&gt;
+        &lt;/li&gt;
+
+        &lt;li aria-current="page"&gt;
+            Web Accessibility
+        &lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+<p>
+        The <code>aria-current="page"</code>
+        attribute identifies the current page
+        within the breadcrumb navigation.
+    </p>
+<h3>Recommended Practices</h3>
+<ul>
+<li>Keep navigation placement consistent.</li>
+<li>Use familiar and descriptive navigation labels.</li>
+<li>Provide more than one way to find pages when applicable.</li>
+<li>Use headings and breadcrumbs as orientation cues.</li>
+<li>Help users identify their current location.</li>
+</ul>
+</section>
+<!-- ==========================================
+     ACCESSIBLE FORM LABELS
+========================================== -->
+<section class="chapter" id="accessible-form-labels">
+<h2>Ensure that form elements include clearly associated labels</h2>
+<p>
+        Every form field should have a clear,
+        descriptive label that explains
+        what information the user must enter.
+    </p>
+<p>
+        Labels should be positioned close
+        to their corresponding form controls.
+    </p>
+<h3>Recommended Label Positioning</h3>
+<p>
+        In left-to-right languages, labels
+        are usually placed above or to the
+        left of text input fields.
+    </p>
+<p>
+        Checkbox and radio button labels
+        are commonly placed to the right
+        of their controls.
+    </p>
+<h3>Example: Associated Form Label</h3>
+<div class="code-example">
+<pre><code>&lt;label for="full-name"&gt;
+    Full Name:
+&lt;/label&gt;
+
+&lt;input
+    type="text"
+    id="full-name"
+    name="full_name"
+&gt;</code></pre>
+</div>
+<h3>How It Works</h3>
+<p>
+        The label's <code>for</code> attribute
+        matches the input's <code>id</code>.
+        This creates a programmatic association
+        between the label and the control.
+    </p>
+<h3>Checkbox Example</h3>
+<div class="code-example">
+<pre><code>&lt;input
+    type="checkbox"
+    id="agree"
+    name="agree"
+&gt;
+
+&lt;label for="agree"&gt;
+    I agree to the terms and conditions.
+&lt;/label&gt;</code></pre>
+</div>
+<h3>Why Labels Are Important</h3>
+<ul>
+<li>Help users understand what information is needed.</li>
+<li>Support screen readers and other assistive technologies.</li>
+<li>Make form controls easier to activate.</li>
+<li>Reduce confusion and input errors.</li>
+</ul>
+<p>
+        Placeholder text should not be the only
+        label for an input because it may disappear
+        when users enter information.
+    </p>
+</section>
+<!-- ==========================================
+     IDENTIFIABLE FEEDBACK
+========================================== -->
+<section class="chapter" id="identifiable-feedback">
+<h2>Provide easily identifiable feedback</h2>
+<p>
+        Websites should clearly communicate
+        the results of user interactions.
+    </p>
+<p>
+        Feedback may confirm that an action
+        was completed, explain an error,
+        or notify users about changes
+        to the webpage.
+    </p>
+<h3>Examples of Feedback</h3>
+<ul>
+<li>Successful form submission</li>
+<li>Incorrect login information</li>
+<li>Missing required fields</li>
+<li>Invalid email addresses</li>
+<li>Successful profile updates</li>
+</ul>
+<h3>Example: Error Message</h3>
+<div class="code-example">
+<pre><code>&lt;div class="form-error" role="alert"&gt;
+    &lt;strong&gt;Please correct these errors:&lt;/strong&gt;
+
+    &lt;ul&gt;
+        &lt;li&gt;Enter a valid email address.&lt;/li&gt;
+        &lt;li&gt;A message is required.&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<h3>Example: Success Message</h3>
+<div class="code-example">
+<pre><code>&lt;p role="status"&gt;
+    Your message has been submitted successfully.
+&lt;/p&gt;</code></pre>
+</div>
+<p>
+        The <code>role="status"</code> attribute
+        can help assistive technologies announce
+        a dynamically updated status message.
+    </p>
+<h3>Styling Feedback Messages</h3>
+<div class="code-example">
+<pre><code>.form-error {
+    padding: 15px;
+    border: 2px solid #b42318;
+    border-radius: 8px;
+    background-color: #fff1f0;
+    color: #7a1712;
+}
+
+.form-success {
+    padding: 15px;
+    border: 2px solid #18794e;
+    border-radius: 8px;
+    background-color: #e8f7ee;
+    color: #14532d;
+}</code></pre>
+</div>
+<p>
+        Error and success messages should
+        include descriptive text rather
+        than relying on background color alone.
+    </p>
+<h3>Recommended Practices</h3>
+<ul>
+<li>Use clear and understandable messages.</li>
+<li>Explain which fields need correction.</li>
+<li>Provide useful suggestions when possible.</li>
+<li>Make important feedback visually noticeable.</li>
+<li>Ensure dynamic feedback can be announced accessibly.</li>
+</ul>
+</section>
+<!-- ==========================================
+     HEADINGS AND SPACING
+========================================== -->
+<section class="chapter" id="headings-and-spacing">
+<h2>Use headings and spacing to group related content</h2>
+<p>
+        Headings and whitespace help users
+        understand how webpage content
+        is organized.
+    </p>
+<p>
+        Related information should appear
+        close together, while separate
+        sections should have enough
+        spacing to distinguish them.
+    </p>
+<h3>Why Content Organization Matters</h3>
+<ul>
+<li>Makes webpages easier to scan.</li>
+<li>Reduces visual clutter.</li>
+<li>Helps users recognize related information.</li>
+<li>Supports clearer reading and navigation.</li>
+</ul>
+<h3>Example: Structured Content</h3>
+<div class="code-example">
+<pre><code>&lt;section&gt;
+
+    &lt;h2&gt;Account Information&lt;/h2&gt;
+
+    &lt;p&gt;
+        Manage your personal information.
+    &lt;/p&gt;
+
+    &lt;h3&gt;Profile Details&lt;/h3&gt;
+
+    &lt;p&gt;
+        Update your name and contact details.
+    &lt;/p&gt;
+
+    &lt;h3&gt;Security Settings&lt;/h3&gt;
+
+    &lt;p&gt;
+        Manage your password and login settings.
+    &lt;/p&gt;
+
+&lt;/section&gt;</code></pre>
+</div>
+<h3>CSS Spacing Example</h3>
+<div class="code-example">
+<pre><code>.content-section {
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.content-section h2 {
+    margin-bottom: 15px;
+}
+
+.content-section p {
+    line-height: 1.7;
+    margin-bottom: 16px;
+}</code></pre>
+</div>
+<h3>Important Practices</h3>
+<ul>
+<li>Use meaningful headings.</li>
+<li>Maintain a logical heading hierarchy.</li>
+<li>Group related content visually.</li>
+<li>Use consistent spacing.</li>
+<li>Avoid unnecessarily crowded layouts.</li>
+</ul>
+</section>
+<!-- ==========================================
+     DIFFERENT VIEWPORT SIZES
+========================================== -->
+<section class="chapter" id="different-viewport-sizes">
+<h2>Create designs for different viewport sizes</h2>
+<p>
+        Websites should remain usable
+        across different screen sizes,
+        including desktop computers,
+        tablets, and smartphones.
+    </p>
+<p>
+        Responsive design also benefits
+        users who enlarge webpage content
+        using browser zoom.
+    </p>
+<h3>Responsive Design Considerations</h3>
+<ul>
+<li>Adapt navigation to available space.</li>
+<li>Maintain readable text sizes.</li>
+<li>Avoid unnecessarily long lines of text.</li>
+<li>Rearrange content when screen space changes.</li>
+<li>Keep important information accessible.</li>
+</ul>
+<h3>Example: Responsive Grid Layout</h3>
+<div class="code-example">
+<pre><code>.responsive-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .responsive-layout {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+</div>
+<h3>Example Explained</h3>
+<p>
+        On wider screens, the content
+        appears in two columns.
+    </p>
+<p>
+        When the viewport width becomes
+        768 pixels or smaller, the layout
+        changes to one column.
+    </p>
+<h3>Viewport Meta Tag</h3>
+<div class="code-example">
+<pre><code>&lt;meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+&gt;</code></pre>
+</div>
+<p>
+        This meta tag belongs in the HTML
+        document head and helps mobile
+        browsers display responsive layouts
+        at the intended viewport width.
+    </p>
+<h3>Readable Text</h3>
+<div class="code-example">
+<pre><code>.readable-content {
+    max-width: 70ch;
+    line-height: 1.6;
+    margin-inline: auto;
+}</code></pre>
+</div>
+<p>
+        The <code>ch</code> unit can help
+        limit the width of text blocks,
+        improving readability.
+    </p>
+</section>
+<!-- ==========================================
+     IMAGE AND MEDIA ALTERNATIVES
+========================================== -->
+<section class="chapter" id="image-media-alternatives">
+<h2>Include image and media alternatives in your design</h2>
+<p>
+        Images, audio, videos, charts,
+        and other non-text content
+        may require accessible alternatives.
+    </p>
+<p>
+        These alternatives help users
+        access information when they
+        cannot see or hear the original
+        content.
+    </p>
+<h3>Common Media Alternatives</h3>
+<ul>
+<li>Alternative text for informative images.</li>
+<li>Captions for videos.</li>
+<li>Transcripts for audio content.</li>
+<li>Audio descriptions for important visual information.</li>
+<li>Text labels alongside icons.</li>
+<li>Descriptions for complex charts and graphs.</li>
+</ul>
+<h3>Example: Alternative Text</h3>
+<div class="code-example">
+<pre><code>&lt;img
+    src="images/library.jpg"
+    alt="Books arranged on shelves in a library"
+&gt;</code></pre>
+</div>
+<p>
+        The <code>alt</code> attribute
+        provides a text alternative
+        describing the image's
+        meaningful content.
+    </p>
+<h3>Example: Decorative Image</h3>
+<div class="code-example">
+<pre><code>&lt;img
+    src="images/decoration.svg"
+    alt=""
+&gt;</code></pre>
+</div>
+<p>
+        Decorative images that do not
+        communicate meaningful information
+        can use an empty alt attribute.
+    </p>
+<h3>Example: Video Captions</h3>
+<div class="code-example">
+<pre><code>&lt;video controls width="500"&gt;
+
+    &lt;source
+        src="videos/tutorial.mp4"
+        type="video/mp4"
+    &gt;
+
+    &lt;track
+        kind="captions"
+        src="captions/tutorial-en.vtt"
+        srclang="en"
+        label="English"
+    &gt;
+
+&lt;/video&gt;</code></pre>
+</div>
+<p>
+        The track element allows a video
+        to provide captions from a
+        WebVTT file.
+    </p>
+<h3>Example: Audio Transcript</h3>
+<div class="code-example">
+<pre><code>&lt;audio controls&gt;
+    &lt;source
+        src="audio/lesson.mp3"
+        type="audio/mpeg"
+    &gt;
+&lt;/audio&gt;
+
+&lt;p&gt;
+    &lt;a href="lesson-transcript.html"&gt;
+        Read the audio transcript
+    &lt;/a&gt;
+&lt;/p&gt;</code></pre>
+</div>
+<h3>Important Design Considerations</h3>
+<ul>
+<li>Reserve space for captions and media controls.</li>
+<li>Provide visible transcript links.</li>
+<li>Use text with icons when necessary.</li>
+<li>Include descriptions for complex visual information.</li>
+<li>Coordinate with content authors and developers.</li>
+</ul>
+</section>
+<!-- ==========================================
+     AUTOMATICALLY STARTING CONTENT
+========================================== -->
+<section class="chapter" id="automatic-content-controls">
+<h2>Provide controls for content that starts automatically</h2>
+<p>
+        Automatically playing animations,
+        videos, audio, and image carousels
+        can make websites difficult
+        for some users to navigate.
+    </p>
+<p>
+        Users should be able to control
+        content that begins playing
+        or moving automatically.
+    </p>
+<h3>Examples of Automatically Starting Content</h3>
+<ul>
+<li>Auto-playing videos</li>
+<li>Background audio</li>
+<li>Animated banners</li>
+<li>Image sliders</li>
+<li>Automatic carousels</li>
+</ul>
+<h3>Why User Controls Matter</h3>
+<p>
+        Automatically moving content
+        may distract users or interfere
+        with reading and concentration.
+    </p>
+<p>
+        Automatically playing audio
+        may also interfere with screen
+        reader output.
+    </p>
+<h3>Recommended Controls</h3>
+<ul>
+<li>Play</li>
+<li>Pause</li>
+<li>Stop</li>
+<li>Mute or volume controls</li>
+<li>Manual slide navigation</li>
+</ul>
+<h3>Example: Video with User Controls</h3>
+<div class="code-example">
+<pre><code>&lt;video controls width="500"&gt;
+
+    &lt;source
+        src="videos/introduction.mp4"
+        type="video/mp4"
+    &gt;
+
+    Your browser does not support video.
+
+&lt;/video&gt;</code></pre>
+</div>
+<p>
+        The <code>controls</code> attribute
+        displays the browser's built-in
+        media controls.
+    </p>
+<h3>Example: Accessible Audio Player</h3>
+<div class="code-example">
+<pre><code>&lt;audio controls&gt;
+
+    &lt;source
+        src="audio/background.mp3"
+        type="audio/mpeg"
+    &gt;
+
+&lt;/audio&gt;</code></pre>
+</div>
+<p>
+        This example allows users to
+        control audio playback instead
+        of forcing the sound to begin
+        automatically.
+    </p>
+<h3>Example: Carousel Controls</h3>
+<div class="code-example">
+<pre><code>&lt;div
+    class="carousel"
+    aria-label="Featured books"
+&gt;
+
+    &lt;button type="button" id="previousSlide"&gt;
+        Previous
+    &lt;/button&gt;
+
+    &lt;button type="button" id="pauseSlides"&gt;
+        Pause slideshow
+    &lt;/button&gt;
+
+    &lt;button type="button" id="nextSlide"&gt;
+        Next
+    &lt;/button&gt;
+
+&lt;/div&gt;</code></pre>
+</div>
+<p>
+        These buttons illustrate the controls
+        a carousel should offer. JavaScript
+        is needed to implement their behavior,
+        including pausing automatic movement.
+    </p>
+<h3>Recommended Practices</h3>
+<ul>
+<li>Avoid unnecessary automatic playback.</li>
+<li>Provide visible controls for moving content.</li>
+<li>Allow users to pause or stop animations.</li>
+<li>Allow users to control audio playback.</li>
+<li>Make carousel controls keyboard accessible.</li>
+<li>Ensure that controls have descriptive labels.</li>
+</ul>
+<h3>Final Reminder</h3>
+<p>
+        Accessible design gives users
+        greater control over their
+        browsing experience.
+    </p>
+<p>
+        By providing clear controls,
+        readable content, consistent
+        navigation, and accessible
+        alternatives, developers can
+        create more inclusive websites.
+    </p>
+</section>
+<!-- ==========================================
+     CODEVERSE - RESPONSIVE WEB DESIGN QUIZ
+========================================== -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>Test your understanding of accessible web design, contrast, navigation, form labels, feedback, responsive layouts, media alternatives, and user controls.</p>
+<div id="quizProgress">0 of 10 answered</div>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+            Submit Quiz
+        </button>
+<button hidden="" id="retryQuiz" type="button">
+            Try Again
+        </button>
+</div>
+<div aria-live="polite" hidden="" id="quizResult"></div>
+</section>
+<footer class="page-footer">End of User Interface Design and Accessibility · CodeVerse Digital Library</footer>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const fontSize = document.getElementById("fontSize");
+    const fontFamily = document.getElementById("fontFamily");
+
+    // Restore saved settings
+    const savedTheme = localStorage.getItem("readerTheme");
+    const savedSize = localStorage.getItem("readerFontSize");
+    const savedFont = localStorage.getItem("readerFontFamily");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (savedSize) {
+        fontSize.value = savedSize;
+    }
+
+    if (savedFont) {
+        fontFamily.value = savedFont;
+    }
+
+    function updateThemeIcon() {
+        themeIcon.textContent =
+            document.body.classList.contains("dark-mode") ? "☀" : "☾";
+    }
+
+    function applyFontSize() {
+        document.querySelectorAll("main .chapter").forEach(chapter => {
+            chapter.style.fontSize = fontSize.value;
+        });
+
+        localStorage.setItem("readerFontSize", fontSize.value);
+    }
+
+    function applyFontFamily() {
+        document.querySelector("main").style.fontFamily = fontFamily.value;
+        localStorage.setItem("readerFontFamily", fontFamily.value);
+    }
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "readerTheme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+    });
+
+    fontSize.addEventListener("change", applyFontSize);
+    fontFamily.addEventListener("change", applyFontFamily);
+
+    applyFontSize();
+    applyFontFamily();
+    updateThemeIcon();
+});
+   
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ==========================================
+       CODEVERSE - WEB ACCESSIBILITY QUIZ
+    ========================================== */
+
+    const quizQuestions = document.getElementById("quizQuestions");
+    const submitQuiz = document.getElementById("submitQuiz");
+    const retryQuiz = document.getElementById("retryQuiz");
+    const quizResult = document.getElementById("quizResult");
+    const quizProgress = document.getElementById("quizProgress");
+
+    if (!quizQuestions || !submitQuiz || !retryQuiz ||
+        !quizResult || !quizProgress) {
+        console.error("Quiz elements not found.");
+        return;
+    }
+
+    /* ==========================================
+       QUIZ QUESTIONS
+    ========================================== */
+
+    const questions = [
+        {
+            question: "What is the main purpose of web accessibility?",
+            options: [
+                "To make websites visually attractive only",
+                "To ensure websites can be used by people with different abilities",
+                "To remove all images from websites",
+                "To make websites load without CSS"
+            ],
+            answer: 1
+        },
+        {
+            question: "What is the minimum WCAG AA contrast ratio for normal text?",
+            options: [
+                "2:1",
+                "3:1",
+                "4.5:1",
+                "7:1"
+            ],
+            answer: 2
+        },
+        {
+            question: "Why should designers avoid using color alone to communicate information?",
+            options: [
+                "Because some users may not distinguish certain colors",
+                "Because colors cannot be used in HTML",
+                "Because CSS does not support multiple colors",
+                "Because colors prevent responsive layouts"
+            ],
+            answer: 0
+        },
+        {
+            question: "Which CSS pseudo-class is commonly used to provide a visible keyboard focus indicator?",
+            options: [
+                ":hover",
+                ":active",
+                ":visited",
+                ":focus-visible"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which practice improves website navigation accessibility?",
+            options: [
+                "Changing menu positions on every page",
+                "Using consistent navigation labels and placement",
+                "Removing all navigation headings",
+                "Using icons without descriptive labels"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which HTML attribute connects a label to its corresponding input element?",
+            options: [
+                "name",
+                "value",
+                "for",
+                "placeholder"
+            ],
+            answer: 2
+        },
+        {
+            question: "Which ARIA role is appropriate for announcing a non-urgent success message?",
+            options: [
+                "status",
+                "navigation",
+                "presentation",
+                "img"
+            ],
+            answer: 0
+        },
+        {
+            question: "How should related webpage content be organized?",
+            options: [
+                "By placing all content in one paragraph",
+                "By removing headings and whitespace",
+                "By using random spacing between elements",
+                "By using meaningful headings and consistent spacing"
+            ],
+            answer: 3
+        },
+        {
+            question: "Which approach helps websites remain usable on different viewport sizes?",
+            options: [
+                "Using a fixed-width layout for all devices",
+                "Using responsive layouts and media queries",
+                "Disabling browser zoom",
+                "Hiding all content on smaller screens"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which practice makes automatically playing media more accessible?",
+            options: [
+                "Removing all playback buttons",
+                "Increasing the playback speed automatically",
+                "Providing controls to pause, stop, or manage playback",
+                "Preventing users from controlling audio volume"
+            ],
+            answer: 2
+        }
+    ];
+
+    let quizSubmitted = false;
+
+    /* ==========================================
+       LOAD QUIZ
+    ========================================== */
+
+    function loadQuiz() {
+
+        quizSubmitted = false;
+        quizQuestions.innerHTML = "";
+
+        questions.forEach((item, index) => {
+
+            const box = document.createElement("div");
+            box.className = "quiz-question";
+
+            const heading = document.createElement("h3");
+            heading.textContent = `${index + 1}. ${item.question}`;
+
+            box.appendChild(heading);
+
+            item.options.forEach((option, optionIndex) => {
+
+                const label = document.createElement("label");
+                label.className = "quiz-option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question${index}`;
+                radio.value = String(optionIndex);
+
+                radio.addEventListener("change", updateProgress);
+
+                const span = document.createElement("span");
+                span.textContent = option;
+
+                label.append(radio, span);
+                box.appendChild(label);
+            });
+
+            quizQuestions.appendChild(box);
+        });
+
+        quizResult.hidden = true;
+        quizResult.innerHTML = "";
+
+        retryQuiz.hidden = true;
+        submitQuiz.hidden = false;
+        submitQuiz.disabled = false;
+
+        updateProgress();
+    }
+
+    /* ==========================================
+       UPDATE QUIZ PROGRESS
+    ========================================== */
+
+    function updateProgress() {
+
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            if (selected) {
+                answered++;
+            }
+        });
+
+        quizProgress.textContent =
+            `${answered} of ${questions.length} answered`;
+    }
+
+    /* ==========================================
+       SUBMIT QUIZ
+    ========================================== */
+
+    submitQuiz.addEventListener("click", async function () {
+
+        if (quizSubmitted) return;
+
+        const selections = questions.map((item, index) => {
+
+            const selected = quizQuestions.querySelector(
+                `input[name="question${index}"]:checked`
+            );
+
+            return selected ? Number(selected.value) : null;
+        });
+
+        if (selections.includes(null)) {
+
+            alert("Please answer all questions before submitting.");
+
+            return;
+        }
+
+        quizSubmitted = true;
+        submitQuiz.disabled = true;
+
+        let score = 0;
+
+        /* ==========================================
+           CHECK ANSWERS
+        ========================================== */
+
+        questions.forEach((item, index) => {
+
+            const box = quizQuestions.children[index];
+            const selectedAnswer = selections[index];
+
+            if (selectedAnswer === item.answer) {
+                score++;
+            }
+
+            box.querySelectorAll(".quiz-option").forEach(
+                (label, optionIndex) => {
+
+                    const radio = label.querySelector("input");
+                    radio.disabled = true;
+
+                    if (optionIndex === item.answer) {
+                        label.classList.add("correct");
+                    } else if (optionIndex === selectedAnswer) {
+                        label.classList.add("incorrect");
+                    }
+                }
+            );
+
+            const feedback = document.createElement("p");
+            feedback.className = "quiz-feedback";
+
+            feedback.textContent =
+                selectedAnswer === item.answer
+                    ? "Correct answer!"
+                    : `Correct answer: ${item.options[item.answer]}`;
+
+            box.appendChild(feedback);
+        });
+
+        /* ==========================================
+           CALCULATE QUIZ RESULT
+        ========================================== */
+
+        const percentage = Math.round(
+            (score / questions.length) * 100
+        );
+
+        let message;
+
+        if (percentage >= 90) {
+            message = "Excellent work!";
+        } else if (percentage >= 75) {
+            message = "Great job!";
+        } else if (percentage >= 60) {
+            message = "Good effort! Keep reviewing.";
+        } else {
+            message = "Review the chapters and try again.";
+        }
+
+        quizResult.innerHTML = `
+            <h3>Quiz Completed!</h3>
+            <p>Your Score</p>
+            <h2>${score} / ${questions.length}</h2>
+            <p>${percentage}%</p>
+            <strong>${message}</strong>
+            <p id="quizSaveStatus" aria-live="polite">
+                Saving quiz result...
+            </p>
+        `;
+
+        quizResult.hidden = false;
+        submitQuiz.hidden = true;
+        retryQuiz.hidden = false;
+
+        quizResult.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        /* ==========================================
+           SAVE RESULT TO CODEVERSE DATABASE
+        ========================================== */
+
+        const saveStatus = document.getElementById("quizSaveStatus");
+
+        try {
+
+            const response = await fetch("/api/quiz-results", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    bookId: 7,
+                    score: score,
+                    totalQuestions: questions.length
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            saveStatus.textContent = data.success
+                ? "Your quiz score has been saved!"
+                : (data.message || "Quiz score could not be saved.");
+
+        } catch (error) {
+
+            console.error("Quiz save error:", error);
+
+            saveStatus.textContent =
+                "Quiz completed, but the score could not be saved.";
+        }
+    });
+
+    /* ==========================================
+       RETRY QUIZ
+    ========================================== */
+
+    retryQuiz.addEventListener("click", function () {
+
+        loadQuiz();
+
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+    /* ==========================================
+       INITIALIZE QUIZ
+    ========================================== */
+
+    loadQuiz();
+
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const menu = document.getElementById('menuToggle');
+ const links = document.getElementById('navLinks');
+ menu?.setAttribute('aria-expanded','false');
+ menu?.addEventListener('click', () => {const open=links.classList.toggle('show');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');});
+ links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('show');menu?.setAttribute('aria-expanded','false');}));
+ const entries=[...document.querySelectorAll('.toc a[href^="#"]')];
+ const sections=entries.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
+ if('IntersectionObserver' in window){const obs=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){entries.forEach(a=>a.classList.toggle('active',a.hash==='#'+item.target.id));}})},{rootMargin:'-95px 0px -65% 0px'});sections.forEach(section=>obs.observe(section));}
+});
+</script>    <script src="/js/navbar-loader.js" defer></script>
+</body></html>

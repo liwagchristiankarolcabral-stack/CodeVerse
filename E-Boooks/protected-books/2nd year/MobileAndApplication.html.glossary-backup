@@ -1,0 +1,2058 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile and Application Platforms | CodeVerse</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- External CSS -->
+<link href="/books/css/Authentication.css" rel="stylesheet"/>
+<!-- Favicon -->
+<link href="/images/CodeVerseLogo.png" rel="icon" type="image/png"/>
+<style>
+        :root {
+            --background: #f6f8fc;
+            --surface: #ffffff;
+            --text: #26344d;
+            --muted: #65748c;
+            --primary: #3157a4;
+            --border: #dce3ee;
+        }
+
+        body.dark-mode {
+            --background: #111827;
+            --surface: #1c2738;
+            --text: #edf2fc;
+            --muted: #b3bfd2;
+            --primary: #91b5ff;
+            --border: #3a4b63;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'DM Sans', Arial, sans-serif;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 5%;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .site-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .logo-highlight {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            padding: 10px 13px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        #accountActions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .login-btn {
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            background: transparent;
+        }
+
+        .signup-btn {
+            color: #ffffff;
+            background: #3157a4;
+            border: 1px solid #3157a4;
+        }
+
+        .login-btn:hover {
+            background: var(--background);
+        }
+
+        .signup-btn:hover {
+            background: #24427f;
+        }
+
+        .menu-toggle {
+            display: none;
+            padding: 9px 12px;
+            color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .topbar {
+            padding: 15px 5%;
+        }
+
+        .back-link {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .reading-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 15px 5%;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .control-group select {
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 270px minmax(0, 1fr);
+            gap: 30px;
+            max-width: 1350px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .toc {
+            position: sticky;
+            top: 95px;
+            align-self: start;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            background: var(--surface);
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .toc h2 {
+            font-size: 18px;
+        }
+
+        .toc nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .toc a {
+            padding: 7px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .toc a:hover,
+        .toc a.active {
+            color: var(--primary);
+            background: var(--background);
+        }
+
+        .book-header,
+        .chapter {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 30px;
+            margin-bottom: 22px;
+        }
+
+        .book-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 42px);
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .chapter {
+            scroll-margin-top: 100px;
+            line-height: 1.85;
+        }
+
+        .chapter h2 {
+            font-size: 24px;
+            line-height: 1.3;
+        }
+
+        .chapter h3 {
+            font-size: 18px;
+            margin-top: 25px;
+        }
+
+        .chapter li {
+            margin-bottom: 8px;
+        }
+
+        .chapter table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .chapter th,
+        .chapter td {
+            border: 1px solid var(--border);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .chapter th {
+            background: var(--background);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .example-box {
+            padding: 18px;
+            margin: 20px 0;
+            background: var(--background);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+        }
+
+        .quiz-question {
+            padding: 20px;
+            margin: 18px 0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .quiz-question h3 {
+            margin-top: 0;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .quiz-option input {
+            margin-top: 6px;
+        }
+
+        .quiz-option.correct {
+            border-color: #2eaa76;
+            background: rgba(46, 170, 118, .13);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #d65764;
+            background: rgba(214, 87, 100, .13);
+        }
+
+        .quiz-feedback {
+            font-weight: 700;
+        }
+
+        .quiz-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .quiz-actions button {
+            padding: 13px 22px;
+            background: #3157a4;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #quizResult {
+            margin-top: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        #quizProgress {
+            font-weight: 700;
+        }
+
+        .page-footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--muted);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 1050px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .navbar {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: relative;
+                top: 0;
+                max-height: 260px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.show {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                background: var(--surface);
+                padding: 20px;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, .08);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .chapter,
+            .book-header {
+                padding: 20px;
+            }
+
+            .login-btn,
+            .signup-btn {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .site-logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .nav-actions {
+                gap: 6px;
+            }
+
+            #accountActions {
+                gap: 5px;
+            }
+        }
+    </style>
+<link href="/css/book-fixes.css" rel="stylesheet"/>    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body id="top">
+<!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+<div id="navbarContainer"></div>
+
+<div
+    id="cvLegacyNavCompatibility"
+    hidden
+    aria-hidden="true"
+    style="display:none!important"
+>
+    <button
+        type="button"
+        id="themeToggle"
+    >
+        Theme
+    </button>
+
+    <span id="themeIcon"></span>
+
+    <button
+        type="button"
+        id="menuToggle"
+        aria-expanded="false"
+    >
+        Menu
+    </button>
+
+    <nav id="navLinks"></nav>
+</div>
+
+<!-- =========================
+         BACK TO BOOKS
+    ========================== -->
+<header class="topbar">
+<a class="back-link" href="/index.html#books">
+            ← Back to Books
+        </a>
+</header>
+<!-- =========================
+         READING CONTROLS
+    ========================== -->
+<div class="reading-controls">
+<div class="control-group">
+<label for="fontSize">
+                Font Size
+            </label>
+<select id="fontSize">
+<option value="14px">
+                    Small
+                </option>
+<option selected="" value="16px">
+                    Medium
+                </option>
+<option value="18px">
+                    Large
+                </option>
+<option value="20px">
+                    Extra Large
+                </option>
+<option value="22px">
+                    Largest
+                </option>
+</select>
+</div>
+<div class="control-group">
+<label for="fontFamily">
+                Font Style
+            </label>
+<select id="fontFamily">
+<option value="'DM Sans', sans-serif">
+                    DM Sans
+                </option>
+<option value="Arial, sans-serif">
+                    Arial
+                </option>
+<option value="Georgia, serif">
+                    Georgia
+                </option>
+<option value="'Times New Roman', serif">
+                    Times New Roman
+                </option>
+<option value="Verdana, sans-serif">
+                    Verdana
+                </option>
+</select>
+</div>
+</div>
+<!-- =========================
+         MAIN LAYOUT
+    ========================== -->
+<div class="layout">
+<!-- TABLE OF CONTENTS -->
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav id="tocLinks">
+<a href="#introduction">Introduction</a>
+<a href="#objectives">Learning Objectives</a>
+<a href="#chapter-1">1. Meaning of Mobile Platforms</a>
+<a href="#chapter-2">2. History and Development</a>
+<a href="#chapter-3">3. Components of Mobile Devices</a>
+<a href="#chapter-4">4. Mobile Operating Systems</a>
+<a href="#chapter-5">5. Android Platform</a>
+<a href="#chapter-6">6. iOS Platform</a>
+<a href="#chapter-7">7. Android vs. iOS</a>
+<a href="#chapter-8">8. Mobile Application Platforms</a>
+<a href="#chapter-9">9. Types of Mobile Applications</a>
+<a href="#chapter-10">10. Native Applications</a>
+<a href="#chapter-11">11. Web Applications</a>
+<a href="#chapter-12">12. Hybrid Applications</a>
+<a href="#chapter-13">13. Mobile Application Development</a>
+<a href="#chapter-14">14. Languages and Development Tools</a>
+<a href="#chapter-15">15. User Interface and User Experience</a>
+<a href="#chapter-16">16. Application Stores</a>
+<a href="#chapter-17">17. Mobile Connectivity</a>
+<a href="#chapter-18">18. Mobile Application Security</a>
+<a href="#chapter-19">19. Permissions and Privacy</a>
+<a href="#chapter-20">20. Cloud-Based Applications</a>
+<a href="#chapter-21">21. Mobile Database and Storage</a>
+<a href="#chapter-22">22. Mobile Platform Management</a>
+<a href="#chapter-23">23. Education and Business</a>
+<a href="#chapter-24">24. Challenges and Future Trends</a>
+<a href="#chapter-25">25. Real-World Applications</a>
+<a href="#chapter-26">26. Summary and Conclusion</a>
+<a href="#quiz">
+                    Knowledge Assessment Quiz
+                </a>
+</nav>
+</aside>
+<main>
+<header class="book-header">
+<span class="eyebrow">
+                    PLATFORM TECHNOLOGIES | ITE-201
+                </span>
+<h1>Mobile and Application Platforms</h1>
+<p>
+                    Understanding mobile operating systems,
+                    application development, platforms,
+                    and modern mobile technologies.
+                </p>
+</header>
+<div class="book-content">
+<!-- INTRODUCTION -->
+<section class="chapter" id="introduction">
+<h2>Introduction</h2>
+<p>
+                        Mobile and application platforms are
+                        important parts of modern computing.
+                        They allow people to use mobile devices,
+                        access digital services, and run applications
+                        for communication, education, entertainment,
+                        business, and other activities.
+                    </p>
+<p>
+                        A mobile platform is the combination of
+                        hardware, operating systems, software,
+                        and services that allow a mobile device
+                        to function. Smartphones and tablets are
+                        common examples of devices that use
+                        mobile platforms.
+                    </p>
+<p>
+                        An application platform provides the
+                        environment and tools needed to develop,
+                        install, manage, and run software applications.
+                    </p>
+<p>
+                        Popular mobile platforms include Android
+                        and iOS. These platforms provide operating
+                        systems, application stores, development
+                        tools, and security features.
+                    </p>
+</section>
+<!-- LEARNING OBJECTIVES -->
+<section class="chapter" id="objectives">
+<h2>Learning Objectives</h2>
+<ol>
+<li>Define mobile platforms and application platforms.</li>
+<li>Understand the development of mobile computing.</li>
+<li>Identify the major components of mobile devices.</li>
+<li>Explain the functions of mobile operating systems.</li>
+<li>Differentiate Android and iOS.</li>
+<li>Understand mobile application development.</li>
+<li>Identify native, web, and hybrid applications.</li>
+<li>Understand application stores and distribution.</li>
+<li>Explain mobile application security.</li>
+<li>Recognize the importance of mobile connectivity.</li>
+<li>Understand cloud-based mobile applications.</li>
+<li>Identify current uses and future developments.</li>
+</ol>
+</section>
+<!-- CHAPTER 1 -->
+<section class="chapter" id="chapter-1">
+<h2>1. Meaning of Mobile Platforms</h2>
+<p>
+                        A mobile platform is a technology environment
+                        that allows a mobile device to operate and
+                        run applications. It includes the operating
+                        system, hardware support, software services,
+                        and development tools.
+                    </p>
+<h3>Important Features</h3>
+<ul>
+<li>Application installation and management</li>
+<li>Internet connectivity</li>
+<li>Touchscreen interaction</li>
+<li>Camera and multimedia support</li>
+<li>File and data storage</li>
+<li>Security and privacy controls</li>
+<li>Notifications and background services</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            An Android smartphone uses the Android
+                            platform to run messaging applications,
+                            browsers, educational tools, and games.
+                            An iPhone uses Apple's iOS platform
+                            to provide similar services.
+                        </p>
+</div>
+</section>
+<!-- CHAPTER 2 -->
+<section class="chapter" id="chapter-2">
+<h2>2. History and Development of Mobile Computing</h2>
+<p>
+                        Mobile computing developed as computers
+                        became smaller, more portable, and more
+                        powerful. Early devices focused on
+                        communication, scheduling, and simple
+                        information management.
+                    </p>
+<h3>Important Developments</h3>
+<ul>
+<li>
+<strong>Early devices:</strong>
+                            Basic mobile phones and personal digital
+                            assistants offered communication and
+                            simple computing functions.
+                        </li>
+<li>
+<strong>1990s:</strong>
+                            More advanced scheduling, messaging,
+                            and personal information features.
+                        </li>
+<li>
+<strong>2000s:</strong>
+                            Smartphones began combining phone
+                            functions with advanced software.
+                        </li>
+<li>
+<strong>2007:</strong>
+                            Apple introduced the first iPhone.
+                        </li>
+<li>
+<strong>2008:</strong>
+                            The first commercial Android-powered
+                            smartphone became available.
+                        </li>
+<li>
+<strong>Present:</strong>
+                            Smartphones support cloud services,
+                            AI features, mobile payments, and
+                            high-speed wireless networks.
+                        </li>
+</ul>
+</section>
+<!-- CHAPTER 3 -->
+<section class="chapter" id="chapter-3">
+<h2>3. Components of Mobile Devices</h2>
+<p>
+                        Mobile devices contain hardware and
+                        software components that work together
+                        to process information, display content,
+                        store data, and communicate.
+                    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Component</th>
+<th>Function</th>
+</tr>
+<tr>
+<td>Processor (CPU)</td>
+<td>Executes instructions and processes data.</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>Temporarily stores information used by active apps.</td>
+</tr>
+<tr>
+<td>Internal Storage</td>
+<td>Saves applications, files, photos, and system data.</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>Shows text, images, videos, and interfaces.</td>
+</tr>
+<tr>
+<td>Battery</td>
+<td>Supplies power to the device.</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>Captures photos and videos.</td>
+</tr>
+<tr>
+<td>Sensors</td>
+<td>Detect movement, orientation, and light.</td>
+</tr>
+<tr>
+<td>Wireless Components</td>
+<td>Support Wi-Fi, Bluetooth, and cellular communication.</td>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>Manages hardware and software resources.</td>
+</tr>
+</table>
+</div>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            When a user opens a camera application,
+                            the processor runs the app, RAM holds
+                            active data, the camera captures an image,
+                            and internal storage saves the photo.
+                        </p>
+</div>
+</section>
+<!-- CHAPTER 4 -->
+<section class="chapter" id="chapter-4">
+<h2>4. Mobile Operating Systems</h2>
+<p>
+                        A mobile operating system is system software
+                        that manages a mobile device's hardware
+                        and applications.
+                    </p>
+<h3>Main Functions</h3>
+<ol>
+<li>Running applications</li>
+<li>Managing memory and processor resources</li>
+<li>Controlling access to hardware</li>
+<li>Connecting to wireless networks</li>
+<li>Managing files and storage</li>
+<li>Providing security features</li>
+<li>Displaying notifications</li>
+</ol>
+<p>
+                        Two major mobile operating systems are
+                        Android and iOS.
+                    </p>
+</section>
+<!-- CHAPTER 5 -->
+<section class="chapter" id="chapter-5">
+<h2>5. Android Platform</h2>
+<p>
+                        Android is a mobile operating system
+                        developed by Google and based on the
+                        Linux kernel. It is used by many
+                        smartphone and tablet manufacturers.
+                    </p>
+<h3>Important Features</h3>
+<ul>
+<li>Supports applications from different developers.</li>
+<li>Provides customization options.</li>
+<li>Supports multitasking.</li>
+<li>Works with different hardware manufacturers.</li>
+<li>Includes security and permission controls.</li>
+<li>Supports Google Play on compatible devices.</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            Samsung and Google smartphones can
+                            use Android to run browsers, messaging
+                            applications, video players, and
+                            educational tools.
+                        </p>
+</div>
+<p>
+                        Related Android platforms are also used
+                        in televisions, smartwatches, and
+                        automotive systems.
+                    </p>
+</section>
+<!-- CHAPTER 6 -->
+<section class="chapter" id="chapter-6">
+<h2>6. iOS Platform</h2>
+<p>
+                        iOS is Apple's mobile operating system
+                        for the iPhone. It is designed to work
+                        closely with Apple's hardware and services.
+                    </p>
+<h3>Important Features</h3>
+<ul>
+<li>Designed for Apple's iPhone hardware</li>
+<li>Provides a consistent interface</li>
+<li>Includes privacy and security features</li>
+<li>Supports multitasking and notifications</li>
+<li>Provides access to the Apple App Store</li>
+<li>Integrates with other Apple devices and services</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            An iPhone user can install applications
+                            through the App Store, take pictures,
+                            send messages, browse websites, and
+                            access cloud services.
+                        </p>
+</div>
+</section>
+<!-- CHAPTER 7 -->
+<section class="chapter" id="chapter-7">
+<h2>7. Android vs. iOS</h2>
+<p>
+                        Android and iOS are major mobile operating
+                        systems. Both support applications,
+                        communication, internet access, and
+                        everyday computing activities.
+                    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Feature</th>
+<th>Android</th>
+<th>iOS</th>
+</tr>
+<tr>
+<td>Developer</td>
+<td>Google-led ecosystem</td>
+<td>Apple</td>
+</tr>
+<tr>
+<td>Main Devices</td>
+<td>Many manufacturers</td>
+<td>Apple iPhones</td>
+</tr>
+<tr>
+<td>Application Store</td>
+<td>Google Play on supported devices</td>
+<td>Apple App Store</td>
+</tr>
+<tr>
+<td>Customization</td>
+<td>Generally more customizable</td>
+<td>More standardized experience</td>
+</tr>
+<tr>
+<td>Development Tools</td>
+<td>Android Studio</td>
+<td>Xcode</td>
+</tr>
+<tr>
+<td>Common Languages</td>
+<td>Kotlin and Java</td>
+<td>Swift</td>
+</tr>
+</table>
+</div>
+<p>
+                        Neither platform is automatically better.
+                        The best choice depends on the user's
+                        needs, budget, and preferences.
+                    </p>
+</section>
+<!-- CHAPTER 8 -->
+<section class="chapter" id="chapter-8">
+<h2>8. Mobile Application Platforms</h2>
+<p>
+                        A mobile application platform supports
+                        the development, installation, execution,
+                        and management of mobile applications.
+                    </p>
+<p>
+                        It provides programming tools, libraries,
+                        services, and interfaces for accessing
+                        device features.
+                    </p>
+<h3>Examples</h3>
+<ul>
+<li>Android platform</li>
+<li>Apple iOS platform</li>
+<li>Flutter</li>
+<li>React Native</li>
+<li>.NET MAUI</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A developer creates a school attendance
+                            application using Android development
+                            tools so students can view their
+                            attendance records.
+                        </p>
+</div>
+</section>
+<!-- CHAPTER 9 -->
+<section class="chapter" id="chapter-9">
+<h2>9. Types of Mobile Applications</h2>
+<p>
+                        Mobile applications can be classified
+                        according to how they are developed
+                        and operated.
+                    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>Native</td>
+<td>Developed for a specific operating system</td>
+<td>Android app using Kotlin</td>
+</tr>
+<tr>
+<td>Web</td>
+<td>Accessed through a web browser</td>
+<td>Online school portal</td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td>Combines web technologies with native device features</td>
+<td>App using a hybrid framework</td>
+</tr>
+</table>
+</div>
+</section>
+<!-- CHAPTER 10 -->
+<section class="chapter" id="chapter-10">
+<h2>10. Native Applications</h2>
+<p>
+                        Native applications are developed
+                        specifically for a particular operating
+                        system using supported languages,
+                        tools, and interfaces.
+                    </p>
+<h3>Common Technologies</h3>
+<ul>
+<li>Kotlin for Android</li>
+<li>Java for Android</li>
+<li>Swift for Apple platforms</li>
+<li>Objective-C for some Apple applications</li>
+</ul>
+<h3>Advantages</h3>
+<ol>
+<li>Strong operating system integration</li>
+<li>Access to supported device features</li>
+<li>Good performance for many applications</li>
+<li>Familiar platform-specific interfaces</li>
+</ol>
+<h3>Limitations</h3>
+<ul>
+<li>Separate development may be needed for Android and iOS.</li>
+<li>Maintaining multiple versions requires resources.</li>
+</ul>
+</section>
+<!-- CHAPTER 11 -->
+<section class="chapter" id="chapter-11">
+<h2>11. Web Applications</h2>
+<p>
+                        A web application is software accessed
+                        through a web browser.
+                    </p>
+<p>
+                        Web applications commonly use HTML,
+                        CSS, and JavaScript and may communicate
+                        with servers to process information.
+                    </p>
+<h3>Advantages</h3>
+<ul>
+<li>Works across devices with compatible browsers</li>
+<li>Often requires no traditional installation</li>
+<li>Can be updated centrally</li>
+<li>Accessible through internet or local networks</li>
+</ul>
+<h3>Limitations</h3>
+<ul>
+<li>Some features depend on internet connectivity.</li>
+<li>Hardware access may be browser-dependent.</li>
+<li>Performance depends on browser, network, and server.</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A student uses a mobile browser to
+                            access an online learning system,
+                            read lessons, and submit assignments.
+                        </p>
+</div>
+</section>
+<!-- CHAPTER 12 -->
+<section class="chapter" id="chapter-12">
+<h2>12. Hybrid Applications</h2>
+<p>
+                        A hybrid application combines web
+                        technologies with mobile application
+                        features through a supported framework
+                        or runtime.
+                    </p>
+<h3>Advantages</h3>
+<ol>
+<li>Code reuse across platforms</li>
+<li>Fewer separate codebases</li>
+<li>Uses familiar web development skills</li>
+<li>Can access some device features through plugins</li>
+</ol>
+<h3>Limitations</h3>
+<ul>
+<li>Performance varies by framework.</li>
+<li>Advanced hardware access may need additional work.</li>
+<li>Interfaces may need platform-specific adjustments.</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A business develops a shopping
+                            application for Android and iOS
+                            using a shared hybrid codebase.
+                        </p>
+</div>
+</section>
+<!-- CHAPTER 13 -->
+<section class="chapter" id="chapter-13">
+<h2>13. Mobile Application Development</h2>
+<p>
+                        Mobile application development is the
+                        process of planning, designing, programming,
+                        testing, and releasing mobile software.
+                    </p>
+<h3>Development Stages</h3>
+<ol>
+<li>
+<strong>Planning:</strong>
+                            Identify the purpose and users.
+                        </li>
+<li>
+<strong>Requirement Analysis:</strong>
+                            Determine needed features.
+                        </li>
+<li>
+<strong>Design:</strong>
+                            Create the layout and interface.
+                        </li>
+<li>
+<strong>Development:</strong>
+                            Write code and connect features.
+                        </li>
+<li>
+<strong>Testing:</strong>
+                            Check functionality and errors.
+                        </li>
+<li>
+<strong>Deployment:</strong>
+                            Release the application.
+                        </li>
+<li>
+<strong>Maintenance:</strong>
+                            Fix problems and provide updates.
+                        </li>
+</ol>
+</section>
+<!-- CHAPTER 14 -->
+<section class="chapter" id="chapter-14">
+<h2>14. Programming Languages and Development Tools</h2>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Language or Tool</th>
+<th>Common Use</th>
+</tr>
+<tr>
+<td>Kotlin</td>
+<td>Android development</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>Android and general programming</td>
+</tr>
+<tr>
+<td>Swift</td>
+<td>Apple platform development</td>
+</tr>
+<tr>
+<td>Objective-C</td>
+<td>Apple platform development</td>
+</tr>
+<tr>
+<td>Dart</td>
+<td>Commonly used with Flutter</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Web and cross-platform development</td>
+</tr>
+<tr>
+<td>Android Studio</td>
+<td>Official Android development environment</td>
+</tr>
+<tr>
+<td>Xcode</td>
+<td>Apple development environment</td>
+</tr>
+<tr>
+<td>Visual Studio Code</td>
+<td>Code editor for many technologies</td>
+</tr>
+</table>
+</div>
+</section>
+<!-- CHAPTER 15 -->
+<section class="chapter" id="chapter-15">
+<h2>15. User Interface and User Experience</h2>
+<h3>User Interface (UI)</h3>
+<p>
+                        UI refers to visual elements such as
+                        buttons, icons, menus, text fields,
+                        and screens.
+                    </p>
+<h3>User Experience (UX)</h3>
+<p>
+                        UX refers to the overall experience
+                        a person has while using an application.
+                    </p>
+<h3>Important Principles</h3>
+<ul>
+<li>Use clear labels and readable text.</li>
+<li>Keep navigation simple.</li>
+<li>Use consistent colors and layouts.</li>
+<li>Make buttons recognizable.</li>
+<li>Provide feedback after user actions.</li>
+<li>Consider accessibility.</li>
+<li>Avoid unnecessary steps.</li>
+</ul>
+</section>
+<!-- CHAPTER 16 -->
+<section class="chapter" id="chapter-16">
+<h2>16. Application Stores and Distribution</h2>
+<p>
+                        Application stores allow users to
+                        discover, download, install, and
+                        update mobile applications.
+                    </p>
+<h3>Major Application Stores</h3>
+<ul>
+<li>Google Play Store</li>
+<li>Apple App Store</li>
+</ul>
+<h3>Common Functions</h3>
+<ol>
+<li>Application discovery and search</li>
+<li>Download and installation</li>
+<li>Application updates</li>
+<li>Ratings and reviews</li>
+<li>Application information</li>
+<li>Security and policy review processes</li>
+</ol>
+<p>
+                        Users should review developer information,
+                        permissions, ratings, and app details
+                        before installing software.
+                    </p>
+</section>
+<!-- CHAPTER 17 -->
+<section class="chapter" id="chapter-17">
+<h2>17. Mobile Connectivity and Communication</h2>
+<p>
+                        Mobile devices use communication
+                        technologies to connect to networks,
+                        exchange information, and access services.
+                    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Technology</th>
+<th>Function</th>
+</tr>
+<tr>
+<td>Wi-Fi</td>
+<td>Wireless local network connectivity</td>
+</tr>
+<tr>
+<td>Bluetooth</td>
+<td>Short-distance device communication</td>
+</tr>
+<tr>
+<td>4G LTE</td>
+<td>Mobile broadband connectivity</td>
+</tr>
+<tr>
+<td>5G</td>
+<td>Newer mobile network capabilities</td>
+</tr>
+<tr>
+<td>NFC</td>
+<td>Very short-range communication</td>
+</tr>
+<tr>
+<td>GPS</td>
+<td>Geographic positioning</td>
+</tr>
+</table>
+</div>
+</section>
+<!-- CHAPTER 18 -->
+<section class="chapter" id="chapter-18">
+<h2>18. Mobile Application Security</h2>
+<p>
+                        Mobile application security protects
+                        applications, devices, and user information
+                        against unauthorized access, misuse,
+                        and cyber threats.
+                    </p>
+<h3>Security Practices</h3>
+<ol>
+<li>Use secure authentication.</li>
+<li>Keep applications updated.</li>
+<li>Use trusted application sources.</li>
+<li>Protect data during transmission.</li>
+<li>Apply access controls.</li>
+<li>Avoid unnecessary personal data storage.</li>
+<li>Use secure programming practices.</li>
+<li>Test for security weaknesses.</li>
+</ol>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A mobile banking application uses
+                            authentication and encrypted
+                            communication to protect account data.
+                        </p>
+</div>
+</section>
+<!-- CHAPTER 19 -->
+<section class="chapter" id="chapter-19">
+<h2>19. Application Permissions and Privacy</h2>
+<p>
+                        Application permissions determine
+                        which device features and information
+                        an application can access.
+                    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+<tr>
+<td>Camera</td>
+<td>Capture images and videos</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>Record audio and support voice calls</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Access device location</td>
+</tr>
+<tr>
+<td>Contacts</td>
+<td>Access contact information</td>
+</tr>
+<tr>
+<td>Photos and Files</td>
+<td>Access selected media or documents</td>
+</tr>
+<tr>
+<td>Notifications</td>
+<td>Send alerts</td>
+</tr>
+</table>
+</div>
+<p>
+                        Users should only grant permissions
+                        necessary for the application's features.
+                    </p>
+</section>
+<!-- CHAPTER 20 -->
+<section class="chapter" id="chapter-20">
+<h2>20. Cloud-Based Mobile Applications</h2>
+<p>
+                        Cloud-based mobile applications use
+                        internet-connected servers to store
+                        data, process information, or provide
+                        services.
+                    </p>
+<h3>Advantages</h3>
+<ul>
+<li>Access from multiple supported devices</li>
+<li>Data synchronization</li>
+<li>Online collaboration</li>
+<li>Reduced dependence on local storage</li>
+<li>Centralized service management</li>
+</ul>
+<div class="example-box">
+<strong>Example:</strong>
+<p>
+                            A student saves a document in cloud
+                            storage and later accesses it from
+                            another device using the same account.
+                        </p>
+</div>
+</section>
+<!-- CHAPTER 21 -->
+<section class="chapter" id="chapter-21">
+<h2>21. Mobile Database and Data Storage</h2>
+<p>
+                        Mobile applications store information
+                        such as user settings, messages,
+                        documents, and application records.
+                    </p>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Storage Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>Local Files</td>
+<td>Stores documents and media on the device</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>Lightweight relational database</td>
+</tr>
+<tr>
+<td>Room</td>
+<td>Android database library</td>
+</tr>
+<tr>
+<td>Core Data</td>
+<td>Apple application data management framework</td>
+</tr>
+<tr>
+<td>Cloud Database</td>
+<td>Stores data through remote services</td>
+</tr>
+<tr>
+<td>DataStore / Shared Preferences</td>
+<td>Stores Android settings and small data</td>
+</tr>
+</table>
+</div>
+</section>
+<!-- CHAPTER 22 -->
+<section class="chapter" id="chapter-22">
+<h2>22. Mobile Platform Management</h2>
+<p>
+                        Mobile platform management involves
+                        maintaining, configuring, updating,
+                        and protecting mobile devices and apps.
+                    </p>
+<h3>Mobile Device Management (MDM)</h3>
+<p>
+                        MDM allows authorized administrators
+                        to manage supported mobile devices
+                        through a central system.
+                    </p>
+<h3>Management Activities</h3>
+<ol>
+<li>Installing system updates</li>
+<li>Managing application installations</li>
+<li>Configuring wireless connections</li>
+<li>Applying security settings</li>
+<li>Managing device access</li>
+<li>Monitoring device status</li>
+<li>Supporting backups and recovery</li>
+</ol>
+</section>
+<!-- CHAPTER 23 -->
+<section class="chapter" id="chapter-23">
+<h2>23. Mobile Platforms in Education and Business</h2>
+<h3>Education</h3>
+<ul>
+<li>Accessing online lessons</li>
+<li>Submitting assignments</li>
+<li>Reading electronic books</li>
+<li>Attending online classes</li>
+<li>Communicating with teachers</li>
+<li>Using educational applications</li>
+</ul>
+<h3>Business</h3>
+<ul>
+<li>Communicating with customers</li>
+<li>Managing schedules and appointments</li>
+<li>Processing digital transactions</li>
+<li>Accessing company documents</li>
+<li>Managing inventory</li>
+<li>Supporting remote work</li>
+</ul>
+</section>
+<!-- CHAPTER 24 -->
+<section class="chapter" id="chapter-24">
+<h2>24. Challenges and Future Trends</h2>
+<h3>Common Challenges</h3>
+<ol>
+<li>Security threats</li>
+<li>Privacy concerns</li>
+<li>Device compatibility</li>
+<li>Battery consumption</li>
+<li>Storage limitations</li>
+<li>Network dependence</li>
+</ol>
+<h3>Future Trends</h3>
+<ul>
+<li>Artificial intelligence in applications</li>
+<li>Faster mobile network technologies</li>
+<li>Advanced mobile security</li>
+<li>Wearable device integration</li>
+<li>Augmented reality</li>
+<li>Improved cloud services</li>
+<li>Accessible and personalized interfaces</li>
+</ul>
+</section>
+<!-- CHAPTER 25 -->
+<section class="chapter" id="chapter-25">
+<h2>25. Real-World Applications and Examples</h2>
+<h3>Communication</h3>
+<p>
+                        Messaging and video calling applications
+                        support text, voice, and video communication.
+                    </p>
+<h3>Education</h3>
+<p>
+                        Learning applications provide digital
+                        lessons, quizzes, online classrooms,
+                        and electronic books.
+                    </p>
+<h3>Banking and Finance</h3>
+<p>
+                        Banking applications allow users to
+                        access account information and perform
+                        supported transactions.
+                    </p>
+<h3>Entertainment</h3>
+<p>
+                        Streaming and gaming applications
+                        provide digital entertainment.
+                    </p>
+<h3>Navigation</h3>
+<p>
+                        Map applications use location services
+                        and network information to support
+                        navigation and route planning.
+                    </p>
+<h3>Productivity</h3>
+<p>
+                        Calendar, document editing, and task
+                        management applications help users
+                        organize activities.
+                    </p>
+<h3>Healthcare Services</h3>
+<p>
+                        Some applications support appointment
+                        management, health information, and
+                        remote services.
+                    </p>
+</section>
+<!-- CHAPTER 26 -->
+<section class="chapter" id="chapter-26">
+<h2>26. Summary and Conclusion</h2>
+<p>
+                        Mobile and application platforms provide
+                        the technology needed to operate portable
+                        devices and run software applications.
+                    </p>
+<p>
+                        Android and iOS are major mobile operating
+                        systems. Developers can create native,
+                        web, and hybrid applications depending
+                        on user requirements.
+                    </p>
+<p>
+                        Mobile development involves planning,
+                        designing, programming, testing,
+                        deployment, and maintenance.
+                    </p>
+<p>
+                        Mobile connectivity, cloud services,
+                        databases, and security technologies
+                        help applications provide useful services.
+                    </p>
+<p>
+                        Understanding these technologies prepares
+                        IT students to develop and manage mobile
+                        applications for education, business,
+                        and modern computing environments.
+                    </p>
+</section>
+<!-- QUIZ -->
+<section class="chapter" id="quiz">
+<h2>Knowledge Assessment Quiz</h2>
+<p>
+                        Test your understanding of Mobile
+                        and Application Platforms.
+                    </p>
+<p>
+<strong>Total Questions:</strong> 30
+                    </p>
+<p aria-live="polite" id="quizProgress">0 of 30 answered</p>
+<div aria-label="Quiz completion" aria-valuemax="30" aria-valuemin="0" aria-valuenow="0" class="quiz-progress-track" id="quizProgressBar" role="progressbar"><div class="quiz-progress-fill" id="progressFill"></div></div>
+<p><strong>Passing score:</strong> 23 of 30 (75%). All questions are required.</p>
+<div id="quizQuestions"></div>
+<div class="quiz-actions">
+<button id="submitQuiz" type="button">
+                            Submit Quiz
+                        </button>
+<button hidden="" id="retryQuiz" type="button">
+                            Try Again
+                        </button>
+</div>
+<div aria-live="polite" class="quiz-result" hidden="" id="quizResult" role="status"></div>
+</section>
+</div>
+</main>
+</div>
+<footer class="page-footer">
+        © 2026 CodeVerse | Digital E-Book Library
+    </footer>
+<script>
+"use strict";
+document.addEventListener("DOMContentLoaded", function () {
+    const $ = id => document.getElementById(id);
+    const menuToggle = $("menuToggle"), navLinks = $("navLinks");
+    const themeToggle = $("themeToggle"), themeIcon = $("themeIcon");
+    const fontSize = $("fontSize"), fontFamily = $("fontFamily");
+    const sidebar = $("tocSidebar"), tocToggle = $("tocToggle");
+    const content = document.querySelector(".book-content");
+    function saved(key, fallback) { try { return localStorage.getItem(key) ?? fallback; } catch { return fallback; } }
+    function store(key, value) { try { localStorage.setItem(key, value); } catch {} }
+    function setTheme(value) {
+        const dark = value === "dark";
+        document.body.classList.toggle("dark-mode", dark);
+        themeIcon.textContent = dark ? "☀" : "☾";
+        themeToggle.setAttribute("aria-pressed", String(dark));
+        themeToggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+        store("readerTheme", dark ? "dark" : "light");
+    }
+    setTheme(saved("readerTheme", "light"));
+    themeToggle.addEventListener("click", () => setTheme(document.body.classList.contains("dark-mode") ? "light" : "dark"));
+    function applyFont() {
+        content.style.fontSize = fontSize.value;
+        content.style.fontFamily = fontFamily.value;
+        store("readerFontSize", fontSize.value);
+        store("readerFontFamily", fontFamily.value);
+    }
+    const storedSize = saved("readerFontSize", "16px"), storedFamily = saved("readerFontFamily", "'DM Sans', sans-serif");
+    if ([...fontSize.options].some(o => o.value === storedSize)) fontSize.value = storedSize;
+    if ([...fontFamily.options].some(o => o.value === storedFamily)) fontFamily.value = storedFamily;
+    applyFont();
+    fontSize.addEventListener("change", applyFont);
+    fontFamily.addEventListener("change", applyFont);
+    menuToggle.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("show");
+        menuToggle.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+        menuToggle.setAttribute("aria-expanded", "false");
+    }));
+    tocToggle.addEventListener("click", () => {
+        const open = sidebar.classList.toggle("show");
+        tocToggle.setAttribute("aria-expanded", String(open));
+    });
+    const tocLinks = [...document.querySelectorAll('#tocLinks a[href^="#"]')];
+    const sections = tocLinks.map(a => document.getElementById(a.getAttribute("href").slice(1))).filter(Boolean);
+    tocLinks.forEach(a => a.addEventListener("click", () => {
+        if (window.innerWidth <= 850) {
+            sidebar.classList.remove("show");
+            tocToggle.setAttribute("aria-expanded", "false");
+        }
+    }));
+    function highlight() {
+        if (!sections.length) return;
+        let current = sections[0];
+        for (const section of sections) if (section.getBoundingClientRect().top <= 145) current = section;
+        for (const link of tocLinks) {
+            const active = link.getAttribute("href") === "#" + current.id;
+            link.classList.toggle("active", active);
+            if (active) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current");
+        }
+    }
+    let scheduled = false;
+    window.addEventListener("scroll", () => {
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(() => { highlight(); scheduled = false; });
+    }, {passive: true});
+    window.addEventListener("resize", highlight);
+    highlight();
+
+    // The original 30 questions and their answer keys are preserved below.
+    const questions = [
+                {
+                    question: "What is a mobile platform?",
+                    options: [
+                        "A technology environment for operating mobile devices",
+                        "A physical keyboard",
+                        "A computer monitor",
+                        "A type of printer"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which device commonly uses a mobile platform?",
+                    options: [
+                        "Desktop printer",
+                        "Smartphone",
+                        "Projector screen",
+                        "USB cable"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which year did Apple introduce the first iPhone?",
+                    options: [
+                        "2005",
+                        "2006",
+                        "2007",
+                        "2010"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "When did the first commercial Android-powered smartphone become available?",
+                    options: [
+                        "2000",
+                        "2005",
+                        "2007",
+                        "2008"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which component executes instructions in a mobile device?",
+                    options: [
+                        "CPU",
+                        "Battery",
+                        "Display",
+                        "Camera"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What is the primary function of RAM?",
+                    options: [
+                        "Capture photos",
+                        "Temporarily store active application data",
+                        "Provide cellular signals",
+                        "Display images"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What manages mobile device hardware and applications?",
+                    options: [
+                        "Camera",
+                        "Bluetooth speaker",
+                        "Mobile operating system",
+                        "Charging cable"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which mobile operating system is developed by Google?",
+                    options: [
+                        "iOS",
+                        "macOS",
+                        "Windows Server",
+                        "Android"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which operating system is used by Apple's iPhone?",
+                    options: [
+                        "iOS",
+                        "Android",
+                        "Ubuntu Server",
+                        "Windows XP"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which is the official development environment for Android?",
+                    options: [
+                        "Xcode",
+                        "Android Studio",
+                        "Photoshop",
+                        "Microsoft Excel"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which programming language is commonly used for iOS development?",
+                    options: [
+                        "SQL",
+                        "HTML",
+                        "Swift",
+                        "CSS"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What does a mobile application platform provide?",
+                    options: [
+                        "Only physical storage",
+                        "Only device charging",
+                        "Only screen brightness",
+                        "Tools and services for application development"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which application type is developed for a specific operating system?",
+                    options: [
+                        "Native application",
+                        "Web application",
+                        "Spreadsheet",
+                        "Static image"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which type of application is accessed through a browser?",
+                    options: [
+                        "Native application",
+                        "Web application",
+                        "Device driver",
+                        "Firmware"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which application type combines web technologies with native device features?",
+                    options: [
+                        "Desktop application",
+                        "Command-line program",
+                        "Hybrid application",
+                        "Operating system kernel"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which language is commonly used for native Android development?",
+                    options: [
+                        "HTML",
+                        "CSS",
+                        "SQL",
+                        "Kotlin"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "What is the first common stage of mobile application development?",
+                    options: [
+                        "Planning",
+                        "Deployment",
+                        "Maintenance",
+                        "Publishing"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which stage checks whether an application works correctly?",
+                    options: [
+                        "Planning",
+                        "Testing",
+                        "Deployment",
+                        "Marketing"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What does UI stand for?",
+                    options: [
+                        "Universal Internet",
+                        "User Installation",
+                        "User Interface",
+                        "Unified Information"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What does UX refer to?",
+                    options: [
+                        "User XML",
+                        "Universal Extension",
+                        "USB Exchange",
+                        "User Experience"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which store is associated with Apple's iPhone applications?",
+                    options: [
+                        "Apple App Store",
+                        "Google Play Store",
+                        "Steam",
+                        "Microsoft Store only"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which technology connects nearby devices over short distances?",
+                    options: [
+                        "GPS",
+                        "Bluetooth",
+                        "Satellite television",
+                        "HDMI"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which technology supports very short-range communication?",
+                    options: [
+                        "4G LTE",
+                        "Wi-Fi",
+                        "NFC",
+                        "GPS"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is the main goal of mobile application security?",
+                    options: [
+                        "Increase battery consumption",
+                        "Remove all permissions",
+                        "Prevent application updates",
+                        "Protect applications and user information"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which permission allows an application to capture images?",
+                    options: [
+                        "Camera",
+                        "Contacts",
+                        "Location",
+                        "Notifications"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What is a cloud-based mobile application?",
+                    options: [
+                        "An application without any data",
+                        "An app using remote servers for data or services",
+                        "An application that cannot connect to networks",
+                        "A hardware-only device"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which is a lightweight relational database engine?",
+                    options: [
+                        "Bluetooth",
+                        "Android Studio",
+                        "SQLite",
+                        "Xcode"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What does MDM stand for?",
+                    options: [
+                        "Mobile Data Memory",
+                        "Main Device Monitor",
+                        "Multiple Disk Management",
+                        "Mobile Device Management"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which is an educational use of mobile platforms?",
+                    options: [
+                        "Reading electronic books",
+                        "Disabling communication",
+                        "Removing all applications",
+                        "Preventing online lessons"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which is a future trend in mobile technology?",
+                    options: [
+                        "Eliminating wireless communication",
+                        "Artificial intelligence integration",
+                        "Removing application security",
+                        "Stopping cloud services"
+                    ],
+                    answer: 1
+                }
+            ];
+    const quizQuestions = $("quizQuestions"), quizProgress = $("quizProgress");
+    const progressFill = $("progressFill"), progressBar = $("quizProgressBar");
+    const submitQuiz = $("submitQuiz"), retryQuiz = $("retryQuiz"), quizResult = $("quizResult");
+    const passingScore = Math.ceil(questions.length * .75);
+    let submitted = false;
+    function updateProgress() {
+        const count = questions.reduce((n, q, i) => n + Number(!!quizQuestions.querySelector(`input[name="question${i}"]:checked`)), 0);
+        quizProgress.textContent = `${count} of ${questions.length} answered`;
+        progressFill.style.width = `${count / questions.length * 100}%`;
+        progressBar.setAttribute("aria-valuenow", String(count));
+    }
+    function loadQuiz() {
+        submitted = false;
+        quizQuestions.replaceChildren();
+        quizResult.replaceChildren(); quizResult.hidden = true;
+        quizResult.className = "quiz-result";
+        submitQuiz.hidden = false; retryQuiz.hidden = true;
+        questions.forEach((item, index) => {
+            const box = document.createElement("div"); box.className = "quiz-question";
+            const heading = document.createElement("h3"); heading.textContent = `${index + 1}. ${item.question}`;
+            box.appendChild(heading);
+            item.options.forEach((option, optionIndex) => {
+                const label = document.createElement("label"); label.className = "quiz-option";
+                const radio = document.createElement("input"); radio.type = "radio"; radio.name = `question${index}`;
+                radio.value = String(optionIndex); radio.required = true;
+                const span = document.createElement("span"); span.textContent = `${String.fromCharCode(65 + optionIndex)}. ${option}`;
+                label.append(radio, span); box.appendChild(label);
+            });
+            const feedback = document.createElement("p"); feedback.className = "quiz-feedback"; feedback.hidden = true;
+            box.appendChild(feedback); quizQuestions.appendChild(box);
+        });
+        updateProgress();
+    }
+    quizQuestions.addEventListener("change", () => { if (!submitted) updateProgress(); });
+    submitQuiz.addEventListener("click", () => {
+        if (submitted) return;
+        const answers = questions.map((q, i) => {
+            const radio = quizQuestions.querySelector(`input[name="question${i}"]:checked`);
+            return radio ? Number(radio.value) : null;
+        });
+        const missing = answers.findIndex(a => a === null);
+        if (missing !== -1) {
+            const remaining = answers.filter(a => a === null).length;
+            quizResult.hidden = false; quizResult.className = "quiz-result";
+            quizResult.textContent = `Please answer all 30 questions. ${remaining} question(s) remaining.`;
+            const box = quizQuestions.children[missing];
+            box.scrollIntoView({behavior: "smooth", block: "center"});
+            box.querySelector("input")?.focus({preventScroll: true});
+            return;
+        }
+        submitted = true;
+        let score = 0;
+        questions.forEach((item, i) => {
+            const box = quizQuestions.children[i], selected = answers[i];
+            const correct = selected === item.answer;
+            if (correct) score++;
+            box.querySelectorAll(".quiz-option").forEach((label, j) => {
+                label.querySelector("input").disabled = true;
+                if (j === item.answer) label.classList.add("correct");
+                else if (j === selected) label.classList.add("incorrect");
+            });
+            const feedback = box.querySelector(".quiz-feedback");
+            feedback.hidden = false;
+            feedback.classList.add(correct ? "correct" : "incorrect");
+            feedback.textContent = correct
+                ? `Correct! ${item.options[item.answer]}`
+                : `Incorrect. Correct answer: ${String.fromCharCode(65 + item.answer)}. ${item.options[item.answer]}`;
+        });
+        const passed = score >= passingScore;
+        quizResult.className = `quiz-result ${passed ? "passed" : "failed"}`;
+        quizResult.replaceChildren();
+        const heading = document.createElement("h3"); heading.textContent = passed ? "Congratulations! You Passed!" : "Assessment Not Passed";
+        const details = document.createElement("p");
+        details.textContent = `Score: ${score}/${questions.length} (${(score / questions.length * 100).toFixed(2)}%). Passing score: ${passingScore}/${questions.length} (75%).`;
+        const message = document.createElement("p");
+        message.textContent = passed ? "You successfully completed the assessment." : "Review the highlighted answers and try again.";
+        quizResult.append(heading, details, message); quizResult.hidden = false;
+        submitQuiz.hidden = true; retryQuiz.hidden = false;
+        quizResult.scrollIntoView({behavior: "smooth", block: "center"});
+    });
+    retryQuiz.addEventListener("click", () => {
+        loadQuiz();
+        $("quiz").scrollIntoView({behavior: "smooth", block: "start"});
+    });
+    loadQuiz();
+});
+</script>
+    <script src="/js/navbar-loader.js" defer></script>
+</body>
+</html>
